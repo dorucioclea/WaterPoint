@@ -7,8 +7,7 @@ using System.Web.Http;
 
 namespace WaterPoint.Api.Controllers
 {
-    [Authorize]
-    public class ValuesController : ApiController
+    public class ValuesController: ApiController
     {
         // GET api/values
         public IEnumerable<string> Get()
@@ -16,7 +15,7 @@ namespace WaterPoint.Api.Controllers
             return new string[] { "value1", "value2" };
         }
 
-        // GET api/values/1
+        // GET api/values/5
         public string Get(int id)
         {
             return "value";

@@ -9,7 +9,7 @@ using System.Web.Routing;
 
 namespace WaterPoint.Api
 {
-    public class WebApiApplication : System.Web.HttpApplication
+    public class WebApiApplication: System.Web.HttpApplication
     {
         protected void Application_Start()
         {

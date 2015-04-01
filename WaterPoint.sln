@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaterPoint", "WaterPoint\WaterPoint.csproj", "{E0A1093A-5F8A-4017-8587-C528C971DA39}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{06924D47-65D0-4730-86DE-E8771D08706C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaterPoint.Api", "WaterPoint.Api\WaterPoint.Api.csproj", "{FC6AC208-A1E2-4C68-BF23-6E424C976D0D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaterPoint.Api", "WaterPoint.Api\WaterPoint.Api.csproj", "{D07C3791-4669-48CD-B337-660D13F0EC2F}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebApp", "WebApp", "{BD8E509E-48E8-4368-8145-1A9210A93EC3}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "App", "App", "{DBDBA4D9-3E12-4239-9FE3-9A84FBFF1CAC}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{B9B341D2-C5D6-4EBE-B23B-46D7AC4C9F9D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaterPoint.App", "WaterPoint.App\WaterPoint.App.csproj", "{ED910F83-F27E-4B13-AC5F-3522365A956D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,20 +17,20 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E0A1093A-5F8A-4017-8587-C528C971DA39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E0A1093A-5F8A-4017-8587-C528C971DA39}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E0A1093A-5F8A-4017-8587-C528C971DA39}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E0A1093A-5F8A-4017-8587-C528C971DA39}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FC6AC208-A1E2-4C68-BF23-6E424C976D0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FC6AC208-A1E2-4C68-BF23-6E424C976D0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FC6AC208-A1E2-4C68-BF23-6E424C976D0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FC6AC208-A1E2-4C68-BF23-6E424C976D0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D07C3791-4669-48CD-B337-660D13F0EC2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D07C3791-4669-48CD-B337-660D13F0EC2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D07C3791-4669-48CD-B337-660D13F0EC2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D07C3791-4669-48CD-B337-660D13F0EC2F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED910F83-F27E-4B13-AC5F-3522365A956D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED910F83-F27E-4B13-AC5F-3522365A956D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED910F83-F27E-4B13-AC5F-3522365A956D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED910F83-F27E-4B13-AC5F-3522365A956D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{E0A1093A-5F8A-4017-8587-C528C971DA39} = {BD8E509E-48E8-4368-8145-1A9210A93EC3}
-		{FC6AC208-A1E2-4C68-BF23-6E424C976D0D} = {B9B341D2-C5D6-4EBE-B23B-46D7AC4C9F9D}
+		{D07C3791-4669-48CD-B337-660D13F0EC2F} = {06924D47-65D0-4730-86DE-E8771D08706C}
+		{ED910F83-F27E-4B13-AC5F-3522365A956D} = {DBDBA4D9-3E12-4239-9FE3-9A84FBFF1CAC}
 	EndGlobalSection
 EndGlobal
