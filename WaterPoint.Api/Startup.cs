@@ -22,7 +22,6 @@ namespace WaterPoint.Api
             var kernel = new StandardKernel(new ApiDiModule());
 
             return kernel;
-
         }
 
         public void Configuration(IAppBuilder app)

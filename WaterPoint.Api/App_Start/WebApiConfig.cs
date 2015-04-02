@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Formatting;
 using System.Web.Http;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
 
 namespace WaterPoint.Api
 {
@@ -19,6 +22,22 @@ namespace WaterPoint.Api
                 routeTemplate : "{controller}/{id}",
                 defaults : new { id = RouteParameter.Optional }
             );
+            //---
+            AddJsonFormatter(config);
+        }
+
+        private static void AddJsonFormatter(HttpConfiguration config)
+        {
+            config.Formatters.Clear();
+
+            var jsonFormatter = new JsonMediaTypeFormatter
+            {
+                SerializerSettings = { ContractResolver = new CamelCasePropertyNamesContractResolver() }
+            };
+            jsonFormatter.SerializerSettings.Converters.Add(new StringEnumConverter { CamelCaseText = true });
+
+
+            config.Formatters.Add(jsonFormatter);
         }
     }
 }
