@@ -5,7 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using WaterPoint.Data.Entity;
+using WaterPoint.Api.Contract;
 using WaterPoint.Data.Service.Interfaces;
 
 namespace WaterPoint.Api.Controllers
@@ -23,7 +23,7 @@ namespace WaterPoint.Api.Controllers
         {
             var result = _supplierService.List();
 
-            return Ok<IEnumerable<Supplier>>(result);
+            return Ok<IEnumerable<SupplierContract>>(result);
         }
     }
 }

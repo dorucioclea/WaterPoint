@@ -7,7 +7,6 @@ using WaterPoint.Api.Contract;
 using WaterPoint.Data.Bll.Interfaces;
 using WaterPoint.Data.Entity;
 using WaterPoint.Data.Service.Interfaces;
-using Omu.ValueInjecter;
 
 namespace WaterPoint.Data.Service
 {
@@ -23,6 +22,7 @@ namespace WaterPoint.Data.Service
         public IEnumerable<SupplierContract> List()
         {
             var result = _supplierBll.List();
+            return null;
         }
     }
 }

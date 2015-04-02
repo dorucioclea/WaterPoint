@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{06924D47-65D0-4730-86DE-E8771D08706C}"
 EndProject
@@ -18,6 +18,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaterPoint.Data.Service", "WaterPoint.Data.Service\WaterPoint.Data.Service.csproj", "{89D321DB-8D81-4327-946E-95AC71B628DE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaterPoint.Data.Entity", "WaterPoint.Data.Entity\WaterPoint.Data.Entity.csproj", "{DCBDC017-96EC-486D-A491-239702696A1A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaterPoint.Api.DataContract", "WaterPoint.Api.DataContract\WaterPoint.Api.DataContract.csproj", "{FF6D70DC-1F65-43C9-BF5E-DDB08916792A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaterPoint.Data.Bll", "WaterPoint.Data.Bll\WaterPoint.Data.Bll.csproj", "{F8E55611-76A3-4EA9-BE8E-9A57145A527D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,15 +49,25 @@ Global
 		{DCBDC017-96EC-486D-A491-239702696A1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DCBDC017-96EC-486D-A491-239702696A1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DCBDC017-96EC-486D-A491-239702696A1A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF6D70DC-1F65-43C9-BF5E-DDB08916792A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF6D70DC-1F65-43C9-BF5E-DDB08916792A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF6D70DC-1F65-43C9-BF5E-DDB08916792A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF6D70DC-1F65-43C9-BF5E-DDB08916792A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8E55611-76A3-4EA9-BE8E-9A57145A527D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8E55611-76A3-4EA9-BE8E-9A57145A527D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8E55611-76A3-4EA9-BE8E-9A57145A527D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8E55611-76A3-4EA9-BE8E-9A57145A527D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{D07C3791-4669-48CD-B337-660D13F0EC2F} = {06924D47-65D0-4730-86DE-E8771D08706C}
-		{058E9C71-3F56-436C-A5FC-B5397D458FD6} = {06924D47-65D0-4730-86DE-E8771D08706C}
 		{ED910F83-F27E-4B13-AC5F-3522365A956D} = {DBDBA4D9-3E12-4239-9FE3-9A84FBFF1CAC}
+		{058E9C71-3F56-436C-A5FC-B5397D458FD6} = {06924D47-65D0-4730-86DE-E8771D08706C}
 		{89D321DB-8D81-4327-946E-95AC71B628DE} = {8A654831-C825-4014-A18F-71BE1FA194C6}
 		{DCBDC017-96EC-486D-A491-239702696A1A} = {8A654831-C825-4014-A18F-71BE1FA194C6}
+		{FF6D70DC-1F65-43C9-BF5E-DDB08916792A} = {06924D47-65D0-4730-86DE-E8771D08706C}
+		{F8E55611-76A3-4EA9-BE8E-9A57145A527D} = {8A654831-C825-4014-A18F-71BE1FA194C6}
 	EndGlobalSection
 EndGlobal

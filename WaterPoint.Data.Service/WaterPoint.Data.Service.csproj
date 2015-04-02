@@ -44,6 +44,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\WaterPoint.Api.DataContract\WaterPoint.Api.DataContract.csproj">
+      <Project>{ff6d70dc-1f65-43c9-bf5e-ddb08916792a}</Project>
+      <Name>WaterPoint.Api.DataContract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WaterPoint.Data.Bll\WaterPoint.Data.Bll.csproj">
+      <Project>{f8e55611-76a3-4ea9-be8e-9a57145a527d}</Project>
+      <Name>WaterPoint.Data.Bll</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WaterPoint.Data.Entity\WaterPoint.Data.Entity.csproj">
       <Project>{dcbdc017-96ec-486d-a491-239702696a1a}</Project>
       <Name>WaterPoint.Data.Entity</Name>
