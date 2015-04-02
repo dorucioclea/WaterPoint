@@ -15,7 +15,7 @@
     <AssemblyName>WaterPoint.Api</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
-    <UseIISExpress>true</UseIISExpress>
+    <UseIISExpress>false</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -262,13 +262,13 @@
     <Content Include="Scripts\jquery-2.1.3.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\WaterPoint.Api.DataContract\WaterPoint.Api.DataContract.csproj">
+      <Project>{ff6d70dc-1f65-43c9-bf5e-ddb08916792a}</Project>
+      <Name>WaterPoint.Api.DataContract</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WaterPoint.Api.DI\WaterPoint.Api.DI.csproj">
       <Project>{058e9c71-3f56-436c-a5fc-b5397d458fd6}</Project>
       <Name>WaterPoint.Api.DI</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WaterPoint.Data.Entity\WaterPoint.Data.Entity.csproj">
-      <Project>{dcbdc017-96ec-486d-a491-239702696a1a}</Project>
-      <Name>WaterPoint.Data.Entity</Name>
     </ProjectReference>
     <ProjectReference Include="..\WaterPoint.Data.Service\WaterPoint.Data.Service.csproj">
       <Project>{89d321db-8d81-4327-946e-95ac71b628de}</Project>
@@ -297,7 +297,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>51096</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:61731/</IISUrl>
+          <IISUrl>http://localhost/WaterPoint.Api</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
