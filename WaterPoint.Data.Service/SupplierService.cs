@@ -3,16 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WaterPoint.Api.Contract;
+using WaterPoint.Data.Bll.Interfaces;
 using WaterPoint.Data.Entity;
 using WaterPoint.Data.Service.Interfaces;
+using Omu.ValueInjecter;
 
 namespace WaterPoint.Data.Service
 {
     public class SupplierService: ISupplierService
     {
-        public IEnumerable<Supplier> List()
+        private readonly ISupplierBll _supplierBll;
+
+        public SupplierService(ISupplierBll supplierBll)
         {
-            return Enumerable.Range(1, 10).Select(i => new Supplier { Id = i, Name = "supplier " + i });
+            _supplierBll = supplierBll;
+        }
+
+        public IEnumerable<SupplierContract> List()
+        {
+            var result = _supplierBll.List();
         }
     }
 }
