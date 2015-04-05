@@ -11,7 +11,7 @@ namespace WaterPoint.Data.Bll
 {
     public class SupplierBll : BllBase, ISupplierBll
     {
-        public SupplierBll(IRepository repo)
+        public SupplierBll(IDbContext repo)
             : base(repo)
         {
 

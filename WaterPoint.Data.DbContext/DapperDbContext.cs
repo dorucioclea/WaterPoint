@@ -1,29 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Dapper;
-using WaterPoint.Data.Repository;
 
-
-namespace WaterPoint.Data.Repository
-{   
-    public class RepositoryDapper : IRepository
+namespace WaterPoint.Data.DbContext
+{
+    public class DapperDbContext : IDbContext
     {
         private string _connectionString;
 
         private const string _defaultConnection = "DefaultConnection";
 
-        public RepositoryDapper()
+        public DapperDbContext()
             : this(_defaultConnection)
         {
         }
 
-        public RepositoryDapper(string connectionString)
+        public DapperDbContext(string connectionString)
         {
             _connectionString = ConfigurationManager.ConnectionStrings[connectionString].ConnectionString;
         }

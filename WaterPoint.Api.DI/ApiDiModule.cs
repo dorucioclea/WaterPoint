@@ -7,6 +7,7 @@ using Ninject.Modules;
 using WaterPoint.Data.Bll;
 using WaterPoint.Data.Bll.Interfaces;
 using WaterPoint.Data.Repository;
+using WaterPoint.Data.Repository.DbContext;
 using WaterPoint.Data.Service;
 using WaterPoint.Data.Service.Interfaces;
 
@@ -16,7 +17,7 @@ namespace WaterPoint.Api.DI
     {
         public override void Load()
         {
-            Bind<IRepository>().To<RepositoryDapper>();
+            Bind<IDbContext>().To<DapperDbContext>();
 
             BindService();
             BindBll();
