@@ -9,9 +9,9 @@ namespace WaterPoint.Data.Bll
 {
     public abstract class BllBase
     {
-        protected IRepository Repo { get; set; }
+        protected IDbContext Repo { get; set; }
 
-        protected BllBase(IRepository repo)
+        protected BllBase(IDbContext repo)
         {
             Repo = repo;
         }
