@@ -23,6 +23,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaterPoint.Api.DataContract
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaterPoint.Data.Bll", "WaterPoint.Data.Bll\WaterPoint.Data.Bll.csproj", "{F8E55611-76A3-4EA9-BE8E-9A57145A527D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaterPoint.Data.ContractMapper", "WaterPoint.Data.ContractMapper\WaterPoint.Data.ContractMapper.csproj", "{348DE3FF-F592-43C0-91A1-5CAB4F3F2E53}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaterPoint.Data.Repository", "WaterPoint.Data.Repository\WaterPoint.Data.Repository.csproj", "{A5B1FD13-2461-4736-AD4F-E7708A0C38EE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +61,14 @@ Global
 		{F8E55611-76A3-4EA9-BE8E-9A57145A527D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F8E55611-76A3-4EA9-BE8E-9A57145A527D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F8E55611-76A3-4EA9-BE8E-9A57145A527D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{348DE3FF-F592-43C0-91A1-5CAB4F3F2E53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{348DE3FF-F592-43C0-91A1-5CAB4F3F2E53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{348DE3FF-F592-43C0-91A1-5CAB4F3F2E53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{348DE3FF-F592-43C0-91A1-5CAB4F3F2E53}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5B1FD13-2461-4736-AD4F-E7708A0C38EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5B1FD13-2461-4736-AD4F-E7708A0C38EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5B1FD13-2461-4736-AD4F-E7708A0C38EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5B1FD13-2461-4736-AD4F-E7708A0C38EE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -69,5 +81,7 @@ Global
 		{DCBDC017-96EC-486D-A491-239702696A1A} = {8A654831-C825-4014-A18F-71BE1FA194C6}
 		{FF6D70DC-1F65-43C9-BF5E-DDB08916792A} = {06924D47-65D0-4730-86DE-E8771D08706C}
 		{F8E55611-76A3-4EA9-BE8E-9A57145A527D} = {8A654831-C825-4014-A18F-71BE1FA194C6}
+		{348DE3FF-F592-43C0-91A1-5CAB4F3F2E53} = {8A654831-C825-4014-A18F-71BE1FA194C6}
+		{A5B1FD13-2461-4736-AD4F-E7708A0C38EE} = {8A654831-C825-4014-A18F-71BE1FA194C6}
 	EndGlobalSection
 EndGlobal

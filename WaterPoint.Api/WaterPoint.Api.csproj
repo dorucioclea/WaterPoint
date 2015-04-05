@@ -270,6 +270,10 @@
       <Project>{058e9c71-3f56-436c-a5fc-b5397d458fd6}</Project>
       <Name>WaterPoint.Api.DI</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WaterPoint.Data.ContractMapper\WaterPoint.Data.ContractMapper.csproj">
+      <Project>{348de3ff-f592-43c0-91a1-5cab4f3f2e53}</Project>
+      <Name>WaterPoint.Data.ContractMapper</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WaterPoint.Data.Service\WaterPoint.Data.Service.csproj">
       <Project>{89d321db-8d81-4327-946e-95ac71b628de}</Project>
       <Name>WaterPoint.Data.Service</Name>

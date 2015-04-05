@@ -41,12 +41,17 @@
   <ItemGroup>
     <Compile Include="Interfaces\ISupplierBll.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RepositoryBase.cs" />
     <Compile Include="SupplierBll.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WaterPoint.Data.Entity\WaterPoint.Data.Entity.csproj">
       <Project>{dcbdc017-96ec-486d-a491-239702696a1a}</Project>
       <Name>WaterPoint.Data.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WaterPoint.Data.Repository\WaterPoint.Data.Repository.csproj">
+      <Project>{a5b1fd13-2461-4736-ad4f-e7708a0c38ee}</Project>
+      <Name>WaterPoint.Data.Repository</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

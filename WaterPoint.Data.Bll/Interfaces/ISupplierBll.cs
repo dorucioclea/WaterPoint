@@ -1,10 +1,11 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using WaterPoint.Data.Entity;
 
 namespace WaterPoint.Data.Bll.Interfaces
 {
     public interface ISupplierBll
     {
-        IEnumerable<Supplier> List();
+        Task<IEnumerable<Supplier>> ListAsync();
     }
 }

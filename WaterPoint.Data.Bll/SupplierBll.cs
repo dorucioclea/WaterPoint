@@ -5,14 +5,24 @@ using System.Text;
 using System.Threading.Tasks;
 using WaterPoint.Data.Bll.Interfaces;
 using WaterPoint.Data.Entity;
+using WaterPoint.Data.Repository;
 
 namespace WaterPoint.Data.Bll
 {
-    public class SupplierBll: ISupplierBll
+    public class SupplierBll : BllBase, ISupplierBll
     {
-        public IEnumerable<Supplier> List()
+        public SupplierBll(IRepository repo)
+            : base(repo)
         {
-            return Enumerable.Range(1, 10).Select(i => new Supplier { Id = i, Name = "supplier " + i });
+
+        }
+
+        public async Task<IEnumerable<Supplier>> ListAsync()
+        {
+            return await Task.Run<IEnumerable<Supplier>>(() =>
+            {
+                return Repo.ListAsync<Supplier>("select * from supplier where id < @id", new { id = 10 });
+            });
         }
     }
 }

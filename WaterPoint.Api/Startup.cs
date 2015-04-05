@@ -10,6 +10,7 @@ using Owin;
 using Ninject.Web.Common.OwinHost;
 using Ninject.Web.WebApi.OwinHost;
 using WaterPoint.Api.DI;
+using WaterPoint.Data.ContractMapper;
 
 [assembly: OwinStartup(typeof(WaterPoint.Api.Startup))]
 
@@ -34,6 +35,8 @@ namespace WaterPoint.Api
 
             app.UseNinjectMiddleware(() => CreateKernel())
                 .UseNinjectWebApi(config);
+
+            ContractMapper.Initialize();
         }
     }
 }

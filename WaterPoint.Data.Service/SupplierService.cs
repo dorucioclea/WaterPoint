@@ -7,10 +7,11 @@ using WaterPoint.Api.Contract;
 using WaterPoint.Data.Bll.Interfaces;
 using WaterPoint.Data.Entity;
 using WaterPoint.Data.Service.Interfaces;
+using AutoMapper;
 
 namespace WaterPoint.Data.Service
 {
-    public class SupplierService: ISupplierService
+    public class SupplierService : ISupplierService
     {
         private readonly ISupplierBll _supplierBll;
 
@@ -19,10 +20,13 @@ namespace WaterPoint.Data.Service
             _supplierBll = supplierBll;
         }
 
-        public IEnumerable<SupplierContract> List()
+        public async Task<IEnumerable<SupplierContract>> ListAsync()
         {
-            var result = _supplierBll.List();
-            return null;
+            var list = await _supplierBll.ListAsync();
+
+            var result = Mapper.Map<IEnumerable<SupplierContract>>(list);
+
+            return result;
         }
     }
 }

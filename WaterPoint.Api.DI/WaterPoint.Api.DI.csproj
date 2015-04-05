@@ -49,6 +49,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\WaterPoint.Data.Bll\WaterPoint.Data.Bll.csproj">
+      <Project>{f8e55611-76a3-4ea9-be8e-9a57145a527d}</Project>
+      <Name>WaterPoint.Data.Bll</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WaterPoint.Data.Repository\WaterPoint.Data.Repository.csproj">
+      <Project>{a5b1fd13-2461-4736-ad4f-e7708a0c38ee}</Project>
+      <Name>WaterPoint.Data.Repository</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WaterPoint.Data.Service\WaterPoint.Data.Service.csproj">
       <Project>{89d321db-8d81-4327-946e-95ac71b628de}</Project>
       <Name>WaterPoint.Data.Service</Name>

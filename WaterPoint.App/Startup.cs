@@ -8,7 +8,7 @@ namespace WaterPoint.App
     {
         public void Configuration(IAppBuilder app)
         {
-            //
+            //TODO: auth layer.
             ConfigureAuth(app);
         }
     }
