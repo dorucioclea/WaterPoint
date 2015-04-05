@@ -53,6 +53,10 @@
       <Project>{f8e55611-76a3-4ea9-be8e-9a57145a527d}</Project>
       <Name>WaterPoint.Data.Bll</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WaterPoint.Data.DbContext\WaterPoint.Data.DbContext.csproj">
+      <Project>{fea52468-343e-4e37-ab84-49323f940230}</Project>
+      <Name>WaterPoint.Data.DbContext</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WaterPoint.Data.Repository\WaterPoint.Data.Repository.csproj">
       <Project>{a5b1fd13-2461-4736-ad4f-e7708a0c38ee}</Project>
       <Name>WaterPoint.Data.Repository</Name>

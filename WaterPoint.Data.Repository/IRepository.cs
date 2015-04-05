@@ -34,10 +34,22 @@ namespace WaterPoint.Data.Repository
 
     public interface ISupplierRepository
     {
+        Task<IEnumerable<Supplier>> ListAllAsync();
     }
 
     public class SupplierRepository : GenericRepository<Supplier>, ISupplierRepository
     {
+        public SupplierRepository(IDbContext dbContext)
+            : base(dbContext)
+        {
 
+        }
+
+        public async Task<IEnumerable<Supplier>> ListAllAsync()
+        {
+            var result = await DbContext.ListAsync<Supplier>("select * from supplier where id > @id", new { id = 10 });
+
+            return result;
+        }
     }
 }

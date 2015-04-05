@@ -44,11 +44,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IRepository.cs" />
-    <Compile Include="Repository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <ProjectReference Include="..\WaterPoint.Data.DbContext\WaterPoint.Data.DbContext.csproj">
+      <Project>{fea52468-343e-4e37-ab84-49323f940230}</Project>
+      <Name>WaterPoint.Data.DbContext</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WaterPoint.Data.Entity\WaterPoint.Data.Entity.csproj">
+      <Project>{dcbdc017-96ec-486d-a491-239702696a1a}</Project>
+      <Name>WaterPoint.Data.Entity</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

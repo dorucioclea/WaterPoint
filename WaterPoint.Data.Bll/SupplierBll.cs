@@ -9,20 +9,18 @@ using WaterPoint.Data.Repository;
 
 namespace WaterPoint.Data.Bll
 {
-    public class SupplierBll : BllBase, ISupplierBll
+    public class SupplierBll : ISupplierBll
     {
-        public SupplierBll(IDbContext repo)
-            : base(repo)
-        {
+        private readonly ISupplierRepository _supplierRepo;
 
+        public SupplierBll(ISupplierRepository supplierRepo)
+        {
+            _supplierRepo = supplierRepo;
         }
 
         public async Task<IEnumerable<Supplier>> ListAsync()
         {
-            return await Task.Run<IEnumerable<Supplier>>(() =>
-            {
-                return Repo.ListAsync<Supplier>("select * from supplier where id < @id", new { id = 10 });
-            });
+            return await Task.Run<IEnumerable<Supplier>>(() => _supplierRepo.ListAllAsync());
         }
     }
 }
