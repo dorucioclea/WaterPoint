@@ -10,6 +10,7 @@ using WaterPoint.Data.Repository;
 using WaterPoint.Data.DbContext;
 using WaterPoint.Data.Service;
 using WaterPoint.Data.Service.Interfaces;
+using WaterPoint.Data.Repository.Interfaces;
 
 namespace WaterPoint.Api.DI
 {
@@ -19,9 +20,8 @@ namespace WaterPoint.Api.DI
         {
             Bind<IDbContext>().To<DapperDbContext>();
             BindRepositories();
-            BindServices();
             BindBlls();
-            
+            BindServices();            
         }
 
         private void BindServices()
