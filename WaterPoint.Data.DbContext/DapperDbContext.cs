@@ -11,10 +11,10 @@ namespace WaterPoint.Data.DbContext
     {
         private string _connectionString;
 
-        private const string _defaultConnection = "DefaultConnection";
+        private const string DefaultConnection = "DefaultConnection";
 
         public DapperDbContext()
-            : this(_defaultConnection)
+            : this(DefaultConnection)
         {
         }
 
