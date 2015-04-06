@@ -1,10 +1,10 @@
 ﻿CREATE TABLE [dbo].[Supplier]
 (
 	[Id] INT NOT NULL IDENTITY, 
-    [Name] VARCHAR(50) NOT NULL, 
-    [DisplayName] VARCHAR(50) NULL, 
-    [Mobile] VARCHAR(50) NULL, 
-    [Phone1] VARCHAR(50) NULL, 
+    [Name] NVARCHAR(150) NOT NULL, 
+    [DisplayName] NVARCHAR(150) NULL, 
+    [Mobile] NVARCHAR(100) NULL, 
+    [Phone1] NVARCHAR(100) NULL, 
     [Uid] UNIQUEIDENTIFIER DEFAULT(NEWID()), 
     CONSTRAINT [PK_Supplier] PRIMARY KEY ([Id]) 
 )
