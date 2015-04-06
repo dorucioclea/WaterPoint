@@ -10,9 +10,21 @@ namespace WaterPoint.Api.Contract
     [DataContract]
     public class SupplierContract
     {
-        [DataMember]
         public int Id { get; set; }
+
+        [DataMember(Name = "id")]
+        public string Uid { get; set; }
+
         [DataMember]
         public string Name { get; set; }
+
+        [DataMember]
+        public string DisplayName { get; set; }
+
+        [DataMember]
+        public string Mobile { get; set; }
+
+        [DataMember]
+        public string Phone1 { get; set; }
     }
 }

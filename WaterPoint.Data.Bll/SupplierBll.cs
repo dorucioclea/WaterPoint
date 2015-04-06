@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using WaterPoint.Data.Bll.Interfaces;
 using WaterPoint.Data.Entity;
 using WaterPoint.Data.Repository;
+using WaterPoint.Data.Repository.Interfaces;
 
 namespace WaterPoint.Data.Bll
 {
@@ -18,9 +19,18 @@ namespace WaterPoint.Data.Bll
             _supplierRepo = supplierRepo;
         }
 
-        public async Task<IEnumerable<Supplier>> ListAsync()
+        public async Task<IEnumerable<Supplier>> ListAsync(int organizationId)
         {
-            return await Task.Run<IEnumerable<Supplier>>(() => _supplierRepo.ListAllAsync());
+            var result = await Task.Run<IEnumerable<Supplier>>(() => _supplierRepo.ListAllAsync(organizationId));
+
+            return result;
+        }
+
+        public async Task<Supplier> GetAsync(int organizationId, int id)
+        {
+            var supplier = await _supplierRepo.GetAsync(organizationId, id);
+
+            return supplier;
         }
     }
 }

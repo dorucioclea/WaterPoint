@@ -195,7 +195,9 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SuppliersController.cs" />
+    <Compile Include="ISecurityContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Routes.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>

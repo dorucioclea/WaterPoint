@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 
 namespace WaterPoint.Data.Entity
 {
-    public class Supplier : IDataEntity
+    public class Staff : IDataEntity
     {
         public int Id { get; set; }
+        public int OrganizationId { get; set; }
         public string Name { get; set; }
-        public string DisplayName { get; set; }
+        public string Email { get; set; }
         public string Mobile { get; set; }
-        public string Phone1 { get; set; }
+        public string Phone { get; set; }
         public string Uid { get; set; }
     }
 }

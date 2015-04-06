@@ -20,11 +20,20 @@ namespace WaterPoint.Data.Service
             _supplierBll = supplierBll;
         }
 
-        public async Task<IEnumerable<SupplierContract>> ListAsync()
+        public async Task<IEnumerable<SupplierContract>> ListAsync(int organizationId)
         {
-            var list = await _supplierBll.ListAsync();
+            var list = await _supplierBll.ListAsync(organizationId);
 
             var result = Mapper.Map<IEnumerable<SupplierContract>>(list);
+
+            return result;
+        }
+
+        public async Task<SupplierContract> GetByIdAsync(int organizationId, int id)
+        {
+            var supplier = await _supplierBll.GetAsync(organizationId, id);
+
+            var result = Mapper.Map<SupplierContract>(supplier);
 
             return result;
         }

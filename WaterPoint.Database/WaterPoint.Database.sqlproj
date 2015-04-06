@@ -57,9 +57,14 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
-    <Folder Include="dbo" />
+    <Folder Include="Tables" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="dbo\Supplier.sql" />
+    <Build Include="Tables\Supplier.sql" />
+    <Build Include="Tables\Organization.sql" />
+    <Build Include="Tables\Staff.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="WaterPoint.Database.publish.xml" />
   </ItemGroup>
 </Project>
