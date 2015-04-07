@@ -30,6 +30,11 @@ namespace WaterPoint.Data.DbContext
             return result;
         }
 
+        public async Task<IEnumerable<T>> ListMultipleAsync<T>(string sql, object parameters) where T : class
+        {
+
+        }
+
         public async Task<IEnumerable<T>> ExecuteStoredProcedureAsync<T>(string storedProcName, object parameters) where T : class
         {
             var result = await FetchAsync<T>(storedProcName, CommandType.StoredProcedure, parameters);
@@ -81,7 +86,21 @@ namespace WaterPoint.Data.DbContext
                     conn.Close();
                 }
             }
+        }
 
+        private async Task<IEnumerable<T>> FetchMultipleAsync<T, T1,T2>(string sql, CommandType type, object parameters) where T : class
+        {
+            using (var conn = new SqlConnection(_connectionString))
+            {
+                await conn.OpenAsync().ConfigureAwait(false);
+
+                using (var reader = await conn.QueryMultipleAsync(sql, parameters, null, null, type))
+                {
+                    reader.Read<T1, T2, T>((t1, t2) => { return null; });
+                }
+
+                return null;
+            }
         }
     }
 }
