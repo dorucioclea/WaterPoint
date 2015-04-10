@@ -5,6 +5,8 @@ using System.Data.SqlClient;
 using System.Threading.Tasks;
 using System.Linq;
 using Dapper;
+using System;
+using System.Linq.Expressions;
 
 namespace WaterPoint.Data.DbContext
 {
@@ -31,8 +33,8 @@ namespace WaterPoint.Data.DbContext
             return result;
         }
 
-        public async Task<T> QueryOneManyAsync<TNested, T>(string sql, object parameters)
-            where T : class
+        public async Task<TReturn> QueryOneManyAsync<TNested, TReturn>(string sql, object parameters, Action<object, object> mapAction)
+            where TReturn : class
             where TNested : class
         {
             using (var conn = new SqlConnection(_connectionString))
@@ -43,11 +45,12 @@ namespace WaterPoint.Data.DbContext
 
                     using (var reader = await conn.QueryMultipleAsync(sql, parameters, null, null, CommandType.Text))
                     {
-                        var result = reader.Read<T>().SingleOrDefault();
+                        var result = reader.Read<TReturn>().SingleOrDefault();
 
                         var nested = reader.Read<TNested>().ToList();
 
-                        //if (result != null)
+                        mapAction.Invoke(nested, result);
+
                         return result;
                     }
                 }
