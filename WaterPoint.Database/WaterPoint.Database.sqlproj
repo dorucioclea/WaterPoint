@@ -64,6 +64,8 @@
     <Build Include="Tables\Organization.sql" />
     <Build Include="Tables\Staff.sql" />
     <Build Include="Tables\Product.sql" />
+    <Build Include="Tables\Category.sql" />
+    <Build Include="Tables\ProductCategory.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="WaterPoint.Database.publish.xml" />

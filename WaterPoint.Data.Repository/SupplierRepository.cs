@@ -19,7 +19,7 @@ namespace WaterPoint.Data.Repository
 
         public async Task<IEnumerable<Supplier>> ListAllAsync(int organizationId)
         {
-            var result = await DbContext.ListAsync<Supplier>(
+            var result = await DbContext.QueryAsync<Supplier>(
                 SupplierScripts.ListAllAsync,
                 new { organizationId });
 
@@ -28,7 +28,7 @@ namespace WaterPoint.Data.Repository
 
         public async Task<Supplier> GetAsync(int organizationId, int id)
         {
-            var result = await DbContext.ListAsync<Supplier>(
+            var result = await DbContext.QueryAsync<Supplier>(
                 SupplierScripts.GetAsync,
                 new
                 {
