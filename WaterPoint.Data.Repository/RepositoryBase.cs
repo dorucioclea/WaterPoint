@@ -18,5 +18,10 @@ namespace WaterPoint.Data.Repository
         {
             DbContext = dbContext;
         }
+
+        protected T Save()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -43,8 +43,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\IOrganizationRepository.cs" />
+    <Compile Include="OrganizationRepository.cs" />
     <Compile Include="RepositoryBase.cs" />
     <Compile Include="Interfaces\ISupplierRepository.cs" />
+    <Compile Include="Scripts\OrganizationScripts.cs" />
     <Compile Include="Scripts\SupplierScripts.cs" />
     <Compile Include="SupplierRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

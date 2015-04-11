@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using WaterPoint.Api.Contract;
+using WaterPoint.Api.DataContract;
 using WaterPoint.Data.Entity;
 
 namespace WaterPoint.Data.ContractMapper
@@ -16,9 +17,10 @@ namespace WaterPoint.Data.ContractMapper
             Mapper.Initialize(config =>
             {
                 config.AddProfile(new SupplierProfile());
+                config.AddProfile(new OrganizationProfile());
             });
 
-            
+
         }
 
         public class SupplierProfile : Profile
@@ -26,7 +28,15 @@ namespace WaterPoint.Data.ContractMapper
             protected override void Configure()
             {
                 Mapper.CreateMap<Supplier, SupplierContract>();
-                    //.ForMember((su)=>su.DisplayName,;
+                //.ForMember((su)=>su.DisplayName,;
+            }
+        }
+
+        public class OrganizationProfile : Profile
+        {
+            protected override void Configure()
+            {
+                Mapper.CreateMap<Organization, OrganizationContract>();
             }
         }
     }

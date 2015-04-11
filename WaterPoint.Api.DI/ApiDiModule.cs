@@ -21,22 +21,25 @@ namespace WaterPoint.Api.DI
             Bind<IDbContext>().To<DapperDbContext>();
             BindRepositories();
             BindBlls();
-            BindServices();            
+            BindServices();
         }
 
         private void BindServices()
         {
             Bind<ISupplierService>().To<SupplierService>();
+            Bind<IOrganizationService>().To<OrganizationService>();
         }
 
         private void BindRepositories()
         {
             Bind<ISupplierRepository>().To<SupplierRepository>();
+            Bind<IOrganizationRepository>().To<OrganizationRepository>();
         }
 
         private void BindBlls()
         {
             Bind<ISupplierBll>().To<SupplierBll>();
+            Bind<IOrganizationBll>().To<OrganizationBll>();
         }
     }
 }
