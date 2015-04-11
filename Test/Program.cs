@@ -15,13 +15,51 @@ namespace Test
         {
             Console.WriteLine("wtf");
 
-            var result = Task.Run<Supplier>(() => test());
+            //            var result = Task.Run<Supplier>(() => QueryOneToManyAsync<Product, Supplier>(
+            //@"
+            //select * from supplier where id = 3
+            //select * from product where SupplierId =3
+            //", null, (a, b) => { b.Products = a; }));
+
+
+            //            result.Wait();
+
+
+            var lookup = new Dictionary<int, Supplier>();
+
+            var result = Task.Run<Supplier>(() => QueryAsync<Product, Supplier>(@"select s.*, p.* from supplier s join product p on p.SupplierId = s.id where s.id = 3",
+                null,
+                (s, p) =>
+                {
+                    
+
+                    Supplier supplier;
+
+                    if(!lookup.TryGetValue(s.Id, out supplier))
+                    {
+                        lookup.Add(s.Id, supplier = s);
+                    }
+
+                    if (supplier.Products == null)
+                        supplier.Products = new List<Product>();                    
+
+                    supplier.Products.Add(p);
+
+                    return supplier;
+                    
+                }));
+
 
             result.Wait();
 
+            Console.WriteLine(result.Result.Products.Count());
+
         }
 
-        public static async Task<Supplier> test()
+
+        public static async Task<TReturn> QueryAsync<TNested, TReturn>(string sql, object parameters, Func<TReturn, TNested, TReturn> mapAction)
+            where TReturn : class
+            where TNested : class
         {
             using (var conn = new SqlConnection("Server=localhost;Database=WaterPoint;User Id=sa;Password=n5bcvK*K;"))
             {
@@ -29,16 +67,42 @@ namespace Test
                 {
                     await conn.OpenAsync().ConfigureAwait(false);
 
-                    using (var reader = await conn.QueryMultipleAsync(@"
-                        select * from supplier where id = 3
-                        
-                        select * from product where supplierId = 3", null, null, null, CommandType.Text))
+                    var reader = await conn.QueryAsync<TReturn, TNested, TReturn>(sql, mapAction, null, commandType: CommandType.Text);
+
+                    return reader.FirstOrDefault();
+
+                }
+                catch
+                {
+                    throw;
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+        }
+
+
+        public static async Task<TReturn> QueryOneToManyAsync<TNested, TReturn>(string sql, object parameters, Action<ICollection<TNested>, TReturn> mapAction)
+            where TReturn : class
+            where TNested : class
+        {
+            using (var conn = new SqlConnection("Server=localhost;Database=WaterPoint;User Id=sa;Password=n5bcvK*K;"))
+            {
+                try
+                {
+                    await conn.OpenAsync().ConfigureAwait(false);
+
+                    using (var reader = await conn.QueryMultipleAsync(sql, parameters, null, null, CommandType.Text))
                     {
-                        var products = reader.Read<Product>().ToList();
+                        var result = reader.Read<TReturn>().SingleOrDefault();
 
-                        var category = reader.Read<Category>().ToList();
+                        var nested = reader.Read<TNested>().ToList();
 
-                        return null;
+                        mapAction.Invoke(nested, result);
+
+                        return result;
                     }
                 }
                 catch
@@ -51,11 +115,12 @@ namespace Test
                 }
             }
         }
+
         public class Category
         {
             public int Id { get; set; }
             public string Name { get; set; }
-            public IEnumerable<Product> Products { get; set; }
+            public ICollection<Product> Products { get; set; }
         }
         public class Supplier
         {
@@ -68,7 +133,7 @@ namespace Test
             public int Id { get; set; }
             public int SupplierId { get; set; }
             public string Name { get; set; }
-            public IEnumerable<Category> Categories { get; set; }
+            public ICollection<Category> Categories { get; set; }
         }
     }
 }

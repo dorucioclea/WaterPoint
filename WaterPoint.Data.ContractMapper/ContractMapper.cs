@@ -17,6 +17,8 @@ namespace WaterPoint.Data.ContractMapper
             {
                 config.AddProfile(new SupplierProfile());
             });
+
+            
         }
 
         public class SupplierProfile : Profile
@@ -24,6 +26,7 @@ namespace WaterPoint.Data.ContractMapper
             protected override void Configure()
             {
                 Mapper.CreateMap<Supplier, SupplierContract>();
+                    //.ForMember((su)=>su.DisplayName,;
             }
         }
     }
