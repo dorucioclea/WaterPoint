@@ -39,8 +39,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\IOrganizationBll.cs" />
     <Compile Include="Interfaces\ISupplierBll.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SupplierBll - Copy.cs" />
     <Compile Include="SupplierBll.cs" />
   </ItemGroup>
   <ItemGroup>

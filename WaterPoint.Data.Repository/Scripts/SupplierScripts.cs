@@ -14,15 +14,22 @@ namespace WaterPoint.Data.Repository
             ,[DisplayName]
             ,[Mobile]
             ,[Phone1]
-            ,CONVERT(VARCHAR(36), [Uid]) AS Uid";
+            ,CONVERT(VARCHAR(36), [Uid]) AS Uid ";
 
-        public static string ListAllAsync = string.Format(@"SELECT {0} FROM [dbo].[Supplier] WHERE OrganizationId = @organizationId", Fields);
+        public static string ListAllAsync = string.Format(
+            @"
+            SELECT
+                {0}
+            FROM
+                [dbo].[Supplier]
+            WHERE
+                OrganizationId = @organizationId", Fields);
 
         public static string GetAsync = string.Format(
             @"
-                SELECT {0} FROM [dbo].[Supplier] 
-                WHERE 
-                    Id = @id 
-                    AND OrganizationId = @organizationId", Fields);
+            SELECT {0} FROM [dbo].[Supplier] 
+            WHERE 
+                Id = @id 
+                AND OrganizationId = @organizationId", Fields);
     }
 }

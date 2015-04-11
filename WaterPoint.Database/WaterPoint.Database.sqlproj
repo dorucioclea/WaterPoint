@@ -66,8 +66,14 @@
     <Build Include="Tables\Product.sql" />
     <Build Include="Tables\Category.sql" />
     <Build Include="Tables\ProductCategory.sql" />
+    <Build Include="Tables\Address.sql" />
+    <Build Include="Tables\SupplierAddress.sql" />
+    <Build Include="Tables\OrganizationAddress.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="WaterPoint.Database.publish.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="WaterPoint.Database.refactorlog" />
   </ItemGroup>
 </Project>
