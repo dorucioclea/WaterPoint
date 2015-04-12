@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Data;
 using Dapper;
 using System.Data.SqlClient;
+using Utility;
+using System.Web;
 
 namespace Test
 {
@@ -14,6 +16,16 @@ namespace Test
         static void Main(string[] args)
         {
             Console.WriteLine("wtf");
+            var d = new Category { Id = 1, Name = "test" };
+
+            var postData = d.ToDictionary();
+
+            var nv = HttpUtility.ParseQueryString(string.Empty);
+
+            foreach (var p in postData)
+                nv.Add(p.Key, p.Value.ToString());
+
+            Console.WriteLine(nv.ToString());
 
             //            var result = Task.Run<Supplier>(() => QueryOneToManyAsync<Product, Supplier>(
             //@"
@@ -25,34 +37,34 @@ namespace Test
             //            result.Wait();
 
 
-            var lookup = new Dictionary<int, Supplier>();
+            //var lookup = new Dictionary<int, Supplier>();
 
-            var result = Task.Run<Supplier>(() => QueryAsync<Product, Supplier>(@"select s.*, p.* from supplier s join product p on p.SupplierId = s.id where s.id = 3",
-                null,
-                (s, p) =>
-                {
+            //var result = Task.Run<Supplier>(() => QueryAsync<Product, Supplier>(@"select s.*, p.* from supplier s join product p on p.SupplierId = s.id where s.id = 3",
+            //    null,
+            //    (s, p) =>
+            //    {
                     
 
-                    Supplier supplier;
+            //        Supplier supplier;
 
-                    if(!lookup.TryGetValue(s.Id, out supplier))
-                    {
-                        lookup.Add(s.Id, supplier = s);
-                    }
+            //        if(!lookup.TryGetValue(s.Id, out supplier))
+            //        {
+            //            lookup.Add(s.Id, supplier = s);
+            //        }
 
-                    if (supplier.Products == null)
-                        supplier.Products = new List<Product>();                    
+            //        if (supplier.Products == null)
+            //            supplier.Products = new List<Product>();                    
 
-                    supplier.Products.Add(p);
+            //        supplier.Products.Add(p);
 
-                    return supplier;
+            //        return supplier;
                     
-                }));
+            //    }));
 
 
-            result.Wait();
+            //result.Wait();
 
-            Console.WriteLine(result.Result.Products.Count());
+            //Console.WriteLine(result.Result.Products.Count());
 
         }
 
@@ -120,7 +132,7 @@ namespace Test
         {
             public int Id { get; set; }
             public string Name { get; set; }
-            public ICollection<Product> Products { get; set; }
+            //public ICollection<Product> Products { get; set; }
         }
         public class Supplier
         {
