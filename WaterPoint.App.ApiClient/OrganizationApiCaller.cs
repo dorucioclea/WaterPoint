@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace WaterPoint.App.ApiClient
 {
-    public class OrganizationApi
+    public class OrganizationApiCaller
     {
         private const string ApplicationJson = "application/json";
 
@@ -16,8 +16,7 @@ namespace WaterPoint.App.ApiClient
             using (var client = new WebClient())
             {
                 client.Headers[HttpRequestHeader.ContentType] = ApplicationJson;
-            }
-            
+            }            
         }
     }
 }
