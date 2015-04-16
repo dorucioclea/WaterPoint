@@ -35,11 +35,6 @@ namespace WaterPoint.App.ApiClient
             _baseUri = baseUri;
         }
 
-        protected WebClient Client
-        {
-            get { return _client; }
-        }
-
         protected async Task<T> Get<T>(string action) where T : class
         {
             using (_client)
