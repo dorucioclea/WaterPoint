@@ -13,14 +13,21 @@ namespace WaterPoint.Data.Repository
         public OrganizationRepository(IDbContext dbContext)
             : base(dbContext)
         {
-
         }
 
         public async Task<Organization> GetAsync(int id)
         {
-            var result = await DbContext.QueryAsync<Organization>(OrganizationScripts.GetAsync, new { id });
+            //var result = await DbContext.QueryAsync<Organization>(OrganizationScripts.GetAsync, new { id });
 
-            return result.FirstOrDefault();
+            //return result.FirstOrDefault();
+
+            return await Task.Run(() => new Organization
+            {
+                Id = id,
+                Name = "water point ltd",
+                DisplayName = "Water point Ltd.",
+                Uid = Guid.NewGuid().ToString()
+            });
         }
     }
 }
