@@ -34,7 +34,7 @@ namespace WaterPoint.Api.Controllers
 
             var result = await _supplierService.ListAsync(Convert.ToInt32(orgId.Value));
 
-            return Ok<IEnumerable<SupplierContract>>(result);
+            return Ok(result);
         }
 
         [Route(Routes.Suppliers.GetById)]

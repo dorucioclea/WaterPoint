@@ -1,22 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace WaterPoint.App.ApiClient
 {
-    public class OrganizationApiCaller
+    public class OrganizationApiClient: ApiClientBase
     {
-        private const string ApplicationJson = "application/json";
-
-        public void test()
+        public OrganizationApiClient(Uri baseUri)
+            : base(baseUri)
         {
-            using (var client = new WebClient())
-            {
-                client.Headers[HttpRequestHeader.ContentType] = ApplicationJson;
-            }            
+
         }
     }
 }
