@@ -52,9 +52,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WaterPoint.Api.DataContract\WaterPoint.Api.DataContract.csproj">
-      <Project>{ff6d70dc-1f65-43c9-bf5e-ddb08916792a}</Project>
-      <Name>WaterPoint.Api.DataContract</Name>
+    <ProjectReference Include="..\WaterPoint.App.Domain\WaterPoint.App.Domain.csproj">
+      <Project>{1a51a6b4-d21a-4662-9b2e-6a9664ac8a4c}</Project>
+      <Name>WaterPoint.App.Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\WaterPoint.Data.Bll\WaterPoint.Data.Bll.csproj">
       <Project>{f8e55611-76a3-4ea9-be8e-9a57145a527d}</Project>

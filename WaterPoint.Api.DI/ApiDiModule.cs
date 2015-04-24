@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Ninject.Modules;
+using WaterPoint.App.ApiClient.Endpoints;
+using WaterPoint.App.ApiClient.Endpoints.Interfaces;
 using WaterPoint.Data.Bll;
 using WaterPoint.Data.Bll.Interfaces;
 using WaterPoint.Data.Repository;
@@ -22,6 +24,7 @@ namespace WaterPoint.Api.DI
             BindRepositories();
             BindBlls();
             BindServices();
+            BindApiCalls();
         }
 
         private void BindServices()
@@ -40,6 +43,11 @@ namespace WaterPoint.Api.DI
         {
             Bind<ISupplierBll>().To<SupplierBll>();
             Bind<IOrganizationBll>().To<OrganizationBll>();
+        }
+
+        private void BindApiCalls()
+        {
+            Bind<IOrganizationApiClient>().To<OrganizationApiClient>();
         }
     }
 }

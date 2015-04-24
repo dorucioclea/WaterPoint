@@ -8,8 +8,9 @@ using System.Threading.Tasks;
 using System.Web;
 using Newtonsoft.Json;
 using Utility;
+using WaterPoint.App.Domain;
 
-namespace WaterPoint.App.ApiClient
+namespace WaterPoint.ApiClient
 {
     internal sealed class HttpMethod
     {
@@ -19,7 +20,7 @@ namespace WaterPoint.App.ApiClient
         internal const string Delete = "delete";
     }
 
-    public abstract class ApiClientBase : IDisposable
+    public class ApiClient : IApiClient, IDisposable
     {
         private const string ApplicationJson = "application/json";
         private const string ApplicationFormUrlEncoded = "application/x-www-form-urlencoded";
@@ -28,14 +29,14 @@ namespace WaterPoint.App.ApiClient
 
         private readonly Uri _baseUri;
 
-        protected ApiClientBase(Uri baseUri)
+        public ApiClient(Uri baseUri)
         {
             _client = new WebClient();
 
             _baseUri = baseUri;
         }
 
-        protected async Task<T> Get<T>(string action) where T : class
+        public async Task<T> Get<T>(string action) where T : class
         {
             using (_client)
             {
@@ -55,17 +56,17 @@ namespace WaterPoint.App.ApiClient
             }
         }
 
-        protected async Task<T> Post<T>(string action, object data) where T : class
+        public async Task<T> Post<T>(string action, object data) where T : class
         {
             return await Execute<T>(action, HttpMethod.Post, data);
         }
 
-        protected async Task<T> Delete<T>(string action, object data) where T : class
+        public async Task<T> Delete<T>(string action, object data) where T : class
         {
             return await Execute<T>(action, HttpMethod.Delete, data);
         }
 
-        protected async Task<T> Put<T>(string action, object data) where T : class
+        public async Task<T> Put<T>(string action, object data) where T : class
         {
             return await Execute<T>(action, HttpMethod.Put, data);
         }
@@ -89,7 +90,7 @@ namespace WaterPoint.App.ApiClient
             }
         }
 
-        ~ApiClientBase()
+        ~ApiClient()
         {
             Dispose();
         }
