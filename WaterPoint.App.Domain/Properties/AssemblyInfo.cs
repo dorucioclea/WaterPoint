@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("WaterPoint.App.ApiClient.ApiCaller")]
+[assembly: AssemblyTitle("WaterPoint.App.Domain")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Xero")]
-[assembly: AssemblyProduct("WaterPoint.App.ApiClient.ApiCaller")]
-[assembly: AssemblyCopyright("Copyright © Xero 2015")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("WaterPoint.App.Domain")]
+[assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("8714fd4a-4f20-4971-ad61-4e560bc62d78")]
+[assembly: Guid("8d66073e-8a34-48a9-b697-c38f7fa9cb8d")]
 
 // Version information for an assembly consists of the following four values:
 //

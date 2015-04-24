@@ -285,16 +285,6 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\WaterPoint.App.ApiClient.ApiCaller\WaterPoint.App.ApiClient.ApiCaller.csproj">
-      <Project>{7ca0a859-d0b4-4c92-9270-8f061e7b334a}</Project>
-      <Name>WaterPoint.App.ApiClient.ApiCaller</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WaterPoint.App.ApiClient\WaterPoint.App.ApiClient.csproj">
-      <Project>{ea03915b-fd6f-4dc8-ad6b-faca840caf02}</Project>
-      <Name>WaterPoint.App.ApiClient</Name>
-    </ProjectReference>
-  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WaterPoint.Api.Contract;
 using WaterPoint.Data.Bll.Interfaces;
 using WaterPoint.Data.Entity;
 using WaterPoint.Data.Service.Interfaces;
 using AutoMapper;
+using WaterPoint.App.Domain.DataContracts;
 
 namespace WaterPoint.Data.Service
 {
