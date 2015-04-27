@@ -20,7 +20,7 @@ namespace WaterPoint.Api
     {
         public IKernel CreateKernel()
         {
-            var kernel = new StandardKernel(new ApiDiModule());
+            var kernel = new StandardKernel(new CoreDiModule());
 
             return kernel;
         }

@@ -39,9 +39,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IViewModel.cs" />
     <Compile Include="OrganizationIndex.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WaterPoint.App.Domain\WaterPoint.App.Domain.csproj">
+      <Project>{84cf99a7-3438-48b0-9c38-b8a9281fe90c}</Project>
+      <Name>WaterPoint.App.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

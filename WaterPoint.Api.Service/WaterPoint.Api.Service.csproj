@@ -50,6 +50,10 @@
     <Compile Include="SupplierService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\WaterPoint.Api.Domain\WaterPoint.Api.Domain.csproj">
+      <Project>{81b8bd75-ec34-456a-aded-6c850e3cc163}</Project>
+      <Name>WaterPoint.Api.Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WaterPoint.Core.Contract\WaterPoint.Core.Contract.csproj">
       <Project>{f6b5e83f-2633-4332-9bbc-94d98498e482}</Project>
       <Name>WaterPoint.Core.Contract</Name>
