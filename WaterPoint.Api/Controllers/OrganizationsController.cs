@@ -5,7 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
-using WaterPoint.Data.Service.Interfaces;
+using WaterPoint.Core.Domain.Services;
 
 namespace WaterPoint.Api.Controllers
 {

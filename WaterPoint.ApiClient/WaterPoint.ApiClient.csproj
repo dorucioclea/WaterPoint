@@ -56,9 +56,9 @@
       <Project>{32862b76-53bf-453b-a8c3-9e7960441bac}</Project>
       <Name>Utility</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WaterPoint.App.Domain\WaterPoint.App.Domain.csproj">
-      <Project>{1a51a6b4-d21a-4662-9b2e-6a9664ac8a4c}</Project>
-      <Name>WaterPoint.App.Domain</Name>
+    <ProjectReference Include="..\WaterPoint.Core.Domain\WaterPoint.Core.Domain.csproj">
+      <Project>{a035ac5e-bfb1-4be2-803c-6386e3297008}</Project>
+      <Name>WaterPoint.Core.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

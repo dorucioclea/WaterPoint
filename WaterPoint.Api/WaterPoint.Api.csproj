@@ -264,22 +264,29 @@
     <Content Include="Scripts\jquery-2.1.3.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WaterPoint.Api.DI\WaterPoint.Api.DI.csproj">
-      <Project>{058e9c71-3f56-436c-a5fc-b5397d458fd6}</Project>
-      <Name>WaterPoint.Api.DI</Name>
+    <ProjectReference Include="..\WaterPoint.Core.ContractMapper\WaterPoint.Core.ContractMapper.csproj">
+      <Project>{6d50ae7d-4ae4-41a7-8663-af3ce0dc3414}</Project>
+      <Name>WaterPoint.Core.ContractMapper</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WaterPoint.Data.ContractMapper\WaterPoint.Data.ContractMapper.csproj">
-      <Project>{348de3ff-f592-43c0-91a1-5cab4f3f2e53}</Project>
-      <Name>WaterPoint.Data.ContractMapper</Name>
+    <ProjectReference Include="..\WaterPoint.Core.Contract\WaterPoint.Core.Contract.csproj">
+      <Project>{f6b5e83f-2633-4332-9bbc-94d98498e482}</Project>
+      <Name>WaterPoint.Core.Contract</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WaterPoint.Data.Service\WaterPoint.Data.Service.csproj">
-      <Project>{89d321db-8d81-4327-946e-95ac71b628de}</Project>
-      <Name>WaterPoint.Data.Service</Name>
+    <ProjectReference Include="..\WaterPoint.Core.DependencyInjection\WaterPoint.Core.DependencyInjection.csproj">
+      <Project>{114db23c-2257-4bad-800d-58a5ccaedf90}</Project>
+      <Name>WaterPoint.Core.DependencyInjection</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WaterPoint.Core.Domain\WaterPoint.Core.Domain.csproj">
+      <Project>{a035ac5e-bfb1-4be2-803c-6386e3297008}</Project>
+      <Name>WaterPoint.Core.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
