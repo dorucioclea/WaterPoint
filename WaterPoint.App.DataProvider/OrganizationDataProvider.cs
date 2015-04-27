@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WaterPoint.Core.Contract;
 using WaterPoint.Core.Domain;
+using WaterPoint.Core.Domain.DataProvider;
 
 namespace WaterPoint.App.DataProvider
 {
@@ -19,7 +20,7 @@ namespace WaterPoint.App.DataProvider
     }
 
     //TODO: bind uri to apiclient
-    public class OrganizationApiDataProvider : ApiDataProvider
+    public class OrganizationApiDataProvider : ApiDataProvider, IOrganizationApiDataProvider
     {
         public OrganizationApiDataProvider(IApiClient client)
             : base(client)

@@ -15,7 +15,7 @@
     <AssemblyName>WaterPoint.App</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
-    <UseIISExpress>true</UseIISExpress>
+    <UseIISExpress>false</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -208,9 +208,6 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OrganizationController.cs" />
-    <Compile Include="Global.asax.cs">
-      <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -223,7 +220,6 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -284,6 +280,24 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WaterPoint.App.DependencyInjection\WaterPoint.App.DependencyInjection.csproj">
+      <Project>{b3265d77-e5bc-4d84-8018-b01fff618988}</Project>
+      <Name>WaterPoint.App.DependencyInjection</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WaterPoint.App.Domain\WaterPoint.App.Domain.csproj">
+      <Project>{84cf99a7-3438-48b0-9c38-b8a9281fe90c}</Project>
+      <Name>WaterPoint.App.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WaterPoint.App.Service\WaterPoint.App.Service.csproj">
+      <Project>{23a9365a-63ec-4dfb-a2e3-1ecc4f766289}</Project>
+      <Name>WaterPoint.App.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WaterPoint.Core.DependencyInjection\WaterPoint.Core.DependencyInjection.csproj">
+      <Project>{114db23c-2257-4bad-800d-58a5ccaedf90}</Project>
+      <Name>WaterPoint.Core.DependencyInjection</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -302,7 +316,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>51123</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:58377/</IISUrl>
+          <IISUrl>http://localhost/WaterPoint.App</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
