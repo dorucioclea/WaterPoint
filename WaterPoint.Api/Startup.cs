@@ -9,8 +9,8 @@ using Owin;
 //using Microsoft.Owin.Security.OAuth;
 using Ninject.Web.Common.OwinHost;
 using Ninject.Web.WebApi.OwinHost;
-using WaterPoint.Api.DI;
-using WaterPoint.Data.ContractMapper;
+using WaterPoint.Core.DependencyInjection;
+using WaterPoint.Core.ContractMapper;
 
 [assembly: OwinStartup(typeof(WaterPoint.Api.Startup))]
 

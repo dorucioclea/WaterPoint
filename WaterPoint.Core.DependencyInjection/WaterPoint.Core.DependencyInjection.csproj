@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8E756BF5-71FB-4622-9623-92AEC3283EF9}</ProjectGuid>
+    <ProjectGuid>{114DB23C-2257-4BAD-800D-58A5CCAEDF90}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WaterPoint.App.DataProvider</RootNamespace>
-    <AssemblyName>WaterPoint.App.DataProvider</AssemblyName>
+    <RootNamespace>WaterPoint.Core.DependencyInjection</RootNamespace>
+    <AssemblyName>WaterPoint.Core.DependencyInjection</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Ninject">
+      <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -39,18 +42,40 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="OrganizationDataProvider.cs" />
+    <Compile Include="ApiDiModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WaterPoint.Core.Contract\WaterPoint.Core.Contract.csproj">
-      <Project>{f6b5e83f-2633-4332-9bbc-94d98498e482}</Project>
-      <Name>WaterPoint.Core.Contract</Name>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WaterPoint.Api.Service\WaterPoint.Api.Service.csproj">
+      <Project>{7a1bf05b-f99b-455d-a99d-c6d3db17dcdf}</Project>
+      <Name>WaterPoint.Api.Service</Name>
     </ProjectReference>
     <ProjectReference Include="..\WaterPoint.Core.Domain\WaterPoint.Core.Domain.csproj">
       <Project>{a035ac5e-bfb1-4be2-803c-6386e3297008}</Project>
       <Name>WaterPoint.Core.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WaterPoint.Data.Bll\WaterPoint.Data.Bll.csproj">
+      <Project>{f8e55611-76a3-4ea9-be8e-9a57145a527d}</Project>
+      <Name>WaterPoint.Data.Bll</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WaterPoint.Data.DbContext\WaterPoint.Data.DbContext.csproj">
+      <Project>{fea52468-343e-4e37-ab84-49323f940230}</Project>
+      <Name>WaterPoint.Data.DbContext</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WaterPoint.Data.Entity\WaterPoint.Data.Entity.csproj">
+      <Project>{dcbdc017-96ec-486d-a491-239702696a1a}</Project>
+      <Name>WaterPoint.Data.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WaterPoint.Data.Repository\WaterPoint.Data.Repository.csproj">
+      <Project>{a5b1fd13-2461-4736-ad4f-e7708a0c38ee}</Project>
+      <Name>WaterPoint.Data.Repository</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

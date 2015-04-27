@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WaterPoint.App.Domain;
-using WaterPoint.App.Domain.DataContracts;
+using WaterPoint.Core.Contract;
+using WaterPoint.Core.Domain;
 
 namespace WaterPoint.App.DataProvider
 {
@@ -17,6 +17,7 @@ namespace WaterPoint.App.DataProvider
             Client = client;
         }
     }
+
     //TODO: bind uri to apiclient
     public class OrganizationApiDataProvider : ApiDataProvider
     {
@@ -25,7 +26,7 @@ namespace WaterPoint.App.DataProvider
         {
         }
 
-        public async Task<OrganizationContract> GetByIdAsync(int id)
+        public async Task<OrganizationContract> GetByIdAsync(int id, string action)
         {
             var result = await Client.Get<OrganizationContract>("me");
 
