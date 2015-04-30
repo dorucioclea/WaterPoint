@@ -10,16 +10,9 @@ namespace Utility
     {
         public static IDictionary<string, object> ToDictionary(this object source)
         {
-            var dictionary = new Dictionary<string, object>();
-
             var properties = source.GetType().GetProperties();
 
-            foreach (var pro in properties)
-            {
-                dictionary.Add(pro.Name, pro.GetValue(source));
-            }
-
-            return dictionary;
+            return properties.ToDictionary(pro => pro.Name, pro => pro.GetValue(source));
         }
     }
 }

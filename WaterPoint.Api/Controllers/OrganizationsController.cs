@@ -11,11 +11,11 @@ namespace WaterPoint.Api.Controllers
 {
     public class OrganizationsController : ApiController
     {
-        private readonly IOrganizationService _OrganizationService;
+        private readonly IOrganizationService _organizationService;
 
-        public OrganizationsController(IOrganizationService OrganizationService)
+        public OrganizationsController(IOrganizationService organizationService)
         {
-            _OrganizationService = OrganizationService;
+            _organizationService = organizationService;
         }
 
         //[Route(Routes.Organizations.Get)]
@@ -27,9 +27,10 @@ namespace WaterPoint.Api.Controllers
         [Route(Routes.Organizations.GetById)]
         public async Task<IHttpActionResult> GetById(int id)
         {
-            var result = await _OrganizationService.GetByIdAsync(1);
+            var result = await _organizationService.GetByIdAsync(1);
 
             return Ok(result);
         }
     }
+    
 }

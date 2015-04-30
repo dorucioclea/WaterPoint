@@ -5,11 +5,11 @@ namespace WaterPoint.Core.Domain
 {
     public interface IApiClient
     {
-        Task<T> Delete<T>(string action, object data) where T : class;
-        Task<T> Get<T>(string action) where T : class;
-        Task<T> Post<T>(string action, object data) where T : class;
-        Task<T> Put<T>(string action, object data) where T : class;
-
+        IApiContext Context { get; }
+        Task<T> Get<T>() where T : class;
+        Task<T> Post<T>() where T : class;
+        Task<T> Delete<T>() where T : class;
+        Task<T> Put<T>() where T : class;
         void Dispose();
     }
 }

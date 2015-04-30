@@ -9,16 +9,6 @@ using WaterPoint.Core.Domain.DataProvider;
 
 namespace WaterPoint.App.DataProvider
 {
-    public class ApiDataProvider
-    {
-        public IApiClient Client { get; private set; }
-
-        public ApiDataProvider(IApiClient client)
-        {
-            Client = client;
-        }
-    }
-
     //TODO: bind uri to apiclient
     public class OrganizationApiDataProvider : ApiDataProvider, IOrganizationApiDataProvider
     {
@@ -29,7 +19,10 @@ namespace WaterPoint.App.DataProvider
 
         public async Task<OrganizationContract> GetByIdAsync(int id, string action)
         {
-            var result = await Client.Get<OrganizationContract>("me");
+            //Client.Context.Append("");
+            //Client.Context.SetPayload(
+
+            var result = await Client.Get<OrganizationContract>();
 
             return result;
         }
