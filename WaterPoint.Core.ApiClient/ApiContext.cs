@@ -28,7 +28,12 @@ namespace WaterPoint.Core.ApiClient
 
         //public IDictionary<string, object> Parameters { get; private set; }
 
-        public IApiContext Append(string urlNode)
+        public IApiContext AppendToUri(int urlNode)
+        {
+            return AppendToUri(urlNode.ToString());
+        }
+
+        public IApiContext AppendToUri(string urlNode)
         {
             EndpointUri = new Uri(EndpointUri, urlNode);
 

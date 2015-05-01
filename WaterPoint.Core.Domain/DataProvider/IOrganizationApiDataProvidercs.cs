@@ -8,7 +8,7 @@ using WaterPoint.Core.Contract;
 namespace WaterPoint.Core.Domain.DataProvider
 {
     public interface IOrganizationApiDataProvider
-	{
-        Task<OrganizationContract> GetByIdAsync(int id, string action);
-	}
+    {
+        Task<OrganizationContract> GetByIdAsync(int id);
+    }
 }

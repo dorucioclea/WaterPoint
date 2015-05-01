@@ -12,15 +12,17 @@ namespace WaterPoint.App.DataProvider
     //TODO: bind uri to apiclient
     public class OrganizationApiDataProvider : ApiDataProvider, IOrganizationApiDataProvider
     {
+        private const string Organizations = "organizations";
+
         public OrganizationApiDataProvider(IApiClient client)
             : base(client)
         {
+            Client.Context.AppendToUri(Organizations);
         }
 
-        public async Task<OrganizationContract> GetByIdAsync(int id, string action)
+        public async Task<OrganizationContract> GetByIdAsync(int id)
         {
-            //Client.Context.Append("");
-            //Client.Context.SetPayload(
+            Client.Context.AppendToUri(id);
 
             var result = await Client.Get<OrganizationContract>();
 

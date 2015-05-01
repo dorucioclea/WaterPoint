@@ -11,7 +11,8 @@ namespace WaterPoint.Core.Domain
         Uri BaseUri { get; }
         Uri EndpointUri { get; }
         string Payload { get; }
-        IApiContext Append(string urlNode);
+        IApiContext AppendToUri(string urlNode);
+        IApiContext AppendToUri(int urlNode);
         IApiContext SetPayload(object payload, Func<object, string> serializer);
     }
 }

@@ -32,9 +32,7 @@ namespace WaterPoint.Core.ApiClient
         {
             using (_client)
             {
-                var uri = Context.EndpointUri.ToString();
-
-                var streamResponse = await _client.OpenReadTaskAsync(uri);
+                var streamResponse = await _client.OpenReadTaskAsync(Context.EndpointUri);
 
                 if (streamResponse == null)
                     throw new InvalidOperationException();
