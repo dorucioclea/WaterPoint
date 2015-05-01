@@ -7,6 +7,7 @@ using Ninject.Modules;
 using WaterPoint.App.DataProvider;
 using WaterPoint.App.Domain.Services;
 using WaterPoint.App.Service;
+using WaterPoint.Core.ApiClient;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.DataProvider;
 
@@ -23,8 +24,8 @@ namespace WaterPoint.Core.DependencyInjection
 
         private void BindApiClient()
         {
-            Bind<IApiClient>().To<ApiClient.ApiClient>()
-                .WithConstructorArgument(new Uri("http://localhost/WaterPoint.Api"));
+            Bind<IApiClient>().To<ApiClient.ApiClient>();
+            Bind<IApiContext>().To<ApiContext>().WithConstructorArgument(new Uri("http://localhost/WaterPoint.Api"));
         }
 
         private void BindDataProvider()

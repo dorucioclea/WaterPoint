@@ -16,7 +16,6 @@ namespace WaterPoint.App.Controllers
             _organizationService = organizationService;
         }
 
-
         public ActionResult Index()
         {
             return View();

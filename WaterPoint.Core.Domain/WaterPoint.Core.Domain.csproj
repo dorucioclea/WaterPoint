@@ -43,6 +43,7 @@
     <Compile Include="Bll\ISupplierBll.cs" />
     <Compile Include="DataProvider\IOrganizationApiDataProvidercs.cs" />
     <Compile Include="IApiClient.cs" />
+    <Compile Include="IApiContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
