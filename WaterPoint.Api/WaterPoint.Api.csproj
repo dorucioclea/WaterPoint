@@ -163,7 +163,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\IOrganizationService.cs" />
     <Compile Include="Controllers\OrganizationsController.cs" />
     <Compile Include="Controllers\SuppliersController.cs" />
     <Compile Include="ISecurityContext.cs" />
@@ -183,6 +182,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\WaterPoint.Api.DependencyInjection\WaterPoint.Api.DependencyInjection.csproj">
+      <Project>{5C64B219-7379-45AB-A0FC-F459EEA2AE17}</Project>
+      <Name>WaterPoint.Api.DependencyInjection</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WaterPoint.Api.Domain\WaterPoint.Api.Domain.csproj">
       <Project>{81b8bd75-ec34-456a-aded-6c850e3cc163}</Project>
       <Name>WaterPoint.Api.Domain</Name>

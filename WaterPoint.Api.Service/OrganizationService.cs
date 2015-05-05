@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
-using WaterPoint.Core.Domain.Services;
+using WaterPoint.Api.Domain.Services;
+using WaterPoint.Core.ContractMapper;
 using WaterPoint.Core.Domain.Bll;
 using WaterPoint.Core.Contract;
+using WaterPoint.Data.Entity;
 
 namespace WaterPoint.Api.Service
 {
@@ -23,7 +25,7 @@ namespace WaterPoint.Api.Service
         {
             var org = await _organizationBll.GetAsync(organizationId);
 
-            var result = Mapper.Map<OrganizationContract>(org);
+            var result = CoreMapperHelper.Map<Organization, OrganizationContract>(org);
 
             return result;
         }

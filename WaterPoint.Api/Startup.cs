@@ -9,6 +9,7 @@ using Owin;
 //using Microsoft.Owin.Security.OAuth;
 using Ninject.Web.Common.OwinHost;
 using Ninject.Web.WebApi.OwinHost;
+using WaterPoint.Api.DependencyInjection;
 using WaterPoint.Core.DependencyInjection;
 using WaterPoint.Core.ContractMapper;
 
@@ -22,21 +23,21 @@ namespace WaterPoint.Api
         {
             var kernel = new StandardKernel(new CoreDiModule());
 
+            kernel.Load(new ApiDiModule());
+
             return kernel;
         }
 
         public void Configuration(IAppBuilder app)
         {
-            var kernel = CreateKernel();
-            
             var config = new HttpConfiguration();
 
             WebApiConfig.Register(config);
 
-            app.UseNinjectMiddleware(() => CreateKernel())
+            app.UseNinjectMiddleware(CreateKernel)
                 .UseNinjectWebApi(config);
 
-            ContractMapper.Initialize();
+            CoreMapperHelper.Initialize();
         }
     }
 }
