@@ -45,7 +45,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ContractMapper.cs" />
+    <Compile Include="OrganizationProfile.cs" />
+    <Compile Include="SupplierProfile.cs" />
+    <Compile Include="CoreMapperHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

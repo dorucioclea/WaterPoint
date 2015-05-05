@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WaterPoint.Core.Contract;
 
-namespace WaterPoint.Core.Domain.Services
+namespace WaterPoint.Api.Domain.Services
 {
     public interface IOrganizationService
     {

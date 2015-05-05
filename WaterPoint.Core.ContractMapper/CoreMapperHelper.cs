@@ -9,7 +9,7 @@ using WaterPoint.Data.Entity;
 
 namespace WaterPoint.Core.ContractMapper
 {
-    public static class ContractMapper
+    public static class CoreMapperHelper
     {
         public static void Initialize()
         {
@@ -18,25 +18,11 @@ namespace WaterPoint.Core.ContractMapper
                 config.AddProfile(new SupplierProfile());
                 config.AddProfile(new OrganizationProfile());
             });
-
-
         }
 
-        public class SupplierProfile : Profile
+        public static TOut Map<TIn, TOut>(TIn source)
         {
-            protected override void Configure()
-            {
-                Mapper.CreateMap<Supplier, SupplierContract>();
-                //.ForMember((su)=>su.DisplayName,;
-            }
-        }
-
-        public class OrganizationProfile : Profile
-        {
-            protected override void Configure()
-            {
-                Mapper.CreateMap<Organization, OrganizationContract>();
-            }
+            return Mapper.Map<TOut>(source);
         }
     }
 }
