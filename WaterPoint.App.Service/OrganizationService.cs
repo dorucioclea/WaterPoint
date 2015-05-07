@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WaterPoint.App.Domain.Services;
 using WaterPoint.App.ViewModel;
+using WaterPoint.Core.ContractMapper;
 using WaterPoint.Core.Domain.DataProvider;
 
 namespace WaterPoint.App.Service
@@ -22,7 +23,7 @@ namespace WaterPoint.App.Service
         {
             var result = new OrganizationIndex();
 
-            var contract = await _organizationApiDataProvider.GetByIdAsync(id);
+            var organization = await _organizationApiDataProvider.GetByIdAsync(id);
 
             //TODO: mapper
 

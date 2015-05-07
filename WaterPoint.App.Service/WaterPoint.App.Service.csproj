@@ -51,6 +51,10 @@
       <Project>{91b84ceb-5b0c-4f0b-8a94-a8c30b2c505d}</Project>
       <Name>WaterPoint.App.ViewModel</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WaterPoint.Core.ContractMapper\WaterPoint.Core.ContractMapper.csproj">
+      <Project>{6D50AE7D-4AE4-41A7-8663-AF3CE0DC3414}</Project>
+      <Name>WaterPoint.Core.ContractMapper</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WaterPoint.Core.Contract\WaterPoint.Core.Contract.csproj">
       <Project>{f6b5e83f-2633-4332-9bbc-94d98498e482}</Project>
       <Name>WaterPoint.Core.Contract</Name>
