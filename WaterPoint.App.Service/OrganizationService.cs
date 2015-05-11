@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WaterPoint.App.Domain.Services;
 using WaterPoint.App.ViewModel;
+using WaterPoint.Core.Contract;
 using WaterPoint.Core.ContractMapper;
 using WaterPoint.Core.Domain.DataProvider;
 
@@ -21,11 +22,9 @@ namespace WaterPoint.App.Service
 
         public async Task<OrganizationIndex> OrganizationIndex(int id)
         {
-            var result = new OrganizationIndex();
-
             var organization = await _organizationApiDataProvider.GetByIdAsync(id);
-
-            //TODO: mapper
+            
+            var result = CoreMapperHelper.MapTo<OrganizationIndex>(organization);
 
             return result;
         }

@@ -25,7 +25,7 @@ namespace WaterPoint.Api.Service
         {
             var org = await _organizationBll.GetAsync(organizationId);
 
-            var result = CoreMapperHelper.Map<Organization, OrganizationContract>(org);
+            var result = CoreMapperHelper.MapTo<OrganizationContract>(org);
 
             return result;
         }

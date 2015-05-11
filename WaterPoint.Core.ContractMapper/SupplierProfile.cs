@@ -4,7 +4,7 @@ using WaterPoint.Data.Entity;
 
 namespace WaterPoint.Core.ContractMapper
 {
-    public class SupplierProfile : Profile
+    internal class SupplierProfile : Profile
     {
         protected override void Configure()
         {

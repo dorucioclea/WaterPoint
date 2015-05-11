@@ -20,9 +20,9 @@ namespace WaterPoint.Core.ContractMapper
             });
         }
 
-        public static TOut Map<TIn, TOut>(TIn source)
+        public static T MapTo<T>(object source)
         {
-            return Mapper.Map<TOut>(source);
+            return Mapper.Map<T>(source);
         }
     }
 }
