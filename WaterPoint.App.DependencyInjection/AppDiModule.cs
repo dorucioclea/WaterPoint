@@ -30,12 +30,12 @@ namespace WaterPoint.Core.DependencyInjection
 
         private void BindDataProvider()
         {
-            Bind<IOrganizationApiDataProvider>().To<OrganizationApiDataProvider>();
+            Bind<IRestaurantApiDataProvider>().To<RestaurantApiDataProvider>();
         }
 
         private void BindServices()
         {
-            Bind<IOrganizationService>().To<OrganizationService>();
+            Bind<IRestaurantService>().To<RestaurantService>();
         }
     }
 }

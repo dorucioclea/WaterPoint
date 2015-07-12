@@ -4,8 +4,8 @@ using WaterPoint.Data.Entity;
 
 namespace WaterPoint.Core.Domain.Bll
 {
-    public interface IOrganizationBll
+    public interface IRestaurantBll
     {
-        Task<Organization> GetAsync(int organizationId);
+        Task<Restaurant> GetAsync(int restaurantId);
     }
 }

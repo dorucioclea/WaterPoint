@@ -10,21 +10,21 @@ using WaterPoint.Core.Domain.DataProvider;
 namespace WaterPoint.App.DataProvider
 {
     //TODO: bind uri to apiclient
-    public class OrganizationApiDataProvider : ApiDataProvider, IOrganizationApiDataProvider
+    public class RestaurantApiDataProvider : ApiDataProvider, IRestaurantApiDataProvider
     {
-        private const string Organizations = "organizations";
+        private const string Restaurants = "restaurants";
 
-        public OrganizationApiDataProvider(IApiClient client)
+        public RestaurantApiDataProvider(IApiClient client)
             : base(client)
         {
-            Client.Context.AppendToUri(Organizations);
+            Client.Context.AppendToUri(Restaurants);
         }
 
-        public async Task<OrganizationContract> GetByIdAsync(int id)
+        public async Task<RestaurantContract> GetByIdAsync(int id)
         {
             Client.Context.AppendToUri(id);
 
-            var result = await Client.Get<OrganizationContract>();
+            var result = await Client.Get<RestaurantContract>();
 
             return result;
         }

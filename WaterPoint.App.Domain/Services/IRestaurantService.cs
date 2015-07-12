@@ -7,7 +7,7 @@ using WaterPoint.Core.Contract;
 
 namespace WaterPoint.App.Domain.Services
 {
-    public interface IOrganizationService
+    public interface IRestaurantService
     {
     }
 }

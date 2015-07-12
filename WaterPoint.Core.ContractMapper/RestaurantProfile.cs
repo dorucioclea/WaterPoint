@@ -4,12 +4,11 @@ using WaterPoint.Data.Entity;
 
 namespace WaterPoint.Core.ContractMapper
 {
-    internal class SupplierProfile : Profile
+    internal class RestaurantProfile : Profile
     {
         protected override void Configure()
         {
-            Mapper.CreateMap<Supplier, SupplierContract>();
-            //.ForMember((su)=>su.DisplayName,;
+            Mapper.CreateMap<Restaurant, RestaurantContract>();
         }
     }
 }

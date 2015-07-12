@@ -45,9 +45,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="OrganizationService.cs" />
+    <Compile Include="RestaurantService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SupplierService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WaterPoint.Api.Domain\WaterPoint.Api.Domain.csproj">

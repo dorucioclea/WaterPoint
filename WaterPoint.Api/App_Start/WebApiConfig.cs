@@ -19,7 +19,7 @@ namespace WaterPoint.Api
 
             config.Routes.MapHttpRoute(
                 name : "DefaultApi",
-                routeTemplate : "organization/{organizationId:int}/{controller}/{id}",
+                routeTemplate : "restaurant/{restaurantId:int}/{controller}/{id}",
                 defaults : new { id = RouteParameter.Optional }
             );
             //---

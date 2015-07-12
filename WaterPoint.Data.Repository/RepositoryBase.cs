@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using WaterPoint.Data.DbContext;
 using WaterPoint.Data.Entity;
-using WaterPoint.Data.Repository.Interfaces;
 
 namespace WaterPoint.Data.Repository
 {

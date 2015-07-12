@@ -7,16 +7,9 @@ namespace WaterPoint.Api
 {
     public class Routes
     {
-        public class Suppliers
+        public class Restaurants
         {
-            public const string Get = "organizations/{organizationId:int}/suppliers";
-
-            public const string GetById = "organizations/{organizationId:int}/suppliers/{id:int}";
-        }
-
-        public class Organizations
-        {
-            public const string GetById = "organizations/{id:int}";
+            public const string GetById = "restaurants/{id:int}";
         }
     }
 }
