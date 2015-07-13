@@ -27,8 +27,6 @@ namespace WaterPoint.App
 
         public void Configuration(IAppBuilder app)
         {
-            var kernel = CreateKernel();
-
             var config = new HttpConfiguration();
 
             ConfigWeb(config);

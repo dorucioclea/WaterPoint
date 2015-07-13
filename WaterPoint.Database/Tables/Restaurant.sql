@@ -1,0 +1,10 @@
+﻿CREATE TABLE [dbo].[Restaurant]
+(
+	[Id] INT NOT NULL IDENTITY,
+	[Name] NVARCHAR(150) NOT NULL,
+	[PreferedName] NVARCHAR(150) NULL,
+    [Website] NVARCHAR(150) NULL,	
+	[Phone] NVARCHAR(50) NULL, 
+    [Uid] UNIQUEIDENTIFIER NOT NULL DEFAULT(NEWID()),
+    CONSTRAINT [PK_Restaurant] PRIMARY KEY ([Id])
+)

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WaterPoint.Data.Repository
 {
-    public class OrganizationScripts
+    public class RestaurantScripts
     {
         private const string Fields = @"
             [Id]
@@ -27,7 +27,7 @@ namespace WaterPoint.Data.Repository
             SELECT
                 {0}
             FROM
-                [dbo].[Organization] 
+                [dbo].[Restaurant] 
             WHERE 
                 Id = @id ", Fields);
     }

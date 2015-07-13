@@ -9,25 +9,25 @@ using WaterPoint.Api.Domain.Services;
 
 namespace WaterPoint.Api.Controllers
 {
-    public class OrganizationsController : ApiController
+    public class RestaurantsController : ApiController
     {
-        private readonly IOrganizationService _organizationService;
+        private readonly IRestaurantService _restaurantService;
 
-        public OrganizationsController(IOrganizationService organizationService)
+        public RestaurantsController(IRestaurantService restaurantService)
         {
-            _organizationService = organizationService;
+            _restaurantService = restaurantService;
         }
 
-        //[Route(Routes.Organizations.Get)]
+        //[Route(Routes.Restaurants.Get)]
         //public async Task<IHttpActionResult> Get()
         //{
         
         //}
 
-        [Route(Routes.Organizations.GetById)]
+        [Route(Routes.Restaurants.GetById)]
         public async Task<IHttpActionResult> GetById(int id)
         {
-            var result = await _organizationService.GetByIdAsync(id);
+            var result = await _restaurantService.GetByIdAsync(id);
 
             return Ok(result);
         }

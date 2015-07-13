@@ -60,15 +60,7 @@
     <Folder Include="Tables" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="Tables\Supplier.sql" />
-    <Build Include="Tables\Organization.sql" />
-    <Build Include="Tables\Staff.sql" />
-    <Build Include="Tables\Product.sql" />
-    <Build Include="Tables\Category.sql" />
-    <Build Include="Tables\ProductCategory.sql" />
-    <Build Include="Tables\Address.sql" />
-    <Build Include="Tables\SupplierAddress.sql" />
-    <Build Include="Tables\OrganizationAddress.sql" />
+    <Build Include="Tables\Restaurant.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="WaterPoint.Database.publish.xml" />

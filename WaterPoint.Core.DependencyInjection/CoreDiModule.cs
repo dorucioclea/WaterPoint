@@ -8,7 +8,6 @@ using Ninject.Modules;
 using WaterPoint.Data.Bll;
 using WaterPoint.Data.Repository;
 using WaterPoint.Data.DbContext;
-using WaterPoint.Data.Repository.Interfaces;
 
 using WaterPoint.Core.Domain.Bll;
 using WaterPoint.Core.Domain.DataProvider;
@@ -33,14 +32,12 @@ namespace WaterPoint.Core.DependencyInjection
 
         private void BindRepositories()
         {
-            Bind<ISupplierRepository>().To<SupplierRepository>();
-            Bind<IOrganizationRepository>().To<OrganizationRepository>();
+            Bind<IRestaurantRepository>().To<RestaurantRepository>();
         }
 
         private void BindBlls()
         {
-            Bind<ISupplierBll>().To<SupplierBll>();
-            Bind<IOrganizationBll>().To<OrganizationBll>();
+            Bind<IRestaurantBll>().To<RestaurantBll>();
         }
     }
 }

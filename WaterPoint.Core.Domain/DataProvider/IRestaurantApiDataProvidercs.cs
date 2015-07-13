@@ -5,10 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using WaterPoint.Core.Contract;
 
-namespace WaterPoint.Api.Domain.Services
+namespace WaterPoint.Core.Domain.DataProvider
 {
-    public interface IOrganizationService
+    public interface IRestaurantApiDataProvider
     {
-        Task<OrganizationContract> GetByIdAsync(int organizationId);
+        Task<RestaurantContract> GetByIdAsync(int id);
     }
 }

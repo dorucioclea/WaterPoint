@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using Ninject.Modules;
 using WaterPoint.Api.Domain.Services;
 using WaterPoint.Api.Service;
-using WaterPoint.Core.Domain.Services;
 
 namespace WaterPoint.Api.DependencyInjection
 {
@@ -19,8 +18,7 @@ namespace WaterPoint.Api.DependencyInjection
 
         private void BindServices()
         {
-            Bind<ISupplierService>().To<SupplierService>();
-            Bind<IOrganizationService>().To<OrganizationService>();
+            Bind<IRestaurantService>().To<RestaurantService>();
         }
     }
 }

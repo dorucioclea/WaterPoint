@@ -39,9 +39,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bll\IOrganizationBll.cs" />
-    <Compile Include="Bll\ISupplierBll.cs" />
-    <Compile Include="DataProvider\IOrganizationApiDataProvidercs.cs" />
+    <Compile Include="Bll\IRestaurantBll.cs" />
+    <Compile Include="DataProvider\IRestaurantApiDataProvidercs.cs" />
     <Compile Include="IApiClient.cs" />
     <Compile Include="IApiContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

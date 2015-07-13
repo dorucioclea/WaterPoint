@@ -8,20 +8,20 @@ using WaterPoint.Data.Entity;
 
 namespace WaterPoint.Data.Repository
 {
-    public class OrganizationRepository : RepositoryBase<Organization>, IOrganizationRepository
+    public class RestaurantRepository : RepositoryBase<Restaurant>, IRestaurantRepository
     {
-        public OrganizationRepository(IDbContext dbContext)
+        public RestaurantRepository(IDbContext dbContext)
             : base(dbContext)
         {
         }
 
-        public async Task<Organization> GetAsync(int id)
+        public async Task<Restaurant> GetAsync(int id)
         {
-            //var result = await DbContext.QueryAsync<Organization>(OrganizationScripts.GetAsync, new { id });
+            //var result = await DbContext.QueryAsync<Restaurant>(RestaurantScripts.GetAsync, new { id });
 
             //return result.FirstOrDefault();
 
-            return await Task.Run(() => new Organization
+            return await Task.Run(() => new Restaurant
             {
                 Id = id,
                 Name = "water point ltd",

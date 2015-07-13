@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WaterPoint.App.ViewModel
+namespace WaterPoint.Core.Contract
 {
-    public class OrganizationIndex
-    {        
+    public class RestaurantContract
+    {
         public int Id { get; set; }
-        
+
         public string Name { get; set; }
         
         public string DisplayName { get; set; }

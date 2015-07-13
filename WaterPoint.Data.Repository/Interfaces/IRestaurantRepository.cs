@@ -7,8 +7,8 @@ using WaterPoint.Data.Entity;
 
 namespace WaterPoint.Data.Repository
 {
-    public interface IOrganizationRepository
+    public interface IRestaurantRepository
     {
-        Task<Organization> GetAsync(int id);
+        Task<Restaurant> GetAsync(int id);
     }
 }

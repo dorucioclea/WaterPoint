@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WaterPoint.Data.Entity
 {
-    public class Organization
+    public class Restaurant
     {
         public int Id { get; set; }
         public string Name { get; set; }

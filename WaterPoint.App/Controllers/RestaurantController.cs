@@ -7,13 +7,13 @@ using WaterPoint.App.Domain.Services;
 
 namespace WaterPoint.App.Controllers
 {
-    public class OrganizationController : Controller
+    public class RestaurantController : Controller
     {
-        private readonly IOrganizationService _organizationService;
+        private readonly IRestaurantService _restaurantService;
 
-        public OrganizationController(IOrganizationService organizationService)
+        public RestaurantController(IRestaurantService restaurantService)
         {
-            _organizationService = organizationService;
+            _restaurantService = restaurantService;
         }
 
         public ActionResult Index()

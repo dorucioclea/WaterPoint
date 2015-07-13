@@ -8,7 +8,7 @@ namespace WaterPoint.Api
 {
     public interface ISecurityContext
     {
-        int OrganizationId { get; set; }
+        int RestaurantId { get; set; }
         int StaffId { get; set; }
     }
 }
