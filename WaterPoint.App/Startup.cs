@@ -39,7 +39,7 @@ namespace WaterPoint.App
         }
         
         private void ConfigWeb(HttpConfiguration config)
-        {
+        {            
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
