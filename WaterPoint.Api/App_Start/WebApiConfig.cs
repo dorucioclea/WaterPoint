@@ -19,8 +19,9 @@ namespace WaterPoint.Api
 
             config.Routes.MapHttpRoute(
                 name : "DefaultApi",
-                routeTemplate : "restaurant/{restaurantId:int}/{controller}/{id}",
-                defaults : new { id = RouteParameter.Optional }
+                routeTemplate : "restaurants/{restaurantId:int}/{controller}/{id}",
+                defaults : new { id = RouteParameter.Optional },
+                constraints: new { accountId = @"\d+" }
             );
             //---
             AddJsonFormatter(config);

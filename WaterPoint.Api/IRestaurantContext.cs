@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WaterPoint.Api
 {
-    public interface ISecurityContext
+    public interface IRestaurantContext
     {
         int RestaurantId { get; set; }
         int StaffId { get; set; }

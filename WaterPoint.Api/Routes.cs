@@ -9,6 +9,8 @@ namespace WaterPoint.Api
     {
         public class Restaurants
         {
+            public const string Get = "restaurants";
+
             public const string GetById = "restaurants/{id:int}";
         }
     }

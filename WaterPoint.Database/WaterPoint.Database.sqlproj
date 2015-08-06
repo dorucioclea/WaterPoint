@@ -61,6 +61,9 @@
   </ItemGroup>
   <ItemGroup>
     <Build Include="Tables\Restaurant.sql" />
+    <Build Include="Tables\DiningTable.sql" />
+    <Build Include="Tables\Customer.sql" />
+    <Build Include="Tables\CustomerReservation.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="WaterPoint.Database.publish.xml" />
