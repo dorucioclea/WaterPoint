@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{06924D47-65D0-4730-86DE-E8771D08706C}"
 EndProject
@@ -175,8 +175,5 @@ Global
 		{E5CB6B34-A868-4AB3-96E1-E54CA59784EA} = {A2EE6450-A4EB-43BC-ACEE-9A3F787D04F6}
 		{0750BD81-ED5A-4709-9FF0-96EE9BF89A95} = {A2EE6450-A4EB-43BC-ACEE-9A3F787D04F6}
 		{150ABF65-D5D9-48CB-8131-262F2104152A} = {A2EE6450-A4EB-43BC-ACEE-9A3F787D04F6}
-	EndGlobalSection
-	GlobalSection(Performance) = preSolution
-		HasPerformanceSessions = true
 	EndGlobalSection
 EndGlobal

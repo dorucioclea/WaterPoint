@@ -12,7 +12,7 @@ namespace WaterPoint.Data.DbContext
 {
     public class DapperDbContext : IDbContext
     {
-        private string _connectionString;
+        private readonly string _connectionString;
 
         private const string DefaultConnection = "DefaultConnection";
 
@@ -48,13 +48,10 @@ namespace WaterPoint.Data.DbContext
                 {
                     await conn.OpenAsync().ConfigureAwait(false);
 
-                    var result = await conn.ExecuteAsync(sql, parameters, null, null, CommandType.Text);
+                    var result = await conn.ExecuteAsync(sql, parameters, null, null, CommandType.Text)
+                        .ConfigureAwait(false);
 
                     return result;
-                }
-                catch
-                {
-                    throw;
                 }
                 finally
                 {
@@ -73,13 +70,10 @@ namespace WaterPoint.Data.DbContext
                 {
                     await conn.OpenAsync().ConfigureAwait(false);
 
-                    var result = await conn.QueryAsync<T>(sql, parameters, null, null, CommandType.Text);
+                    var result = await conn.QueryAsync<T>(sql, parameters, null, null, CommandType.Text)
+                        .ConfigureAwait(false);
 
                     return result;
-                }
-                catch
-                {
-                    throw;
                 }
                 finally
                 {
