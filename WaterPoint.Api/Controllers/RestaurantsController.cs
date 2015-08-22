@@ -6,7 +6,7 @@ using System.Net.Http;
 using System.Runtime.Remoting.Messaging;
 using System.Threading.Tasks;
 using System.Web.Http;
-using WaterPoint.Api.Domain.Services;
+using WaterPoint.Core.Domain.Services;
 
 namespace WaterPoint.Api.Controllers
 {
@@ -18,7 +18,7 @@ namespace WaterPoint.Api.Controllers
         {
             _restaurantService = restaurantService;
         }
-        
+
         //[Route(Routes.Restaurants.Get)]
         //public async Task<IHttpActionResult> Get()
         //{

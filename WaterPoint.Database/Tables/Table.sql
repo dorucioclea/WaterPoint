@@ -1,0 +1,14 @@
+﻿CREATE TABLE [dbo].[DiningTable]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY,
+	[BranchId] INT NOT NULL,
+	[GroupId] INT NOT NULL,
+	[Code] VARCHAR(150) NOT NULL,
+	[NumberOfSeats] INT NOT NULL,
+	[MaxNumberOfSeats] INT NULL,
+	[DiningTableGrouptId] INT NULL,
+    [Uid] UNIQUEIDENTIFIER NOT NULL DEFAULT(NEWID()),
+	[CreatedOn] DATETIME2(7) NOT NULL DEFAULT(GETUTCDATE()),
+	[UpdatedOn] DATETIME2(7) NOT NULL DEFAULT(GETUTCDATE()),
+	CONSTRAINT [FK_Table_Group] FOREIGN KEY ([GroupId]) REFERENCES [dbo].[Group] ([Id])
+)

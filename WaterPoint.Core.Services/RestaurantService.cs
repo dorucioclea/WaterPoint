@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
-using WaterPoint.Api.Domain.Services;
+﻿using System.Threading.Tasks;
+using WaterPoint.Core.Contract;
 using WaterPoint.Core.ContractMapper;
 using WaterPoint.Core.Domain.Bll;
-using WaterPoint.Core.Contract;
-using WaterPoint.Data.Entity;
+using WaterPoint.Core.Domain.Services;
 
-namespace WaterPoint.Api.Service
+namespace WaterPoint.Core.Services
 {
     public class RestaurantService : IRestaurantService
     {

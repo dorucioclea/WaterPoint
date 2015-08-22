@@ -4,11 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WaterPoint.Api
+namespace WaterPoint.Core.Domain
 {
     public interface IRestaurantContext
     {
-        int RestaurantId { get; set; }
-        int StaffId { get; set; }
+        int RestaurantId { get; }
+        int BranchId { get; }
+        
+        int StaffId { get; }
     }
 }

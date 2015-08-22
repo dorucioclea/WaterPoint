@@ -20,6 +20,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -156,7 +157,9 @@
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="BaseControllers\" />
+  </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -164,8 +167,8 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RestaurantsController.cs" />
-    <Compile Include="Controllers\TestsController.cs" />
-    <Compile Include="IRestaurantContext.cs" />
+    <Compile Include="Controllers\PingController.cs" />
+    <Compile Include="Controllers\TablesController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Routes.cs" />
     <Compile Include="Startup.cs" />
@@ -185,10 +188,6 @@
     <ProjectReference Include="..\WaterPoint.Api.DependencyInjection\WaterPoint.Api.DependencyInjection.csproj">
       <Project>{5C64B219-7379-45AB-A0FC-F459EEA2AE17}</Project>
       <Name>WaterPoint.Api.DependencyInjection</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WaterPoint.Api.Domain\WaterPoint.Api.Domain.csproj">
-      <Project>{81b8bd75-ec34-456a-aded-6c850e3cc163}</Project>
-      <Name>WaterPoint.Api.Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\WaterPoint.Core.ContractMapper\WaterPoint.Core.ContractMapper.csproj">
       <Project>{6d50ae7d-4ae4-41a7-8663-af3ce0dc3414}</Project>

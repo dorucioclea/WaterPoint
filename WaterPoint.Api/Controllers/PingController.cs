@@ -7,11 +7,11 @@ using System.Web.Http;
 
 namespace WaterPoint.Api.Controllers
 {
-    public class TestsController : ApiController
+    public class PingController : ApiController
     {
         public IHttpActionResult Get()
         {
-            return Ok();
+            return Ok("working");
         }
     }
 }

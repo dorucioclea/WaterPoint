@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using WaterPoint.Data.DbContext;
 using WaterPoint.Data.Entity;
 
-namespace WaterPoint.Data.Repository
+namespace WaterPoint.Core.Repository
 {
     public abstract class RepositoryBase<T>
         where T : class

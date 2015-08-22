@@ -49,13 +49,17 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\WaterPoint.Core.Bll\WaterPoint.Core.Bll.csproj">
+      <Project>{0750bd81-ed5a-4709-9ff0-96ee9bf89a95}</Project>
+      <Name>WaterPoint.Core.Bll</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WaterPoint.Core.Domain\WaterPoint.Core.Domain.csproj">
       <Project>{a035ac5e-bfb1-4be2-803c-6386e3297008}</Project>
       <Name>WaterPoint.Core.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WaterPoint.Data.Bll\WaterPoint.Data.Bll.csproj">
-      <Project>{f8e55611-76a3-4ea9-be8e-9a57145a527d}</Project>
-      <Name>WaterPoint.Data.Bll</Name>
+    <ProjectReference Include="..\WaterPoint.Core.Repository\WaterPoint.Core.Repository.csproj">
+      <Project>{150abf65-d5d9-48cb-8131-262f2104152a}</Project>
+      <Name>WaterPoint.Core.Repository</Name>
     </ProjectReference>
     <ProjectReference Include="..\WaterPoint.Data.DbContext\WaterPoint.Data.DbContext.csproj">
       <Project>{fea52468-343e-4e37-ab84-49323f940230}</Project>
@@ -64,10 +68,6 @@
     <ProjectReference Include="..\WaterPoint.Data.Entity\WaterPoint.Data.Entity.csproj">
       <Project>{dcbdc017-96ec-486d-a491-239702696a1a}</Project>
       <Name>WaterPoint.Data.Entity</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WaterPoint.Data.Repository\WaterPoint.Data.Repository.csproj">
-      <Project>{a5b1fd13-2461-4736-ad4f-e7708a0c38ee}</Project>
-      <Name>WaterPoint.Data.Repository</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

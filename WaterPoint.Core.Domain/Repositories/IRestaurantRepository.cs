@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WaterPoint.Data.Entity;
 
-namespace WaterPoint.Data.Repository
+namespace WaterPoint.Core.Domain.Repositories
 {
     public interface IRestaurantRepository
     {

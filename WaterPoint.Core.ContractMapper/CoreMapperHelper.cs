@@ -13,7 +13,11 @@ namespace WaterPoint.Core.ContractMapper
     {
         public static void Initialize()
         {
-            Mapper.Initialize(config => config.AddProfile(new RestaurantProfile()));
+            Mapper.Initialize(config =>
+            {
+                config.AddProfile(new RestaurantProfile());
+                config.AddProfile(new TableProfile());
+            });
         }
 
         public static T MapTo<T>(object source)

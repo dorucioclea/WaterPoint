@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Ninject.Modules;
-
-using WaterPoint.Data.Bll;
-using WaterPoint.Data.Repository;
+using WaterPoint.Core.Bll;
+using WaterPoint.Core.Domain.Repositories;
+using WaterPoint.Core.Repository;
 using WaterPoint.Data.DbContext;
 
 using WaterPoint.Core.Domain.Bll;
@@ -33,11 +33,13 @@ namespace WaterPoint.Core.DependencyInjection
         private void BindRepositories()
         {
             Bind<IRestaurantRepository>().To<RestaurantRepository>();
+            Bind<ITableRepository>().To<TableRepository>();
         }
 
         private void BindBlls()
         {
             Bind<IRestaurantBll>().To<RestaurantBll>();
+            Bind<ITableBll>().To<TableBll>();
         }
     }
 }

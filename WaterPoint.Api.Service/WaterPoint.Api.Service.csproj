@@ -45,14 +45,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="RestaurantService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WaterPoint.Api.Domain\WaterPoint.Api.Domain.csproj">
-      <Project>{81b8bd75-ec34-456a-aded-6c850e3cc163}</Project>
-      <Name>WaterPoint.Api.Domain</Name>
-    </ProjectReference>
     <ProjectReference Include="..\WaterPoint.Core.ContractMapper\WaterPoint.Core.ContractMapper.csproj">
       <Project>{6D50AE7D-4AE4-41A7-8663-AF3CE0DC3414}</Project>
       <Name>WaterPoint.Core.ContractMapper</Name>

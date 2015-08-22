@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WaterPoint.Core.Domain.Repositories;
+using WaterPoint.Core.Repository;
 using WaterPoint.Data.DbContext;
 using WaterPoint.Data.Entity;
 
-namespace WaterPoint.Data.Repository
+namespace WaterPoint.Core.Repository
 {
     public class RestaurantRepository : RepositoryBase<Restaurant>, IRestaurantRepository
     {
@@ -24,9 +26,7 @@ namespace WaterPoint.Data.Repository
             return await Task.Run(() => new Restaurant
             {
                 Id = id,
-                Name = "water point ltd",
-                DisplayName = "Water point Ltd.",
-                Uid = Guid.NewGuid().ToString()
+                Name = "water point ltd"
             });
         }
     }

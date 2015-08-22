@@ -49,13 +49,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WaterPoint.Api.Domain\WaterPoint.Api.Domain.csproj">
-      <Project>{81b8bd75-ec34-456a-aded-6c850e3cc163}</Project>
-      <Name>WaterPoint.Api.Domain</Name>
+    <ProjectReference Include="..\WaterPoint.Core.Domain\WaterPoint.Core.Domain.csproj">
+      <Project>{a035ac5e-bfb1-4be2-803c-6386e3297008}</Project>
+      <Name>WaterPoint.Core.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WaterPoint.Api.Service\WaterPoint.Api.Service.csproj">
-      <Project>{7a1bf05b-f99b-455d-a99d-c6d3db17dcdf}</Project>
-      <Name>WaterPoint.Api.Service</Name>
+    <ProjectReference Include="..\WaterPoint.Core.Services\WaterPoint.Core.Services.csproj">
+      <Project>{e5cb6b34-a868-4ab3-96e1-e54ca59784ea}</Project>
+      <Name>WaterPoint.Core.Services</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
