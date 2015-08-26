@@ -44,19 +44,12 @@ namespace WaterPoint.Data.DbContext
         {
             using (var conn = new SqlConnection(_connectionString))
             {
-                try
-                {
-                    await conn.OpenAsync().ConfigureAwait(false);
+                conn.Open();
 
-                    var result = await conn.ExecuteAsync(sql, parameters, null, null, CommandType.Text)
-                        .ConfigureAwait(false);
+                var result = await conn.ExecuteAsync(sql, parameters, null, null, CommandType.Text)
+                    .ConfigureAwait(false);
 
-                    return result;
-                }
-                finally
-                {
-                    conn.Close();
-                }
+                return result;
             }
         }
 
@@ -66,20 +59,14 @@ namespace WaterPoint.Data.DbContext
         {
             using (var conn = new SqlConnection(_connectionString))
             {
-                try
-                {
-                    await conn.OpenAsync().ConfigureAwait(false);
+                conn.Open();
 
-                    var result = await conn.QueryAsync<T>(sql, parameters, null, null, CommandType.Text)
-                        .ConfigureAwait(false);
+                var result = await conn.QueryAsync<T>(sql, parameters, null, null, CommandType.Text)
+                    .ConfigureAwait(false);
 
-                    return result;
-                }
-                finally
-                {
-                    conn.Close();
-                }
+                return result;
             }
+
         }
 
         #endregion

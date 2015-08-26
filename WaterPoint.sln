@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{06924D47-65D0-4730-86DE-E8771D08706C}"
 EndProject
@@ -31,8 +31,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaterPoint.App.DataProvider
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaterPoint.Core.DependencyInjection", "WaterPoint.Core.DependencyInjection\WaterPoint.Core.DependencyInjection.csproj", "{114DB23C-2257-4BAD-800D-58A5CCAEDF90}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaterPoint.Core.Contract", "WaterPoint.Core.Contract\WaterPoint.Core.Contract.csproj", "{F6B5E83F-2633-4332-9BBC-94D98498E482}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaterPoint.Core.ContractMapper", "WaterPoint.Core.ContractMapper\WaterPoint.Core.ContractMapper.csproj", "{6D50AE7D-4AE4-41A7-8663-AF3CE0DC3414}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaterPoint.Core.Domain", "WaterPoint.Core.Domain\WaterPoint.Core.Domain.csproj", "{A035AC5E-BFB1-4BE2-803C-6386E3297008}"
@@ -54,6 +52,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaterPoint.Core.Bll", "WaterPoint.Core.Bll\WaterPoint.Core.Bll.csproj", "{0750BD81-ED5A-4709-9FF0-96EE9BF89A95}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaterPoint.Core.Repository", "WaterPoint.Core.Repository\WaterPoint.Core.Repository.csproj", "{150ABF65-D5D9-48CB-8131-262F2104152A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaterPoint.Data.FluentNhibernateMappingCreator", "WaterPoint.Data.FluentNhibernateMappingCreator\WaterPoint.Data.FluentNhibernateMappingCreator.csproj", "{E19478B7-ACA1-4C5F-BCF1-197DACD8A277}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaterPoint.Data.DbContext.NHibernate", "WaterPoint.Data.DbContext.NHibernate\WaterPoint.Data.DbContext.NHibernate.csproj", "{B9FC107A-7826-47D5-867F-A5397A5B560B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -103,10 +105,6 @@ Global
 		{114DB23C-2257-4BAD-800D-58A5CCAEDF90}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{114DB23C-2257-4BAD-800D-58A5CCAEDF90}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{114DB23C-2257-4BAD-800D-58A5CCAEDF90}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F6B5E83F-2633-4332-9BBC-94D98498E482}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F6B5E83F-2633-4332-9BBC-94D98498E482}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F6B5E83F-2633-4332-9BBC-94D98498E482}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F6B5E83F-2633-4332-9BBC-94D98498E482}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6D50AE7D-4AE4-41A7-8663-AF3CE0DC3414}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6D50AE7D-4AE4-41A7-8663-AF3CE0DC3414}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6D50AE7D-4AE4-41A7-8663-AF3CE0DC3414}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -147,6 +145,14 @@ Global
 		{150ABF65-D5D9-48CB-8131-262F2104152A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{150ABF65-D5D9-48CB-8131-262F2104152A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{150ABF65-D5D9-48CB-8131-262F2104152A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E19478B7-ACA1-4C5F-BCF1-197DACD8A277}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E19478B7-ACA1-4C5F-BCF1-197DACD8A277}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E19478B7-ACA1-4C5F-BCF1-197DACD8A277}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E19478B7-ACA1-4C5F-BCF1-197DACD8A277}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9FC107A-7826-47D5-867F-A5397A5B560B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9FC107A-7826-47D5-867F-A5397A5B560B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9FC107A-7826-47D5-867F-A5397A5B560B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9FC107A-7826-47D5-867F-A5397A5B560B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -163,7 +169,6 @@ Global
 		{32862B76-53BF-453B-A8C3-9E7960441BAC} = {06924D47-65D0-4730-86DE-E8771D08706C}
 		{8E756BF5-71FB-4622-9623-92AEC3283EF9} = {DBDBA4D9-3E12-4239-9FE3-9A84FBFF1CAC}
 		{114DB23C-2257-4BAD-800D-58A5CCAEDF90} = {A2EE6450-A4EB-43BC-ACEE-9A3F787D04F6}
-		{F6B5E83F-2633-4332-9BBC-94D98498E482} = {A2EE6450-A4EB-43BC-ACEE-9A3F787D04F6}
 		{6D50AE7D-4AE4-41A7-8663-AF3CE0DC3414} = {A2EE6450-A4EB-43BC-ACEE-9A3F787D04F6}
 		{A035AC5E-BFB1-4BE2-803C-6386E3297008} = {A2EE6450-A4EB-43BC-ACEE-9A3F787D04F6}
 		{A7F1BBFF-8055-4F97-9A94-03E93728F098} = {A2EE6450-A4EB-43BC-ACEE-9A3F787D04F6}
@@ -175,5 +180,7 @@ Global
 		{E5CB6B34-A868-4AB3-96E1-E54CA59784EA} = {A2EE6450-A4EB-43BC-ACEE-9A3F787D04F6}
 		{0750BD81-ED5A-4709-9FF0-96EE9BF89A95} = {A2EE6450-A4EB-43BC-ACEE-9A3F787D04F6}
 		{150ABF65-D5D9-48CB-8131-262F2104152A} = {A2EE6450-A4EB-43BC-ACEE-9A3F787D04F6}
+		{E19478B7-ACA1-4C5F-BCF1-197DACD8A277} = {8A654831-C825-4014-A18F-71BE1FA194C6}
+		{B9FC107A-7826-47D5-867F-A5397A5B560B} = {8A654831-C825-4014-A18F-71BE1FA194C6}
 	EndGlobalSection
 EndGlobal

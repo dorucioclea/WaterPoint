@@ -1,24 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
-  <Operation Name="Rename Refactor" Key="8093772b-7f1b-479f-b51b-a1c8072b081b" ChangeDateTime="07/10/2015 00:26:44">
-    <Property Name="ElementName" Value="[dbo].[Restaurant].[DisplayName]" />
-    <Property Name="ElementType" Value="SqlSimpleColumn" />
-    <Property Name="ParentElementName" Value="[dbo].[Restaurant]" />
-    <Property Name="ParentElementType" Value="SqlTable" />
-    <Property Name="NewName" Value="PreferedName" />
-  </Operation>
-  <Operation Name="Rename Refactor" Key="ff5e682e-059d-4e36-ab08-4200a86686cc" ChangeDateTime="08/22/2015 04:47:53">
-    <Property Name="ElementName" Value="[dbo].[Branch].[Address]" />
-    <Property Name="ElementType" Value="SqlSimpleColumn" />
-    <Property Name="ParentElementName" Value="[dbo].[Branch]" />
-    <Property Name="ParentElementType" Value="SqlTable" />
-    <Property Name="NewName" Value="AddressId" />
-  </Operation>
-  <Operation Name="Rename Refactor" Key="04f32084-81c0-4467-a561-ab62d8b943a3" ChangeDateTime="08/22/2015 04:49:32">
-    <Property Name="ElementName" Value="[dbo].[Address].[Street]" />
+  <Operation Name="Rename Refactor" Key="f6b3c55a-abac-413e-994f-cc444870d6e4" ChangeDateTime="08/23/2015 09:21:49">
+    <Property Name="ElementName" Value="[dbo].[Address].[Country]" />
     <Property Name="ElementType" Value="SqlSimpleColumn" />
     <Property Name="ParentElementName" Value="[dbo].[Address]" />
     <Property Name="ParentElementType" Value="SqlTable" />
-    <Property Name="NewName" Value="StreetExtraLine" />
+    <Property Name="NewName" Value="CountryId" />
   </Operation>
 </Operations>

@@ -41,6 +41,9 @@
   <ItemGroup>
     <Compile Include="Bll\IRestaurantBll.cs" />
     <Compile Include="Bll\ITableBll.cs" />
+    <Compile Include="Contracts\RestaurantContract.cs" />
+    <Compile Include="Contracts\TableContract.cs" />
+    <Compile Include="Contracts\TableTypeContract.cs" />
     <Compile Include="DataProvider\IRestaurantApiDataProvidercs.cs" />
     <Compile Include="IApiClient.cs" />
     <Compile Include="IApiContext.cs" />
@@ -48,19 +51,18 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\IRestaurantRepository.cs" />
     <Compile Include="Repositories\ITableRepository.cs" />
+    <Compile Include="Repositories\ITableTypeRepository.cs" />
     <Compile Include="Services\IRestaurantService.cs" />
     <Compile Include="Services\ITableService.cs" />
+    <Compile Include="Services\ITableTypeService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WaterPoint.Core.Contract\WaterPoint.Core.Contract.csproj">
-      <Project>{f6b5e83f-2633-4332-9bbc-94d98498e482}</Project>
-      <Name>WaterPoint.Core.Contract</Name>
-    </ProjectReference>
     <ProjectReference Include="..\WaterPoint.Data.Entity\WaterPoint.Data.Entity.csproj">
       <Project>{dcbdc017-96ec-486d-a491-239702696a1a}</Project>
       <Name>WaterPoint.Data.Entity</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

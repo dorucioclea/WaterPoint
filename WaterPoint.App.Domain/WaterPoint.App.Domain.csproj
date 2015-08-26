@@ -43,12 +43,6 @@
     <Compile Include="Services\IRestaurantService.cs" />
     <Compile Include="ViewModels\IViewModel.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\WaterPoint.Core.Contract\WaterPoint.Core.Contract.csproj">
-      <Project>{f6b5e83f-2633-4332-9bbc-94d98498e482}</Project>
-      <Name>WaterPoint.Core.Contract</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

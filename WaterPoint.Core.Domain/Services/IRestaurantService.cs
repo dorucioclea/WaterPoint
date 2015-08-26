@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using WaterPoint.Core.Contract;
+using WaterPoint.Core.Domain.Contracts;
 
 namespace WaterPoint.Core.Domain.Services
 {

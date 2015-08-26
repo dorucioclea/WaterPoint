@@ -10,5 +10,7 @@ namespace WaterPoint.Core.Domain.Bll
     public interface ITableBll
     {
         Task<IEnumerable<Table>> ListByGroupId(IRestaurantContext currentRestaurant, int groupId);
+
+        Task Ttt();
     }
 }

@@ -297,10 +297,6 @@
       <Project>{6d50ae7d-4ae4-41a7-8663-af3ce0dc3414}</Project>
       <Name>WaterPoint.Core.ContractMapper</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WaterPoint.Core.Contract\WaterPoint.Core.Contract.csproj">
-      <Project>{f6b5e83f-2633-4332-9bbc-94d98498e482}</Project>
-      <Name>WaterPoint.Core.Contract</Name>
-    </ProjectReference>
     <ProjectReference Include="..\WaterPoint.Core.DependencyInjection\WaterPoint.Core.DependencyInjection.csproj">
       <Project>{114db23c-2257-4bad-800d-58a5ccaedf90}</Project>
       <Name>WaterPoint.Core.DependencyInjection</Name>
