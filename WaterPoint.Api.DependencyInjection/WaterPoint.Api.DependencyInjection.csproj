@@ -33,6 +33,10 @@
     <Reference Include="Ninject">
       <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
     </Reference>
+    <Reference Include="Ninject.Web.Common, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Web.Common.3.2.3.0\lib\net45-full\Ninject.Web.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -56,6 +60,10 @@
     <ProjectReference Include="..\WaterPoint.Core.Services\WaterPoint.Core.Services.csproj">
       <Project>{e5cb6b34-a868-4ab3-96e1-e54ca59784ea}</Project>
       <Name>WaterPoint.Core.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WaterPoint.Data.DbContext.NHibernate\WaterPoint.Data.DbContext.NHibernate.csproj">
+      <Project>{b9fc107a-7826-47d5-867f-a5397a5b560b}</Project>
+      <Name>WaterPoint.Data.DbContext.NHibernate</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -51,11 +51,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Attributes\RelationshipAttribute.cs" />
-    <Compile Include="Attributes\OneToOneAttribute.cs" />
-    <Compile Include="Attributes\OneToManyAttribute.cs" />
-    <Compile Include="Attributes\ManyToOneAttribute.cs" />
-    <Compile Include="Attributes\IdentityAttribute.cs" />
     <Compile Include="DataEntities\Branch.cs" />
     <Compile Include="IDataEntity.cs" />
     <Compile Include="DataEntities\Restaurant.cs" />

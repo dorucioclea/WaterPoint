@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WaterPoint.Data.Entity;
+using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Core.Domain.Repositories
 {

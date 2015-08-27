@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
-using WaterPoint.Core.Contract;
 using WaterPoint.Core.ContractMapper;
 using WaterPoint.Core.Domain.Bll;
+using WaterPoint.Core.Domain.Contracts;
 using WaterPoint.Core.Domain.Services;
 
 namespace WaterPoint.Core.Services

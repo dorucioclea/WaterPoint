@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
-using WaterPoint.Core.Contract;
+
 using WaterPoint.Data.Entity;
 
 namespace WaterPoint.Core.ContractMapper
@@ -16,7 +16,6 @@ namespace WaterPoint.Core.ContractMapper
             Mapper.Initialize(config =>
             {
                 config.AddProfile(new RestaurantProfile());
-                config.AddProfile(new TableProfile());
             });
         }
 

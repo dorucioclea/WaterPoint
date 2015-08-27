@@ -11,6 +11,5 @@ namespace WaterPoint.Core.Domain.Contracts
         public int Id { get; set; }
         public int RestaurantId { get; set; }
         public int Name { get; set; }
-        public IEnumerable<TableContract> Tables { get; set; }
     }
 }

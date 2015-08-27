@@ -6,14 +6,16 @@ using System.Threading.Tasks;
 using WaterPoint.Core.Domain.Repositories;
 using WaterPoint.Core.Repository;
 using WaterPoint.Data.DbContext;
+using WaterPoint.Data.DbContext.NHibernate;
 using WaterPoint.Data.Entity;
+using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Core.Repository
 {
     public class RestaurantRepository : RepositoryBase<Restaurant>, IRestaurantRepository
     {
-        public RestaurantRepository(IDbContext dbContext)
-            : base(dbContext)
+        public RestaurantRepository(ISessionUnitOfWork sessionUnitOfWork)
+            : base(sessionUnitOfWork)
         {
         }
 

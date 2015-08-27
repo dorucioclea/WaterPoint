@@ -168,7 +168,6 @@
     <Compile Include="Controllers\RestaurantsController.cs" />
     <Compile Include="Controllers\PingController.cs" />
     <Compile Include="Controllers\TableTypesController.cs" />
-    <Compile Include="Controllers\TablesController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Routes.cs" />
     <Compile Include="Startup.cs" />

@@ -6,24 +6,25 @@ using System.Threading.Tasks;
 using WaterPoint.Core.Domain.Repositories;
 using WaterPoint.Core.Repository;
 using WaterPoint.Data.DbContext;
-using WaterPoint.Data.Entity;
+using WaterPoint.Data.DbContext.NHibernate;
+using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Core.Repository
 {
     public class TableTypeRepository : RepositoryBase<Table>, ITableTypeRepository
     {
-        public TableTypeRepository(IDbContext dbContext)
-            : base(dbContext)
+        public TableTypeRepository(ISessionUnitOfWork sessionUnitOfWork)
+            : base(sessionUnitOfWork)
         {
         }
 
-        public async Task<IEnumerable<TableType>> GetById(int )
-        {
-            using (var trans = new TransactionScope())
-            {
-            }
+        //public async Task<IEnumerable<TableType>> GetById(int )
+        //{
+        //    using (var trans = new TransactionScope())
+        //    {
+        //    }
 
 
-        }
+        //}
     }
 }

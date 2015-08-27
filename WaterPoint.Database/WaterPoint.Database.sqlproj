@@ -71,12 +71,10 @@
     <Build Include="dbo\Tables\Restaurant.sql" />
     <Build Include="dbo\Tables\Table.sql" />
     <Build Include="dbo\Tables\TableType.sql" />
-    <Build Include="dbo\StoredProcedures\List_Tables_By_TableClass.sql" />
     <Build Include="dbo\Tables\Country.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="WaterPoint.Database.publish.xml" />
-    <None Include="Scripts\PostDeployment\TableClassDefaults.sql" />
     <None Include="Scripts\PostDeployment\DemoData.sql" />
     <None Include="Scripts\PostDeployment\Countries.sql" />
   </ItemGroup>

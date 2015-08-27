@@ -61,10 +61,6 @@
       <Project>{150abf65-d5d9-48cb-8131-262f2104152a}</Project>
       <Name>WaterPoint.Core.Repository</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WaterPoint.Data.DbContext\WaterPoint.Data.DbContext.csproj">
-      <Project>{fea52468-343e-4e37-ab84-49323f940230}</Project>
-      <Name>WaterPoint.Data.DbContext</Name>
-    </ProjectReference>
     <ProjectReference Include="..\WaterPoint.Data.Entity\WaterPoint.Data.Entity.csproj">
       <Project>{dcbdc017-96ec-486d-a491-239702696a1a}</Project>
       <Name>WaterPoint.Data.Entity</Name>

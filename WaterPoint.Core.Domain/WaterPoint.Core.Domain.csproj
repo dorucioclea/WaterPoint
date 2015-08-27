@@ -40,14 +40,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bll\IRestaurantBll.cs" />
-    <Compile Include="Bll\ITableBll.cs" />
     <Compile Include="Contracts\RestaurantContract.cs" />
-    <Compile Include="Contracts\TableContract.cs" />
     <Compile Include="Contracts\TableTypeContract.cs" />
     <Compile Include="DataProvider\IRestaurantApiDataProvidercs.cs" />
     <Compile Include="IApiClient.cs" />
     <Compile Include="IApiContext.cs" />
     <Compile Include="IRestaurantContext.cs" />
+    <Compile Include="IUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\IRestaurantRepository.cs" />
     <Compile Include="Repositories\ITableRepository.cs" />

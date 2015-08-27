@@ -10,7 +10,7 @@ using System.Linq.Expressions;
 
 namespace WaterPoint.Data.DbContext
 {
-    public class DapperDbContext : IDbContext
+    public class DapperDbContext
     {
         private readonly string _connectionString;
 

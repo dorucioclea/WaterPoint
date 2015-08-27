@@ -10,7 +10,6 @@ using System.Threading.Tasks;
 using System.Transactions;
 using System.Xml;
 using System.Xml.Linq;
-using WaterPoint.Data.Entity.Attributes;
 
 namespace WaterPoint.Data.FluentNhibernateMappingCreator
 {
@@ -27,50 +26,42 @@ namespace WaterPoint.Data.FluentNhibernateMappingCreator
             var mappingPath = string.Format(@"{0}\Mappings", applicationPath);
 
             var projFilePath = string.Format(@"{0}\WaterPoint.Data.DbContext.NHibernate.csproj", applicationPath);
-            using (var trans = new TransactionScope())
+            var proj = XDocument.Load(projFilePath);
+
+            var names = proj.Root.Name.Namespace;
+
+            var changed = false;
+
+            foreach (var t in entities)
             {
-                try
-                {
-                    var proj = XDocument.Load(projFilePath);
+                CreateFiles(t, mappingPath);
 
-                    var names = proj.Root.Name.Namespace;
+                #region proj file
+                var itemGroups = proj.Descendants(names + "ItemGroup");
 
-                    var changed = false;
+                var itemGroup = itemGroups.FirstOrDefault(i => i.Elements(names + "Compile").Any());
 
-                    foreach (var t in entities)
-                    {
-                        CreateFiles(t, mappingPath);
+                var compile = itemGroup.Elements(names + "Compile")
+                    .FirstOrDefault(
+                        i => i.Attribute("Include").Value == string.Format("Mappings\\{0}Map.cs", t.Name));
 
-                        var itemGroups = proj.Descendants(names + "ItemGroup");
+                if (compile != null)
+                    compile.Remove();
 
-                        var itemGroup = itemGroups.FirstOrDefault(i => i.Elements(names + "Compile").Any());
+                var element = new XElement(names + "Compile");
+                element.Add(new XAttribute("Include", string.Format("Mappings\\{0}Map.cs", t.Name)));
 
-                        var compile = itemGroup.Elements(names + "Compile")
-                            .FirstOrDefault(
-                                i => i.Attribute("Include").Value == string.Format("Mappings\\{0}Map.cs", t.Name));
+                itemGroup.Add(element);
 
-                        if (compile != null)
-                            compile.Remove();
-
-                        var element = new XElement(names + "Compile");
-                        element.Add(new XAttribute("Include", string.Format("Mappings\\{0}Map.cs", t.Name)));
-
-                        itemGroup.Add(element);
-
-                        if (!changed)
-                            changed = true;
-                    }
-
-                    if (changed)
-                        proj.Save(projFilePath);
-
-                    trans.Complete();
-                }
-                catch
-                {
-                    trans.Dispose();
-                }
+                if (!changed)
+                    changed = true;
+                #endregion
             }
+
+            if (changed)
+                proj.Save(projFilePath);
+
+            
         }
 
         private static void CreateFiles(Type t, string mappingPath)
@@ -91,13 +82,7 @@ namespace WaterPoint.Data.FluentNhibernateMappingCreator
                 textWriter.WriteLine(@"        public {0}Map()", t.Name);
                 textWriter.WriteLine(@"        {");
 
-                foreach (var property in t.GetProperties())
-                {
-                    var isIdentity = property.GetCustomAttribute(typeof(IdentityAttribute), false) != null;
-
-                    textWriter.WriteLine(@"            {1}(x => x.{0});", property.Name,
-                        isIdentity ? "Id" : "Map");
-                }
+                
 
                 textWriter.WriteLine(@"        }");
                 textWriter.WriteLine(@"    }");

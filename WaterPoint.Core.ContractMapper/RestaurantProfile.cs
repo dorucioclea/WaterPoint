@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
-using WaterPoint.Core.Contract;
+using WaterPoint.Core.Domain.Contracts;
 using WaterPoint.Data.Entity;
+using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Core.ContractMapper
 {

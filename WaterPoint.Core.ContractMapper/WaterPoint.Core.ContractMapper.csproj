@@ -45,7 +45,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="TableProfile.cs" />
     <Compile Include="RestaurantProfile.cs" />
     <Compile Include="CoreMapperHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -54,6 +53,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\WaterPoint.Core.Domain\WaterPoint.Core.Domain.csproj">
+      <Project>{a035ac5e-bfb1-4be2-803c-6386e3297008}</Project>
+      <Name>WaterPoint.Core.Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WaterPoint.Data.Entity\WaterPoint.Data.Entity.csproj">
       <Project>{dcbdc017-96ec-486d-a491-239702696a1a}</Project>
       <Name>WaterPoint.Data.Entity</Name>

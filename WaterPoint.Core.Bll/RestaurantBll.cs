@@ -2,6 +2,7 @@
 using WaterPoint.Core.Domain.Bll;
 using WaterPoint.Core.Domain.Repositories;
 using WaterPoint.Data.Entity;
+using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Core.Bll
 {

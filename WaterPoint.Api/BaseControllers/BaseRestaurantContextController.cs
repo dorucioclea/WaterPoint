@@ -10,8 +10,14 @@ namespace WaterPoint.Api.BaseControllers
 {
     public abstract class BaseRestaurantContextController : ApiController
     {
+        public IUnitOfWork UnitOfWork { get; private set; }
         //TODO: load from the db;
-        protected IRestaurantContext CurrentRestaurant = new TempContext(); 
+        protected IRestaurantContext CurrentRestaurant = new TempContext();
+
+        protected BaseRestaurantContextController(IUnitOfWork unitOfWork)
+        {
+            UnitOfWork = unitOfWork;
+        }
     }
 
     public class TempContext : IRestaurantContext

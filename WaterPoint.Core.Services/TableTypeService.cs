@@ -22,6 +22,7 @@ namespace WaterPoint.Core.Services
 
         public Task<TableTypeContract> GetByBranchId(IRestaurantContext restaurantContext)
         {
+            throw new NotImplementedException();
         }
     }
 

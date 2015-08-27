@@ -4,8 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Ninject.Modules;
+using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Services;
 using WaterPoint.Core.Services;
+using WaterPoint.Data.DbContext.NHibernate;
+using Ninject.Web.Common;
 
 namespace WaterPoint.Api.DependencyInjection
 {
@@ -19,7 +22,8 @@ namespace WaterPoint.Api.DependencyInjection
         private void BindServices()
         {
             Bind<IRestaurantService>().To<RestaurantService>();
-            Bind<ITableService>().To<TableService>();
+            Bind<ITableTypeService>().To<TableTypeService>();
+            Bind<IUnitOfWork>().To<NHibernateUnitOfWork>();
         }
     }
 }
