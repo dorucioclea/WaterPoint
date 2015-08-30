@@ -42,7 +42,7 @@ namespace WaterPoint.Api.Controllers
 
             var result =_listProductsByFlagQueryDispatcher.Dispatch(query);
 
-            _productService.Run<ListProductsByFlagQuery, IEnumerable<ProductContract>>(query);
+            
 
             return Ok(result);
         }

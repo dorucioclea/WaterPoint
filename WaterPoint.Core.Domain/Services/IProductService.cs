@@ -8,6 +8,5 @@ namespace WaterPoint.Core.Domain.Services
 {
     public interface IProductService
     {
-        TO Run<TI, TO>(TI query);
     }
 }

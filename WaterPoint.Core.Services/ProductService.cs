@@ -14,9 +14,6 @@ namespace WaterPoint.Core.Services
 
     public class ProductService : IProductService
     {
-        public TO Run<TI, TO>(TI query)
-        {
-            throw  new NotImplementedException();
-        }
+       
     }
 }
