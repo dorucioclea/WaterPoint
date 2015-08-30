@@ -31,7 +31,7 @@ namespace WaterPoint.Core.DependencyInjection
         private void BindRepositories()
         {
             Bind<IRestaurantRepository>().To<RestaurantRepository>();
-            Bind<ITableTypeRepository>().To<TableTypeRepository>();
+            Bind<IProductRepository>().To<ProductRepository>();
         }
 
         private void BindBlls()

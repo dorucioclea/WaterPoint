@@ -1,9 +1,0 @@
-﻿CREATE TABLE [dbo].[CustomerReservation]
-(
-	[Id] INT NOT NULL PRIMARY KEY IDENTITY,
-	[CustomerId] INT NOT NULL,
-	[DiningTableId] INT NOT NULL,
-	[ReservationTime] DATETIME2(7) NOT NULL,
-	[CreatedOn] DATETIME2(7) NOT NULL DEFAULT(GETUTCDATE()),
-	[UpdatedOn] DATETIME2(7) NOT NULL DEFAULT(GETUTCDATE())
-)

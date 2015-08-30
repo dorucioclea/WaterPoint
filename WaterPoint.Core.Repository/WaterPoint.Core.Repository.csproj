@@ -53,9 +53,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepositoryBase.cs" />
-    <Compile Include="TableTypeRepository.cs" />
-    <Compile Include="RestaurantRepository.cs" />
-    <Compile Include="Scripts\RestaurantScripts.cs" />
+    <Compile Include="ProductRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WaterPoint.Core.Domain\WaterPoint.Core.Domain.csproj">

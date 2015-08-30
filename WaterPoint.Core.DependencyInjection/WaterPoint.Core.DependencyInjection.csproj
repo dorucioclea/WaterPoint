@@ -49,10 +49,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WaterPoint.Core.Bll\WaterPoint.Core.Bll.csproj">
-      <Project>{0750bd81-ed5a-4709-9ff0-96ee9bf89a95}</Project>
-      <Name>WaterPoint.Core.Bll</Name>
-    </ProjectReference>
     <ProjectReference Include="..\WaterPoint.Core.Domain\WaterPoint.Core.Domain.csproj">
       <Project>{a035ac5e-bfb1-4be2-803c-6386e3297008}</Project>
       <Name>WaterPoint.Core.Domain</Name>

@@ -163,11 +163,10 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="BaseControllers\BaseRestaurantContextController.cs" />
+    <Compile Include="BaseControllers\BaseStoreContextController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\RestaurantsController.cs" />
     <Compile Include="Controllers\PingController.cs" />
-    <Compile Include="Controllers\TableTypesController.cs" />
+    <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Routes.cs" />
     <Compile Include="Startup.cs" />
@@ -192,6 +191,10 @@
       <Project>{6d50ae7d-4ae4-41a7-8663-af3ce0dc3414}</Project>
       <Name>WaterPoint.Core.ContractMapper</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WaterPoint.Core.Cqrs\WaterPoint.Core.Cqrs.csproj">
+      <Project>{8bfa129f-767c-487d-8a38-956fa0704226}</Project>
+      <Name>WaterPoint.Core.Cqrs</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WaterPoint.Core.DependencyInjection\WaterPoint.Core.DependencyInjection.csproj">
       <Project>{114db23c-2257-4bad-800d-58a5ccaedf90}</Project>
       <Name>WaterPoint.Core.DependencyInjection</Name>
@@ -199,6 +202,10 @@
     <ProjectReference Include="..\WaterPoint.Core.Domain\WaterPoint.Core.Domain.csproj">
       <Project>{a035ac5e-bfb1-4be2-803c-6386e3297008}</Project>
       <Name>WaterPoint.Core.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WaterPoint.Data.Entity\WaterPoint.Data.Entity.csproj">
+      <Project>{dcbdc017-96ec-486d-a491-239702696a1a}</Project>
+      <Name>WaterPoint.Data.Entity</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

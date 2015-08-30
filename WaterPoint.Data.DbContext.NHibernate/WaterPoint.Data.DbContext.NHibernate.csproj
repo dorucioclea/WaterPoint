@@ -55,10 +55,7 @@
     <Compile Include="DapperDbContext.cs" />
     <Compile Include="NHibernateUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Mappings\BranchMap.cs" />
-    <Compile Include="Mappings\RestaurantMap.cs" />
-    <Compile Include="Mappings\TableMap.cs" />
-    <Compile Include="Mappings\TableTypeMap.cs" />
+    <Compile Include="Mappings\ProductMap.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -22,7 +22,7 @@ namespace WaterPoint.Api.DependencyInjection
         private void BindServices()
         {
             Bind<IRestaurantService>().To<RestaurantService>();
-            Bind<ITableTypeService>().To<TableTypeService>();
+            Bind<IProductService>().To<ProductService>();
             Bind<IUnitOfWork>().To<NHibernateUnitOfWork>();
         }
     }

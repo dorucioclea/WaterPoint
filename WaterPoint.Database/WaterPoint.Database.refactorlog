@@ -1,3 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="1dd3f3fb-e0a2-4511-b674-9da3dc2c67a2" ChangeDateTime="08/29/2015 10:38:15">
+    <Property Name="ElementName" Value="[dbo].[Sku].[Rrp]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Sku]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="RetailPrice" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="10397d2d-fe4c-44fa-95be-1939d2fc2694" ChangeDateTime="08/29/2015 10:39:31">
+    <Property Name="ElementName" Value="[dbo].[Sku].[RetailPrice]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Sku]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Price" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="23f6cd99-9dc6-4163-8e0a-19d857a620bd" ChangeDateTime="08/29/2015 10:39:40">
+    <Property Name="ElementName" Value="[dbo].[Sku].[Normal]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Sku]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="RetailPrice" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="f4babf5c-9bce-43f3-a558-ba441a7df668" ChangeDateTime="08/29/2015 10:56:33">
+    <Property Name="ElementName" Value="[dbo].[SkuVariant].[Value]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[SkuVariant]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="TextValue" />
+  </Operation>
 </Operations>
