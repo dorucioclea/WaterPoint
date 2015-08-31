@@ -14,40 +14,15 @@ namespace WaterPoint.Core.Repository
 {
     public class ProductRepository : RepositoryBase<Product>, IProductRepository
     {
-        private readonly IQueryDispatcher _queryDispatcher;
-        private readonly ICommandDispatcher _commandDispatcher;
-
-        public ProductRepository(ISessionUnitOfWork sessionUnitOfWork,
-            IQueryDispatcher queryDispatcher,
-            ICommandDispatcher commandDispatcher)
+        public ProductRepository(
+            ISessionUnitOfWork sessionUnitOfWork)
             : base(sessionUnitOfWork)
         {
-            _queryDispatcher = queryDispatcher;
-            _commandDispatcher = commandDispatcher;
         }
 
-        public T Run<T>(IQuery query)
+        public IEnumerable<Product> ListProductsByFlag(int flagId)
         {
-            return _queryDispatcher.Dispatch<T>(query);
-        }
-
-        public int Execute(ICommand command)
-        {
-            return _commandDispatcher.Execute(command);
-        }
-
-        public class ProductQueryDispatcher : IQueryDispatcher
-        {
-
-            public IQuery Query
-            {
-                get { throw new NotImplementedException(); }
-            }
-
-            public T Dispatch<T>(IQuery query)
-            {
-                throw new NotImplementedException();
-            }
+            throw new NotImplementedException();
         }
     }
 }

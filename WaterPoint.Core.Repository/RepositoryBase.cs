@@ -1,21 +1,17 @@
-﻿using System;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Runtime.InteropServices.ComTypes;
 using NHibernate;
-using WaterPoint.Core.Domain;
-using WaterPoint.Data.DbContext;
+using WaterPoint.Core.Domain.Repositories;
 using WaterPoint.Data.DbContext.NHibernate;
-using WaterPoint.Data.Entity;
 
 namespace WaterPoint.Core.Repository
 {
-    public abstract class RepositoryBase<T> where T : class
+    public abstract class RepositoryBase<T> : IRepositoryBase<T> where T : class
     {
         private readonly ISessionUnitOfWork _uow;
 
-        protected ISession Session { get { return _uow.Session; } }
+        public ISession Session { get { return _uow.Session; } }
 
         protected RepositoryBase(ISessionUnitOfWork uow)
         {

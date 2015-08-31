@@ -42,7 +42,7 @@ namespace WaterPoint.Data.DbContext.NHibernate
             SessionFactory = Fluently.Configure()
                 .Database(MsSqlConfiguration.MsSql2012
                     .ConnectionString(ConfigurationManager.ConnectionStrings["DefaultConnection"].ToString()).ShowSql())
-                .Mappings(m => m.FluentMappings.AddFromAssemblyOf<RestaurantMap>())
+                .Mappings(m => m.FluentMappings.AddFromAssemblyOf<ProductMap>())
                 .ExposeConfiguration(cfg => new SchemaExport(cfg).Create(true, true))
                 .BuildSessionFactory();
         }

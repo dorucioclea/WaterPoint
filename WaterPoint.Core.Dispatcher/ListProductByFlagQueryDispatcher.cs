@@ -23,7 +23,7 @@ namespace WaterPoint.Core.Dispatcher
 
         public IEnumerable<Product> Dispatch(ListProductsByFlagQuery query)
         {
-            throw new NotImplementedException();
+            return _productRepository.ListProductsByFlag(query.FlagId);
         }
     }
 }

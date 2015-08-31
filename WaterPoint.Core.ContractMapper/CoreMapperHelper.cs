@@ -15,7 +15,8 @@ namespace WaterPoint.Core.ContractMapper
         {
             Mapper.Initialize(config =>
             {
-                config.AddProfile(new RestaurantProfile());
+                config.AddProfile(new ProductProfile());
+                config.AddProfile(new CategoryProfile());
             });
         }
 

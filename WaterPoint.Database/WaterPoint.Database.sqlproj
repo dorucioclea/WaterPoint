@@ -73,6 +73,7 @@
     <Build Include="dbo\Tables\VariantType.sql" />
     <Build Include="dbo\Tables\SkuVariant.sql" />
     <Build Include="dbo\Tables\Credential.sql" />
+    <Build Include="dbo\Tables\ProductCategory.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="WaterPoint.Database.publish.xml" />

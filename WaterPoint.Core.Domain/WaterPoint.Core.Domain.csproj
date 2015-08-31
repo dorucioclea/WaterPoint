@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\CategoryContract.cs" />
     <Compile Include="Contracts\ProductContract.cs" />
     <Compile Include="IApiClient.cs" />
     <Compile Include="IApiContext.cs" />
@@ -50,6 +51,7 @@
     <Compile Include="IUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\IProductRepository.cs" />
+    <Compile Include="Repositories\IRepositoryBase.cs" />
     <Compile Include="Services\IProductService.cs" />
   </ItemGroup>
   <ItemGroup>

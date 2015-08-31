@@ -42,8 +42,6 @@ namespace WaterPoint.Api.Controllers
 
             var result =_listProductsByFlagQueryDispatcher.Dispatch(query);
 
-            
-
             return Ok(result);
         }
     }

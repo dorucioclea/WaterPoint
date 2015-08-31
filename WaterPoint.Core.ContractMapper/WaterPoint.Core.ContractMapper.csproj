@@ -46,6 +46,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CoreMapperHelper.cs" />
+    <Compile Include="CategoryProfile.cs" />
+    <Compile Include="ProductProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

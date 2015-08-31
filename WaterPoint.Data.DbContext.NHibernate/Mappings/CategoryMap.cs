@@ -1,25 +1,27 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using FluentNHibernate.Mapping;
 using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Data.DbContext.NHibernate.Mappings
 {
-    public class ProductMap : ClassMap<Product>
+    public class CategoryMap : ClassMap<Category>
     {
-        public ProductMap()
+        public CategoryMap()
         {
             Id(x => x.Id).GeneratedBy.Identity();
             Map(x => x.Name);
-            Map(x => x.Description);
             Map(x => x.CreatedOn);
             Map(x => x.UpdatedOn);
-            HasMany(x => x.Skus).KeyColumn("ProductId");
-            HasManyToMany(x => x.Categories)
+            HasManyToMany(x => x.Products)
                 .Table("ProductCategory")
                 .ParentKeyColumn("Id")
-                .ChildKeyColumn("CateogryId")
+                .ChildKeyColumn("ProductId")
                 .Cascade
                 .Delete();
-
         }
     }
 }
