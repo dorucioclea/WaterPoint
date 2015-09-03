@@ -72,13 +72,18 @@
     <Build Include="dbo\Tables\Sku.sql" />
     <Build Include="dbo\Tables\VariantType.sql" />
     <Build Include="dbo\Tables\SkuVariant.sql" />
-    <Build Include="dbo\Tables\Credential.sql" />
     <Build Include="dbo\Tables\ProductCategory.sql" />
+    <Build Include="dbo\Tables\Variant.sql" />
+    <Build Include="dbo\Tables\Flag.sql" />
+    <Build Include="dbo\Tables\ProductFlag.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="WaterPoint.Database.publish.xml" />
-    <None Include="Scripts\PostDeployment\DemoData.sql" />
-    <None Include="Scripts\PostDeployment\Countries.sql" />
+    <None Include="Scripts\PostDeployment\demodata.sql" />
+    <None Include="Scripts\PostDeployment\countries.sql" />
+    <None Include="Scripts\PostDeployment\reseeds.sql" />
+    <None Include="Scripts\PostDeployment\varianttypes.sql" />
+    <None Include="Scripts\PostDeployment\flags.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="WaterPoint.Database.refactorlog" />

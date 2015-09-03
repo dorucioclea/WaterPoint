@@ -9,6 +9,6 @@ namespace WaterPoint.Core.Domain.Repositories
 {
     public interface IProductRepository : IRepositoryBase<Product>
     {
-        IEnumerable<Product> ListProductsByFlag(int flagId);
+        IList<Product> ListProductsByFlag(int flagId);
     }
 }

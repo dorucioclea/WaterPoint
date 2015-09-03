@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FluentNHibernate.Utils;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Repositories;
 using WaterPoint.Core.Repository;
@@ -20,9 +22,14 @@ namespace WaterPoint.Core.Repository
         {
         }
 
-        public IEnumerable<Product> ListProductsByFlag(int flagId)
+        public IList<Product> ListProductsByFlag(int flagId)
         {
-            throw new NotImplementedException();
+            var result = Session.QueryOver<Product>()
+                .JoinQueryOver<Flag>(p => p.Flags)
+                .Where(f => f.Id == flagId)
+                .List();
+
+            return result;
         }
     }
 }

@@ -23,27 +23,17 @@ namespace WaterPoint.Data.DbContext.NHibernate
 
     public class NHibernateUnitOfWork : ISessionUnitOfWork
     {
-        [ThreadStatic]
         private static readonly ISessionFactory SessionFactory;
 
         private ITransaction _transaction;
-        
+
         static NHibernateUnitOfWork()
         {
-            // Initialise singleton instance of ISessionFactory, static constructors are only executed once during the
-            // application lifetime - the first time the UnitOfWork class is used
-            //SessionFactory = Fluently.Configure()
-            //    .Database(MsSqlConfiguration.MsSql2008.ConnectionString(x => x.FromConnectionStringWithKey("UnitOfWorkExample")))
-            //    .Mappings(x => x.AutoMappings.Add(
-            //        AutoMap.AssemblyOf<Restaurant>(new AutomappingConfiguration()).UseOverridesFromAssemblyOf<ProductOverrides>()))
-            //    .ExposeConfiguration(config => new SchemaUpdate(config).Execute(false, true))
-            //    .BuildSessionFactory();
-
             SessionFactory = Fluently.Configure()
                 .Database(MsSqlConfiguration.MsSql2012
                     .ConnectionString(ConfigurationManager.ConnectionStrings["DefaultConnection"].ToString()).ShowSql())
                 .Mappings(m => m.FluentMappings.AddFromAssemblyOf<ProductMap>())
-                .ExposeConfiguration(cfg => new SchemaExport(cfg).Create(true, true))
+                .ExposeConfiguration(cfg => new SchemaUpdate(cfg).Execute(false, true))
                 .BuildSessionFactory();
         }
 

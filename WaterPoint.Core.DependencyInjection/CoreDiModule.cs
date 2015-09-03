@@ -7,6 +7,7 @@ using Ninject.Modules;
 using WaterPoint.Core.Domain.Repositories;
 using WaterPoint.Core.Repository;
 using WaterPoint.Core.Domain;
+using WaterPoint.Data.DbContext.NHibernate;
 
 
 namespace WaterPoint.Core.DependencyInjection
@@ -15,13 +16,9 @@ namespace WaterPoint.Core.DependencyInjection
     {
         public override void Load()
         {
-            BindDb();
+            Bind<IUnitOfWork>().To<NHibernateUnitOfWork>();
+            Bind<ISessionUnitOfWork>().To<NHibernateUnitOfWork>();
             BindRepositories();
-        }
-
-        private void BindDb()
-        {
-            
         }
 
         private void BindRepositories()

@@ -51,11 +51,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataEntities\Flag.cs" />
     <Compile Include="DataEntities\SkuVariant.cs" />
     <Compile Include="DataEntities\Sku.cs" />
     <Compile Include="DataEntities\Address.cs" />
     <Compile Include="DataEntities\Category.cs" />
-    <Compile Include="DataEntities\Credential.cs" />
     <Compile Include="DataEntities\Country.cs" />
     <Compile Include="DataEntities\Customer.cs" />
     <Compile Include="DataEntities\Product.cs" />

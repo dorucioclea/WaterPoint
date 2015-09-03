@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WaterPoint.Core.Domain
+namespace WaterPoint.Core.Domain.Requests
 {
-    public interface ICommand
+    public interface IServiceRequest
     {
     }
 }

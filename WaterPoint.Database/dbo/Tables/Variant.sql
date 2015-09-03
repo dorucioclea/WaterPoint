@@ -1,0 +1,6 @@
+﻿CREATE TABLE [dbo].[Variant]
+(
+    [Id] INT NOT NULL PRIMARY KEY IDENTITY,
+	[Value] VARCHAR(10) NOT NULL, 
+    [Order] INT NULL
+)

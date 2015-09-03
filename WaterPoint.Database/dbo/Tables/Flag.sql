@@ -1,0 +1,5 @@
+﻿CREATE TABLE [dbo].[Flag]
+(
+    [Id] INT NOT NULL PRIMARY KEY, 
+    [Name] VARCHAR(15) NOT NULL
+)

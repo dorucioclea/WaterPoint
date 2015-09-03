@@ -14,12 +14,14 @@ namespace WaterPoint.Data.Entity.DataEntities
 
         public virtual string Description { get; set; }
 
-        public virtual DateTime CreatedOn { get; set; }
+        public virtual DateTime UtcCreatedOn { get; set; }
 
-        public virtual DateTime UpdatedOn { get; set; }
+        public virtual DateTime UtcUpdatedOn { get; set; }
 
-        public virtual IList<Sku> Skus { get; set; }
+        //public virtual IList<Sku> Skus { get; set; }
 
-        public virtual IList<Category> Categories { get; set; } 
+        //public virtual IList<Category> Categories { get; set; }
+
+        public virtual IList<Flag> Flags { get; set; } 
     }
 }

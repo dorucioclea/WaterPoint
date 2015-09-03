@@ -1,8 +1,8 @@
 ﻿CREATE TABLE [dbo].[SkuVariant]
 (
-	[Id] INT NOT NULL PRIMARY KEY, 
     [SkuId] INT NOT NULL, 
-    [VariantTypeId] INT NOT NULL, 
-    [TextValue] VARCHAR(10) NULL, 
-    [NumberValue] DECIMAL(10, 3) NULL
+    [VariantId] INT NOT NULL,
+    CONSTRAINT [FK_SkuVariant_Sku] FOREIGN KEY ([SkuId]) REFERENCES [dbo].[Sku]([Id]),
+    CONSTRAINT [FK_SkuVariant_Variant] FOREIGN KEY ([VariantId]) REFERENCES [dbo].[Variant]([Id]), 
+    CONSTRAINT [PK_SkuVariant] PRIMARY KEY ([SkuId], [VariantId])
 )
