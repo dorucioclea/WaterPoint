@@ -37,3 +37,4 @@ IF(SELECT COUNT(*) FROM dbo.Branch) = 0
     BEGIN
         DBCC checkident ('dbo.Branch', reseed, 100)
     END
+GO

@@ -23,7 +23,9 @@
 --GO
 
 if(select count(*) from VariantType) = 0 begin
-    insert into VariantType (Name) values ('Size')
-    insert into VariantType (Name) values ('Colour')
-    insert into VariantType (Name) values ('Weight')
+    declare @shopid int = (select Id from dbo.shop where name = 'water point')
+    insert into VariantType (Name, ShopId) values ('Size', @shopid)
+    insert into VariantType (Name, ShopId) values ('Colour', @shopid)
+    insert into VariantType (Name, ShopId) values ('Weight', @shopid)
 end
+go

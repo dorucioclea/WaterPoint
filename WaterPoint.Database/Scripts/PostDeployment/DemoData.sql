@@ -82,6 +82,7 @@ if(SELECT COUNT(*) FROM dbo.Product) = 0
     END
     --delete product delete productcategory
 
+/* Sku */
 if(select count(*) from sku) = 0 begin
     drop table #tempproducts
     select * into #tempproducts from product

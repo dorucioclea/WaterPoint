@@ -6,5 +6,7 @@
 	[Code] VARCHAR(30) NOT NULL,
     [Quantity] INT NOT NULL DEFAULT 0, 
     [UtcCreatedOn] DATETIME2(0) NOT NULL DEFAULT GETUTCDATE(), 
-    [UtcUpdatedOn] DATETIME2(0) NOT NULL DEFAULT GETUTCDATE()
+    [UtcUpdatedOn] DATETIME2(0) NOT NULL DEFAULT GETUTCDATE()    
+    CONSTRAINT [FK_Sku_Product] FOREIGN KEY ([ProductId]) REFERENCES [dbo].[Product]([Id]),
+    CONSTRAINT [FK_Sku_Branch] FOREIGN KEY ([BranchId]) REFERENCES [dbo].[Branch]([Id]), 
 )

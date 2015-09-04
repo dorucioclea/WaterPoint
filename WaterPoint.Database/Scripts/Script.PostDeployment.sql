@@ -9,11 +9,13 @@ Post-Deployment Script Template
                SELECT * FROM [$(TableName)]					
 --------------------------------------------------------------------------------------
 */
-:r ".\PostDeployment\countries.sql"
+:r ".\PostDeployment\Countries.sql"
 
-:r ".\PostDeployment\reseeds.sql"
+:r ".\PostDeployment\Reseeds.sql"
 
-:r ".\PostDeployment\varianttypes.sql"
+:r ".\PostDeployment\DemoShopAndBranch.sql"
 
-:r ".\PostDeployment\flags.sql"
+:r ".\PostDeployment\VariantTypes.sql"
+
+:r ".\PostDeployment\Flags.sql"
 

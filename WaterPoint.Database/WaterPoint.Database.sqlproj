@@ -84,12 +84,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="WaterPoint.Database.publish.xml" />
-    <None Include="Scripts\PostDeployment\demodata.sql" />
-    <None Include="Scripts\PostDeployment\countries.sql" />
-    <None Include="Scripts\PostDeployment\reseeds.sql" />
-    <None Include="Scripts\PostDeployment\varianttypes.sql" />
-    <None Include="Scripts\PostDeployment\flags.sql" />
-    <None Include="Scripts\PostDeployment\variants.sql" />
+    <None Include="Scripts\PostDeployment\DemoData.sql" />
+    <None Include="Scripts\PostDeployment\Countries.sql" />
+    <None Include="Scripts\PostDeployment\Reseeds.sql" />
+    <None Include="Scripts\PostDeployment\VariantTypes.sql" />
+    <None Include="Scripts\PostDeployment\Flags.sql" />
+    <None Include="Scripts\PostDeployment\Variants.sql" />
+    <None Include="Scripts\PostDeployment\DemoShopAndBranch.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="WaterPoint.Database.refactorlog" />

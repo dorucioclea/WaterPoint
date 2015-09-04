@@ -22,7 +22,9 @@
 --	DELETE;
 --GO
 if(select count(*) from dbo.Flag) = 0 begin
-    insert into dbo.Flag (Name) values ('Featured')
-    insert into dbo.Flag (Name) values ('Sale')
-    insert into dbo.Flag (Name) values ('Special')
+    declare @shopid int = (SELECT Id from dbo.shop where name = 'water point')
+    insert into dbo.Flag (Name, ShopId) values ('Featured', @shopid)
+    insert into dbo.Flag (Name, ShopId) values ('Sale', @shopid)
+    insert into dbo.Flag (Name, ShopId) values ('Special', @shopid)
 end
+go
