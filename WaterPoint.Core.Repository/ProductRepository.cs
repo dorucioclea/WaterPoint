@@ -25,6 +25,7 @@ namespace WaterPoint.Core.Repository
         public IList<Product> ListProductsByFlag(int flagId)
         {
             var result = Session.QueryOver<Product>()
+                .Where(p=>p.IsActive && !p.IsDeleted)
                 .JoinQueryOver<Flag>(p => p.Flags)
                 .Where(f => f.Id == flagId)
                 .List();

@@ -18,7 +18,7 @@
 //            Map(x => x.UpdatedOn);
 //            HasManyToMany(x => x.Products)
 //                .Table("ProductCategory")
-//                .ParentKeyColumn("Id")
+//                .ParentKeyColumn("CategoryId")
 //                .ChildKeyColumn("ProductId")
 //                .Cascade
 //                .Delete();

@@ -16,7 +16,7 @@ namespace WaterPoint.Core.ContractMapper
             Mapper.Initialize(config =>
             {
                 config.AddProfile(new ProductProfile());
-                config.AddProfile(new CategoryProfile());
+                config.AddProfile(new SkuProfile());
             });
         }
 

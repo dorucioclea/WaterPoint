@@ -1,4 +1,15 @@
-﻿if (SELECT COUNT(*) FROM dbo.Category) = 0
+﻿/* Shop */
+if (select count(*) from shop) = 0 begin
+    insert into dbo.Shop (Name, IsActive) values ('Water Point', 1)
+end
+
+/* Branch */
+if (select count(*) from Branch) = 0 begin
+    insert into dbo.Branch (Name, IsActive, IsMainBranch, ShopId) values ('Water Point', 1, 1, (select Id from dbo.Shop where name = 'Water Point'))
+end
+
+/* Category */
+if (SELECT COUNT(*) FROM dbo.Category) = 0
     BEGIN
         INSERT INTO dbo.Category (Name) VALUES ('Bliaut') 
         INSERT INTO dbo.Category (Name) VALUES ('Chemise')
@@ -6,6 +17,7 @@
         INSERT INTO dbo.Category (Name) VALUES ('Pantalettes')
     END
 
+/* Product */
 if(SELECT COUNT(*) FROM dbo.Product) = 0
     BEGIN
         DECLARE @bliaut INT 
@@ -69,7 +81,7 @@ if(SELECT COUNT(*) FROM dbo.Product) = 0
          end
     END
     --delete product delete productcategory
-    
+
 if(select count(*) from sku) = 0 begin
     drop table #tempproducts
     select * into #tempproducts from product
@@ -125,3 +137,4 @@ if(select count(*) from productflag) = 0 begin
     end
     drop table #flagproducts
 end
+

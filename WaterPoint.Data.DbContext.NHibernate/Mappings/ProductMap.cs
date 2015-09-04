@@ -10,20 +10,26 @@ namespace WaterPoint.Data.DbContext.NHibernate.Mappings
             SchemaAction.None();
             Id(x => x.Id).GeneratedBy.Identity();
             Map(x => x.Name);
+            Map(x => x.IsDeleted);
+            Map(x => x.IsActive);
             Map(x => x.Description);
             Map(x => x.UtcCreatedOn);
             Map(x => x.UtcUpdatedOn);
-            //HasMany(x => x.Skus).KeyColumn("ProductId");
+            HasMany(x => x.Skus).KeyColumn("ProductId");
+
             //HasManyToMany(x => x.Categories)
-            //    .Table("ProductCategory");
-            //    .ParentKeyColumn("Id")
+            //    .Table("ProductCategory")
+            //    .ParentKeyColumn("ProductId")
             //    .ChildKeyColumn("CateogryId")
             //    .Cascade
             //    .Delete();
+
             HasManyToMany(x => x.Flags)
                 .Table("ProductFlag")
                 .ParentKeyColumn("ProductId")
-                .ChildKeyColumn("FlagId");
+                .ChildKeyColumn("FlagId")
+                .Cascade
+                .Delete();
         }
     }
 }

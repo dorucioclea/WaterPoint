@@ -76,6 +76,11 @@
     <Build Include="dbo\Tables\Variant.sql" />
     <Build Include="dbo\Tables\Flag.sql" />
     <Build Include="dbo\Tables\ProductFlag.sql" />
+    <Build Include="dbo\Tables\Shop.sql" />
+    <Build Include="dbo\Tables\Branch.sql" />
+    <Build Include="dbo\Tables\CustomerShop.sql" />
+    <Build Include="dbo\Tables\Staff.sql" />
+    <Build Include="dbo\Tables\Credential.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="WaterPoint.Database.publish.xml" />
@@ -84,6 +89,7 @@
     <None Include="Scripts\PostDeployment\reseeds.sql" />
     <None Include="Scripts\PostDeployment\varianttypes.sql" />
     <None Include="Scripts\PostDeployment\flags.sql" />
+    <None Include="Scripts\PostDeployment\variants.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="WaterPoint.Database.refactorlog" />

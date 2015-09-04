@@ -1,0 +1,11 @@
+﻿CREATE TABLE [dbo].[Shop]
+(
+    [Id] INT NOT NULL PRIMARY KEY IDENTITY, 
+    [CountryId] INT NOT NULL,
+    [Name] VARCHAR(50) NOT NULL,
+    [IsActive] BIT NOT NULL DEFAULT(0),
+    [DisplayName] VARCHAR(150) NULL, 
+    [UtcCreatedOn] DATETIME2(0) NOT NULL DEFAULT GETUTCDATE(),
+    [UtcUpdatedOn] DATETIME2(0) NOT NULL DEFAULT GETUTCDATE(),
+    CONSTRAINT [FK_Shop_Country] FOREIGN KEY ([CountryId]) REFERENCES [dbo].[Country]([Id])
+)

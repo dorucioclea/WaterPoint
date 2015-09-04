@@ -16,11 +16,10 @@ namespace WaterPoint.Data.Entity.DataEntities
 
         public virtual int Quantity { get; set; }
 
-        public virtual DateTime CreatedOn { get; set; }
+        public virtual DateTime UtcCreatedOn { get; set; }
 
-        public virtual DateTime UpdatedOn { get; set; }
+        public virtual DateTime UtcUpdatedOn { get; set; }
 
-        public virtual IList<SkuVariant> SkuVariants { get; set; }
-
+        public virtual IList<Variant> Variants { get; set; }
     }
 }
