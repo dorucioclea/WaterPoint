@@ -18,9 +18,11 @@ namespace WaterPoint.Data.Entity.DataEntities
 
         public virtual string Description { get; set; }
 
-        public virtual DateTime UtcCreatedOn { get; set; }
+        public virtual DateTime UtcCreated { get; set; }
 
-        public virtual DateTime UtcUpdatedOn { get; set; }
+        public virtual DateTime UtcUpdated { get; set; }
+
+        public virtual Shop Shop { get; set; }
 
         public virtual IList<Sku> Skus { get; set; }
 

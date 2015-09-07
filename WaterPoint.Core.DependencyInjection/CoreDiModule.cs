@@ -5,9 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using Ninject.Modules;
 using WaterPoint.Core.Domain.Repositories;
+using WaterPoint.Core.Domain.SpecificationRequests.Products;
+using WaterPoint.Core.Domain.Specifications;
 using WaterPoint.Core.Repository;
 using WaterPoint.Core.Domain;
+using WaterPoint.Core.Repository.Products;
 using WaterPoint.Data.DbContext.NHibernate;
+using WaterPoint.Data.Entity.DataEntities;
 
 
 namespace WaterPoint.Core.DependencyInjection
@@ -18,12 +22,16 @@ namespace WaterPoint.Core.DependencyInjection
         {
             Bind<IUnitOfWork>().To<NHibernateUnitOfWork>();
             Bind<ISessionUnitOfWork>().To<NHibernateUnitOfWork>();
-            BindRepositories();
+            Bind(typeof (INHibernateRepository<>)).To(typeof (NHibernateRepository<>));
+            BindSpecifications();
         }
 
-        private void BindRepositories()
+        private void BindSpecifications()
         {
-            Bind<IProductRepository>().To<ProductRepository>();
+
+            Bind<ISpecification<ListProductsByFlag, IEnumerable<Product>>>()
+                .To<ListProductByFlagSpecification>();
+            
         }
     }
 }

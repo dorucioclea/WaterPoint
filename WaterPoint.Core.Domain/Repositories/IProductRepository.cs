@@ -7,8 +7,8 @@ using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Core.Domain.Repositories
 {
-    public interface IProductRepository : IRepositoryBase<Product>
+    public interface IProductRepository : IRepository<Product>
     {
-        IList<Product> ListProductsByFlag(int flagId);
+        IList<Product> ListProductsByFlag(int flagId, int shopId);
     }
 }

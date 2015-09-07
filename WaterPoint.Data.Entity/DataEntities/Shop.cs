@@ -6,20 +6,15 @@ using System.Threading.Tasks;
 
 namespace WaterPoint.Data.Entity.DataEntities
 {
-    public class Sku
+    public class Shop
     {
         public virtual int Id { get; set; }
-
-        public virtual Product Product { get; set; }
-
-        public virtual string Code { get; set; }
-
-        public virtual int Quantity { get; set; }
-
+        public virtual int CountryId { get; set; }
+        public virtual string Name { get; set; }
+        public virtual bool IsActive { get; set; }
+        public virtual string DisplayName { get; set; }
         public virtual DateTime UtcCreated { get; set; }
-
         public virtual DateTime UtcUpdated { get; set; }
-
-        public virtual IList<Variant> Variants { get; set; }
+        public virtual IList<Product> Products { get; set; } 
     }
 }

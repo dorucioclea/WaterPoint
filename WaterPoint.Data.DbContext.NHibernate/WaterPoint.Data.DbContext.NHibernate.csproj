@@ -55,6 +55,7 @@
     <Compile Include="DapperDbContext.cs" />
     <Compile Include="Mappings\CategoryMap.cs" />
     <Compile Include="Mappings\FlagMap.cs" />
+    <Compile Include="Mappings\ShopMap.cs" />
     <Compile Include="Mappings\SkuMap.cs" />
     <Compile Include="Mappings\VariantMap.cs" />
     <Compile Include="NHibernateUnitOfWork.cs" />

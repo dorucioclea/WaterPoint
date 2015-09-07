@@ -17,5 +17,7 @@ Post-Deployment Script Template
 
 :r ".\PostDeployment\VariantTypes.sql"
 
+:r ".\PostDeployment\Variants.sql"
+
 :r ".\PostDeployment\Flags.sql"
 

@@ -4,17 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
-using WaterPoint.Core.Domain.Contracts;
 using WaterPoint.Core.Domain.Contracts.Products;
+using WaterPoint.Core.Domain.Contracts.Shops;
 using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Core.ContractMapper
 {
-    public class ProductProfile : Profile
+    public class ShopProfile:Profile
     {
         protected override void Configure()
         {
-            Mapper.CreateMap<Product, ProductMinimumMetaInfoContract>();
+            Mapper.CreateMap<Shop, ShopContract>();
         }
     }
 }

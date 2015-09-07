@@ -15,8 +15,8 @@ namespace WaterPoint.Data.DbContext.NHibernate.Mappings
             Id(x => x.Id).GeneratedBy.Identity();
             Map(x => x.Code);
             Map(x => x.Quantity);
-            Map(x => x.UtcCreatedOn);
-            Map(x => x.UtcUpdatedOn);
+            Map(x => x.UtcCreated);
+            Map(x => x.UtcUpdated);
 
             References(x => x.Product)
                 .ForeignKey("SkuId");

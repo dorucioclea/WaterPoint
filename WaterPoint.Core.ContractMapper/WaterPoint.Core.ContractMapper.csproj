@@ -45,6 +45,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FlagProfile.cs" />
+    <Compile Include="ShopProfile.cs" />
     <Compile Include="SkuProfile.cs" />
     <Compile Include="CoreMapperHelper.cs" />
     <Compile Include="CategoryProfile.cs" />

@@ -2,20 +2,24 @@
 if (select count(*) from shop) = 0 begin
     insert into dbo.Shop (Name, IsActive) values ('Water Point', 1)
 end
+go
 
 /* Branch */
 if (select count(*) from Branch) = 0 begin
     insert into dbo.Branch (Name, IsActive, IsMainBranch, ShopId) values ('Water Point', 1, 1, (select Id from dbo.Shop where name = 'Water Point'))
 end
+go
 
 /* Category */
 if (SELECT COUNT(*) FROM dbo.Category) = 0
+    declare @shop_id int = (select id from shop where name = 'water point')
     BEGIN
-        INSERT INTO dbo.Category (Name) VALUES ('Bliaut') 
-        INSERT INTO dbo.Category (Name) VALUES ('Chemise')
-        INSERT INTO dbo.Category (Name) VALUES ('Can-can dress')
-        INSERT INTO dbo.Category (Name) VALUES ('Pantalettes')
+        INSERT INTO dbo.Category (Name, ShopId, IsDeleted, IsActive) VALUES ('Bliaut', @shop_id, 0, 1) 
+        INSERT INTO dbo.Category (Name, ShopId, IsDeleted, IsActive) VALUES ('Chemise', @shop_id, 0, 1) 
+        INSERT INTO dbo.Category (Name, ShopId, IsDeleted, IsActive) VALUES ('Can-can dress', @shop_id, 0, 1) 
+        INSERT INTO dbo.Category (Name, ShopId, IsDeleted, IsActive) VALUES ('Pantalettes', @shop_id, 0, 1) 
     END
+go
 
 /* Product */
 if(SELECT COUNT(*) FROM dbo.Product) = 0
@@ -33,13 +37,13 @@ if(SELECT COUNT(*) FROM dbo.Product) = 0
         SET @pantalettes = (SELECT Id FROM dbo.Category WHERE Name = 'Pantalettes')
 
         declare @cat_counter int = 1            
-
+        declare @shop_id int = (select id from shop where name = 'water point')
         while @cat_counter <= 4 begin
             declare @counter int = 1    
             while @counter <= 20 begin                
-                INSERT INTO dbo.Product (Name, [Description]) 
+                INSERT INTO dbo.Product (Name, [Description],IsDeleted,IsActive,ShopId) 
                 VALUES
-                ('Product ' + CONVERT(VARCHAR, @counter), 'description for product ' + CONVERT(VARCHAR, @counter))
+                ('Product ' + CONVERT(VARCHAR, @counter), 'description for product ' + CONVERT(VARCHAR, @counter), 0, 1, @shop_id)
 
                 DECLARE @pid INT = scope_identity()
 
@@ -80,11 +84,11 @@ if(SELECT COUNT(*) FROM dbo.Product) = 0
             set @cat_counter = @cat_counter + 1 
          end
     END
-    --delete product delete productcategory
+go
 
 /* Sku */
 if(select count(*) from sku) = 0 begin
-    drop table #tempproducts
+    declare @branch_id int = (select b.id from branch b join shop s on b.ShopId = s.id where s.name = 'water point')
     select * into #tempproducts from product
 
     while (select count(*) from #tempproducts) > 0 begin
@@ -96,8 +100,8 @@ if(select count(*) from sku) = 0 begin
         end
 
         while @skurandom > 0 begin
-            insert into sku (productid, code, quantity)
-            values (@skupid, 'sku-' + convert(varchar, @skupid) + '-' + convert(varchar, @skurandom ), @skurandom)
+            insert into sku (productid, code, quantity, BranchId)
+            values (@skupid, 'sku-' + convert(varchar, @skupid) + '-' + convert(varchar, @skurandom ), @skurandom, @branch_id)
 
             set @skurandom = @skurandom - 1
         end
@@ -105,9 +109,13 @@ if(select count(*) from sku) = 0 begin
     end
     drop table #tempproducts
 end
+go
 
+/* Product flag*/
 if(select count(*) from productflag) = 0 begin
-    drop table #flagproducts
+    declare @featured int = (select id from flag where name = 'Featured')
+    declare @sale int = (select id from flag where name = 'sale')
+    declare @special int = (select id from flag where name = 'special')
     select top 10 id into #flagproducts from product order by newid()
     while(select count(*) from #flagproducts) > 0 begin
         declare @flagpid int = (select top 1 id from #flagproducts)
@@ -115,21 +123,21 @@ if(select count(*) from productflag) = 0 begin
         while @flagcounter <= 3 begin
             declare @flagrandom int = (select (ABS(CHECKSUM(NewId())) % 4))
             if(@flagrandom = 1 and 
-                (select count(*) from productflag where productid = @flagpid and flagid = 10) = 0)
+                (select count(*) from productflag where productid = @flagpid and flagid = @featured) = 0)
             begin              
-                insert into dbo.productflag (ProductId, flagid) values (@flagpid, 10)
+                insert into dbo.productflag (ProductId, flagid) values (@flagpid, @featured)
             end
 
             if(@flagrandom = 2 and 
-                (select count(*) from productflag where productid = @flagpid and flagid = 11) = 0)
+                (select count(*) from productflag where productid = @flagpid and flagid = @sale) = 0)
             begin              
-                insert into dbo.productflag (ProductId, flagid) values (@flagpid, 11)
+                insert into dbo.productflag (ProductId, flagid) values (@flagpid, @sale)
             end
 
             if(@flagrandom = 3 and 
-                (select count(*) from productflag where productid = @flagpid and flagid = 12) = 0)
+                (select count(*) from productflag where productid = @flagpid and flagid = @special) = 0)
             begin              
-                insert into dbo.productflag (ProductId, flagid) values (@flagpid, 12)
+                insert into dbo.productflag (ProductId, flagid) values (@flagpid, @special)
             end
 
             set @flagcounter = @flagcounter + 1
@@ -138,4 +146,6 @@ if(select count(*) from productflag) = 0 begin
     end
     drop table #flagproducts
 end
+go
 
+/* Product sku variants */

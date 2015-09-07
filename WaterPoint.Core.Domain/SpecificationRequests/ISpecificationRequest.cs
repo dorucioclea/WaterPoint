@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WaterPoint.Core.Domain.Requests
+namespace WaterPoint.Core.Domain.SpecificationRequests
 {
-    public interface IServiceRequest
+    public interface ISpecificationRequest
     {
     }
 }

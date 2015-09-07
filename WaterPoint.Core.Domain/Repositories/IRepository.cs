@@ -1,7 +1,7 @@
 ﻿
 namespace WaterPoint.Core.Domain.Repositories
 {
-    public interface IRepositoryBase<T> where T : class
+    public interface IRepository<T> where T : class
     {
         T GetById(int id);
         void Create(T entity);

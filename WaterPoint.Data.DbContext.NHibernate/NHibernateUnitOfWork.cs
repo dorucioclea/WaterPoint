@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using FluentNHibernate.Automapping;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
+using FluentNHibernate.Conventions.Helpers;
 using NHibernate;
 using NHibernate.Tool.hbm2ddl;
 using WaterPoint.Data.DbContext.NHibernate.Mappings;
@@ -32,7 +33,9 @@ namespace WaterPoint.Data.DbContext.NHibernate
             SessionFactory = Fluently.Configure()
                 .Database(MsSqlConfiguration.MsSql2012
                     .ConnectionString(ConfigurationManager.ConnectionStrings["DefaultConnection"].ToString()).ShowSql())
-                .Mappings(m => m.FluentMappings.AddFromAssemblyOf<ProductMap>())
+                .Mappings(m => 
+                    m.FluentMappings.AddFromAssemblyOf<ProductMap>()
+                    .Conventions.Add(DefaultLazy.Always()))
                 .ExposeConfiguration(cfg => new SchemaUpdate(cfg).Execute(false, true))
                 .BuildSessionFactory();
         }

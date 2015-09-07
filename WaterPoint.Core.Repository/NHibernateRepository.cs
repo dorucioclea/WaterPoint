@@ -7,13 +7,18 @@ using WaterPoint.Data.DbContext.NHibernate;
 
 namespace WaterPoint.Core.Repository
 {
-    public abstract class RepositoryBase<T> : IRepositoryBase<T> where T : class
+    public interface INHibernateRepository<T> : IRepository<T> where T : class
+    {
+        ISession Session { get; }
+    }
+
+    public class NHibernateRepository<T> : INHibernateRepository<T> where T : class
     {
         private readonly ISessionUnitOfWork _uow;
 
         public ISession Session { get { return _uow.Session; } }
 
-        protected RepositoryBase(ISessionUnitOfWork uow)
+        public NHibernateRepository(ISessionUnitOfWork uow)
         {
             _uow = uow;
         }

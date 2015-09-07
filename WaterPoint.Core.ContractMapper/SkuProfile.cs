@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using WaterPoint.Core.Domain.Contracts;
 using WaterPoint.Core.Domain.Contracts.Products;
+using WaterPoint.Core.Domain.Contracts.Skus;
 using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Core.ContractMapper
@@ -14,8 +15,7 @@ namespace WaterPoint.Core.ContractMapper
     {
         protected override void Configure()
         {
-            Mapper.CreateMap<Sku, SkuContract>()
-                .ForMember(o => o.Product, i => i.MapFrom(f => f.Product));
+            Mapper.CreateMap<Sku, SkuContract>();
         }
     }
 }

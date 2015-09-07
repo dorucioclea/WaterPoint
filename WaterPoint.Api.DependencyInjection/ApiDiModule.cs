@@ -8,11 +8,11 @@ using Ninject.Modules;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts.Products;
 using WaterPoint.Core.Domain.Repositories;
-using WaterPoint.Core.Domain.Requests.Products;
-using WaterPoint.Core.Domain.Services;
+using WaterPoint.Core.Domain.SpecificationRequests.Products;
+using WaterPoint.Core.Domain.Specifications;
 using WaterPoint.Core.Repository;
+using WaterPoint.Core.Repository.Products;
 using WaterPoint.Core.Services;
-using WaterPoint.Core.Services.Products;
 using WaterPoint.Data.DbContext.NHibernate;
 using Ninject.Web.Common;
 using WaterPoint.Data.Entity.DataEntities;
@@ -23,13 +23,14 @@ namespace WaterPoint.Api.DependencyInjection
     {
         public override void Load()
         {
-            BindServices();
+            BindConvertors();
         }
 
-        private void BindServices()
+        private void BindConvertors()
         {
-            Bind<IService<ListProductsByFlagRequest, IEnumerable<ProductContract>>>()
-                .To<ListProductByFlagRequestService>();
+            Bind<IContractConvertor<ListProductsByFlag, IEnumerable<ProductMinimumMetaInfoContract>>>()
+                .To<ListProductsByFlagContractConvertor>();
+
         }
     }
 }

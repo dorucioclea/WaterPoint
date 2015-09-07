@@ -157,13 +157,12 @@
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="BaseControllers\BaseStoreContextController.cs" />
+    <Compile Include="BaseControllers\BaseShopContextController.cs" />
     <Compile Include="Controllers\FlagsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PingController.cs" />
@@ -200,9 +199,9 @@
       <Project>{a035ac5e-bfb1-4be2-803c-6386e3297008}</Project>
       <Name>WaterPoint.Core.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WaterPoint.Data.Entity\WaterPoint.Data.Entity.csproj">
-      <Project>{dcbdc017-96ec-486d-a491-239702696a1a}</Project>
-      <Name>WaterPoint.Data.Entity</Name>
+    <ProjectReference Include="..\WaterPoint.Core.Services\WaterPoint.Core.Services.csproj">
+      <Project>{e5cb6b34-a868-4ab3-96e1-e54ca59784ea}</Project>
+      <Name>WaterPoint.Core.Services</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
