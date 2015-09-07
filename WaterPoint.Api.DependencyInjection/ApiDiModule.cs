@@ -28,8 +28,8 @@ namespace WaterPoint.Api.DependencyInjection
 
         private void BindConvertors()
         {
-            Bind<IContractConvertor<ListProductsByFlag, IEnumerable<ProductMinimumMetaInfoContract>>>()
-                .To<ListProductsByFlagContractConvertor>();
+            Bind<IRequestProcessor<ListProductsByFlag, IEnumerable<ProductMinimumMetaInfoContract>>>()
+                .To<ListProductsByFlagRequestProcessor>();
 
         }
     }

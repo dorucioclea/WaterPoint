@@ -10,7 +10,7 @@ using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Core.ContractMapper
 {
-    public class ShopProfile:Profile
+    public class ShopProfile : Profile
     {
         protected override void Configure()
         {

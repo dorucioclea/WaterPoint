@@ -13,17 +13,17 @@ using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Core.Services
 {
-    public class ListProductsByFlagContractConvertor : IContractConvertor<ListProductsByFlag, IEnumerable<ProductMinimumMetaInfoContract>>
+    public class ListProductsByFlagRequestProcessor : IRequestProcessor<ListProductsByFlag, IEnumerable<ProductMinimumMetaInfoContract>>
     {
         private readonly ISpecification<ListProductsByFlag, IEnumerable<Product>> _listProductsByFlagSpecification;
         
-        public ListProductsByFlagContractConvertor(
+        public ListProductsByFlagRequestProcessor(
             ISpecification<ListProductsByFlag, IEnumerable<Product>> listProductsByFlagSpecification)
         {
             _listProductsByFlagSpecification = listProductsByFlagSpecification;
         }
 
-        public IEnumerable<ProductMinimumMetaInfoContract> Convert(ListProductsByFlag request)
+        public IEnumerable<ProductMinimumMetaInfoContract> Process(ListProductsByFlag request)
         {
             var products = _listProductsByFlagSpecification.Run(request);
 

@@ -51,7 +51,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\IProductRepository.cs" />
     <Compile Include="Repositories\IRepository.cs" />
-    <Compile Include="IContractConvertor.cs" />
+    <Compile Include="IRequestProcessor.cs" />
     <Compile Include="SpecificationRequests\ISpecificationRequest.cs" />
     <Compile Include="SpecificationRequests\Products\ListProductsByFlag.cs" />
     <Compile Include="Specifications\ISpecification.cs" />

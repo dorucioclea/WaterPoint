@@ -16,20 +16,20 @@ namespace WaterPoint.Api.Controllers
     [RoutePrefix("shops/{shopId:int}/flags")]
     public class FlagsController : BaseShopContextController
     {
-        private readonly IContractConvertor<ListProductsByFlag, IEnumerable<ProductMinimumMetaInfoContract>> _productService;
+        private readonly IRequestProcessor<ListProductsByFlag, IEnumerable<ProductMinimumMetaInfoContract>> _productMinimumMetaInfoContract;
 
         //private readonly ISpecification<ListProductsByFlag, IEnumerable<Product>> _listProductsByFlagService;
 
         public FlagsController(
             IUnitOfWork unitOfWork,
-            IContractConvertor<ListProductsByFlag, IEnumerable<ProductMinimumMetaInfoContract>>  productService)
+            IRequestProcessor<ListProductsByFlag, IEnumerable<ProductMinimumMetaInfoContract>> productMinimumMetaInfoContract)
             : base(unitOfWork)
         {
-            _productService = productService;
+            _productMinimumMetaInfoContract = productMinimumMetaInfoContract;
         }
 
         [Route("{flagId:int}/products")]
-        public IHttpActionResult Get([FromUri]ListProductsByFlag query)
+        public IHttpActionResult Get([FromUri]ListProductsByFlag request)
         {
             var isRequestValid = true;
 
@@ -38,7 +38,7 @@ namespace WaterPoint.Api.Controllers
                 return BadRequest();
             }
 
-            var result = _productService.Convert(query);
+            var result = _productMinimumMetaInfoContract.Process(request);
 
             return Ok(result);
         }
