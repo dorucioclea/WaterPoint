@@ -35,7 +35,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaterPoint.Api.DependencyIn
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{A2EE6450-A4EB-43BC-ACEE-9A3F787D04F6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaterPoint.Core.RequestProcessor", "WaterPoint.Core.Services\WaterPoint.Core.RequestProcessor.csproj", "{E5CB6B34-A868-4AB3-96E1-E54CA59784EA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaterPoint.Core.RequestProcessor", "WaterPoint.Core.RequestProcessor\WaterPoint.Core.RequestProcessor.csproj", "{E5CB6B34-A868-4AB3-96E1-E54CA59784EA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaterPoint.Core.Repository", "WaterPoint.Core.Repository\WaterPoint.Core.Repository.csproj", "{150ABF65-D5D9-48CB-8131-262F2104152A}"
 EndProject
