@@ -81,6 +81,15 @@
     <Build Include="dbo\Tables\CustomerShop.sql" />
     <Build Include="dbo\Tables\Staff.sql" />
     <Build Include="dbo\Tables\Credential.sql" />
+    <Build Include="dbo\Tables\Image.sql" />
+    <Build Include="dbo\Tables\ProductImage.sql" />
+    <Build Include="dbo\Tables\ImageSize.sql" />
+    <Build Include="dbo\Tables\ImageSizeType.sql" />
+    <Build Include="dbo\Tables\Brand.sql" />
+    <Build Include="dbo\Tables\BrandImage.sql" />
+    <Build Include="dbo\Tables\CategoryImage.sql" />
+    <Build Include="dbo\Tables\Banner.sql" />
+    <Build Include="dbo\Tables\BannerType.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="WaterPoint.Database.publish.xml" />
@@ -91,6 +100,8 @@
     <None Include="Scripts\PostDeployment\Flags.sql" />
     <None Include="Scripts\PostDeployment\Variants.sql" />
     <None Include="Scripts\PostDeployment\DemoShopAndBranch.sql" />
+    <None Include="Scripts\PostDeployment\ImageSizeTypes.sql" />
+    <None Include="Scripts\PostDeployment\BannerTypes.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="WaterPoint.Database.refactorlog" />

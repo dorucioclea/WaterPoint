@@ -8,6 +8,11 @@ IF(SELECT COUNT(*) FROM dbo.Category) = 0
         DBCC checkident ('dbo.Category', reseed, 1000)
     END
 
+IF(SELECT COUNT(*) FROM dbo.Brand) = 0
+    BEGIN
+        DBCC checkident ('dbo.Category', reseed, 100)
+    END
+
 IF(SELECT COUNT(*) FROM dbo.Customer) = 0
     BEGIN
         DBCC checkident ('dbo.Customer', reseed, 10000)

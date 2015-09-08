@@ -13,23 +13,23 @@ using WaterPoint.Core.Services;
 
 namespace WaterPoint.Api.Controllers
 {
-    [RoutePrefix("shops/{shopId:int}/flags")]
+    [RoutePrefix(RouteDefinitions.Flags.Prefix)]
     public class FlagsController : BaseShopContextController
     {
-        private readonly IRequestProcessor<ListProductsByFlag, IEnumerable<ProductMinimumMetaInfoContract>> _productMinimumMetaInfoContract;
+        private readonly IRequestProcessor<ListProductsByFlag, IEnumerable<ProductMinimumMetaInfoContract>> _listProductsByFlagProcessor;
 
         //private readonly ISpecification<ListProductsByFlag, IEnumerable<Product>> _listProductsByFlagService;
 
         public FlagsController(
             IUnitOfWork unitOfWork,
-            IRequestProcessor<ListProductsByFlag, IEnumerable<ProductMinimumMetaInfoContract>> productMinimumMetaInfoContract)
+            IRequestProcessor<ListProductsByFlag, IEnumerable<ProductMinimumMetaInfoContract>> listProductsByFlagProcessor)
             : base(unitOfWork)
         {
-            _productMinimumMetaInfoContract = productMinimumMetaInfoContract;
+            _listProductsByFlagProcessor = listProductsByFlagProcessor;
         }
 
-        [Route("{flagId:int}/products")]
-        public IHttpActionResult Get([FromUri]ListProductsByFlag request)
+        [Route(RouteDefinitions.Flags.GetProducts)]
+        public IHttpActionResult GetProducts([FromUri]ListProductsByFlag request)
         {
             var isRequestValid = true;
 
@@ -38,7 +38,7 @@ namespace WaterPoint.Api.Controllers
                 return BadRequest();
             }
 
-            var result = _productMinimumMetaInfoContract.Process(request);
+            var result = _listProductsByFlagProcessor.Process(request);
 
             return Ok(result);
         }

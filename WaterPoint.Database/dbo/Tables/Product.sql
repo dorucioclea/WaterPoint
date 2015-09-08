@@ -1,8 +1,9 @@
 ﻿CREATE TABLE [dbo].[Product]
 (
-	[Id] INT NOT NULL PRIMARY KEY IDENTITY,
-	[Name] VARCHAR(50) NOT NULL,
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY,    
     [ShopId] INT NOT NULL,
+    [BrandId] INT NOT NULL,
+	[Name] VARCHAR(50) NOT NULL,
     [Description] VARCHAR(200) NULL, 
     [LongDescription] VARCHAR(MAX) NULL, 
     [IsDeleted] BIT NOT NULL DEFAULT(0),

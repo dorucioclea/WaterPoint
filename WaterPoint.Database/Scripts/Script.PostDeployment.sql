@@ -21,3 +21,7 @@ Post-Deployment Script Template
 
 :r ".\PostDeployment\Flags.sql"
 
+:r ".\PostDeployment\ImageSizeTypes.sql"
+
+:r ".\PostDeployment\BannerTypes.sql"
+

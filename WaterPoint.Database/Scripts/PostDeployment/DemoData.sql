@@ -11,6 +11,17 @@ end
 go
 
 /* Category */
+if (SELECT COUNT(*) FROM dbo.Brand) = 0
+    declare @shop_id int = (select id from shop where name = 'water point')
+    BEGIN
+        INSERT INTO dbo.Brand (Name, ShopId) VALUES ('Brand A', @shop_id, 0, 1) 
+        INSERT INTO dbo.Brand (Name, ShopId) VALUES ('Brand B', @shop_id, 0, 1) 
+        INSERT INTO dbo.Brand (Name, ShopId) VALUES ('Brand C', @shop_id, 0, 1) 
+        INSERT INTO dbo.Brand (Name, ShopId) VALUES ('Brand D', @shop_id, 0, 1) 
+    END
+go
+
+/* Category */
 if (SELECT COUNT(*) FROM dbo.Category) = 0
     declare @shop_id int = (select id from shop where name = 'water point')
     BEGIN
@@ -38,12 +49,13 @@ if(SELECT COUNT(*) FROM dbo.Product) = 0
 
         declare @cat_counter int = 1            
         declare @shop_id int = (select id from shop where name = 'water point')
+        declare @brand_id int = (select id from brand where name = 'Brand A')
         while @cat_counter <= 4 begin
             declare @counter int = 1    
             while @counter <= 20 begin                
-                INSERT INTO dbo.Product (Name, [Description],IsDeleted,IsActive,ShopId) 
+                INSERT INTO dbo.Product (Name, BrandId, [Description],IsDeleted,IsActive,ShopId) 
                 VALUES
-                ('Product ' + CONVERT(VARCHAR, @counter), 'description for product ' + CONVERT(VARCHAR, @counter), 0, 1, @shop_id)
+                ('Product ' + CONVERT(VARCHAR, @counter), @brand_id, 'description for product ' + CONVERT(VARCHAR, @counter), 0, 1, @shop_id)
 
                 DECLARE @pid INT = scope_identity()
 

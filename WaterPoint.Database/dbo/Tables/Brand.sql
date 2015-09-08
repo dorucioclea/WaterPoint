@@ -1,0 +1,11 @@
+﻿CREATE TABLE [dbo].[Brand]
+(
+    [Id] INT NOT NULL PRIMARY KEY IDENTITY,
+    [ShopId] INT NOT NULL,
+    [Name] VARCHAR(50) NOT NULL,
+    [Description] VARCHAR(150) NULL,
+    [IsActive] BIT NOT NULL DEFAULT(1), 
+    [UtcCreated] DATETIME2(0) NOT NULL DEFAULT GETUTCDATE(),
+    [UtcUpdated] DATETIME2(0) NOT NULL DEFAULT GETUTCDATE(),
+    CONSTRAINT [FK_Brand_Shop] FOREIGN KEY ([ShopId]) REFERENCES [dbo].[Shop]([Id]),
+)

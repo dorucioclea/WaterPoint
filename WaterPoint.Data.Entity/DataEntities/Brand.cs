@@ -6,15 +6,11 @@ using System.Threading.Tasks;
 
 namespace WaterPoint.Data.Entity.DataEntities
 {
-    public class Product
+    public class Brand
     {
         public virtual int Id { get; set; }
 
-        public virtual Brand Brand { get; set; }
-
         public virtual string Name { get; set; }
-
-        public virtual bool IsDeleted { get; set; }
 
         public virtual bool IsActive { get; set; }
 
@@ -26,10 +22,6 @@ namespace WaterPoint.Data.Entity.DataEntities
 
         public virtual Shop Shop { get; set; }
 
-        public virtual IList<Sku> Skus { get; set; }
-
-        //public virtual IList<Category> Categories { get; set; }
-
-        public virtual IList<Flag> Flags { get; set; } 
+        public virtual IList<Product> Products { get; set; }
     }
 }

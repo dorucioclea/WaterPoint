@@ -163,12 +163,13 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="BaseControllers\BaseShopContextController.cs" />
+    <Compile Include="Controllers\BannerTypesController.cs" />
     <Compile Include="Controllers\FlagsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PingController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Routes.cs" />
+    <Compile Include="RouteDefinitions.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>

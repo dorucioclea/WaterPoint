@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataEntities\Flag.cs" />
+    <Compile Include="DataEntities\Brand.cs" />
     <Compile Include="DataEntities\Shop.cs" />
     <Compile Include="DataEntities\Sku.cs" />
     <Compile Include="DataEntities\Address.cs" />

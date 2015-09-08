@@ -1,9 +1,9 @@
 ﻿CREATE TABLE [dbo].[Category]
 (
-	[Id] INT NOT NULL PRIMARY KEY IDENTITY,
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY,    
+    [ShopId] INT NOT NULL,
 	[Name] VARCHAR(50) NOT NULL,
     [Description] VARCHAR(200) NULL,
-    [ShopId] INT NOT NULL,
     [LongDescription] VARCHAR(MAX) NULL,
     [IsDeleted] BIT NOT NULL DEFAULT(0),
     [IsActive] BIT NOT NULL DEFAULT(0),

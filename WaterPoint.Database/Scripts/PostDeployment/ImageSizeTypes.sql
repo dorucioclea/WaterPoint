@@ -1,0 +1,25 @@
+﻿MERGE INTO dbo.ImageSizeType AS T
+USING 
+(
+	SELECT 10 AS Id, 'Product' AS Name
+	UNION ALL
+	SELECT 11 AS Id, 'Category' AS Name
+    UNION ALL
+	SELECT 12 AS Id, 'Banner' AS Name
+    UNION ALL
+	SELECT 12 AS Id, 'Brand' AS Name
+) AS S 
+
+ON 
+	T.Id = S.Id
+
+WHEN MATCHED THEN 
+	UPDATE SET Name = S.Name
+
+WHEN NOT MATCHED BY TARGET THEN 
+	INSERT (Id, Name) 
+    VALUES (S.Id, S.Name)
+
+WHEN NOT MATCHED BY SOURCE THEN
+	DELETE;
+GO

@@ -1,0 +1,10 @@
+﻿CREATE TABLE [dbo].[Image]
+(
+    [Id] INT NOT NULL PRIMARY KEY IDENTITY, 
+    [IsActive] BIT NOT NULL, 
+    [Path] VARCHAR(100) NOT NULL,     
+    [FileName] VARCHAR(50) NOT NULL, 
+    [Description] VARCHAR(50) NOT NULL,
+    [UtcCreated] DATETIME2(0) NOT NULL DEFAULT GETUTCDATE(), 
+    [UtcUpdated] DATETIME2(0) NOT NULL DEFAULT GETUTCDATE(),
+)
