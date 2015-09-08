@@ -1,10 +1,10 @@
 ﻿CREATE TABLE [dbo].[Branch]
 (
     [Id] INT NOT NULL PRIMARY KEY IDENTITY, 
+    [ShopId] INT NOT NULL,
     [Name] VARCHAR(50) NULL,
     [IsActive] BIT NOT NULL DEFAULT(0),
     [IsMainBranch] BIT NOT NULL DEFAULT(0),
-    [ShopId] INT NOT NULL,
     [UtcCreated] DATETIME2(0) NOT NULL DEFAULT(GETUTCDATE()),
     [UtcUpdated] DATETIME2(0) NOT NULL DEFAULT(GETUTCDATE()),
     CONSTRAINT [FK_Branch_Shop] FOREIGN KEY ([ShopId]) REFERENCES [dbo].[Shop]([Id]),

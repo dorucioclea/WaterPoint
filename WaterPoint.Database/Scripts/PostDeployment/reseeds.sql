@@ -10,7 +10,7 @@ IF(SELECT COUNT(*) FROM dbo.Category) = 0
 
 IF(SELECT COUNT(*) FROM dbo.Brand) = 0
     BEGIN
-        DBCC checkident ('dbo.Category', reseed, 100)
+        DBCC checkident ('dbo.Brand', reseed, 100)
     END
 
 IF(SELECT COUNT(*) FROM dbo.Customer) = 0

@@ -7,7 +7,7 @@ USING
     UNION ALL
 	SELECT 12 AS Id, 'Banner' AS Name
     UNION ALL
-	SELECT 12 AS Id, 'Brand' AS Name
+	SELECT 13 AS Id, 'Brand' AS Name
 ) AS S 
 
 ON 

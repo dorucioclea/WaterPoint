@@ -10,14 +10,14 @@ if (select count(*) from Branch) = 0 begin
 end
 go
 
-/* Category */
+/* Brand */
 if (SELECT COUNT(*) FROM dbo.Brand) = 0
     declare @shop_id int = (select id from shop where name = 'water point')
     BEGIN
-        INSERT INTO dbo.Brand (Name, ShopId) VALUES ('Brand A', @shop_id, 0, 1) 
-        INSERT INTO dbo.Brand (Name, ShopId) VALUES ('Brand B', @shop_id, 0, 1) 
-        INSERT INTO dbo.Brand (Name, ShopId) VALUES ('Brand C', @shop_id, 0, 1) 
-        INSERT INTO dbo.Brand (Name, ShopId) VALUES ('Brand D', @shop_id, 0, 1) 
+        INSERT INTO dbo.Brand (Name, ShopId) VALUES ('Brand A', @shop_id) 
+        INSERT INTO dbo.Brand (Name, ShopId) VALUES ('Brand B', @shop_id) 
+        INSERT INTO dbo.Brand (Name, ShopId) VALUES ('Brand C', @shop_id) 
+        INSERT INTO dbo.Brand (Name, ShopId) VALUES ('Brand D', @shop_id) 
     END
 go
 
@@ -48,9 +48,9 @@ if(SELECT COUNT(*) FROM dbo.Product) = 0
         SET @pantalettes = (SELECT Id FROM dbo.Category WHERE Name = 'Pantalettes')
 
         declare @cat_counter int = 1            
-        declare @shop_id int = (select id from shop where name = 'water point')
-        declare @brand_id int = (select id from brand where name = 'Brand A')
+        declare @shop_id int = (select id from shop where name = 'water point')        
         while @cat_counter <= 4 begin
+            declare @brand_id int = (select Id from ( select  row_number() over (order by id) as rownumber, *  from brand) as f where rownumber = @cat_counter)
             declare @counter int = 1    
             while @counter <= 20 begin                
                 INSERT INTO dbo.Product (Name, BrandId, [Description],IsDeleted,IsActive,ShopId) 
