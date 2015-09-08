@@ -61,9 +61,9 @@
       <Project>{150abf65-d5d9-48cb-8131-262f2104152a}</Project>
       <Name>WaterPoint.Core.Repository</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WaterPoint.Core.Services\WaterPoint.Core.Services.csproj">
+    <ProjectReference Include="..\WaterPoint.Core.Services\WaterPoint.Core.RequestProcessor.csproj">
       <Project>{e5cb6b34-a868-4ab3-96e1-e54ca59784ea}</Project>
-      <Name>WaterPoint.Core.Services</Name>
+      <Name>WaterPoint.Core.RequestProcessor</Name>
     </ProjectReference>
     <ProjectReference Include="..\WaterPoint.Data.DbContext.NHibernate\WaterPoint.Data.DbContext.NHibernate.csproj">
       <Project>{b9fc107a-7826-47d5-867f-a5397a5b560b}</Project>

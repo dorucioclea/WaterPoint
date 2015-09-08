@@ -7,8 +7,8 @@
     <ProjectGuid>{E5CB6B34-A868-4AB3-96E1-E54CA59784EA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WaterPoint.Core.Services</RootNamespace>
-    <AssemblyName>WaterPoint.Core.Services</AssemblyName>
+    <RootNamespace>WaterPoint.Core.RequestProcessor</RootNamespace>
+    <AssemblyName>WaterPoint.Core.RequestProcessor</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -48,7 +48,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ListProductsByFlagRequestProcessor.cs" />
+    <Compile Include="ListBannersByBannerTypeProcessor.cs" />
+    <Compile Include="ListProductsByFlagProcessor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

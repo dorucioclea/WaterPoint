@@ -12,11 +12,11 @@
 //    {
 //        public CategoryMap()
 //        {
-//            Id(x => x.Id).GeneratedBy.Identity();
-//            Map(x => x.Name);
-//            Map(x => x.CreatedOn);
-//            Map(x => x.UpdatedOn);
-//            HasManyToMany(x => x.Products)
+//            Id(t => t.Id).GeneratedBy.Identity();
+//            Map(t => t.Name);
+//            Map(t => t.CreatedOn);
+//            Map(t => t.UpdatedOn);
+//            HasManyToMany(t => t.Products)
 //                .Table("ProductCategory")
 //                .ParentKeyColumn("CategoryId")
 //                .ChildKeyColumn("ProductId")

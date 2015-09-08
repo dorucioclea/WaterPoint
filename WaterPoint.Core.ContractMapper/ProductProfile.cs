@@ -14,7 +14,7 @@ namespace WaterPoint.Core.ContractMapper
     {
         protected override void Configure()
         {
-            Mapper.CreateMap<Product, ProductMinimumMetaInfoContract>();
+            Mapper.CreateMap<Product, BasicProduct>();
         }
     }
 }

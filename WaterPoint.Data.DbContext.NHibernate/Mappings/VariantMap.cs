@@ -12,11 +12,11 @@ namespace WaterPoint.Data.DbContext.NHibernate.Mappings
     {
         public VariantMap()
         {
-            Id(x => x.Id);
-            Map(x => x.Value);
-            Map(x => x.Order);
+            Id(t => t.Id);
+            Map(t => t.Value);
+            Map(t => t.Order);
 
-            HasManyToMany(x => x.Skus)
+            HasManyToMany(t => t.Skus)
                 .Table("SkuVariant")
                 .ParentKeyColumn("VariantId")
                 .ChildKeyColumn("SkuId")

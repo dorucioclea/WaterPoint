@@ -8,18 +8,18 @@ namespace WaterPoint.Data.DbContext.NHibernate.Mappings
         public BrandMap()
         {
             SchemaAction.None();
-            Id(x => x.Id).GeneratedBy.Identity();
-            Map(x => x.Name);
-            Map(x => x.IsActive);
-            Map(x => x.Description);
-            Map(x => x.UtcCreated);
-            Map(x => x.UtcUpdated);
+            Id(t => t.Id).GeneratedBy.Identity();
+            Map(t => t.Name);
+            Map(t => t.IsActive);
+            Map(t => t.Description);
+            Map(t => t.UtcCreated);
+            Map(t => t.UtcUpdated);
 
-            References(x => x.Shop).Column("ShopId");
+            References(t => t.Shop).Column("ShopId");
 
-            HasMany(x => x.Products).KeyColumn("Id");
+            HasMany(t => t.Products).KeyColumn("Id");
 
-            //HasManyToMany(x => x.Categories)
+            //HasManyToMany(t => t.Categories)
             //    .Table("ProductCategory")
             //    .ParentKeyColumn("ProductId")
             //    .ChildKeyColumn("CateogryId")

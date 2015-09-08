@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WaterPoint.Core.Domain.Contracts.Products
 {
-    public class ProductMinimumMetaInfoContract
+    public class BasicProduct
     {
         public int Id { get; set; }
 

@@ -8,21 +8,21 @@ using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Data.DbContext.NHibernate.Mappings
 {
-    public class ShopMap : ClassMap<Shop>
+    public class BannerMap : ClassMap<Banner>
     {
-        public ShopMap()
+        public BannerMap()
         {
-            SchemaAction.None();
-            Id(t => t.Id).GeneratedBy.Identity();
-
-            Map(t => t.CountryId);
-            Map(t => t.Name);
-            Map(t => t.DisplayName);
+            Id(t => t.Id);
             Map(t => t.IsActive);
+            Map(t => t.Name);
+            Map(t => t.Url);
+            Map(t => t.Description);
             Map(t => t.UtcCreated);
             Map(t => t.UtcUpdated);
 
-            HasMany(t => t.Products).KeyColumn("Id");
+            References(t => t.Shop).ForeignKey("ShopId");
+            References(t => t.BannerType).ForeignKey("BannerTypeId");
+
         }
     }
 }

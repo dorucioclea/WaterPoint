@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("WaterPoint.Core.Services")]
+[assembly: AssemblyTitle("WaterPoint.Core.RequestProcessor")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Xero")]
-[assembly: AssemblyProduct("WaterPoint.Core.Services")]
+[assembly: AssemblyProduct("WaterPoint.Core.RequestProcessor")]
 [assembly: AssemblyCopyright("Copyright © Xero 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

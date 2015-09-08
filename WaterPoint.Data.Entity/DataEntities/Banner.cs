@@ -6,17 +6,16 @@ using System.Threading.Tasks;
 
 namespace WaterPoint.Data.Entity.DataEntities
 {
-    public class Shop
+    public class Banner
     {
         public virtual int Id { get; set; }
-        public virtual int CountryId { get; set; }
-        public virtual string Name { get; set; }
+        public virtual Shop Shop { get; set; }
+        public virtual BannerType BannerType { get; set; }
         public virtual bool IsActive { get; set; }
-        public virtual string DisplayName { get; set; }
+        public virtual string Name { get; set; }
+        public virtual string Url { get; set; }
+        public virtual string Description { get; set; }
         public virtual DateTime UtcCreated { get; set; }
         public virtual DateTime UtcUpdated { get; set; }
-        public virtual IList<Product> Products { get; set; }
-        public virtual IList<BannerType> BannerTypes { get; set; }
-        public virtual IList<Banner> Banners { get; set; }
     }
 }

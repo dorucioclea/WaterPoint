@@ -9,27 +9,27 @@ using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts.Products;
 using WaterPoint.Core.Domain.SpecificationRequests.Products;
 using WaterPoint.Core.Domain.Specifications;
-using WaterPoint.Core.Services;
+using WaterPoint.Core.RequestProcessor;
 
 namespace WaterPoint.Api.Controllers
 {
     [RoutePrefix(RouteDefinitions.Flags.Prefix)]
     public class FlagsController : BaseShopContextController
     {
-        private readonly IRequestProcessor<ListProductsByFlag, IEnumerable<ProductMinimumMetaInfoContract>> _listProductsByFlagProcessor;
+        private readonly IRequestProcessor<ListProductsByFlagRequest, IEnumerable<BasicProduct>> _listProductsByFlagProcessor;
 
         //private readonly ISpecification<ListProductsByFlag, IEnumerable<Product>> _listProductsByFlagService;
 
         public FlagsController(
             IUnitOfWork unitOfWork,
-            IRequestProcessor<ListProductsByFlag, IEnumerable<ProductMinimumMetaInfoContract>> listProductsByFlagProcessor)
+            IRequestProcessor<ListProductsByFlagRequest, IEnumerable<BasicProduct>> listProductsByFlagProcessor)
             : base(unitOfWork)
         {
             _listProductsByFlagProcessor = listProductsByFlagProcessor;
         }
 
         [Route(RouteDefinitions.Flags.GetProducts)]
-        public IHttpActionResult GetProducts([FromUri]ListProductsByFlag request)
+        public IHttpActionResult GetProducts([FromUri]ListProductsByFlagRequest request)
         {
             var isRequestValid = true;
 

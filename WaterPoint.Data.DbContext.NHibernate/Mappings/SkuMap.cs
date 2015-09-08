@@ -12,16 +12,16 @@ namespace WaterPoint.Data.DbContext.NHibernate.Mappings
     {
         public SkuMap()
         {
-            Id(x => x.Id).GeneratedBy.Identity();
-            Map(x => x.Code);
-            Map(x => x.Quantity);
-            Map(x => x.UtcCreated);
-            Map(x => x.UtcUpdated);
+            Id(t => t.Id).GeneratedBy.Identity();
+            Map(t => t.Code);
+            Map(t => t.Quantity);
+            Map(t => t.UtcCreated);
+            Map(t => t.UtcUpdated);
 
-            References(x => x.Product)
+            References(t => t.Product)
                 .ForeignKey("SkuId");
 
-            HasManyToMany(x => x.Variants)
+            HasManyToMany(t => t.Variants)
                 .Table("SkuVariant")
                 .ParentKeyColumn("SkuId")
                 .ChildKeyColumn("VariantId")

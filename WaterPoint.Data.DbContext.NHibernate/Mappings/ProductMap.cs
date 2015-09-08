@@ -8,25 +8,25 @@ namespace WaterPoint.Data.DbContext.NHibernate.Mappings
         public ProductMap()
         {
             SchemaAction.None();
-            Id(x => x.Id).GeneratedBy.Identity();
-            Map(x => x.Name);
-            Map(x => x.IsDeleted);
-            Map(x => x.IsActive);
-            Map(x => x.Description);
-            Map(x => x.UtcCreated);
-            Map(x => x.UtcUpdated);
+            Id(t => t.Id).GeneratedBy.Identity();
+            Map(t => t.Name);
+            Map(t => t.IsDeleted);
+            Map(t => t.IsActive);
+            Map(t => t.Description);
+            Map(t => t.UtcCreated);
+            Map(t => t.UtcUpdated);
 
-            References(x => x.Shop).Column("ShopId");
-            References(x => x.Brand).Column("BrandId");
+            References(t => t.Shop).Column("ShopId");
+            References(t => t.Brand).Column("BrandId");
 
-            //HasManyToMany(x => x.Categories)
+            //HasManyToMany(t => t.Categories)
             //    .Table("ProductCategory")
             //    .ParentKeyColumn("ProductId")
             //    .ChildKeyColumn("CateogryId")
             //    .Cascade
             //    .Delete();
 
-            HasManyToMany(x => x.Flags) 
+            HasManyToMany(t => t.Flags) 
                 .Table("ProductFlag")
                 .ParentKeyColumn("ProductId")
                 .ChildKeyColumn("FlagId")

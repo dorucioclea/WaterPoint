@@ -29,7 +29,7 @@ namespace WaterPoint.Core.DependencyInjection
         private void BindSpecifications()
         {
 
-            Bind<ISpecification<ListProductsByFlag, IEnumerable<Product>>>()
+            Bind<ISpecification<ListProductsByFlagRequest, IEnumerable<Product>>>()
                 .To<ListProductByFlagSpecification>();
             
         }

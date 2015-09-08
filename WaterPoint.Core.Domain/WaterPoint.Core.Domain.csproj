@@ -39,9 +39,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\Banners\BasicBanner.cs" />
     <Compile Include="Contracts\CategoryContract.cs" />
     <Compile Include="Contracts\Flags\FlagContract.cs" />
-    <Compile Include="Contracts\Products\ProductMinimumMetaInfoContract.cs" />
+    <Compile Include="Contracts\Products\BasicProduct.cs" />
     <Compile Include="Contracts\Shops\ShopContract.cs" />
     <Compile Include="Contracts\Skus\SkuContract.cs" />
     <Compile Include="IApiClient.cs" />
@@ -49,11 +50,11 @@
     <Compile Include="IStoreContext.cs" />
     <Compile Include="IUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\IProductRepository.cs" />
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="IRequestProcessor.cs" />
+    <Compile Include="SpecificationRequests\Banners\ListBannersByBannerTypeRequest.cs" />
     <Compile Include="SpecificationRequests\ISpecificationRequest.cs" />
-    <Compile Include="SpecificationRequests\Products\ListProductsByFlag.cs" />
+    <Compile Include="SpecificationRequests\Products\ListProductsByFlagRequest.cs" />
     <Compile Include="Specifications\ISpecification.cs" />
   </ItemGroup>
   <ItemGroup>
