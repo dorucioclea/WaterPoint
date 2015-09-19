@@ -52,7 +52,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DapperDbContext.cs" />
     <Compile Include="Mappings\BannerMap.cs" />
     <Compile Include="Mappings\BannerTypeMap.cs" />
     <Compile Include="Mappings\CategoryMap.cs" />

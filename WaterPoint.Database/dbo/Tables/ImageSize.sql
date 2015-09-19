@@ -3,6 +3,7 @@
     [Id] INT NOT NULL PRIMARY KEY IDENTITY,
     [ShopId] INT NOT NULL,
     [ImageSizeTypeId] INT NOT NULL,
+    [Name] VARCHAR(50) NOT NULL,
     [Length] INT NOT NULL,
     [Width] INT NOT NULL,
     [UtcCreated] DATETIME2(0) NOT NULL DEFAULT(GETUTCDATE()),

@@ -12,8 +12,6 @@ namespace WaterPoint.Core.Domain.Contracts.Products
 
         public string Name { get; set; }
 
-        public bool IsDeleted { get; set; }
-
         public bool IsActive { get; set; }
 
         //public string Description { get; set; }

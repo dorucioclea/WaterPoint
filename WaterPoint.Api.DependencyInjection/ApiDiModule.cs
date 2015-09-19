@@ -15,7 +15,6 @@ using WaterPoint.Core.Domain.Specifications;
 using WaterPoint.Core.Repository;
 using WaterPoint.Core.Repository.Products;
 using WaterPoint.Core.RequestProcessor;
-using WaterPoint.Data.DbContext.NHibernate;
 using Ninject.Web.Common;
 using WaterPoint.Data.Entity.DataEntities;
 

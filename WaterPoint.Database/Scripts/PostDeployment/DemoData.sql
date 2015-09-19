@@ -25,10 +25,10 @@ go
 if (SELECT COUNT(*) FROM dbo.Category) = 0
     declare @shop_id int = (select id from shop where name = 'water point')
     BEGIN
-        INSERT INTO dbo.Category (Name, ShopId, IsDeleted, IsActive) VALUES ('Bliaut', @shop_id, 0, 1) 
-        INSERT INTO dbo.Category (Name, ShopId, IsDeleted, IsActive) VALUES ('Chemise', @shop_id, 0, 1) 
-        INSERT INTO dbo.Category (Name, ShopId, IsDeleted, IsActive) VALUES ('Can-can dress', @shop_id, 0, 1) 
-        INSERT INTO dbo.Category (Name, ShopId, IsDeleted, IsActive) VALUES ('Pantalettes', @shop_id, 0, 1) 
+        INSERT INTO dbo.Category (Name, ShopId, IsActive) VALUES ('Bliaut', @shop_id, 1) 
+        INSERT INTO dbo.Category (Name, ShopId, IsActive) VALUES ('Chemise', @shop_id, 1) 
+        INSERT INTO dbo.Category (Name, ShopId, IsActive) VALUES ('Can-can dress', @shop_id, 1) 
+        INSERT INTO dbo.Category (Name, ShopId, IsActive) VALUES ('Pantalettes', @shop_id, 1) 
     END
 go
 
@@ -161,3 +161,22 @@ end
 go
 
 /* Product sku variants */
+
+
+/* Image size */
+if(select count(*) from ImageSize) = 0 begin
+    declare @counter int = 1
+    declare @shop_id int = (select id from shop where name = 'water point')
+    while @counter <= 4 begin 
+        declare @size_type_id int = (select id from (select ROW_NUMBER() over (order by id) as rownumber, * from ImageSizeType) as f where rownumber = @counter)
+        declare @inner_counter int = 1
+        while @inner_counter <= 4 begin
+            insert into ImageSize (ShopId, ImageSizeTypeId, Name, Length, Width)
+            values(@shop_id, @size_type_id, 'size', 100, 100)
+            set @inner_counter = @inner_counter + 1
+        end
+        set @counter = @counter + 1
+    end
+end
+go
+

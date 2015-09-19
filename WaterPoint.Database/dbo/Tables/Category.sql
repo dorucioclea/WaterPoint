@@ -5,7 +5,6 @@
 	[Name] VARCHAR(50) NOT NULL,
     [Description] VARCHAR(200) NULL,
     [LongDescription] VARCHAR(MAX) NULL,
-    [IsDeleted] BIT NOT NULL DEFAULT(0),
     [IsActive] BIT NOT NULL DEFAULT(0),    
     [UtcCreated] DATETIME2(0) NOT NULL DEFAULT GETUTCDATE(), 
     [UtcUpdated] DATETIME2(0) NOT NULL DEFAULT GETUTCDATE(),

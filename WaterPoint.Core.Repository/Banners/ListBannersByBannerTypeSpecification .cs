@@ -17,12 +17,8 @@ namespace WaterPoint.Core.Repository.Banners
 {
     public class ListBannersByBannerTypeSpecification : ISpecification<ListBannersByBannerTypeRequest, IEnumerable<Banner>>
     {
-        private readonly INHibernateRepository<Product> _repository;
-
-        public ListBannersByBannerTypeSpecification(
-            INHibernateRepository<Product> repository)
+        public ListBannersByBannerTypeSpecification()
         {
-            _repository = repository;
         }
 
         public IEnumerable<Banner> Run(ListBannersByBannerTypeRequest request)

@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BasicBannerProfile.cs" />
     <Compile Include="FlagProfile.cs" />
     <Compile Include="ShopProfile.cs" />
     <Compile Include="SkuProfile.cs" />

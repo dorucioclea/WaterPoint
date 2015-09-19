@@ -18,9 +18,9 @@ namespace WaterPoint.Api
 
         public class Banners
         {
-            public const string Prefix = ShopNode + "/banners";
+            public const string Prefix = ShopNode + "/bannertypes";
 
-            public const string GetBanners = "bannertypes/{bannerTypeId:int}/banners";
+            public const string GetBanners = "{bannerTypeId:int}/banners";
         }
     }
 }

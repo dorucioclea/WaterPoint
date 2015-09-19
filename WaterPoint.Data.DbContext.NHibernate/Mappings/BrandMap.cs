@@ -7,7 +7,6 @@ namespace WaterPoint.Data.DbContext.NHibernate.Mappings
     {
         public BrandMap()
         {
-            SchemaAction.None();
             Id(t => t.Id).GeneratedBy.Identity();
             Map(t => t.Name);
             Map(t => t.IsActive);

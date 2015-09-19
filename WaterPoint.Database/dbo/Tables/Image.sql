@@ -1,11 +1,13 @@
 ﻿CREATE TABLE [dbo].[Image]
 (
     [Id] INT NOT NULL PRIMARY KEY IDENTITY, 
-    [IsActive] BIT NOT NULL, 
+    [ImageSizeId] INT NOT NULL, 
+    [IsActive] BIT NOT NULL DEFAULT(1), 
     [Path] VARCHAR(100) NOT NULL,     
     [FileName] VARCHAR(50) NOT NULL, 
-    [Description] VARCHAR(50) NOT NULL,
+    [Description] VARCHAR(50) NULL,
     [UtcCreated] DATETIME2(0) NOT NULL DEFAULT GETUTCDATE(), 
     [UtcUpdated] DATETIME2(0) NOT NULL DEFAULT GETUTCDATE(),    
 	[Uid] UNIQUEIDENTIFIER NOT NULL DEFAULT(NEWID()),
+    CONSTRAINT [FK_Image_ImageSize] FOREIGN KEY ([ImageSizeId]) REFERENCES [dbo].[ImageSize]([Id]),
 )

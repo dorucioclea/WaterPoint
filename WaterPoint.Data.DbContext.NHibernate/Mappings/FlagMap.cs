@@ -12,7 +12,6 @@ namespace WaterPoint.Data.DbContext.NHibernate.Mappings
     {
         public FlagMap()
         {
-            SchemaAction.None();
             Id(t => t.Id).GeneratedBy.Identity();
             Map(t => t.Name);
             HasManyToMany(t => t.Products)

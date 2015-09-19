@@ -7,10 +7,8 @@ namespace WaterPoint.Data.DbContext.NHibernate.Mappings
     {
         public ProductMap()
         {
-            SchemaAction.None();
             Id(t => t.Id).GeneratedBy.Identity();
             Map(t => t.Name);
-            Map(t => t.IsDeleted);
             Map(t => t.IsActive);
             Map(t => t.Description);
             Map(t => t.UtcCreated);

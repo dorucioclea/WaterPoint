@@ -2,11 +2,10 @@
 (
 	[Id] INT NOT NULL PRIMARY KEY IDENTITY,    
     [ShopId] INT NOT NULL,
-    [BrandId] INT NULL,
+    [BrandId] INT NOT NULL,
 	[Name] VARCHAR(50) NOT NULL,
     [Description] VARCHAR(200) NULL, 
-    [LongDescription] VARCHAR(MAX) NULL, 
-    [IsDeleted] BIT NOT NULL DEFAULT(0),
+    [LongDescription] VARCHAR(MAX) NULL,
     [IsActive] BIT NOT NULL DEFAULT(1),    
     [UtcCreated] DATETIME2(0) NOT NULL DEFAULT GETUTCDATE(), 
     [UtcUpdated] DATETIME2(0) NOT NULL DEFAULT GETUTCDATE(),

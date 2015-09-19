@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -10,6 +11,7 @@ using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using FluentNHibernate.Conventions.Helpers;
 using NHibernate;
+using NHibernate.SqlCommand;
 using NHibernate.Tool.hbm2ddl;
 using WaterPoint.Data.DbContext.NHibernate.Mappings;
 using WaterPoint.Data.Entity.DataEntities;
@@ -24,18 +26,33 @@ namespace WaterPoint.Data.DbContext.NHibernate
 
     public class NHibernateUnitOfWork : ISessionUnitOfWork
     {
+
+        private class SqlStatementInterceptor : EmptyInterceptor
+        {
+            public override SqlString OnPrepareStatement(SqlString sql)
+            {
+                Debug.WriteLine(sql.ToString());
+                return base.OnPrepareStatement(sql);
+            }
+        }
+
         private static readonly ISessionFactory SessionFactory;
 
         private ITransaction _transaction;
 
         static NHibernateUnitOfWork()
         {
-            SessionFactory = Fluently.Configure()
-                .Database(MsSqlConfiguration.MsSql2012
-                    .ConnectionString(ConfigurationManager.ConnectionStrings["DefaultConnection"].ToString()).ShowSql())
-                .Mappings(m => 
-                    m.FluentMappings.AddFromAssemblyOf<ProductMap>()
-                    .Conventions.Add(DefaultLazy.Always()))
+            var db = MsSqlConfiguration.MsSql2012.ConnectionString(ConfigurationManager.ConnectionStrings["DefaultConnection"].ToString());
+#if DEBUG
+            db.ShowSql().FormatSql();
+#endif
+            var config = Fluently.Configure().Database(db);
+#if DEBUG
+            config.ExposeConfiguration(x => x.SetInterceptor(new SqlStatementInterceptor()));
+#endif
+            SessionFactory = config.Mappings(m => m
+                .FluentMappings.AddFromAssemblyOf<ProductMap>()
+                .Conventions.Add(DefaultLazy.Always()))
                 .ExposeConfiguration(cfg => new SchemaUpdate(cfg).Execute(false, true))
                 .BuildSessionFactory();
         }

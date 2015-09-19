@@ -37,10 +37,12 @@ namespace WaterPoint.Api.Controllers
             {
                 return BadRequest();
             }
+            using (UnitOfWork.Begin())
+            {
+                var result = _listProductsByFlagProcessor.Process(request);
 
-            var result = _listProductsByFlagProcessor.Process(request);
-
-            return Ok(result);
+                return Ok(result);
+            }
         }
     }
 }

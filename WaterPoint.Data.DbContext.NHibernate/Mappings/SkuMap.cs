@@ -19,7 +19,7 @@ namespace WaterPoint.Data.DbContext.NHibernate.Mappings
             Map(t => t.UtcUpdated);
 
             References(t => t.Product)
-                .ForeignKey("SkuId");
+                .Column("SkuId");
 
             HasManyToMany(t => t.Variants)
                 .Table("SkuVariant")

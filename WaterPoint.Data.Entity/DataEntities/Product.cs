@@ -14,8 +14,6 @@ namespace WaterPoint.Data.Entity.DataEntities
 
         public virtual string Name { get; set; }
 
-        public virtual bool IsDeleted { get; set; }
-
         public virtual bool IsActive { get; set; }
 
         public virtual string Description { get; set; }

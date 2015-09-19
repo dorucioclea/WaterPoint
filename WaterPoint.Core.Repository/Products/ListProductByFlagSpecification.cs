@@ -16,24 +16,13 @@ namespace WaterPoint.Core.Repository.Products
 {
     public class ListProductByFlagSpecification : ISpecification<ListProductsByFlagRequest, IEnumerable<Product>>
     {
-        private readonly INHibernateRepository<Product> _repository;
-
-        public ListProductByFlagSpecification(
-            INHibernateRepository<Product> repository)
+        public ListProductByFlagSpecification()
         {
-            _repository = repository;
         }
 
         public IEnumerable<Product> Run(ListProductsByFlagRequest request)
         {
-            var result = _repository.Session
-                .QueryOver<Product>()
-                .Where(p => p.IsActive && !p.IsDeleted && p.Shop.Id == request.ShopId)
-                .JoinQueryOver<Flag>(p => p.Flags)
-                .Where(f => f.Id == request.FlagId)
-                .List();
-
-            return result;
+            throw new NotImplementedException();
         }
     }
 }

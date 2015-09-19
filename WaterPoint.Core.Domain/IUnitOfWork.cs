@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace WaterPoint.Core.Domain
 {
-    public interface IUnitOfWork
+    public interface IUnitOfWork : IDisposable
     {
-        void BeginTransaction();
+        IUnitOfWork Begin();
         void Commit();
+        void Rollback();
     }
 }

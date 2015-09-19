@@ -12,6 +12,7 @@ namespace WaterPoint.Data.DbContext.NHibernate.Mappings
     {
         public BannerMap()
         {
+            SchemaAction.None();
             Id(t => t.Id);
             Map(t => t.IsActive);
             Map(t => t.Name);
@@ -20,8 +21,8 @@ namespace WaterPoint.Data.DbContext.NHibernate.Mappings
             Map(t => t.UtcCreated);
             Map(t => t.UtcUpdated);
 
-            References(t => t.Shop).ForeignKey("ShopId");
-            References(t => t.BannerType).ForeignKey("BannerTypeId");
+            References(t => t.Shop).Column("ShopId");
+            References(t => t.BannerType).Column("BannerTypeId");
 
         }
     }

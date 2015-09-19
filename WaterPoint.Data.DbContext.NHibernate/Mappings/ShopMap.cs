@@ -12,7 +12,6 @@ namespace WaterPoint.Data.DbContext.NHibernate.Mappings
     {
         public ShopMap()
         {
-            SchemaAction.None();
             Id(t => t.Id).GeneratedBy.Identity();
 
             Map(t => t.CountryId);
@@ -23,6 +22,8 @@ namespace WaterPoint.Data.DbContext.NHibernate.Mappings
             Map(t => t.UtcUpdated);
 
             HasMany(t => t.Products).KeyColumn("Id");
+            HasMany(t => t.Banners).KeyColumn("Id");
+            HasMany(t => t.BannerTypes).KeyColumn("Id");
         }
     }
 }
