@@ -64,9 +64,11 @@ namespace WaterPoint.Data.DbContext.NHibernate
             Session = SessionFactory.OpenSession();
         }
 
-        public void BeginTransaction()
+        public IUnitOfWork Begin()
         {
             _transaction = Session.BeginTransaction();
+
+            return this;
         }
 
         public void Commit()
@@ -77,13 +79,23 @@ namespace WaterPoint.Data.DbContext.NHibernate
             }
             catch
             {
-                _transaction.Rollback();
+                Rollback();
                 throw;
             }
             finally
             {
                 Session.Close();
             }
+        }
+
+        public void Rollback()
+        {
+            _transaction.Rollback();
+        }
+
+        public void Dispose()
+        {
+            throw new NotImplementedException();
         }
     }
 }

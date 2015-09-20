@@ -43,6 +43,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaterPoint.Data.DbContext.D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaterPoint.Core.Specification", "WaterPoint.Core.Specification\WaterPoint.Core.Specification.csproj", "{00AE2A36-9324-4639-98A0-4994F9B8523C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaterPoint.Data.DbContext.NHibernate", "WaterPoint.Data.DbContext.NHibernate\WaterPoint.Data.DbContext.NHibernate.csproj", "{B9FC107A-7826-47D5-867F-A5397A5B560B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -107,6 +109,10 @@ Global
 		{00AE2A36-9324-4639-98A0-4994F9B8523C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{00AE2A36-9324-4639-98A0-4994F9B8523C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{00AE2A36-9324-4639-98A0-4994F9B8523C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9FC107A-7826-47D5-867F-A5397A5B560B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9FC107A-7826-47D5-867F-A5397A5B560B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9FC107A-7826-47D5-867F-A5397A5B560B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9FC107A-7826-47D5-867F-A5397A5B560B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -125,5 +131,6 @@ Global
 		{32862B76-53BF-453B-A8C3-9E7960441BAC} = {F6424C56-55C2-4A2F-A81D-26DCBDE0119B}
 		{D771751B-04B9-4CF0-9023-A5325F987B32} = {8A654831-C825-4014-A18F-71BE1FA194C6}
 		{00AE2A36-9324-4639-98A0-4994F9B8523C} = {A2EE6450-A4EB-43BC-ACEE-9A3F787D04F6}
+		{B9FC107A-7826-47D5-867F-A5397A5B560B} = {8A654831-C825-4014-A18F-71BE1FA194C6}
 	EndGlobalSection
 EndGlobal

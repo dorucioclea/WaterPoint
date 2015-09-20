@@ -6,7 +6,7 @@ using WaterPoint.Core.Specification;
 using WaterPoint.Data.DbContext.Dapper;
 using WaterPoint.Data.Entity.DataEntities;
 
-namespace WaterPoint.Core.RequestProcessor
+namespace WaterPoint.Core.RequestProcessor.Products
 {
     public class ListProductsByFlagProcessor : BaseDapperUowRequestProcess<ListProductsByFlagRequest, IEnumerable<BasicProduct>>
     {
