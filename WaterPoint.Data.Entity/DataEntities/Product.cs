@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WaterPoint.Data.Entity.DataEntities
 {
-    public class Product
+    public class Product : IDataEntity
     {
         public virtual int Id { get; set; }
 
@@ -28,6 +28,6 @@ namespace WaterPoint.Data.Entity.DataEntities
 
         //public virtual IList<Category> Categories { get; set; }
 
-        public virtual IList<Flag> Flags { get; set; } 
+        public virtual IList<Flag> Flags { get; set; }
     }
 }

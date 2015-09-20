@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseDapperUowRequestProcess.cs" />
     <Compile Include="ListBannersByBannerTypeProcessor.cs" />
     <Compile Include="ListProductsByFlagProcessor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -64,9 +65,13 @@
       <Project>{a035ac5e-bfb1-4be2-803c-6386e3297008}</Project>
       <Name>WaterPoint.Core.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WaterPoint.Core.Repository\WaterPoint.Core.Repository.csproj">
-      <Project>{150abf65-d5d9-48cb-8131-262f2104152a}</Project>
-      <Name>WaterPoint.Core.Repository</Name>
+    <ProjectReference Include="..\WaterPoint.Core.Specification\WaterPoint.Core.Specification.csproj">
+      <Project>{00ae2a36-9324-4639-98a0-4994f9b8523c}</Project>
+      <Name>WaterPoint.Core.Specification</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WaterPoint.Data.DbContext.Dapper\WaterPoint.Data.DbContext.Dapper.csproj">
+      <Project>{D771751B-04B9-4CF0-9023-A5325F987B32}</Project>
+      <Name>WaterPoint.Data.DbContext.Dapper</Name>
     </ProjectReference>
     <ProjectReference Include="..\WaterPoint.Data.Entity\WaterPoint.Data.Entity.csproj">
       <Project>{dcbdc017-96ec-486d-a491-239702696a1a}</Project>

@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WaterPoint.Core.Domain;
-using Utility;
 
 namespace WaterPoint.Core.ApiClient
 {

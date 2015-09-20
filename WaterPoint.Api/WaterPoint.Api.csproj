@@ -165,7 +165,6 @@
     <Compile Include="BaseControllers\BaseShopContextController.cs" />
     <Compile Include="Controllers\BannerTypesController.cs" />
     <Compile Include="Controllers\FlagsController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PingController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

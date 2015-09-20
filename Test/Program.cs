@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using System.Data;
 using Dapper;
 using System.Data.SqlClient;
-using Utility;
 using System.Web;
 
 namespace Test
@@ -16,16 +15,16 @@ namespace Test
         static void Main(string[] args)
         {
             Console.WriteLine("wtf");
-            var d = new Category { Id = 1, Name = "test" };
+            //var d = new Category { Id = 1, Name = "test" };
 
-            var postData = d.ToDictionary();
+            //var postData = d.ToDictionary();
 
-            var nv = HttpUtility.ParseQueryString(string.Empty);
+            //var nv = HttpUtility.ParseQueryString(string.Empty);
 
-            foreach (var p in postData)
-                nv.Add(p.Key, p.Value.ToString());
+            //foreach (var p in postData)
+            //    nv.Add(p.Key, p.Value.ToString());
 
-            Console.WriteLine(nv.ToString());
+            //Console.WriteLine(nv.ToString());
 
             //            var result = Task.Run<Supplier>(() => QueryOneToManyAsync<Product, Supplier>(
             //@"
@@ -43,7 +42,7 @@ namespace Test
             //    null,
             //    (s, p) =>
             //    {
-                    
+
 
             //        Supplier supplier;
 
@@ -58,7 +57,7 @@ namespace Test
             //        supplier.Products.Add(p);
 
             //        return supplier;
-                    
+
             //    }));
 
 

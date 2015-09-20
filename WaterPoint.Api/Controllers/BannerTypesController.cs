@@ -11,7 +11,6 @@ using WaterPoint.Core.Domain.Contracts.Banners;
 using WaterPoint.Core.Domain.Contracts.Products;
 using WaterPoint.Core.Domain.SpecificationRequests.Banners;
 using WaterPoint.Core.Domain.SpecificationRequests.Products;
-using WaterPoint.Core.Domain.Specifications;
 
 namespace WaterPoint.Api.Controllers
 {
@@ -21,10 +20,7 @@ namespace WaterPoint.Api.Controllers
         private readonly IRequestProcessor<ListBannersByBannerTypeRequest, IEnumerable<BasicBanner>> _listBannersByBannerTypeRequestProcessor;
 
         public BannerTypesController(
-            IUnitOfWork unitOfWork,
-            IRequestProcessor<ListBannersByBannerTypeRequest, IEnumerable<BasicBanner>> listBannersByBannerTypeRequestProcessor
-            )
-            : base(unitOfWork)
+            IRequestProcessor<ListBannersByBannerTypeRequest, IEnumerable<BasicBanner>> listBannersByBannerTypeRequestProcessor)
         {
             _listBannersByBannerTypeRequestProcessor = listBannersByBannerTypeRequestProcessor;
         }
@@ -32,7 +28,7 @@ namespace WaterPoint.Api.Controllers
         [Route(RouteDefinitions.Banners.GetBanners)]
         public IHttpActionResult GetBanners([FromUri]ListBannersByBannerTypeRequest request)
         {
-            var result = _listBannersByBannerTypeRequestProcessor.Process(request);
+            var result = _listBannersByBannerTypeRequestProcessor.GetResult(request);
 
             return Ok(result);
         }

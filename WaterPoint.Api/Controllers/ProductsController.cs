@@ -14,8 +14,7 @@ namespace WaterPoint.Api.Controllers
     [RoutePrefix("products")]
     public class ProductsController : BaseShopContextController
     {
-        public ProductsController(IUnitOfWork unitOfWork)
-            : base(unitOfWork)
+        public ProductsController()
         {
 
         }

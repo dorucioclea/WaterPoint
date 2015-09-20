@@ -12,12 +12,5 @@ namespace WaterPoint.Api.BaseControllers
 {
     public abstract class BaseShopContextController : ApiController
     {
-        public IUnitOfWork UnitOfWork { get; private set; }
-        //TODO: load from the db;
-
-        protected BaseShopContextController(IUnitOfWork unitOfWork)
-        {
-            UnitOfWork = unitOfWork;
-        }
     }
 }

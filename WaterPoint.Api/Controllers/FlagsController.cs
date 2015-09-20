@@ -8,7 +8,6 @@ using WaterPoint.Api.BaseControllers;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts.Products;
 using WaterPoint.Core.Domain.SpecificationRequests.Products;
-using WaterPoint.Core.Domain.Specifications;
 using WaterPoint.Core.RequestProcessor;
 
 namespace WaterPoint.Api.Controllers
@@ -18,12 +17,8 @@ namespace WaterPoint.Api.Controllers
     {
         private readonly IRequestProcessor<ListProductsByFlagRequest, IEnumerable<BasicProduct>> _listProductsByFlagProcessor;
 
-        //private readonly ISpecification<ListProductsByFlag, IEnumerable<Product>> _listProductsByFlagService;
-
         public FlagsController(
-            IUnitOfWork unitOfWork,
             IRequestProcessor<ListProductsByFlagRequest, IEnumerable<BasicProduct>> listProductsByFlagProcessor)
-            : base(unitOfWork)
         {
             _listProductsByFlagProcessor = listProductsByFlagProcessor;
         }
@@ -31,18 +26,11 @@ namespace WaterPoint.Api.Controllers
         [Route(RouteDefinitions.Flags.GetProducts)]
         public IHttpActionResult GetProducts([FromUri]ListProductsByFlagRequest request)
         {
-            var isRequestValid = true;
+            //validation
+            
+            var result = _listProductsByFlagProcessor.GetResult(request);
 
-            if (!isRequestValid)
-            {
-                return BadRequest();
-            }
-            using (UnitOfWork.Begin())
-            {
-                var result = _listProductsByFlagProcessor.Process(request);
-
-                return Ok(result);
-            }
+            return Ok(result);
         }
     }
 }

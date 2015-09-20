@@ -7,7 +7,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using Newtonsoft.Json;
-using Utility;
 using WaterPoint.Core.Domain;
 
 namespace WaterPoint.Core.ApiClient

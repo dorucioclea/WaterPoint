@@ -1,37 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using WaterPoint.Core.ContractMapper;
-using WaterPoint.Core.Domain;
-using WaterPoint.Core.Domain.Contracts.Banners;
 using WaterPoint.Core.Domain.Contracts.Products;
-using WaterPoint.Core.Domain.SpecificationRequests;
-using WaterPoint.Core.Domain.SpecificationRequests.Banners;
 using WaterPoint.Core.Domain.SpecificationRequests.Products;
-using WaterPoint.Core.Domain.Specifications;
+using WaterPoint.Core.Specification;
+using WaterPoint.Data.DbContext.Dapper;
 using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Core.RequestProcessor
 {
-    public class ListProductsByFlagProcessor : IRequestProcessor<ListProductsByFlagRequest, IEnumerable<BasicProduct>>
+    public class ListProductsByFlagProcessor : BaseDapperUowRequestProcess<ListProductsByFlagRequest, IEnumerable<BasicProduct>>
     {
         private readonly ISpecification<ListProductsByFlagRequest, IEnumerable<Product>> _listProductsByFlagSpecification;
-        
+
         public ListProductsByFlagProcessor(
-            ISpecification<ListProductsByFlagRequest, IEnumerable<Product>> listProductsByFlagSpecification)
+            ISpecification<ListProductsByFlagRequest, IEnumerable<Product>> listProductsByFlagSpecification,
+            IDapperUnitOfWork dapperUnitOfWork
+            ) : base(dapperUnitOfWork)
         {
             _listProductsByFlagSpecification = listProductsByFlagSpecification;
         }
 
-        public IEnumerable<BasicProduct> Process(ListProductsByFlagRequest request)
+        public override IEnumerable<BasicProduct> GetResult(ListProductsByFlagRequest request)
         {
-            var products = _listProductsByFlagSpecification.Run(request);
+            using (DapperUnitOfWork.Begin())
+            {
+                var products = _listProductsByFlagSpecification.Run(DapperUnitOfWork.DbContext, request);
 
-            var result = CoreMapperHelper.MapTo<IEnumerable<BasicProduct>>(products);
-
-            return result;
+                return CoreMapperHelper.MapTo<IEnumerable<BasicProduct>>(products);
+            }
         }
     }
 }

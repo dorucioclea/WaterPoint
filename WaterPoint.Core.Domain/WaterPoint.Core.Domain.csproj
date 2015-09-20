@@ -55,7 +55,6 @@
     <Compile Include="SpecificationRequests\Banners\ListBannersByBannerTypeRequest.cs" />
     <Compile Include="SpecificationRequests\ISpecificationRequest.cs" />
     <Compile Include="SpecificationRequests\Products\ListProductsByFlagRequest.cs" />
-    <Compile Include="Specifications\ISpecification.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WaterPoint.Data.Entity\WaterPoint.Data.Entity.csproj">

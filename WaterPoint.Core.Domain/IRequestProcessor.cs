@@ -8,6 +8,6 @@ namespace WaterPoint.Core.Domain
 {
     public interface IRequestProcessor<in TInput, out TOutput>
     {
-        TOutput Process(TInput request);
+        TOutput GetResult(TInput request);
     }
 }

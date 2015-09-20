@@ -5,6 +5,6 @@ namespace WaterPoint.Data.DbContext.Dapper
 {
     public interface IDapperUnitOfWork : IUnitOfWork
     {
-        IDbConnection DbConnection { get; }
+        IDapperDbContext DbContext { get; }
     }
 }
