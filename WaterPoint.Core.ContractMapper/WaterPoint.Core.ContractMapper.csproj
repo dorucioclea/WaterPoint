@@ -53,7 +53,7 @@
     <Compile Include="FlagProfile.cs" />
     <Compile Include="ShopProfile.cs" />
     <Compile Include="SkuProfile.cs" />
-    <Compile Include="CoreMapperHelper.cs" />
+    <Compile Include="CoreMapper.cs" />
     <Compile Include="CategoryProfile.cs" />
     <Compile Include="ProductProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

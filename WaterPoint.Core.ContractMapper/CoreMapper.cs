@@ -9,7 +9,7 @@ using WaterPoint.Data.Entity;
 
 namespace WaterPoint.Core.ContractMapper
 {
-    public class CoreMapperHelper : ICoreMapper
+    public class CoreMapper : ICoreMapper
     {
         [Inject]
         public void Initialize()
