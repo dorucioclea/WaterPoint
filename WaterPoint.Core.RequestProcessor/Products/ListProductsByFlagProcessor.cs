@@ -11,13 +11,16 @@ namespace WaterPoint.Core.RequestProcessor.Products
     public class ListProductsByFlagProcessor : BaseDapperUowRequestProcess<ListProductsByFlagRequest, IEnumerable<BasicProduct>>
     {
         private readonly ISpecification<ListProductsByFlagRequest, IEnumerable<Product>> _listProductsByFlagSpecification;
+        private readonly ICoreMapper _coreMapper;
 
         public ListProductsByFlagProcessor(
             ISpecification<ListProductsByFlagRequest, IEnumerable<Product>> listProductsByFlagSpecification,
-            IDapperUnitOfWork dapperUnitOfWork
-            ) : base(dapperUnitOfWork)
+            ICoreMapper coreMapper,
+            IDapperUnitOfWork dapperUnitOfWork)
+            : base(dapperUnitOfWork)
         {
             _listProductsByFlagSpecification = listProductsByFlagSpecification;
+            _coreMapper = coreMapper;
         }
 
         public override IEnumerable<BasicProduct> GetResult(ListProductsByFlagRequest request)
@@ -26,7 +29,7 @@ namespace WaterPoint.Core.RequestProcessor.Products
             {
                 var products = _listProductsByFlagSpecification.Run(DapperUnitOfWork.DbContext, request);
 
-                return CoreMapperHelper.MapTo<IEnumerable<BasicProduct>>(products);
+                return _coreMapper.MapTo<IEnumerable<BasicProduct>>(products);
             }
         }
     }

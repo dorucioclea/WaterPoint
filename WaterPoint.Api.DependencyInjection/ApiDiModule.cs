@@ -13,6 +13,8 @@ using WaterPoint.Core.Domain.SpecificationRequests.Banners;
 using WaterPoint.Core.Domain.SpecificationRequests.Products;
 using WaterPoint.Core.RequestProcessor;
 using Ninject.Web.Common;
+using WaterPoint.Core.ContractMapper;
+using WaterPoint.Core.RequestProcessor.Products;
 using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Api.DependencyInjection
@@ -21,10 +23,10 @@ namespace WaterPoint.Api.DependencyInjection
     {
         public override void Load()
         {
-            BindConvertors();
+            BindRequestProcessors();
         }
 
-        private void BindConvertors()
+        private void BindRequestProcessors()
         {
             Bind<IRequestProcessor<ListProductsByFlagRequest, IEnumerable<BasicProduct>>>()
                 .To<ListProductsByFlagProcessor>();

@@ -4,14 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
-
+using Ninject;
 using WaterPoint.Data.Entity;
 
 namespace WaterPoint.Core.ContractMapper
 {
-    public static class CoreMapperHelper
+    public class CoreMapperHelper : ICoreMapper
     {
-        public static void Initialize()
+        [Inject]
+        public void Initialize()
         {
             Mapper.Initialize(config =>
             {
@@ -23,9 +24,16 @@ namespace WaterPoint.Core.ContractMapper
             });
         }
 
-        public static T MapTo<T>(object source)
+        public T MapTo<T>(object source)
         {
             return Mapper.Map<T>(source);
         }
+    }
+
+    public interface ICoreMapper
+    {
+        void Initialize();
+
+        T MapTo<T>(object source);
     }
 }

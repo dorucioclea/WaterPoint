@@ -19,6 +19,7 @@ namespace WaterPoint.Api
 {
     public class Startup
     {
+
         public IKernel CreateKernel()
         {
             var kernel = new StandardKernel(new CoreDiModule());
@@ -36,8 +37,6 @@ namespace WaterPoint.Api
 
             app.UseNinjectMiddleware(CreateKernel)
                 .UseNinjectWebApi(config);
-
-            CoreMapperHelper.Initialize();
         }
     }
 }

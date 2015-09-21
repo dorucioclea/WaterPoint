@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Ninject.Extensions.NamedScope;
 using Ninject.Modules;
+using WaterPoint.Core.ContractMapper;
 using WaterPoint.Core.Domain.Repositories;
 using WaterPoint.Core.Domain.SpecificationRequests.Banners;
 using WaterPoint.Core.Domain.SpecificationRequests.Products;
@@ -22,9 +23,13 @@ namespace WaterPoint.Core.DependencyInjection
     {
         public override void Load()
         {
-            Bind<IUnitOfWork>().To<DapperUnitOfWork>();
+            Bind<IDapperUnitOfWork>().To<DapperUnitOfWork>();
+
             Bind<IDapperDbContext>().To<DapperDbContext>().InCallScope()
                 .WithConstructorArgument("connectionString", ConfigurationManager.ConnectionStrings["DefaultConnection"]);
+
+            Bind<ICoreMapper>().To<CoreMapperHelper>().InSingletonScope();
+
             BindSpecifications();
         }
 
