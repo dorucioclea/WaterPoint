@@ -8,6 +8,8 @@ namespace WaterPoint.Data.DbContext.Dapper
     {
         IDbConnection Connection { get; }
 
+        IDbTransaction GetTransaction();
+
         Task<IEnumerable<T>> ListAsync<T>(string sql, object parameters) where T : class;
 
         Task<IEnumerable<T>> ExecuteStoredProcedureAsync<T>(string storedProcName, object parameters) where T : class;

@@ -12,6 +12,6 @@ namespace WaterPoint.Core.Specification
     public interface ISpecification<in TI, out TOut>
         where TI : ISpecificationRequest
     {
-        TOut Run(IDapperDbContext dbConnection, TI ti);
+        TOut RunQuery(IDapperDbContext dbConnection, TI ti);
     }
 }

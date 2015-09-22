@@ -15,25 +15,27 @@ namespace WaterPoint.Data.DbContext.Dapper
 {
     public class DapperUnitOfWork : IDapperUnitOfWork
     {
-        private IDbTransaction _dbTransaction;
+        public IDapperDbContext DbContext { get; }
 
         public DapperUnitOfWork(IDapperDbContext dbContext)
         {
             DbContext = dbContext;
         }
 
+        #region IDapperUnitOfWork implmentation
+
+        private IDbTransaction _transaction;
+
         ~DapperUnitOfWork()
         {
             Dispose(false);
         }
 
-        public IDapperDbContext DbContext { get; }
-
         public IUnitOfWork Begin()
         {
             DbContext.Connection.Open();
 
-            _dbTransaction = DbContext.Connection.BeginTransaction();
+            _transaction = DbContext.GetTransaction();
 
             return this;
         }
@@ -42,7 +44,7 @@ namespace WaterPoint.Data.DbContext.Dapper
         {
             try
             {
-                _dbTransaction.Commit();
+                _transaction.Commit();
             }
             catch
             {
@@ -53,7 +55,7 @@ namespace WaterPoint.Data.DbContext.Dapper
 
         public void Rollback()
         {
-            _dbTransaction.Rollback();
+            _transaction.Rollback();
         }
 
         public void Dispose()
@@ -69,15 +71,16 @@ namespace WaterPoint.Data.DbContext.Dapper
                 return;
             }
 
-            if (_dbTransaction != null)
+            if (_transaction != null)
             {
-                _dbTransaction.Dispose();
-
-                _dbTransaction = null;
+                _transaction.Dispose();
+                _transaction = null;
             }
 
             DbContext.Connection?.Close();
             DbContext.Connection?.Dispose();
         }
+
+        #endregion
     }
 }

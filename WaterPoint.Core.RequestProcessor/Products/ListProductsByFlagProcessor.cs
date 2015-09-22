@@ -27,7 +27,7 @@ namespace WaterPoint.Core.RequestProcessor.Products
         {
             using (DapperUnitOfWork.Begin())
             {
-                var products = _listProductsByFlagSpecification.Run(DapperUnitOfWork.DbContext, request);
+                var products = _listProductsByFlagSpecification.RunQuery(DapperUnitOfWork.DbContext, request);
 
                 return _coreMapper.MapTo<IEnumerable<BasicProduct>>(products);
             }

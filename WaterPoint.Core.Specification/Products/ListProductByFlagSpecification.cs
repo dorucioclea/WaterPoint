@@ -11,7 +11,6 @@ using WaterPoint.Core.Domain.Contracts.Products;
 using WaterPoint.Core.Domain.Repositories;
 using WaterPoint.Core.Domain.SpecificationRequests.Products;
 using WaterPoint.Data.Entity.DataEntities;
-using Dapper;
 using WaterPoint.Data.DbContext.Dapper;
 
 namespace WaterPoint.Core.Specification.Products
@@ -20,18 +19,18 @@ namespace WaterPoint.Core.Specification.Products
     {
         //need to pass in column names as variable so in case of changing the entity.
         private const string Sql = @"
-            SELECT 
-                Id,
-                Name
-            FROM
-                dbo.Product
-            WHERE
-                ShopId = @shopId";
+            SELECT
+                p.Id,
+                p.Name
+            FROM dbo.Product p
+                JOIN dbo.ProductFlag pf ON pf.ProductId = p.Id
+            WHERE p.shopid = @shopId
+                AND pf.FlagId = @flagId";
 
-        public IEnumerable<Product> Run(IDapperDbContext dbContext, ListProductsByFlagRequest request)
+        public IEnumerable<Product> RunQuery(IDapperDbContext dbContext, ListProductsByFlagRequest request)
         {
             return dbContext.List<Product>(
-                Sql, 
+                Sql,
                 new
                 {
                     shopId = request.ShopId,

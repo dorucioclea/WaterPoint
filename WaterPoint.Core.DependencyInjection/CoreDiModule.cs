@@ -26,7 +26,7 @@ namespace WaterPoint.Core.DependencyInjection
             Bind<IDapperUnitOfWork>().To<DapperUnitOfWork>();
 
             Bind<IDapperDbContext>().To<DapperDbContext>().InCallScope()
-                .WithConstructorArgument("connectionString", ConfigurationManager.ConnectionStrings["DefaultConnection"]);
+                .WithConstructorArgument("connectionString", ConfigurationManager.ConnectionStrings["DefaultConnection"].ToString());
 
             Bind<ICoreMapper>().To<CoreMapper>().InSingletonScope();
 

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
@@ -8,16 +9,27 @@ namespace WaterPoint.Data.DbContext.Dapper
 {
     public class DapperDbContext : IDapperDbContext
     {
-        private readonly string _connectionString;
-
-        private IDbConnection _connection;
-
         public DapperDbContext(string connectionString)
         {
-            _connectionString = connectionString;
+            Connection = new SqlConnection(connectionString);
         }
 
-        public IDbConnection Connection => _connection ?? new SqlConnection(_connectionString);
+        public IDbConnection Connection { get; }
+
+        private IDbTransaction _transaction;
+
+        public IDbTransaction GetTransaction()
+        {
+            if (Connection.State != ConnectionState.Open)
+                throw new InvalidOperationException("BeginTransaction requires a open connection.");
+
+            if (_transaction != null)
+                throw new InvalidOperationException("There is already one transaction.");
+
+            _transaction = Connection.BeginTransaction();
+
+            return _transaction;
+        }
 
         public async Task<IEnumerable<T>> ListAsync<T>(string sql, object parameters) where T : class
         {
@@ -56,7 +68,7 @@ namespace WaterPoint.Data.DbContext.Dapper
 
         public int NonQuery(string sql, object parameters)
         {
-            var result = Connection.Execute(sql, parameters, null, null, CommandType.Text);
+            var result = Connection.Execute(sql, parameters, _transaction, null, CommandType.Text);
 
             return result;
         }
@@ -65,14 +77,14 @@ namespace WaterPoint.Data.DbContext.Dapper
 
         private async Task<IEnumerable<T>> FetchAsync<T>(string sql, CommandType type, object parameters) where T : class
         {
-            var result = await Connection.QueryAsync<T>(sql, parameters, null, null, type);
+            var result = await Connection.QueryAsync<T>(sql, parameters, _transaction, null, type);
 
             return result;
         }
 
         private IEnumerable<T> Fetch<T>(string sql, CommandType type, object parameters) where T : class
         {
-            var result = Connection.Query<T>(sql, parameters, null, true, null, type);
+            var result = Connection.Query<T>(sql, parameters, _transaction, true, null, type);
 
             return result;
         }
