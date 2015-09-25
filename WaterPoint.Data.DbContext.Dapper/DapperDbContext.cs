@@ -9,14 +9,14 @@ namespace WaterPoint.Data.DbContext.Dapper
 {
     public class DapperDbContext : IDapperDbContext
     {
+        private IDbTransaction _transaction;
+
         public DapperDbContext(string connectionString)
         {
             Connection = new SqlConnection(connectionString);
         }
 
         public IDbConnection Connection { get; }
-
-        private IDbTransaction _transaction;
 
         public IDbTransaction GetTransaction()
         {

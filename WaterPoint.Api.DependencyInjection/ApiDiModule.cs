@@ -19,20 +19,20 @@ using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Api.DependencyInjection
 {
-    public class ApiDiModule : NinjectModule
-    {
-        public override void Load()
-        {
-            BindRequestProcessors();
-        }
+    //public class ApiDiModule : NinjectModule
+    //{
+    //    public override void Load()
+    //    {
+    //        BindRequestProcessors();
+    //    }
 
-        private void BindRequestProcessors()
-        {
-            Bind<IRequestProcessor<ListProductsByFlagRequest, IEnumerable<BasicProduct>>>()
-                .To<ListProductsByFlagProcessor>();
+    //    private void BindRequestProcessors()
+    //    {
+    //        Bind<IRequestProcessor<ListProductsByFlagRequest, IEnumerable<BasicProduct>>>()
+    //            .To<ListProductsByFlagProcessor>();
 
-            //Bind<IRequestProcessor<ListBannersByBannerTypeRequest, IEnumerable<BasicBanner>>>()
-            //    .To<ListBannersByBannerTypeProcessor>();
-        }
-    }
+    //        //Bind<IRequestProcessor<ListBannersByBannerTypeRequest, IEnumerable<BasicBanner>>>()
+    //        //    .To<ListBannersByBannerTypeProcessor>();
+    //    }
+    //}
 }

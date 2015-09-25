@@ -11,6 +11,7 @@ namespace WaterPoint.Api.Controllers
     {
         public IHttpActionResult Get()
         {
+            //check all dependencies.
             return Ok("working");
         }
     }
