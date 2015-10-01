@@ -17,8 +17,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{80
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "WaterPoint.Database", "WaterPoint.Database\WaterPoint.Database.sqlproj", "{AF770B37-7F34-4BB4-BED7-1A4A84DB3965}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{A472A206-99D0-4C4B-AA8B-60D62F1B808C}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaterPoint.App.DataProvider", "WaterPoint.App.DataProvider\WaterPoint.App.DataProvider.csproj", "{8E756BF5-71FB-4622-9623-92AEC3283EF9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaterPoint.Core.DependencyInjection", "WaterPoint.Core.DependencyInjection\WaterPoint.Core.DependencyInjection.csproj", "{114DB23C-2257-4BAD-800D-58A5CCAEDF90}"
@@ -71,10 +69,6 @@ Global
 		{AF770B37-7F34-4BB4-BED7-1A4A84DB3965}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AF770B37-7F34-4BB4-BED7-1A4A84DB3965}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AF770B37-7F34-4BB4-BED7-1A4A84DB3965}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{A472A206-99D0-4C4B-AA8B-60D62F1B808C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A472A206-99D0-4C4B-AA8B-60D62F1B808C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A472A206-99D0-4C4B-AA8B-60D62F1B808C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A472A206-99D0-4C4B-AA8B-60D62F1B808C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8E756BF5-71FB-4622-9623-92AEC3283EF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8E756BF5-71FB-4622-9623-92AEC3283EF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8E756BF5-71FB-4622-9623-92AEC3283EF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
