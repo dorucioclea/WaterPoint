@@ -4,9 +4,8 @@ using System.Linq;
 using System.Web;
 using Ninject.Modules;
 using WaterPoint.Core.Domain;
-using WaterPoint.Core.Domain.Contracts.Products;
-using WaterPoint.Core.Domain.SpecificationRequests.Products;
-using WaterPoint.Core.RequestProcessor.Products;
+using WaterPoint.Core.Domain.Requests.Products;
+using WaterPoint.Core.RequestProcessor.Contracts.Products;
 
 namespace WaterPoint.Api.Flag
 {
@@ -19,8 +18,6 @@ namespace WaterPoint.Api.Flag
 
         private void BindRequestProcessors()
         {
-            Bind<IRequestProcessor<ListProductsByFlagRequest, IEnumerable<BasicProduct>>>()
-                .To<ListProductsByFlagProcessor>();
         }
     }
 }

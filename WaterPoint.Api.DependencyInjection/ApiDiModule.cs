@@ -6,15 +6,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Ninject.Modules;
 using WaterPoint.Core.Domain;
-using WaterPoint.Core.Domain.Contracts.Banners;
-using WaterPoint.Core.Domain.Contracts.Products;
-using WaterPoint.Core.Domain.Repositories;
-using WaterPoint.Core.Domain.SpecificationRequests.Banners;
-using WaterPoint.Core.Domain.SpecificationRequests.Products;
+using WaterPoint.Core.Domain.Requests.Products;
 using WaterPoint.Core.RequestProcessor;
 using Ninject.Web.Common;
 using WaterPoint.Core.ContractMapper;
-using WaterPoint.Core.RequestProcessor.Products;
 using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Api.DependencyInjection

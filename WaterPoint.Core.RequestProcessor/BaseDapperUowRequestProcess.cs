@@ -13,13 +13,6 @@ namespace WaterPoint.Core.RequestProcessor
 {
     public abstract class BaseDapperUowRequestProcess<TInput, TOutput>: IRequestProcessor<TInput, TOutput>
     {
-        protected IDapperUnitOfWork DapperUnitOfWork { get; }
-
-        protected BaseDapperUowRequestProcess(IDapperUnitOfWork dapperUnitOfWork)
-        {
-            DapperUnitOfWork = dapperUnitOfWork;
-        }
-
-        public abstract TOutput GetResult(TInput request);
+        public abstract TOutput Process(TInput request);
     }
 }

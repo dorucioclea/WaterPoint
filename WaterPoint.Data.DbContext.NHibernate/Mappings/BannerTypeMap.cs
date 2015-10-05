@@ -13,7 +13,7 @@ namespace WaterPoint.Data.DbContext.NHibernate.Mappings
         public BannerTypeMap()
         {
             Id(t => t.Id);
-            References(t=>t.Shop).Column("ShopId");
+            References(t=>t.Organization).Column("OrganizationId");
             Map(t=>t.Name);
             HasMany(t => t.Banners).KeyColumn("Id");
         }

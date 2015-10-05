@@ -14,7 +14,7 @@ namespace WaterPoint.Data.DbContext.NHibernate.Mappings
             Map(t => t.UtcCreated);
             Map(t => t.UtcUpdated);
 
-            References(t => t.Shop).Column("ShopId");
+            References(t => t.Organization).Column("OrganizationId");
             References(t => t.Brand).Column("BrandId");
 
             //HasManyToMany(t => t.Categories)

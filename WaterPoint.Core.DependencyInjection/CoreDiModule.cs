@@ -6,13 +6,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Ninject.Extensions.NamedScope;
 using Ninject.Modules;
+using Ninject.Web.Common;
 using WaterPoint.Core.ContractMapper;
 using WaterPoint.Core.Domain.Repositories;
-using WaterPoint.Core.Domain.SpecificationRequests.Banners;
-using WaterPoint.Core.Domain.SpecificationRequests.Products;
+using WaterPoint.Core.Domain.Requests.Products;
 using WaterPoint.Core.Domain;
-using WaterPoint.Core.Specification;
-using WaterPoint.Core.Specification.Products;
 using WaterPoint.Data.DbContext.Dapper;
 using WaterPoint.Data.Entity.DataEntities;
 
@@ -23,20 +21,12 @@ namespace WaterPoint.Core.DependencyInjection
     {
         public override void Load()
         {
-            Bind<IDapperUnitOfWork>().To<DapperUnitOfWork>();
+            Bind<IDapperUnitOfWork>().To<DapperUnitOfWork>().InRequestScope();
 
             Bind<IDapperDbContext>().To<DapperDbContext>().InCallScope()
                 .WithConstructorArgument("connectionString", ConfigurationManager.ConnectionStrings["DefaultConnection"].ToString());
 
             Bind<ICoreMapper>().To<CoreMapper>().InSingletonScope();
-
-            BindSpecifications();
-        }
-
-        private void BindSpecifications()
-        {
-            Bind<ISpecification<ListProductsByFlagRequest, IEnumerable<Product>>>()
-                .To<ListProductByFlagSpecification>();
 
         }
     }

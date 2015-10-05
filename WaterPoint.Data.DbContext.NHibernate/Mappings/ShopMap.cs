@@ -8,9 +8,9 @@ using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Data.DbContext.NHibernate.Mappings
 {
-    public class ShopMap : ClassMap<Shop>
+    public class OrganizationMap : ClassMap<Organization>
     {
-        public ShopMap()
+        public OrganizationMap()
         {
             Id(t => t.Id).GeneratedBy.Identity();
 

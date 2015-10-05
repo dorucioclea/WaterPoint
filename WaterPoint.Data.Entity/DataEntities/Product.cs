@@ -22,7 +22,7 @@ namespace WaterPoint.Data.Entity.DataEntities
 
         public virtual DateTime UtcUpdated { get; set; }
 
-        public virtual Shop Shop { get; set; }
+        public virtual Organization Organization { get; set; }
 
         public virtual IList<Sku> Skus { get; set; }
 

@@ -9,7 +9,7 @@ namespace WaterPoint.Data.Entity.DataEntities
     public class Banner
     {
         public virtual int Id { get; set; }
-        public virtual Shop Shop { get; set; }
+        public virtual Organization Organization { get; set; }
         public virtual BannerType BannerType { get; set; }
         public virtual bool IsActive { get; set; }
         public virtual string Name { get; set; }

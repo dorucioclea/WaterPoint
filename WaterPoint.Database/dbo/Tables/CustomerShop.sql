@@ -1,8 +1,8 @@
-﻿CREATE TABLE [dbo].[CustomerShop]
+﻿CREATE TABLE [dbo].[CustomerOrganization]
 (
-    [ShopId] INT NOT NULL,
+    [OrganizationId] INT NOT NULL,
     [CustomerId] INT NOT NULL,
-    CONSTRAINT [FK_CustomerShop_Shop] FOREIGN KEY ([ShopId]) REFERENCES [dbo].[Shop]([Id]),
-    CONSTRAINT [FK_CustomerShop_Customer] FOREIGN KEY ([CustomerId]) REFERENCES [dbo].[Customer]([Id]), 
-    CONSTRAINT [PK_CustomerShop] PRIMARY KEY ([ShopId], [CustomerId])
+    CONSTRAINT [FK_CustomerOrganization_Organization] FOREIGN KEY ([OrganizationId]) REFERENCES [dbo].[Organization]([Id]),
+    CONSTRAINT [FK_CustomerOrganization_Customer] FOREIGN KEY ([CustomerId]) REFERENCES [dbo].[Customer]([Id]), 
+    CONSTRAINT [PK_CustomerOrganization] PRIMARY KEY ([OrganizationId], [CustomerId])
 )

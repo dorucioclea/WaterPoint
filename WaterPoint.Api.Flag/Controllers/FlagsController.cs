@@ -7,13 +7,13 @@ using System.Web.Http;
 using WaterPoint.Api.Common;
 using WaterPoint.Api.Common.BaseControllers;
 using WaterPoint.Core.Domain;
-using WaterPoint.Core.Domain.Contracts.Products;
-using WaterPoint.Core.Domain.SpecificationRequests.Products;
+using WaterPoint.Core.Domain.Requests.Products;
+using WaterPoint.Core.RequestProcessor.Contracts.Products;
 
 namespace WaterPoint.Api.Flag.Controllers
 {
     [RoutePrefix(RouteDefinitions.Flags.Prefix)]
-    public class FlagsController : BaseShopContextController
+    public class FlagsController : BaseOrgnizationContextController
     {
         private readonly IRequestProcessor<ListProductsByFlagRequest, IEnumerable<BasicProduct>> _listProductsByFlagProcessor;
 
@@ -28,7 +28,7 @@ namespace WaterPoint.Api.Flag.Controllers
         {
             //validation
 
-            var result = _listProductsByFlagProcessor.GetResult(request);
+            var result = _listProductsByFlagProcessor.Process(request);
 
             return Ok(result);
         }

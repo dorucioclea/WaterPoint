@@ -1,7 +1,7 @@
 ﻿CREATE TABLE [dbo].[Category]
 (
 	[Id] INT NOT NULL PRIMARY KEY IDENTITY,    
-    [ShopId] INT NOT NULL,
+    [OrganizationId] INT NOT NULL,
 	[Name] VARCHAR(50) NOT NULL,
     [Description] VARCHAR(200) NULL,
     [LongDescription] VARCHAR(MAX) NULL,
@@ -9,5 +9,5 @@
     [UtcCreated] DATETIME2(0) NOT NULL DEFAULT GETUTCDATE(), 
     [UtcUpdated] DATETIME2(0) NOT NULL DEFAULT GETUTCDATE(),
     [Uid] UNIQUEIDENTIFIER NOT NULL DEFAULT(NEWID()),
-    CONSTRAINT [FK_Category_Shop] FOREIGN KEY ([ShopId]) REFERENCES [dbo].[Shop]([Id]),
+    CONSTRAINT [FK_Category_Organization] FOREIGN KEY ([OrganizationId]) REFERENCES [dbo].[Organization]([Id]),
 )

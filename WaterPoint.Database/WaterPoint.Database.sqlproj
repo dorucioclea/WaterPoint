@@ -68,7 +68,6 @@
     <Build Include="dbo\Tables\Customer.sql" />
     <Build Include="dbo\Tables\Product.sql" />
     <Build Include="dbo\Tables\Country.sql" />
-    <Build Include="dbo\Tables\Category.sql" />
     <Build Include="dbo\Tables\Sku.sql" />
     <Build Include="dbo\Tables\VariantType.sql" />
     <Build Include="dbo\Tables\SkuVariant.sql" />
@@ -76,7 +75,7 @@
     <Build Include="dbo\Tables\Variant.sql" />
     <Build Include="dbo\Tables\Flag.sql" />
     <Build Include="dbo\Tables\ProductFlag.sql" />
-    <Build Include="dbo\Tables\Shop.sql" />
+    <Build Include="dbo\Tables\Organization.sql" />
     <Build Include="dbo\Tables\Branch.sql" />
     <Build Include="dbo\Tables\CustomerShop.sql" />
     <Build Include="dbo\Tables\Staff.sql" />
@@ -90,6 +89,7 @@
     <Build Include="dbo\Tables\CategoryImage.sql" />
     <Build Include="dbo\Tables\Banner.sql" />
     <Build Include="dbo\Tables\BannerType.sql" />
+    <Build Include="dbo\Tables\Category.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="WaterPoint.Database.publish.xml" />

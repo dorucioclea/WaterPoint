@@ -7,20 +7,25 @@ namespace WaterPoint.Api.Common
 {
     public class RouteDefinitions
     {
-        private const string ShopNode = "shops/{shopId:int}";
+        private const string OrganizationNode = "organizations/{OrganizationId:int}";
+
+        public class Cusotmers
+        {
+            public const string Prefix = OrganizationNode + "/customers";
+        }
 
         public class Flags
         {
-            public const string Prefix = ShopNode + "/flags";
+            public const string Prefix = OrganizationNode + "/flags";
 
             public const string GetProducts = "{flagId:int}/products";
         }
 
-        public class Banners
-        {
-            public const string Prefix = ShopNode + "/bannertypes";
+        //public class Banners
+        //{
+        //    public const string Prefix = OrganizationNode + "/bannertypes";
 
-            public const string GetBanners = "{bannerTypeId:int}/banners";
-        }
+        //    public const string GetBanners = "{bannerTypeId:int}/banners";
+        //}
     }
 }

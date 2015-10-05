@@ -1,0 +1,12 @@
+﻿CREATE TABLE [dbo].[Organization]
+(
+    [Id] INT NOT NULL PRIMARY KEY IDENTITY,
+    [CountryId] INT NOT NULL,
+    [Name] VARCHAR(50) NOT NULL,
+    [IsActive] BIT NOT NULL DEFAULT(0),
+    [DisplayName] VARCHAR(150) NULL,
+    [UtcCreated] DATETIME2(0) NOT NULL DEFAULT GETUTCDATE(),
+    [UtcUpdated] DATETIME2(0) NOT NULL DEFAULT GETUTCDATE(),
+    [Uid] UNIQUEIDENTIFIER NOT NULL DEFAULT(NEWID()),
+    CONSTRAINT [FK_Organization_Country] FOREIGN KEY ([CountryId]) REFERENCES [dbo].[Country]([Id])
+)

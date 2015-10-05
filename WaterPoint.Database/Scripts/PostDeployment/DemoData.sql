@@ -1,34 +1,34 @@
-﻿/* Shop */
-if (select count(*) from shop) = 0 begin
-    insert into dbo.Shop (Name, IsActive) values ('Water Point', 1)
+﻿/* Organization */
+if (select count(*) from Organization) = 0 begin
+    insert into dbo.Organization (Name, IsActive) values ('Water Point', 1)
 end
 go
 
 /* Branch */
 if (select count(*) from Branch) = 0 begin
-    insert into dbo.Branch (Name, IsActive, IsMainBranch, ShopId) values ('Water Point', 1, 1, (select Id from dbo.Shop where name = 'Water Point'))
+    insert into dbo.Branch (Name, IsActive, IsMainBranch, OrganizationId) values ('Water Point', 1, 1, (select Id from dbo.Organization where name = 'Water Point'))
 end
 go
 
 /* Brand */
 if (SELECT COUNT(*) FROM dbo.Brand) = 0
-    declare @shop_id int = (select id from shop where name = 'water point')
+    declare @Organization_id int = (select id from Organization where name = 'water point')
     BEGIN
-        INSERT INTO dbo.Brand (Name, ShopId) VALUES ('Brand A', @shop_id) 
-        INSERT INTO dbo.Brand (Name, ShopId) VALUES ('Brand B', @shop_id) 
-        INSERT INTO dbo.Brand (Name, ShopId) VALUES ('Brand C', @shop_id) 
-        INSERT INTO dbo.Brand (Name, ShopId) VALUES ('Brand D', @shop_id) 
+        INSERT INTO dbo.Brand (Name, OrganizationId) VALUES ('Brand A', @Organization_id) 
+        INSERT INTO dbo.Brand (Name, OrganizationId) VALUES ('Brand B', @Organization_id) 
+        INSERT INTO dbo.Brand (Name, OrganizationId) VALUES ('Brand C', @Organization_id) 
+        INSERT INTO dbo.Brand (Name, OrganizationId) VALUES ('Brand D', @Organization_id) 
     END
 go
 
 /* Category */
 if (SELECT COUNT(*) FROM dbo.Category) = 0
-    declare @shop_id int = (select id from shop where name = 'water point')
+    declare @Organization_id int = (select id from Organization where name = 'water point')
     BEGIN
-        INSERT INTO dbo.Category (Name, ShopId, IsActive) VALUES ('Bliaut', @shop_id, 1) 
-        INSERT INTO dbo.Category (Name, ShopId, IsActive) VALUES ('Chemise', @shop_id, 1) 
-        INSERT INTO dbo.Category (Name, ShopId, IsActive) VALUES ('Can-can dress', @shop_id, 1) 
-        INSERT INTO dbo.Category (Name, ShopId, IsActive) VALUES ('Pantalettes', @shop_id, 1) 
+        INSERT INTO dbo.Category (Name, OrganizationId, IsActive) VALUES ('Bliaut', @Organization_id, 1) 
+        INSERT INTO dbo.Category (Name, OrganizationId, IsActive) VALUES ('Chemise', @Organization_id, 1) 
+        INSERT INTO dbo.Category (Name, OrganizationId, IsActive) VALUES ('Can-can dress', @Organization_id, 1) 
+        INSERT INTO dbo.Category (Name, OrganizationId, IsActive) VALUES ('Pantalettes', @Organization_id, 1) 
     END
 go
 
@@ -48,14 +48,14 @@ if(SELECT COUNT(*) FROM dbo.Product) = 0
         SET @pantalettes = (SELECT Id FROM dbo.Category WHERE Name = 'Pantalettes')
 
         declare @cat_counter int = 1            
-        declare @shop_id int = (select id from shop where name = 'water point')        
+        declare @Organization_id int = (select id from Organization where name = 'water point')        
         while @cat_counter <= 4 begin
             declare @brand_id int = (select Id from ( select  row_number() over (order by id) as rownumber, *  from brand) as f where rownumber = @cat_counter)
             declare @counter int = 1    
             while @counter <= 20 begin                
-                INSERT INTO dbo.Product (Name, BrandId, [Description],IsDeleted,IsActive,ShopId) 
+                INSERT INTO dbo.Product (Name, BrandId, [Description],IsDeleted,IsActive,OrganizationId) 
                 VALUES
-                ('Product ' + CONVERT(VARCHAR, @counter), @brand_id, 'description for product ' + CONVERT(VARCHAR, @counter), 0, 1, @shop_id)
+                ('Product ' + CONVERT(VARCHAR, @counter), @brand_id, 'description for product ' + CONVERT(VARCHAR, @counter), 0, 1, @Organization_id)
 
                 DECLARE @pid INT = scope_identity()
 
@@ -100,7 +100,7 @@ go
 
 /* Sku */
 if(select count(*) from sku) = 0 begin
-    declare @branch_id int = (select b.id from branch b join shop s on b.ShopId = s.id where s.name = 'water point')
+    declare @branch_id int = (select b.id from branch b join Organization s on b.OrganizationId = s.id where s.name = 'water point')
     select * into #tempproducts from product
 
     while (select count(*) from #tempproducts) > 0 begin
@@ -166,13 +166,13 @@ go
 /* Image size */
 if(select count(*) from ImageSize) = 0 begin
     declare @counter int = 1
-    declare @shop_id int = (select id from shop where name = 'water point')
+    declare @Organization_id int = (select id from Organization where name = 'water point')
     while @counter <= 4 begin 
         declare @size_type_id int = (select id from (select ROW_NUMBER() over (order by id) as rownumber, * from ImageSizeType) as f where rownumber = @counter)
         declare @inner_counter int = 1
         while @inner_counter <= 4 begin
-            insert into ImageSize (ShopId, ImageSizeTypeId, Name, Length, Width)
-            values(@shop_id, @size_type_id, 'size', 100, 100)
+            insert into ImageSize (OrganizationId, ImageSizeTypeId, Name, Length, Width)
+            values(@Organization_id, @size_type_id, 'size', 100, 100)
             set @inner_counter = @inner_counter + 1
         end
         set @counter = @counter + 1

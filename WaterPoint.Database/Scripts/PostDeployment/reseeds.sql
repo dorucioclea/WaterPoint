@@ -33,9 +33,9 @@ IF(SELECT COUNT(*) FROM dbo.VariantType) = 0
         DBCC checkident ('dbo.VariantType', reseed, 10)
     END
 
-IF(SELECT COUNT(*) FROM dbo.Shop) = 0
+IF(SELECT COUNT(*) FROM dbo.Organization) = 0
     BEGIN
-        DBCC checkident ('dbo.Shop', reseed, 1000)
+        DBCC checkident ('dbo.Organization', reseed, 1000)
     END
 
 IF(SELECT COUNT(*) FROM dbo.Branch) = 0

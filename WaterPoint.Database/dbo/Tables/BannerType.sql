@@ -1,7 +1,7 @@
 ﻿CREATE TABLE [dbo].[BannerType]
 (
     [Id] INT NOT NULL PRIMARY KEY IDENTITY,
-    [ShopId] INT NOT NULL,
+    [OrganizationId] INT NOT NULL,
     [Name] VARCHAR(100) NULL,    
-    CONSTRAINT [FK_BrandType_Shop] FOREIGN KEY ([ShopId]) REFERENCES [dbo].[Shop]([Id]),
+    CONSTRAINT [FK_BrandType_Organization] FOREIGN KEY ([OrganizationId]) REFERENCES [dbo].[Organization]([Id]),
 )
