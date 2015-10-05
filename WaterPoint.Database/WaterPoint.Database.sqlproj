@@ -99,7 +99,7 @@
     <None Include="Scripts\PostDeployment\VariantTypes.sql" />
     <None Include="Scripts\PostDeployment\Flags.sql" />
     <None Include="Scripts\PostDeployment\Variants.sql" />
-    <None Include="Scripts\PostDeployment\DemoShopAndBranch.sql" />
+    <None Include="Scripts\PostDeployment\DemoOrganizationAndBranch.sql" />
     <None Include="Scripts\PostDeployment\ImageSizeTypes.sql" />
     <None Include="Scripts\PostDeployment\BannerTypes.sql" />
   </ItemGroup>
