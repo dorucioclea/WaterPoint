@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using WaterPoint.Data.Entity.Attributes;
 
 namespace WaterPoint.Core.Bll
 {
@@ -17,7 +20,21 @@ namespace WaterPoint.Core.Bll
 
         public string GetSql()
         {
-            return _dataEntityType.Name;
+            var properties = _dataEntityType.GetProperties();
+
+            var columns = string.Join(",", properties.Select(i => i.Name));
+
+            var tableAttribute = _dataEntityType.GetCustomAttribute(typeof(TableAttribute));
+
+            if (tableAttribute == null)
+                throw new InvalidDataException("Missing TableAttribute decoration.");
+
+            var select = "SELECT " + columns + " FROM "
+
+
+            return string.Empty;
         }
+
+
     }
 }
