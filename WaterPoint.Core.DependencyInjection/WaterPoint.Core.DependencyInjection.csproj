@@ -68,6 +68,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\WaterPoint.Core.Bll\WaterPoint.Core.Bll.csproj">
+      <Project>{456075B1-80AC-47B3-851F-C31D531ADBD1}</Project>
+      <Name>WaterPoint.Core.Bll</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WaterPoint.Core.ContractMapper\WaterPoint.Core.ContractMapper.csproj">
       <Project>{6D50AE7D-4AE4-41A7-8663-AF3CE0DC3414}</Project>
       <Name>WaterPoint.Core.ContractMapper</Name>

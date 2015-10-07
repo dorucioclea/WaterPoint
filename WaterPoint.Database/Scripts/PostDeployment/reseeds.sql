@@ -1,44 +1,44 @@
-﻿IF(SELECT COUNT(*) FROM dbo.Product) = 0
+﻿IF(NOT EXISTS(SELECT TOP 1 * FROM im.Product))
     BEGIN
-        DBCC checkident ('dbo.Product', reseed, 10000)
+        DBCC checkident ('im.Product', reseed, 10000)
     END
 
-IF(SELECT COUNT(*) FROM dbo.Category) = 0
+IF(NOT EXISTS(SELECT TOP 1 * FROM im.Category))
     BEGIN
-        DBCC checkident ('dbo.Category', reseed, 1000)
+        DBCC checkident ('im.Category', reseed, 1000)
     END
 
-IF(SELECT COUNT(*) FROM dbo.Brand) = 0
+IF(NOT EXISTS(SELECT TOP 1 * FROM im.Brand))
     BEGIN
-        DBCC checkident ('dbo.Brand', reseed, 100)
+        DBCC checkident ('im.Brand', reseed, 100)
     END
 
-IF(SELECT COUNT(*) FROM dbo.Customer) = 0
+IF(NOT EXISTS(SELECT TOP 1 * FROM dbo.Customer))
     BEGIN
         DBCC checkident ('dbo.Customer', reseed, 10000)
     END
 
-IF(SELECT COUNT(*) FROM dbo.Sku) = 0
+IF(NOT EXISTS(SELECT TOP 1 * FROM im.Sku))
     BEGIN
-        DBCC checkident ('dbo.Sku', reseed, 10000)
+        DBCC checkident ('im.Sku', reseed, 10000)
     END
 
-IF(SELECT COUNT(*) FROM dbo.Flag) = 0
+IF(NOT EXISTS(SELECT TOP 1 * FROM im.Flag))
     BEGIN
-        DBCC checkident ('dbo.Flag', reseed, 10)
+        DBCC checkident ('im.Flag', reseed, 10)
     END
 
-IF(SELECT COUNT(*) FROM dbo.VariantType) = 0
+IF(NOT EXISTS(SELECT TOP 1 * FROM im.VariantType))
     BEGIN
-        DBCC checkident ('dbo.VariantType', reseed, 10)
+        DBCC checkident ('im.VariantType', reseed, 10)
     END
 
-IF(SELECT COUNT(*) FROM dbo.Organization) = 0
+IF(NOT EXISTS(SELECT TOP 1 * FROM dbo.Organization))
     BEGIN
         DBCC checkident ('dbo.Organization', reseed, 1000)
     END
 
-IF(SELECT COUNT(*) FROM dbo.Branch) = 0
+IF(NOT EXISTS(SELECT TOP 1 * FROM dbo.Branch))
     BEGIN
         DBCC checkident ('dbo.Branch', reseed, 100)
     END

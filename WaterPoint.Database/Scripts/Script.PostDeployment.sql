@@ -15,14 +15,3 @@ Post-Deployment Script Template
 :r ".\PostDeployment\Reseeds.sql"
 
 :r ".\PostDeployment\DemoOrganizationAndBranch.sql"
-
-:r ".\PostDeployment\VariantTypes.sql"
-
-:r ".\PostDeployment\Variants.sql"
-
-:r ".\PostDeployment\Flags.sql"
-
-:r ".\PostDeployment\ImageSizeTypes.sql"
-
-:r ".\PostDeployment\BannerTypes.sql"
-

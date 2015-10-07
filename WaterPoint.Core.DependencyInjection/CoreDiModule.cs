@@ -4,9 +4,11 @@ using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Ninject.Extensions.Factory;
 using Ninject.Extensions.NamedScope;
 using Ninject.Modules;
 using Ninject.Web.Common;
+using WaterPoint.Core.Bll;
 using WaterPoint.Core.ContractMapper;
 using WaterPoint.Core.Domain.Repositories;
 using WaterPoint.Core.Domain.Requests.Products;
@@ -21,12 +23,14 @@ namespace WaterPoint.Core.DependencyInjection
     {
         public override void Load()
         {
-            Bind<IDapperUnitOfWork>().To<DapperUnitOfWork>().InRequestScope();
+            Bind<IDapperUnitOfWork>().To<DapperUnitOfWork>();
 
-            Bind<IDapperDbContext>().To<DapperDbContext>().InCallScope()
+            Bind<IDapperDbContext>().To<DapperDbContext>().InRequestScope()
                 .WithConstructorArgument("connectionString", ConfigurationManager.ConnectionStrings["DefaultConnection"].ToString());
 
             Bind<ICoreMapper>().To<CoreMapper>().InSingletonScope();
+
+            Bind<ISqlBuilderFactory>().ToFactory(() => new SqlBuilderProvider());
 
         }
     }

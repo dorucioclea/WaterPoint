@@ -16,30 +16,25 @@ namespace WaterPoint.Core.RequestProcessor.Customers
 {
     public class PaginatedCustomersProcessor : BaseDapperUowRequestProcess<PaginatedCustomersRequest, IEnumerable<BasicCustomer>>
     {
-        private readonly ICoreMapper _coreMapper;
         private readonly IBasicCustomerBll _basicCustomerBll;
-        private readonly IDapperUnitOfWork _dapperUnitOfWork;
 
         public PaginatedCustomersProcessor(
             ICoreMapper coreMapper,
             IBasicCustomerBll basicCustomerBll,
             IDapperUnitOfWork dapperUnitOfWork)
+            : base(coreMapper, dapperUnitOfWork)
         {
-            _coreMapper = coreMapper;
             _basicCustomerBll = basicCustomerBll;
-            _dapperUnitOfWork = dapperUnitOfWork;
         }
 
         public override IEnumerable<BasicCustomer> Process(PaginatedCustomersRequest request)
         {
-            using (_dapperUnitOfWork.Begin())
+            using (DapperUnitOfWork.Begin())
             {
                 var result = _basicCustomerBll.ListByOrgId(request.OrganizationId);
 
-                return _coreMapper.MapTo<IEnumerable<BasicCustomer>>(result);
+                return Mapper.MapTo<IEnumerable<BasicCustomer>>(result);
             }
         }
     }
-
-
 }

@@ -22,7 +22,7 @@ namespace WaterPoint.Api.DependencyInjection
 
         private void BindBlls()
         {
-            Bind<IBasicCustomerBll>().To<BasicCustomerBll>();
+            Bind<IBasicCustomerBll>().To<BasicCustomerPocoBll>();
         }
 
         private void BindRequestProcessors()

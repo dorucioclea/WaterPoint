@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dbo].[Flag]
+﻿CREATE TABLE [im].[Flag]
 (
     [Id] INT NOT NULL PRIMARY KEY IDENTITY,
     [OrganizationId] INT NOT NULL,

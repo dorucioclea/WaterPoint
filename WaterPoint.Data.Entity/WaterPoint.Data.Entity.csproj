@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes\TableAttribute.cs" />
     <Compile Include="DataEntities\Banner.cs" />
     <Compile Include="DataEntities\Flag.cs" />
     <Compile Include="DataEntities\Brand.cs" />

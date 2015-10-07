@@ -62,46 +62,45 @@
     <Folder Include="dbo\Tables" />
     <Folder Include="dbo\StoredProcedures" />
     <Folder Include="Scripts\PostDeployment" />
+    <Folder Include="im" />
+    <Folder Include="im\Tables" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Address.sql" />
     <Build Include="dbo\Tables\Customer.sql" />
-    <Build Include="dbo\Tables\Product.sql" />
     <Build Include="dbo\Tables\Country.sql" />
-    <Build Include="dbo\Tables\Sku.sql" />
-    <Build Include="dbo\Tables\VariantType.sql" />
-    <Build Include="dbo\Tables\SkuVariant.sql" />
-    <Build Include="dbo\Tables\ProductCategory.sql" />
-    <Build Include="dbo\Tables\Variant.sql" />
-    <Build Include="dbo\Tables\Flag.sql" />
-    <Build Include="dbo\Tables\ProductFlag.sql" />
     <Build Include="dbo\Tables\Organization.sql" />
     <Build Include="dbo\Tables\Branch.sql" />
-    <Build Include="dbo\Tables\CustomerShop.sql" />
-    <Build Include="dbo\Tables\Staff.sql" />
+    <Build Include="dbo\Tables\OrganizationCustomer.sql" />
     <Build Include="dbo\Tables\Credential.sql" />
     <Build Include="dbo\Tables\Image.sql" />
-    <Build Include="dbo\Tables\ProductImage.sql" />
     <Build Include="dbo\Tables\ImageSize.sql" />
     <Build Include="dbo\Tables\ImageSizeType.sql" />
-    <Build Include="dbo\Tables\Brand.sql" />
-    <Build Include="dbo\Tables\BrandImage.sql" />
-    <Build Include="dbo\Tables\CategoryImage.sql" />
-    <Build Include="dbo\Tables\Banner.sql" />
-    <Build Include="dbo\Tables\BannerType.sql" />
-    <Build Include="dbo\Tables\Category.sql" />
+    <Build Include="im\Tables\VariantType.sql" />
+    <Build Include="im\Tables\Product.sql" />
+    <Build Include="im\Tables\ProductCategory.sql" />
+    <Build Include="im\Tables\ProductFlag.sql" />
+    <Build Include="im\Tables\ProductImage.sql" />
+    <Build Include="im\Tables\Sku.sql" />
+    <Build Include="im\Tables\SkuVariant.sql" />
+    <Build Include="im\Tables\Variant.sql" />
+    <Build Include="im\Tables\Brand.sql" />
+    <Build Include="im\Tables\Category.sql" />
+    <Build Include="im\Tables\CategoryImage.sql" />
+    <Build Include="im\Tables\BannerType.sql" />
+    <Build Include="im\Tables\Banner.sql" />
+    <Build Include="im\InventoryManagement.sql" />
+    <Build Include="dbo\Tables\Staff.sql" />
+    <Build Include="im\Tables\Flag.sql" />
+    <Build Include="dbo\Tables\CustomerType.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="WaterPoint.Database.publish.xml" />
     <None Include="Scripts\PostDeployment\DemoData.sql" />
     <None Include="Scripts\PostDeployment\Countries.sql" />
     <None Include="Scripts\PostDeployment\Reseeds.sql" />
-    <None Include="Scripts\PostDeployment\VariantTypes.sql" />
-    <None Include="Scripts\PostDeployment\Flags.sql" />
-    <None Include="Scripts\PostDeployment\Variants.sql" />
     <None Include="Scripts\PostDeployment\DemoOrganizationAndBranch.sql" />
-    <None Include="Scripts\PostDeployment\ImageSizeTypes.sql" />
-    <None Include="Scripts\PostDeployment\BannerTypes.sql" />
+    <None Include="Scripts\PostDeployment\CustomerTypes.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="WaterPoint.Database.refactorlog" />

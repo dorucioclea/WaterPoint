@@ -1,6 +1,6 @@
-﻿CREATE TABLE [dbo].[Banner]
+﻿CREATE TABLE [im].[Banner]
 (
-    [Id] INT NOT NULL PRIMARY KEY IDENTITY, 
+    [Id] INT NOT NULL PRIMARY KEY IDENTITY,
     [OrganizationId] INT NOT NULL,
     [BannerTypeId] INT NOT NULL,
     [ImageId] INT NOT NULL,
@@ -12,5 +12,5 @@
     [UtcUpdated] DATETIME2(0) NOT NULL DEFAULT(GETUTCDATE())
     CONSTRAINT [FK_Banner_Organization] FOREIGN KEY ([OrganizationId]) REFERENCES [dbo].[Organization]([Id]),
     CONSTRAINT [FK_Banner_Image] FOREIGN KEY ([ImageId]) REFERENCES [dbo].[Image]([Id]),
-    CONSTRAINT [FK_Banner_BannerType] FOREIGN KEY ([BannerTypeId]) REFERENCES [dbo].[BannerType]([Id])
+    CONSTRAINT [FK_Banner_BannerType] FOREIGN KEY ([BannerTypeId]) REFERENCES [im].[BannerType]([Id])
 )
