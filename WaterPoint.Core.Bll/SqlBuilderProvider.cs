@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -17,7 +18,7 @@ namespace WaterPoint.Core.Bll
             switch ((Crud)arguments[0])
             {
                 case Crud.Read:
-                    return typeof(SelectSqlBuilder);
+                    return typeof(SelectSqlBuilder<>).MakeGenericType(methodInfo.GetGenericArguments()[0]);
                 case Crud.Create:
                     throw new NotImplementedException();
                 case Crud.Update:
@@ -25,16 +26,13 @@ namespace WaterPoint.Core.Bll
                 case Crud.Delete:
                     throw new NotImplementedException();
                 default:
-                    return typeof(SelectSqlBuilder);
+                    throw new InvalidEnumArgumentException();
             }
         }
 
         protected override IConstructorArgument[] GetConstructorArguments(MethodInfo methodInfo, object[] arguments)
         {
-            return new IConstructorArgument[]
-            {
-                new ConstructorArgument("dataEntityType", arguments[1])
-            };
+            return new IConstructorArgument[] { };
         }
     }
 }

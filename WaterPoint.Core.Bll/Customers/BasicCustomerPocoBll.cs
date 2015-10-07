@@ -20,9 +20,14 @@ namespace WaterPoint.Core.Bll.Customers
 
         public IEnumerable<BasicCustomerPoco> ListByOrgId(int orgId)
         {
-            var builder = SqlBuilderFactory.Create(Crud.Read, typeof(BasicCustomerPoco));
+            var builder = SqlBuilderFactory.Create<BasicCustomerPoco>(Crud.Read);
 
-            return Repository.List<BasicCustomerPoco>(builder.GetSql(), null);
+            builder.GetSql<BasicCustomerPoco>(i => new {i.OrganizationId});
+
+            return Repository.List<BasicCustomerPoco>(builder.GetSql(), new
+            {
+                OrganizationId = orgId
+            });
         }
     }
 }
