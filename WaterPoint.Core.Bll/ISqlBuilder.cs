@@ -8,10 +8,12 @@ using WaterPoint.Data.Entity;
 
 namespace WaterPoint.Core.Bll
 {
-    public interface ISqlBuilder
+    public interface ISqlBuilder<T>
     {
-        string GetSql();
+        ISqlBuilder<T> Analyze();
 
-        string GetSql<T>(Expression<Func<T, object>> parameters) where T : IDataEntity;
+        ISqlBuilder<T> AddWhere<T>(Expression<Func<T, bool>> where);
+
+        string GetSql();
     }
 }

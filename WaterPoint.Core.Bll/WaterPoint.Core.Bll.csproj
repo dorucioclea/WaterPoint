@@ -61,6 +61,7 @@
     <Compile Include="Customers\BasicCustomerPocoBll.cs" />
     <Compile Include="ISqlBuilder.cs" />
     <Compile Include="ISqlBuilderFactory.cs" />
+    <Compile Include="PredicateExpressionConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SelectSqlBuilder.cs" />
     <Compile Include="SqlBuilderProvider.cs" />

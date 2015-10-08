@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using WaterPoint.Data.Entity;
@@ -11,52 +12,57 @@ using WaterPoint.Data.Entity.Attributes;
 
 namespace WaterPoint.Core.Bll
 {
-    public class SelectSqlBuilder<T> : ISqlBuilder
-        where T : IDataEntity
+    public class SelectSqlBuilder<T> : ISqlBuilder<T>
+           where T : IDataEntity
     {
-        //and or like notlike in not in
+        private string _select;
+        private string _where;
+        private readonly string _parentTable;
+        private readonly Type _type;
 
-        private string Select()
+        public SelectSqlBuilder()
         {
-            var type = typeof(T);
+            _type = typeof(T);
 
-            //where it's not a foreign key properties
-            var properties = type.GetProperties();//.Where(i=>i.getcu);
-
-            var columns = string.Join(",", properties.Select(i => i.Name));
-
-            var tableAttribute = type.GetCustomAttribute(typeof(TableAttribute)) as TableAttribute;
+            var tableAttribute = _type.GetCustomAttribute(typeof(TableAttribute)) as TableAttribute;
 
             if (tableAttribute == null)
                 throw new InvalidDataException("Missing TableAttribute decoration.");
 
-            var select = $"SELECT {columns} FROM [{tableAttribute.Schema}].[{tableAttribute.Table}] ";
-
-            return select;
+            _parentTable = $"[{tableAttribute.Schema}].[{tableAttribute.Table}]";
         }
 
         public string GetSql()
         {
-            return GetSql<T>(null);
+            return $"{_select} {_where}";
         }
 
-        public string GetSql<T>(Expression<Func<T, object>> parameters) where T : IDataEntity
+        public ISqlBuilder<T> Analyze()
         {
-            var type = typeof(T);
+            //where it's not a foreign key properties
+            var properties = _type.GetProperties(); //.Where(i=>i.getcu);
 
-            var properties = type.GetProperties();
+            var columns = string.Join(",", properties.Select(i => $"{_parentTable}.[{i.Name}]"));
 
-            var columns = string.Join(",", properties.Select(i => i.Name));
+            var select = $@"
+                SELECT {columns}
+                FROM {_parentTable}";
+            _select = select;
 
-            var tableAttribute = type.GetCustomAttribute(typeof(TableAttribute)) as TableAttribute;
+            return this;
+        }
 
-            if (tableAttribute == null)
-                throw new InvalidDataException("Missing TableAttribute decoration.");
+        public ISqlBuilder<T> AddWhere<T>(Expression<Func<T, bool>> where)
+        {
+            var whereClause = where.Body as BinaryExpression;
 
-            var select = $"SELECT {columns} FROM [{tableAttribute.Schema}].[{tableAttribute.Table}]";
+            var expressionConverter = new PredicateExpressionConverter();
 
+            var result = expressionConverter.Convert(_parentTable, whereClause);
 
-            return string.Empty;
+            _where = $" WHERE {result} ";
+
+            return this as ISqlBuilder<T>;
         }
     }
 }

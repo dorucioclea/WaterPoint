@@ -10,6 +10,6 @@ namespace WaterPoint.Core.Bll
 {
     public interface ISqlBuilderFactory
     {
-        ISqlBuilder Create<T>(Crud action) where T : IDataEntity;
+        ISqlBuilder<T> Create<T>(Crud action) where T : IDataEntity;
     }
 }
