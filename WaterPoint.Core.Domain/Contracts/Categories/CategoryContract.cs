@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WaterPoint.Core.RequestProcessor.Contracts.Banners
+namespace WaterPoint.Core.Domain.Contracts.Categories
 {
-    public class BasicBanner
+    public class CategoryContract
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Url { get; set; }
     }
 }

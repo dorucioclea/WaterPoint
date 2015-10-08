@@ -42,11 +42,12 @@ namespace WaterPoint.Core.Bll
             //where it's not a foreign key properties
             var properties = _type.GetProperties(); //.Where(i=>i.getcu);
 
-            var columns = string.Join(",", properties.Select(i => $"{_parentTable}.[{i.Name}]"));
+            var columns = string.Join(",\r\n", properties.Select(i => $"{_parentTable}.[{i.Name}]"));
 
             var select = $@"
                 SELECT {columns}
-                FROM {_parentTable}";
+                FROM {_parentTable}
+                ";
             _select = select;
 
             return this;

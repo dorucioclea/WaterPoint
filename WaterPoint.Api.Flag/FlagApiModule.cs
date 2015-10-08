@@ -5,7 +5,7 @@ using System.Web;
 using Ninject.Modules;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Requests.Products;
-using WaterPoint.Core.RequestProcessor.Contracts.Products;
+using WaterPoint.Core.Domain.Contracts.Products;
 
 namespace WaterPoint.Api.Flag
 {

@@ -40,6 +40,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\Banners\BasicBanner.cs" />
+    <Compile Include="Contracts\Categories\CategoryContract.cs" />
+    <Compile Include="Contracts\Customers\BasicCustomer.cs" />
+    <Compile Include="Contracts\Flags\FlagContract.cs" />
+    <Compile Include="Contracts\Organizations\OrganizationContract.cs" />
+    <Compile Include="Contracts\Products\BasicProduct.cs" />
+    <Compile Include="Contracts\Skus\SkuContract.cs" />
     <Compile Include="IApiClient.cs" />
     <Compile Include="IApiContext.cs" />
     <Compile Include="Blls\IBasicCustomerBll.cs" />

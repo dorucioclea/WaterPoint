@@ -8,7 +8,8 @@ using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Blls;
 using WaterPoint.Core.RequestProcessor.Customers;
 using WaterPoint.Core.Domain.Requests.Customers;
-using WaterPoint.Core.RequestProcessor.Contracts.Customers;
+using WaterPoint.Core.Domain.Contracts.Customers;
+using WaterPoint.Core.Domain.Requests;
 using WaterPoint.Data.DbContext.Dapper;
 using WaterPoint.Data.Entity.DataEntities;
 
@@ -35,6 +36,18 @@ namespace WaterPoint.Core.RequestProcessor.Customers
 
                 return Mapper.MapTo<IEnumerable<BasicCustomer>>(result);
             }
+        }
+    }
+
+    public class PaginationAnalyzer
+    {
+        public int PageNumber { get;  }
+
+        public int PageSize { get; }
+
+        public PaginationAnalyzer(PaginationRequest request)
+        {
+            
         }
     }
 }

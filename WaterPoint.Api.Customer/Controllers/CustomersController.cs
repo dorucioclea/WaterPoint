@@ -9,7 +9,7 @@ using WaterPoint.Api.Common.BaseControllers;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.RequestProcessor.Customers;
 using WaterPoint.Core.Domain.Requests.Customers;
-using WaterPoint.Core.RequestProcessor.Contracts.Customers;
+using WaterPoint.Core.Domain.Contracts.Customers;
 
 namespace WaterPoint.Api.Customer.Controllers
 {
@@ -24,6 +24,7 @@ namespace WaterPoint.Api.Customer.Controllers
             _listCustomeRequestProcessor = listCustomeRequestProcessor;
         }
 
+        [Route("")]
         public IHttpActionResult Get([FromUri]PaginatedCustomersRequest request)
         {
             //validation

@@ -22,11 +22,15 @@ namespace WaterPoint.Core.Bll.Customers
         {
             var builder = SqlBuilderFactory.Create<BasicCustomerPoco>(Crud.Read);
 
-            builder.GetSql<BasicCustomerPoco>(i => new {i.OrganizationId});
+            builder
+                .Analyze()
+                .AddWhere<BasicCustomerPoco>(i => i.OrganizationId == orgId);
 
-            return Repository.List<BasicCustomerPoco>(builder.GetSql(), new
+            var sql = builder.GetSql();
+
+            return Repository.List<BasicCustomerPoco>(sql, new
             {
-                OrganizationId = orgId
+                orgId
             });
         }
     }

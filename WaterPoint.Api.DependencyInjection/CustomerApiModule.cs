@@ -8,7 +8,7 @@ using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Blls;
 using WaterPoint.Core.RequestProcessor.Customers;
 using WaterPoint.Core.Domain.Requests.Customers;
-using WaterPoint.Core.RequestProcessor.Contracts.Customers;
+using WaterPoint.Core.Domain.Contracts.Customers;
 
 namespace WaterPoint.Api.DependencyInjection
 {

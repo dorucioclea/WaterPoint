@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WaterPoint.Core.RequestProcessor.Contracts.Flags
+namespace WaterPoint.Core.Domain.Contracts.Flags
 {
     public class FlagContract
     {
