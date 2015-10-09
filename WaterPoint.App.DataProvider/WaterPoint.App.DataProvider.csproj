@@ -39,11 +39,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApiClient.cs" />
-    <Compile Include="RestaurantDataProvider.cs" />
+    <Compile Include="ApiDataProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\WaterPoint.ApiClient\WaterPoint.ApiClient.csproj">
+      <Project>{a7f1bbff-8055-4f97-9a94-03e93728f098}</Project>
+      <Name>WaterPoint.ApiClient</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WaterPoint.Core.Domain\WaterPoint.Core.Domain.csproj">
       <Project>{a035ac5e-bfb1-4be2-803c-6386e3297008}</Project>
       <Name>WaterPoint.Core.Domain</Name>

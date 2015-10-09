@@ -47,8 +47,6 @@
     <Compile Include="Contracts\Organizations\OrganizationContract.cs" />
     <Compile Include="Contracts\Products\BasicProduct.cs" />
     <Compile Include="Contracts\Skus\SkuContract.cs" />
-    <Compile Include="IApiClient.cs" />
-    <Compile Include="IApiContext.cs" />
     <Compile Include="Blls\IBasicCustomerBll.cs" />
     <Compile Include="IStoreContext.cs" />
     <Compile Include="IUnitOfWork.cs" />

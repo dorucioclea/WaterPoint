@@ -41,13 +41,13 @@ namespace WaterPoint.Core.RequestProcessor.Customers
 
     public class PaginationAnalyzer
     {
-        public int PageNumber { get;  }
+        public int PageNumber { get; private set; }
 
-        public int PageSize { get; }
+        public int PageSize { get; private set; }
 
         public PaginationAnalyzer(PaginationRequest request)
         {
-            
+
         }
     }
 }

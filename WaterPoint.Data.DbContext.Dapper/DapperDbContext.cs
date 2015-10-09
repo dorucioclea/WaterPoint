@@ -16,7 +16,7 @@ namespace WaterPoint.Data.DbContext.Dapper
             Connection = new SqlConnection(connectionString);
         }
 
-        public IDbConnection Connection { get; }
+        public IDbConnection Connection { get; private set; }
 
         public IDbTransaction GetTransaction()
         {

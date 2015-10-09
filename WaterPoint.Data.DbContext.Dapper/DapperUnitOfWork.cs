@@ -15,7 +15,7 @@ namespace WaterPoint.Data.DbContext.Dapper
 {
     public class DapperUnitOfWork : IDapperUnitOfWork
     {
-        public IDapperDbContext DbContext { get; }
+        public IDapperDbContext DbContext { get; private set; }
 
         public DapperUnitOfWork(IDapperDbContext dbContext)
         {
@@ -77,8 +77,11 @@ namespace WaterPoint.Data.DbContext.Dapper
                 _transaction = null;
             }
 
-            DbContext.Connection?.Close();
-            DbContext.Connection?.Dispose();
+            if (DbContext.Connection == null)
+                return;
+
+            DbContext.Connection.Close();
+            DbContext.Connection.Dispose();
         }
 
         #endregion

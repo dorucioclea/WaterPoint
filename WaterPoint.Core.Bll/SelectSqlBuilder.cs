@@ -29,12 +29,12 @@ namespace WaterPoint.Core.Bll
             if (tableAttribute == null)
                 throw new InvalidDataException("Missing TableAttribute decoration.");
 
-            _parentTable = $"[{tableAttribute.Schema}].[{tableAttribute.Table}]";
+            _parentTable = string.Format("[{0}].[{1}]", tableAttribute.Schema, tableAttribute.Table);
         }
 
         public string GetSql()
         {
-            return $"{_select} {_where}";
+            return string.Format("{0} {1}", _select, _where);
         }
 
         public ISqlBuilder<T> Analyze()
@@ -42,12 +42,12 @@ namespace WaterPoint.Core.Bll
             //where it's not a foreign key properties
             var properties = _type.GetProperties(); //.Where(i=>i.getcu);
 
-            var columns = string.Join(",\r\n", properties.Select(i => $"{_parentTable}.[{i.Name}]"));
+            var columns = string.Join(",\r\n", properties.Select(i => string.Format("{0}.[{1}]", _parentTable, i.Name)));
 
-            var select = $@"
-                SELECT {columns}
-                FROM {_parentTable}
-                ";
+            var select = string.Format(@"
+                SELECT {0}
+                FROM {1}
+                ", columns, _parentTable);
             _select = select;
 
             return this;
@@ -61,7 +61,7 @@ namespace WaterPoint.Core.Bll
 
             var result = expressionConverter.Convert(_parentTable, whereClause);
 
-            _where = $" WHERE {result} ";
+            _where = string.Format(" WHERE {0} ", result);
 
             return this as ISqlBuilder<T>;
         }

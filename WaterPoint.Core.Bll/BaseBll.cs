@@ -11,11 +11,11 @@ namespace WaterPoint.Core.Bll
     public abstract class BaseBll
     {
         /// <summary>
-        /// Use to perform simple CRUD action.
+        /// Use to perform simple CRUD action. For complex queries, use Nhibernate or stored proc
         /// </summary>
-        public ISqlBuilderFactory SqlBuilderFactory { get; }
+        public ISqlBuilderFactory SqlBuilderFactory { get; private set; }
 
-        public IDapperDbContext Repository { get; }
+        public IDapperDbContext Repository { get; private set; }
 
         protected BaseBll(IDapperDbContext dapperDbContext, ISqlBuilderFactory sqlBuilderFactory)
         {

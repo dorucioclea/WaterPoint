@@ -15,8 +15,8 @@ namespace WaterPoint.Core.RequestProcessor
 {
     public abstract class BaseDapperUowRequestProcess<TInput, TOutput>: IRequestProcessor<TInput, TOutput>
     {
-        public ICoreMapper Mapper { get; }
-        public IDapperUnitOfWork DapperUnitOfWork { get; }
+        public ICoreMapper Mapper { get; private set; }
+        public IDapperUnitOfWork DapperUnitOfWork { get; private set; }
 
         protected BaseDapperUowRequestProcess(
             ICoreMapper coreMapper,
