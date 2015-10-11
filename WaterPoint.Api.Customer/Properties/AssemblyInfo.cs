@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("WaterPoint.Api.Customer")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Xero")]
+[assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("WaterPoint.Api.Customer")]
-[assembly: AssemblyCopyright("Copyright © Xero 2015")]
+[assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("b785a3e4-b06a-4a5e-abda-59468d6b4ee6")]
+[assembly: Guid("e2ce74cb-841b-4d67-aaf4-0027e272905e")]
 
 // Version information for an assembly consists of the following four values:
 //
