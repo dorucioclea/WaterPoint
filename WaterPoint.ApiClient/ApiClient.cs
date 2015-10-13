@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -10,27 +11,63 @@ using Newtonsoft.Json;
 
 namespace WaterPoint.ApiClient
 {
-    public class ApiClient : IApiClient, IDisposable
+    class ApiContext
+    {
+        public Uri Uri { get; set; }
+        public IDictionary<HttpRequestHeader, string> Headers { get; set; }
+        public object Data { get; set; }
+    }
+
+    public enum ContentType
+    {
+        Json,
+        FormUrlEncoded
+    }
+
+    public class ApiClientHandler : IApiClient, IDisposable
     {
         private const string ApplicationJson = "application/json";
         private const string ApplicationFormUrlEncoded = "application/x-www-form-urlencoded";
-
+        //httputility.parsequerystring
         private readonly WebClient _client;
+        private readonly ApiContext _context;
 
-        public IApiContext Context { get; private set; }
-
-        public ApiClient(IApiContext context)
+        public ApiClientHandler()
         {
             _client = new WebClient();
+            _context = new ApiContext();
+        }
 
-            Context = context;
+        public IApiClient SetUri(Uri uri)
+        {
+            _context.Uri = uri;
+
+            return this;
+        }
+
+        public IApiClient AddHeader(HttpRequestHeader header, string value)
+        {
+            if (_context.Headers == null)
+                _context.Headers = new Dictionary<HttpRequestHeader, string>();
+
+            _context.Headers.Add(header, value);
+
+            return this;
+        }
+
+        public IApiClient SetData(object data)
+        {
+            _context.Data = data;
+
+            return this;
         }
 
         public async Task<T> Get<T>() where T : class
         {
             using (_client)
             {
-                var streamResponse = await _client.OpenReadTaskAsync(Context.EndpointUri);
+                var streamResponse = await _client.OpenReadTaskAsync(_context.Uri)
+                    .ConfigureAwait(false);
 
                 if (streamResponse == null)
                     throw new InvalidOperationException();
@@ -44,34 +81,36 @@ namespace WaterPoint.ApiClient
             }
         }
 
-        public async Task<T> Post<T>() where T : class
+        public async Task<T> Post<T>(T payloadObject) where T : class
         {
-            return await Execute<T>(HttpMethod.Post, Context.Payload);
+            var payload = JsonConvert.SerializeObject(payloadObject);
+
+            return await Execute<T>(HttpMethod.Post, payload);
         }
 
         public async Task<T> Delete<T>() where T : class
         {
-            return await Execute<T>(HttpMethod.Delete, Context.Payload);
+            throw new NotImplementedException();
         }
 
-        public async Task<T> Put<T>() where T : class
+        public async Task<T> Put<T>(T payloadObject) where T : class
         {
-            return await Execute<T>(HttpMethod.Put, Context.Payload);
+            var payload = JsonConvert.SerializeObject(payloadObject);
+
+            return await Execute<T>(HttpMethod.Put, payload);
         }
 
         private async Task<T> Execute<T>(string method, string payload)
         {
             using (_client)
             {
-                _client.Headers[HttpRequestHeader.ContentType] = ApplicationJson;
-
-                var result = await _client.UploadStringTaskAsync(Context.EndpointUri, method, payload);
+                var result = await _client.UploadStringTaskAsync(_context.Uri, method, payload);
 
                 return JsonConvert.DeserializeObject<T>(result);
             }
         }
 
-        ~ApiClient()
+        ~ApiClientHandler()
         {
             Dispose();
         }

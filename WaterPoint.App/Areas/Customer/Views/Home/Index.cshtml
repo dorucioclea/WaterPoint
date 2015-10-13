@@ -1,0 +1,14 @@
+﻿@model CustomerHomeIndex
+@{
+    ViewBag.Title = "Index";
+}
+
+<table>
+    @foreach (var customer in Model.Customers)
+    {
+        <tr>
+            <td>@customer.FirstName</td>
+            <td>@customer.LastName</td>
+        </tr>
+    }
+</table>

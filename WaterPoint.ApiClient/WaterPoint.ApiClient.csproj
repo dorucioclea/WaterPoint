@@ -44,10 +44,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiClient.cs" />
-    <Compile Include="ApiContext.cs" />
     <Compile Include="HttpMethod.cs" />
     <Compile Include="IApiClient.cs" />
-    <Compile Include="IApiContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
