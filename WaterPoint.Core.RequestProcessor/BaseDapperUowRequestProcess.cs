@@ -13,7 +13,7 @@ using WaterPoint.Data.Entity;
 
 namespace WaterPoint.Core.RequestProcessor
 {
-    public abstract class BaseDapperUowRequestProcess<TInput, TOutput>: IRequestProcessor<TInput, TOutput>
+    public abstract class BaseDapperUowRequestProcess
     {
         public ICoreMapper Mapper { get; private set; }
         public IDapperUnitOfWork DapperUnitOfWork { get; private set; }
@@ -25,7 +25,5 @@ namespace WaterPoint.Core.RequestProcessor
             Mapper = coreMapper;
             DapperUnitOfWork = dapperUnitOfWork;
         }
-
-        public abstract TOutput Process(TInput request);
     }
 }

@@ -18,12 +18,6 @@ namespace WaterPoint.ApiClient
         public object Data { get; set; }
     }
 
-    public enum ContentType
-    {
-        Json,
-        FormUrlEncoded
-    }
-
     public class ApiClientHandler : IApiClient, IDisposable
     {
         private const string ApplicationJson = "application/json";

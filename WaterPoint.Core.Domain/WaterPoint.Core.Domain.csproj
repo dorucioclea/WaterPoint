@@ -53,8 +53,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="IRequestProcessor.cs" />
-    <Compile Include="Requests\Customers\PaginatedCustomersRequest.cs" />
-    <Compile Include="Requests\IRequest.cs" />
+    <Compile Include="Requests\Customers\OrganizationIdRequest.cs" />
+    <Compile Include="Requests\IUriQueryRequest.cs" />
+    <Compile Include="Requests\IUriPathRequest.cs" />
     <Compile Include="Requests\PaginationRequest.cs" />
     <Compile Include="Requests\Products\ListProductsByFlagRequest.cs" />
   </ItemGroup>

@@ -56,9 +56,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseBll.cs" />
+    <Compile Include="Customers\Runners\PaginatedCustomerQueryRunner.cs" />
+    <Compile Include="Customers\Queries\PaginatedCustomersQuery.cs" />
     <Compile Include="Enum\Crud.cs" />
-    <Compile Include="Customers\BasicCustomerPocoBll.cs" />
     <Compile Include="ISqlBuilder.cs" />
     <Compile Include="ISqlBuilderFactory.cs" />
     <Compile Include="PredicateExpressionConverter.cs" />

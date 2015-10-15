@@ -4,11 +4,14 @@ using System.Linq;
 using System.Web;
 using Ninject.Modules;
 using WaterPoint.Core.Bll.Customers;
+using WaterPoint.Core.Bll.Customers.Queries;
+using WaterPoint.Core.Bll.Customers.Runners;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Blls;
 using WaterPoint.Core.RequestProcessor.Customers;
 using WaterPoint.Core.Domain.Requests.Customers;
 using WaterPoint.Core.Domain.Contracts.Customers;
+using WaterPoint.Core.Domain.Requests;
 
 namespace WaterPoint.Api.DependencyInjection
 {
@@ -22,12 +25,13 @@ namespace WaterPoint.Api.DependencyInjection
 
         private void BindBlls()
         {
-            Bind<IBasicCustomerBll>().To<BasicCustomerPocoBll>();
+            Bind<PaginatedCustomersQuery>().ToSelf();
+            Bind<PaginatedCustomerQueryRunner>().ToSelf();
         }
 
         private void BindRequestProcessors()
         {
-            Bind<IRequestProcessor<PaginatedCustomersRequest, IEnumerable<BasicCustomer>>>()
+            Bind<IRequestProcessor<OrganizationIdRequest, PaginationRequest, IEnumerable<BasicCustomer>>>()
                 .To<PaginatedCustomersProcessor>();
         }
     }

@@ -1,14 +1,14 @@
 ﻿@model CustomerHomeIndex
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<table>
-    @foreach (var customer in Model.Customers)
-    {
-        <tr>
-            <td>@customer.FirstName</td>
-            <td>@customer.LastName</td>
-        </tr>
-    }
-</table>
+@Html.React("ItemListTable", new
+{
+    initialData = Model.Customers
+}, null, "item-list-table-container")
+
+<div id="item-list-table-container"></div>
+
+

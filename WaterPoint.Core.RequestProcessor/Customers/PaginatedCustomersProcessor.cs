@@ -3,36 +3,43 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WaterPoint.Core.Bll.Customers;
+using WaterPoint.Core.Bll.Customers.Queries;
+using WaterPoint.Core.Bll.Customers.Runners;
 using WaterPoint.Core.ContractMapper;
 using WaterPoint.Core.Domain;
-using WaterPoint.Core.Domain.Blls;
-using WaterPoint.Core.RequestProcessor.Customers;
 using WaterPoint.Core.Domain.Requests.Customers;
 using WaterPoint.Core.Domain.Contracts.Customers;
 using WaterPoint.Core.Domain.Requests;
 using WaterPoint.Data.DbContext.Dapper;
-using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Core.RequestProcessor.Customers
 {
-    public class PaginatedCustomersProcessor : BaseDapperUowRequestProcess<PaginatedCustomersRequest, IEnumerable<BasicCustomer>>
+    public class PaginatedCustomersProcessor :
+        BaseDapperUowRequestProcess,
+        IRequestProcessor<OrganizationIdRequest, PaginationRequest, IEnumerable<BasicCustomer>>
     {
-        private readonly IBasicCustomerBll _basicCustomerBll;
+        private readonly PaginatedCustomersQuery _paginatedCustomersQuery;
+        private readonly PaginatedCustomerQueryRunner _paginatedCustomerQueryRunner;
 
         public PaginatedCustomersProcessor(
             ICoreMapper coreMapper,
-            IBasicCustomerBll basicCustomerBll,
-            IDapperUnitOfWork dapperUnitOfWork)
+            IDapperUnitOfWork dapperUnitOfWork,
+            PaginatedCustomersQuery paginatedCustomersQuery,
+            PaginatedCustomerQueryRunner paginatedCustomerQueryRunner)
             : base(coreMapper, dapperUnitOfWork)
         {
-            _basicCustomerBll = basicCustomerBll;
+            _paginatedCustomersQuery = paginatedCustomersQuery;
+            _paginatedCustomerQueryRunner = paginatedCustomerQueryRunner;
         }
 
-        public override IEnumerable<BasicCustomer> Process(PaginatedCustomersRequest request)
+        public IEnumerable<BasicCustomer> Process(OrganizationIdRequest path, PaginationRequest query)
         {
             using (DapperUnitOfWork.Begin())
             {
-                var result = _basicCustomerBll.ListByOrgId(request.OrganizationId);
+                _paginatedCustomersQuery.BuildQuery(path.OrganizationId);
+
+                var result = _paginatedCustomerQueryRunner.Run(_paginatedCustomersQuery);
 
                 return Mapper.MapTo<IEnumerable<BasicCustomer>>(result);
             }
