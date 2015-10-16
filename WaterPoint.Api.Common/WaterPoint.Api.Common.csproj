@@ -139,6 +139,8 @@
     <Compile Include="AppStart\RouteConfig.cs" />
     <Compile Include="AppStart\WebApiConfig.cs" />
     <Compile Include="BaseControllers\BaseOrgnizationContextController.cs" />
+    <Compile Include="PaginatedResult.cs" />
+    <Compile Include="PaginationAnalyzer.cs" />
     <Compile Include="CommonStartUp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RouteDefinitions.cs" />
@@ -151,6 +153,10 @@
     <ProjectReference Include="..\WaterPoint.Core.DependencyInjection\WaterPoint.Core.DependencyInjection.csproj">
       <Project>{114DB23C-2257-4BAD-800D-58A5CCAEDF90}</Project>
       <Name>WaterPoint.Core.DependencyInjection</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WaterPoint.Core.Domain\WaterPoint.Core.Domain.csproj">
+      <Project>{A035AC5E-BFB1-4BE2-803C-6386E3297008}</Project>
+      <Name>WaterPoint.Core.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

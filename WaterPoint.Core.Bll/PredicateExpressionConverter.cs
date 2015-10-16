@@ -159,5 +159,101 @@ namespace WaterPoint.Core.Bll
         {
             return (exp.NodeType == ExpressionType.Constant && ((ConstantExpression)exp).Value == null);
         }
+
+        //protected override Expression VisitMethodCall(MethodCallExpression m)
+        //{
+        //    if (m.Method.DeclaringType == typeof(Queryable) && m.Method.Name == "Where")
+        //    {
+        //        Visit(m.Arguments[0]);
+
+        //        var lambda = (LambdaExpression)StripQuotes(m.Arguments[1]);
+
+        //        Visit(lambda.Body);
+
+        //        return m;
+        //    }
+
+        //    switch (m.Method.Name)
+        //    {
+        //        case "Take":
+        //            if (ParseTakeExpression(m))
+        //            {
+        //                var nextExpression = m.Arguments[0];
+        //                return Visit(nextExpression);
+        //            }
+        //            break;
+        //        case "Skip":
+        //            if (ParseSkipExpression(m))
+        //            {
+        //                var nextExpression = m.Arguments[0];
+        //                return Visit(nextExpression);
+        //            }
+        //            break;
+        //        case "OrderBy":
+        //            if (ParseOrderByExpression(m, "ASC"))
+        //            {
+        //                var nextExpression = m.Arguments[0];
+        //                return Visit(nextExpression);
+        //            }
+        //            break;
+        //        case "OrderByDescending":
+        //            if (ParseOrderByExpression(m, "DESC"))
+        //            {
+        //                var nextExpression = m.Arguments[0];
+        //                return Visit(nextExpression);
+        //            }
+        //            break;
+        //    }
+
+        //    throw new NotSupportedException($"The method '{m.Method.Name}' is not supported");
+        //}
+
+
+        //private bool ParseOrderByExpression(MethodCallExpression expression, string order)
+        //{
+        //    var unary = (UnaryExpression)expression.Arguments[1];
+        //    var lambdaExpression = (LambdaExpression)unary.Operand;
+
+        //    lambdaExpression = (LambdaExpression)Evaluator.PartialEval(lambdaExpression);
+
+        //    var body = lambdaExpression.Body as MemberExpression;
+
+        //    if (body == null)
+        //        return false;
+
+        //    OrderBy = string.IsNullOrEmpty(OrderBy)
+        //        ? $"{body.Member.Name} {order}"
+        //        : $"{OrderBy}, {body.Member.Name} {order}";
+
+        //    return true;
+        //}
+
+        //private bool ParseTakeExpression(MethodCallExpression expression)
+        //{
+        //    var sizeExpression = (ConstantExpression)expression.Arguments[1];
+
+        //    int size;
+
+        //    if (!int.TryParse(sizeExpression.Value.ToString(), out size))
+        //        return false;
+
+        //    Take = size;
+
+        //    return true;
+        //}
+
+        //private bool ParseSkipExpression(MethodCallExpression expression)
+        //{
+        //    var sizeExpression = (ConstantExpression)expression.Arguments[1];
+
+        //    int size;
+
+        //    if (!int.TryParse(sizeExpression.Value.ToString(), out size))
+        //        return false;
+
+        //    Skip = size;
+
+        //    return true;
+        //}
     }
 }

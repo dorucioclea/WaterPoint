@@ -1,24 +1,33 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
-using System.Reflection.Emit;
-using System.Text;
-using System.Threading.Tasks;
 using WaterPoint.Data.Entity;
 using WaterPoint.Data.Entity.Attributes;
 
 namespace WaterPoint.Core.Bll
 {
-    public class SelectSqlBuilder<T> : ISqlBuilder<T>
+    public class SelectSqlBuilder<T> : ISelectSqlBuilder<T>
            where T : IDataEntity
     {
-        private string _select;
-        private string _where;
+        private string _columns;
+        private string _totalCount = string.Empty;
+        private string _where = string.Empty;
+        private string _orderBy = string.Empty;
+        private string _fetch = string.Empty;
         private readonly string _parentTable;
         private readonly Type _type;
+
+        private const string
+            Columns = "/**COLUMNS**/",
+            Table = "/**TABLE**/",
+            TotalCount = "/**TOTALCOUNT**/",
+            Where = "/**WHERE**/",
+            OrderBy = "/**ORDERBY**/",
+            Fetch = "/**FETCH**/",
+            Join = "/**JOIN**/";
+
 
         public SelectSqlBuilder()
         {
@@ -32,38 +41,78 @@ namespace WaterPoint.Core.Bll
             _parentTable = string.Format("[{0}].[{1}]", tableAttribute.Schema, tableAttribute.Table);
         }
 
-        public string GetSql()
+        public void AddOrderBy<T>(Expression<Func<T, object>> orderby, bool desc)
         {
-            return string.Format("{0} {1}", _select, _where);
+            var orderClause = orderby.Body as NewExpression;
+
+            if (orderClause == null)
+                throw new ArgumentException("orderClause");
+
+            var list = orderClause.Members.Select(i =>
+                 string.Format("{0}.{1}", _parentTable, i.Name));
+
+            _orderBy = string.Join(",", list);
+
+            if (desc && !string.IsNullOrWhiteSpace(_orderBy))
+                _orderBy += " DESC ";
         }
 
-        public ISqlBuilder<T> Analyze()
+        public void AddOffset(int offset, int fetch)
+        {
+            var fetchClause = " OFFSET {0} ROWS FETCH NEXT {1} ROWS ONLY ";
+
+            var totalCountClause = string.Format(@" CROSS APPLY(
+                                        SELECT COUNT(*) TotalCount FROM
+                                        {0}
+                                        {1}
+                                        )[Count] ", Table, Where);
+
+            _columns = string.Join(",", _columns, "[TotalCount]");
+
+            _fetch = string.Format(fetchClause, offset, fetch);
+
+            _totalCount = string.Format(totalCountClause, _parentTable);
+        }
+
+        public string GetSql()
+        {
+            var sql = string.Format(@"
+                SELECT {0}
+                FROM {1}
+                {2}
+                {3}
+                {4}
+                {5}", Columns, Table, TotalCount, Where, OrderBy, Fetch);
+
+
+            _where = !string.IsNullOrWhiteSpace(_where) ? "WHERE " + _where : string.Empty;
+            _orderBy = !string.IsNullOrWhiteSpace(_orderBy) ? " ORDER BY " + _orderBy : string.Empty;
+            _fetch = !string.IsNullOrWhiteSpace(_fetch) ? _fetch : string.Empty;
+            _totalCount = !string.IsNullOrWhiteSpace(_totalCount) ? _totalCount : string.Empty;
+
+            return sql.Replace(TotalCount, _totalCount)
+                .Replace(Table, _parentTable)
+                .Replace(Columns, _columns)
+                .Replace(Where, _where)
+                .Replace(OrderBy, _orderBy)
+                .Replace(Fetch, _fetch);
+        }
+
+        public void Analyze()
         {
             //where it's not a foreign key properties
             var properties = _type.GetProperties(); //.Where(i=>i.getcu);
 
-            var columns = string.Join(",\r\n", properties.Select(i => string.Format("{0}.[{1}]", _parentTable, i.Name)));
-
-            var select = string.Format(@"
-                SELECT {0}
-                FROM {1}
-                ", columns, _parentTable);
-            _select = select;
-
-            return this;
+            _columns = string.Join(",\r\n", properties.Select(i => string.Format("{0}.[{1}]", _parentTable, i.Name)));
         }
 
-        public ISqlBuilder<T> AddWhere<T>(Expression<Func<T, bool>> where)
+        public void AddWhere<T>(Expression<Func<T, bool>> where)
         {
             var whereClause = where.Body as BinaryExpression;
 
             var expressionConverter = new PredicateExpressionConverter();
 
-            var result = expressionConverter.Convert(_parentTable, whereClause);
-
-            _where = string.Format(" WHERE {0} ", result);
-
-            return this as ISqlBuilder<T>;
+            _where = expressionConverter.Convert(_parentTable, whereClause);
         }
     }
 }

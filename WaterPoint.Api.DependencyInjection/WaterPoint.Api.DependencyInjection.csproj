@@ -68,6 +68,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\WaterPoint.Api.Common\WaterPoint.Api.Common.csproj">
+      <Project>{C033A553-F357-4844-805D-A4984A80226E}</Project>
+      <Name>WaterPoint.Api.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WaterPoint.Core.Bll\WaterPoint.Core.Bll.csproj">
       <Project>{456075b1-80ac-47b3-851f-c31d531adbd1}</Project>
       <Name>WaterPoint.Core.Bll</Name>
@@ -83,6 +87,10 @@
     <ProjectReference Include="..\WaterPoint.Core.RequestProcessor\WaterPoint.Core.RequestProcessor.csproj">
       <Project>{e5cb6b34-a868-4ab3-96e1-e54ca59784ea}</Project>
       <Name>WaterPoint.Core.RequestProcessor</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WaterPoint.Data.DbContext.Dapper\WaterPoint.Data.DbContext.Dapper.csproj">
+      <Project>{D771751B-04B9-4CF0-9023-A5325F987B32}</Project>
+      <Name>WaterPoint.Data.DbContext.Dapper</Name>
     </ProjectReference>
     <ProjectReference Include="..\WaterPoint.Data.Entity\WaterPoint.Data.Entity.csproj">
       <Project>{dcbdc017-96ec-486d-a491-239702696a1a}</Project>

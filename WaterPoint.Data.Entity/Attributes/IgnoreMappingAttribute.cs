@@ -4,13 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WaterPoint.Core.Bll.Enum
+namespace WaterPoint.Data.Entity.Attributes
 {
-    public enum Crud
+    public class IgnoreMappingAttribute : Attribute
     {
-        Create,
-        Read,
-        Update,
-        Delete
     }
 }

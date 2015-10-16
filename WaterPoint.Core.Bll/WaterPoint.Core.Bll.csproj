@@ -58,7 +58,6 @@
   <ItemGroup>
     <Compile Include="Customers\Runners\PaginatedCustomerQueryRunner.cs" />
     <Compile Include="Customers\Queries\PaginatedCustomersQuery.cs" />
-    <Compile Include="Enum\Crud.cs" />
     <Compile Include="ISqlBuilder.cs" />
     <Compile Include="ISqlBuilderFactory.cs" />
     <Compile Include="PredicateExpressionConverter.cs" />
@@ -87,6 +86,9 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Enum\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

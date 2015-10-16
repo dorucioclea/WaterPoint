@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Threading.Tasks;
@@ -19,6 +20,8 @@ namespace WaterPoint.Data.DbContext.Dapper
         IEnumerable<T> List<T>(string sql, object parameters) where T : class;
 
         IEnumerable<T> ExecuteStoredProcedure<T>(string storedProcName, object parameters) where T : class;
+
+        IEnumerable<Tuple<TFirst, TSecond>> List<TFirst, TSecond>(string sql, string splitOn, object parameters);
 
         int NonQuery(string sql, object parameters);
     }

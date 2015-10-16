@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes\IgnoreMappingAttribute.cs" />
     <Compile Include="Attributes\OneToManyAttribute.cs" />
     <Compile Include="Attributes\TableAttribute.cs" />
     <Compile Include="DataEntities\Banner.cs" />
@@ -68,6 +69,7 @@
     <Compile Include="DataEntities\VairantType.cs" />
     <Compile Include="IDataEntity.cs" />
     <Compile Include="Pocos\BasicCustomerPoco.cs" />
+    <Compile Include="Pocos\PaginatedPoco.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

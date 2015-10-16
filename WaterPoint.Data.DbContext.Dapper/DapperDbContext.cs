@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
 using Dapper;
+using WaterPoint.Data.Entity;
 
 namespace WaterPoint.Data.DbContext.Dapper
 {
@@ -66,6 +68,11 @@ namespace WaterPoint.Data.DbContext.Dapper
             return result;
         }
 
+        public IEnumerable<Tuple<TFirst, TSecond>> List<TFirst, TSecond>(string sql, string splitOn, object parameters)
+        {
+            return Fetch<TFirst, TSecond>(sql, splitOn, CommandType.Text, parameters);
+        }
+
         public int NonQuery(string sql, object parameters)
         {
             var result = Connection.Execute(sql, parameters, _transaction, null, CommandType.Text);
@@ -78,6 +85,14 @@ namespace WaterPoint.Data.DbContext.Dapper
         private async Task<IEnumerable<T>> FetchAsync<T>(string sql, CommandType type, object parameters) where T : class
         {
             var result = await Connection.QueryAsync<T>(sql, parameters, _transaction, null, type);
+
+            return result;
+        }
+
+        private IEnumerable<Tuple<TFirst, TSecond>> Fetch<TFirst, TSecond>(string sql, string splitOn, CommandType type, object parameters)
+        {
+            var result = Connection.Query<TFirst, TSecond, Tuple<TFirst, TSecond>>
+                (sql, Tuple.Create, parameters, _transaction, true, splitOn, null, type);
 
             return result;
         }

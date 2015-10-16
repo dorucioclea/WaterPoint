@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Ninject.Modules;
+using WaterPoint.Api.Common;
 using WaterPoint.Core.Bll.Customers;
 using WaterPoint.Core.Bll.Customers.Queries;
 using WaterPoint.Core.Bll.Customers.Runners;
@@ -27,11 +28,12 @@ namespace WaterPoint.Api.DependencyInjection
         {
             Bind<PaginatedCustomersQuery>().ToSelf();
             Bind<PaginatedCustomerQueryRunner>().ToSelf();
+            Bind<PaginationAnalyzer>().ToSelf();
         }
 
         private void BindRequestProcessors()
         {
-            Bind<IRequestProcessor<OrganizationIdRequest, PaginationRequest, IEnumerable<BasicCustomer>>>()
+            Bind<IRequestProcessor<OrganizationIdRequest, PaginationRequest, PaginatedResult<IEnumerable<BasicCustomer>>>>()
                 .To<PaginatedCustomersProcessor>();
         }
     }

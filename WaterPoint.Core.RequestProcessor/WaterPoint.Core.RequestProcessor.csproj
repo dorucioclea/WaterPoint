@@ -49,6 +49,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\WaterPoint.Api.Common\WaterPoint.Api.Common.csproj">
+      <Project>{C033A553-F357-4844-805D-A4984A80226E}</Project>
+      <Name>WaterPoint.Api.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WaterPoint.Core.Bll\WaterPoint.Core.Bll.csproj">
       <Project>{456075B1-80AC-47B3-851F-C31D531ADBD1}</Project>
       <Name>WaterPoint.Core.Bll</Name>

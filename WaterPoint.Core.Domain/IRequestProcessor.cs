@@ -12,6 +12,6 @@ namespace WaterPoint.Core.Domain
         where TQueryIntput : IUriQueryRequest
 
     {
-        TOutput Process(TParthInput path, TQueryIntput query);
+        TOutput Process(TParthInput path, TQueryIntput request);
     }
 }

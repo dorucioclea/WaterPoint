@@ -8,16 +8,28 @@ using WaterPoint.Data.Entity.Pocos;
 
 namespace WaterPoint.Core.Bll.Customers.Runners
 {
-    public class PaginatedCustomerQueryRunner : DapperQueryRunner<IEnumerable<BasicCustomerPoco>>
+    public class PaginatedCustomerQueryRunner : DapperQueryRunner<PaginatedPoco<IEnumerable<BasicCustomerPoco>>>
     {
         public PaginatedCustomerQueryRunner(IDapperDbContext dapperDbContext)
             : base(dapperDbContext)
         {
         }
 
-        public override IEnumerable<BasicCustomerPoco> Run(IQuery query)
+        public override PaginatedPoco<IEnumerable<BasicCustomerPoco>> Run(IQuery query)
         {
-            return Repository.List<BasicCustomerPoco>(query.Query, query.Parameters);
+            var rawResults = Repository.List<BasicCustomerPoco, PaginatedPoco>(query.Query, "TotalCount", query.Parameters)
+                .ToArray();
+
+            if (!rawResults.Any())
+                return null;
+
+            var result = new PaginatedPoco<IEnumerable<BasicCustomerPoco>>
+            {
+                TotalCount = rawResults.First().Item2.TotalCount,
+                Data = rawResults.Select(i => i.Item1)
+            };
+
+            return result;
         }
     }
 }
