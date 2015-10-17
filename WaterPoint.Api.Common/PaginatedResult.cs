@@ -27,7 +27,7 @@ namespace WaterPoint.Api.Common
         public int TotalCount { get; set; }
         //TODO:
         public int MaxId { get; set; }
-        public T ContractData { get; set; }
+        public T Data { get; set; }
 
         public PaginatedResult<T> SetPageValues(PaginationAnalyzer analyzer)
         {

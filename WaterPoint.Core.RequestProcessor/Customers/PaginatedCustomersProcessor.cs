@@ -51,7 +51,7 @@ namespace WaterPoint.Core.RequestProcessor.Customers
                 return (result != null)
                     ? new PaginatedResult<IEnumerable<BasicCustomer>>
                     {
-                        ContractData = Mapper.MapTo<IEnumerable<BasicCustomer>>(result.Data),
+                        Data = Mapper.MapTo<IEnumerable<BasicCustomer>>(result.Data),
                         TotalCount = result.TotalCount
                     }.SetPageValues(_paginationAnalyzer)
                     : null;
