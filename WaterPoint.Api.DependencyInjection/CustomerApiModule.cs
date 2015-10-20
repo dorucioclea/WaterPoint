@@ -13,6 +13,7 @@ using WaterPoint.Core.RequestProcessor.Customers;
 using WaterPoint.Core.Domain.Requests.Customers;
 using WaterPoint.Core.Domain.Contracts.Customers;
 using WaterPoint.Core.Domain.Requests;
+using WaterPoint.Core.RequestProcessor;
 
 namespace WaterPoint.Api.DependencyInjection
 {

@@ -23,7 +23,9 @@ namespace WaterPoint.Core.Bll
 
     public interface ISelectSqlBuilder<T> : ISqlBuilder<T>
     {
-        void AddOrderBy<T>(Expression<Func<T, object>> orderby, bool desc);
+        //void AddOrderBy<T>(Expression<Func<T, object>> orderby, bool desc);
+
+        void AddOrderBy(string orderBy, bool desc);
 
         void AddOffset(int offset, int fetch);
     }

@@ -22,18 +22,11 @@ namespace WaterPoint.Api.Common
                 return totalPages;
             }
         }
-        public int PageNumber { get; private set; }
-        public int PageSize { get; private set; }
+        public int PageNumber { get; set; }
+        public int PageSize { get; set; }
         public int TotalCount { get; set; }
         //TODO:
         public int MaxId { get; set; }
         public T Data { get; set; }
-
-        public PaginatedResult<T> SetPageValues(PaginationAnalyzer analyzer)
-        {
-            PageNumber = analyzer.PageNumber;
-            PageSize = analyzer.PageSize;
-            return this;
-        }
     }
 }

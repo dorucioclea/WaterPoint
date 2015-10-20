@@ -10,6 +10,7 @@ namespace WaterPoint.Data.Entity.Pocos
     [Table("dbo", "Customer")]
     public class BasicCustomerPoco : IDataEntity
     {
+        [Primary]
         public virtual int Id { get; set; }
         public virtual int OrganizationId { get; set; }
         public virtual string Code { get; set; }

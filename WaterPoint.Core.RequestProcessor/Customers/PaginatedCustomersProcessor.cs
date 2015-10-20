@@ -13,6 +13,7 @@ using WaterPoint.Core.Domain.Requests.Customers;
 using WaterPoint.Core.Domain.Contracts.Customers;
 using WaterPoint.Core.Domain.Requests;
 using WaterPoint.Data.DbContext.Dapper;
+using WaterPoint.Data.Entity.Pocos;
 
 namespace WaterPoint.Core.RequestProcessor.Customers
 {
@@ -43,8 +44,11 @@ namespace WaterPoint.Core.RequestProcessor.Customers
 
             using (DapperUnitOfWork.Begin())
             {
-                _paginatedCustomersQuery.BuildQuery(path.OrganizationId, _paginationAnalyzer.Offset,
-                    _paginationAnalyzer.PageSize);
+                _paginatedCustomersQuery.BuildQuery(
+                    path.OrganizationId,
+                    _paginationAnalyzer.Offset,
+                    _paginationAnalyzer.PageSize,
+                    _paginationAnalyzer.Sort);
 
                 var result = _paginatedCustomerQueryRunner.Run(_paginatedCustomersQuery);
 
@@ -52,8 +56,10 @@ namespace WaterPoint.Core.RequestProcessor.Customers
                     ? new PaginatedResult<IEnumerable<BasicCustomer>>
                     {
                         Data = Mapper.MapTo<IEnumerable<BasicCustomer>>(result.Data),
-                        TotalCount = result.TotalCount
-                    }.SetPageValues(_paginationAnalyzer)
+                        TotalCount = result.TotalCount,
+                        PageNumber = _paginationAnalyzer.PageNumber,
+                        PageSize = _paginationAnalyzer.PageSize
+                    }
                     : null;
             }
         }

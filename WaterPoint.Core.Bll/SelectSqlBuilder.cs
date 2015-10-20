@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
@@ -57,6 +58,27 @@ namespace WaterPoint.Core.Bll
                 _orderBy += " DESC ";
         }
 
+        public void AddOrderBy(string orderBy, bool desc)
+        {
+            var properties = _type.GetProperties().ToList();
+
+            int index;
+
+            if (!string.IsNullOrWhiteSpace(orderBy))
+            {
+                index = properties.FindIndex(i => i.Name.ToLower() == orderBy.ToLower()) + 1;
+            }
+            else
+            {
+                var primary = properties.FirstOrDefault(i => i.GetCustomAttribute(typeof(PrimaryAttribute)) != null);
+
+                index = primary == null ? 0 : properties.FindIndex(i => i == primary);
+            }
+
+            if (index != 0)
+                _orderBy = string.Format("{0} {1}", index, desc ? "DESC" : string.Empty);
+        }
+
         public void AddOffset(int offset, int fetch)
         {
             var fetchClause = " OFFSET {0} ROWS FETCH NEXT {1} ROWS ONLY ";
@@ -101,7 +123,7 @@ namespace WaterPoint.Core.Bll
         public void Analyze()
         {
             //where it's not a foreign key properties
-            var properties = _type.GetProperties(); //.Where(i=>i.getcu);
+            var properties = _type.GetProperties();
 
             _columns = string.Join(",\r\n", properties.Select(i => string.Format("{0}.[{1}]", _parentTable, i.Name)));
         }

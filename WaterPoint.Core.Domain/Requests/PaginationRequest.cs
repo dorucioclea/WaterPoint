@@ -10,5 +10,6 @@ namespace WaterPoint.Core.Domain.Requests
     {
         public int? PageSize { get; set; }
         public int? PageNumber { get; set; }
+        public string Sort { get; set; }
     }
 }

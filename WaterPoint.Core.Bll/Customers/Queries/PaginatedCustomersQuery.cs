@@ -1,4 +1,5 @@
-﻿using WaterPoint.Data.DbContext.Dapper;
+﻿using System.Collections.Generic;
+using WaterPoint.Data.DbContext.Dapper;
 using WaterPoint.Data.Entity;
 using WaterPoint.Data.Entity.Pocos;
 
@@ -13,13 +14,13 @@ namespace WaterPoint.Core.Bll.Customers.Queries
             _sqlBuilderFactory = sqlBuilderFactory;
         }
 
-        public void BuildQuery(int orgId, int offset, int pageSize)
+        public void BuildQuery(int orgId, int offset, int pageSize, string sort)
         {
             var builder = _sqlBuilderFactory.Create<SelectSqlBuilder<BasicCustomerPoco>>();
 
             builder.Analyze();
             builder.AddWhere<BasicCustomerPoco>(i => i.OrganizationId == orgId);
-            builder.AddOrderBy<BasicCustomerPoco>(i => new { i.Id }, false);
+            builder.AddOrderBy(sort, false);
             builder.AddOffset(offset, pageSize);
 
             var sql = builder.GetSql();

@@ -52,7 +52,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Attributes\IgnoreMappingAttribute.cs" />
+    <Compile Include="Attributes\PrimaryAttribute.cs" />
     <Compile Include="Attributes\OneToManyAttribute.cs" />
+    <Compile Include="Attributes\OrderByAttribute.cs" />
+    <Compile Include="Attributes\StringValueAttribute.cs" />
     <Compile Include="Attributes\TableAttribute.cs" />
     <Compile Include="DataEntities\Banner.cs" />
     <Compile Include="DataEntities\Flag.cs" />
