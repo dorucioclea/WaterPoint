@@ -19,26 +19,25 @@ namespace WaterPoint.Core.RequestProcessor.Customers
 {
     public class PaginatedCustomersProcessor :
         BaseDapperUowRequestProcess,
-        IRequestProcessor<OrganizationIdRequest, PaginationRequest, PaginatedResult<IEnumerable<BasicCustomer>>>
+        IRequestProcessor<OrganizationIdRequest, PaginationRequest, PaginatedResult<IEnumerable<BasicCustomerWithAddress>>>
     {
         private readonly PaginationAnalyzer _paginationAnalyzer;
         private readonly PaginatedCustomersQuery _paginatedCustomersQuery;
-        private readonly PaginatedCustomerQueryRunner _paginatedCustomerQueryRunner;
+        private readonly PaginatedCustomerRunner _paginatedCustomerRunner;
 
         public PaginatedCustomersProcessor(
-            ICoreMapper coreMapper,
             IDapperUnitOfWork dapperUnitOfWork,
+            PaginatedCustomerRunner paginatedCustomerRunner,
             PaginationAnalyzer paginationAnalyzer,
-            PaginatedCustomersQuery paginatedCustomersQuery,
-            PaginatedCustomerQueryRunner paginatedCustomerQueryRunner)
-            : base(coreMapper, dapperUnitOfWork)
+            PaginatedCustomersQuery paginatedCustomersQuery)
+            : base(dapperUnitOfWork)
         {
+            _paginatedCustomerRunner = paginatedCustomerRunner;
             _paginationAnalyzer = paginationAnalyzer;
             _paginatedCustomersQuery = paginatedCustomersQuery;
-            _paginatedCustomerQueryRunner = paginatedCustomerQueryRunner;
         }
 
-        public PaginatedResult<IEnumerable<BasicCustomer>> Process(OrganizationIdRequest path, PaginationRequest request)
+        public PaginatedResult<IEnumerable<BasicCustomerWithAddress>> Process(OrganizationIdRequest path, PaginationRequest request)
         {
             _paginationAnalyzer.Analyze(request);
 
@@ -48,14 +47,15 @@ namespace WaterPoint.Core.RequestProcessor.Customers
                     path.OrganizationId,
                     _paginationAnalyzer.Offset,
                     _paginationAnalyzer.PageSize,
-                    _paginationAnalyzer.Sort);
+                    _paginationAnalyzer.Sort,
+                    _paginationAnalyzer.Desc);
 
-                var result = _paginatedCustomerQueryRunner.Run(_paginatedCustomersQuery);
+                var result = _paginatedCustomerRunner.Run(_paginatedCustomersQuery);
 
                 return (result != null)
-                    ? new PaginatedResult<IEnumerable<BasicCustomer>>
+                    ? new PaginatedResult<IEnumerable<BasicCustomerWithAddress>>
                     {
-                        Data = Mapper.MapTo<IEnumerable<BasicCustomer>>(result.Data),
+                        Data = result.Data.Select(CustomerMapper.Map),
                         TotalCount = result.TotalCount,
                         PageNumber = _paginationAnalyzer.PageNumber,
                         PageSize = _paginationAnalyzer.PageSize

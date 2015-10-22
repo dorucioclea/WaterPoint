@@ -11,15 +11,15 @@ namespace WaterPoint.Data.DbContext.Dapper
 
         IDbTransaction GetTransaction();
 
-        Task<IEnumerable<T>> ListAsync<T>(string sql, object parameters) where T : class;
+        Task<IEnumerable<T>> ListAsync<T>(string sql, object parameters);
 
-        Task<IEnumerable<T>> ExecuteStoredProcedureAsync<T>(string storedProcName, object parameters) where T : class;
+        Task<IEnumerable<T>> ExecuteStoredProcedureAsync<T>(string storedProcName, object parameters);
 
         Task<int> NonQueryAsync(string sql, object parameters);
 
-        IEnumerable<T> List<T>(string sql, object parameters) where T : class;
+        IEnumerable<T> List<T>(string sql, object parameters);
 
-        IEnumerable<T> ExecuteStoredProcedure<T>(string storedProcName, object parameters) where T : class;
+        IEnumerable<T> ExecuteStoredProcedure<T>(string storedProcName, object parameters);
 
         IEnumerable<Tuple<TFirst, TSecond>> List<TFirst, TSecond>(string sql, string splitOn, object parameters);
 

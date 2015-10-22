@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WaterPoint.Core.Domain.Requests.Customers
+namespace WaterPoint.Core.Domain.Requests
 {
     public class OrganizationIdRequest : IUriPathRequest
     {

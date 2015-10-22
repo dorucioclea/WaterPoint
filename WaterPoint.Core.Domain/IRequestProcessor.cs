@@ -14,4 +14,15 @@ namespace WaterPoint.Core.Domain
     {
         TOutput Process(TParthInput path, TQueryIntput request);
     }
+
+    public interface ICreateRequestProcessor<in TPathInput, in TInput, out TOutput>
+        where TPathInput : IUriPathRequest
+        where TInput: IPayload
+    {
+        TOutput Process(TPathInput pathInput, TInput input);
+    }
+
+    public interface IPayload
+    {
+    }
 }

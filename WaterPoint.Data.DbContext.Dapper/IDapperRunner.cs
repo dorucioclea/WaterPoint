@@ -5,12 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using WaterPoint.Data.DbContext.Dapper;
 
-namespace WaterPoint.Core.Domain.QueryRunner
+namespace WaterPoint.Data.DbContext.Dapper
 {
-    public interface IDapperSqlQueryRunner<T> where T : class
+    public interface IDapperRunner<T>
     {
         IDapperDbContext Repository { get; }
-
-        T Run(IQuery query);
     }
 }

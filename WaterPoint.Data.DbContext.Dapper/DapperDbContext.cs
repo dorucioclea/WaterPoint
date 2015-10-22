@@ -33,14 +33,14 @@ namespace WaterPoint.Data.DbContext.Dapper
             return _transaction;
         }
 
-        public async Task<IEnumerable<T>> ListAsync<T>(string sql, object parameters) where T : class
+        public async Task<IEnumerable<T>> ListAsync<T>(string sql, object parameters)
         {
             var result = await FetchAsync<T>(sql, CommandType.Text, parameters);
 
             return result;
         }
 
-        public async Task<IEnumerable<T>> ExecuteStoredProcedureAsync<T>(string storedProcName, object parameters) where T : class
+        public async Task<IEnumerable<T>> ExecuteStoredProcedureAsync<T>(string storedProcName, object parameters)
         {
             var result = await FetchAsync<T>(storedProcName, CommandType.StoredProcedure, parameters);
 
@@ -54,14 +54,14 @@ namespace WaterPoint.Data.DbContext.Dapper
             return result;
         }
 
-        public IEnumerable<T> List<T>(string sql, object parameters) where T : class
+        public IEnumerable<T> List<T>(string sql, object parameters)
         {
             var result = Fetch<T>(sql, CommandType.Text, parameters);
 
             return result;
         }
 
-        public IEnumerable<T> ExecuteStoredProcedure<T>(string storedProcName, object parameters) where T : class
+        public IEnumerable<T> ExecuteStoredProcedure<T>(string storedProcName, object parameters)
         {
             var result = Fetch<T>(storedProcName, CommandType.StoredProcedure, parameters);
 
@@ -82,7 +82,7 @@ namespace WaterPoint.Data.DbContext.Dapper
 
         #region Private methods
 
-        private async Task<IEnumerable<T>> FetchAsync<T>(string sql, CommandType type, object parameters) where T : class
+        private async Task<IEnumerable<T>> FetchAsync<T>(string sql, CommandType type, object parameters)
         {
             var result = await Connection.QueryAsync<T>(sql, parameters, _transaction, null, type);
 
@@ -97,7 +97,7 @@ namespace WaterPoint.Data.DbContext.Dapper
             return result;
         }
 
-        private IEnumerable<T> Fetch<T>(string sql, CommandType type, object parameters) where T : class
+        private IEnumerable<T> Fetch<T>(string sql, CommandType type, object parameters)
         {
             var result = Connection.Query<T>(sql, parameters, _transaction, true, null, type);
 

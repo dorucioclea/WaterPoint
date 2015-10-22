@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseDapperUowRequestProcess.cs" />
+    <Compile Include="Customers\CreateCustomerRequestProcessor.cs" />
     <Compile Include="Customers\PaginatedCustomersProcessor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

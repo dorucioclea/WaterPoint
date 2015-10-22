@@ -29,8 +29,6 @@ namespace WaterPoint.Core.DependencyInjection
             Bind<IDapperDbContext>().To<DapperDbContext>().InRequestScope()
                 .WithConstructorArgument("connectionString", ConfigurationManager.ConnectionStrings["DefaultConnection"].ToString());
 
-            Bind<ICoreMapper>().To<CoreMapper>().InSingletonScope();
-
             Bind<ISqlBuilderFactory>().ToFactory(() => new SqlBuilderProvider());
 
         }

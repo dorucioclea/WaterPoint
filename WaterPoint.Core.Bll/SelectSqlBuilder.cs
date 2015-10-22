@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -9,38 +7,15 @@ using WaterPoint.Data.Entity.Attributes;
 
 namespace WaterPoint.Core.Bll
 {
-    public class SelectSqlBuilder<T> : ISelectSqlBuilder<T>
+    public class SelectSqlBuilder<T> : SqlBuilder<T>, ISelectSqlBuilder<T>
            where T : IDataEntity
     {
-        private string _columns;
         private string _totalCount = string.Empty;
         private string _where = string.Empty;
         private string _orderBy = string.Empty;
         private string _fetch = string.Empty;
-        private readonly string _parentTable;
-        private readonly Type _type;
 
-        private const string
-            Columns = "/**COLUMNS**/",
-            Table = "/**TABLE**/",
-            TotalCount = "/**TOTALCOUNT**/",
-            Where = "/**WHERE**/",
-            OrderBy = "/**ORDERBY**/",
-            Fetch = "/**FETCH**/",
-            Join = "/**JOIN**/";
-
-
-        public SelectSqlBuilder()
-        {
-            _type = typeof(T);
-
-            var tableAttribute = _type.GetCustomAttribute(typeof(TableAttribute)) as TableAttribute;
-
-            if (tableAttribute == null)
-                throw new InvalidDataException("Missing TableAttribute decoration.");
-
-            _parentTable = string.Format("[{0}].[{1}]", tableAttribute.Schema, tableAttribute.Table);
-        }
+        protected string Where { get; private set; }
 
         public void AddOrderBy<T>(Expression<Func<T, object>> orderby, bool desc)
         {
@@ -50,7 +25,7 @@ namespace WaterPoint.Core.Bll
                 throw new ArgumentException("orderClause");
 
             var list = orderClause.Members.Select(i =>
-                 string.Format("{0}.{1}", _parentTable, i.Name));
+                 string.Format("{0}.{1}", ParentTable, i.Name));
 
             _orderBy = string.Join(",", list);
 
@@ -60,23 +35,13 @@ namespace WaterPoint.Core.Bll
 
         public void AddOrderBy(string orderBy, bool desc)
         {
-            var properties = _type.GetProperties().ToList();
+            if (string.IsNullOrWhiteSpace(orderBy))
+                return;
 
-            int index;
+            var index = Properties.FindIndex(i =>
+                string.Equals(i.Name, orderBy, StringComparison.CurrentCultureIgnoreCase)) + 1;
 
-            if (!string.IsNullOrWhiteSpace(orderBy))
-            {
-                index = properties.FindIndex(i => i.Name.ToLower() == orderBy.ToLower()) + 1;
-            }
-            else
-            {
-                var primary = properties.FirstOrDefault(i => i.GetCustomAttribute(typeof(PrimaryAttribute)) != null);
-
-                index = primary == null ? 0 : properties.FindIndex(i => i == primary);
-            }
-
-            if (index != 0)
-                _orderBy = string.Format("{0} {1}", index, desc ? "DESC" : string.Empty);
+            _orderBy = string.Format("{0} {1} ", index, desc ? "DESC" : string.Empty);
         }
 
         public void AddOffset(int offset, int fetch)
@@ -87,13 +52,13 @@ namespace WaterPoint.Core.Bll
                                         SELECT COUNT(*) TotalCount FROM
                                         {0}
                                         {1}
-                                        )[Count] ", Table, Where);
+                                        )[Count] ", Keywords.Table, Keywords.Where);
 
-            _columns = string.Join(",", _columns, "[TotalCount]");
+            Columns = string.Join(",", Columns, "[TotalCount]");
 
             _fetch = string.Format(fetchClause, offset, fetch);
 
-            _totalCount = string.Format(totalCountClause, _parentTable);
+            _totalCount = string.Format(totalCountClause, ParentTable);
         }
 
         public string GetSql()
@@ -104,37 +69,49 @@ namespace WaterPoint.Core.Bll
                 {2}
                 {3}
                 {4}
-                {5}", Columns, Table, TotalCount, Where, OrderBy, Fetch);
+                {5}", Keywords.Columns, Keywords.Table, Keywords.TotalCount, Keywords.Where, Keywords.OrderBy, Keywords.Fetch);
 
 
             _where = !string.IsNullOrWhiteSpace(_where) ? "WHERE " + _where : string.Empty;
-            _orderBy = !string.IsNullOrWhiteSpace(_orderBy) ? " ORDER BY " + _orderBy : string.Empty;
             _fetch = !string.IsNullOrWhiteSpace(_fetch) ? _fetch : string.Empty;
             _totalCount = !string.IsNullOrWhiteSpace(_totalCount) ? _totalCount : string.Empty;
 
-            return sql.Replace(TotalCount, _totalCount)
-                .Replace(Table, _parentTable)
-                .Replace(Columns, _columns)
-                .Replace(Where, _where)
-                .Replace(OrderBy, _orderBy)
-                .Replace(Fetch, _fetch);
+            if (string.IsNullOrWhiteSpace(_orderBy) && !string.IsNullOrWhiteSpace(_fetch))
+            {
+                var primary = Properties.FirstOrDefault(i => i.GetCustomAttribute(typeof(PrimaryAttribute)) != null);
+
+                if (primary == null)
+                    throw new InvalidOperationException("Pagination requires primary key");
+
+                _orderBy = (Properties.FindIndex(i => i == primary) + 1).ToString();
+            }
+
+            _orderBy = !string.IsNullOrWhiteSpace(_orderBy) ? " ORDER BY " + _orderBy : string.Empty;
+
+
+            return sql.Replace(Keywords.TotalCount, _totalCount)
+                .Replace(Keywords.Table, ParentTable)
+                .Replace(Keywords.Columns, Columns)
+                .Replace(Keywords.Where, _where)
+                .Replace(Keywords.OrderBy, _orderBy)
+                .Replace(Keywords.Fetch, _fetch);
+        }
+
+        public void AddConditions<T>(Expression<Func<T, bool>> values)
+        {
+            var whereClause = values.Body as BinaryExpression;
+
+            var expressionConverter = new PredicateExpressionConverter();
+
+            _where = expressionConverter.Convert(ParentTable, whereClause);
         }
 
         public void Analyze()
         {
             //where it's not a foreign key properties
-            var properties = _type.GetProperties();
+            var properties = Type.GetProperties();
 
-            _columns = string.Join(",\r\n", properties.Select(i => string.Format("{0}.[{1}]", _parentTable, i.Name)));
-        }
-
-        public void AddWhere<T>(Expression<Func<T, bool>> where)
-        {
-            var whereClause = where.Body as BinaryExpression;
-
-            var expressionConverter = new PredicateExpressionConverter();
-
-            _where = expressionConverter.Convert(_parentTable, whereClause);
+            Columns = string.Join(",\r\n", properties.Select(i => string.Format("{0}.[{1}]", ParentTable, i.Name)));
         }
     }
 }

@@ -14,13 +14,13 @@ namespace WaterPoint.Core.Bll.Customers.Queries
             _sqlBuilderFactory = sqlBuilderFactory;
         }
 
-        public void BuildQuery(int orgId, int offset, int pageSize, string sort)
+        public void BuildQuery(int orgId, int offset, int pageSize, string sort, bool sortDesc)
         {
             var builder = _sqlBuilderFactory.Create<SelectSqlBuilder<BasicCustomerPoco>>();
 
             builder.Analyze();
-            builder.AddWhere<BasicCustomerPoco>(i => i.OrganizationId == orgId);
-            builder.AddOrderBy(sort, false);
+            builder.AddConditions<BasicCustomerPoco>(i => i.OrganizationId == orgId);
+            builder.AddOrderBy(sort, sortDesc);
             builder.AddOffset(offset, pageSize);
 
             var sql = builder.GetSql();

@@ -4,7 +4,9 @@ using System.Linq;
 using System.Web;
 using Ninject.Modules;
 using WaterPoint.Api.Common;
+using WaterPoint.Core.Bll;
 using WaterPoint.Core.Bll.Customers;
+using WaterPoint.Core.Bll.Customers.Commands;
 using WaterPoint.Core.Bll.Customers.Queries;
 using WaterPoint.Core.Bll.Customers.Runners;
 using WaterPoint.Core.Domain;
@@ -22,20 +24,25 @@ namespace WaterPoint.Api.DependencyInjection
         public override void Load()
         {
             BindRequestProcessors();
-            BindBlls();
+            BindQueriesAndCommands();
         }
 
-        private void BindBlls()
+        private void BindQueriesAndCommands()
         {
             Bind<PaginatedCustomersQuery>().ToSelf();
-            Bind<PaginatedCustomerQueryRunner>().ToSelf();
+            Bind<PaginatedCustomerRunner>().ToSelf();
             Bind<PaginationAnalyzer>().ToSelf();
+            Bind<CreateCustomersCommand>().ToSelf();
+            Bind<CreateCommandExecutor>().ToSelf();
         }
 
         private void BindRequestProcessors()
         {
             Bind<IRequestProcessor<OrganizationIdRequest, PaginationRequest, PaginatedResult<IEnumerable<BasicCustomer>>>>()
                 .To<PaginatedCustomersProcessor>();
+
+            Bind<ICreateRequestProcessor<OrganizationIdRequest, CreateCustomerRequest, BasicCustomer>>()
+                .To<CreateCustomerRequestProcessor>();
         }
     }
 }

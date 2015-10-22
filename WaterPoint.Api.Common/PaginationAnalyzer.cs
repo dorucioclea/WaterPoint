@@ -15,6 +15,8 @@ namespace WaterPoint.Api.Common
 
         public string Sort { get; private set; }
 
+        public bool Desc { get; private set; }
+
         public void Analyze(PaginationRequest request)
         {
             Offset = (((!request.PageNumber.HasValue || request.PageNumber < 0)
@@ -23,6 +25,7 @@ namespace WaterPoint.Api.Common
             PageSize = request.PageSize ?? 20;
             PageNumber = request.PageNumber ?? 1;
             Sort = request.Sort;
+            Desc = request.Desc ?? false;
         }
     }
 }
