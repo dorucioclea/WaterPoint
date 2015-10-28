@@ -11,12 +11,34 @@ namespace WaterPoint.Data.Entity.Attributes
     {
         public string Table { get; private set; }
 
+        public string Alias { get; private set; }
+
         public string Schema { get; private set; }
 
-        public TableAttribute(string schema, string table)
+        public TableAttribute(string schema, string table, string alias)
         {
             Schema = schema;
             Table = table;
+            Alias = alias;
+        }
+    }
+
+    public class JoinAttribute : Attribute
+    {
+        public enum JoinType
+        {
+            Left,
+            Inner,
+            Right
+        }
+
+        public JoinType Join { get; private set; }
+
+        public string Via { get; set; }
+
+        public JoinAttribute(JoinType join)
+        {
+            Join = join;
         }
     }
 }

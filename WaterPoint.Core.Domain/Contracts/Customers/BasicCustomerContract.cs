@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WaterPoint.Core.Domain.Contracts.Customers
 {
-    public class BasicCustomer
+    public class BasicCustomerContract
     {
         public int Id { get; set; }
         public int OrganizationId { get; set; }
@@ -16,10 +16,5 @@ namespace WaterPoint.Core.Domain.Contracts.Customers
         public string OtherName { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
-    }
-
-    public class BasicCustomerWithAddress : BasicCustomer
-    {
-        public string Address { get; set; }
     }
 }

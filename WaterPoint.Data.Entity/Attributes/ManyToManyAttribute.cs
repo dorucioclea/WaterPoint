@@ -6,19 +6,13 @@ using System.Threading.Tasks;
 
 namespace WaterPoint.Data.Entity.Attributes
 {
-    public class PrimaryAttribute : Attribute
+    public class OneToManyAttribute : Attribute
     {
-        public PrimaryAttribute()
+        public string On { get; private set; }
+
+        public OneToManyAttribute(string on)
         {
-
-        }
-    }
-
-    public class ForeignAttribute : Attribute
-    {
-        public ForeignAttribute()
-        {
-
+            On = on;
         }
     }
 }

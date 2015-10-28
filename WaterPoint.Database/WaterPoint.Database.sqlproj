@@ -93,6 +93,7 @@
     <Build Include="dbo\Tables\Staff.sql" />
     <Build Include="im\Tables\Flag.sql" />
     <Build Include="dbo\Tables\CustomerType.sql" />
+    <Build Include="dbo\Tables\CustomerAddress.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="WaterPoint.Database.publish.xml" />

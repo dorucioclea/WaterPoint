@@ -9,14 +9,15 @@ using WaterPoint.Data.Entity.Attributes;
 
 namespace WaterPoint.Core.Bll
 {
-    internal static class Keywords
+    internal static class SqlPatterns
     {
         internal const string
             Columns = "/**COLUMNS**/",
-            Table = "/**TABLE**/",
+            FromTable = "/**FromTABLE**/",
             TotalCount = "/**TOTALCOUNT**/",
             Where = "/**WHERE**/",
             OrderBy = "/**ORDERBY**/",
+            OrderDesc = "/**ORDERDESC**/",
             Fetch = "/**FETCH**/",
             Join = "/**JOIN**/",
             Values = "/**VALUES**";

@@ -15,7 +15,7 @@ using WaterPoint.Data.Entity.DataEntities;
 namespace WaterPoint.Core.RequestProcessor.Customers
 {
     public class CreateCustomerRequestProcessor :
-        ICreateRequestProcessor<OrganizationIdRequest, CreateCustomerRequest, BasicCustomer>
+        ICreateRequestProcessor<OrganizationIdRequest, CreateCustomerRequest, BasicCustomerContract>
     {
         private readonly IDapperUnitOfWork _dapperUnitOfWork;
         private readonly CreateCustomersCommand _command;
@@ -31,7 +31,7 @@ namespace WaterPoint.Core.RequestProcessor.Customers
             _executor = executor;
         }
 
-        public BasicCustomer Process(OrganizationIdRequest pathInput, CreateCustomerRequest input)
+        public BasicCustomerContract Process(OrganizationIdRequest pathInput, CreateCustomerRequest input)
         {
             var customer = new Customer
             {

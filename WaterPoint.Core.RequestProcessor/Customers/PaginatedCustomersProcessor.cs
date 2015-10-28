@@ -19,17 +19,17 @@ namespace WaterPoint.Core.RequestProcessor.Customers
 {
     public class PaginatedCustomersProcessor :
         BaseDapperUowRequestProcess,
-        IRequestProcessor<OrganizationIdRequest, PaginationRequest, PaginatedResult<IEnumerable<BasicCustomerWithAddress>>>
+        IRequestProcessor<OrganizationIdRequest, PaginationRequest, PaginatedResult<IEnumerable<BasicCustomerContract>>>
     {
         private readonly PaginationAnalyzer _paginationAnalyzer;
-        private readonly PaginatedCustomersQuery _paginatedCustomersQuery;
+        private readonly PaginatedBasicCustomerPocosQuery _paginatedCustomersQuery;
         private readonly PaginatedCustomerRunner _paginatedCustomerRunner;
 
         public PaginatedCustomersProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
             PaginatedCustomerRunner paginatedCustomerRunner,
             PaginationAnalyzer paginationAnalyzer,
-            PaginatedCustomersQuery paginatedCustomersQuery)
+            PaginatedBasicCustomerPocosQuery paginatedCustomersQuery)
             : base(dapperUnitOfWork)
         {
             _paginatedCustomerRunner = paginatedCustomerRunner;
@@ -37,23 +37,23 @@ namespace WaterPoint.Core.RequestProcessor.Customers
             _paginatedCustomersQuery = paginatedCustomersQuery;
         }
 
-        public PaginatedResult<IEnumerable<BasicCustomerWithAddress>> Process(OrganizationIdRequest path, PaginationRequest request)
+        public PaginatedResult<IEnumerable<BasicCustomerContract>> Process(OrganizationIdRequest path, PaginationRequest request)
         {
             _paginationAnalyzer.Analyze(request);
 
-            using (DapperUnitOfWork.Begin())
-            {
-                _paginatedCustomersQuery.BuildQuery(
+            _paginatedCustomersQuery.BuildQuery(
                     path.OrganizationId,
                     _paginationAnalyzer.Offset,
                     _paginationAnalyzer.PageSize,
                     _paginationAnalyzer.Sort,
                     _paginationAnalyzer.Desc);
 
+            using (DapperUnitOfWork.Begin())
+            {
                 var result = _paginatedCustomerRunner.Run(_paginatedCustomersQuery);
 
                 return (result != null)
-                    ? new PaginatedResult<IEnumerable<BasicCustomerWithAddress>>
+                    ? new PaginatedResult<IEnumerable<BasicCustomerContract>>
                     {
                         Data = result.Data.Select(CustomerMapper.Map),
                         TotalCount = result.TotalCount,

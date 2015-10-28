@@ -11,14 +11,14 @@ using WaterPoint.Data.Entity.Attributes;
 
 namespace WaterPoint.Core.Bll
 {
-    public class CreateSqlBuilder<T> : SqlBuilder<T>, ICreateSqlBuilder<T>
+    public class CreateSqlBuilder<T> : SqlBuilder<T>, ICreateSqlBuilder
            where T : IDataEntity
     {
         private string _values = string.Empty;
 
         public Dictionary<string, object> Parameters { get; private set; }
 
-        private IEnumerable<PropertyInfo> _propertyInfos;
+        private readonly IEnumerable<PropertyInfo> _propertyInfos;
 
         public CreateSqlBuilder()
         {
@@ -34,12 +34,12 @@ namespace WaterPoint.Core.Bll
                 VALUES
                 ({2})
                 SELECT SCOPE_IDENTITY()",
-                Keywords.Table, Keywords.Columns, Keywords.Values);
+                SqlPatterns.FromTable, SqlPatterns.Columns, SqlPatterns.Values);
 
             return sql
-                .Replace(Keywords.Table, ParentTable)
-                .Replace(Keywords.Columns, Columns)
-                .Replace(Keywords.Values, _values);
+                .Replace(SqlPatterns.FromTable, ParentTable)
+                .Replace(SqlPatterns.Columns, Columns)
+                .Replace(SqlPatterns.Values, _values);
         }
 
         public void Analyze()

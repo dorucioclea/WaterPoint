@@ -9,32 +9,20 @@ namespace WaterPoint.Core.Bll
         string GetSql();
     }
 
-    public interface ISqlBuilder<T> : ISqlBuilder
-    {
-        void Analyze();
-    }
-
-    public interface ISelectSqlBuilder<T> : ISqlBuilder<T>
-    {
-        //void AddOrderBy<T>(Expression<Func<T, object>> orderby, bool desc);
-
-        void AddOrderBy(string orderBy, bool desc);
-
-        void AddOffset(int offset, int fetch);
-
-        void AddConditions<T>(Expression<Func<T, bool>> values);
-    }
-
-    public interface ICreateSqlBuilder<T> : ISqlBuilder<T>
-    {
-        void AddValueParameters(IDataEntity input);
-    }
-
-    public interface IUpdateSqlBuilder<T> : ISqlBuilder<T>
+    public interface ISelectSqlBuilder : ISqlBuilder
     {
     }
 
-    public interface IDeleteSqlBuilder<T> : ISqlBuilder<T>
+    public interface ICreateSqlBuilder : ISqlBuilder
+    {
+
+    }
+
+    public interface IUpdateSqlBuilder : ISqlBuilder
+    {
+    }
+
+    public interface IDeleteSqlBuilder : ISqlBuilder
     {
     }
 }

@@ -15,14 +15,14 @@ namespace WaterPoint.Api.Customer.Controllers
     public class CusotmersController : BaseOrgnizationContextController
     {
         private readonly IRequestProcessor<OrganizationIdRequest, PaginationRequest,
-                PaginatedResult<IEnumerable<BasicCustomerWithAddress>>> _listCustomeRequestProcessor;
+                PaginatedResult<IEnumerable<BasicCustomerContract>>> _listCustomeRequestProcessor;
 
-        private readonly ICreateRequestProcessor<OrganizationIdRequest, CreateCustomerRequest, BasicCustomer> _createCustomerRequest;
+        private readonly ICreateRequestProcessor<OrganizationIdRequest, CreateCustomerRequest, BasicCustomerContract> _createCustomerRequest;
 
         public CusotmersController(
             IRequestProcessor<OrganizationIdRequest, PaginationRequest,
-                    PaginatedResult<IEnumerable<BasicCustomerWithAddress>>> listCustomeRequestProcessor,
-            ICreateRequestProcessor<OrganizationIdRequest, CreateCustomerRequest, BasicCustomer> createCustomerRequest)
+                    PaginatedResult<IEnumerable<BasicCustomerContract>>> listCustomeRequestProcessor,
+            ICreateRequestProcessor<OrganizationIdRequest, CreateCustomerRequest, BasicCustomerContract> createCustomerRequest)
         {
             _listCustomeRequestProcessor = listCustomeRequestProcessor;
             _createCustomerRequest = createCustomerRequest;
@@ -55,6 +55,12 @@ namespace WaterPoint.Api.Customer.Controllers
             var result = _createCustomerRequest.Process(request, customerInput);
 
             return Ok(result);
+        }
+
+        [Route("")]
+        public IHttpActionResult Put(object obj)
+        {
+            return Ok(obj);
         }
     }
 }

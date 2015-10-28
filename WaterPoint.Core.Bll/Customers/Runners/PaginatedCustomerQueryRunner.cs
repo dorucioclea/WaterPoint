@@ -19,7 +19,11 @@ namespace WaterPoint.Core.Bll.Customers.Runners
 
         public PaginatedPoco<IEnumerable<BasicCustomerPoco>> Run(IQuery query)
         {
-            var rawResults = _dapperDbContext.List<BasicCustomerPoco, PaginatedPoco>(query.Query, "TotalCount", query.Parameters)
+            var rawResults = _dapperDbContext
+                .List<BasicCustomerPoco, PaginatedPoco>(
+                    query.Query,
+                    PaginatedPoco.SplitOnColumn,
+                    query.Parameters)
                 .ToArray();
 
             if (!rawResults.Any())

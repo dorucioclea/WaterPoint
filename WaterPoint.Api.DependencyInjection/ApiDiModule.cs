@@ -23,7 +23,7 @@ namespace WaterPoint.Api.DependencyInjection
 
     //    private void BindRequestProcessors()
     //    {
-    //        Bind<IRequestProcessor<ListProductsByFlagRequest, IEnumerable<BasicProduct>>>()
+    //        Bind<IRequestProcessor<ListProdu ctsByFlagRequest, IEnumerable<BasicProduct>>>()
     //            .To<ListProductsByFlagProcessor>();
 
     //        //Bind<IRequestProcessor<ListBannersByBannerTypeRequest, IEnumerable<BasicBanner>>>()
