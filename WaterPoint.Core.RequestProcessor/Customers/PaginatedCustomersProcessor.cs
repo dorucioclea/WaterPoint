@@ -39,14 +39,14 @@ namespace WaterPoint.Core.RequestProcessor.Customers
 
         public PaginatedResult<IEnumerable<BasicCustomerContract>> Process(OrganizationIdRequest path, PaginationRequest request)
         {
-            _paginationAnalyzer.Analyze(request);
+            _paginationAnalyzer.Analyze(request, "Id");
 
             _paginatedCustomersQuery.BuildQuery(
                     path.OrganizationId,
                     _paginationAnalyzer.Offset,
                     _paginationAnalyzer.PageSize,
                     _paginationAnalyzer.Sort,
-                    _paginationAnalyzer.Desc);
+                    _paginationAnalyzer.IsDesc);
 
             using (DapperUnitOfWork.Begin())
             {
@@ -58,7 +58,9 @@ namespace WaterPoint.Core.RequestProcessor.Customers
                         Data = result.Data.Select(CustomerMapper.Map),
                         TotalCount = result.TotalCount,
                         PageNumber = _paginationAnalyzer.PageNumber,
-                        PageSize = _paginationAnalyzer.PageSize
+                        PageSize = _paginationAnalyzer.PageSize,
+                        Sort = _paginationAnalyzer.Sort,
+                        IsDesc = _paginationAnalyzer.IsDesc
                     }
                     : null;
             }

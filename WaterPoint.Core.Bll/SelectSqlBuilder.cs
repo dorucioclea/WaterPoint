@@ -59,9 +59,6 @@ namespace WaterPoint.Core.Bll
 
         public void AddOrderBy<T>(string orderBy, bool desc)
         {
-            if (string.IsNullOrWhiteSpace(orderBy))
-                orderBy = "Id";
-
             var index = typeof(T).GetProperties().ToList().FindIndex(i =>
                 string.Equals(i.Name, orderBy, StringComparison.CurrentCultureIgnoreCase)) + 1;
 

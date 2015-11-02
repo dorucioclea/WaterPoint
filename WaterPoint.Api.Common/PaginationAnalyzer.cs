@@ -15,17 +15,17 @@ namespace WaterPoint.Api.Common
 
         public string Sort { get; private set; }
 
-        public bool Desc { get; private set; }
+        public bool IsDesc { get; private set; }
 
-        public void Analyze(PaginationRequest request)
+        public void Analyze(PaginationRequest request, string defaultSort)
         {
             Offset = (((!request.PageNumber.HasValue || request.PageNumber < 0)
                 ? 1
                 : request.PageNumber.Value) - 1) * (request.PageSize ?? 20);
             PageSize = request.PageSize ?? 20;
             PageNumber = request.PageNumber ?? 1;
-            Sort = request.Sort;
-            Desc = request.Desc ?? false;
+            Sort = string.IsNullOrWhiteSpace(request.Sort) ? defaultSort : request.Sort;
+            IsDesc = request.IsDesc ?? false;
         }
     }
 }

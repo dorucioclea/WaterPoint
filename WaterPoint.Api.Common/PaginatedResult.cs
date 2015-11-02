@@ -25,6 +25,8 @@ namespace WaterPoint.Api.Common
         public int PageNumber { get; set; }
         public int PageSize { get; set; }
         public int TotalCount { get; set; }
+        public string Sort { get; set; }
+        public bool IsDesc { get; set; }
         //TODO:
         public int MaxId { get; set; }
         public T Data { get; set; }
