@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Web.Http;
+using System.Web.Http.Results;
 using WaterPoint.Api.Common;
 using WaterPoint.Api.Common.BaseControllers;
 using WaterPoint.Core.Domain;
@@ -35,9 +36,6 @@ namespace WaterPoint.Api.Customer.Controllers
         {
             //validation
             var result = _listCustomeRequestProcessor.Process(request, pagination);
-
-            if (result == null)
-                return NotFound();
 
             return Ok(result);
         }
