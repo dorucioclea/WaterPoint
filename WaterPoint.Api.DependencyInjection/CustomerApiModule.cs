@@ -34,6 +34,7 @@ namespace WaterPoint.Api.DependencyInjection
             Bind<PaginationAnalyzer>().ToSelf();
             Bind<CreateCustomersCommand>().ToSelf();
             Bind<CreateCommandExecutor>().ToSelf();
+            Bind<GetCustomerByIdQueryRunner>().ToSelf();
         }
 
         private void BindRequestProcessors()
@@ -43,6 +44,9 @@ namespace WaterPoint.Api.DependencyInjection
 
             Bind<ICreateRequestProcessor<OrganizationIdRequest, CreateCustomerRequest, BasicCustomerContract>>()
                 .To<CreateCustomerRequestProcessor>();
+
+            Bind<IRequestProcessor<GetCustomerByIdRequest, BasicCustomerContract>>()
+                .To<GetCustomerByIdRequestProcessor>();
         }
     }
 }

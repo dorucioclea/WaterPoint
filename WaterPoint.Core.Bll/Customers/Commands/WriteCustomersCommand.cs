@@ -21,7 +21,7 @@ namespace WaterPoint.Core.Bll.Customers.Commands
             builder.AddValueParameters(input);
 
             var sql = builder.GetSql();
-            
+
             Query = sql;
             Parameters = builder.Parameters;
         }

@@ -56,7 +56,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Customers\Queries\GetCustomerByIdQuery.cs" />
     <Compile Include="Customers\Queries\PaginatedCustomerWithAddressQuery.cs" />
+    <Compile Include="Customers\Runners\GetCustomerByIdQueryRunner.cs" />
     <Compile Include="SqlBuilder.cs" />
     <Compile Include="Keywords.cs" />
     <Compile Include="Customers\Commands\WriteCustomersCommand.cs" />

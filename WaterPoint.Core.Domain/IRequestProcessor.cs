@@ -7,12 +7,18 @@ using WaterPoint.Core.Domain.Requests;
 
 namespace WaterPoint.Core.Domain
 {
-    public interface IRequestProcessor<in TParthInput, in TQueryIntput, out TOutput>
-        where TParthInput : IUriPathRequest
+    public interface IRequestProcessor<in TPathInput, in TQueryIntput, out TOutput>
+        where TPathInput : IUriPathRequest
         where TQueryIntput : IUriQueryRequest
 
     {
-        TOutput Process(TParthInput path, TQueryIntput request);
+        TOutput Process(TPathInput path, TQueryIntput request);
+    }
+
+    public interface IRequestProcessor<in TPathInput, out TOutput>
+        where TPathInput : IUriPathRequest
+    {
+        TOutput Process(TPathInput path);
     }
 
     public interface ICreateRequestProcessor<in TPathInput, in TInput, out TOutput>

@@ -17,4 +17,10 @@ namespace WaterPoint.Core.Domain.Requests.Customers
         public string Email { get; set; }
         public DateTime? Dob { get; set; }
     }
+
+    public class UpdateCustomerRequest : CreateCustomerRequest
+    {
+        [Required]
+        public int Id { get; set; }
+    }
 }

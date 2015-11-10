@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Web.Http;
 using System.Web.Http.Results;
 using WaterPoint.Api.Common;
@@ -15,18 +16,18 @@ namespace WaterPoint.Api.Customer.Controllers
     [RoutePrefix(RouteDefinitions.Cusotmers.Prefix)]
     public class CusotmersController : BaseOrgnizationContextController
     {
-        private readonly IRequestProcessor<OrganizationIdRequest, PaginationRequest,
-                PaginatedResult<IEnumerable<BasicCustomerContract>>> _listCustomeRequestProcessor;
-
+        private readonly IRequestProcessor<OrganizationIdRequest, PaginationRequest,PaginatedResult<IEnumerable<BasicCustomerContract>>> _listCustomeRequestProcessor;
         private readonly ICreateRequestProcessor<OrganizationIdRequest, CreateCustomerRequest, BasicCustomerContract> _createCustomerRequest;
+        private readonly IRequestProcessor<GetCustomerByIdRequest, BasicCustomerContract> _getCustomerByIdProcessor;
 
         public CusotmersController(
-            IRequestProcessor<OrganizationIdRequest, PaginationRequest,
-                    PaginatedResult<IEnumerable<BasicCustomerContract>>> listCustomeRequestProcessor,
-            ICreateRequestProcessor<OrganizationIdRequest, CreateCustomerRequest, BasicCustomerContract> createCustomerRequest)
+            IRequestProcessor<OrganizationIdRequest, PaginationRequest,PaginatedResult<IEnumerable<BasicCustomerContract>>> listCustomeRequestProcessor,
+            ICreateRequestProcessor<OrganizationIdRequest, CreateCustomerRequest, BasicCustomerContract> createCustomerRequest,
+            IRequestProcessor<GetCustomerByIdRequest,  BasicCustomerContract> getCustomerByIdProcessor)
         {
             _listCustomeRequestProcessor = listCustomeRequestProcessor;
             _createCustomerRequest = createCustomerRequest;
+            _getCustomerByIdProcessor = getCustomerByIdProcessor;
         }
 
         [Route("")]
@@ -36,6 +37,14 @@ namespace WaterPoint.Api.Customer.Controllers
         {
             //validation
             var result = _listCustomeRequestProcessor.Process(request, pagination);
+
+            return Ok(result);
+        }
+
+        [Route("{id:int}")]
+        public IHttpActionResult Get([FromUri]GetCustomerByIdRequest request)
+        {
+            var result = _getCustomerByIdProcessor.Process(request);
 
             return Ok(result);
         }
@@ -56,9 +65,9 @@ namespace WaterPoint.Api.Customer.Controllers
         }
 
         [Route("")]
-        public IHttpActionResult Put(object obj)
+        public IHttpActionResult Put([FromUri] OrganizationIdRequest request, [FromBody]object input)
         {
-            return Ok(obj);
+            return Ok();
         }
     }
 }
