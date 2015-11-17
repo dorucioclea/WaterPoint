@@ -6,6 +6,8 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using WaterPoint.Api.Common.AppStart;
 
 namespace WaterPoint.Api.Customer
@@ -15,6 +17,11 @@ namespace WaterPoint.Api.Customer
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
+
+            var config = GlobalConfiguration.Configuration;
+            var settings = new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() };
+            config.Formatters.JsonFormatter.SerializerSettings = settings;
+
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

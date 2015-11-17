@@ -45,7 +45,7 @@ namespace WaterPoint.Api.DependencyInjection
             Bind<ICreateRequestProcessor<OrganizationIdRequest, CreateCustomerRequest, BasicCustomerContract>>()
                 .To<CreateCustomerRequestProcessor>();
 
-            Bind<IRequestProcessor<GetCustomerByIdRequest, BasicCustomerContract>>()
+            Bind<IRequestProcessor<OrganizationEntityRequest, BasicCustomerContract>>()
                 .To<GetCustomerByIdRequestProcessor>();
         }
     }

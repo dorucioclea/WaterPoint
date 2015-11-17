@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Http;
+using System.Web.Http.OData;
 using System.Web.Http.Results;
 using WaterPoint.Api.Common;
 using WaterPoint.Api.Common.BaseControllers;
@@ -16,18 +17,21 @@ namespace WaterPoint.Api.Customer.Controllers
     [RoutePrefix(RouteDefinitions.Cusotmers.Prefix)]
     public class CusotmersController : BaseOrgnizationContextController
     {
-        private readonly IRequestProcessor<OrganizationIdRequest, PaginationRequest,PaginatedResult<IEnumerable<BasicCustomerContract>>> _listCustomeRequestProcessor;
+        private readonly IRequestProcessor<OrganizationIdRequest, PaginationRequest, PaginatedResult<IEnumerable<BasicCustomerContract>>> _listCustomeRequestProcessor;
         private readonly ICreateRequestProcessor<OrganizationIdRequest, CreateCustomerRequest, BasicCustomerContract> _createCustomerRequest;
-        private readonly IRequestProcessor<GetCustomerByIdRequest, BasicCustomerContract> _getCustomerByIdProcessor;
+        private readonly IRequestProcessor<OrganizationEntityRequest, BasicCustomerContract> _getCustomerByIdProcessor;
+        private readonly IUpdateRequestProcessor<OrganizationEntityRequest, UpdateCustomerRequest, BasicCustomerContract> _updateCustomerRequestProcessor;
 
         public CusotmersController(
-            IRequestProcessor<OrganizationIdRequest, PaginationRequest,PaginatedResult<IEnumerable<BasicCustomerContract>>> listCustomeRequestProcessor,
+            IRequestProcessor<OrganizationIdRequest, PaginationRequest, PaginatedResult<IEnumerable<BasicCustomerContract>>> listCustomeRequestProcessor,
+            IRequestProcessor<OrganizationEntityRequest, BasicCustomerContract> getCustomerByIdProcessor,
             ICreateRequestProcessor<OrganizationIdRequest, CreateCustomerRequest, BasicCustomerContract> createCustomerRequest,
-            IRequestProcessor<GetCustomerByIdRequest,  BasicCustomerContract> getCustomerByIdProcessor)
+            IUpdateRequestProcessor<OrganizationEntityRequest, UpdateCustomerRequest, BasicCustomerContract> updateCustomerRequestProcessor)
         {
             _listCustomeRequestProcessor = listCustomeRequestProcessor;
             _createCustomerRequest = createCustomerRequest;
             _getCustomerByIdProcessor = getCustomerByIdProcessor;
+            _updateCustomerRequestProcessor = updateCustomerRequestProcessor;
         }
 
         [Route("")]
@@ -42,7 +46,7 @@ namespace WaterPoint.Api.Customer.Controllers
         }
 
         [Route("{id:int}")]
-        public IHttpActionResult Get([FromUri]GetCustomerByIdRequest request)
+        public IHttpActionResult Get([FromUri]OrganizationEntityRequest request)
         {
             var result = _getCustomerByIdProcessor.Process(request);
 
@@ -65,9 +69,22 @@ namespace WaterPoint.Api.Customer.Controllers
         }
 
         [Route("")]
-        public IHttpActionResult Put([FromUri] OrganizationIdRequest request, [FromBody]object input)
+        [HttpPatch]
+        public IHttpActionResult Patch(
+            [FromUri]OrganizationEntityRequest request,
+            [FromBody]Delta<UpdateCustomerRequest> input)
         {
+            var f = new UpdateCustomerRequest();
+            input.Patch(f);
+
+            _updateCustomerRequestProcessor.Process(request, f);
             return Ok();
+        }
+
+        [Route("")]
+        public IHttpActionResult Put([FromUri]OrganizationEntityRequest request, [FromBody]object input)
+        {
+            throw new NotImplementedException();
         }
     }
 }

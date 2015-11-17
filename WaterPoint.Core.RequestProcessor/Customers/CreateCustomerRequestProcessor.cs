@@ -3,13 +3,13 @@ using WaterPoint.Core.Bll.Customers.Runners;
 using WaterPoint.Core.ContractMapper;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts.Customers;
-using WaterPoint.Core.Domain.Requests.Customers;
+using WaterPoint.Core.Domain.Requests;
 using WaterPoint.Data.DbContext.Dapper;
 
 namespace WaterPoint.Core.RequestProcessor.Customers
 {
     public class GetCustomerByIdRequestProcessor :
-        IRequestProcessor<GetCustomerByIdRequest, BasicCustomerContract>
+        IRequestProcessor<OrganizationEntityRequest, BasicCustomerContract>
     {
         private readonly IDapperUnitOfWork _dapperUnitOfWork;
         private readonly GetCustomerByIdQuery _command;
@@ -25,7 +25,7 @@ namespace WaterPoint.Core.RequestProcessor.Customers
             _runner = runner;
         }
 
-        public BasicCustomerContract Process(GetCustomerByIdRequest path)
+        public BasicCustomerContract Process(OrganizationEntityRequest path)
         {
             _command.BuildQuery(path.OrganizationId, path.Id);
 

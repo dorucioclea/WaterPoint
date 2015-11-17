@@ -54,7 +54,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="IRequestProcessor.cs" />
-    <Compile Include="Requests\Customers\GetCustomerByIdRequest.cs" />
+    <Compile Include="Requests\OrganizationEntityRequest.cs" />
     <Compile Include="Requests\Customers\CreateCustomerRequest.cs" />
     <Compile Include="Requests\OrganizationIdRequest.cs" />
     <Compile Include="Requests\IUriQueryRequest.cs" />

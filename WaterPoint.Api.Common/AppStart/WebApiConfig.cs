@@ -26,6 +26,8 @@ namespace WaterPoint.Api.Common.AppStart
             );
             //---
             AddJsonFormatter(config);
+
+            config.Formatters.Remove(config.Formatters.XmlFormatter);
         }
 
         private static void AddJsonFormatter(HttpConfiguration config)
@@ -34,10 +36,9 @@ namespace WaterPoint.Api.Common.AppStart
 
             var jsonFormatter = new JsonMediaTypeFormatter
             {
-                SerializerSettings = { ContractResolver = new CamelCasePropertyNamesContractResolver() }
+                SerializerSettings = { ContractResolver = new DeltaCamelCaseContractResolver() }
             };
             jsonFormatter.SerializerSettings.Converters.Add(new StringEnumConverter { CamelCaseText = true });
-
 
             config.Formatters.Add(jsonFormatter);
         }

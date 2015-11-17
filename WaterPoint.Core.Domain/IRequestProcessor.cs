@@ -10,7 +10,6 @@ namespace WaterPoint.Core.Domain
     public interface IRequestProcessor<in TPathInput, in TQueryIntput, out TOutput>
         where TPathInput : IUriPathRequest
         where TQueryIntput : IUriQueryRequest
-
     {
         TOutput Process(TPathInput path, TQueryIntput request);
     }
@@ -22,6 +21,13 @@ namespace WaterPoint.Core.Domain
     }
 
     public interface ICreateRequestProcessor<in TPathInput, in TInput, out TOutput>
+        where TPathInput : IUriPathRequest
+        where TInput: IPayload
+    {
+        TOutput Process(TPathInput pathInput, TInput input);
+    }
+
+    public interface IUpdateRequestProcessor<in TPathInput, in TInput, out TOutput>
         where TPathInput : IUriPathRequest
         where TInput: IPayload
     {
