@@ -11,7 +11,7 @@ namespace WaterPoint.Core.Bll
 {
     public abstract class SqlBuilder<T>
     {
-        protected string Columns { get; set; }
+        public string Columns { get; set; }
         protected string ParentTable { get; set; }
         protected Type Type { get; set; }
         protected List<PropertyInfo> Properties { get; set; }
@@ -25,7 +25,7 @@ namespace WaterPoint.Core.Bll
             if (tableAttribute == null)
                 throw new InvalidDataException("Missing TableAttribute.");
 
-            ParentTable = string.Format("[{0}].[{1}]", tableAttribute.Schema, tableAttribute.Table);
+            ParentTable = $"[{tableAttribute.Schema}].[{tableAttribute.Table}]";
 
             Properties = Type.GetProperties().ToList();
         }

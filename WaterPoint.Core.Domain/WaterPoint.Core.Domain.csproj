@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contracts\ResultContract.cs" />
+    <Compile Include="Exceptions\NotFoundException.cs" />
     <Compile Include="HttpResults\ErrorResult.cs" />
     <Compile Include="ContentTypes.cs" />
     <Compile Include="Contracts\ErrorContract.cs" />

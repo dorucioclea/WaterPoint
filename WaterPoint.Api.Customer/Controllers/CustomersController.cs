@@ -68,17 +68,17 @@ namespace WaterPoint.Api.Customer.Controllers
             return Ok(result);
         }
 
-        //[Route("")]
-        //public IHttpActionResult Put(
-        //    [FromUri] OrganizationEntityRequest request,
-        //    [FromBody] Delta<UpdateCustomerRequest> input)
-        //{
-        //    //map customer to an updatecustomerrequest so it gets all data
-        //    //input.Patch(updatecustomerrequest) to get the patched value
-        //    //pass patched value to processor
-        //    _updateRequestProcessor.Process(request, input);
-        //    return Ok();
-        //}
+        [Route("")]
+        public IHttpActionResult Put(
+            [FromUri] OrganizationEntityRequest request,
+            [FromBody] Delta<UpdateCustomerRequest> input)
+        {
+            //map customer to an updatecustomerrequest so it gets all data
+            //input.Patch(updatecustomerrequest) to get the patched value
+            //pass patched value to processor
+            //_updateRequestProcessor.Process(request, input);
+            return Ok();
+        }
     }
 }
 
