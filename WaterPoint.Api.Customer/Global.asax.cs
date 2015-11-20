@@ -17,11 +17,6 @@ namespace WaterPoint.Api.Customer
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
-
-            var config = GlobalConfiguration.Configuration;
-            var settings = new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() };
-            config.Formatters.JsonFormatter.SerializerSettings = settings;
-
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

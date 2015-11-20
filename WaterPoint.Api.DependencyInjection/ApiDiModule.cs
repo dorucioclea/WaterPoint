@@ -6,7 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Ninject.Modules;
 using WaterPoint.Core.Domain;
-using WaterPoint.Core.Domain.Requests.Products;
 using WaterPoint.Core.RequestProcessor;
 using Ninject.Web.Common;
 using WaterPoint.Core.ContractMapper;

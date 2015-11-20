@@ -10,11 +10,10 @@ using WaterPoint.Core.Bll.Customers.Commands;
 using WaterPoint.Core.Bll.Customers.Queries;
 using WaterPoint.Core.Bll.Customers.Runners;
 using WaterPoint.Core.Domain;
-using WaterPoint.Core.Domain.Blls;
 using WaterPoint.Core.RequestProcessor.Customers;
-using WaterPoint.Core.Domain.Requests.Customers;
 using WaterPoint.Core.Domain.Contracts.Customers;
-using WaterPoint.Core.Domain.Requests;
+using WaterPoint.Core.Domain.RequestDtos;
+using WaterPoint.Core.Domain.RequestDtos.Customers;
 using WaterPoint.Core.RequestProcessor;
 
 namespace WaterPoint.Api.DependencyInjection
@@ -39,13 +38,13 @@ namespace WaterPoint.Api.DependencyInjection
 
         private void BindRequestProcessors()
         {
-            Bind<IRequestProcessor<OrganizationIdRequest, PaginationRequest, PaginatedResult<IEnumerable<BasicCustomerContract>>>>()
+            Bind<IRequestProcessor<OrganizationIdRequest, PaginationRequest, PaginatedResult<IEnumerable<CustomerContract>>>>()
                 .To<PaginatedCustomersProcessor>();
 
-            Bind<ICreateRequestProcessor<OrganizationIdRequest, CreateCustomerRequest, BasicCustomerContract>>()
+            Bind<ICreateRequestProcessor<OrganizationIdRequest, CreateCustomerRequest, CustomerContract>>()
                 .To<CreateCustomerRequestProcessor>();
 
-            Bind<IRequestProcessor<OrganizationEntityRequest, BasicCustomerContract>>()
+            Bind<IRequestProcessor<OrganizationEntityRequest, CustomerContract>>()
                 .To<GetCustomerByIdRequestProcessor>();
         }
     }

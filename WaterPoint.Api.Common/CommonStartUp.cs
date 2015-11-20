@@ -24,9 +24,11 @@ namespace WaterPoint.Api.Common
 
         public virtual void Configuration(IAppBuilder app)
         {
-            var config = new HttpConfiguration();
+            //var config = new HttpConfiguration();
 
-            WebApiConfig.Register(config);
+            //WebApiConfig.Register(config);
+
+            var config = GlobalConfiguration.Configuration;
 
             app.UseNinjectMiddleware(CreateKernel)
                 .UseNinjectWebApi(config);

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Reflection;
-using WaterPoint.Core.Domain.Requests;
+using WaterPoint.Core.Domain.RequestDtos;
 
 namespace WaterPoint.Api.Common
 {

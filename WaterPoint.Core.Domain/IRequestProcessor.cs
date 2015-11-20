@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using WaterPoint.Core.Domain.Requests;
+using WaterPoint.Core.Domain.RequestDtos;
 
 namespace WaterPoint.Core.Domain
 {
@@ -22,19 +21,13 @@ namespace WaterPoint.Core.Domain
 
     public interface ICreateRequestProcessor<in TPathInput, in TInput, out TOutput>
         where TPathInput : IUriPathRequest
-        where TInput: IPayload
     {
         TOutput Process(TPathInput pathInput, TInput input);
     }
-
+    
     public interface IUpdateRequestProcessor<in TPathInput, in TInput, out TOutput>
         where TPathInput : IUriPathRequest
-        where TInput: IPayload
     {
         TOutput Process(TPathInput pathInput, TInput input);
-    }
-
-    public interface IPayload
-    {
     }
 }

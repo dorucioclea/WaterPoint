@@ -17,10 +17,10 @@ namespace WaterPoint.Core.Bll.Customers.Runners
             _dapperDbContext = dapperDbContext;
         }
 
-        public BasicCustomerPoco Run(IQuery query)
+        public CustomerPoco Run(IQuery query)
         {
             var customer = _dapperDbContext
-                .List<BasicCustomerPoco>(query.Query, query.Parameters)
+                .List<CustomerPoco>(query.Query, query.Parameters)
                 .SingleOrDefault();
 
             return customer;

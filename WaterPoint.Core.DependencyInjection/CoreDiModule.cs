@@ -11,7 +11,6 @@ using Ninject.Web.Common;
 using WaterPoint.Core.Bll;
 using WaterPoint.Core.ContractMapper;
 using WaterPoint.Core.Domain.Repositories;
-using WaterPoint.Core.Domain.Requests.Products;
 using WaterPoint.Core.Domain;
 using WaterPoint.Data.DbContext.Dapper;
 using WaterPoint.Data.Entity.DataEntities;

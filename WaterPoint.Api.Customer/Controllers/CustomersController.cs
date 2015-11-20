@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Web.Http;
 using System.Web.Http.OData;
 using System.Web.Http.Results;
@@ -7,31 +8,30 @@ using WaterPoint.Api.Common;
 using WaterPoint.Api.Common.BaseControllers;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts.Customers;
-using WaterPoint.Core.Domain.Requests;
-using WaterPoint.Core.Domain.Requests.Customers;
-using WaterPoint.Core.RequestProcessor.Customers;
-using CreateCustomerRequest = WaterPoint.Core.Domain.Requests.Customers.CreateCustomerRequest;
+using WaterPoint.Core.Domain.RequestDtos;
+using WaterPoint.Core.Domain.RequestDtos.Customers;
 
 namespace WaterPoint.Api.Customer.Controllers
 {
     [RoutePrefix(RouteDefinitions.Cusotmers.Prefix)]
     public class CusotmersController : BaseOrgnizationContextController
     {
-        private readonly IRequestProcessor<OrganizationIdRequest, PaginationRequest, PaginatedResult<IEnumerable<BasicCustomerContract>>> _listCustomeRequestProcessor;
-        private readonly ICreateRequestProcessor<OrganizationIdRequest, CreateCustomerRequest, BasicCustomerContract> _createCustomerRequest;
-        private readonly IRequestProcessor<OrganizationEntityRequest, BasicCustomerContract> _getCustomerByIdProcessor;
-        private readonly IUpdateRequestProcessor<OrganizationEntityRequest, UpdateCustomerRequest, BasicCustomerContract> _updateCustomerRequestProcessor;
+        private readonly IRequestProcessor<OrganizationIdRequest, PaginationRequest, PaginatedResult<IEnumerable<CustomerContract>>> _listCustomeRequestProcessor;
+        private readonly ICreateRequestProcessor<OrganizationIdRequest, CreateCustomerRequest, CustomerContract> _createCustomerRequest;
+        //private readonly IUpdateRequestProcessor<OrganizationEntityRequest, Delta<UpdateCustomerRequest>, ProcessResult<CustomerContract>> _updateRequestProcessor;
+        private readonly IRequestProcessor<OrganizationEntityRequest, CustomerContract> _getCustomerByIdProcessor;
 
         public CusotmersController(
-            IRequestProcessor<OrganizationIdRequest, PaginationRequest, PaginatedResult<IEnumerable<BasicCustomerContract>>> listCustomeRequestProcessor,
-            IRequestProcessor<OrganizationEntityRequest, BasicCustomerContract> getCustomerByIdProcessor,
-            ICreateRequestProcessor<OrganizationIdRequest, CreateCustomerRequest, BasicCustomerContract> createCustomerRequest,
-            IUpdateRequestProcessor<OrganizationEntityRequest, UpdateCustomerRequest, BasicCustomerContract> updateCustomerRequestProcessor)
+            IRequestProcessor<OrganizationIdRequest, PaginationRequest, PaginatedResult<IEnumerable<CustomerContract>>> listCustomeRequestProcessor,
+            IRequestProcessor<OrganizationEntityRequest, CustomerContract> getCustomerByIdProcessor,
+            ICreateRequestProcessor<OrganizationIdRequest, CreateCustomerRequest, CustomerContract> createCustomerRequest
+            //IUpdateRequestProcessor<OrganizationEntityRequest, Delta<UpdateCustomerRequest>, ProcessResult<CustomerContract>> updateRequestProcessor
+            )
         {
             _listCustomeRequestProcessor = listCustomeRequestProcessor;
             _createCustomerRequest = createCustomerRequest;
+            //_updateRequestProcessor = updateRequestProcessor;
             _getCustomerByIdProcessor = getCustomerByIdProcessor;
-            _updateCustomerRequestProcessor = updateCustomerRequestProcessor;
         }
 
         [Route("")]
@@ -68,24 +68,17 @@ namespace WaterPoint.Api.Customer.Controllers
             return Ok(result);
         }
 
-        [Route("")]
-        [HttpPatch]
-        public IHttpActionResult Patch(
-            [FromUri]OrganizationEntityRequest request,
-            [FromBody]Delta<UpdateCustomerRequest> input)
-        {
-            var f = new UpdateCustomerRequest();
-            input.Patch(f);
-
-            _updateCustomerRequestProcessor.Process(request, f);
-            return Ok();
-        }
-
-        [Route("")]
-        public IHttpActionResult Put([FromUri]OrganizationEntityRequest request, [FromBody]object input)
-        {
-            throw new NotImplementedException();
-        }
+        //[Route("")]
+        //public IHttpActionResult Put(
+        //    [FromUri] OrganizationEntityRequest request,
+        //    [FromBody] Delta<UpdateCustomerRequest> input)
+        //{
+        //    //map customer to an updatecustomerrequest so it gets all data
+        //    //input.Patch(updatecustomerrequest) to get the patched value
+        //    //pass patched value to processor
+        //    _updateRequestProcessor.Process(request, input);
+        //    return Ok();
+        //}
     }
 }
 

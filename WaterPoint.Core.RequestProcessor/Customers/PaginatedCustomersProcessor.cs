@@ -9,9 +9,8 @@ using WaterPoint.Core.Bll.Customers.Queries;
 using WaterPoint.Core.Bll.Customers.Runners;
 using WaterPoint.Core.ContractMapper;
 using WaterPoint.Core.Domain;
-using WaterPoint.Core.Domain.Requests.Customers;
 using WaterPoint.Core.Domain.Contracts.Customers;
-using WaterPoint.Core.Domain.Requests;
+using WaterPoint.Core.Domain.RequestDtos;
 using WaterPoint.Data.DbContext.Dapper;
 using WaterPoint.Data.Entity.Pocos;
 
@@ -19,7 +18,7 @@ namespace WaterPoint.Core.RequestProcessor.Customers
 {
     public class PaginatedCustomersProcessor :
         BaseDapperUowRequestProcess,
-        IRequestProcessor<OrganizationIdRequest, PaginationRequest, PaginatedResult<IEnumerable<BasicCustomerContract>>>
+        IRequestProcessor<OrganizationIdRequest, PaginationRequest, PaginatedResult<IEnumerable<CustomerContract>>>
     {
         private readonly PaginationAnalyzer _paginationAnalyzer;
         private readonly PaginatedBasicCustomerPocosQuery _paginatedCustomersQuery;
@@ -37,7 +36,7 @@ namespace WaterPoint.Core.RequestProcessor.Customers
             _paginatedCustomersQuery = paginatedCustomersQuery;
         }
 
-        public PaginatedResult<IEnumerable<BasicCustomerContract>> Process(OrganizationIdRequest path, PaginationRequest request)
+        public PaginatedResult<IEnumerable<CustomerContract>> Process(OrganizationIdRequest path, PaginationRequest request)
         {
             _paginationAnalyzer.Analyze(request, "Id");
 
@@ -53,7 +52,7 @@ namespace WaterPoint.Core.RequestProcessor.Customers
                 var result = _paginatedCustomerRunner.Run(_paginatedCustomersQuery);
 
                 return (result != null)
-                    ? new PaginatedResult<IEnumerable<BasicCustomerContract>>
+                    ? new PaginatedResult<IEnumerable<CustomerContract>>
                     {
                         Data = result.Data.Select(CustomerMapper.Map),
                         TotalCount = result.TotalCount,

@@ -10,11 +10,8 @@ using WaterPoint.Core.Bll.Customers.Commands;
 using WaterPoint.Core.Bll.Customers.Queries;
 using WaterPoint.Core.Bll.Customers.Runners;
 using WaterPoint.Core.Domain;
-using WaterPoint.Core.Domain.Blls;
 using WaterPoint.Core.RequestProcessor.Customers;
-using WaterPoint.Core.Domain.Requests.Customers;
 using WaterPoint.Core.Domain.Contracts.Customers;
-using WaterPoint.Core.Domain.Requests;
 using WaterPoint.Core.RequestProcessor;
 
 namespace WaterPoint.Api.DependencyInjection

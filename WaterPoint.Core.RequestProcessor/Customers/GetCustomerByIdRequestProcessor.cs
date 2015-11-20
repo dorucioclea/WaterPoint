@@ -1,73 +1,41 @@
-﻿using System;
-using WaterPoint.Api.Common;
-using WaterPoint.Core.Bll;
-using WaterPoint.Core.Bll.Customers.Commands;
-using WaterPoint.Core.Bll.Customers.Queries;
+﻿using WaterPoint.Core.Bll.Customers.Queries;
 using WaterPoint.Core.Bll.Customers.Runners;
 using WaterPoint.Core.ContractMapper;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts.Customers;
-using WaterPoint.Core.Domain.Requests;
-using WaterPoint.Core.Domain.Requests.Customers;
+using WaterPoint.Core.Domain.RequestDtos;
 using WaterPoint.Data.DbContext.Dapper;
-using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Core.RequestProcessor.Customers
 {
-    public class CreateCustomerRequestProcessor :
-        ICreateRequestProcessor<OrganizationIdRequest, CreateCustomerRequest, BasicCustomerContract>
+    public class GetCustomerByIdRequestProcessor :
+        BaseDapperUowRequestProcess,
+        IRequestProcessor<OrganizationEntityRequest, CustomerContract>
     {
-        private readonly IDapperUnitOfWork _dapperUnitOfWork;
-        private readonly CreateCustomersCommand _command;
-        private readonly CreateCommandExecutor _executor;
+        private readonly GetCustomerByIdQuery _command;
+        private readonly GetCustomerByIdQueryRunner _runner;
 
-        public CreateCustomerRequestProcessor(
+        public GetCustomerByIdRequestProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
-            CreateCustomersCommand command,
-            CreateCommandExecutor executor)
+            GetCustomerByIdQuery command,
+            GetCustomerByIdQueryRunner runner)
+            : base(dapperUnitOfWork)
         {
-            _dapperUnitOfWork = dapperUnitOfWork;
             _command = command;
-            _executor = executor;
+            _runner = runner;
         }
 
-        public BasicCustomerContract Process(OrganizationIdRequest pathInput, CreateCustomerRequest input)
+        public CustomerContract Process(OrganizationEntityRequest path)
         {
-            var customer = new Customer
+            _command.BuildQuery(path.OrganizationId, path.Id);
+
+            using (DapperUnitOfWork.Begin())
             {
-                OrganizationId = pathInput.OrganizationId,
-                Code = input.Code,
-                CustomerTypeId = input.CustomerTypeId,
-                Dob = input.Dob,
-                Email = input.Email,
-                FirstName = input.FirstName,
-                LastName = input.LastName,
-                MobilePhone = input.MobilePhone,
-                OtherName = input.OtherName,
-                Phone = input.Phone
-            };
+                var customer = _runner.Run(_command);
 
-            _command.BuildQuery(pathInput.OrganizationId, customer);
+                var result = CustomerMapper.Map(customer);
 
-            using (_dapperUnitOfWork.Begin())
-            {
-                try
-                {
-                    var newId = _executor.Run(_command);
-
-                    customer.Id = newId;
-
-                    var result = CustomerMapper.Map(customer);
-
-                    _dapperUnitOfWork.Commit();
-
-                    return result;
-                }
-                catch
-                {
-                    _dapperUnitOfWork.Rollback();
-                    throw;
-                }
+                return result;
             }
         }
     }

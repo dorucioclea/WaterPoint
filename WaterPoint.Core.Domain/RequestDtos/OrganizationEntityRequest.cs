@@ -1,4 +1,4 @@
-﻿namespace WaterPoint.Core.Domain.Requests
+﻿namespace WaterPoint.Core.Domain.RequestDtos
 {
     public class OrganizationEntityRequest : IUriPathRequest
     {

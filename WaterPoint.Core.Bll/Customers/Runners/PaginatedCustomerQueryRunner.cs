@@ -17,10 +17,10 @@ namespace WaterPoint.Core.Bll.Customers.Runners
             _dapperDbContext = dapperDbContext;
         }
 
-        public PaginatedPoco<IEnumerable<BasicCustomerPoco>> Run(IQuery query)
+        public PaginatedPoco<IEnumerable<CustomerPoco>> Run(IQuery query)
         {
             var rawResults = _dapperDbContext
-                .List<BasicCustomerPoco, PaginatedPoco>(
+                .List<CustomerPoco, PaginatedPoco>(
                     query.Query,
                     PaginatedPoco.SplitOnColumn,
                     query.Parameters)
@@ -29,7 +29,7 @@ namespace WaterPoint.Core.Bll.Customers.Runners
             if (!rawResults.Any())
                 return null;
 
-            var result = new PaginatedPoco<IEnumerable<BasicCustomerPoco>>
+            var result = new PaginatedPoco<IEnumerable<CustomerPoco>>
             {
                 TotalCount = rawResults.First().Item2.TotalCount,
                 Data = rawResults.Select(i => i.Item1)

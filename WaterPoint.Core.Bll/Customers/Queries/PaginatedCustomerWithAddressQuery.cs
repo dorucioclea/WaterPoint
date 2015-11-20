@@ -46,7 +46,7 @@ namespace WaterPoint.Core.Bll.Customers.Queries
             builder.AddManyToManyJoin<AddressPoco>(JoinTypes.LeftJoin,
                 "dbo", "CustomerAddress", "ca", "AddressId", "CustomerId");
 
-            builder.AddConditions<BasicCustomerPoco>(i => i.OrganizationId == orgId);
+            builder.AddConditions<CustomerPoco>(i => i.OrganizationId == orgId);
 
 
             var sql = Sql

@@ -30,8 +30,8 @@ namespace WaterPoint.Core.Bll.Customers.Queries
             var builder = _sqlBuilderFactory.Create<SelectSqlBuilder>();
 
             builder.AddTemplate(_sqlTemplate);
-            builder.AddPrimaryColumns<BasicCustomerPoco>();
-            builder.AddConditions<BasicCustomerPoco>(i => i.OrganizationId == orgId && i.Id == customerId);
+            builder.AddPrimaryColumns<CustomerPoco>();
+            builder.AddConditions<CustomerPoco>(i => i.OrganizationId == orgId && i.Id == customerId);
 
             var sql = builder.GetSql();
 

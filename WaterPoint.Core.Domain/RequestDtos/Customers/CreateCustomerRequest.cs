@@ -1,9 +1,9 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace WaterPoint.Core.Domain.Requests.Customers
+namespace WaterPoint.Core.Domain.RequestDtos.Customers
 {
-    public class CreateCustomerRequest : IPayload
+    public class CreateCustomerRequest
     {
         public int? CustomerTypeId { get; set; }
         public string Code { get; set; }

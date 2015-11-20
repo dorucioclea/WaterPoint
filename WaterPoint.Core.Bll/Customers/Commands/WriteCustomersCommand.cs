@@ -1,5 +1,4 @@
-﻿using WaterPoint.Core.Domain.Requests.Customers;
-using WaterPoint.Data.DbContext.Dapper;
+﻿using WaterPoint.Data.DbContext.Dapper;
 using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Core.Bll.Customers.Commands

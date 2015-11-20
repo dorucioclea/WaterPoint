@@ -14,18 +14,18 @@ namespace WaterPoint.Core.ContractMapper
     {
         static CustomerMapper()
         {
-            Mapper.CreateMap<BasicCustomerPoco, BasicCustomerContract>();
-            Mapper.CreateMap<Customer, BasicCustomerContract>();
+            Mapper.CreateMap<CustomerPoco, CustomerContract>();
+            Mapper.CreateMap<Customer, CustomerContract>();
         }
 
-        public static BasicCustomerContract Map(Customer source)
+        public static CustomerContract Map(Customer source)
         {
-            return Mapper.Map<BasicCustomerContract>(source);
+            return Mapper.Map<CustomerContract>(source);
         }
 
-        public static BasicCustomerContract Map(BasicCustomerPoco source)
+        public static CustomerContract Map(CustomerPoco source)
         {
-            return Mapper.Map<BasicCustomerContract>(source);
+            return Mapper.Map<CustomerContract>(source);
         }
     }
 }
