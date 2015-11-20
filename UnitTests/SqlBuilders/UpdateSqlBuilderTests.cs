@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Diagnostics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Newtonsoft.Json;
 using WaterPoint.Core.Bll;
 using WaterPoint.Data.Entity.DataEntities;
 
@@ -25,7 +27,7 @@ namespace UnitTests.SqlBuilders
                 [dbo].[Customer].[Dob] = @dob,
                 [dbo].[Customer].[UtcUpdated] = @utcupdated";
 
-            const string expectedWhere = @"(([dbo].[Customer].[OrganizationId] = 1000) AND ([dbo].[Customer].[Id] = 123))";
+            const string expectedWhere = @"(([dbo].[Customer].[OrganizationId] = @orgId) AND ([dbo].[Customer].[Id] = @id))";
 
             var customer = new Customer
             {
@@ -51,10 +53,19 @@ namespace UnitTests.SqlBuilders
 
             obj.Analyze();
             obj.AddValueParameters(customer);
-            obj.AddConditions<Customer>(i => i.OrganizationId == 1000 && i.Id == 123);
+
+            var orgId = 1000;
+            var Id = 123;
+
+            obj.AddConditions<Customer>(i => i.OrganizationId == orgId && i.Id == Id);
+            obj.AddValueParameters(customer);
+
+            Debug.WriteLine(JsonConvert.SerializeObject(obj.Parameters));
 
             Assert.AreEqual(NeutralizeString(obj.Columns), NeutralizeString(expectedColumns));
             Assert.AreEqual(NeutralizeString(obj.Where), NeutralizeString(expectedWhere));
+
+
         }
 
         private static string NeutralizeString(string str)

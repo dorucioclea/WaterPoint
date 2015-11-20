@@ -105,11 +105,7 @@ namespace WaterPoint.Core.Bll
                 var f = property.GetCustomAttribute(attribute);
 
                 if (f != null)
-                {
-                    Debug.WriteLine(property.Name);
-                    Debug.WriteLine(attribute.Name);
                     return true;
-                }
             }
 
             return false;
