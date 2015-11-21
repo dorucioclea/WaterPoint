@@ -8,8 +8,10 @@ using WaterPoint.Api.Common;
 using WaterPoint.Api.Common.BaseControllers;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts.Customers;
-using WaterPoint.Core.Domain.RequestDtos;
-using WaterPoint.Core.Domain.RequestDtos.Customers;
+using WaterPoint.Core.Domain.Dtos;
+using WaterPoint.Core.Domain.Dtos.Customers;
+using WaterPoint.Core.Domain.Dtos.Customers.Payloads;
+using WaterPoint.Core.Domain.Dtos.Customers.Requests;
 
 namespace WaterPoint.Api.Customer.Controllers
 {

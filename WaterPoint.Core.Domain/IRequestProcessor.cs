@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using WaterPoint.Core.Domain.RequestDtos;
+using WaterPoint.Core.Domain.Dtos;
 
 namespace WaterPoint.Core.Domain
 {

@@ -1,4 +1,4 @@
-﻿namespace WaterPoint.Core.Domain.RequestDtos
+﻿namespace WaterPoint.Core.Domain.Dtos
 {
     public interface IUriPathParameter
     {

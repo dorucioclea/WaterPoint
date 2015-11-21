@@ -8,20 +8,20 @@ using WaterPoint.Data.Entity.Pocos;
 
 namespace WaterPoint.Core.Bll
 {
-    public class WriteCommandExecutor
+    public class UpdateCommandExecutor
     {
         private readonly IDapperDbContext _dapperDbContext;
 
-        public WriteCommandExecutor(IDapperDbContext dapperDbContext)
+        public UpdateCommandExecutor(IDapperDbContext dapperDbContext)
         {
             _dapperDbContext = dapperDbContext;
         }
 
-        public int Run(ICommand query)
+        public bool Run(ICommand query)
         {
-            var result = _dapperDbContext.List<int>(query.Query, query.Parameters).Single();
+            var result = _dapperDbContext.NonQuery(query.Query, query.Parameters);
 
-            return result;
+            return result > 0;
         }
     }
 }

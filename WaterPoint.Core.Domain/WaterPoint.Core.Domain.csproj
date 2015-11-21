@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contracts\ResultContract.cs" />
+    <Compile Include="Exceptions\UpdateFailedException.cs" />
     <Compile Include="Exceptions\NotFoundException.cs" />
     <Compile Include="HttpResults\ErrorResult.cs" />
     <Compile Include="ContentTypes.cs" />
@@ -71,13 +72,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="IRequestProcessor.cs" />
-    <Compile Include="RequestDtos\Class1.cs" />
-    <Compile Include="RequestDtos\OrganizationEntityRequest.cs" />
-    <Compile Include="RequestDtos\Customers\CreateCustomerRequest.cs" />
-    <Compile Include="RequestDtos\OrganizationIdRequest.cs" />
-    <Compile Include="RequestDtos\IUriQueryRequest.cs" />
-    <Compile Include="RequestDtos\IUriPathRequest.cs" />
-    <Compile Include="RequestDtos\PaginationRequest.cs" />
+    <Compile Include="Dtos\Customers\Requests\Class1.cs" />
+    <Compile Include="Dtos\OrganizationEntityParameter.cs" />
+    <Compile Include="Dtos\Customers\Payloads\CreateCustomerPayload.cs" />
+    <Compile Include="Dtos\OrganizationIdParameter.cs" />
+    <Compile Include="Dtos\IUriQueryParameter.cs" />
+    <Compile Include="Dtos\IUriPathParamter.cs" />
+    <Compile Include="Dtos\PaginationParameter.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WaterPoint.Data.Entity\WaterPoint.Data.Entity.csproj">
@@ -87,7 +88,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DataProvider\" />
-    <Folder Include="NewFolder1\" />
+    <Folder Include="Dtos\Customers\Parameters\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

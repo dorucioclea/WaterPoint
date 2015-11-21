@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http.OData;
-using WaterPoint.Core.Domain.RequestDtos.Customers;
+using WaterPoint.Core.Domain.Dtos.Customers;
+using WaterPoint.Core.Domain.Dtos.Customers.Payloads;
 
-namespace WaterPoint.Core.Domain.RequestDtos
+namespace WaterPoint.Core.Domain.Dtos.Customers.Requests
 {
     public class PaginationWithOrgIdRequest : IRequest
     {

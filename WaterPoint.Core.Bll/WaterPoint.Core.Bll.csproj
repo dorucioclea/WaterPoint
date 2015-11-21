@@ -84,7 +84,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="WriteCommandExecutor.cs" />
+    <Compile Include="UpdateCommandExecutor.cs" />
+    <Compile Include="CreateCommandExecutor.cs" />
     <Compile Include="UpdateSqlBuilder.cs" />
     <Compile Include="Customers\Commands\UpdateCustomerByIdCommand.cs" />
     <Compile Include="Customers\Queries\GetCustomerByIdQuery.cs" />

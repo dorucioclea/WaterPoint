@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace WaterPoint.Core.Domain.RequestDtos.Customers
+namespace WaterPoint.Core.Domain.Dtos.Customers.Payloads
 {
     public class CreateCustomerPayload
     {

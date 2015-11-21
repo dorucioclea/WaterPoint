@@ -14,8 +14,10 @@ using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts;
 using WaterPoint.Core.Domain.Contracts.Customers;
 using WaterPoint.Core.Domain.Exceptions;
-using WaterPoint.Core.Domain.RequestDtos;
-using WaterPoint.Core.Domain.RequestDtos.Customers;
+using WaterPoint.Core.Domain.Dtos;
+using WaterPoint.Core.Domain.Dtos.Customers;
+using WaterPoint.Core.Domain.Dtos.Customers.Payloads;
+using WaterPoint.Core.Domain.Dtos.Customers.Requests;
 using WaterPoint.Data.DbContext.Dapper;
 using WaterPoint.Data.Entity.DataEntities;
 
@@ -28,20 +30,20 @@ namespace WaterPoint.Core.RequestProcessor.Customers
         private readonly GetCustomerByIdQuery _getCustomerByIdQuery;
         private readonly GetCustomerByIdQueryRunner _getCustomerByIdQueryRunner;
         private readonly UpdateCustomerByIdCommand _updateCustomerByIdQuery;
-        private readonly WriteCommandExecutor _writeCommandExecutor;
+        private readonly UpdateCommandExecutor _updateCommandExecutor;
 
         public UpdateCustomerRequestProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
             GetCustomerByIdQuery getCustomerByIdQuery,
             GetCustomerByIdQueryRunner getCustomerByIdQueryRunner,
             UpdateCustomerByIdCommand updateCustomerByIdQuery,
-            WriteCommandExecutor writeCommandExecutor
-            ) : base(dapperUnitOfWork)
+            UpdateCommandExecutor updateCommandExecutor)
+            : base(dapperUnitOfWork)
         {
             _getCustomerByIdQuery = getCustomerByIdQuery;
             _getCustomerByIdQueryRunner = getCustomerByIdQueryRunner;
             _updateCustomerByIdQuery = updateCustomerByIdQuery;
-            _writeCommandExecutor = writeCommandExecutor;
+            _updateCommandExecutor = updateCommandExecutor;
         }
 
         public CustomerContract Process(UpdateCustomerRequest input)
@@ -92,19 +94,32 @@ namespace WaterPoint.Core.RequestProcessor.Customers
 
                     _updateCustomerByIdQuery.BuildQuery(orgId, updatedCustomer);
 
-                    _writeCommandExecutor.Run(_updateCustomerByIdQuery);
+                    var success = _updateCommandExecutor.Run(_updateCustomerByIdQuery);
 
-                    DapperUnitOfWork.Commit();
+                    if (success)
+                    {
+                        DapperUnitOfWork.Commit();
+
+                        return ContractMapper.CustomerMapper.Map(updatedCustomer);
+                    }
+
+                    var updateException = new UpdateFailedException();
+
+                    updateException.AddMessage("operation is finished but there is no result returned");
+
+                    throw updateException;
                 }
             }
-            catch
+            catch (Exception ex)
             {
                 DapperUnitOfWork.Rollback();
 
-                throw;
-            }
+                var exception = new UpdateFailedException();
 
-            throw new NotImplementedException();
+                exception.AddMessage(ex.InnerException.ToString());
+
+                throw exception;
+            }
         }
     }
 }

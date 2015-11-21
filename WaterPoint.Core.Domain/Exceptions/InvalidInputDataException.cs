@@ -9,18 +9,11 @@ using System.Web.Http;
 
 namespace WaterPoint.Core.Domain.Exceptions
 {
-    public class InvalidInputDataException : Exception
+    public class InvalidInputDataException : DetailedException
     {
         public InvalidInputDataException()
-            : base("invalid input.")
+            : base("invalid input")
         {
-        }
-
-        public IList<string> Messages { get; private set; }
-
-        public void AddMessage(string message)
-        {
-            Messages.Add(message);
         }
     }
 }

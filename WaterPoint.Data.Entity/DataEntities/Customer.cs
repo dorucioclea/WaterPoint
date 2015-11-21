@@ -34,6 +34,7 @@ namespace WaterPoint.Data.Entity.DataEntities
 
         public int? UpdatedByStaffId { get; set; }
 
+        [IgnoreMappingWhenUpdate]
         public string Version { get; set; }
 
         public DateTime? Dob { get; set; }

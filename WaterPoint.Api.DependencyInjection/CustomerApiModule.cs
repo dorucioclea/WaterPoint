@@ -12,8 +12,9 @@ using WaterPoint.Core.Bll.Customers.Runners;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.RequestProcessor.Customers;
 using WaterPoint.Core.Domain.Contracts.Customers;
-using WaterPoint.Core.Domain.RequestDtos;
-using WaterPoint.Core.Domain.RequestDtos.Customers;
+using WaterPoint.Core.Domain.Dtos;
+using WaterPoint.Core.Domain.Dtos.Customers;
+using WaterPoint.Core.Domain.Dtos.Customers.Requests;
 using WaterPoint.Core.RequestProcessor;
 
 namespace WaterPoint.Api.DependencyInjection
@@ -32,7 +33,7 @@ namespace WaterPoint.Api.DependencyInjection
             Bind<PaginatedCustomerRunner>().ToSelf();
             Bind<PaginationAnalyzer>().ToSelf();
             Bind<CreateCustomersCommand>().ToSelf();
-            Bind<WriteCommandExecutor>().ToSelf();
+            Bind<CreateCommandExecutor>().ToSelf();
             Bind<GetCustomerByIdQueryRunner>().ToSelf();
         }
 

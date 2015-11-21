@@ -3,8 +3,9 @@ using WaterPoint.Core.Bll.Customers.Commands;
 using WaterPoint.Core.ContractMapper;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts.Customers;
-using WaterPoint.Core.Domain.RequestDtos;
-using WaterPoint.Core.Domain.RequestDtos.Customers;
+using WaterPoint.Core.Domain.Dtos;
+using WaterPoint.Core.Domain.Dtos.Customers;
+using WaterPoint.Core.Domain.Dtos.Customers.Requests;
 using WaterPoint.Data.DbContext.Dapper;
 using WaterPoint.Data.Entity.DataEntities;
 
@@ -15,12 +16,12 @@ namespace WaterPoint.Core.RequestProcessor.Customers
         IRequestProcessor<CreateCustomerRequest, CustomerContract>
     {
         private readonly CreateCustomersCommand _command;
-        private readonly WriteCommandExecutor _executor;
+        private readonly CreateCommandExecutor _executor;
 
         public CreateCustomerRequestProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
             CreateCustomersCommand command,
-            WriteCommandExecutor executor)
+            CreateCommandExecutor executor)
             : base(dapperUnitOfWork)
         {
             _command = command;
