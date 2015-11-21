@@ -57,10 +57,7 @@ namespace UnitTests.SqlBuilders
             var orgId = 1000;
             var Id = 123;
 
-            obj.AddConditions<Customer>(i => i.OrganizationId == orgId && i.Id == Id);
-            obj.AddValueParameters(customer);
-
-            Debug.WriteLine(JsonConvert.SerializeObject(obj.Parameters));
+            obj.AddConditions<Customer>(i => i.OrganizationId == orgId && i.Id == customer.Id);
 
             Assert.AreEqual(NeutralizeString(obj.Columns), NeutralizeString(expectedColumns));
             Assert.AreEqual(NeutralizeString(obj.Where), NeutralizeString(expectedWhere));

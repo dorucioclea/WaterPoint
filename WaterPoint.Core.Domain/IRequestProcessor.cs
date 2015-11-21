@@ -6,28 +6,13 @@ using WaterPoint.Core.Domain.RequestDtos;
 
 namespace WaterPoint.Core.Domain
 {
-    public interface IRequestProcessor<in TPathInput, in TQueryIntput, out TOutput>
-        where TPathInput : IUriPathRequest
-        where TQueryIntput : IUriQueryRequest
+    public interface IRequest
     {
-        TOutput Process(TPathInput path, TQueryIntput request);
     }
 
-    public interface IRequestProcessor<in TPathInput, out TOutput>
-        where TPathInput : IUriPathRequest
+    public interface IRequestProcessor<in TInput, out TOutput>
+        where TInput : IRequest
     {
-        TOutput Process(TPathInput path);
-    }
-
-    public interface ICreateRequestProcessor<in TPathInput, in TInput, out TOutput>
-        where TPathInput : IUriPathRequest
-    {
-        TOutput Process(TPathInput pathInput, TInput input);
-    }
-    
-    public interface IUpdateRequestProcessor<in TPathInput, in TInput, out TOutput>
-        where TPathInput : IUriPathRequest
-    {
-        TOutput Process(TPathInput pathInput, TInput input);
+        TOutput Process(TInput input);
     }
 }

@@ -32,20 +32,21 @@ namespace WaterPoint.Api.DependencyInjection
             Bind<PaginatedCustomerRunner>().ToSelf();
             Bind<PaginationAnalyzer>().ToSelf();
             Bind<CreateCustomersCommand>().ToSelf();
-            Bind<CreateCommandExecutor>().ToSelf();
+            Bind<WriteCommandExecutor>().ToSelf();
             Bind<GetCustomerByIdQueryRunner>().ToSelf();
         }
 
         private void BindRequestProcessors()
         {
-            Bind<IRequestProcessor<OrganizationIdRequest, PaginationRequest, PaginatedResult<IEnumerable<CustomerContract>>>>()
+            Bind<IRequestProcessor<PaginationWithOrgIdRequest, PaginatedResult<IEnumerable<CustomerContract>>>>()
                 .To<PaginatedCustomersProcessor>();
-
-            Bind<ICreateRequestProcessor<OrganizationIdRequest, CreateCustomerRequest, CustomerContract>>()
-                .To<CreateCustomerRequestProcessor>();
-
-            Bind<IRequestProcessor<OrganizationEntityRequest, CustomerContract>>()
+            Bind<IRequestProcessor< CreateCustomerRequest, CustomerContract >>()
+                    .To<CreateCustomerRequestProcessor>();
+            Bind<IRequestProcessor<UpdateCustomerRequest, CustomerContract>>()
+                .To<UpdateCustomerRequestProcessor>();
+            Bind<IRequestProcessor<GetCustomerByIdRequest, CustomerContract>>()
                 .To<GetCustomerByIdRequestProcessor>();
+       
         }
     }
 }

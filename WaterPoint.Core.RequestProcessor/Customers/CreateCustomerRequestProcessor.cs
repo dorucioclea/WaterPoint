@@ -12,38 +12,38 @@ namespace WaterPoint.Core.RequestProcessor.Customers
 {
     public class CreateCustomerRequestProcessor :
         BaseDapperUowRequestProcess,
-        ICreateRequestProcessor<OrganizationIdRequest, CreateCustomerRequest, CustomerContract>
+        IRequestProcessor<CreateCustomerRequest, CustomerContract>
     {
         private readonly CreateCustomersCommand _command;
-        private readonly CreateCommandExecutor _executor;
+        private readonly WriteCommandExecutor _executor;
 
         public CreateCustomerRequestProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
             CreateCustomersCommand command,
-            CreateCommandExecutor executor)
+            WriteCommandExecutor executor)
             : base(dapperUnitOfWork)
         {
             _command = command;
             _executor = executor;
         }
 
-        public CustomerContract Process(OrganizationIdRequest pathInput, CreateCustomerRequest input)
+        public CustomerContract Process(CreateCustomerRequest input)
         {
             var customer = new Customer
             {
-                OrganizationId = pathInput.OrganizationId,
-                Code = input.Code,
-                CustomerTypeId = input.CustomerTypeId,
-                Dob = input.Dob,
-                Email = input.Email,
-                FirstName = input.FirstName,
-                LastName = input.LastName,
-                MobilePhone = input.MobilePhone,
-                OtherName = input.OtherName,
-                Phone = input.Phone
+                OrganizationId = input.OrganizationIdParameter.OrganizationId,
+                Code = input.CreateCustomerPayload.Code,
+                CustomerTypeId = input.CreateCustomerPayload.CustomerTypeId,
+                Dob = input.CreateCustomerPayload.Dob,
+                Email = input.CreateCustomerPayload.Email,
+                FirstName = input.CreateCustomerPayload.FirstName,
+                LastName = input.CreateCustomerPayload.LastName,
+                MobilePhone = input.CreateCustomerPayload.MobilePhone,
+                OtherName = input.CreateCustomerPayload.OtherName,
+                Phone = input.CreateCustomerPayload.Phone
             };
 
-            _command.BuildQuery(pathInput.OrganizationId, customer);
+            _command.BuildQuery(input.OrganizationIdParameter.OrganizationId, customer);
 
             using (DapperUnitOfWork.Begin())
             {

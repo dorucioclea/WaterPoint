@@ -84,15 +84,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="WriteCommandExecutor.cs" />
     <Compile Include="UpdateSqlBuilder.cs" />
-    <Compile Include="Customers\Commands\UpdateCustomerCommand.cs" />
+    <Compile Include="Customers\Commands\UpdateCustomerByIdCommand.cs" />
     <Compile Include="Customers\Queries\GetCustomerByIdQuery.cs" />
     <Compile Include="Customers\Queries\PaginatedCustomerWithAddressQuery.cs" />
     <Compile Include="Customers\Runners\GetCustomerByIdQueryRunner.cs" />
     <Compile Include="SqlBuilder.cs" />
     <Compile Include="Keywords.cs" />
-    <Compile Include="Customers\Commands\WriteCustomersCommand.cs" />
-    <Compile Include="CreateCommandExecutor.cs" />
+    <Compile Include="Customers\Commands\CreateCustomersCommand.cs" />
     <Compile Include="Customers\Runners\PaginatedCustomerQueryRunner.cs" />
     <Compile Include="Customers\Queries\PaginatedCustomersQuery.cs" />
     <Compile Include="ISqlBuilder.cs" />

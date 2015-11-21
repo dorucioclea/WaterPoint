@@ -47,6 +47,9 @@
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Web.Http.OData">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.OData.5.7.0\lib\net45\System.Web.Http.OData.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -68,6 +71,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="IRequestProcessor.cs" />
+    <Compile Include="RequestDtos\Class1.cs" />
     <Compile Include="RequestDtos\OrganizationEntityRequest.cs" />
     <Compile Include="RequestDtos\Customers\CreateCustomerRequest.cs" />
     <Compile Include="RequestDtos\OrganizationIdRequest.cs" />
@@ -83,6 +87,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DataProvider\" />
+    <Folder Include="NewFolder1\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

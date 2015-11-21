@@ -39,8 +39,7 @@ namespace WaterPoint.Core.Bll
                     break;
                 default:
                     throw new NotSupportedException(
-                        string.Format("The unary operator '{0}' is not supported",
-                            u.NodeType));
+                        $"The unary operator '{u.NodeType}' is not supported");
             }
             return u;
         }
@@ -89,7 +88,7 @@ namespace WaterPoint.Core.Bll
 
                 default:
                     throw new NotSupportedException(
-                        string.Format("The binary operator '{0}' is not supported", b.NodeType));
+                        $"The binary operator '{b.NodeType}' is not supported");
 
             }
 
@@ -122,7 +121,7 @@ namespace WaterPoint.Core.Bll
                 case TypeCode.String:
                 case TypeCode.DateTime:
                 case TypeCode.Object:
-                    throw new NotSupportedException(string.Format("Please parameterize '{0}'.", c.Value));
+                    throw new NotSupportedException($"Please parameterize '{c.Value}'.");
 
                 default:
                     _sb.Append(c.Value);
@@ -140,19 +139,18 @@ namespace WaterPoint.Core.Bll
                 {
                     case ExpressionType.Parameter:
                         //add other table's reference here by m.Member.CustomAttributes
-                        _sb.Append(string.Format("{0}.[{1}]", _parentTable, m.Member.Name));
+                        _sb.Append($"{_parentTable}.[{m.Member.Name}]");
                         return m;
 
+                    case ExpressionType.MemberAccess:
                     case ExpressionType.Constant:
-                        _sb.Append(string.Format("@{0}", m.Member.Name));
+                        _sb.Append($"@{m.Member.Name.ToLower()}");
                         return m;
-
                 }
             }
 
             throw new NotSupportedException(
-                string.Format("{0} value is not supported, please parameterize it.",
-                m.Member.Name));
+                $"{m.Member.Name} value is not supported, please parameterize it.");
         }
 
         protected bool IsNullConstant(Expression exp)

@@ -6,6 +6,8 @@ using System.Linq;
 using System.Management.Instrumentation;
 using System.Net;
 using System.Web.Http.OData;
+using WaterPoint.Core.Bll;
+using WaterPoint.Core.Bll.Customers.Commands;
 using WaterPoint.Core.Bll.Customers.Queries;
 using WaterPoint.Core.Bll.Customers.Runners;
 using WaterPoint.Core.Domain;
@@ -15,33 +17,40 @@ using WaterPoint.Core.Domain.Exceptions;
 using WaterPoint.Core.Domain.RequestDtos;
 using WaterPoint.Core.Domain.RequestDtos.Customers;
 using WaterPoint.Data.DbContext.Dapper;
+using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Core.RequestProcessor.Customers
 {
     public class UpdateCustomerRequestProcessor :
         BaseDapperUowRequestProcess,
-        IUpdateRequestProcessor<OrganizationEntityRequest, Delta<UpdateCustomerRequest>, ResultContract<CustomerContract>>
+        IRequestProcessor<UpdateCustomerRequest, CustomerContract>
     {
         private readonly GetCustomerByIdQuery _getCustomerByIdQuery;
         private readonly GetCustomerByIdQueryRunner _getCustomerByIdQueryRunner;
+        private readonly UpdateCustomerByIdCommand _updateCustomerByIdQuery;
+        private readonly WriteCommandExecutor _writeCommandExecutor;
 
         public UpdateCustomerRequestProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
             GetCustomerByIdQuery getCustomerByIdQuery,
-            GetCustomerByIdQueryRunner getCustomerByIdQueryRunner
-            )
-            : base(dapperUnitOfWork)
+            GetCustomerByIdQueryRunner getCustomerByIdQueryRunner,
+            UpdateCustomerByIdCommand updateCustomerByIdQuery,
+            WriteCommandExecutor writeCommandExecutor
+            ) : base(dapperUnitOfWork)
         {
             _getCustomerByIdQuery = getCustomerByIdQuery;
             _getCustomerByIdQueryRunner = getCustomerByIdQueryRunner;
+            _updateCustomerByIdQuery = updateCustomerByIdQuery;
+            _writeCommandExecutor = writeCommandExecutor;
         }
 
-
-        public ResultContract<CustomerContract> Process(OrganizationEntityRequest pathInput, Delta<UpdateCustomerRequest> input)
+        public CustomerContract Process(UpdateCustomerRequest input)
         {
-            throw new NotImplementedException();
+            var orgId = input.OrganizationEntityParameter.OrganizationId;
 
-            _getCustomerByIdQuery.BuildQuery(pathInput.OrganizationId, pathInput.Id);
+            var id = input.UpdateCustomerPayload.GetEntity().Id;
+
+            _getCustomerByIdQuery.BuildQuery(orgId, id);
 
             try
             {
@@ -57,11 +66,11 @@ namespace WaterPoint.Core.RequestProcessor.Customers
                         throw new NotFoundException();
                     }
 
-                    //map to a dto
-                    var existingDto = OneToOneMapper.MapFrom<UpdateCustomerRequest>(customer);
+                    //map to a dt
+                    var existingDto = OneToOneMapper.MapFrom<UpdateCustomerPayload>(customer);
 
                     //patch the data
-                    input.Patch(existingDto);
+                    input.UpdateCustomerPayload.Patch(existingDto);
 
                     var validationResults = new List<ValidationResult>();
 
@@ -77,9 +86,13 @@ namespace WaterPoint.Core.RequestProcessor.Customers
 
                         throw exception;
                     }
-                    
-                    //TODO: valid then update the object
 
+                    //TODO: valid then update the object
+                    var updatedCustomer = OneToOneMapper.MapFrom<Customer>(existingDto);
+
+                    _updateCustomerByIdQuery.BuildQuery(orgId, updatedCustomer);
+
+                    _writeCommandExecutor.Run(_updateCustomerByIdQuery);
 
                     DapperUnitOfWork.Commit();
                 }
@@ -90,6 +103,8 @@ namespace WaterPoint.Core.RequestProcessor.Customers
 
                 throw;
             }
+
+            throw new NotImplementedException();
         }
     }
 }

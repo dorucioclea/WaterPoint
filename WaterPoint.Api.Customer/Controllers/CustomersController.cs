@@ -16,67 +16,88 @@ namespace WaterPoint.Api.Customer.Controllers
     [RoutePrefix(RouteDefinitions.Cusotmers.Prefix)]
     public class CusotmersController : BaseOrgnizationContextController
     {
-        private readonly IRequestProcessor<OrganizationIdRequest, PaginationRequest, PaginatedResult<IEnumerable<CustomerContract>>> _listCustomeRequestProcessor;
-        private readonly ICreateRequestProcessor<OrganizationIdRequest, CreateCustomerRequest, CustomerContract> _createCustomerRequest;
-        //private readonly IUpdateRequestProcessor<OrganizationEntityRequest, Delta<UpdateCustomerRequest>, ProcessResult<CustomerContract>> _updateRequestProcessor;
-        private readonly IRequestProcessor<OrganizationEntityRequest, CustomerContract> _getCustomerByIdProcessor;
+        private readonly IRequestProcessor<PaginationWithOrgIdRequest, PaginatedResult<IEnumerable<CustomerContract>>> _listCustomeRequestProcessor;
+        private readonly IRequestProcessor<CreateCustomerRequest, CustomerContract> _createCustomerRequest;
+        private readonly IRequestProcessor<UpdateCustomerRequest, CustomerContract> _updateRequestProcessor;
+        private readonly IRequestProcessor<GetCustomerByIdRequest, CustomerContract> _getCustomerByIdProcessor;
+
 
         public CusotmersController(
-            IRequestProcessor<OrganizationIdRequest, PaginationRequest, PaginatedResult<IEnumerable<CustomerContract>>> listCustomeRequestProcessor,
-            IRequestProcessor<OrganizationEntityRequest, CustomerContract> getCustomerByIdProcessor,
-            ICreateRequestProcessor<OrganizationIdRequest, CreateCustomerRequest, CustomerContract> createCustomerRequest
-            //IUpdateRequestProcessor<OrganizationEntityRequest, Delta<UpdateCustomerRequest>, ProcessResult<CustomerContract>> updateRequestProcessor
-            )
+            IRequestProcessor<PaginationWithOrgIdRequest, PaginatedResult<IEnumerable<CustomerContract>>> listCustomeRequestProcessor,
+            IRequestProcessor<CreateCustomerRequest, CustomerContract> createCustomerRequest,
+            IRequestProcessor<UpdateCustomerRequest, CustomerContract> updateRequestProcessor,
+            IRequestProcessor<GetCustomerByIdRequest, CustomerContract> getCustomerByIdProcessor)
         {
             _listCustomeRequestProcessor = listCustomeRequestProcessor;
             _createCustomerRequest = createCustomerRequest;
-            //_updateRequestProcessor = updateRequestProcessor;
+            _updateRequestProcessor = updateRequestProcessor;
             _getCustomerByIdProcessor = getCustomerByIdProcessor;
         }
 
         [Route("")]
         public IHttpActionResult Get(
-            [FromUri]OrganizationIdRequest request,
-            [FromUri]PaginationRequest pagination)
+            [FromUri]OrganizationIdParameter parameter,
+            [FromUri]PaginationParamter pagination)
         {
             //validation
-            var result = _listCustomeRequestProcessor.Process(request, pagination);
+            var request = new PaginationWithOrgIdRequest
+            {
+                OrganizationIdParameter = parameter,
+                PaginationParamter = pagination
+            };
+
+            var result = _listCustomeRequestProcessor.Process(request);
 
             return Ok(result);
         }
 
         [Route("{id:int}")]
-        public IHttpActionResult Get([FromUri]OrganizationEntityRequest request)
+        public IHttpActionResult Get([FromUri]OrganizationEntityParameter parameter)
         {
-            var result = _getCustomerByIdProcessor.Process(request);
+            var result = _getCustomerByIdProcessor.Process(
+                new GetCustomerByIdRequest
+                {
+                    OrganizationEntityParameter = parameter
+                });
 
             return Ok(result);
         }
 
         [Route("")]
         public IHttpActionResult Post(
-            [FromUri]OrganizationIdRequest request,
-            [FromBody]CreateCustomerRequest customerInput)
+            [FromUri]OrganizationIdParameter parameter,
+            [FromBody]CreateCustomerPayload customerPayload)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest();
             }
 
-            var result = _createCustomerRequest.Process(request, customerInput);
+            var result = _createCustomerRequest.Process(
+                new CreateCustomerRequest
+                {
+                    OrganizationIdParameter = parameter,
+                    CreateCustomerPayload = customerPayload
+                });
 
             return Ok(result);
         }
 
         [Route("")]
         public IHttpActionResult Put(
-            [FromUri] OrganizationEntityRequest request,
-            [FromBody] Delta<UpdateCustomerRequest> input)
+            [FromUri] OrganizationEntityParameter parameter,
+            [FromBody] Delta<UpdateCustomerPayload> input)
         {
             //map customer to an updatecustomerrequest so it gets all data
             //input.Patch(updatecustomerrequest) to get the patched value
             //pass patched value to processor
-            //_updateRequestProcessor.Process(request, input);
+            _updateRequestProcessor.Process(
+                new UpdateCustomerRequest
+                {
+                    OrganizationEntityParameter = parameter,
+                    UpdateCustomerPayload = input
+                });
+
             return Ok();
         }
     }

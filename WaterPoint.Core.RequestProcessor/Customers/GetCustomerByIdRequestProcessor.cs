@@ -10,7 +10,7 @@ namespace WaterPoint.Core.RequestProcessor.Customers
 {
     public class GetCustomerByIdRequestProcessor :
         BaseDapperUowRequestProcess,
-        IRequestProcessor<OrganizationEntityRequest, CustomerContract>
+        IRequestProcessor<GetCustomerByIdRequest, CustomerContract>
     {
         private readonly GetCustomerByIdQuery _command;
         private readonly GetCustomerByIdQueryRunner _runner;
@@ -25,9 +25,9 @@ namespace WaterPoint.Core.RequestProcessor.Customers
             _runner = runner;
         }
 
-        public CustomerContract Process(OrganizationEntityRequest path)
+        public CustomerContract Process(GetCustomerByIdRequest input)
         {
-            _command.BuildQuery(path.OrganizationId, path.Id);
+            _command.BuildQuery(input.OrganizationEntityParameter.OrganizationId, input.OrganizationEntityParameter.Id);
 
             using (DapperUnitOfWork.Begin())
             {

@@ -8,11 +8,11 @@ using WaterPoint.Data.Entity.Pocos;
 
 namespace WaterPoint.Core.Bll
 {
-    public class CreateCommandExecutor
+    public class WriteCommandExecutor
     {
         private readonly IDapperDbContext _dapperDbContext;
 
-        public CreateCommandExecutor(IDapperDbContext dapperDbContext)
+        public WriteCommandExecutor(IDapperDbContext dapperDbContext)
         {
             _dapperDbContext = dapperDbContext;
         }
