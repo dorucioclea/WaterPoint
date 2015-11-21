@@ -28,6 +28,8 @@ namespace WaterPoint.Core.Domain.Exceptions
             {
                 result = new ErrorResult(HttpStatusCode.InternalServerError, context.Exception.Message, apicontroller);
 
+                result.AddError(context.Exception.ToString(), null);
+
                 context.Response = await result.ExecuteAsync(cancellationToken);
             }
         }

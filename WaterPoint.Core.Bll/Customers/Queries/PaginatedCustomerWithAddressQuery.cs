@@ -4,6 +4,7 @@ using System.Diagnostics;
 using WaterPoint.Data.DbContext.Dapper;
 using WaterPoint.Data.Entity;
 using WaterPoint.Data.Entity.Attributes;
+using WaterPoint.Data.Entity.DataEntities;
 using WaterPoint.Data.Entity.Pocos;
 
 namespace WaterPoint.Core.Bll.Customers.Queries
@@ -46,7 +47,7 @@ namespace WaterPoint.Core.Bll.Customers.Queries
             builder.AddManyToManyJoin<AddressPoco>(JoinTypes.LeftJoin,
                 "dbo", "CustomerAddress", "ca", "AddressId", "CustomerId");
 
-            builder.AddConditions<CustomerPoco>(i => i.OrganizationId == orgId);
+            builder.AddConditions<Customer>(i => i.OrganizationId == orgId);
 
 
             var sql = Sql

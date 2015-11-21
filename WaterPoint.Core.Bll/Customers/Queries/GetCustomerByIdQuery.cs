@@ -4,6 +4,7 @@ using System.Diagnostics;
 using WaterPoint.Data.DbContext.Dapper;
 using WaterPoint.Data.Entity;
 using WaterPoint.Data.Entity.Attributes;
+using WaterPoint.Data.Entity.DataEntities;
 using WaterPoint.Data.Entity.Pocos;
 
 namespace WaterPoint.Core.Bll.Customers.Queries
@@ -30,8 +31,8 @@ namespace WaterPoint.Core.Bll.Customers.Queries
             var builder = _sqlBuilderFactory.Create<SelectSqlBuilder>();
 
             builder.AddTemplate(_sqlTemplate);
-            builder.AddPrimaryColumns<CustomerPoco>();
-            builder.AddConditions<CustomerPoco>(i => i.OrganizationId == orgId && i.Id == customerId);
+            builder.AddPrimaryColumns<Customer>();
+            builder.AddConditions<Customer>(i => i.OrganizationId == orgId && i.Id == customerId);
 
             var sql = builder.GetSql();
 

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WaterPoint.Data.DbContext.Dapper;
+using WaterPoint.Data.Entity.DataEntities;
 using WaterPoint.Data.Entity.Pocos;
 
 namespace WaterPoint.Core.Bll.Customers.Runners
@@ -17,10 +18,10 @@ namespace WaterPoint.Core.Bll.Customers.Runners
             _dapperDbContext = dapperDbContext;
         }
 
-        public PaginatedPoco<IEnumerable<CustomerPoco>> Run(IQuery query)
+        public PaginatedPoco<IEnumerable<Customer>> Run(IQuery query)
         {
             var rawResults = _dapperDbContext
-                .List<CustomerPoco, PaginatedPoco>(
+                .List<Customer, PaginatedPoco>(
                     query.Query,
                     PaginatedPoco.SplitOnColumn,
                     query.Parameters)
@@ -29,7 +30,7 @@ namespace WaterPoint.Core.Bll.Customers.Runners
             if (!rawResults.Any())
                 return null;
 
-            var result = new PaginatedPoco<IEnumerable<CustomerPoco>>
+            var result = new PaginatedPoco<IEnumerable<Customer>>
             {
                 TotalCount = rawResults.First().Item2.TotalCount,
                 Data = rawResults.Select(i => i.Item1)

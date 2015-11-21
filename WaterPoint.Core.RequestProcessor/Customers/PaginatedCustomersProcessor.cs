@@ -22,14 +22,14 @@ namespace WaterPoint.Core.RequestProcessor.Customers
         IRequestProcessor<PaginationWithOrgIdRequest, PaginatedResult<IEnumerable<CustomerContract>>>
     {
         private readonly PaginationAnalyzer _paginationAnalyzer;
-        private readonly PaginatedBasicCustomerPocosQuery _paginatedCustomersQuery;
+        private readonly PaginatedCustomersQuery _paginatedCustomersQuery;
         private readonly PaginatedCustomerRunner _paginatedCustomerRunner;
 
         public PaginatedCustomersProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
             PaginatedCustomerRunner paginatedCustomerRunner,
             PaginationAnalyzer paginationAnalyzer,
-            PaginatedBasicCustomerPocosQuery paginatedCustomersQuery)
+            PaginatedCustomersQuery paginatedCustomersQuery)
             : base(dapperUnitOfWork)
         {
             _paginatedCustomerRunner = paginatedCustomerRunner;

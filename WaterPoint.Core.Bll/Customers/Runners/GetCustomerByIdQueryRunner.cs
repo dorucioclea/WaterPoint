@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WaterPoint.Data.DbContext.Dapper;
+using WaterPoint.Data.Entity.DataEntities;
 using WaterPoint.Data.Entity.Pocos;
 
 namespace WaterPoint.Core.Bll.Customers.Runners
@@ -17,10 +18,10 @@ namespace WaterPoint.Core.Bll.Customers.Runners
             _dapperDbContext = dapperDbContext;
         }
 
-        public CustomerPoco Run(IQuery query)
+        public Customer Run(IQuery query)
         {
             var customer = _dapperDbContext
-                .List<CustomerPoco>(query.Query, query.Parameters)
+                .List<Customer>(query.Query, query.Parameters)
                 .SingleOrDefault();
 
             return customer;

@@ -29,7 +29,7 @@ namespace WaterPoint.Api.DependencyInjection
 
         private void BindQueriesAndCommands()
         {
-            Bind<PaginatedBasicCustomerPocosQuery>().ToSelf();
+            Bind<PaginatedCustomersQuery>().ToSelf();
             Bind<PaginatedCustomerRunner>().ToSelf();
             Bind<PaginationAnalyzer>().ToSelf();
             Bind<CreateCustomersCommand>().ToSelf();

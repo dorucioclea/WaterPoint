@@ -46,7 +46,7 @@ namespace UnitTests.SqlBuilders
                 UpdatedByStaffId = 1,
                 UtcCreated = DateTime.UtcNow,
                 UtcUpdated = DateTime.UtcNow,
-                Version = "version1"
+                //Version = "version1"
             };
 
             var obj = new UpdateSqlBuilder<Customer>();

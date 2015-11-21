@@ -4,11 +4,12 @@ using System.Diagnostics;
 using WaterPoint.Data.DbContext.Dapper;
 using WaterPoint.Data.Entity;
 using WaterPoint.Data.Entity.Attributes;
+using WaterPoint.Data.Entity.DataEntities;
 using WaterPoint.Data.Entity.Pocos;
 
 namespace WaterPoint.Core.Bll.Customers.Queries
 {
-    public class PaginatedBasicCustomerPocosQuery : IQuery
+    public class PaginatedCustomersQuery : IQuery
     {
         private readonly ISqlBuilderFactory _sqlBuilderFactory;
 
@@ -30,7 +31,7 @@ namespace WaterPoint.Core.Bll.Customers.Queries
                 ORDER BY {SqlPatterns.OrderBy}
                 OFFSET @offset ROWS FETCH NEXT @pageSize ROWS ONLY  ";
 
-        public PaginatedBasicCustomerPocosQuery(ISqlBuilderFactory sqlBuilderFactory)
+        public PaginatedCustomersQuery(ISqlBuilderFactory sqlBuilderFactory)
         {
             _sqlBuilderFactory = sqlBuilderFactory;
         }
@@ -40,9 +41,9 @@ namespace WaterPoint.Core.Bll.Customers.Queries
             var builder = _sqlBuilderFactory.Create<SelectSqlBuilder>();
 
             builder.AddTemplate(_sqlTemplate);
-            builder.AddPrimaryColumns<CustomerPoco>();
-            builder.AddConditions<CustomerPoco>(i => i.OrganizationId == orgId);
-            builder.AddOrderBy<CustomerPoco>(orderBy, isDesc);
+            builder.AddPrimaryColumns<Customer>();
+            builder.AddConditions<Customer>(i => i.OrganizationId == orgId);
+            builder.AddOrderBy<Customer>(orderBy, isDesc);
 
             var sql = builder.GetSql();
 
