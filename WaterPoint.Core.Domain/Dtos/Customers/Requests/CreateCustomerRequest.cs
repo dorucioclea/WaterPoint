@@ -5,6 +5,6 @@ namespace WaterPoint.Core.Domain.Dtos.Customers.Requests
     public class CreateCustomerRequest : IRequest
     {
         public OrganizationIdParameter OrganizationIdParameter { get; set; }
-        public CreateCustomerPayload CreateCustomerPayload { get; set; }
+        public WriteCustomerPayload CreateCustomerPayload { get; set; }
     }
 }

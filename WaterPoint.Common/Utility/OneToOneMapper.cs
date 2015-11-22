@@ -6,17 +6,14 @@ using System.Threading.Tasks;
 
 namespace WaterPoint.Core.RequestProcessor
 {
-    public static class OneToOneMapper
+    public static class OneToOneMapperExtensions
     {
-        public static TOutput MapFrom<TOutput>(object obj)
-            where TOutput : class,
-                new()
+        public static TOutput MapTo<TInput, TOutput>(this TInput source, TOutput output)
+            where TInput : class
         {
-            var inputProperties = obj.GetType().GetProperties();
+            var inputProperties = typeof(TInput).GetProperties();
 
             var outputProperties = typeof(TOutput).GetProperties();
-
-            var output = new TOutput();
 
             foreach (var property in inputProperties)
             {
@@ -26,7 +23,7 @@ namespace WaterPoint.Core.RequestProcessor
                 if (outputProperty == null)
                     continue;
 
-                var value = property.GetValue(obj);
+                var value = property.GetValue(source);
 
                 outputProperty.SetValue(output, value, null);
             }

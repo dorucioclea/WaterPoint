@@ -76,7 +76,6 @@
   <ItemGroup>
     <Compile Include="BaseDapperUowRequestProcess.cs" />
     <Compile Include="Jobs\PaginatedJobsProcessor.cs" />
-    <Compile Include="OneToOneMapper.cs" />
     <Compile Include="Customers\CreateCustomerRequestProcessor.cs" />
     <Compile Include="Customers\GetCustomerByIdRequestProcessor.cs" />
     <Compile Include="Customers\PaginatedCustomersProcessor.cs" />

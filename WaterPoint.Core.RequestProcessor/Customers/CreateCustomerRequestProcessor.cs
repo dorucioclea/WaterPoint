@@ -28,6 +28,13 @@ namespace WaterPoint.Core.RequestProcessor.Customers
 
         public CustomerContract Process(CreateCustomerRequest input)
         {
+            var result = UowProcess(ProcessDeFacto, input);
+
+            return result;
+        }
+
+        private CustomerContract ProcessDeFacto(CreateCustomerRequest input)
+        {
             var customer = new Customer
             {
                 OrganizationId = input.OrganizationIdParameter.OrganizationId,
@@ -44,26 +51,13 @@ namespace WaterPoint.Core.RequestProcessor.Customers
 
             _command.BuildQuery(input.OrganizationIdParameter.OrganizationId, customer);
 
-            using (DapperUnitOfWork.Begin())
-            {
-                try
-                {
-                    var newId = _executor.Run(_command);
+            var newId = _executor.Run(_command);
 
-                    customer.Id = newId;
+            customer.Id = newId;
 
-                    var result = CustomerMapper.Map(customer);
+            var result = CustomerMapper.Map(customer);
 
-                    DapperUnitOfWork.Commit();
-
-                    return result;
-                }
-                catch
-                {
-                    DapperUnitOfWork.Rollback();
-                    throw;
-                }
-            }
+            return result;
         }
     }
 }

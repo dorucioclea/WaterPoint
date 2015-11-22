@@ -23,7 +23,11 @@ namespace WaterPoint.Core.Bll.Commands.Customers
 
             var sql = builder.GetSql();
 
+            builder.AddParamter("orgId", orgId);
+            builder.AddParamter("id", input.Id);
+
             Query = sql;
+
             Parameters = builder.Parameters;
         }
 

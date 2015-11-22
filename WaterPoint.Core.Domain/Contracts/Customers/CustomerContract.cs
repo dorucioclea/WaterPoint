@@ -18,7 +18,7 @@ namespace WaterPoint.Core.Domain.Contracts.Customers
         public string Phone { get; set; }
         public string Email { get; set; }
         public string MobilePhone { get; set; }
-        public string Dob { get; set; }
+        public DateTime? Dob { get; set; }
         public string Version { get; set; }
         public DateTime UtcCreated { get; set; }
         public DateTime UtcUpdated { get; set; }

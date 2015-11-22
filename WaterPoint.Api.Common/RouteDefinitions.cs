@@ -13,14 +13,6 @@ namespace WaterPoint.Api.Common
         {
             public const string Prefix = OrganizationNode + "/customers";
         }
-
-        public class Flags
-        {
-            public const string Prefix = OrganizationNode + "/flags";
-
-            public const string GetProducts = "{flagId:int}/products";
-        }
-
         //public class Banners
         //{
         //    public const string Prefix = OrganizationNode + "/bannertypes";

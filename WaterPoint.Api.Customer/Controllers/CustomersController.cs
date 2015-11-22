@@ -65,7 +65,7 @@ namespace WaterPoint.Api.Customer.Controllers
         [Route("")]
         public IHttpActionResult Post(
             [FromUri]OrganizationIdParameter parameter,
-            [FromBody]CreateCustomerPayload customerPayload)
+            [FromBody]WriteCustomerPayload customerPayload)
         {
             if (!ModelState.IsValid)
             {
@@ -82,22 +82,22 @@ namespace WaterPoint.Api.Customer.Controllers
             return Ok(result);
         }
 
-        [Route("")]
+        [Route("{id:int}")]
         public IHttpActionResult Put(
             [FromUri] OrganizationEntityParameter parameter,
-            [FromBody] Delta<UpdateCustomerPayload> input)
+            [FromBody] Delta<WriteCustomerPayload> input)
         {
             //map customer to an updatecustomerrequest so it gets all data
             //input.Patch(updatecustomerrequest) to get the patched value
             //pass patched value to processor
-            _updateRequestProcessor.Process(
+            var customer = _updateRequestProcessor.Process(
                 new UpdateCustomerRequest
                 {
                     OrganizationEntityParameter = parameter,
                     UpdateCustomerPayload = input
                 });
 
-            return Ok();
+            return Ok(customer);
         }
     }
 }

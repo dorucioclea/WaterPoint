@@ -187,10 +187,7 @@ namespace WaterPoint.Core.Bll
                 //main table columns e.g. [dbo].[Customer].[Id]
                 //foreign table columns e.g. [dbo].[Address].[Street] AddressStreet
                 (
-                    i => string.Format("{0}.[{1}] {2}",
-                        tableAttribute.Alias,
-                        i.Name,
-                        isForeign ? tableAttribute.Table + i.Name : string.Empty)
+                    i => $"{tableAttribute.Alias}.[{i.Name}] {(isForeign ? tableAttribute.Table + i.Name : string.Empty)}"
                 );
 
             _columns.AddRange(columns);

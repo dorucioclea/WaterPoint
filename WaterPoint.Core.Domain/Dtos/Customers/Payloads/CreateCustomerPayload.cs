@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace WaterPoint.Core.Domain.Dtos.Customers.Payloads
 {
-    public class CreateCustomerPayload
+    public class WriteCustomerPayload
     {
         public int? CustomerTypeId { get; set; }
         public string Code { get; set; }
@@ -16,11 +16,5 @@ namespace WaterPoint.Core.Domain.Dtos.Customers.Payloads
         public string MobilePhone { get; set; }
         public string Email { get; set; }
         public DateTime? Dob { get; set; }
-    }
-
-    public class UpdateCustomerPayload : CreateCustomerPayload
-    {
-        [Required]
-        public int Id { get; set; }
     }
 }
