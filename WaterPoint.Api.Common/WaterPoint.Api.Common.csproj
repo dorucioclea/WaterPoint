@@ -160,9 +160,7 @@
     <Compile Include="AppStart\WebApiConfig.cs" />
     <Compile Include="BaseControllers\BaseOrgnizationContextController.cs" />
     <Compile Include="DeltaCamelCaseContractResolver.cs" />
-    <Compile Include="PaginatedResult.cs" />
     <Compile Include="CommonStartUp.cs" />
-    <Compile Include="PaginationAnalyzer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RouteDefinitions.cs" />
   </ItemGroup>

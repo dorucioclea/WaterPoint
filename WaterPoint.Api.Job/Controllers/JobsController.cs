@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
+﻿using System.Collections.Generic;
 using System.Web.Http;
-using WaterPoint.Api.Common;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts.Jobs;
-using WaterPoint.Core.Domain.Dtos.Customers.Requests;
+using WaterPoint.Core.Domain.Dtos;
+using WaterPoint.Core.Domain.Dtos.Shared.Requests;
 
 namespace WaterPoint.Api.Job.Controllers
 {
@@ -21,6 +17,21 @@ namespace WaterPoint.Api.Job.Controllers
             _listCustomeRequestProcessor = listCustomeRequestProcessor;
         }
 
-        public
+        [Route("")]
+        public IHttpActionResult Get(
+            [FromUri]OrganizationIdParameter parameter,
+            [FromUri]PaginationParamter pagination)
+        {
+            //validation
+            var request = new PaginationWithOrgIdRequest
+            {
+                OrganizationIdParameter = parameter,
+                PaginationParamter = pagination
+            };
+
+            var result = _listCustomeRequestProcessor.Process(request);
+
+            return Ok(result);
+        }
     }
 }

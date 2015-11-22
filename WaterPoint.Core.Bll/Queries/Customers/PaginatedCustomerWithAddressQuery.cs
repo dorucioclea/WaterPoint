@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using WaterPoint.Data.DbContext.Dapper;
-using WaterPoint.Data.Entity;
-using WaterPoint.Data.Entity.Attributes;
 using WaterPoint.Data.Entity.DataEntities;
 using WaterPoint.Data.Entity.Pocos;
 
-namespace WaterPoint.Core.Bll.Customers.Queries
+namespace WaterPoint.Core.Bll.Queries.Customers
 {
     public class PaginatedCustomerWithAddressQuery : IQuery
     {

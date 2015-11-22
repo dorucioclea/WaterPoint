@@ -1,18 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 using Ninject.Modules;
-using WaterPoint.Api.Common;
 using WaterPoint.Core.Bll;
-using WaterPoint.Core.Bll.Customers;
-using WaterPoint.Core.Bll.Customers.Commands;
-using WaterPoint.Core.Bll.Customers.Queries;
-using WaterPoint.Core.Bll.Customers.Runners;
+using WaterPoint.Core.Bll.Executors;
+using WaterPoint.Core.Bll.Queries.Jobs;
+using WaterPoint.Core.Bll.QueryRunners;
+using WaterPoint.Core.Bll.QueryRunners.Jobs;
 using WaterPoint.Core.Domain;
-using WaterPoint.Core.RequestProcessor.Customers;
-using WaterPoint.Core.Domain.Contracts.Customers;
+using WaterPoint.Core.Domain.Contracts.Jobs;
+using WaterPoint.Core.Domain.Dtos.Shared.Requests;
 using WaterPoint.Core.RequestProcessor;
+using WaterPoint.Core.RequestProcessor.Jobs;
+using WaterPoint.Data.DbContext.Dapper;
+using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Api.DependencyInjection
 {
@@ -26,10 +25,32 @@ namespace WaterPoint.Api.DependencyInjection
 
         private void BindQueriesAndCommands()
         {
+            Bind<IPaginatedWithOrgIdQuery>()
+                .To<PaginatedJobsQuery>()
+                .WhenInjectedExactlyInto<PaginatedJobsProcessor>();
+
+            Bind<IPaginatedEntitiesRunner<Job>>().To<PaginatedJobsRunner>();
+
+            Bind<PaginationAnalyzer>().ToSelf();
+            
+            Bind<CreateCommandExecutor>().ToSelf();
+
+            //Bind<CreateJobsCommand>().ToSelf();
+            //Bind<GetJobByIdQueryRunner>().ToSelf();
         }
 
         private void BindRequestProcessors()
         {
+            Bind<IRequestProcessor<PaginationWithOrgIdRequest, PaginatedResult<IEnumerable<JobContract>>>>()
+                .To<PaginatedJobsProcessor>();
+
+            //Bind<IRequestProcessor<CreateCustomerRequest, CustomerContract>>()
+            //     .To<CreateCustomerRequestProcessor>();
+            //Bind<IRequestProcessor<UpdateCustomerRequest, CustomerContract>>()
+            //    .To<UpdateCustomerRequestProcessor>();
+            //Bind<IRequestProcessor<GetCustomerByIdRequest, CustomerContract>>()
+            //    .To<GetCustomerByIdRequestProcessor>();
+
         }
     }
 }

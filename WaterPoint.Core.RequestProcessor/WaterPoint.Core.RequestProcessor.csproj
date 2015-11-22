@@ -75,11 +75,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseDapperUowRequestProcess.cs" />
+    <Compile Include="Jobs\PaginatedJobsProcessor.cs" />
     <Compile Include="OneToOneMapper.cs" />
     <Compile Include="Customers\CreateCustomerRequestProcessor.cs" />
     <Compile Include="Customers\GetCustomerByIdRequestProcessor.cs" />
     <Compile Include="Customers\PaginatedCustomersProcessor.cs" />
     <Compile Include="Customers\UpdateCustomerRequestProcessor.cs" />
+    <Compile Include="PaginatedEntitiesWithOrgIdProcessor.cs" />
+    <Compile Include="PaginationAnalyzer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

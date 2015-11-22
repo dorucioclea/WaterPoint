@@ -84,18 +84,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UpdateCommandExecutor.cs" />
-    <Compile Include="CreateCommandExecutor.cs" />
+    <Compile Include="Queries\Jobs\PaginatedJobsQuery.cs" />
+    <Compile Include="QueryRunners\Jobs\PaginatedJobsRunner.cs" />
+    <Compile Include="Executors\UpdateCommandExecutor.cs" />
+    <Compile Include="Executors\CreateCommandExecutor.cs" />
+    <Compile Include="QueryRunners\IPaginatedEntitiesRunner.cs" />
     <Compile Include="UpdateSqlBuilder.cs" />
-    <Compile Include="Customers\Commands\UpdateCustomerByIdCommand.cs" />
-    <Compile Include="Customers\Queries\GetCustomerByIdQuery.cs" />
-    <Compile Include="Customers\Queries\PaginatedCustomerWithAddressQuery.cs" />
-    <Compile Include="Customers\Runners\GetCustomerByIdQueryRunner.cs" />
+    <Compile Include="Commands\Customers\UpdateCustomerByIdCommand.cs" />
+    <Compile Include="Queries\Customers\GetCustomerByIdQuery.cs" />
+    <Compile Include="Queries\Customers\PaginatedCustomerWithAddressQuery.cs" />
+    <Compile Include="QueryRunners\Customers\GetCustomerByIdQueryRunner.cs" />
     <Compile Include="SqlBuilder.cs" />
     <Compile Include="Keywords.cs" />
-    <Compile Include="Customers\Commands\CreateCustomersCommand.cs" />
-    <Compile Include="Customers\Runners\PaginatedCustomerQueryRunner.cs" />
-    <Compile Include="Customers\Queries\PaginatedCustomersQuery.cs" />
+    <Compile Include="Commands\Customers\CreateCustomersCommand.cs" />
+    <Compile Include="QueryRunners\Customers\PaginatedCustomersRunner.cs" />
+    <Compile Include="Queries\Customers\PaginatedCustomersQuery.cs" />
     <Compile Include="ISqlBuilder.cs" />
     <Compile Include="ISqlBuilderFactory.cs" />
     <Compile Include="PredicateExpressionConverter.cs" />
@@ -127,7 +130,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Customers\Executors\" />
     <Folder Include="Enum\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

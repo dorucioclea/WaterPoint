@@ -1,69 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WaterPoint.Api.Common;
-using WaterPoint.Core.Bll.Customers;
-using WaterPoint.Core.Bll.Customers.Queries;
-using WaterPoint.Core.Bll.Customers.Runners;
+﻿using System.Collections.Generic;
+using WaterPoint.Core.Bll.QueryRunners;
 using WaterPoint.Core.ContractMapper;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts.Customers;
-using WaterPoint.Core.Domain.Dtos;
-using WaterPoint.Core.Domain.Dtos.Customers.Requests;
+using WaterPoint.Core.Domain.Dtos.Shared.Requests;
 using WaterPoint.Data.DbContext.Dapper;
-using WaterPoint.Data.Entity.Pocos;
+using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Core.RequestProcessor.Customers
 {
     public class PaginatedCustomersProcessor :
-        BaseDapperUowRequestProcess,
+        PaginatedEntitiesWithOrgIdProcessor<Customer, CustomerContract>,
         IRequestProcessor<PaginationWithOrgIdRequest, PaginatedResult<IEnumerable<CustomerContract>>>
     {
-        private readonly PaginationAnalyzer _paginationAnalyzer;
-        private readonly PaginatedCustomersQuery _paginatedCustomersQuery;
-        private readonly PaginatedCustomerRunner _paginatedCustomerRunner;
 
         public PaginatedCustomersProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
-            PaginatedCustomerRunner paginatedCustomerRunner,
             PaginationAnalyzer paginationAnalyzer,
-            PaginatedCustomersQuery paginatedCustomersQuery)
-            : base(dapperUnitOfWork)
+            IPaginatedWithOrgIdQuery paginatedCustomersQuery,
+            IPaginatedEntitiesRunner<Customer> paginatedCustomerRunner)
+            : base(dapperUnitOfWork, paginationAnalyzer, paginatedCustomersQuery, paginatedCustomerRunner)
         {
-            _paginatedCustomerRunner = paginatedCustomerRunner;
-            _paginationAnalyzer = paginationAnalyzer;
-            _paginatedCustomersQuery = paginatedCustomersQuery;
+            
         }
 
-        public PaginatedResult<IEnumerable<CustomerContract>> Process(PaginationWithOrgIdRequest input)
+        public override CustomerContract Map(Customer source)
         {
-            _paginationAnalyzer.Analyze(input.PaginationParamter, "Id");
-
-            _paginatedCustomersQuery.BuildQuery(
-                    input.OrganizationIdParameter.OrganizationId,
-                    _paginationAnalyzer.Offset,
-                    _paginationAnalyzer.PageSize,
-                    _paginationAnalyzer.Sort,
-                    _paginationAnalyzer.IsDesc);
-
-            using (DapperUnitOfWork.Begin())
-            {
-                var result = _paginatedCustomerRunner.Run(_paginatedCustomersQuery);
-
-                return (result != null)
-                    ? new PaginatedResult<IEnumerable<CustomerContract>>
-                    {
-                        Data = result.Data.Select(CustomerMapper.Map),
-                        TotalCount = result.TotalCount,
-                        PageNumber = _paginationAnalyzer.PageNumber,
-                        PageSize = _paginationAnalyzer.PageSize,
-                        Sort = _paginationAnalyzer.Sort,
-                        IsDesc = _paginationAnalyzer.IsDesc
-                    }
-                    : null;
-            }
+            return CustomerMapper.Map(source);
         }
     }
 }

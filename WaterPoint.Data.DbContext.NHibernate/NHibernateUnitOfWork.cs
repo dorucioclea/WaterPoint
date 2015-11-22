@@ -13,8 +13,6 @@ using FluentNHibernate.Conventions.Helpers;
 using NHibernate;
 using NHibernate.SqlCommand;
 using NHibernate.Tool.hbm2ddl;
-using WaterPoint.Data.DbContext.NHibernate.Mappings;
-using WaterPoint.Data.Entity.DataEntities;
 using WaterPoint.Core.Domain;
 
 namespace WaterPoint.Data.DbContext.NHibernate
@@ -42,19 +40,19 @@ namespace WaterPoint.Data.DbContext.NHibernate
 
         static NHibernateUnitOfWork()
         {
-            var db = MsSqlConfiguration.MsSql2012.ConnectionString(ConfigurationManager.ConnectionStrings["DefaultConnection"].ToString());
-#if DEBUG
-            db.ShowSql().FormatSql();
-#endif
-            var config = Fluently.Configure().Database(db);
-#if DEBUG
-            config.ExposeConfiguration(x => x.SetInterceptor(new SqlStatementInterceptor()));
-#endif
-            SessionFactory = config.Mappings(m => m
-                .FluentMappings.AddFromAssemblyOf<ProductMap>()
-                .Conventions.Add(DefaultLazy.Always()))
-                .ExposeConfiguration(cfg => new SchemaUpdate(cfg).Execute(false, true))
-                .BuildSessionFactory();
+//            var db = MsSqlConfiguration.MsSql2012.ConnectionString(ConfigurationManager.ConnectionStrings["DefaultConnection"].ToString());
+//#if DEBUG
+//            db.ShowSql().FormatSql();
+//#endif
+//            var config = Fluently.Configure().Database(db);
+//#if DEBUG
+//            config.ExposeConfiguration(x => x.SetInterceptor(new SqlStatementInterceptor()));
+//#endif
+//            SessionFactory = config.Mappings(m => m
+//                .FluentMappings.AddFromAssemblyOf<ProductMap>()
+//                .Conventions.Add(DefaultLazy.Always()))
+//                .ExposeConfiguration(cfg => new SchemaUpdate(cfg).Execute(false, true))
+//                .BuildSessionFactory();
         }
 
         public ISession Session { get; private set; }

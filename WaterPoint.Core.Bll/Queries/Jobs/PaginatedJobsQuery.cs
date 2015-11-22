@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using WaterPoint.Data.DbContext.Dapper;
-using WaterPoint.Data.Entity;
-using WaterPoint.Data.Entity.Attributes;
-using WaterPoint.Data.Entity.DataEntities;
-using WaterPoint.Data.Entity.Pocos;
+﻿using WaterPoint.Data.DbContext.Dapper;
 
-namespace WaterPoint.Core.Bll.Customers.Queries
+namespace WaterPoint.Core.Bll.Queries.Jobs
 {
-    public class PaginatedCustomersQuery : IQuery
+    public class PaginatedJobsQuery : IPaginatedWithOrgIdQuery
     {
         private readonly ISqlBuilderFactory _sqlBuilderFactory;
 
@@ -31,30 +24,30 @@ namespace WaterPoint.Core.Bll.Customers.Queries
                 ORDER BY {SqlPatterns.OrderBy}
                 OFFSET @offset ROWS FETCH NEXT @pageSize ROWS ONLY  ";
 
-        public PaginatedCustomersQuery(ISqlBuilderFactory sqlBuilderFactory)
+        public PaginatedJobsQuery(ISqlBuilderFactory sqlBuilderFactory)
         {
             _sqlBuilderFactory = sqlBuilderFactory;
         }
 
         public void BuildQuery(int orgId, int offset, int pageSize, string orderBy, bool isDesc)
         {
-            var builder = _sqlBuilderFactory.Create<SelectSqlBuilder>();
+            //var builder = _sqlBuilderFactory.Create<SelectSqlBuilder>();
 
-            builder.AddTemplate(_sqlTemplate);
-            builder.AddPrimaryColumns<Customer>();
-            builder.AddConditions<Customer>(i => i.OrganizationId == orgId);
-            builder.AddOrderBy<Customer>(orderBy, isDesc);
+            //builder.AddTemplate(_sqlTemplate);
+            //builder.AddPrimaryColumns<Customer>();
+            //builder.AddConditions<Customer>(i => i.OrganizationId == orgId);
+            //builder.AddOrderBy<Customer>(orderBy, isDesc);
 
-            var sql = builder.GetSql();
+            //var sql = builder.GetSql();
 
-            Query = sql;
+            //Query = sql;
 
-            Parameters = new
-            {
-                orgId,
-                offset,
-                pageSize
-            };
+            //Parameters = new
+            //{
+            //    orgId,
+            //    offset,
+            //    pageSize
+            //};
         }
         public string Query { get; private set; }
         public object Parameters { get; private set; }

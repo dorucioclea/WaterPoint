@@ -1,9 +1,6 @@
-﻿using System;
-using System.Linq;
-using System.Reflection;
-using WaterPoint.Core.Domain.Dtos;
+﻿using WaterPoint.Core.Domain.Dtos;
 
-namespace WaterPoint.Api.Common
+namespace WaterPoint.Core.RequestProcessor
 {
     public class PaginationAnalyzer
     {

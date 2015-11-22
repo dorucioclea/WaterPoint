@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
 using System.Web.Http;
 using System.Web.Http.OData;
-using System.Web.Http.Results;
 using WaterPoint.Api.Common;
 using WaterPoint.Api.Common.BaseControllers;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts.Customers;
 using WaterPoint.Core.Domain.Dtos;
-using WaterPoint.Core.Domain.Dtos.Customers;
 using WaterPoint.Core.Domain.Dtos.Customers.Payloads;
 using WaterPoint.Core.Domain.Dtos.Customers.Requests;
+using WaterPoint.Core.Domain.Dtos.Shared.Requests;
 
 namespace WaterPoint.Api.Customer.Controllers
 {

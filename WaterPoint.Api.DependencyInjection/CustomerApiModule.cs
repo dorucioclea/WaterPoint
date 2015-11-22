@@ -1,21 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 using Ninject.Modules;
 using WaterPoint.Api.Common;
 using WaterPoint.Core.Bll;
-using WaterPoint.Core.Bll.Customers;
-using WaterPoint.Core.Bll.Customers.Commands;
-using WaterPoint.Core.Bll.Customers.Queries;
-using WaterPoint.Core.Bll.Customers.Runners;
+using WaterPoint.Core.Bll.Commands.Customers;
+using WaterPoint.Core.Bll.Executors;
+using WaterPoint.Core.Bll.Queries.Customers;
+using WaterPoint.Core.Bll.QueryRunners;
+using WaterPoint.Core.Bll.QueryRunners.Customers;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.RequestProcessor.Customers;
 using WaterPoint.Core.Domain.Contracts.Customers;
-using WaterPoint.Core.Domain.Dtos;
-using WaterPoint.Core.Domain.Dtos.Customers;
 using WaterPoint.Core.Domain.Dtos.Customers.Requests;
+using WaterPoint.Core.Domain.Dtos.Shared.Requests;
 using WaterPoint.Core.RequestProcessor;
+using WaterPoint.Data.DbContext.Dapper;
+using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Api.DependencyInjection
 {
@@ -29,8 +28,12 @@ namespace WaterPoint.Api.DependencyInjection
 
         private void BindQueriesAndCommands()
         {
-            Bind<PaginatedCustomersQuery>().ToSelf();
-            Bind<PaginatedCustomerRunner>().ToSelf();
+            Bind<IPaginatedWithOrgIdQuery>()
+                .To<PaginatedCustomersQuery>()
+                .WhenInjectedExactlyInto<PaginatedCustomersProcessor>();
+
+            Bind<IPaginatedEntitiesRunner<Customer>>().To<PaginatedCustomersRunner>();
+
             Bind<PaginationAnalyzer>().ToSelf();
             Bind<CreateCustomersCommand>().ToSelf();
             Bind<CreateCommandExecutor>().ToSelf();

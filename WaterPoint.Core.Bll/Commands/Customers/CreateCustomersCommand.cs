@@ -1,7 +1,7 @@
 ﻿using WaterPoint.Data.DbContext.Dapper;
 using WaterPoint.Data.Entity.DataEntities;
 
-namespace WaterPoint.Core.Bll.Customers.Commands
+namespace WaterPoint.Core.Bll.Commands.Customers
 {
     public class CreateCustomersCommand : ICommand
     {

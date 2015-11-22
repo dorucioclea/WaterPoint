@@ -1,9 +1,8 @@
-﻿using WaterPoint.Core.Bll.Customers.Queries;
-using WaterPoint.Core.Bll.Customers.Runners;
+﻿using WaterPoint.Core.Bll.Queries.Customers;
+using WaterPoint.Core.Bll.QueryRunners.Customers;
 using WaterPoint.Core.ContractMapper;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts.Customers;
-using WaterPoint.Core.Domain.Dtos;
 using WaterPoint.Core.Domain.Dtos.Customers.Requests;
 using WaterPoint.Data.DbContext.Dapper;
 

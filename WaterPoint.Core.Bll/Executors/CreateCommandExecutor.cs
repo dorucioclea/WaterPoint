@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using WaterPoint.Data.DbContext.Dapper;
-using WaterPoint.Data.Entity.Pocos;
 
-namespace WaterPoint.Core.Bll
+namespace WaterPoint.Core.Bll.Executors
 {
     public class CreateCommandExecutor
     {
