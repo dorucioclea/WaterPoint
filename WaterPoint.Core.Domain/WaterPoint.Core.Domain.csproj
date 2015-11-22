@@ -57,7 +57,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\Jobs\JobContract.cs" />
     <Compile Include="Contracts\ResultContract.cs" />
+    <Compile Include="Dtos\Customers\Requests\UpdateCustomerRequest.cs" />
+    <Compile Include="Dtos\Customers\Requests\GetCustomerByIdRequest.cs" />
+    <Compile Include="Dtos\Interfaces\IOrganizationEntityParameter.cs" />
+    <Compile Include="Dtos\Customers\Requests\CreateCustomerRequest.cs" />
     <Compile Include="Exceptions\UpdateFailedException.cs" />
     <Compile Include="Exceptions\NotFoundException.cs" />
     <Compile Include="HttpResults\ErrorResult.cs" />
@@ -66,13 +71,13 @@
     <Compile Include="Exceptions\ApiExceptionFilterAttribute .cs" />
     <Compile Include="Exceptions\InternalServerException.cs" />
     <Compile Include="Exceptions\InvalidInputDataException.cs" />
-    <Compile Include="Contracts\Customers\BasicCustomerContract.cs" />
+    <Compile Include="Contracts\Customers\CustomerContract.cs" />
     <Compile Include="Contracts\Organizations\OrganizationContract.cs" />
     <Compile Include="IUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="IRequestProcessor.cs" />
-    <Compile Include="Dtos\Customers\Requests\Class1.cs" />
+    <Compile Include="Dtos\Customers\Requests\PaginationWIthOrgIdRequest.cs" />
     <Compile Include="Dtos\OrganizationEntityParameter.cs" />
     <Compile Include="Dtos\Customers\Payloads\CreateCustomerPayload.cs" />
     <Compile Include="Dtos\OrganizationIdParameter.cs" />

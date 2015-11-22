@@ -245,6 +245,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\JobsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -304,7 +305,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -321,6 +321,10 @@
     <ProjectReference Include="..\WaterPoint.Api.DependencyInjection\WaterPoint.Api.DependencyInjection.csproj">
       <Project>{5C64B219-7379-45AB-A0FC-F459EEA2AE17}</Project>
       <Name>WaterPoint.Api.DependencyInjection</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WaterPoint.Core.Domain\WaterPoint.Core.Domain.csproj">
+      <Project>{A035AC5E-BFB1-4BE2-803C-6386E3297008}</Project>
+      <Name>WaterPoint.Core.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

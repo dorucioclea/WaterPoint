@@ -8,7 +8,7 @@ using WaterPoint.Data.Entity.Attributes;
 namespace WaterPoint.Data.Entity.DataEntities
 {
     [Table("dbo", "Customer", "c")]
-    public class Customer : IDataEntity
+    public class Customer : IDataEntity, IChangeByTimeTracking
     {
         [Primary]
         public int Id { get; set; }
@@ -34,8 +34,8 @@ namespace WaterPoint.Data.Entity.DataEntities
 
         public int? UpdatedByStaffId { get; set; }
 
-        //[IgnoreMappingWhenUpdate]
-        //public byte[] Version { get; set; }
+        [IgnoreMappingWhenUpdate]
+        public byte[] Version { get; set; }
 
         public DateTime? Dob { get; set; }
 

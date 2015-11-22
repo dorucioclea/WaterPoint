@@ -51,6 +51,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\WaterPoint.Common\Utility\Utility.csproj">
+      <Project>{32862B76-53BF-453B-A8C3-9E7960441BAC}</Project>
+      <Name>Utility</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WaterPoint.Core.Domain\WaterPoint.Core.Domain.csproj">
       <Project>{a035ac5e-bfb1-4be2-803c-6386e3297008}</Project>
       <Name>WaterPoint.Core.Domain</Name>

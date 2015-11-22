@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
+using Utility;
 using WaterPoint.Core.Domain.Contracts.Customers;
 using WaterPoint.Data.Entity.DataEntities;
-using WaterPoint.Data.Entity.Pocos;
 
 namespace WaterPoint.Core.ContractMapper
 {
@@ -14,7 +9,8 @@ namespace WaterPoint.Core.ContractMapper
     {
         static CustomerMapper()
         {
-            Mapper.CreateMap<Customer, CustomerContract>();
+            Mapper.CreateMap<Customer, CustomerContract>()
+                .ForMember(o => o.Version, i => i.MapFrom(d => d.Version.ToSha1(d.Id.ToString())));
         }
 
         public static CustomerContract Map(Customer source)

@@ -94,6 +94,8 @@
     <Build Include="im\Tables\Flag.sql" />
     <Build Include="dbo\Tables\CustomerType.sql" />
     <Build Include="dbo\Tables\CustomerAddress.sql" />
+    <Build Include="dbo\Tables\Job.sql" />
+    <Build Include="dbo\Tables\JobStatus.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="WaterPoint.Database.publish.xml" />
