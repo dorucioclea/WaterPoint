@@ -70,40 +70,26 @@
     <Build Include="dbo\Tables\Customer.sql" />
     <Build Include="dbo\Tables\Country.sql" />
     <Build Include="dbo\Tables\Organization.sql" />
-    <Build Include="dbo\Tables\Branch.sql" />
-    <Build Include="dbo\Tables\OrganizationCustomer.sql" />
     <Build Include="dbo\Tables\Credential.sql" />
     <Build Include="dbo\Tables\Image.sql" />
     <Build Include="dbo\Tables\ImageSize.sql" />
     <Build Include="dbo\Tables\ImageSizeType.sql" />
-    <Build Include="im\Tables\VariantType.sql" />
-    <Build Include="im\Tables\Product.sql" />
-    <Build Include="im\Tables\ProductCategory.sql" />
-    <Build Include="im\Tables\ProductFlag.sql" />
-    <Build Include="im\Tables\ProductImage.sql" />
-    <Build Include="im\Tables\Sku.sql" />
-    <Build Include="im\Tables\SkuVariant.sql" />
-    <Build Include="im\Tables\Variant.sql" />
-    <Build Include="im\Tables\Brand.sql" />
-    <Build Include="im\Tables\Category.sql" />
-    <Build Include="im\Tables\CategoryImage.sql" />
-    <Build Include="im\Tables\BannerType.sql" />
-    <Build Include="im\Tables\Banner.sql" />
     <Build Include="im\InventoryManagement.sql" />
     <Build Include="dbo\Tables\Staff.sql" />
-    <Build Include="im\Tables\Flag.sql" />
     <Build Include="dbo\Tables\CustomerType.sql" />
     <Build Include="dbo\Tables\CustomerAddress.sql" />
     <Build Include="dbo\Tables\Job.sql" />
     <Build Include="dbo\Tables\JobStatus.sql" />
+    <Build Include="dbo\Tables\CredentialType.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="WaterPoint.Database.publish.xml" />
     <None Include="Scripts\PostDeployment\DemoCustomers.sql" />
     <None Include="Scripts\PostDeployment\Countries.sql" />
     <None Include="Scripts\PostDeployment\Reseeds.sql" />
-    <None Include="Scripts\PostDeployment\DemoOrganizationAndBranch.sql" />
+    <None Include="Scripts\PostDeployment\DemoOrganization.sql" />
     <None Include="Scripts\PostDeployment\DemoCustomerTypes.sql" />
+    <None Include="Scripts\PostDeployment\DemoJobs.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="WaterPoint.Database.refactorlog" />

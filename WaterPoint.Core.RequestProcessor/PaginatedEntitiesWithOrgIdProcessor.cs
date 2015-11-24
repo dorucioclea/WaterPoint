@@ -2,7 +2,7 @@
 using System.Linq;
 using WaterPoint.Core.Bll.QueryRunners;
 using WaterPoint.Core.Domain;
-using WaterPoint.Core.Domain.Dtos.Shared.Requests;
+using WaterPoint.Core.Domain.Dtos.Requests.Shared;
 using WaterPoint.Data.DbContext.Dapper;
 
 namespace WaterPoint.Core.RequestProcessor

@@ -6,9 +6,9 @@ using WaterPoint.Api.Common.BaseControllers;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts.Customers;
 using WaterPoint.Core.Domain.Dtos;
-using WaterPoint.Core.Domain.Dtos.Customers.Payloads;
-using WaterPoint.Core.Domain.Dtos.Customers.Requests;
-using WaterPoint.Core.Domain.Dtos.Shared.Requests;
+using WaterPoint.Core.Domain.Dtos.Payloads.Customers;
+using WaterPoint.Core.Domain.Dtos.Requests.Customers;
+using WaterPoint.Core.Domain.Dtos.Requests.Shared;
 
 namespace WaterPoint.Api.Customer.Controllers
 {
@@ -101,4 +101,3 @@ namespace WaterPoint.Api.Customer.Controllers
         }
     }
 }
-

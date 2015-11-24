@@ -14,4 +14,6 @@ Post-Deployment Script Template
 
 :r ".\PostDeployment\Reseeds.sql"
 
-:r ".\PostDeployment\DemoOrganizationAndBranch.sql"
+:r ".\PostDeployment\DemoOrganization.sql"
+
+:r ".\PostDeployment\DemoJobs.sql"

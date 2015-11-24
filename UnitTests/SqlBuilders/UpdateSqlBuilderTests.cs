@@ -55,7 +55,6 @@ namespace UnitTests.SqlBuilders
             obj.AddValueParameters(customer);
 
             var orgId = 1000;
-            var Id = 123;
 
             obj.AddConditions<Customer>(i => i.OrganizationId == orgId && i.Id == customer.Id);
 

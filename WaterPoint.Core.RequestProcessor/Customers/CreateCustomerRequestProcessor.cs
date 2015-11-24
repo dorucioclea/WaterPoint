@@ -3,7 +3,7 @@ using WaterPoint.Core.Bll.Executors;
 using WaterPoint.Core.ContractMapper;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts.Customers;
-using WaterPoint.Core.Domain.Dtos.Customers.Requests;
+using WaterPoint.Core.Domain.Dtos.Requests.Customers;
 using WaterPoint.Data.DbContext.Dapper;
 using WaterPoint.Data.Entity.DataEntities;
 

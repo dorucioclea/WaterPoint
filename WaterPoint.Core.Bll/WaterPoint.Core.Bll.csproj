@@ -84,7 +84,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Queries\Jobs\GetJobByIdQuery.cs" />
     <Compile Include="Queries\Jobs\PaginatedJobsQuery.cs" />
+    <Compile Include="QueryRunners\Jobs\GetJobByIdQueryRunner.cs" />
     <Compile Include="QueryRunners\Jobs\PaginatedJobsRunner.cs" />
     <Compile Include="Executors\UpdateCommandExecutor.cs" />
     <Compile Include="Executors\CreateCommandExecutor.cs" />

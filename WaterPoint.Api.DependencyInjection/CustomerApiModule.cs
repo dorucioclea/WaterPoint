@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
 using Ninject.Modules;
-using WaterPoint.Api.Common;
-using WaterPoint.Core.Bll;
 using WaterPoint.Core.Bll.Commands.Customers;
 using WaterPoint.Core.Bll.Executors;
 using WaterPoint.Core.Bll.Queries.Customers;
@@ -10,8 +8,8 @@ using WaterPoint.Core.Bll.QueryRunners.Customers;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.RequestProcessor.Customers;
 using WaterPoint.Core.Domain.Contracts.Customers;
-using WaterPoint.Core.Domain.Dtos.Customers.Requests;
-using WaterPoint.Core.Domain.Dtos.Shared.Requests;
+using WaterPoint.Core.Domain.Dtos.Requests.Customers;
+using WaterPoint.Core.Domain.Dtos.Requests.Shared;
 using WaterPoint.Core.RequestProcessor;
 using WaterPoint.Data.DbContext.Dapper;
 using WaterPoint.Data.Entity.DataEntities;
@@ -50,7 +48,7 @@ namespace WaterPoint.Api.DependencyInjection
                 .To<UpdateCustomerRequestProcessor>();
             Bind<IRequestProcessor<GetCustomerByIdRequest, CustomerContract>>()
                 .To<GetCustomerByIdRequestProcessor>();
-       
+
         }
     }
 }

@@ -7,17 +7,16 @@ namespace WaterPoint.Api.Common
 {
     public class RouteDefinitions
     {
-        private const string OrganizationNode = "organizations/{OrganizationId:int}";
+        private const string OrganizationNode = "organizations/{organizationId:int}";
 
         public class Cusotmers
         {
             public const string Prefix = OrganizationNode + "/customers";
         }
-        //public class Banners
-        //{
-        //    public const string Prefix = OrganizationNode + "/bannertypes";
 
-        //    public const string GetBanners = "{bannerTypeId:int}/banners";
-        //}
+        public class Jobs
+        {
+            public const string Prefix = OrganizationNode + "/jobs";
+        }
     }
 }

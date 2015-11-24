@@ -1,4 +1,4 @@
-﻿namespace WaterPoint.Core.Domain.Dtos.Shared.Requests
+﻿namespace WaterPoint.Core.Domain.Dtos.Requests.Shared
 {
     public class PaginationWithOrgIdRequest : IRequest
     {

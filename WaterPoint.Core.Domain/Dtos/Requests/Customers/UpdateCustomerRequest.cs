@@ -1,8 +1,8 @@
 ﻿using System.Web.Http.OData;
-using WaterPoint.Core.Domain.Dtos.Customers.Payloads;
 using WaterPoint.Core.Domain.Dtos.Interfaces;
+using WaterPoint.Core.Domain.Dtos.Payloads.Customers;
 
-namespace WaterPoint.Core.Domain.Dtos.Customers.Requests
+namespace WaterPoint.Core.Domain.Dtos.Requests.Customers
 {
     public class UpdateCustomerRequest : IOrganizationEntityParameter, IRequest
     {

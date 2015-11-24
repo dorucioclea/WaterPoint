@@ -1,6 +1,6 @@
-﻿using WaterPoint.Core.Domain.Dtos.Customers.Payloads;
+﻿using WaterPoint.Core.Domain.Dtos.Payloads.Customers;
 
-namespace WaterPoint.Core.Domain.Dtos.Customers.Requests
+namespace WaterPoint.Core.Domain.Dtos.Requests.Customers
 {
     public class CreateCustomerRequest : IRequest
     {

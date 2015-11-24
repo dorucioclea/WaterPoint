@@ -59,10 +59,11 @@
   <ItemGroup>
     <Compile Include="Contracts\Jobs\JobContract.cs" />
     <Compile Include="Contracts\ResultContract.cs" />
-    <Compile Include="Dtos\Customers\Requests\UpdateCustomerRequest.cs" />
-    <Compile Include="Dtos\Customers\Requests\GetCustomerByIdRequest.cs" />
+    <Compile Include="Dtos\Requests\Customers\UpdateCustomerRequest.cs" />
+    <Compile Include="Dtos\Requests\Customers\GetCustomerByIdRequest.cs" />
     <Compile Include="Dtos\Interfaces\IOrganizationEntityParameter.cs" />
-    <Compile Include="Dtos\Customers\Requests\CreateCustomerRequest.cs" />
+    <Compile Include="Dtos\Requests\Customers\CreateCustomerRequest.cs" />
+    <Compile Include="Dtos\Requests\Jobs\GetJobByIdRequest.cs" />
     <Compile Include="Exceptions\UpdateFailedException.cs" />
     <Compile Include="Exceptions\NotFoundException.cs" />
     <Compile Include="HttpResults\ErrorResult.cs" />
@@ -78,9 +79,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="IRequestProcessor.cs" />
-    <Compile Include="Dtos\Shared\Requests\PaginationWIthOrgIdRequest.cs" />
+    <Compile Include="Dtos\Requests\Shared\PaginationWIthOrgIdRequest.cs" />
     <Compile Include="Dtos\OrganizationEntityParameter.cs" />
-    <Compile Include="Dtos\Customers\Payloads\CreateCustomerPayload.cs" />
+    <Compile Include="Dtos\Payloads\Customers\CreateCustomerPayload.cs" />
     <Compile Include="Dtos\OrganizationIdParameter.cs" />
     <Compile Include="Dtos\IUriQueryParameter.cs" />
     <Compile Include="Dtos\IUriPathParamter.cs" />
@@ -94,7 +95,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DataProvider\" />
-    <Folder Include="Dtos\Customers\Parameters\" />
+    <Folder Include="Dtos\Parameters\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
