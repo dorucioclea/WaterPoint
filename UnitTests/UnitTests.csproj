@@ -54,7 +54,9 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="SqlBuilders\UpdateSqlBuilderTests.cs" />
+    <Compile Include="Class1.cs" />
+    <Compile Include="SqlBuilders\JobsSqlBuilderTests.cs" />
+    <Compile Include="SqlBuilders\CustomerSqlBuilderTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

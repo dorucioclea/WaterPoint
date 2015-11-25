@@ -33,7 +33,7 @@ namespace WaterPoint.Api.DependencyInjection
             Bind<IPaginatedEntitiesRunner<Customer>>().To<PaginatedCustomersRunner>();
 
             Bind<PaginationAnalyzer>().ToSelf();
-            Bind<CreateCustomersCommand>().ToSelf();
+            Bind<CreateCustomerCommand>().ToSelf();
             Bind<CreateCommandExecutor>().ToSelf();
             Bind<GetCustomerByIdQueryRunner>().ToSelf();
         }

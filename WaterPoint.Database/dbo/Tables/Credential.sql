@@ -8,4 +8,5 @@
 	[UtcCreated] DATETIME2(0) NOT NULL DEFAULT(GETUTCDATE()),
 	[UtcUpdated] DATETIME2(0) NOT NULL DEFAULT(GETUTCDATE()),
 	[Uid] UNIQUEIDENTIFIER NOT NULL DEFAULT(NEWID()),
+	CONSTRAINT [FK_Credential_CredentialType] FOREIGN KEY ([CredentialTypeId]) REFERENCES [dbo].[CredentialType]([Id]),
 )

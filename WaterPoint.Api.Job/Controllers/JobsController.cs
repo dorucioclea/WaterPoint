@@ -1,26 +1,31 @@
 ﻿using System.Collections.Generic;
 using System.Web.Http;
 using WaterPoint.Api.Common;
+using WaterPoint.Api.Common.BaseControllers;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts.Jobs;
 using WaterPoint.Core.Domain.Dtos;
+using WaterPoint.Core.Domain.Dtos.Payloads.Jobs;
 using WaterPoint.Core.Domain.Dtos.Requests.Jobs;
 using WaterPoint.Core.Domain.Dtos.Requests.Shared;
 
 namespace WaterPoint.Api.Job.Controllers
 {
     [RoutePrefix(RouteDefinitions.Jobs.Prefix)]
-    public class JobsController : ApiController
+    public class JobsController : BaseOrgnizationContextController
     {
         private readonly IRequestProcessor<PaginationWithOrgIdRequest, PaginatedResult<IEnumerable<JobContract>>> _listCustomeRequestProcessor;
         private readonly IRequestProcessor<GetJobByIdRequest, JobContract> _getJobByIdRequestProcessor;
+        private readonly IRequestProcessor<CreateJobRequest, JobContract> _createJobRequestProcessor;
 
         public JobsController(
             IRequestProcessor<PaginationWithOrgIdRequest, PaginatedResult<IEnumerable<JobContract>>> listCustomeRequestProcessor,
-            IRequestProcessor<GetJobByIdRequest, JobContract> getJobByIdRequestProcessor)
+            IRequestProcessor<GetJobByIdRequest, JobContract> getJobByIdRequestProcessor,
+            IRequestProcessor<CreateJobRequest, JobContract> createJobRequestProcessor)
         {
             _listCustomeRequestProcessor = listCustomeRequestProcessor;
             _getJobByIdRequestProcessor = getJobByIdRequestProcessor;
+            _createJobRequestProcessor = createJobRequestProcessor;
         }
 
         [Route("")]
@@ -47,6 +52,28 @@ namespace WaterPoint.Api.Job.Controllers
                 new GetJobByIdRequest
                 {
                     OrganizationEntityParameter = parameter
+                });
+
+            return Ok(result);
+        }
+
+
+        [Route("")]
+        public IHttpActionResult Post(
+            [FromUri]OrganizationIdParameter parameter,
+            [FromBody]WriteJobPayload jobPayload)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            var result = _createJobRequestProcessor.Process(
+                new CreateJobRequest
+                {
+                    OrganizationIdParameter = parameter,
+                    CreateJobPayload = jobPayload,
+                    StaffId = Staff.Id
                 });
 
             return Ok(result);

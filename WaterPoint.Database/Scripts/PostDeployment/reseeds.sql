@@ -19,3 +19,9 @@ IF(NOT EXISTS(SELECT TOP 1 * FROM dbo.Job))
         DBCC checkident ('dbo.Job', reseed, 10000)
     END
 GO
+
+IF(NOT EXISTS(SELECT TOP 1 * FROM dbo.Staff))
+    BEGIN
+        DBCC checkident ('dbo.Staff', reseed, 10000)
+    END
+GO

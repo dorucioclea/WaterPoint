@@ -84,6 +84,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\Jobs\CreateJobCommand.cs" />
     <Compile Include="Queries\Jobs\GetJobByIdQuery.cs" />
     <Compile Include="Queries\Jobs\PaginatedJobsQuery.cs" />
     <Compile Include="QueryRunners\Jobs\GetJobByIdQueryRunner.cs" />
@@ -98,7 +99,7 @@
     <Compile Include="QueryRunners\Customers\GetCustomerByIdQueryRunner.cs" />
     <Compile Include="SqlBuilder.cs" />
     <Compile Include="Keywords.cs" />
-    <Compile Include="Commands\Customers\CreateCustomersCommand.cs" />
+    <Compile Include="Commands\Customers\CreateCustomerCommand.cs" />
     <Compile Include="QueryRunners\Customers\PaginatedCustomersRunner.cs" />
     <Compile Include="Queries\Customers\PaginatedCustomersQuery.cs" />
     <Compile Include="ISqlBuilder.cs" />

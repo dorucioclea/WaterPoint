@@ -59,10 +59,12 @@
   <ItemGroup>
     <Compile Include="Contracts\Jobs\JobContract.cs" />
     <Compile Include="Contracts\ResultContract.cs" />
+    <Compile Include="Dtos\Payloads\Jobs\WriteJobPayload.cs" />
     <Compile Include="Dtos\Requests\Customers\UpdateCustomerRequest.cs" />
     <Compile Include="Dtos\Requests\Customers\GetCustomerByIdRequest.cs" />
     <Compile Include="Dtos\Interfaces\IOrganizationEntityParameter.cs" />
     <Compile Include="Dtos\Requests\Customers\CreateCustomerRequest.cs" />
+    <Compile Include="Dtos\Requests\Jobs\CreateJobRequest.cs" />
     <Compile Include="Dtos\Requests\Jobs\GetJobByIdRequest.cs" />
     <Compile Include="Exceptions\UpdateFailedException.cs" />
     <Compile Include="Exceptions\NotFoundException.cs" />

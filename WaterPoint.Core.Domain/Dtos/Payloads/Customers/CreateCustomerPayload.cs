@@ -14,6 +14,7 @@ namespace WaterPoint.Core.Domain.Dtos.Payloads.Customers
         public string OtherName { get; set; }
         public string Phone { get; set; }
         public string MobilePhone { get; set; }
+        [EmailAddress]
         public string Email { get; set; }
         public DateTime? Dob { get; set; }
     }

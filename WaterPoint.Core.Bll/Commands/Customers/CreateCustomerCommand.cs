@@ -3,11 +3,11 @@ using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Core.Bll.Commands.Customers
 {
-    public class CreateCustomersCommand : ICommand
+    public class CreateCustomerCommand : ICommand
     {
         private readonly ISqlBuilderFactory _sqlBuilderFactory;
 
-        public CreateCustomersCommand(ISqlBuilderFactory sqlBuilderFactory)
+        public CreateCustomerCommand(ISqlBuilderFactory sqlBuilderFactory)
         {
             _sqlBuilderFactory = sqlBuilderFactory;
         }

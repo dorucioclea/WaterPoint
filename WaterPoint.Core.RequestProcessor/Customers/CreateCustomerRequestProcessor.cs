@@ -9,16 +9,15 @@ using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Core.RequestProcessor.Customers
 {
-    public class CreateCustomerRequestProcessor :
-        BaseDapperUowRequestProcess,
+    public class CreateCustomerRequestProcessor : BaseDapperUowRequestProcess,
         IRequestProcessor<CreateCustomerRequest, CustomerContract>
     {
-        private readonly CreateCustomersCommand _command;
+        private readonly CreateCustomerCommand _command;
         private readonly CreateCommandExecutor _executor;
 
         public CreateCustomerRequestProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
-            CreateCustomersCommand command,
+            CreateCustomerCommand command,
             CreateCommandExecutor executor)
             : base(dapperUnitOfWork)
         {
