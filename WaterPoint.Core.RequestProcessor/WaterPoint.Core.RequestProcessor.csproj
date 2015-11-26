@@ -82,6 +82,7 @@
     <Compile Include="Customers\GetCustomerByIdRequestProcessor.cs" />
     <Compile Include="Customers\PaginatedCustomersProcessor.cs" />
     <Compile Include="Customers\UpdateCustomerRequestProcessor.cs" />
+    <Compile Include="Jobs\UpdateJobRequestProcessor.cs" />
     <Compile Include="PaginatedEntitiesWithOrgIdProcessor.cs" />
     <Compile Include="PaginationAnalyzer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

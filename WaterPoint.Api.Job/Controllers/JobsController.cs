@@ -1,11 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Web.Http;
+using System.Web.Http.OData;
 using WaterPoint.Api.Common;
 using WaterPoint.Api.Common.BaseControllers;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts.Jobs;
 using WaterPoint.Core.Domain.Dtos;
 using WaterPoint.Core.Domain.Dtos.Payloads.Jobs;
+using WaterPoint.Core.Domain.Dtos.Requests.Customers;
 using WaterPoint.Core.Domain.Dtos.Requests.Jobs;
 using WaterPoint.Core.Domain.Dtos.Requests.Shared;
 
@@ -17,15 +19,18 @@ namespace WaterPoint.Api.Job.Controllers
         private readonly IRequestProcessor<PaginationWithOrgIdRequest, PaginatedResult<IEnumerable<JobContract>>> _listCustomeRequestProcessor;
         private readonly IRequestProcessor<GetJobByIdRequest, JobContract> _getJobByIdRequestProcessor;
         private readonly IRequestProcessor<CreateJobRequest, JobContract> _createJobRequestProcessor;
+        private readonly IRequestProcessor<UpdateJobRequest, JobContract> _updateJobRequestProcessor;
 
         public JobsController(
             IRequestProcessor<PaginationWithOrgIdRequest, PaginatedResult<IEnumerable<JobContract>>> listCustomeRequestProcessor,
             IRequestProcessor<GetJobByIdRequest, JobContract> getJobByIdRequestProcessor,
-            IRequestProcessor<CreateJobRequest, JobContract> createJobRequestProcessor)
+            IRequestProcessor<CreateJobRequest, JobContract> createJobRequestProcessor,
+            IRequestProcessor<UpdateJobRequest, JobContract> updateJobRequestProcessor)
         {
             _listCustomeRequestProcessor = listCustomeRequestProcessor;
             _getJobByIdRequestProcessor = getJobByIdRequestProcessor;
             _createJobRequestProcessor = createJobRequestProcessor;
+            _updateJobRequestProcessor = updateJobRequestProcessor;
         }
 
         [Route("")]
@@ -77,6 +82,22 @@ namespace WaterPoint.Api.Job.Controllers
                 });
 
             return Ok(result);
+        }
+
+        [Route("{id:int}")]
+        public IHttpActionResult Put(
+            [FromUri] OrganizationEntityParameter parameter,
+            [FromBody] Delta<WriteJobPayload> input)
+        {
+            var customer = _updateJobRequestProcessor.Process(
+                new UpdateJobRequest
+                {
+                    OrganizationEntityParameter = parameter,
+                    UpdateJobPayload = input,
+                    StaffId = Staff.Id
+                });
+
+            return Ok(customer);
         }
     }
 }

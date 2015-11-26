@@ -66,6 +66,7 @@
     <Compile Include="Dtos\Requests\Customers\CreateCustomerRequest.cs" />
     <Compile Include="Dtos\Requests\Jobs\CreateJobRequest.cs" />
     <Compile Include="Dtos\Requests\Jobs\GetJobByIdRequest.cs" />
+    <Compile Include="Dtos\Requests\Jobs\UpdateJobRequest.cs" />
     <Compile Include="Exceptions\UpdateFailedException.cs" />
     <Compile Include="Exceptions\NotFoundException.cs" />
     <Compile Include="HttpResults\ErrorResult.cs" />

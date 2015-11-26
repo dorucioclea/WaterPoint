@@ -22,11 +22,10 @@ namespace UnitTests.SqlBuilders
                     [dbo].[Job].[CustomerId],
                     [dbo].[Job].[StartDate],
                     [dbo].[Job].[EndDate],
-                    [dbo].[Job].[DueDate],
-                    [dbo].[Job].[UpdatedByStaffId])
+                    [dbo].[Job].[DueDate]
                 VALUES
                 (
-                    @organizationid,@jobstatusid,@code,@shortdescription,@longdescription,@customerid,@startdate,@enddate,@duedate,@updatedbystaffid
+                    @organizationid,@jobstatusid,@code,@shortdescription,@longdescription,@customerid,@startdate,@enddate,@duedate
                 )
                 SELECT SCOPE_IDENTITY()";
 
@@ -42,7 +41,6 @@ namespace UnitTests.SqlBuilders
                 JobStatusId = 3,
                 LongDescription = "long desc",
                 ShortDescription = "short desc",
-                UpdatedByStaffId = 10000,
                 Uid = Guid.NewGuid(),
                 UtcCreated = DateTime.UtcNow,
                 UtcUpdated = DateTime.UtcNow

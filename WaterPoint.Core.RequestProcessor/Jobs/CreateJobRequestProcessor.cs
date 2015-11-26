@@ -49,8 +49,7 @@ namespace WaterPoint.Core.RequestProcessor.Jobs
                 CustomerId = input.CreateJobPayload.CustomerId,
                 StartDate = input.CreateJobPayload.StartDate,
                 EndDate = input.CreateJobPayload.EndDate,
-                DueDate = input.CreateJobPayload.DueDate,
-                UpdatedByStaffId = input.CreateJobPayload.UpdatedByStaffId,
+                DueDate = input.CreateJobPayload.DueDate
             };
 
             _command.BuildQuery(input.OrganizationIdParameter.OrganizationId, job);

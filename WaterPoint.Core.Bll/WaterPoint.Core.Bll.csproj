@@ -85,6 +85,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\Jobs\CreateJobCommand.cs" />
+    <Compile Include="Commands\Jobs\UpdateJobByIdCommand.cs" />
     <Compile Include="Queries\Jobs\GetJobByIdQuery.cs" />
     <Compile Include="Queries\Jobs\PaginatedJobsQuery.cs" />
     <Compile Include="QueryRunners\Jobs\GetJobByIdQueryRunner.cs" />
