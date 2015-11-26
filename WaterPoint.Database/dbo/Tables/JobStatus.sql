@@ -3,6 +3,7 @@
     [Id] INT NOT NULL PRIMARY KEY IDENTITY,
     [Name] NVARCHAR(50) NOT NULL,
     [OrganizationId] INT NOT NULL,
+    [ForPlanned] BIT NOT NULL DEFAULT(0),
     [ForDeleted] BIT NOT NULL DEFAULT(0),
     [ForOnHold] BIT NOT NULL DEFAULT(0),
     [ForCompleted] BIT NOT NULL DEFAULT(0),

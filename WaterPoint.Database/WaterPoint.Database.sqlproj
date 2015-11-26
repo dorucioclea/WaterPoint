@@ -71,9 +71,6 @@
     <Build Include="dbo\Tables\Country.sql" />
     <Build Include="dbo\Tables\Organization.sql" />
     <Build Include="dbo\Tables\Credential.sql" />
-    <Build Include="dbo\Tables\Image.sql" />
-    <Build Include="dbo\Tables\ImageSize.sql" />
-    <Build Include="dbo\Tables\ImageSizeType.sql" />
     <Build Include="im\InventoryManagement.sql" />
     <Build Include="dbo\Tables\Staff.sql" />
     <Build Include="dbo\Tables\CustomerType.sql" />
@@ -81,6 +78,16 @@
     <Build Include="dbo\Tables\Job.sql" />
     <Build Include="dbo\Tables\JobStatus.sql" />
     <Build Include="dbo\Tables\CredentialType.sql" />
+    <Build Include="dbo\Tables\JobCategory.sql" />
+    <Build Include="dbo\Tables\Task.sql" />
+    <Build Include="dbo\Tables\JobTask.sql" />
+    <Build Include="dbo\Tables\CostItem.sql" />
+    <Build Include="dbo\Tables\Supplier.sql" />
+    <Build Include="dbo\Tables\JobCost.sql" />
+    <Build Include="dbo\Tables\Contact.sql" />
+    <Build Include="dbo\Tables\Invoice.sql" />
+    <Build Include="dbo\Tables\InvoiceType.sql" />
+    <Build Include="dbo\Tables\InvoiceJob.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="WaterPoint.Database.publish.xml" />
@@ -90,6 +97,8 @@
     <None Include="Scripts\PostDeployment\DemoOrganization.sql" />
     <None Include="Scripts\PostDeployment\DemoCustomerTypes.sql" />
     <None Include="Scripts\PostDeployment\DemoJobs.sql" />
+    <None Include="Scripts\PostDeployment\CredentialTypes.sql" />
+    <None Include="Scripts\PostDeployment\InvoiceTypes.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="WaterPoint.Database.refactorlog" />

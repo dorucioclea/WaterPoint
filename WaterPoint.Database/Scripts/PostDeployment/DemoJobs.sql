@@ -5,6 +5,11 @@ IF NOT EXISTS(SELECT TOP 1 * FROM dbo.JobStatus)
         DECLARE @orgId INT = (SELECT Id FROM  dbo.Organization WHERE Name = 'Water Point')
 
         INSERT INTO [dbo].[JobStatus]
+        ([Name],[OrganizationId],[ForPlanned],[DisplayOrder])
+        VALUES
+        (N'计划', @orgId, 1, 1)
+
+        INSERT INTO [dbo].[JobStatus]
         ([Name],[OrganizationId],[ForInProgress],[DisplayOrder])
         VALUES
         (N'进展中', @orgId, 1, 1)

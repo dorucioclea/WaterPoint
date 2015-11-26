@@ -16,10 +16,6 @@ END
 
 
 
-INSERT INTO dbo.CredentialType (Description) VALUES (N'员工')
-INSERT INTO dbo.CredentialType (Description) VALUES (N'客户')
-
-
 INSERT INTO dbo.Credential
 (OrganizationId, CredentialTypeId, Email, Password)
 VALUES
