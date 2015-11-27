@@ -83,11 +83,17 @@
     <Build Include="dbo\Tables\JobTask.sql" />
     <Build Include="dbo\Tables\CostItem.sql" />
     <Build Include="dbo\Tables\Supplier.sql" />
-    <Build Include="dbo\Tables\JobCost.sql" />
+    <Build Include="dbo\Tables\JobCostItem.sql" />
     <Build Include="dbo\Tables\Contact.sql" />
     <Build Include="dbo\Tables\Invoice.sql" />
     <Build Include="dbo\Tables\InvoiceType.sql" />
     <Build Include="dbo\Tables\InvoiceJob.sql" />
+    <Build Include="dbo\Tables\InvoiceJobCostItem.sql" />
+    <Build Include="dbo\Tables\InvoiceAddtionalCostItem.sql" />
+    <Build Include="dbo\Tables\InvoiceJobTask.sql" />
+    <Build Include="dbo\Tables\JobTimesheet.sql" />
+    <Build Include="dbo\Tables\JobTimesheetType.sql" />
+    <Build Include="dbo\Tables\InvoiceJobTimesheet.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="WaterPoint.Database.publish.xml" />
@@ -99,6 +105,7 @@
     <None Include="Scripts\PostDeployment\DemoJobs.sql" />
     <None Include="Scripts\PostDeployment\CredentialTypes.sql" />
     <None Include="Scripts\PostDeployment\InvoiceTypes.sql" />
+    <None Include="Scripts\PostDeployment\DemoJobCategories.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="WaterPoint.Database.refactorlog" />

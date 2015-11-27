@@ -11,6 +11,7 @@
     [IsDraft] BIT NOT NULL DEFAULT(0),
     [IsCancelled] BIT NOT NULL DEFAULT(0),
     [IsFixedPrice] BIT NOT NULL DEFAULT(0),
+    [IsProgressive] BIT NOT NULL DEFAULT(0),
     [Description] NVARCHAR(MAX) NULL,
     [Version] ROWVERSION NOT NULL,
 	[UtcCreated] DATETIME2(0) NOT NULL DEFAULT(GETUTCDATE()),

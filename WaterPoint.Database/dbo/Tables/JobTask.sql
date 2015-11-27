@@ -18,6 +18,5 @@
 	[UtcUpdated] DATETIME2(0) NOT NULL DEFAULT(GETUTCDATE()),
     [Uid] UNIQUEIDENTIFIER NOT NULL DEFAULT(NEWID())
     CONSTRAINT [FK_JobTask_Job] FOREIGN KEY ([JobId]) REFERENCES [dbo].[Job]([Id]),
-    CONSTRAINT [FK_JobTask_Task] FOREIGN KEY ([TaskId]) REFERENCES [dbo].[Task]([Id]),
-    CONSTRAINT [FK_JobTask_Staff] FOREIGN KEY ([MarkAsCompletedByStaffId]) REFERENCES [dbo].[Staff]([Id]),
+    CONSTRAINT [FK_JobTask_Task] FOREIGN KEY ([TaskId]) REFERENCES [dbo].[Task]([Id])
 )

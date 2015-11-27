@@ -1,11 +1,9 @@
 ﻿MERGE INTO dbo.InvoiceType AS i
 USING
 (
-	SELECT 1 AS Id, N'帐单' AS [Description]
-	UNION ALL
-	SELECT 2 AS Id, N'进展账单' AS [Description]
+	SELECT 1 AS Id, N'工作账单' AS [Description]
     UNION ALL
-    SELECT 3 AS Id, N'杂项账单' AS [Description]
+    SELECT 2 AS Id, N'杂务账单' AS [Description]
 ) AS s
 ON 	i.Id = s.Id
 

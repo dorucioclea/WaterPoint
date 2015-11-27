@@ -16,6 +16,8 @@ Post-Deployment Script Template
 
 :r ".\PostDeployment\DemoOrganization.sql"
 
+:r ".\PostDeployment\DemoJobCategories.sql"
+
 :r ".\PostDeployment\DemoJobs.sql"
 
 :r ".\PostDeployment\InvoiceTypes.sql"
