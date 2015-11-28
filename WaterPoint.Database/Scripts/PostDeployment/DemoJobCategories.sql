@@ -1,6 +1,4 @@
-﻿USE [WaterPoint]
-GO
-IF NOT EXISTS(SELECT TOP 1 * FROM dbo.JobCategory)
+﻿IF NOT EXISTS(SELECT TOP 1 * FROM dbo.JobCategory)
     BEGIN
         DECLARE @orgId INT = (SELECT Id FROM  dbo.Organization WHERE Name = 'Water Point')
 

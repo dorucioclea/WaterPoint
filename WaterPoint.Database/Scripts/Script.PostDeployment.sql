@@ -18,6 +18,18 @@ Post-Deployment Script Template
 
 :r ".\PostDeployment\DemoJobCategories.sql"
 
+:r ".\PostDeployment\DemoJobsStatuses.sql"
+
+:r ".\PostDeployment\DemoCustomerTypes.sql"
+
+:r ".\PostDeployment\DemoCustomers.sql"
+
 :r ".\PostDeployment\DemoJobs.sql"
+
+:r ".\PostDeployment\CredentialTypes.sql"
+
+:r ".\PostDeployment\DemoCredential.sql"
+
+:r ".\PostDeployment\DemoStaff.sql"
 
 :r ".\PostDeployment\InvoiceTypes.sql"

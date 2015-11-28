@@ -1,37 +1,17 @@
-﻿USE [WaterPoint]
-GO
-IF NOT EXISTS(SELECT TOP 1 * FROM dbo.JobStatus)
-    BEGIN
-        DECLARE @orgId INT = (SELECT Id FROM  dbo.Organization WHERE Name = 'Water Point')
+﻿DECLARE @orgId INT = (SELECT Id FROM dbo.Organization WHERE Name = 'Water Point')
+DECLARE @counter INT = 0
 
-        INSERT INTO [dbo].[JobStatus]
-        ([Name],[OrganizationId],[ForPlanned],[DisplayOrder])
-        VALUES
-        (N'计划', @orgId, 1, 1)
+IF (NOT EXISTS (SELECT TOP 1 * FROM dbo.Job)) BEGIN
+    WHILE @counter < 23 BEGIN
+        INSERT INTO dbo.Job
+		(OrganizationId, JobStatusId, JobCategoryId, Code,ShortDescription, LongDescription, CustomerId, StartDate, EndDate, UpdatedByStaffId)
+		VALUES
+		(@orgId, 101,(SELECT TOP 1 Id FROM dbo.[JobCategory] WHERE IsInternal = 0 AND IsCapacityReducing = 0),
+		'GZ10000', N'改革开放后，中国的50个经典瞬间', N'热点：10岁华裔女孩要修改美国宪法，因为她要做美国总统[组图] sdfsf',		
+		(SELECT TOP 1 Id FROM dbo.Customer)
+		, GETDATE(), DATEADD(DAY, 30, GETDATE()), 5)
 
-        INSERT INTO [dbo].[JobStatus]
-        ([Name],[OrganizationId],[ForInProgress],[DisplayOrder])
-        VALUES
-        (N'进展中', @orgId, 1, 1)
-
-        INSERT INTO [dbo].[JobStatus]
-        ([Name],[OrganizationId],[ForDeleted],[DisplayOrder])
-        VALUES
-        (N'已删除', @orgId, 1, 1)
-
-        INSERT INTO [dbo].[JobStatus]
-        ([Name],[OrganizationId],[ForOnHold],[DisplayOrder])
-        VALUES
-        (N'暂停中', @orgId, 1, 1)
-
-        INSERT INTO [dbo].[JobStatus]
-        ([Name],[OrganizationId],[ForCompleted],[DisplayOrder])
-        VALUES
-        (N'已完成', @orgId, 1, 1)
-
-        INSERT INTO [dbo].[JobStatus]
-        ([Name],[OrganizationId],[ForCancelled],[DisplayOrder])
-        VALUES
-        (N'已取消', @orgId, 1, 1)
+        SET @counter = @counter + 1
     END
+END
 GO

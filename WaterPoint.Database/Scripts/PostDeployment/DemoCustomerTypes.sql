@@ -23,3 +23,4 @@ BEGIN
     VALUES
     (@orgId,N'公司','/**LastName**/ /**OtherName**/ /**FirstName**/')
 END
+GO

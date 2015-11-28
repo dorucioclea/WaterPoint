@@ -8,7 +8,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
     <ProjectGuid>{af770b37-7f34-4bb4-bed7-1a4a84db3965}</ProjectGuid>
-    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql110DatabaseSchemaProvider</DSP>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.SqlAzureV12DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>
     </RootPath>
@@ -102,10 +102,14 @@
     <None Include="Scripts\PostDeployment\Reseeds.sql" />
     <None Include="Scripts\PostDeployment\DemoOrganization.sql" />
     <None Include="Scripts\PostDeployment\DemoCustomerTypes.sql" />
-    <None Include="Scripts\PostDeployment\DemoJobs.sql" />
+    <None Include="Scripts\PostDeployment\DemoJobsStatuses.sql" />
     <None Include="Scripts\PostDeployment\CredentialTypes.sql" />
     <None Include="Scripts\PostDeployment\InvoiceTypes.sql" />
     <None Include="Scripts\PostDeployment\DemoJobCategories.sql" />
+    <None Include="WaterPoint.Database.Azure.publish.publish.xml" />
+    <None Include="Scripts\PostDeployment\DemoCredential.sql" />
+    <None Include="Scripts\PostDeployment\DemoJobs.sql" />
+    <None Include="Scripts\PostDeployment\DemoStaff.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="WaterPoint.Database.refactorlog" />
