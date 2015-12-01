@@ -94,6 +94,11 @@
     <Build Include="dbo\Tables\JobTimesheet.sql" />
     <Build Include="dbo\Tables\JobTimesheetType.sql" />
     <Build Include="dbo\Tables\InvoiceJobTimesheet.sql" />
+    <Build Include="dbo\Tables\Quote.sql" />
+    <Build Include="dbo\Tables\QuoteType.sql" />
+    <Build Include="dbo\Tables\QuoteCostItem.sql" />
+    <Build Include="dbo\Tables\QuoteTask.sql" />
+    <Build Include="dbo\Tables\QuoteTimesheet.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="WaterPoint.Database.publish.xml" />

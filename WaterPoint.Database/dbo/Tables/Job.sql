@@ -12,6 +12,7 @@
     [EndDate] DATE NOT NULL,
     [DueDate] DATE NULL,
     [UpdatedByStaffId] INT NULL,
+    [ExcludeFromWip] BIT NOT NULL DEFAULT(0),
     [Version] ROWVERSION NOT NULL,
 	[UtcCreated] DATETIME2(0) NOT NULL DEFAULT(GETUTCDATE()),
 	[UtcUpdated] DATETIME2(0) NOT NULL DEFAULT(GETUTCDATE()),

@@ -1,8 +1,8 @@
-﻿CREATE TABLE [dbo].[InvoiceJobCostItem]
+﻿CREATE TABLE [dbo].[QuoteCostItem]
 (
     [Id] INT NOT NULL PRIMARY KEY IDENTITY,
-    [InvoiceId] INT NOT NULL,
-    [JobCostItemId] INT NOT NULL,
+    [QuoteId] INT NOT NULL,
+    [CostItemId] INT NOT NULL,
     [ShortDescription] NVARCHAR(200) NOT NULL,
     [LongDescription] NVARCHAR(MAX) NULL,
     [UnitCost] DECIMAL(10,3) NOT NULL DEFAULT(0),
@@ -13,6 +13,6 @@
 	[UtcCreated] DATETIME2(0) NOT NULL DEFAULT(GETUTCDATE()),
 	[UtcUpdated] DATETIME2(0) NOT NULL DEFAULT(GETUTCDATE()),
     [Uid] UNIQUEIDENTIFIER NOT NULL DEFAULT(NEWID()),
-    CONSTRAINT [FK_InvoiceJobCostItem_Invoice] FOREIGN KEY ([InvoiceId]) REFERENCES [dbo].[Invoice]([Id]),
-    CONSTRAINT [FK_InvoiceJobCostItem_JobCostItem] FOREIGN KEY ([JobCostItemId]) REFERENCES [dbo].[JobCostItem]([Id]),
+    CONSTRAINT [FK_QuoteJobCostItem_Quote] FOREIGN KEY ([QuoteId]) REFERENCES [dbo].[Quote]([Id]),
+    CONSTRAINT [FK_QuoteJobCostItem_JobCostItem] FOREIGN KEY ([CostItemId]) REFERENCES [dbo].[CostItem]([Id]),
 )
