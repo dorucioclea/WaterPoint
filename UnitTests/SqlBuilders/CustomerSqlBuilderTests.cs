@@ -23,7 +23,6 @@ namespace UnitTests.SqlBuilders
                     [dbo].[Customer].[LastName] = @lastname,
                     [dbo].[Customer].[OtherName] = @othername,
                     [dbo].[Customer].[MobilePhone] = @mobilephone,
-                    [dbo].[Customer].[UpdatedByStaffId] = @updatedbystaffid,
                     [dbo].[Customer].[Dob] = @dob,
                     [dbo].[Customer].[UtcUpdated] = @utcupdated
                 WHERE (([dbo].[Customer].[OrganizationId] = @orgid) AND ([dbo].[Customer].[Id] = @id))";
@@ -42,7 +41,6 @@ namespace UnitTests.SqlBuilders
                 OtherName = "cang",
                 Phone = "321",
                 Uid = Guid.NewGuid(),
-                UpdatedByStaffId = 1,
                 UtcCreated = DateTime.UtcNow,
                 UtcUpdated = DateTime.UtcNow,
                 //Version = "version1"

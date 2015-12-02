@@ -78,7 +78,7 @@ namespace WaterPoint.Core.Bll
             Parameters.Add(key, value);
         }
 
-        public void AddConditions<T>(Expression<Func<T, bool>> values)
+        public void AddConditions<TCondition>(Expression<Func<TCondition, bool>> values)
         {
             var whereClause = values.Body as BinaryExpression;
 

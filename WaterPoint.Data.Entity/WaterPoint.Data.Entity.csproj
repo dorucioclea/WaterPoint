@@ -63,6 +63,7 @@
     <Compile Include="DataEntities\Country.cs" />
     <Compile Include="DataEntities\Customer.cs" />
     <Compile Include="DataEntities\Job.cs" />
+    <Compile Include="DataEntities\TaskDefinition.cs" />
     <Compile Include="IDataEntity.cs" />
     <Compile Include="Pocos\BasicCustomerPoco.cs" />
     <Compile Include="Pocos\PaginatedPoco.cs" />

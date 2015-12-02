@@ -9,7 +9,7 @@ namespace WaterPoint.Api.Common
     {
         private const string OrganizationNode = "organizations/{organizationId:int}";
 
-        public class Cusotmers
+        public class Customers
         {
             public const string Prefix = OrganizationNode + "/customers";
         }
@@ -17,6 +17,11 @@ namespace WaterPoint.Api.Common
         public class Jobs
         {
             public const string Prefix = OrganizationNode + "/jobs";
+        }
+
+        public class TaskDefinition
+        {
+            public const string Prefix = OrganizationNode + "/taskdefinitions";
         }
     }
 }

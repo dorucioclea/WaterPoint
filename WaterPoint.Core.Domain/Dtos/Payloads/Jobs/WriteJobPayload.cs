@@ -17,6 +17,5 @@ namespace WaterPoint.Core.Domain.Dtos.Payloads.Jobs
         [Required]
         public DateTime EndDate { get; set; }
         public DateTime? DueDate { get; set; }
-        public int? UpdatedByStaffId { get; set; }
     }
 }

@@ -12,8 +12,8 @@ using WaterPoint.Core.Domain.Dtos.Requests.Shared;
 
 namespace WaterPoint.Api.Customer.Controllers
 {
-    [RoutePrefix(RouteDefinitions.Cusotmers.Prefix)]
-    public class CusotmersController : BaseOrgnizationContextController
+    [RoutePrefix(RouteDefinitions.Customers.Prefix)]
+    public class CustomersController : BaseOrgnizationContextController
     {
         private readonly IRequestProcessor<PaginationWithOrgIdRequest, PaginatedResult<IEnumerable<CustomerContract>>> _listCustomeRequestProcessor;
         private readonly IRequestProcessor<CreateCustomerRequest, CustomerContract> _createCustomerRequest;
@@ -21,7 +21,7 @@ namespace WaterPoint.Api.Customer.Controllers
         private readonly IRequestProcessor<GetCustomerByIdRequest, CustomerContract> _getCustomerByIdProcessor;
 
 
-        public CusotmersController(
+        public CustomersController(
             IRequestProcessor<PaginationWithOrgIdRequest, PaginatedResult<IEnumerable<CustomerContract>>> listCustomeRequestProcessor,
             IRequestProcessor<CreateCustomerRequest, CustomerContract> createCustomerRequest,
             IRequestProcessor<UpdateCustomerRequest, CustomerContract> updateRequestProcessor,

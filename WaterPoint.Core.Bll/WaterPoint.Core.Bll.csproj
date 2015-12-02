@@ -86,13 +86,19 @@
   <ItemGroup>
     <Compile Include="Commands\Jobs\CreateJobCommand.cs" />
     <Compile Include="Commands\Jobs\UpdateJobByIdCommand.cs" />
+    <Compile Include="Commands\TaskDefinitions\CreateTaskDefinitionCommand.cs" />
+    <Compile Include="Commands\TaskDefinitions\UpdateTaskDefinitionByIdCommand.cs" />
     <Compile Include="Queries\Jobs\GetJobByIdQuery.cs" />
     <Compile Include="Queries\Jobs\PaginatedJobsQuery.cs" />
+    <Compile Include="Queries\TaskDefinitions\GetTaskDefinitionByIdQuery.cs" />
+    <Compile Include="Queries\TaskDefinitions\PaginatedTaskDefinitionsQuery.cs" />
     <Compile Include="QueryRunners\Jobs\GetJobByIdQueryRunner.cs" />
     <Compile Include="QueryRunners\Jobs\PaginatedJobsRunner.cs" />
     <Compile Include="Executors\UpdateCommandExecutor.cs" />
     <Compile Include="Executors\CreateCommandExecutor.cs" />
     <Compile Include="QueryRunners\IPaginatedEntitiesRunner.cs" />
+    <Compile Include="QueryRunners\TaskDefinitions\GetTaskDefinitionByIdQueryRunner.cs" />
+    <Compile Include="QueryRunners\TaskDefinitions\PaginatedTaskDefinitionsRunner.cs" />
     <Compile Include="UpdateSqlBuilder.cs" />
     <Compile Include="Commands\Customers\UpdateCustomerByIdCommand.cs" />
     <Compile Include="Queries\Customers\GetCustomerByIdQuery.cs" />

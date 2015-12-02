@@ -56,53 +56,10 @@ namespace WaterPoint.Core.RequestProcessor.Customers
 
             var existingCustomer = _getCustomerByIdQueryRunner.Run(_getCustomerByIdQuery);
 
-            #region
-            ////TODO: abstract this logic out, this is foreseeably repeating pattern
-            //var existingCustomer = _getCustomerByIdQueryRunner.Run(_getCustomerByIdQuery);
-
-            //if (existingCustomer == null)
-            //{
-            //    //TODO: Add message to resource file.
-            //    //TODO: detailLink
-            //    throw new NotFoundException();
-            //}
-
-            ////map existing object from DB to a temp dto
-            //var existingDto = existingCustomer.MapTo(new WriteCustomerPayload());
-
-            ////patch request payload the temp dto, now it should contain a merged version
-            //input.UpdateCustomerPayload.Patch(existingDto);
-
-            //var validationResults = new List<ValidationResult>();
-
-            ////validate the merged version
-            //var validationContext = new ValidationContext(existingDto, null, null);
-
-            //var isValidRequest = Validator.TryValidateObject(existingDto, validationContext, validationResults);
-
-            //if (!isValidRequest)
-            //{
-            //    var exception = new InvalidInputDataException();
-
-            //    foreach (var validationResult in validationResults)
-            //        exception.AddMessage(validationResult.ErrorMessage);
-
-            //    throw exception;
-            //}
-
-            ////valid then merge the temp dto to the existing DB object
-            ////TODO: valid then update the object
-            //var updatedCustomer = existingDto.MapTo(existingCustomer);
-            #endregion
-
             var updatedCustomer = _patchEntityAdapter.PatchEnitity<WriteCustomerPayload, Customer>(
                 existingCustomer,
                 input.UpdateCustomerPayload.Patch,
-                (o) =>
-                {
-                    o.UtcUpdated = DateTime.UtcNow;
-                    //o.UpdatedByStaffId = input.StaffId;
-                },
+                (o) => { o.UtcUpdated = DateTime.UtcNow; },
                 _getCustomerByIdQuery);
 
             //then build the query to update the object.
@@ -122,5 +79,5 @@ namespace WaterPoint.Core.RequestProcessor.Customers
     }
 
 
-    
+
 }
