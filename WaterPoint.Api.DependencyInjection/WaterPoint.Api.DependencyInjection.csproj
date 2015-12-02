@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiDiModule.cs" />
+    <Compile Include="TaskApiModule.cs" />
     <Compile Include="JobApiModule.cs" />
     <Compile Include="CustomerApiModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

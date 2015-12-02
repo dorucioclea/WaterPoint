@@ -18,5 +18,5 @@
 	[UtcUpdated] DATETIME2(0) NOT NULL DEFAULT(GETUTCDATE()),
     [Uid] UNIQUEIDENTIFIER NOT NULL DEFAULT(NEWID())
     CONSTRAINT [FK_QuoteJobTask_Quote] FOREIGN KEY ([QuoteId]) REFERENCES [dbo].[Quote]([Id]),
-    CONSTRAINT [FK_QuoteJobTask_JobTask] FOREIGN KEY ([TaskId]) REFERENCES [dbo].[Task]([Id])
+    CONSTRAINT [FK_QuoteJobTask_JobTask] FOREIGN KEY ([TaskId]) REFERENCES [dbo].[TaskDefinition]([Id])
 )

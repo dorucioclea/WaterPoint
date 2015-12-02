@@ -79,7 +79,7 @@
     <Build Include="dbo\Tables\JobStatus.sql" />
     <Build Include="dbo\Tables\CredentialType.sql" />
     <Build Include="dbo\Tables\JobCategory.sql" />
-    <Build Include="dbo\Tables\Task.sql" />
+    <Build Include="dbo\Tables\TaskDefinition.sql" />
     <Build Include="dbo\Tables\JobTask.sql" />
     <Build Include="dbo\Tables\CostItem.sql" />
     <Build Include="dbo\Tables\Supplier.sql" />
@@ -111,10 +111,10 @@
     <None Include="Scripts\PostDeployment\CredentialTypes.sql" />
     <None Include="Scripts\PostDeployment\InvoiceTypes.sql" />
     <None Include="Scripts\PostDeployment\DemoJobCategories.sql" />
-    <None Include="WaterPoint.Database.Azure.publish.publish.xml" />
     <None Include="Scripts\PostDeployment\DemoCredential.sql" />
     <None Include="Scripts\PostDeployment\DemoJobs.sql" />
     <None Include="Scripts\PostDeployment\DemoStaff.sql" />
+    <None Include="WaterPoint.Azure.Database.publish.xml" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="WaterPoint.Database.refactorlog" />
