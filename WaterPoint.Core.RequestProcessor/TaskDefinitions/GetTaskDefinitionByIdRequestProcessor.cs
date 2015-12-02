@@ -30,9 +30,9 @@ namespace WaterPoint.Core.RequestProcessor.TaskDefinitions
 
             using (DapperUnitOfWork.Begin())
             {
-                var TaskDefinition = _runner.Run(_query);
+                var taskDefinition = _runner.Run(_query);
 
-                var result = TaskDefinitionMapper.Map(TaskDefinition);
+                var result = TaskDefinitionMapper.Map(taskDefinition);
 
                 return result;
             }
