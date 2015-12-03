@@ -15,7 +15,7 @@ using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Api.DependencyInjection
 {
-    public class TaskApiModule : NinjectModule
+    public class JobTaskApiModule : NinjectModule
     {
         public override void Load()
         {

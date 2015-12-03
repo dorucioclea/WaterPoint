@@ -2,7 +2,7 @@
 (
     [Id] INT NOT NULL PRIMARY KEY IDENTITY,
     [QuoteId] INT NOT NULL,
-    [TaskId] INT NOT NULL,
+    [TaskDefinitionId] INT NOT NULL,
     [DisplayOrder] INT NOT NULL,
     [EstimatedTimeInMinutes] INT NOT NULL,
     [StartDate] DATETIME2(0) NULL,
@@ -18,5 +18,5 @@
 	[UtcUpdated] DATETIME2(0) NOT NULL DEFAULT(GETUTCDATE()),
     [Uid] UNIQUEIDENTIFIER NOT NULL DEFAULT(NEWID())
     CONSTRAINT [FK_QuoteJobTask_Quote] FOREIGN KEY ([QuoteId]) REFERENCES [dbo].[Quote]([Id]),
-    CONSTRAINT [FK_QuoteJobTask_JobTask] FOREIGN KEY ([TaskId]) REFERENCES [dbo].[TaskDefinition]([Id])
+    CONSTRAINT [FK_QuoteJobTask_JobTask] FOREIGN KEY ([TaskDefinitionId]) REFERENCES [dbo].[TaskDefinition]([Id])
 )

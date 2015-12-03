@@ -2,7 +2,7 @@
 (
     [Id] INT NOT NULL PRIMARY KEY IDENTITY,
     [JobId] INT NOT NULL,
-    [TaskId] INT NOT NULL,
+    [TaskDefinitionId] INT NOT NULL,
     [DisplayOrder] INT NOT NULL,
     [EstimatedTimeInMinutes] INT NOT NULL,
     [StartDate] DATETIME2(0) NULL,
@@ -14,9 +14,10 @@
     [IsScheduled] BIT NOT NULL DEFAULT(0),
     [ShortDescription] NVARCHAR (100) NULL,
     [LongDescription] NVARCHAR (MAX) NULL,
+    [Version] ROWVERSION NOT NULL,
 	[UtcCreated] DATETIME2(0) NOT NULL DEFAULT(GETUTCDATE()),
 	[UtcUpdated] DATETIME2(0) NOT NULL DEFAULT(GETUTCDATE()),
     [Uid] UNIQUEIDENTIFIER NOT NULL DEFAULT(NEWID())
     CONSTRAINT [FK_JobTask_Job] FOREIGN KEY ([JobId]) REFERENCES [dbo].[Job]([Id]),
-    CONSTRAINT [FK_JobTask_Task] FOREIGN KEY ([TaskId]) REFERENCES [dbo].[TaskDefinition]([Id])
+    CONSTRAINT [FK_JobTask_Task] FOREIGN KEY ([TaskDefinitionId]) REFERENCES [dbo].[TaskDefinition]([Id])
 )

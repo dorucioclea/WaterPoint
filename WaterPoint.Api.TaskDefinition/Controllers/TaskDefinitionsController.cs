@@ -14,7 +14,7 @@ using WaterPoint.Core.Domain.Dtos.Payloads.TaskDefinitions;
 using WaterPoint.Core.Domain.Dtos.Requests.Shared;
 using WaterPoint.Core.Domain.Dtos.Requests.TaskDefinitions;
 
-namespace WaterPoint.Api.TaskDefinition.Content
+namespace WaterPoint.Api.TaskDefinition.Controllers
 {
     [RoutePrefix(RouteDefinitions.TaskDefinition.Prefix)]
     public class TaskDefinitionsController : BaseOrgnizationContextController
