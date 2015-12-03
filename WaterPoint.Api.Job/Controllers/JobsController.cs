@@ -7,7 +7,6 @@ using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts.Jobs;
 using WaterPoint.Core.Domain.Dtos;
 using WaterPoint.Core.Domain.Dtos.Payloads.Jobs;
-using WaterPoint.Core.Domain.Dtos.Requests.Customers;
 using WaterPoint.Core.Domain.Dtos.Requests.Jobs;
 using WaterPoint.Core.Domain.Dtos.Requests.Shared;
 
@@ -16,18 +15,18 @@ namespace WaterPoint.Api.Job.Controllers
     [RoutePrefix(RouteDefinitions.Jobs.Prefix)]
     public class JobsController : BaseOrgnizationContextController
     {
-        private readonly IRequestProcessor<PaginationWithOrgIdRequest, PaginatedResult<IEnumerable<JobContract>>> _listCustomeRequestProcessor;
+        private readonly IRequestProcessor<PaginationWithOrgIdRequest, PaginatedResult<IEnumerable<JobContract>>> _listJobRequestProcessor;
         private readonly IRequestProcessor<GetJobByIdRequest, JobContract> _getJobByIdRequestProcessor;
         private readonly IRequestProcessor<CreateJobRequest, JobContract> _createJobRequestProcessor;
         private readonly IRequestProcessor<UpdateJobRequest, JobContract> _updateJobRequestProcessor;
 
         public JobsController(
-            IRequestProcessor<PaginationWithOrgIdRequest, PaginatedResult<IEnumerable<JobContract>>> listCustomeRequestProcessor,
+            IRequestProcessor<PaginationWithOrgIdRequest, PaginatedResult<IEnumerable<JobContract>>> listJobRequestProcessor,
             IRequestProcessor<GetJobByIdRequest, JobContract> getJobByIdRequestProcessor,
             IRequestProcessor<CreateJobRequest, JobContract> createJobRequestProcessor,
             IRequestProcessor<UpdateJobRequest, JobContract> updateJobRequestProcessor)
         {
-            _listCustomeRequestProcessor = listCustomeRequestProcessor;
+            _listJobRequestProcessor = listJobRequestProcessor;
             _getJobByIdRequestProcessor = getJobByIdRequestProcessor;
             _createJobRequestProcessor = createJobRequestProcessor;
             _updateJobRequestProcessor = updateJobRequestProcessor;
@@ -45,7 +44,7 @@ namespace WaterPoint.Api.Job.Controllers
                 PaginationParamter = pagination
             };
 
-            var result = _listCustomeRequestProcessor.Process(request);
+            var result = _listJobRequestProcessor.Process(request);
 
             return Ok(result);
         }
@@ -89,7 +88,7 @@ namespace WaterPoint.Api.Job.Controllers
             [FromUri] OrganizationEntityParameter parameter,
             [FromBody] Delta<WriteJobPayload> input)
         {
-            var customer = _updateJobRequestProcessor.Process(
+            var job = _updateJobRequestProcessor.Process(
                 new UpdateJobRequest
                 {
                     OrganizationEntityParameter = parameter,
@@ -97,7 +96,7 @@ namespace WaterPoint.Api.Job.Controllers
                     StaffId = Staff.Id
                 });
 
-            return Ok(customer);
+            return Ok(job);
         }
     }
 }

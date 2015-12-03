@@ -99,6 +99,12 @@
     <Build Include="dbo\Tables\QuoteCostItem.sql" />
     <Build Include="dbo\Tables\QuoteTask.sql" />
     <Build Include="dbo\Tables\QuoteTimesheet.sql" />
+    <Build Include="dbo\Tables\Privilege.sql" />
+    <Build Include="dbo\Tables\PrivilegeCategory.sql" />
+    <Build Include="dbo\Tables\StaffPrivilege.sql" />
+    <Build Include="dbo\Tables\Module.sql" />
+    <Build Include="dbo\Tables\Component.sql" />
+    <Build Include="dbo\Tables\ModuleComponent.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="WaterPoint.Database.publish.xml" />
