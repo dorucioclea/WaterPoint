@@ -19,8 +19,7 @@
 	[UtcCreated] DATETIME2(0) NOT NULL DEFAULT(GETUTCDATE()),
 	[UtcUpdated] DATETIME2(0) NOT NULL DEFAULT(GETUTCDATE()),
 	[Uid] UNIQUEIDENTIFIER NOT NULL DEFAULT(NEWID()),
-	[SearchName] AS (LastName + ' ' + FirstName + ' ' + OtherName),
-	[SearchPhone] AS (Phone + ' ' + MobilePhone),
+	[SearchName] AS (LastName + ' ' + FirstName + CASE WHEN OtherName IS NULL THEN '' ELSE ' ' + OtherName END),
 	CONSTRAINT [PK_Customer_Id] PRIMARY KEY CLUSTERED ([Id] ASC), -- WITH (DATA_COMPRESSION = PAGE),
     CONSTRAINT [FK_Customer_CustomerType] FOREIGN KEY ([CustomerTypeId]) REFERENCES [dbo].[CustomerType]([Id]) ON DELETE SET NULL,
     CONSTRAINT [FK_Customer_Organization] FOREIGN KEY ([OrganizationId]) REFERENCES [dbo].[Organization]([Id]),
@@ -30,10 +29,9 @@ GO
 
 CREATE FULLTEXT INDEX ON [dbo].[Customer]
 (
-	SearchName LANGUAGE 2052,
 	Code LANGUAGE 1033,
 	Email LANGUAGE 1033,
-	SearchPhone LANGUAGE 1033
+    SearchName LANGUAGE 2052
 )
 KEY INDEX [PK_Customer_Id]
 ON [SiteSearch]

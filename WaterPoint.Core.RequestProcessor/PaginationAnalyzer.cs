@@ -1,4 +1,5 @@
-﻿using WaterPoint.Core.Domain.Dtos;
+﻿using WaterPoint.Core.Bll;
+using WaterPoint.Core.Domain.Dtos;
 
 namespace WaterPoint.Core.RequestProcessor
 {
@@ -30,8 +31,13 @@ namespace WaterPoint.Core.RequestProcessor
 
         private static string NeutralizeSearchString(string searchTerm)
         {
+            if (!Search.IsSearchable(searchTerm))
+                return string.Empty;
 
-            return null;
+            var freetext = Search.TokenizeSearchTerm(searchTerm);
+            var searchCmd = Search.CreateSearchCmd(freetext);
+
+            return searchCmd;
         }
     }
 }

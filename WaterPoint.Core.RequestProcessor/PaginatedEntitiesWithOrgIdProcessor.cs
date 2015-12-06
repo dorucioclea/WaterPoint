@@ -36,7 +36,8 @@ namespace WaterPoint.Core.RequestProcessor
                     _paginationAnalyzer.Offset,
                     _paginationAnalyzer.PageSize,
                     _paginationAnalyzer.Sort,
-                    _paginationAnalyzer.IsDesc);
+                    _paginationAnalyzer.IsDesc,
+                    _paginationAnalyzer.SearchTerm);
 
             using (_dapperUnitOfWork.Begin())
             {

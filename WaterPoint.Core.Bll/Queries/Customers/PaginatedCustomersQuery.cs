@@ -22,7 +22,6 @@ namespace WaterPoint.Core.Bll.Queries.Customers
                     )[Count]
                 WHERE
                     {SqlPatterns.Where}
-                    {SqlPatterns.Contains}
                 ORDER BY {SqlPatterns.OrderBy}
                 OFFSET @offset ROWS FETCH NEXT @pageSize ROWS ONLY  ";
 
@@ -31,7 +30,7 @@ namespace WaterPoint.Core.Bll.Queries.Customers
             _sqlBuilderFactory = sqlBuilderFactory;
         }
 
-        public void BuildQuery(int orgId, int offset, int pageSize, string orderBy, bool isDesc)
+        public void BuildQuery(int orgId, int offset, int pageSize, string orderBy, bool isDesc, string searchTerm)
         {
             var builder = _sqlBuilderFactory.Create<SelectSqlBuilder>();
 
@@ -39,6 +38,7 @@ namespace WaterPoint.Core.Bll.Queries.Customers
             builder.AddPrimaryColumns<Customer>();
             builder.AddConditions<Customer>(i => i.OrganizationId == orgId);
             builder.AddOrderBy<Customer>(orderBy, isDesc);
+            builder.AddContains<Customer>(searchTerm);
 
             var sql = builder.GetSql();
 

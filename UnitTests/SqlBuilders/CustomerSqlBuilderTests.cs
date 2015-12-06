@@ -30,10 +30,9 @@ namespace UnitTests.SqlBuilders
                     )[Count]
                 WHERE
                     {SqlPatterns.Where}
-                    {SqlPatterns.Contains}
                 ORDER BY {SqlPatterns.OrderBy}
                 OFFSET @offset ROWS FETCH NEXT @pageSize ROWS ONLY  ";
-            
+
             var builder = new SelectSqlBuilder();
 
             const int orgId = 1000;
@@ -42,10 +41,10 @@ namespace UnitTests.SqlBuilders
             builder.AddPrimaryColumns<Customer>();
             builder.AddConditions<Customer>(i => i.OrganizationId == orgId);
             builder.AddOrderBy<Customer>("lastName", true);
-            builder.AddContains("");
+            builder.AddContains<Customer>("test");
 
             var sql = builder.GetSql();
-            
+
             Assert.AreEqual(TestUtility.NeutralizeString(sql), TestUtility.NeutralizeString(expectedSql));
 
 

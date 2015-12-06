@@ -30,7 +30,7 @@ namespace WaterPoint.Core.Bll.Queries.TaskDefinitions
             _sqlBuilderFactory = sqlBuilderFactory;
         }
 
-        public void BuildQuery(int orgId, int offset, int pageSize, string orderBy, bool isDesc)
+        public void BuildQuery(int orgId, int offset, int pageSize, string orderBy, bool isDesc, string searchTerm)
         {
             var builder = _sqlBuilderFactory.Create<SelectSqlBuilder>();
 
@@ -38,6 +38,7 @@ namespace WaterPoint.Core.Bll.Queries.TaskDefinitions
             builder.AddPrimaryColumns<TaskDefinition>();
             builder.AddConditions<TaskDefinition>(i => i.OrganizationId == orgId);
             builder.AddOrderBy<TaskDefinition>(orderBy, isDesc);
+            builder.AddContains<TaskDefinition>(searchTerm);
 
             var sql = builder.GetSql();
 

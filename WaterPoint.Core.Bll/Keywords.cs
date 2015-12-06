@@ -20,7 +20,6 @@ namespace WaterPoint.Core.Bll
             OrderDesc = "/**ORDERDESC**/",
             Fetch = "/**FETCH**/",
             Join = "/**JOIN**/",
-            Values = "/**VALUES**",
-            Contains = "/**CONTAINS**/";
+            Values = "/**VALUES**";
     }
 }

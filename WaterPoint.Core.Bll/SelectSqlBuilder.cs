@@ -104,10 +104,22 @@ namespace WaterPoint.Core.Bll
 
         public void AddContains<T>(string searchTerm)
         {
-            if (!string.IsNullOrWhiteSpace(_where))
-                _where += "\nAND ";
+            //if (string.IsNullOrWhiteSpace(searchTerm))
+            //    return;
 
-            //var f = $@"CONTAINS"
+            //if (!string.IsNullOrWhiteSpace(_where))
+            //    _where += "\nAND (";
+
+            //var typePair = GetTable<T>();
+
+            //var properties = typePair.Value;
+            ////TODO: sigh
+            //var searchColumns = properties.Where(i => i.GetCustomAttribute(typeof(SearchableAttribute)) != null)
+            //    .Select(i => $"{typePair.Key.Alias}.[{i.Name}]");
+
+            //var contains = $"CONTAINS(({string.Join(",", searchColumns)}), '{searchTerm}')";
+
+            //_where += contains + ") ";
         }
 
         public void AddManyToManyJoin<T>(JoinTypes jointype, string viaSchema, string viaTable, string viaAlias, string myColumn, string parentColumn)
@@ -190,7 +202,7 @@ namespace WaterPoint.Core.Bll
                 _fromTable = tableAttribute.Table;
             }
 
-            var columns = properties.Where(i => i.GetCustomAttribute(typeof(ForeignAttribute)) == null)
+            var columns = properties.Where(i => !SqlBuilderHelper.ShouldIgnore(i, IgnoreTypes))
                 .Select
                 //main table columns e.g. [dbo].[Customer].[Id]
                 //foreign table columns e.g. [dbo].[Address].[Street] AddressStreet
@@ -213,6 +225,18 @@ namespace WaterPoint.Core.Bll
                 throw new InvalidDataException("Missing TableAttribute.");
 
             return new KeyValuePair<TableAttribute, IEnumerable<PropertyInfo>>(tableAttribute, properties);
+        }
+
+        private IEnumerable<Type> IgnoreTypes
+        {
+            get
+            {
+                return new[]
+                {
+                    typeof (ForeignAttribute),
+                    typeof (ComputedAttribute)
+                };
+            }
         }
 
         #endregion

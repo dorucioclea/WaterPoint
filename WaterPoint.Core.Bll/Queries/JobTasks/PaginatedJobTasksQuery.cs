@@ -30,7 +30,7 @@ namespace WaterPoint.Core.Bll.Queries.JobTasks
             _sqlBuilderFactory = sqlBuilderFactory;
         }
 
-        public void BuildQuery(int jobId, int offset, int pageSize, string orderBy, bool isDesc)
+        public void BuildQuery(int jobId, int offset, int pageSize, string orderBy, bool isDesc, string searchTerm)
         {
             var builder = _sqlBuilderFactory.Create<SelectSqlBuilder>();
 
@@ -38,6 +38,7 @@ namespace WaterPoint.Core.Bll.Queries.JobTasks
             builder.AddPrimaryColumns<JobTask>();
             builder.AddConditions<JobTask>(i => i.JobId == jobId);
             builder.AddOrderBy<JobTask>(orderBy, isDesc);
+            builder.AddContains<JobTask>(searchTerm);
 
             var sql = builder.GetSql();
 

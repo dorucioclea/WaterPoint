@@ -8,6 +8,6 @@
 
     public interface IPaginatedWithOrgIdQuery : IQuery
     {
-        void BuildQuery(int orgId, int offset, int pageSize, string orderBy, bool isDesc);
+        void BuildQuery(int orgId, int offset, int pageSize, string orderBy, bool isDesc, string searchTerm);
     }
 }

@@ -44,7 +44,7 @@ namespace WaterPoint.Core.Bll
         {
             var columns =
                 _propertyInfos
-                .Where(i => !ShouldIgnore(i, IgnoreTypes));
+                .Where(i => !SqlBuilderHelper.ShouldIgnore(i, IgnoreTypes));
 
             Columns = string.Join(
                 ",\r\n",
@@ -59,7 +59,7 @@ namespace WaterPoint.Core.Bll
 
             foreach (var propertyInfo in _propertyInfos)
             {
-                if (ShouldIgnore(propertyInfo, IgnoreTypes))
+                if (SqlBuilderHelper.ShouldIgnore(propertyInfo, IgnoreTypes))
                     continue;
 
                 var value = propertyInfo.GetValue(input, null);
@@ -97,22 +97,10 @@ namespace WaterPoint.Core.Bll
                     typeof (IgnoreMappingWhenUpdateAttribute),
                     typeof (ManyToManyAttribute),
                     typeof (OneToManyAttribute),
+                    typeof (ComputedAttribute),
                     typeof (TableAttribute)
                 };
             }
-        }
-
-        private static bool ShouldIgnore(PropertyInfo property, IEnumerable<Type> attributes)
-        {
-            foreach (var attribute in attributes)
-            {
-                var f = property.GetCustomAttribute(attribute);
-
-                if (f != null)
-                    return true;
-            }
-
-            return false;
         }
     }
 }
