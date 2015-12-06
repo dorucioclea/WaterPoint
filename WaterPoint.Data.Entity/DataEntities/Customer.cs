@@ -18,6 +18,8 @@ namespace WaterPoint.Data.Entity.DataEntities
 
         public int? CustomerTypeId { get; set; }
 
+        public bool IsProspect { get; set; }
+
         public string Code { get; set; }
 
         public string Phone { get; set; }

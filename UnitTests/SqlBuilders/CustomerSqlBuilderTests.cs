@@ -11,6 +11,47 @@ namespace UnitTests.SqlBuilders
     public class CustomerSqlBuilderTests
     {
         [TestMethod]
+        public void Can_Generate_SelectSql_ForCustomer()
+        {
+            const string expectedSql = @"";
+
+            var sqlTemplate = $@"
+                SELECT
+                    {SqlPatterns.Columns}
+                    ,[TotalCount]
+                FROM
+                    {SqlPatterns.FromTable}
+                    CROSS APPLY(
+                        SELECT COUNT(*) TotalCount
+                        FROM
+                            {SqlPatterns.FromTable}
+                        WHERE
+                            {SqlPatterns.Where}
+                    )[Count]
+                WHERE
+                    {SqlPatterns.Where}
+                    {SqlPatterns.Contains}
+                ORDER BY {SqlPatterns.OrderBy}
+                OFFSET @offset ROWS FETCH NEXT @pageSize ROWS ONLY  ";
+            
+            var builder = new SelectSqlBuilder();
+
+            const int orgId = 1000;
+
+            builder.AddTemplate(sqlTemplate);
+            builder.AddPrimaryColumns<Customer>();
+            builder.AddConditions<Customer>(i => i.OrganizationId == orgId);
+            builder.AddOrderBy<Customer>("lastName", true);
+            builder.AddContains("");
+
+            var sql = builder.GetSql();
+            
+            Assert.AreEqual(TestUtility.NeutralizeString(sql), TestUtility.NeutralizeString(expectedSql));
+
+
+        }
+
+        [TestMethod]
         public void Can_Generate_UpdateSql_ForCustomer()
         {
             const string expectedSql = @"

@@ -6,5 +6,6 @@
         public int? PageNumber { get; set; }
         public string Sort { get; set; }
         public bool? IsDesc { get; set; }
+        public string SearchTerm { get; set; }
     }
 }

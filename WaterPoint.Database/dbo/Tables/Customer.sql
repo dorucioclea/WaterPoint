@@ -1,8 +1,10 @@
 ﻿CREATE TABLE [dbo].[Customer]
 (
-	[Id] INT NOT NULL PRIMARY KEY IDENTITY,
+	[Id] INT NOT NULL IDENTITY,
     [OrganizationId] INT NOT NULL,
     [CustomerTypeId] INT NULL,
+	[IsProspect] BIT NOT NULL DEFAULT(0),
+	[Gender] CHAR(1) NULL,
     [Code] VARCHAR(50) NULL,
 	[FirstName] NVARCHAR(200) NOT NULL,
 	[LastName] NVARCHAR(200) NOT NULL,
@@ -11,10 +13,29 @@
     [MobilePhone] VARCHAR(50) NULL,
     [Email] VARCHAR(100) NULL,
 	[Dob] DATE NULL,
+	[IsDeleted] BIT NOT NULL DEFAULT(0),
+	[InvoiceCustomerId] INT NULL,
     [Version] ROWVERSION NOT NULL,
 	[UtcCreated] DATETIME2(0) NOT NULL DEFAULT(GETUTCDATE()),
 	[UtcUpdated] DATETIME2(0) NOT NULL DEFAULT(GETUTCDATE()),
 	[Uid] UNIQUEIDENTIFIER NOT NULL DEFAULT(NEWID()),
-    CONSTRAINT [FK_Customer_CustomerType] FOREIGN KEY ([CustomerTypeId]) REFERENCES [dbo].[CustomerType]([Id]),
-    CONSTRAINT [FK_Customer_Organization] FOREIGN KEY ([OrganizationId]) REFERENCES [dbo].[Organization]([Id])
+	[SearchName] AS (LastName + ' ' + FirstName + ' ' + OtherName),
+	[SearchPhone] AS (Phone + ' ' + MobilePhone),
+	CONSTRAINT [PK_Customer_Id] PRIMARY KEY CLUSTERED ([Id] ASC), -- WITH (DATA_COMPRESSION = PAGE),
+    CONSTRAINT [FK_Customer_CustomerType] FOREIGN KEY ([CustomerTypeId]) REFERENCES [dbo].[CustomerType]([Id]) ON DELETE SET NULL,
+    CONSTRAINT [FK_Customer_Organization] FOREIGN KEY ([OrganizationId]) REFERENCES [dbo].[Organization]([Id]),
+	CONSTRAINT [UQ_Customer_Uid] UNIQUE NONCLUSTERED ([Uid] ASC), -- WITH (DATA_COMPRESSION = PAGE)
+);
+GO
+
+CREATE FULLTEXT INDEX ON [dbo].[Customer]
+(
+	SearchName LANGUAGE 2052,
+	Code LANGUAGE 1033,
+	Email LANGUAGE 1033,
+	SearchPhone LANGUAGE 1033
 )
+KEY INDEX [PK_Customer_Id]
+ON [SiteSearch]
+WITH STOPLIST OFF;
+GO

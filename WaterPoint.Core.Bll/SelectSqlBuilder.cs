@@ -102,6 +102,14 @@ namespace WaterPoint.Core.Bll
             _where = expressionConverter.Convert(_fromAlias, whereClause);
         }
 
+        public void AddContains<T>(string searchTerm)
+        {
+            if (!string.IsNullOrWhiteSpace(_where))
+                _where += "\nAND ";
+
+            //var f = $@"CONTAINS"
+        }
+
         public void AddManyToManyJoin<T>(JoinTypes jointype, string viaSchema, string viaTable, string viaAlias, string myColumn, string parentColumn)
         {
             string join;

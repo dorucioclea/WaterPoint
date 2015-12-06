@@ -9,9 +9,9 @@ using WaterPoint.Data.Entity.Attributes;
 
 namespace WaterPoint.Core.Bll
 {
-    internal static class SqlPatterns
+    public static class SqlPatterns
     {
-        internal const string
+        public const string
             Columns = "/**COLUMNS**/",
             FromTable = "/**FromTABLE**/",
             TotalCount = "/**TOTALCOUNT**/",
@@ -20,7 +20,7 @@ namespace WaterPoint.Core.Bll
             OrderDesc = "/**ORDERDESC**/",
             Fetch = "/**FETCH**/",
             Join = "/**JOIN**/",
-            Values = "/**VALUES**";
-
+            Values = "/**VALUES**",
+            Contains = "/**CONTAINS**/";
     }
 }

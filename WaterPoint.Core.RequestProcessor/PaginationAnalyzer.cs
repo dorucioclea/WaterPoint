@@ -14,6 +14,8 @@ namespace WaterPoint.Core.RequestProcessor
 
         public bool IsDesc { get; private set; }
 
+        public string SearchTerm { get; private set; }
+
         public void Analyze(PaginationParamter paramter, string defaultSort)
         {
             Offset = (((!paramter.PageNumber.HasValue || paramter.PageNumber < 0)
@@ -23,6 +25,13 @@ namespace WaterPoint.Core.RequestProcessor
             PageNumber = paramter.PageNumber ?? 1;
             Sort = string.IsNullOrWhiteSpace(paramter.Sort) ? defaultSort : paramter.Sort;
             IsDesc = paramter.IsDesc ?? false;
+            SearchTerm = NeutralizeSearchString(paramter.SearchTerm);
+        }
+
+        private static string NeutralizeSearchString(string searchTerm)
+        {
+
+            return null;
         }
     }
 }

@@ -21,7 +21,8 @@ namespace WaterPoint.Core.Bll.Queries.Customers
                             {SqlPatterns.Where}
                     )[Count]
                 WHERE
-                   {SqlPatterns.Where}
+                    {SqlPatterns.Where}
+                    {SqlPatterns.Contains}
                 ORDER BY {SqlPatterns.OrderBy}
                 OFFSET @offset ROWS FETCH NEXT @pageSize ROWS ONLY  ";
 
