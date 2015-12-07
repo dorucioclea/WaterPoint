@@ -104,22 +104,35 @@ namespace WaterPoint.Core.Bll
 
         public void AddContains<T>(string searchTerm)
         {
-            //if (string.IsNullOrWhiteSpace(searchTerm))
-            //    return;
+            if (string.IsNullOrWhiteSpace(searchTerm))
+                return;
 
-            //if (!string.IsNullOrWhiteSpace(_where))
-            //    _where += "\nAND (";
+            if (!string.IsNullOrWhiteSpace(_where))
+                _where += "\nAND (";
 
-            //var typePair = GetTable<T>();
+            var typePair = GetTable<T>();
 
-            //var properties = typePair.Value;
-            ////TODO: sigh
-            //var searchColumns = properties.Where(i => i.GetCustomAttribute(typeof(SearchableAttribute)) != null)
-            //    .Select(i => $"{typePair.Key.Alias}.[{i.Name}]");
+            var properties = typePair.Value;
 
-            //var contains = $"CONTAINS(({string.Join(",", searchColumns)}), '{searchTerm}')";
+            var searchableAttributes = new[]
+            {
+                typeof(SearchableAsEnglishAttribute),
+                typeof(SearchableAsUnicodeAttribute)
+            };
 
-            //_where += contains + ") ";
+            var containClauses = searchableAttributes.Select(i =>
+            {
+                var searchColumns = properties.Where(p => p.GetCustomAttribute(i) != null)
+                    .Select(s => $"{typePair.Key.Alias}.[{s.Name}]").ToArray();
+
+                return searchColumns.Length == 0
+                    ? string.Empty
+                    : $"CONTAINS(({string.Join(",", searchColumns)}), @searchterm)";
+            });
+
+            var contains = string.Join(" OR ", containClauses);
+
+            _where += contains + ") ";
         }
 
         public void AddManyToManyJoin<T>(JoinTypes jointype, string viaSchema, string viaTable, string viaAlias, string myColumn, string parentColumn)

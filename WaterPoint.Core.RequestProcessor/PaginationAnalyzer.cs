@@ -31,11 +31,10 @@ namespace WaterPoint.Core.RequestProcessor
 
         private static string NeutralizeSearchString(string searchTerm)
         {
-            if (!Search.IsSearchable(searchTerm))
+            if (string.IsNullOrWhiteSpace(searchTerm))
                 return string.Empty;
 
-            var freetext = Search.TokenizeSearchTerm(searchTerm);
-            var searchCmd = Search.CreateSearchCmd(freetext);
+            var searchCmd = SearchTermHelper.ConvertToSearchTerm(searchTerm);
 
             return searchCmd;
         }

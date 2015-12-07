@@ -10,7 +10,7 @@ namespace UnitTests
     {
         public static string NeutralizeString(string str)
         {
-            return str.Replace("\r\n", string.Empty).ToLower().Replace(" ", string.Empty);
+            return str.Replace("\r", string.Empty).Replace("\n", string.Empty).ToLower().Replace(" ", string.Empty);
         }
     }
 }

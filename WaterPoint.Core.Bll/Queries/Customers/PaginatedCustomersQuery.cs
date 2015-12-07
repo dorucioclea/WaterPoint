@@ -48,7 +48,8 @@ namespace WaterPoint.Core.Bll.Queries.Customers
             {
                 orgId,
                 offset,
-                pageSize
+                pageSize,
+                searchTerm
             };
         }
         public string Query { get; private set; }

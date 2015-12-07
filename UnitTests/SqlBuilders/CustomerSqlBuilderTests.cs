@@ -13,7 +13,40 @@ namespace UnitTests.SqlBuilders
         [TestMethod]
         public void Can_Generate_SelectSql_ForCustomer()
         {
-            const string expectedSql = @"";
+            const string expectedSql = @"
+                SELECT
+                    c.[Id] , 
+                    c.[OrganizationId] , 
+                    c.[CustomerTypeId] , 
+                    c.[IsProspect] , 
+                    c.[Code] , 
+                    c.[Phone] , 
+                    c.[Email] , 
+                    c.[FirstName] , 
+                    c.[LastName] , 
+                    c.[OtherName] , 
+                    c.[MobilePhone] , 
+                    c.[Version] , 
+                    c.[Dob] , 
+                    c.[Uid] , 
+                    c.[UtcCreated] , 
+                    c.[UtcUpdated] 
+                    ,[TotalCount]
+                FROM
+                    [dbo].[Customer] c
+                    CROSS APPLY(
+                        SELECT COUNT(*) TotalCount
+                        FROM
+                            [dbo].[Customer] c
+                        WHERE
+                            (c.[OrganizationId] = 1000)
+AND (CONTAINS((c.[Code],c.[Email]), @searchterm) OR CONTAINS((c.[SearchName]), @searchterm)) 
+                    )[Count]
+                WHERE
+                    (c.[OrganizationId] = 1000)
+AND (CONTAINS((c.[Code],c.[Email]), @searchterm) OR CONTAINS((c.[SearchName]), @searchterm)) 
+                ORDER BY 9 DESC 
+                OFFSET @offset ROWS FETCH NEXT @pageSize ROWS ONLY  ";
 
             var sqlTemplate = $@"
                 SELECT
@@ -37,17 +70,17 @@ namespace UnitTests.SqlBuilders
 
             const int orgId = 1000;
 
+            var searchTerm = SearchTermHelper.ConvertToSearchTerm("test");
+
             builder.AddTemplate(sqlTemplate);
             builder.AddPrimaryColumns<Customer>();
             builder.AddConditions<Customer>(i => i.OrganizationId == orgId);
             builder.AddOrderBy<Customer>("lastName", true);
-            builder.AddContains<Customer>("test");
+            builder.AddContains<Customer>(searchTerm);
 
             var sql = builder.GetSql();
 
             Assert.AreEqual(TestUtility.NeutralizeString(sql), TestUtility.NeutralizeString(expectedSql));
-
-
         }
 
         [TestMethod]

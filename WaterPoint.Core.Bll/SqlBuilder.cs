@@ -50,9 +50,9 @@ namespace WaterPoint.Core.Bll
     }
 
 
-    public static class Search
+    public static class SearchTermHelper
     {
-        private const string BlackListCharacters = "[*=]"; //removed from search
+        private const string BlackListCharacters = "[*=]";
         private const string SpecialCharacters = "^[-&+#;@\"]$"; //removed from search if standalone
         private const string NumericCharacters = "^[0-9]$"; //removed from serach if standalone
 
@@ -62,40 +62,41 @@ namespace WaterPoint.Core.Bll
             return tokens.Length > 0;
         }
 
-        public static string[] TokenizeSearchTerm(string searchTerm)
+        public static string ConvertToSearchTerm(string searchTerm)
+        {
+            if (string.IsNullOrWhiteSpace(searchTerm) || !IsSearchable(searchTerm))
+                return string.Empty;
+
+            var sb = new StringBuilder();
+
+            var searchTokens = TokenizeSearchTerm(searchTerm);
+
+            for (var i = 0; i < searchTokens.Length; i++)
+            {
+                if (i > 0)
+                    sb.Append(" AND ");
+
+                sb.AppendFormat($"\"{searchTokens[i]}{"*"}\"");
+            }
+
+            return sb.Length > 0 ? sb.ToString() : "\"\"";
+        }
+
+        private static string[] TokenizeSearchTerm(string searchTerm)
         {
             var filteredTokens = new string[0];
 
             var result = TrimSearch(searchTerm);
-            if (result != null)
-            {
-                var tokens = result.Split(' ');
+            if (result == null)
+                return EscapeQuotes(filteredTokens);
 
-                filteredTokens = tokens.Where(token => !Regex.Match(token, NumericCharacters).Success).ToArray();
-                filteredTokens = filteredTokens.Where(token => !Regex.Match(token, SpecialCharacters).Success).ToArray();
-            }
+            var tokens = result.Split(' ');
+
+            filteredTokens = tokens.Where(token => !Regex.Match(token, NumericCharacters).Success).ToArray();
+
+            filteredTokens = filteredTokens.Where(token => !Regex.Match(token, SpecialCharacters).Success).ToArray();
 
             return EscapeQuotes(filteredTokens);
-        }
-
-        /// <summary>
-        /// Create the sql search parameter @search_cmd
-        /// </summary>
-        public static string CreateSearchCmd(string[] searchTokens)
-        {
-            var searchExpression = new StringBuilder();
-
-            //Add the search tokens
-            for (var i = 0; i < searchTokens.Length; i++)
-            {
-                if (i > 0)
-                    searchExpression.Append(" AND ");
-
-                bool addWildCard = true; //searchTokens[i].Length > 1;
-                searchExpression.AppendFormat("\"{0}{1}\"", searchTokens[i], addWildCard ? "*" : string.Empty);
-            }
-
-            return searchExpression.Length > 0 ? searchExpression.ToString() : "\"\""; //return empty search criteria is none is not specified
         }
 
         private static string TrimSearch(string searchTerm)
@@ -107,7 +108,7 @@ namespace WaterPoint.Core.Bll
             {
                 trimText = Regex.Replace(trimText, BlackListCharacters, string.Empty);
                 trimText = trimText.Trim();
-                trimText = Regex.Replace(trimText, @" +", " "); // Turn multiple spaces into 1 space
+                trimText = Regex.Replace(trimText, @" +", " ");
                 searchText = trimText;
             }
 
