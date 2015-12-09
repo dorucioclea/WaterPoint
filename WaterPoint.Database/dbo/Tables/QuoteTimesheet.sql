@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[QuoteTimesheet]
 (
-    [Id] INT NOT NULL PRIMARY KEY IDENTITY,
+    [Id] INT NOT NULL IDENTITY,
     [TaskDefinitionId] INT NULL,
     [StaffId] INT NOT NULL,
     [StartDateTime] DATETIME2(0) NULL,
@@ -12,9 +12,10 @@
     [BaseRate] DECIMAL(10,3) NOT NULL DEFAULT(0),
     [BillableRate] DECIMAL(10,3) NOT NULL DEFAULT(0),
     [Version] ROWVERSION NOT NULL,
-	[UtcCreated] DATETIME2(0) NOT NULL DEFAULT(GETUTCDATE()),
-	[UtcUpdated] DATETIME2(0) NOT NULL DEFAULT(GETUTCDATE()),
+	[UtcCreated] DATETIME2(3) NOT NULL DEFAULT(SYSUTCDATETIME()),
+	[UtcUpdated] DATETIME2(3) NOT NULL DEFAULT(SYSUTCDATETIME()),
 	[Uid] UNIQUEIDENTIFIER NOT NULL DEFAULT(NEWID()),
+    CONSTRAINT [PK_dbo_QuoteTimesheet_Id] PRIMARY KEY CLUSTERED (Id ASC),
     CONSTRAINT [FK_QuoteTimesheet_Task] FOREIGN KEY ([TaskDefinitionId]) REFERENCES [dbo].[JobTask]([Id]),
     CONSTRAINT [FK_QuoteTimesheet_Staff] FOREIGN KEY ([StaffId]) REFERENCES [dbo].[Staff]([Id]),
 )

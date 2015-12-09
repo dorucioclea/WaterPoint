@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[Quote]
 (
-    [Id] INT NOT NULL PRIMARY KEY IDENTITY,
+    [Id] INT NOT NULL IDENTITY,
     [OrganizationId] INT NOT NULL,
     [JobId] INT NULL,
     [QuoteTypeId] INT NOT NULL,
@@ -17,9 +17,10 @@
     [TotalPriceWithTax] DECIMAL(10,3) DEFAULT(0),
     [Description] NVARCHAR(MAX) NULL,
     [Version] ROWVERSION NOT NULL,
-	[UtcCreated] DATETIME2(0) NOT NULL DEFAULT(GETUTCDATE()),
-	[UtcUpdated] DATETIME2(0) NOT NULL DEFAULT(GETUTCDATE()),
+	[UtcCreated] DATETIME2(3) NOT NULL DEFAULT(SYSUTCDATETIME()),
+	[UtcUpdated] DATETIME2(3) NOT NULL DEFAULT(SYSUTCDATETIME()),
 	[Uid] UNIQUEIDENTIFIER NOT NULL DEFAULT(NEWID()),
+    CONSTRAINT [PK_dbo_Quote_Id] PRIMARY KEY CLUSTERED (Id ASC),
     CONSTRAINT [FK_Quote_Organization] FOREIGN KEY ([OrganizationId]) REFERENCES [dbo].[Organization]([Id]),
     CONSTRAINT [FK_Quote_QuoteType] FOREIGN KEY ([QuoteTypeId]) REFERENCES [dbo].[QuoteType]([Id]),
     CONSTRAINT [FK_Quote_Customer] FOREIGN KEY ([CustomerId]) REFERENCES [dbo].[Customer]([Id]),

@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[Job]
 (
-	[Id] INT NOT NULL PRIMARY KEY IDENTITY,
+	[Id] INT NOT NULL IDENTITY,
     [OrganizationId] INT NOT NULL,
     [JobStatusId] INT NOT NULL,
     [JobCategoryId] INT NOT NULL,
@@ -13,9 +13,10 @@
     [DueDate] DATE NULL,
     [ExcludeFromWip] BIT NOT NULL DEFAULT(0),
     [Version] ROWVERSION NOT NULL,
-	[UtcCreated] DATETIME2(0) NOT NULL DEFAULT(GETUTCDATE()),
-	[UtcUpdated] DATETIME2(0) NOT NULL DEFAULT(GETUTCDATE()),
+	[UtcCreated] DATETIME2(3) NOT NULL DEFAULT(SYSUTCDATETIME()),
+	[UtcUpdated] DATETIME2(3) NOT NULL DEFAULT(SYSUTCDATETIME()),
 	[Uid] UNIQUEIDENTIFIER NOT NULL DEFAULT(NEWID()),
+    CONSTRAINT [PK_dbo_Job_Id] PRIMARY KEY CLUSTERED (Id ASC),
     CONSTRAINT [FK_Job_Customer] FOREIGN KEY ([CustomerId]) REFERENCES [dbo].[Customer]([Id]),
     CONSTRAINT [FK_Job_Organization] FOREIGN KEY ([OrganizationId]) REFERENCES [dbo].[Organization]([Id]),
     CONSTRAINT [FK_Job_JobStatus] FOREIGN KEY ([JobStatusId]) REFERENCES [dbo].[JobStatus] ([Id]),

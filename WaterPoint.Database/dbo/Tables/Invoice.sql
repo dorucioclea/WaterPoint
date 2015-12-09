@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[Invoice]
 (
-    [Id] INT NOT NULL PRIMARY KEY IDENTITY,
+    [Id] INT NOT NULL IDENTITY,
     [OrganizationId] INT NOT NULL,
     [InvoiceTypeId] INT NOT NULL,
     [CustomerId] INT NOT NULL,
@@ -16,9 +16,10 @@
     [TotalPriceWithTax] DECIMAL(10,3) DEFAULT(0),
     [Description] NVARCHAR(MAX) NULL,
     [Version] ROWVERSION NOT NULL,
-	[UtcCreated] DATETIME2(0) NOT NULL DEFAULT(GETUTCDATE()),
-	[UtcUpdated] DATETIME2(0) NOT NULL DEFAULT(GETUTCDATE()),
+	[UtcCreated] DATETIME2(3) NOT NULL DEFAULT(SYSUTCDATETIME()),
+	[UtcUpdated] DATETIME2(3) NOT NULL DEFAULT(SYSUTCDATETIME()),
 	[Uid] UNIQUEIDENTIFIER NOT NULL DEFAULT(NEWID()),
+    CONSTRAINT [PK_dbo_Invoice] PRIMARY KEY CLUSTERED (Id ASC),
     CONSTRAINT [FK_Invoice_Organization] FOREIGN KEY ([OrganizationId]) REFERENCES [dbo].[Organization]([Id]),
     CONSTRAINT [FK_Invoice_InvoiceType] FOREIGN KEY ([InvoiceTypeId]) REFERENCES [dbo].[InvoiceType]([Id]),
     CONSTRAINT [FK_Invoice_Customer] FOREIGN KEY ([CustomerId]) REFERENCES [dbo].[Customer]([Id]),

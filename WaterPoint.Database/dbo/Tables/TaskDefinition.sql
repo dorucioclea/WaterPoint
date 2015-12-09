@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[TaskDefinition]
 (
-    [Id] INT NOT NULL PRIMARY KEY IDENTITY,
+    [Id] INT NOT NULL IDENTITY,
     [OrganizationId] INT NOT NULL,
     [Name] NVARCHAR(200) NOT NULL,
     [Description] NVARCHAR(MAX) NOT NULL,
@@ -8,8 +8,9 @@
     [BillableRate] DECIMAL(10,3) NOT NULL DEFAULT(0),
     [IsDeleted] BIT NOT NULL DEFAULT(0),
     [Version] ROWVERSION NOT NULL,
-	[UtcCreated] DATETIME2(0) NOT NULL DEFAULT(GETUTCDATE()),
-	[UtcUpdated] DATETIME2(0) NOT NULL DEFAULT(GETUTCDATE()),
+	[UtcCreated] DATETIME2(3) NOT NULL DEFAULT(SYSUTCDATETIME()),
+	[UtcUpdated] DATETIME2(3) NOT NULL DEFAULT(SYSUTCDATETIME()),
     [Uid] UNIQUEIDENTIFIER NOT NULL DEFAULT(NEWID()),
+    CONSTRAINT [PK_dbo_TaskDefinition_Id] PRIMARY KEY CLUSTERED (Id ASC),
     CONSTRAINT [FK_TaskDefinition_Organization] FOREIGN KEY ([OrganizationId]) REFERENCES [dbo].[Organization]([Id])
 )

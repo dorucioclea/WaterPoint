@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[QuoteJobTask]
 (
-    [Id] INT NOT NULL PRIMARY KEY IDENTITY,
+    [Id] INT NOT NULL IDENTITY,
     [QuoteId] INT NOT NULL,
     [TaskDefinitionId] INT NOT NULL,
     [DisplayOrder] INT NOT NULL,
@@ -14,9 +14,11 @@
     [IsScheduled] BIT NOT NULL DEFAULT(0),
     [ShortDescription] NVARCHAR (100) NULL,
     [LongDescription] NVARCHAR (MAX) NULL,
-	[UtcCreated] DATETIME2(0) NOT NULL DEFAULT(GETUTCDATE()),
-	[UtcUpdated] DATETIME2(0) NOT NULL DEFAULT(GETUTCDATE()),
-    [Uid] UNIQUEIDENTIFIER NOT NULL DEFAULT(NEWID())
+    [Version] ROWVERSION NOT NULL,
+	[UtcCreated] DATETIME2(3) NOT NULL DEFAULT(SYSUTCDATETIME()),
+	[UtcUpdated] DATETIME2(3) NOT NULL DEFAULT(SYSUTCDATETIME()),
+    [Uid] UNIQUEIDENTIFIER NOT NULL DEFAULT(NEWID()),
+    CONSTRAINT [PK_dbo_QuoteJobTask_Id] PRIMARY KEY CLUSTERED (Id ASC),
     CONSTRAINT [FK_QuoteJobTask_Quote] FOREIGN KEY ([QuoteId]) REFERENCES [dbo].[Quote]([Id]),
     CONSTRAINT [FK_QuoteJobTask_JobTask] FOREIGN KEY ([TaskDefinitionId]) REFERENCES [dbo].[TaskDefinition]([Id])
 )
