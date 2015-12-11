@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("WaterPoint.Api.Authorization")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Water Point Ltd")]
+[assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("WaterPoint.Api.Authorization")]
-[assembly: AssemblyCopyright("Copyright © Water Point Ltd 2015")]
+[assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("02c4bd33-633a-495f-91fe-21036a939f95")]
+[assembly: Guid("6f55afd9-07d6-46f1-a7f6-ebe9daaf1a3d")]
 
 // Version information for an assembly consists of the following four values:
 //

@@ -11,10 +11,10 @@ using System.Net.Http.Headers;
 using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Description;
-using WaterPoint.Api.Job.Areas.HelpPage.ModelDescriptions;
-using WaterPoint.Api.Job.Areas.HelpPage.Models;
+using WaterPoint.Api.Authorization.Areas.HelpPage.ModelDescriptions;
+using WaterPoint.Api.Authorization.Areas.HelpPage.Models;
 
-namespace WaterPoint.Api.Job.Areas.HelpPage
+namespace WaterPoint.Api.Authorization.Areas.HelpPage
 {
     public static class HelpPageConfigurationExtensions
     {

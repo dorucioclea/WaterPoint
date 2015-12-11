@@ -5,9 +5,9 @@ using System.Reflection;
 using System.Web.Http.Controllers;
 using System.Web.Http.Description;
 using System.Xml.XPath;
-using WaterPoint.Api.Job.Areas.HelpPage.ModelDescriptions;
+using WaterPoint.Api.Authorization.Areas.HelpPage.ModelDescriptions;
 
-namespace WaterPoint.Api.Job.Areas.HelpPage
+namespace WaterPoint.Api.Authorization.Areas.HelpPage
 {
     /// <summary>
     /// A custom <see cref="IDocumentationProvider"/> that reads the API documentation from an XML documentation file.

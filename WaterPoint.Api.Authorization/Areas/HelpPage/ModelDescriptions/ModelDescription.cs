@@ -1,6 +1,6 @@
 using System;
 
-namespace WaterPoint.Api.Job.Areas.HelpPage.ModelDescriptions
+namespace WaterPoint.Api.Authorization.Areas.HelpPage.ModelDescriptions
 {
     /// <summary>
     /// Describes a type model.

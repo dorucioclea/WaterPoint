@@ -1,7 +1,7 @@
 using System.Web.Http;
 using System.Web.Mvc;
 
-namespace WaterPoint.Api.Job.Areas.HelpPage
+namespace WaterPoint.Api.Authorization.Areas.HelpPage
 {
     public class HelpPageAreaRegistration : AreaRegistration
     {

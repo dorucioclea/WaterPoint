@@ -1,6 +1,6 @@
 using System.Collections.ObjectModel;
 
-namespace WaterPoint.Api.Job.Areas.HelpPage.ModelDescriptions
+namespace WaterPoint.Api.Authorization.Areas.HelpPage.ModelDescriptions
 {
     public class ComplexTypeModelDescription : ModelDescription
     {

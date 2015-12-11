@@ -2,9 +2,9 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Net.Http.Headers;
 using System.Web.Http.Description;
-using WaterPoint.Api.Job.Areas.HelpPage.ModelDescriptions;
+using WaterPoint.Api.Authorization.Areas.HelpPage.ModelDescriptions;
 
-namespace WaterPoint.Api.Job.Areas.HelpPage.Models
+namespace WaterPoint.Api.Authorization.Areas.HelpPage.Models
 {
     /// <summary>
     /// The model that represents an API displayed on the help page.

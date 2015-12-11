@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Linq;
 using System.Reflection;
 
-namespace WaterPoint.Api.Job.Areas.HelpPage.ModelDescriptions
+namespace WaterPoint.Api.Authorization.Areas.HelpPage.ModelDescriptions
 {
     internal static class ModelNameHelper
     {

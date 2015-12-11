@@ -1,10 +1,10 @@
 using System;
 using System.Web.Http;
 using System.Web.Mvc;
-using WaterPoint.Api.Job.Areas.HelpPage.ModelDescriptions;
-using WaterPoint.Api.Job.Areas.HelpPage.Models;
+using WaterPoint.Api.Authorization.Areas.HelpPage.ModelDescriptions;
+using WaterPoint.Api.Authorization.Areas.HelpPage.Models;
 
-namespace WaterPoint.Api.Job.Areas.HelpPage.Controllers
+namespace WaterPoint.Api.Authorization.Areas.HelpPage.Controllers
 {
     /// <summary>
     /// The controller that will handle requests for the help page.

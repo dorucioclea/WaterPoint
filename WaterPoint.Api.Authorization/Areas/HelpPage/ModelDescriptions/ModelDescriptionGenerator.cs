@@ -11,7 +11,7 @@ using System.Web.Http.Description;
 using System.Xml.Serialization;
 using Newtonsoft.Json;
 
-namespace WaterPoint.Api.Job.Areas.HelpPage.ModelDescriptions
+namespace WaterPoint.Api.Authorization.Areas.HelpPage.ModelDescriptions
 {
     /// <summary>
     /// Generates model descriptions for given types.

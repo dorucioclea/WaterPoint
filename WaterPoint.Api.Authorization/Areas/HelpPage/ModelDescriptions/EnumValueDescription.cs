@@ -1,4 +1,4 @@
-namespace WaterPoint.Api.Job.Areas.HelpPage.ModelDescriptions
+namespace WaterPoint.Api.Authorization.Areas.HelpPage.ModelDescriptions
 {
     public class EnumValueDescription
     {

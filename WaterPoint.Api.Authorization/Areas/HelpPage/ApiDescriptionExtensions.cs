@@ -3,7 +3,7 @@ using System.Text;
 using System.Web;
 using System.Web.Http.Description;
 
-namespace WaterPoint.Api.Job.Areas.HelpPage
+namespace WaterPoint.Api.Authorization.Areas.HelpPage
 {
     public static class ApiDescriptionExtensions
     {
