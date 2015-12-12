@@ -317,6 +317,10 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\WaterPoint.Api.Common\WaterPoint.Api.Common.csproj">
+      <Project>{C033A553-F357-4844-805D-A4984A80226E}</Project>
+      <Name>WaterPoint.Api.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WaterPoint.Core.Domain\WaterPoint.Core.Domain.csproj">
       <Project>{A035AC5E-BFB1-4BE2-803C-6386E3297008}</Project>
       <Name>WaterPoint.Core.Domain</Name>
