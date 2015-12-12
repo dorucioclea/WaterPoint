@@ -47,10 +47,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="OAuthClientMapper.cs" />
     <Compile Include="JobTaskMapper.cs" />
-    <Compile Include="TaskDefinitionMapper.cs" />
-    <Compile Include="JobMapper.cs" />
     <Compile Include="CustomerMapper.cs" />
+    <Compile Include="JobMapper.cs" />
+    <Compile Include="TaskDefinitionMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,21 +1,21 @@
 ﻿using AutoMapper;
 using Utility;
-using WaterPoint.Core.Domain.Contracts.TaskDefinitions;
+using WaterPoint.Core.Domain.Contracts.Customers;
 using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Core.ContractMapper
 {
-    public class TaskDefinitionMapper
+    public class CustomerMapper
     {
-        static TaskDefinitionMapper()
+        static CustomerMapper()
         {
-            Mapper.CreateMap<TaskDefinition, TaskDefinitionContract>()
+            Mapper.CreateMap<Customer, CustomerContract>()
                 .ForMember(o => o.Version, i => i.MapFrom(d => d.Version.ToSha1(d.Id.ToString())));
         }
 
-        public static TaskDefinitionContract Map(TaskDefinition source)
+        public static CustomerContract Map(Customer source)
         {
-            return Mapper.Map<TaskDefinitionContract>(source);
+            return Mapper.Map<CustomerContract>(source);
         }
     }
 }

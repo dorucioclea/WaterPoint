@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Utility;
-using WaterPoint.Core.Domain.Contracts.Customers;
 using WaterPoint.Core.Domain.Contracts.Jobs;
 using WaterPoint.Data.Entity.DataEntities;
 

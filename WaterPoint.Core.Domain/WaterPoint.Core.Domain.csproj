@@ -59,11 +59,13 @@
   <ItemGroup>
     <Compile Include="Contracts\JobTasks\JobTaskContract.cs" />
     <Compile Include="Contracts\Jobs\JobContract.cs" />
+    <Compile Include="Contracts\OAuthClients\OAuthClientContract.cs" />
     <Compile Include="Contracts\ResultContract.cs" />
     <Compile Include="Contracts\TaskDefinitions\TaskDefinitionContract.cs" />
     <Compile Include="Dtos\Payloads\Jobs\WriteJobPayload.cs" />
     <Compile Include="Dtos\Payloads\JobTasks\WriteJobTaskPayload.cs" />
     <Compile Include="Dtos\Payloads\TaskDefinitions\WriteTaskDefinitionPayload.cs" />
+    <Compile Include="Dtos\Requests\Credentials\ValidateCredentialRequest.cs" />
     <Compile Include="Dtos\Requests\Customers\UpdateCustomerRequest.cs" />
     <Compile Include="Dtos\Requests\Customers\GetCustomerByIdRequest.cs" />
     <Compile Include="Dtos\Interfaces\IOrganizationEntityParameter.cs" />
@@ -74,6 +76,7 @@
     <Compile Include="Dtos\Requests\JobTasks\CreateJobTaskRequest.cs" />
     <Compile Include="Dtos\Requests\JobTasks\GetJobTaskByIdRequest.cs" />
     <Compile Include="Dtos\Requests\JobTasks\UpdateJobTaskRequest.cs" />
+    <Compile Include="Dtos\Requests\OAuthClients\GetOAuthClientRequest.cs" />
     <Compile Include="Dtos\Requests\TaskDefinitions\CreateTaskDefinitionRequest.cs" />
     <Compile Include="Dtos\Requests\TaskDefinitions\GetTaskDefinitionByIdRequest.cs" />
     <Compile Include="Dtos\Requests\TaskDefinitions\UpdateTaskDefinitionRequest.cs" />
@@ -107,7 +110,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="DataProvider\" />
     <Folder Include="Dtos\Parameters\" />
   </ItemGroup>
   <ItemGroup>

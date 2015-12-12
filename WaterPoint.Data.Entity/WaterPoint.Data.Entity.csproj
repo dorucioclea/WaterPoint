@@ -62,6 +62,8 @@
     <Compile Include="Attributes\StringValueAttribute.cs" />
     <Compile Include="Attributes\TableAttribute.cs" />
     <Compile Include="DataEntities\Address.cs" />
+    <Compile Include="DataEntities\Credential.cs" />
+    <Compile Include="DataEntities\OAuthClient.cs" />
     <Compile Include="DataEntities\Country.cs" />
     <Compile Include="DataEntities\Customer.cs" />
     <Compile Include="DataEntities\Job.cs" />
@@ -70,6 +72,7 @@
     <Compile Include="IDataEntity.cs" />
     <Compile Include="Pocos\BasicCustomerPoco.cs" />
     <Compile Include="Pocos\PaginatedPoco.cs" />
+    <Compile Include="Pocos\Views\ValidCredential.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

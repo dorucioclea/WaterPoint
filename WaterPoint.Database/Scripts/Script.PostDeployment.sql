@@ -33,3 +33,5 @@ Post-Deployment Script Template
 :r ".\PostDeployment\DemoStaff.sql"
 
 :r ".\PostDeployment\InvoiceTypes.sql"
+
+:r "..\apiv1\Scripts\Script.PostDeployment.ApiV1.sql"

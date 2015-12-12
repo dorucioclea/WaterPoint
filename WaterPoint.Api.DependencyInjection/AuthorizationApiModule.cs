@@ -19,6 +19,7 @@ namespace WaterPoint.Api.DependencyInjection
     {
         public override void Load()
         {
+            BindProviders
             BindRequestProcessors();
             BindQueriesAndCommands();
         }

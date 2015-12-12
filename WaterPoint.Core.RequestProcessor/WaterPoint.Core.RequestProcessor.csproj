@@ -75,6 +75,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseDapperUowRequestProcess.cs" />
+    <Compile Include="Credentials\ValidateCredentialProcessor.cs" />
     <Compile Include="Jobs\CreateJobRequestProcessor.cs" />
     <Compile Include="Jobs\GetJobByIdRequestProcessor.cs" />
     <Compile Include="Jobs\PaginatedJobsProcessor.cs" />
@@ -83,6 +84,7 @@
     <Compile Include="Customers\PaginatedCustomersProcessor.cs" />
     <Compile Include="Customers\UpdateCustomerRequestProcessor.cs" />
     <Compile Include="Jobs\UpdateJobRequestProcessor.cs" />
+    <Compile Include="OAuthClients\GetOAuthClientRequestProcessor.cs" />
     <Compile Include="PaginatedEntitiesWithOrgIdProcessor.cs" />
     <Compile Include="PaginationAnalyzer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

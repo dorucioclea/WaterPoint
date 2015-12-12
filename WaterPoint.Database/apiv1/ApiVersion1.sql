@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [apiv1] AUTHORIZATION [dbo];
+
+GO

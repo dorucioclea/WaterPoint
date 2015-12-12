@@ -10,43 +10,58 @@ using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
 using WaterPoint.Api.Authorization.Models;
+using WaterPoint.Core.Domain;
+using WaterPoint.Core.Domain.Contracts.OAuthClients;
+using WaterPoint.Core.Domain.Dtos.Requests.Credentials;
+using WaterPoint.Core.Domain.Dtos.Requests.OAuthClients;
 
 namespace WaterPoint.Api.Authorization.Providers
 {
-    public class ApplicationOAuthProvider : OAuthAuthorizationServerProvider
+    public class InternalApplicationOAuthProvider : OAuthAuthorizationServerProvider
     {
-        private readonly string _publicClientId;
+        private readonly IRequestProcessor<GetOAuthClientRequest, OAuthClientContract> _oauthRequestProcessor;
+        private readonly IRequestProcessor<ValidateCredentialRequest, bool> _credentialRequestProcessor;
 
-        public ApplicationOAuthProvider(string publicClientId)
+        public InternalApplicationOAuthProvider(
+            IRequestProcessor<GetOAuthClientRequest, OAuthClientContract> oauthRequestProcessor,
+            IRequestProcessor<ValidateCredentialRequest, bool> credentialRequestProcessor)
         {
-            if (publicClientId == null)
-            {
-                throw new ArgumentNullException("publicClientId");
-            }
-
-            _publicClientId = publicClientId;
+            _oauthRequestProcessor = oauthRequestProcessor;
+            _credentialRequestProcessor = credentialRequestProcessor;
         }
 
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
-            var userManager = context.OwinContext.GetUserManager<ApplicationUserManager>();
-
-            ApplicationUser user = await userManager.FindAsync(context.UserName, context.Password);
-
-            if (user == null)
+            if (string.IsNullOrWhiteSpace(context.UserName) || string.IsNullOrWhiteSpace(context.Password))
             {
                 context.SetError("invalid_grant", "The user name or password is incorrect.");
+
                 return;
             }
 
-            ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(userManager,
-               OAuthDefaults.AuthenticationType);
-            ClaimsIdentity cookiesIdentity = await user.GenerateUserIdentityAsync(userManager,
-                CookieAuthenticationDefaults.AuthenticationType);
+            var isValid = _credentialRequestProcessor.Process(new ValidateCredentialRequest
+                {
+                    Username = context.UserName,
+                    Password = context.Password
+                });
 
-            AuthenticationProperties properties = CreateProperties(user.UserName);
-            AuthenticationTicket ticket = new AuthenticationTicket(oAuthIdentity, properties);
+            if (!isValid)
+            {
+                context.SetError("invalid_grant", "The user name or password is incorrect.");
+
+                return;
+            }
+
+            var oauthIdentity = new ClaimsIdentity(new[] {new Claim(ClaimTypes.Sid, context.UserName )}, OAuthDefaults.AuthenticationType);
+
+            var cookiesIdentity = new ClaimsIdentity(new[] { new Claim(ClaimTypes.Sid, context.UserName) },CookieAuthenticationDefaults.AuthenticationType);
+
+            var properties = CreateProperties(context.UserName);
+
+            var ticket = new AuthenticationTicket(oauthIdentity, properties);
+
             context.Validated(ticket);
+
             context.Request.Context.Authentication.SignIn(cookiesIdentity);
         }
 
@@ -62,8 +77,26 @@ namespace WaterPoint.Api.Authorization.Providers
 
         public override Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
         {
+            string clientId, clientSecret;
+
+            if (!context.TryGetFormCredentials(out clientId, out clientSecret))
+            {
+                context.Rejected();
+            }
+
+            var oauthClient = _oauthRequestProcessor.Process(new GetOAuthClientRequest
+            {
+                ClientSecret = clientSecret,
+                ClientId = clientId,
+                IsInternal = true
+            });
+
             // Resource owner password credentials does not provide a client ID.
-            if (context.ClientId == null)
+            if (oauthClient == null)
+            {
+                context.Rejected();
+            }
+            else
             {
                 context.Validated();
             }
@@ -73,7 +106,9 @@ namespace WaterPoint.Api.Authorization.Providers
 
         public override Task ValidateClientRedirectUri(OAuthValidateClientRedirectUriContext context)
         {
-            if (context.ClientId == _publicClientId)
+            var publicClientId = "publicclientid";
+
+            if (context.ClientId == publicClientId)
             {
                 Uri expectedRootUri = new Uri(context.Request.Uri, "/");
 
