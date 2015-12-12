@@ -6,14 +6,14 @@ using WaterPoint.Data.DbContext.Dapper;
 
 namespace WaterPoint.Core.RequestProcessor.Credentials
 {
-    public class ValidateCredentialProcessor :
+    public class ValidateCredentialRequestProcessor :
         BaseDapperUowRequestProcess,
         IRequestProcessor<ValidateCredentialRequest, bool>
     {
         private readonly ValidateCredentialQuery _query;
         private readonly ValidateCredentialQueryRunner _runner;
 
-        public ValidateCredentialProcessor(
+        public ValidateCredentialRequestProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
             ValidateCredentialQuery query,
             ValidateCredentialQueryRunner runner)

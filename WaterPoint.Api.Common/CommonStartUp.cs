@@ -19,12 +19,21 @@ namespace WaterPoint.Api.Common
             return kernel;
         }
 
-        public virtual void Configuration(IAppBuilder app)
+        public virtual IKernel ConfigureNinjectKernel(IAppBuilder app)
         {
             var config = GlobalConfiguration.Configuration;
 
-            app.UseNinjectMiddleware(CreateKernel)
+            var kernel = CreateKernel();
+
+            app.UseNinjectMiddleware(() => kernel)
                 .UseNinjectWebApi(config);
+
+            return kernel;
+        }
+
+        public virtual void Configuration(IAppBuilder app)
+        {
+            ConfigureNinjectKernel(app);
         }
     }
 }

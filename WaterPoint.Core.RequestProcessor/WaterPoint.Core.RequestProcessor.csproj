@@ -75,7 +75,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseDapperUowRequestProcess.cs" />
-    <Compile Include="Credentials\ValidateCredentialProcessor.cs" />
+    <Compile Include="Credentials\ValidateCredentialRequestProcessor.cs" />
     <Compile Include="Jobs\CreateJobRequestProcessor.cs" />
     <Compile Include="Jobs\GetJobByIdRequestProcessor.cs" />
     <Compile Include="Jobs\PaginatedJobsProcessor.cs" />

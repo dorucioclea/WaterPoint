@@ -121,6 +121,10 @@
       <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
       <Private>True</Private>
@@ -248,16 +252,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
     <Content Include="Areas\HelpPage\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\ResourceModel.cshtml" />
@@ -278,8 +274,6 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -320,6 +314,18 @@
     <ProjectReference Include="..\WaterPoint.Api.Common\WaterPoint.Api.Common.csproj">
       <Project>{C033A553-F357-4844-805D-A4984A80226E}</Project>
       <Name>WaterPoint.Api.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WaterPoint.Api.DependencyInjection\WaterPoint.Api.DependencyInjection.csproj">
+      <Project>{5C64B219-7379-45AB-A0FC-F459EEA2AE17}</Project>
+      <Name>WaterPoint.Api.DependencyInjection</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WaterPoint.Api.Infrastructure\WaterPoint.Api.Infrastructure.csproj">
+      <Project>{83990481-9F4E-48ED-8B9C-2C863563F94C}</Project>
+      <Name>WaterPoint.Api.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WaterPoint.Core.DependencyInjection\WaterPoint.Core.DependencyInjection.csproj">
+      <Project>{114DB23C-2257-4BAD-800D-58A5CCAEDF90}</Project>
+      <Name>WaterPoint.Core.DependencyInjection</Name>
     </ProjectReference>
     <ProjectReference Include="..\WaterPoint.Core.Domain\WaterPoint.Core.Domain.csproj">
       <Project>{A035AC5E-BFB1-4BE2-803C-6386E3297008}</Project>

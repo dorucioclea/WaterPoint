@@ -1,17 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.Owin.Security.OAuth;
 using Ninject.Modules;
-using WaterPoint.Core.Bll.Executors;
-using WaterPoint.Core.Bll.Queries.Jobs;
-using WaterPoint.Core.Bll.QueryRunners;
-using WaterPoint.Core.Bll.QueryRunners.Jobs;
+using WaterPoint.Api.Infrastructure;
+using WaterPoint.Core.Bll.Queries.Credentials;
+using WaterPoint.Core.Bll.Queries.OAuthClients;
+using WaterPoint.Core.Bll.QueryRunners.Credentials;
+using WaterPoint.Core.Bll.QueryRunners.OAuthClients;
 using WaterPoint.Core.Domain;
-using WaterPoint.Core.Domain.Contracts.Jobs;
-using WaterPoint.Core.Domain.Dtos.Requests.Jobs;
-using WaterPoint.Core.Domain.Dtos.Requests.Shared;
-using WaterPoint.Core.RequestProcessor;
-using WaterPoint.Core.RequestProcessor.Jobs;
-using WaterPoint.Data.DbContext.Dapper;
-using WaterPoint.Data.Entity.DataEntities;
+using WaterPoint.Core.Domain.Contracts.OAuthClients;
+using WaterPoint.Core.Domain.Dtos.Requests.Credentials;
+using WaterPoint.Core.Domain.Dtos.Requests.OAuthClients;
+using WaterPoint.Core.RequestProcessor.Credentials;
+using WaterPoint.Core.RequestProcessor.OAuthClients;
 
 namespace WaterPoint.Api.DependencyInjection
 {
@@ -19,17 +18,31 @@ namespace WaterPoint.Api.DependencyInjection
     {
         public override void Load()
         {
-            BindProviders
             BindRequestProcessors();
             BindQueriesAndCommands();
         }
 
         private void BindQueriesAndCommands()
         {
+            Bind<ValidateCredentialQuery>().ToSelf();
+            Bind<ValidateCredentialQueryRunner>().ToSelf();
+            Bind<GetOAuthClientQuery>().ToSelf();
+            Bind<GetOAuthClientQueryRunner>().ToSelf();
+
+
+            Bind<IOAuthAuthorizationServerProvider>().To<InternalApplicationOAuthProvider>()
+                .WhenInjectedExactlyInto<InternalOAuthAuthorizationServerOptions>();
+
+
         }
 
         private void BindRequestProcessors()
         {
+            Bind<IRequestProcessor<GetOAuthClientRequest, OAuthClientContract>>()
+                .To<GetOAuthClientRequestProcessor>();
+
+            Bind<IRequestProcessor<ValidateCredentialRequest, bool>>()
+                .To<ValidateCredentialRequestProcessor>();
         }
     }
 }

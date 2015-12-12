@@ -17,117 +17,117 @@ using WaterPoint.Core.Domain.Dtos.Requests.OAuthClients;
 
 namespace WaterPoint.Api.Authorization.Providers
 {
-    public class InternalApplicationOAuthProvider : OAuthAuthorizationServerProvider
-    {
-        private readonly IRequestProcessor<GetOAuthClientRequest, OAuthClientContract> _oauthRequestProcessor;
-        private readonly IRequestProcessor<ValidateCredentialRequest, bool> _credentialRequestProcessor;
+    //public class InternalApplicationOAuthProvider : OAuthAuthorizationServerProvider
+    //{
+    //    private readonly IRequestProcessor<GetOAuthClientRequest, OAuthClientContract> _oauthRequestProcessor;
+    //    private readonly IRequestProcessor<ValidateCredentialRequest, bool> _credentialRequestProcessor;
 
-        public InternalApplicationOAuthProvider(
-            IRequestProcessor<GetOAuthClientRequest, OAuthClientContract> oauthRequestProcessor,
-            IRequestProcessor<ValidateCredentialRequest, bool> credentialRequestProcessor)
-        {
-            _oauthRequestProcessor = oauthRequestProcessor;
-            _credentialRequestProcessor = credentialRequestProcessor;
-        }
+    //    public InternalApplicationOAuthProvider(
+    //        IRequestProcessor<GetOAuthClientRequest, OAuthClientContract> oauthRequestProcessor,
+    //        IRequestProcessor<ValidateCredentialRequest, bool> credentialRequestProcessor)
+    //    {
+    //        _oauthRequestProcessor = oauthRequestProcessor;
+    //        _credentialRequestProcessor = credentialRequestProcessor;
+    //    }
 
-        public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
-        {
-            if (string.IsNullOrWhiteSpace(context.UserName) || string.IsNullOrWhiteSpace(context.Password))
-            {
-                context.SetError("invalid_grant", "The user name or password is incorrect.");
+    //    public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
+    //    {
+    //        if (string.IsNullOrWhiteSpace(context.UserName) || string.IsNullOrWhiteSpace(context.Password))
+    //        {
+    //            context.SetError("invalid_grant", "The user name or password is incorrect.");
 
-                return;
-            }
+    //            return;
+    //        }
 
-            var isValid = _credentialRequestProcessor.Process(new ValidateCredentialRequest
-                {
-                    Username = context.UserName,
-                    Password = context.Password
-                });
+    //        var isValid = _credentialRequestProcessor.Process(new ValidateCredentialRequest
+    //            {
+    //                Username = context.UserName,
+    //                Password = context.Password
+    //            });
 
-            if (!isValid)
-            {
-                context.SetError("invalid_grant", "The user name or password is incorrect.");
+    //        if (!isValid)
+    //        {
+    //            context.SetError("invalid_grant", "The user name or password is incorrect.");
 
-                return;
-            }
+    //            return;
+    //        }
 
-            var oauthIdentity = new ClaimsIdentity(new[] {new Claim(ClaimTypes.Sid, context.UserName )}, OAuthDefaults.AuthenticationType);
+    //        var oauthIdentity = new ClaimsIdentity(new[] {new Claim(ClaimTypes.Sid, context.UserName )}, OAuthDefaults.AuthenticationType);
 
-            var cookiesIdentity = new ClaimsIdentity(new[] { new Claim(ClaimTypes.Sid, context.UserName) },CookieAuthenticationDefaults.AuthenticationType);
+    //        var cookiesIdentity = new ClaimsIdentity(new[] { new Claim(ClaimTypes.Sid, context.UserName) },CookieAuthenticationDefaults.AuthenticationType);
 
-            var properties = CreateProperties(context.UserName);
+    //        var properties = CreateProperties(context.UserName);
 
-            var ticket = new AuthenticationTicket(oauthIdentity, properties);
+    //        var ticket = new AuthenticationTicket(oauthIdentity, properties);
 
-            context.Validated(ticket);
+    //        context.Validated(ticket);
 
-            context.Request.Context.Authentication.SignIn(cookiesIdentity);
-        }
+    //        context.Request.Context.Authentication.SignIn(cookiesIdentity);
+    //    }
 
-        public override Task TokenEndpoint(OAuthTokenEndpointContext context)
-        {
-            foreach (KeyValuePair<string, string> property in context.Properties.Dictionary)
-            {
-                context.AdditionalResponseParameters.Add(property.Key, property.Value);
-            }
+    //    public override Task TokenEndpoint(OAuthTokenEndpointContext context)
+    //    {
+    //        foreach (KeyValuePair<string, string> property in context.Properties.Dictionary)
+    //        {
+    //            context.AdditionalResponseParameters.Add(property.Key, property.Value);
+    //        }
 
-            return Task.FromResult<object>(null);
-        }
+    //        return Task.FromResult<object>(null);
+    //    }
 
-        public override Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
-        {
-            string clientId, clientSecret;
+    //    public override Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
+    //    {
+    //        string clientId, clientSecret;
 
-            if (!context.TryGetFormCredentials(out clientId, out clientSecret))
-            {
-                context.Rejected();
-            }
+    //        if (!context.TryGetFormCredentials(out clientId, out clientSecret))
+    //        {
+    //            context.Rejected();
+    //        }
 
-            var oauthClient = _oauthRequestProcessor.Process(new GetOAuthClientRequest
-            {
-                ClientSecret = clientSecret,
-                ClientId = clientId,
-                IsInternal = true
-            });
+    //        var oauthClient = _oauthRequestProcessor.Process(new GetOAuthClientRequest
+    //        {
+    //            ClientSecret = clientSecret,
+    //            ClientId = clientId,
+    //            IsInternal = true
+    //        });
 
-            // Resource owner password credentials does not provide a client ID.
-            if (oauthClient == null)
-            {
-                context.Rejected();
-            }
-            else
-            {
-                context.Validated();
-            }
+    //        // Resource owner password credentials does not provide a client ID.
+    //        if (oauthClient == null)
+    //        {
+    //            context.Rejected();
+    //        }
+    //        else
+    //        {
+    //            context.Validated();
+    //        }
 
-            return Task.FromResult<object>(null);
-        }
+    //        return Task.FromResult<object>(null);
+    //    }
 
-        public override Task ValidateClientRedirectUri(OAuthValidateClientRedirectUriContext context)
-        {
-            var publicClientId = "publicclientid";
+    //    public override Task ValidateClientRedirectUri(OAuthValidateClientRedirectUriContext context)
+    //    {
+    //        var publicClientId = "publicclientid";
 
-            if (context.ClientId == publicClientId)
-            {
-                Uri expectedRootUri = new Uri(context.Request.Uri, "/");
+    //        if (context.ClientId == publicClientId)
+    //        {
+    //            Uri expectedRootUri = new Uri(context.Request.Uri, "/");
 
-                if (expectedRootUri.AbsoluteUri == context.RedirectUri)
-                {
-                    context.Validated();
-                }
-            }
+    //            if (expectedRootUri.AbsoluteUri == context.RedirectUri)
+    //            {
+    //                context.Validated();
+    //            }
+    //        }
 
-            return Task.FromResult<object>(null);
-        }
+    //        return Task.FromResult<object>(null);
+    //    }
 
-        public static AuthenticationProperties CreateProperties(string userName)
-        {
-            IDictionary<string, string> data = new Dictionary<string, string>
-            {
-                { "userName", userName }
-            };
-            return new AuthenticationProperties(data);
-        }
-    }
+    //    public static AuthenticationProperties CreateProperties(string userName)
+    //    {
+    //        IDictionary<string, string> data = new Dictionary<string, string>
+    //        {
+    //            { "userName", userName }
+    //        };
+    //        return new AuthenticationProperties(data);
+    //    }
+    //}
 }

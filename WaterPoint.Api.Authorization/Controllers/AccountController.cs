@@ -16,6 +16,7 @@ using Microsoft.Owin.Security.OAuth;
 using WaterPoint.Api.Authorization.Models;
 using WaterPoint.Api.Authorization.Providers;
 using WaterPoint.Api.Authorization.Results;
+using WaterPoint.Api.Infrastructure;
 
 namespace WaterPoint.Api.Authorization.Controllers
 {
@@ -306,7 +307,7 @@ namespace WaterPoint.Api.Authorization.Controllers
                     {
                         provider = description.AuthenticationType,
                         response_type = "token",
-                        client_id = Startup.PublicClientId,
+                        client_id = "publicclientid",
                         redirect_uri = new Uri(Request.RequestUri, returnUrl).AbsoluteUri,
                         state = state
                     }),

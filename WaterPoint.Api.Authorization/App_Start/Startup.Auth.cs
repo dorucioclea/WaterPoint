@@ -6,17 +6,20 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
+using Microsoft.Owin.Security.Infrastructure;
 using Microsoft.Owin.Security.OAuth;
+using Ninject;
 using Owin;
 using WaterPoint.Api.Authorization.Providers;
 using WaterPoint.Api.Authorization.Models;
+using WaterPoint.Api.Infrastructure;
 
 namespace WaterPoint.Api.Authorization
 {
     public partial class Startup
     {
         // For more information on configuring authentication, please visit http://go.microsoft.com/fwlink/?LinkId=301864
-        public void ConfigureAuth(IAppBuilder app)
+        public void ConfigureAuth(IAppBuilder app, IKernel kernel)
         {
             app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
 
@@ -29,15 +32,8 @@ namespace WaterPoint.Api.Authorization
             app.UseCookieAuthentication(new CookieAuthenticationOptions());
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
 
-            var internalApplicationOAuthOptions = new OAuthAuthorizationServerOptions
-            {
-                TokenEndpointPath = new PathString("/token"),
-                Provider = new InternalApplicationOAuthProvider(PublicClientId),
-                AuthorizeEndpointPath = new PathString("/authorize"),
-                AccessTokenExpireTimeSpan = TimeSpan.FromDays(14),
-                // In production mode set AllowInsecureHttp = false
-                AllowInsecureHttp = true
-            };
+
+            var internalApplicationOAuthOptions = kernel.Get<InternalOAuthAuthorizationServerOptions>().GetOptions();
 
             app.UseOAuthAuthorizationServer(internalApplicationOAuthOptions);
 
