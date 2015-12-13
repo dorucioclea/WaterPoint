@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Microsoft.Owin.Security.Infrastructure;
 using Microsoft.Owin.Security.OAuth;
 using Ninject;
+//using Ninject;
 using Owin;
-using WaterPoint.Api.Authorization.Providers;
-using WaterPoint.Api.Authorization.Models;
+//using WaterPoint.Api.Authorization.Providers;
+//using WaterPoint.Api.Authorization.Models;
 using WaterPoint.Api.Infrastructure;
 
 namespace WaterPoint.Api.Authorization

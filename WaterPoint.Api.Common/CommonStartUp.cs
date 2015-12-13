@@ -4,12 +4,18 @@ using Ninject.Modules;
 using Ninject.Web.Common.OwinHost;
 using Ninject.Web.WebApi.OwinHost;
 using Owin;
+using WaterPoint.Api.Common.AppStart;
 using WaterPoint.Core.DependencyInjection;
 
 namespace WaterPoint.Api.Common
 {
     public abstract class CommonStartup
     {
+        public virtual void Configuration(IAppBuilder app)
+        {
+            ConfigureNinjectKernel(app);
+        }
+
         public virtual IKernel CreateKernel()
         {
             var kernel = new StandardKernel(new CoreDiModule());
@@ -21,7 +27,10 @@ namespace WaterPoint.Api.Common
 
         public virtual IKernel ConfigureNinjectKernel(IAppBuilder app)
         {
-            var config = GlobalConfiguration.Configuration;
+            var config = new HttpConfiguration();
+
+            //?? not sure config is used by globalconfiguration
+            WebApiConfig.Register(config);
 
             var kernel = CreateKernel();
 
@@ -29,11 +38,6 @@ namespace WaterPoint.Api.Common
                 .UseNinjectWebApi(config);
 
             return kernel;
-        }
-
-        public virtual void Configuration(IAppBuilder app)
-        {
-            ConfigureNinjectKernel(app);
         }
     }
 }
