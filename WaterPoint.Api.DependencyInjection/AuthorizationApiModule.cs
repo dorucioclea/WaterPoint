@@ -1,4 +1,5 @@
-﻿using Microsoft.Owin.Security.OAuth;
+﻿using Microsoft.Owin.Security.Infrastructure;
+using Microsoft.Owin.Security.OAuth;
 using Ninject.Modules;
 using WaterPoint.Api.Infrastructure;
 using WaterPoint.Core.Bll.Queries.Credentials;
@@ -30,10 +31,16 @@ namespace WaterPoint.Api.DependencyInjection
             Bind<GetOAuthClientQueryRunner>().ToSelf();
 
 
-            Bind<IOAuthAuthorizationServerProvider>().To<InternalApplicationOAuthProvider>()
-                .WhenInjectedExactlyInto<InternalOAuthAuthorizationServerOptions>();
+            Bind<IOAuthAuthorizationServerProvider>().To<ApiOAuthProvider>()
+                .WhenInjectedExactlyInto<ApiOAuthAuthorizationServerOptions>();
 
+            Bind<IAuthenticationTokenProvider>().To<RefreshTokenProvider>()
+                .WhenInjectedExactlyInto<ApiOAuthAuthorizationServerOptions>()
+                .Named("RefreshTokenProvider");
 
+            Bind<IAuthenticationTokenProvider>().To<AccessTokenProvider>()
+                .WhenInjectedExactlyInto<ApiOAuthAuthorizationServerOptions>()
+                .Named("AccessTokenProvider");
         }
 
         private void BindRequestProcessors()

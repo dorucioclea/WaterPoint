@@ -33,7 +33,7 @@ namespace WaterPoint.Api.Authorization
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
 
 
-            var internalApplicationOAuthOptions = kernel.Get<InternalOAuthAuthorizationServerOptions>().GetOptions();
+            var internalApplicationOAuthOptions = kernel.Get<Infrastructure.ApiOAuthAuthorizationServerOptions>().GetOptions();
 
             app.UseOAuthAuthorizationServer(internalApplicationOAuthOptions);
 

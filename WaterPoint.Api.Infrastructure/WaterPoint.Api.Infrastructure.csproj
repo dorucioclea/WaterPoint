@@ -135,8 +135,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApplicationOAuthProvider.cs" />
-    <Compile Include="InternalOAuthAuthorizationServerOptions.cs" />
+    <Compile Include="AccessTokenProvider.cs" />
+    <Compile Include="RefreshTokenProvider.cs" />
+    <Compile Include="ApiOAuthProvider.cs" />
+    <Compile Include="ApiOAuthAuthorizationServerOptions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

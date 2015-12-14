@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
-using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
@@ -14,17 +12,24 @@ using WaterPoint.Core.Domain.Dtos.Requests.OAuthClients;
 
 namespace WaterPoint.Api.Infrastructure
 {
-    public class InternalApplicationOAuthProvider : OAuthAuthorizationServerProvider
+    public class ApiOAuthProvider : OAuthAuthorizationServerProvider
     {
         private readonly IRequestProcessor<GetOAuthClientRequest, OAuthClientContract> _oauthRequestProcessor;
         private readonly IRequestProcessor<ValidateCredentialRequest, bool> _credentialRequestProcessor;
 
-        public InternalApplicationOAuthProvider(
+        public ApiOAuthProvider(
             IRequestProcessor<GetOAuthClientRequest, OAuthClientContract> oauthRequestProcessor,
             IRequestProcessor<ValidateCredentialRequest, bool> credentialRequestProcessor)
         {
             _oauthRequestProcessor = oauthRequestProcessor;
             _credentialRequestProcessor = credentialRequestProcessor;
+        }
+
+        public override Task GrantRefreshToken(OAuthGrantRefreshTokenContext context)
+        {
+            context.Validated();
+
+            return Task.FromResult(0);
         }
 
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
