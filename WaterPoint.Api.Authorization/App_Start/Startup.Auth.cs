@@ -19,7 +19,7 @@ namespace WaterPoint.Api.Authorization
     public partial class Startup
     {
         // For more information on configuring authentication, please visit http://go.microsoft.com/fwlink/?LinkId=301864
-        public void ConfigureAuth(IAppBuilder app, IKernel kernel)
+        public override void ConfigureAuth(IAppBuilder app, IKernel kernel)
         {
             app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
 
@@ -30,10 +30,11 @@ namespace WaterPoint.Api.Authorization
             // Enable the application to use a cookie to store information for the signed in user
             // and to use a cookie to temporarily store information about a user logging in with a third party login provider
             app.UseCookieAuthentication(new CookieAuthenticationOptions());
+
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
 
 
-            var internalApplicationOAuthOptions = kernel.Get<Infrastructure.ApiOAuthAuthorizationServerOptions>().GetOptions();
+            var internalApplicationOAuthOptions = kernel.Get<ApiOAuthAuthorizationServerOptions>().GetOptions();
 
             app.UseOAuthAuthorizationServer(internalApplicationOAuthOptions);
 

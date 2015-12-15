@@ -27,14 +27,16 @@ namespace WaterPoint.Core.RequestProcessor.OAuthClients
 
         public OAuthClientContract Process(GetOAuthClientRequest input)
         {
-            _query.BuildQuery(input.ClientId, input.ClientSecret, input.IsInternal);
-            
+            using (DapperUnitOfWork.Begin())
+            {
+                _query.BuildQuery(input.ClientId, input.ClientSecret, input.IsInternal);
+
                 var client = _runner.Run(_query);
 
                 var result = OAuthClientMapper.Map(client);
 
                 return result;
-            
+            }
         }
     }
 }

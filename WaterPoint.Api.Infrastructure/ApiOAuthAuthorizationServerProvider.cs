@@ -12,12 +12,12 @@ using WaterPoint.Core.Domain.Dtos.Requests.OAuthClients;
 
 namespace WaterPoint.Api.Infrastructure
 {
-    public class ApiOAuthProvider : OAuthAuthorizationServerProvider
+    public class ApiOAuthAuthorizationServerProvider : OAuthAuthorizationServerProvider
     {
         private readonly IRequestProcessor<GetOAuthClientRequest, OAuthClientContract> _oauthRequestProcessor;
         private readonly IRequestProcessor<ValidateCredentialRequest, bool> _credentialRequestProcessor;
 
-        public ApiOAuthProvider(
+        public ApiOAuthAuthorizationServerProvider(
             IRequestProcessor<GetOAuthClientRequest, OAuthClientContract> oauthRequestProcessor,
             IRequestProcessor<ValidateCredentialRequest, bool> credentialRequestProcessor)
         {
@@ -54,9 +54,17 @@ namespace WaterPoint.Api.Infrastructure
                 return;
             }
 
-            var oauthIdentity = new ClaimsIdentity(new[] { new Claim(ClaimTypes.Sid, context.UserName) }, OAuthDefaults.AuthenticationType);
+            var oauthIdentity = new ClaimsIdentity(new[]
+            {
+                new Claim(ClaimTypes.Name, context.UserName),
+                new Claim(ClaimTypes.Sid, context.UserName)
+            }, OAuthDefaults.AuthenticationType);
 
-            var cookiesIdentity = new ClaimsIdentity(new[] { new Claim(ClaimTypes.Sid, context.UserName) }, CookieAuthenticationDefaults.AuthenticationType);
+            var cookiesIdentity = new ClaimsIdentity(new[]
+            {
+                new Claim(ClaimTypes.Name, context.UserName),
+                new Claim(ClaimTypes.Sid, context.UserName)
+            }, CookieAuthenticationDefaults.AuthenticationType);
 
             var properties = CreateProperties(context.UserName);
 

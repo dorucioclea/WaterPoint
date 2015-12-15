@@ -137,7 +137,7 @@
   <ItemGroup>
     <Compile Include="AccessTokenProvider.cs" />
     <Compile Include="RefreshTokenProvider.cs" />
-    <Compile Include="ApiOAuthProvider.cs" />
+    <Compile Include="ApiOAuthAuthorizationServerProvider.cs" />
     <Compile Include="ApiOAuthAuthorizationServerOptions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

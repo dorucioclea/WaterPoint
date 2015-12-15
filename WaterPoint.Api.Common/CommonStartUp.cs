@@ -1,6 +1,6 @@
 ﻿using System.Web.Http;
+using Microsoft.Owin.Security.OAuth;
 using Ninject;
-using Ninject.Modules;
 using Ninject.Web.Common.OwinHost;
 using Ninject.Web.WebApi.OwinHost;
 using Owin;
@@ -13,7 +13,13 @@ namespace WaterPoint.Api.Common
     {
         public virtual void Configuration(IAppBuilder app)
         {
-            ConfigureNinjectKernel(app);
+            var kernel = CreateKernel();
+
+            ConfigureAuth(app, kernel);
+
+            var config = ConfigureWebApi();
+
+            ConfigNinjectForWebApi(app, kernel, config);
         }
 
         public virtual IKernel CreateKernel()
@@ -25,19 +31,24 @@ namespace WaterPoint.Api.Common
             return kernel;
         }
 
-        public virtual IKernel ConfigureNinjectKernel(IAppBuilder app)
+        public virtual void ConfigureAuth(IAppBuilder app, IKernel kernel)
+        {
+            app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
+        }
+
+        public virtual HttpConfiguration ConfigureWebApi()
         {
             var config = new HttpConfiguration();
 
-            //?? not sure config is used by globalconfiguration
             WebApiConfig.Register(config);
 
-            var kernel = CreateKernel();
+            return config;
+        }
 
+        public virtual void ConfigNinjectForWebApi(IAppBuilder app, IKernel kernel, HttpConfiguration config)
+        {
             app.UseNinjectMiddleware(() => kernel)
                 .UseNinjectWebApi(config);
-
-            return kernel;
         }
     }
 }

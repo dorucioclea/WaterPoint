@@ -31,7 +31,7 @@ namespace WaterPoint.Api.DependencyInjection
             Bind<GetOAuthClientQueryRunner>().ToSelf();
 
 
-            Bind<IOAuthAuthorizationServerProvider>().To<ApiOAuthProvider>()
+            Bind<IOAuthAuthorizationServerProvider>().To<ApiOAuthAuthorizationServerProvider>()
                 .WhenInjectedExactlyInto<ApiOAuthAuthorizationServerOptions>();
 
             Bind<IAuthenticationTokenProvider>().To<RefreshTokenProvider>()

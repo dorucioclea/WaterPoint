@@ -34,8 +34,8 @@ namespace WaterPoint.Api.Infrastructure
 
             var internalApplicationOAuthOptions = new OAuthAuthorizationServerOptions
             {
-                AccessTokenProvider = _accessTokenProvider,
-                RefreshTokenProvider = _refreshTokenProvider,
+                //AccessTokenProvider = _accessTokenProvider,
+                //RefreshTokenProvider = _refreshTokenProvider,
                 TokenEndpointPath = new PathString("/token"),
                 Provider = _interalOAuthAuthorizationServerProvider,
                 AuthorizeEndpointPath = new PathString("/authorize"),
