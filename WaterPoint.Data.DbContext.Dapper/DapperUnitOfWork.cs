@@ -28,7 +28,7 @@ namespace WaterPoint.Data.DbContext.Dapper
 
         ~DapperUnitOfWork()
         {
-            Dispose(false);
+            Dispose();
         }
 
         public IUnitOfWork Begin()
@@ -60,28 +60,15 @@ namespace WaterPoint.Data.DbContext.Dapper
 
         public void Dispose()
         {
-            Dispose(true);
-        }
-
-        private void Dispose(bool dispose)
-        {
-            if (!dispose)
-            {
-                DbContext.Connection.Close();
-                return;
-            }
-
             if (_transaction != null)
             {
                 _transaction.Dispose();
                 _transaction = null;
             }
 
-            if (DbContext.Connection == null)
-                return;
+            if (DbContext.Connection != null && DbContext.Connection.State != ConnectionState.Closed)
+                DbContext.Connection.Close();
 
-            DbContext.Connection.Close();
-            DbContext.Connection.Dispose();
         }
 
         #endregion

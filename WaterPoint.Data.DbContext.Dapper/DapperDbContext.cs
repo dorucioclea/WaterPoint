@@ -12,21 +12,29 @@ namespace WaterPoint.Data.DbContext.Dapper
     public class DapperDbContext : IDapperDbContext
     {
         private IDbTransaction _transaction;
+        private readonly string _connectionString;
+        private SqlConnection _connection;
 
         public DapperDbContext(string connectionString)
         {
-            Connection = new SqlConnection(connectionString);
+            _connectionString = connectionString;
         }
 
-        public IDbConnection Connection { get; private set; }
+        public IDbConnection Connection
+        {
+            get
+            {
+                if(_connection==null)
+                    _connection = new SqlConnection(_connectionString);
+
+                return _connection;
+            }
+        }
 
         public IDbTransaction GetTransaction()
         {
             if (Connection.State != ConnectionState.Open)
                 throw new InvalidOperationException("BeginTransaction requires a open connection.");
-
-            if (_transaction != null)
-                throw new InvalidOperationException("There is already one transaction.");
 
             _transaction = Connection.BeginTransaction();
 
