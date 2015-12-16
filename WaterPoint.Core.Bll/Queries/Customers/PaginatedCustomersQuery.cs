@@ -36,7 +36,8 @@ namespace WaterPoint.Core.Bll.Queries.Customers
 
             builder.AddTemplate(_sqlTemplate);
             builder.AddPrimaryColumns<Customer>();
-            builder.AddConditions<Customer>(i => i.OrganizationId == orgId);
+            builder.AddConditions<Customer>(
+                i => i.OrganizationId == orgId && i.IsDeleted == false && i.IsProspect == false);
             builder.AddOrderBy<Customer>(orderBy, isDesc);
             builder.AddContains<Customer>(searchTerm);
 

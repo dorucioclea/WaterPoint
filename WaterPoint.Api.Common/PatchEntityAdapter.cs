@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Utility;
 using WaterPoint.Core.Domain.Exceptions;
-using WaterPoint.Core.RequestProcessor;
 using WaterPoint.Data.DbContext.Dapper;
 using WaterPoint.Data.Entity;
 

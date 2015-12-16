@@ -1,23 +1,23 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
+using WaterPoint.Data.Entity.Attributes;
 
-namespace WaterPoint.Core.Domain.Dtos.Payloads.Customers
+namespace WaterPoint.Data.Entity.Pocos.Customers
 {
-    public class WriteCustomerPayload
+    [Table("dbo", "Customer", "c")]
+    public class CreateCustomerPoco : IDataEntity
     {
+        public int OrganizationId { get; set; }
+
         public int? CustomerTypeId { get; set; }
 
         public bool IsProspect { get; set; }
 
-        [RegularExpression("^[mfMF]$")]
         public string Gender { get; set; }
 
         public string Code { get; set; }
 
-        [Required]
         public string FirstName { get; set; }
 
-        [Required]
         public string LastName { get; set; }
 
         public string OtherName { get; set; }
@@ -26,7 +26,6 @@ namespace WaterPoint.Core.Domain.Dtos.Payloads.Customers
 
         public string MobilePhone { get; set; }
 
-        [EmailAddress]
         public string Email { get; set; }
 
         public DateTime? Dob { get; set; }

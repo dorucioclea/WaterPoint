@@ -31,8 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutoMapper, Version=4.0.4.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
-      <HintPath>..\packages\AutoMapper.4.0.4\lib\net45\AutoMapper.dll</HintPath>
+    <Reference Include="AutoMapper, Version=4.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.4.1.1\lib\net45\AutoMapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Data.Edm, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -84,6 +84,7 @@
     <Compile Include="Customers\PaginatedCustomersProcessor.cs" />
     <Compile Include="Customers\UpdateCustomerRequestProcessor.cs" />
     <Compile Include="Jobs\UpdateJobRequestProcessor.cs" />
+    <Compile Include="Mappers\CreateCustomerPocoMapper.cs" />
     <Compile Include="OAuthClients\GetOAuthClientRequestProcessor.cs" />
     <Compile Include="PaginatedEntitiesWithOrgIdProcessor.cs" />
     <Compile Include="PaginationAnalyzer.cs" />
@@ -101,6 +102,10 @@
     <ProjectReference Include="..\WaterPoint.Api.Common\WaterPoint.Api.Common.csproj">
       <Project>{C033A553-F357-4844-805D-A4984A80226E}</Project>
       <Name>WaterPoint.Api.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WaterPoint.Common\Utility\Utility.csproj">
+      <Project>{32862b76-53bf-453b-a8c3-9e7960441bac}</Project>
+      <Name>Utility</Name>
     </ProjectReference>
     <ProjectReference Include="..\WaterPoint.Core.Bll\WaterPoint.Core.Bll.csproj">
       <Project>{456075B1-80AC-47B3-851F-C31D531ADBD1}</Project>

@@ -11,7 +11,6 @@ namespace WaterPoint.Data.Entity.Pocos
     [Table("dbo", "Customer", "c")]
     public class BasicCustomerWithPrimaryAddressPoco : IDataEntity
     {
-
         [Primary]
         public int Id { get; set; }
         public int OrganizationId { get; set; }

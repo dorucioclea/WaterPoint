@@ -6,6 +6,10 @@ using WaterPoint.Core.Domain.Contracts.Customers;
 using WaterPoint.Core.Domain.Dtos.Requests.Customers;
 using WaterPoint.Data.DbContext.Dapper;
 using WaterPoint.Data.Entity.DataEntities;
+using Utility;
+using WaterPoint.Core.Bll.Queries.Customers;
+using WaterPoint.Core.Bll.QueryRunners.Customers;
+using WaterPoint.Data.Entity.Pocos.Customers;
 
 namespace WaterPoint.Core.RequestProcessor.Customers
 {
@@ -14,15 +18,21 @@ namespace WaterPoint.Core.RequestProcessor.Customers
     {
         private readonly CreateCustomerCommand _command;
         private readonly CreateCommandExecutor _executor;
+        private readonly GetCustomerByIdQuery _getCustomerQuery;
+        private readonly GetCustomerByIdQueryRunner _getCustomerByIdQueryRunner;
 
         public CreateCustomerRequestProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
             CreateCustomerCommand command,
-            CreateCommandExecutor executor)
+            CreateCommandExecutor executor,
+            GetCustomerByIdQuery getCustomerQuery,
+            GetCustomerByIdQueryRunner getCustomerByIdQueryRunner)
             : base(dapperUnitOfWork)
         {
             _command = command;
             _executor = executor;
+            _getCustomerQuery = getCustomerQuery;
+            _getCustomerByIdQueryRunner = getCustomerByIdQueryRunner;
         }
 
         public CustomerContract Process(CreateCustomerRequest input)
@@ -34,25 +44,19 @@ namespace WaterPoint.Core.RequestProcessor.Customers
 
         private CustomerContract ProcessDeFacto(CreateCustomerRequest input)
         {
-            var customer = new Customer
-            {
-                OrganizationId = input.OrganizationIdParameter.OrganizationId,
-                Code = input.CreateCustomerPayload.Code,
-                CustomerTypeId = input.CreateCustomerPayload.CustomerTypeId,
-                Dob = input.CreateCustomerPayload.Dob,
-                Email = input.CreateCustomerPayload.Email,
-                FirstName = input.CreateCustomerPayload.FirstName,
-                LastName = input.CreateCustomerPayload.LastName,
-                MobilePhone = input.CreateCustomerPayload.MobilePhone,
-                OtherName = input.CreateCustomerPayload.OtherName,
-                Phone = input.CreateCustomerPayload.Phone
-            };
+            #region  replace this with a proper mapper
+            var createCustomerPoco = input.CreateCustomerPayload.MapTo(new CreateCustomerPoco());
 
-            _command.BuildQuery(input.OrganizationIdParameter.OrganizationId, customer);
+            createCustomerPoco.OrganizationId = input.OrganizationIdParameter.OrganizationId;
+            #endregion
+
+            _command.BuildQuery(createCustomerPoco);
 
             var newId = _executor.Run(_command);
 
-            customer.Id = newId;
+            _getCustomerQuery.BuildQuery(input.OrganizationIdParameter.OrganizationId, newId);
+
+            var customer = _getCustomerByIdQueryRunner.Run(_getCustomerQuery);
 
             var result = CustomerMapper.Map(customer);
 

@@ -1,5 +1,7 @@
-﻿using WaterPoint.Data.DbContext.Dapper;
+﻿using Utility;
+using WaterPoint.Data.DbContext.Dapper;
 using WaterPoint.Data.Entity.DataEntities;
+using WaterPoint.Data.Entity.Pocos.Customers;
 
 namespace WaterPoint.Core.Bll.Commands.Customers
 {
@@ -12,9 +14,9 @@ namespace WaterPoint.Core.Bll.Commands.Customers
             _sqlBuilderFactory = sqlBuilderFactory;
         }
 
-        public void BuildQuery(int orgId, Customer input)
+        public void BuildQuery(CreateCustomerPoco input)
         {
-            var builder = _sqlBuilderFactory.Create<CreateSqlBuilder<Customer>>();
+            var builder = _sqlBuilderFactory.Create<CreateSqlBuilder<CreateCustomerPoco>>();
 
             builder.Analyze();
             builder.AddValueParameters(input);

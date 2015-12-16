@@ -44,7 +44,11 @@ namespace WaterPoint.Core.Bll
 
         public void Analyze()
         {
-            Columns = string.Join(",\r\n", _propertyInfos.Select(i => string.Format("{0}.[{1}]", ParentTable, i.Name)));
+            var columns =
+                _propertyInfos
+                .Where(i => !SqlBuilderHelper.ShouldIgnore(i, IgnoreTypes));
+
+            Columns = string.Join(",\r\n", columns.Select(i => string.Format("{0}.[{1}]", ParentTable, i.Name)));
         }
 
         public void AddValueParameters(IDataEntity input)
@@ -71,6 +75,21 @@ namespace WaterPoint.Core.Bll
                 c.AttributeType.Name == typeof(PrimaryAttribute).Name));
 
             return properties;
+        }
+
+        private IEnumerable<Type> IgnoreTypes
+        {
+            get
+            {
+                return new[]
+                {
+                    typeof (PrimaryAttribute),
+                    typeof (ManyToManyAttribute),
+                    typeof (OneToManyAttribute),
+                    typeof (ComputedAttribute),
+                    typeof (TableAttribute)
+                };
+            }
         }
     }
 }
