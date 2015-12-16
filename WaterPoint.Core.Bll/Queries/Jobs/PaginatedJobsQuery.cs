@@ -3,7 +3,7 @@ using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Core.Bll.Queries.Jobs
 {
-    public class PaginatedJobsQuery : IPaginatedWithOrgIdQuery
+    public class PaginatedJobsQuery : IListPaginatedWithOrgIdQuery
     {
         private readonly ISqlBuilderFactory _sqlBuilderFactory;
 

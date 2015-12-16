@@ -11,14 +11,14 @@ namespace WaterPoint.Core.RequestProcessor
     {
         private readonly IDapperUnitOfWork _dapperUnitOfWork;
         private readonly PaginationAnalyzer _paginationAnalyzer;
-        private readonly IPaginatedWithOrgIdQuery _paginatedWithOrgIdQuery;
-        private readonly IPaginatedEntitiesRunner<TEntity> _paginatedEntitiesRunner;
+        private readonly IListPaginatedWithOrgIdQuery _paginatedWithOrgIdQuery;
+        private readonly IListPaginatedEntitiesRunner<TEntity> _paginatedEntitiesRunner;
 
         protected PaginatedEntitiesWithOrgIdProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
             PaginationAnalyzer paginationAnalyzer,
-            IPaginatedWithOrgIdQuery paginatedWithOrgIdQuery,
-            IPaginatedEntitiesRunner<TEntity> paginatedEntitiesRunner
+            IListPaginatedWithOrgIdQuery paginatedWithOrgIdQuery,
+            IListPaginatedEntitiesRunner<TEntity> paginatedEntitiesRunner
             )
         {
             _dapperUnitOfWork = dapperUnitOfWork;

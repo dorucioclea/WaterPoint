@@ -14,9 +14,9 @@ namespace WaterPoint.Core.RequestProcessor.JobTasks
     {
         public PaginatedJobTasksProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
-            IPaginatedEntitiesRunner<JobTask> paginatedJobTaskRunner,
+            IListPaginatedEntitiesRunner<JobTask> paginatedJobTaskRunner,
             PaginationAnalyzer paginationAnalyzer,
-            IPaginatedWithOrgIdQuery paginatedJobTasksQuery)
+            IListPaginatedWithOrgIdQuery paginatedJobTasksQuery)
             : base(dapperUnitOfWork, paginationAnalyzer, paginatedJobTasksQuery, paginatedJobTaskRunner)
         {
         }

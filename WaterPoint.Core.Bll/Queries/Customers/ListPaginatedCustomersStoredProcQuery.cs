@@ -2,7 +2,7 @@
 
 namespace WaterPoint.Core.Bll.Queries.Customers
 {
-    public class ListPaginatedCustomersStoredProcQuery : IPaginatedWithOrgIdQuery
+    public class ListPaginatedCustomersStoredProcQuery : IListPaginatedWithOrgIdQuery
     {
         public void BuildQuery(int orgId, int offset, int pageSize, string orderBy, bool isDesc, string searchTerm)
         {

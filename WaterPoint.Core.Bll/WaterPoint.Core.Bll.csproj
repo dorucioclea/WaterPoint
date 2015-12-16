@@ -105,7 +105,7 @@
     <Compile Include="QueryRunners\Jobs\PaginatedJobsRunner.cs" />
     <Compile Include="Executors\UpdateCommandExecutor.cs" />
     <Compile Include="Executors\CreateCommandExecutor.cs" />
-    <Compile Include="QueryRunners\IPaginatedEntitiesRunner.cs" />
+    <Compile Include="QueryRunners\IListPaginatedEntitiesRunner.cs" />
     <Compile Include="QueryRunners\JobTasks\GetJobTaskByIdQueryRunner.cs" />
     <Compile Include="QueryRunners\JobTasks\PaginatedJobTasksRunner.cs" />
     <Compile Include="QueryRunners\OAuthClients\GetOAuthClientQueryRunner.cs" />

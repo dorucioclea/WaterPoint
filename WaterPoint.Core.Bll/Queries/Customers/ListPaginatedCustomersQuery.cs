@@ -3,7 +3,7 @@ using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Core.Bll.Queries.Customers
 {
-    public class ListPaginatedCustomersQuery : IPaginatedWithOrgIdQuery
+    public class ListPaginatedCustomersQuery : IListPaginatedWithOrgIdQuery
     {
         private readonly ISqlBuilderFactory _sqlBuilderFactory;
 

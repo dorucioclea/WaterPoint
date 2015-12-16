@@ -81,7 +81,7 @@
     <Compile Include="Jobs\PaginatedJobsProcessor.cs" />
     <Compile Include="Customers\CreateCustomerRequestProcessor.cs" />
     <Compile Include="Customers\GetCustomerByIdRequestProcessor.cs" />
-    <Compile Include="Customers\PaginatedCustomersProcessor.cs" />
+    <Compile Include="Customers\ListPaginatedCustomersProcessor.cs" />
     <Compile Include="Customers\UpdateCustomerRequestProcessor.cs" />
     <Compile Include="Jobs\UpdateJobRequestProcessor.cs" />
     <Compile Include="Mappers\CreateCustomerPocoMapper.cs" />

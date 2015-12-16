@@ -6,7 +6,7 @@ using WaterPoint.Data.Entity.Pocos;
 
 namespace WaterPoint.Core.Bll.QueryRunners.Customers
 {
-    public class ListPaginatedCustomersRunner : IPaginatedEntitiesRunner<Customer>
+    public class ListPaginatedCustomersRunner : IListPaginatedEntitiesRunner<Customer>
     {
         private readonly IDapperDbContext _dapperDbContext;
 

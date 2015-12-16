@@ -25,11 +25,11 @@ namespace WaterPoint.Api.DependencyInjection
 
         private void BindQueriesAndCommands()
         {
-            Bind<IPaginatedWithOrgIdQuery>()
+            Bind<IListPaginatedWithOrgIdQuery>()
                 .To<PaginatedJobsQuery>()
                 .WhenInjectedExactlyInto<PaginatedJobsProcessor>();
 
-            Bind<IPaginatedEntitiesRunner<Job>>().To<PaginatedJobsRunner>();
+            Bind<IListPaginatedEntitiesRunner<Job>>().To<PaginatedJobsRunner>();
 
             Bind<PaginationAnalyzer>().ToSelf();
 

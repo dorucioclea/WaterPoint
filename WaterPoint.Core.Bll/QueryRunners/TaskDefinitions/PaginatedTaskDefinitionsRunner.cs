@@ -7,7 +7,7 @@ using WaterPoint.Data.Entity.Pocos;
 
 namespace WaterPoint.Core.Bll.QueryRunners.TaskDefinitions
 {
-    public class PaginatedTaskDefinitionsRunner : IPaginatedEntitiesRunner<TaskDefinition>
+    public class PaginatedTaskDefinitionsRunner : IListPaginatedEntitiesRunner<TaskDefinition>
     {
         private readonly IDapperDbContext _dapperDbContext;
 

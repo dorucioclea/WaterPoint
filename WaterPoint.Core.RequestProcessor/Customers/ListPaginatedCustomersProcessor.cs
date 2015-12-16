@@ -9,16 +9,16 @@ using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Core.RequestProcessor.Customers
 {
-    public class PaginatedCustomersProcessor :
+    public class ListPaginatedCustomersProcessor :
         PaginatedEntitiesWithOrgIdProcessor<Customer, CustomerContract>,
         IRequestProcessor<PaginationWithOrgIdRequest, PaginatedResult<IEnumerable<CustomerContract>>>
     {
 
-        public PaginatedCustomersProcessor(
+        public ListPaginatedCustomersProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
             PaginationAnalyzer paginationAnalyzer,
-            IPaginatedWithOrgIdQuery paginatedCustomersQuery,
-            IPaginatedEntitiesRunner<Customer> paginatedCustomerRunner)
+            IListPaginatedWithOrgIdQuery paginatedCustomersQuery,
+            IListPaginatedEntitiesRunner<Customer> paginatedCustomerRunner)
             : base(dapperUnitOfWork, paginationAnalyzer, paginatedCustomersQuery, paginatedCustomerRunner)
         {
 

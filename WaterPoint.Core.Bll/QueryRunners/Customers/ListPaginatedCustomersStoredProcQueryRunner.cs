@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using WaterPoint.Data.DbContext.Dapper;
 using WaterPoint.Data.Entity.DataEntities;
 using WaterPoint.Data.Entity.Pocos;
 
 namespace WaterPoint.Core.Bll.QueryRunners.Customers
 {
-    public class ListPaginatedCustomersStoredProcQueryRunner : IPaginatedEntitiesRunner<Customer>
+    public class ListPaginatedCustomersStoredProcQueryRunner : IListPaginatedEntitiesRunner<Customer>
     {
         private readonly IDapperDbContext _dapperDbContext;
 
@@ -17,24 +18,24 @@ namespace WaterPoint.Core.Bll.QueryRunners.Customers
 
         public PaginatedPoco<IEnumerable<Customer>> Run(IQuery query)
         {
-            throw new NotImplementedException();
-            //var rawResults = _dapperDbContext
-            //    .ExecuteStoredProcedure<Customer, PaginatedPoco>(
-            //        query.Query,
-            //        PaginatedPoco.SplitOnColumn,
-            //        query.Parameters)
-            //    .ToArray();
 
-            //if (!rawResults.Any())
-            //    return null;
+            var rawResults = _dapperDbContext
+                .ExecuteStoredProcedure<Customer, PaginatedPoco>(
+                    query.Query,
+                    PaginatedPoco.SplitOnColumn,
+                    query.Parameters)
+                .ToArray();
 
-            //var result = new PaginatedPoco<IEnumerable<Customer>>
-            //{
-            //    TotalCount = rawResults.First().Item2.TotalCount,
-            //    Data = rawResults.Select(i => i.Item1)
-            //};
+            if (rawResults.Length == 0)
+                return null;
 
-            //return result;
+            var result = new PaginatedPoco<IEnumerable<Customer>>
+            {
+                TotalCount = rawResults.First().Item2.TotalCount,
+                Data = rawResults.Select(i => i.Item1)
+            };
+
+            return result;
         }
     }
 }

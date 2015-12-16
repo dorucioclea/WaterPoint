@@ -21,6 +21,9 @@ namespace WaterPoint.Data.DbContext.Dapper
 
         IEnumerable<T> ExecuteStoredProcedure<T>(string storedProcName, object parameters);
 
+        IEnumerable<Tuple<TFirst, TSecond>> ExecuteStoredProcedure<TFirst, TSecond>
+            (string sql, string splitOn, object parameters);
+
         IEnumerable<Tuple<TFirst, TSecond>> List<TFirst, TSecond>(string sql, string splitOn, object parameters);
 
         int NonQuery(string sql, object parameters);

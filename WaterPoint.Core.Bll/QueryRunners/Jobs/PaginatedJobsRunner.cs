@@ -7,7 +7,7 @@ using WaterPoint.Data.Entity.Pocos;
 
 namespace WaterPoint.Core.Bll.QueryRunners.Jobs
 {
-    public class PaginatedJobsRunner : IPaginatedEntitiesRunner<Job>
+    public class PaginatedJobsRunner : IListPaginatedEntitiesRunner<Job>
     {
         private readonly IDapperDbContext _dapperDbContext;
 

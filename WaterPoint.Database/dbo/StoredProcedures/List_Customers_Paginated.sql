@@ -2,8 +2,7 @@
     @orgid INT,
     @offset INT,
     @pageSize INT,
-    @orderby INT,
-    @searchterm VARCHAR(50)
+    @orderby INT = 1
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -31,28 +30,15 @@ BEGIN
         [TotalCount]
     FROM
         [dbo].[Customer] c
-        CROSS APPLY
-        (
+        CROSS APPLY(
             SELECT COUNT(*) TotalCount
             FROM
                 [dbo].[Customer] c
             WHERE
-                (c.[OrganizationId] = @orgid AND c.[IsDeleted] = 0 AND c.[IsProspect] = 0)
-                AND
-                (
-                    CONTAINS((c.[Code],c.[Email]), @searchterm)
-                    OR
-                    CONTAINS((c.[SearchName]), @searchterm)
-                )
+                (((c.[OrganizationId] = @orgid) AND (c.[IsDeleted] = 0)) AND (c.[IsProspect] = 0))
         )[Count]
     WHERE
-        (c.[OrganizationId] = @orgid AND c.[IsDeleted] = 0 AND c.[IsProspect] = 0)
-        AND
-        (
-            CONTAINS((c.[Code],c.[Email]), @searchterm)
-            OR
-            CONTAINS((c.[SearchName]), @searchterm)
-        )
+        (((c.[OrganizationId] = @orgid) AND (c.[IsDeleted] = 0)) AND (c.[IsProspect] = 0))
     ORDER BY @orderby
     OFFSET @offset ROWS FETCH NEXT @pageSize ROWS ONLY
 

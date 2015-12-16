@@ -76,6 +76,12 @@ namespace WaterPoint.Data.DbContext.Dapper
             return result;
         }
 
+        public IEnumerable<Tuple<TFirst, TSecond>> ExecuteStoredProcedure<TFirst, TSecond>
+            (string sql, string splitOn, object parameters)
+        {
+            return Fetch<TFirst, TSecond>(sql, splitOn, CommandType.StoredProcedure, parameters);
+        }
+
         public IEnumerable<Tuple<TFirst, TSecond>> List<TFirst, TSecond>(string sql, string splitOn, object parameters)
         {
             return Fetch<TFirst, TSecond>(sql, splitOn, CommandType.Text, parameters);

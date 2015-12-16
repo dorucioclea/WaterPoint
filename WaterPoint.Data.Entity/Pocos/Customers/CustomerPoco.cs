@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WaterPoint.Data.Entity.Attributes;
 
-namespace WaterPoint.Data.Entity.DataEntities
+namespace WaterPoint.Data.Entity.Pocos.Customers
 {
     [Table("dbo", "Customer", "c")]
     public class CustomerPoco : IDataEntity
