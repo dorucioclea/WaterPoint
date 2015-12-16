@@ -91,6 +91,7 @@
     <Compile Include="Commands\TaskDefinitions\CreateTaskDefinitionCommand.cs" />
     <Compile Include="Commands\TaskDefinitions\UpdateTaskDefinitionByIdCommand.cs" />
     <Compile Include="Queries\Credentials\ValidateCredentialQuery.cs" />
+    <Compile Include="Queries\Customers\ListPaginatedCustomersStoredProcQuery.cs" />
     <Compile Include="Queries\Jobs\GetJobByIdQuery.cs" />
     <Compile Include="Queries\Jobs\PaginatedJobsQuery.cs" />
     <Compile Include="Queries\JobTasks\GetJobTaskByIdQuery.cs" />
@@ -99,6 +100,7 @@
     <Compile Include="Queries\TaskDefinitions\GetTaskDefinitionByIdQuery.cs" />
     <Compile Include="Queries\TaskDefinitions\PaginatedTaskDefinitionsQuery.cs" />
     <Compile Include="QueryRunners\Credentials\ValidateCredentialQueryRunner.cs" />
+    <Compile Include="QueryRunners\Customers\ListPaginatedCustomersStoredProcQueryRunner.cs" />
     <Compile Include="QueryRunners\Jobs\GetJobByIdQueryRunner.cs" />
     <Compile Include="QueryRunners\Jobs\PaginatedJobsRunner.cs" />
     <Compile Include="Executors\UpdateCommandExecutor.cs" />
@@ -112,13 +114,13 @@
     <Compile Include="UpdateSqlBuilder.cs" />
     <Compile Include="Commands\Customers\UpdateCustomerByIdCommand.cs" />
     <Compile Include="Queries\Customers\GetCustomerByIdQuery.cs" />
-    <Compile Include="Queries\Customers\PaginatedCustomerWithAddressQuery.cs" />
+    <Compile Include="Queries\Customers\ListPaginatedCustomerWithAddressQuery.cs" />
     <Compile Include="QueryRunners\Customers\GetCustomerByIdQueryRunner.cs" />
     <Compile Include="SqlBuilder.cs" />
     <Compile Include="Keywords.cs" />
     <Compile Include="Commands\Customers\CreateCustomerCommand.cs" />
-    <Compile Include="QueryRunners\Customers\PaginatedCustomersRunner.cs" />
-    <Compile Include="Queries\Customers\PaginatedCustomersQuery.cs" />
+    <Compile Include="QueryRunners\Customers\ListPaginatedCustomersRunner.cs" />
+    <Compile Include="Queries\Customers\ListPaginatedCustomersQuery.cs" />
     <Compile Include="ISqlBuilder.cs" />
     <Compile Include="ISqlBuilderFactory.cs" />
     <Compile Include="PredicateExpressionConverter.cs" />

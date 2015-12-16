@@ -27,10 +27,10 @@ namespace WaterPoint.Api.DependencyInjection
         private void BindQueriesAndCommands()
         {
             Bind<IPaginatedWithOrgIdQuery>()
-                .To<PaginatedCustomersQuery>()
+                .To<ListPaginatedCustomersQuery>()
                 .WhenInjectedExactlyInto<PaginatedCustomersProcessor>();
 
-            Bind<IPaginatedEntitiesRunner<Customer>>().To<PaginatedCustomersRunner>();
+            Bind<IPaginatedEntitiesRunner<Customer>>().To<ListPaginatedCustomersRunner>();
 
             Bind<PaginationAnalyzer>().ToSelf();
             Bind<CreateCustomerCommand>().ToSelf();

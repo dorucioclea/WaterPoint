@@ -23,8 +23,12 @@ namespace WaterPoint.Api.Common
     public class PatchEntityAdapter : IPatchEntityAdapter
     {
         public TOutput PatchEnitity<TInput, TOutput>(
-            TOutput existingEntity, Action<TInput> patchAction, Action<TOutput> postUpdateAction, IQuery existingEntityLookupQuery)
-            where TOutput : class, IDataEntity where TInput : class, new()
+            TOutput existingEntity,
+            Action<TInput> patchAction,
+            Action<TOutput> postUpdateAction,
+            IQuery existingEntityLookupQuery)
+            where TOutput : class, IDataEntity
+            where TInput : class, new()
         {
             if (existingEntity == null)
                 //TODO: Add message to resource file.

@@ -6,7 +6,7 @@ using WaterPoint.Data.Entity.Pocos;
 
 namespace WaterPoint.Core.Bll.Queries.Customers
 {
-    public class PaginatedCustomerWithAddressQuery : IQuery
+    public class ListPaginatedCustomerWithAddressQuery : IQuery
     {
         private readonly ISqlBuilderFactory _sqlBuilderFactory;
 
@@ -29,7 +29,7 @@ namespace WaterPoint.Core.Bll.Queries.Customers
                 OFFSET @offset ROWS FETCH NEXT @fetch ROWS ONLY  ",
             SqlPatterns.Columns, SqlPatterns.FromTable, SqlPatterns.Where, SqlPatterns.OrderDesc);
 
-        public PaginatedCustomerWithAddressQuery(ISqlBuilderFactory sqlBuilderFactory)
+        public ListPaginatedCustomerWithAddressQuery(ISqlBuilderFactory sqlBuilderFactory)
         {
             _sqlBuilderFactory = sqlBuilderFactory;
         }

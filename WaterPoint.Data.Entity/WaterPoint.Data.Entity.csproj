@@ -72,6 +72,7 @@
     <Compile Include="IDataEntity.cs" />
     <Compile Include="Pocos\Customers\BasicCustomerWithAddressPoco.cs" />
     <Compile Include="Pocos\Customers\CreateCustomerPoco.cs" />
+    <Compile Include="Pocos\Customers\CustomerPoco.cs" />
     <Compile Include="Pocos\PaginatedPoco.cs" />
     <Compile Include="Pocos\Views\ValidCredential.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

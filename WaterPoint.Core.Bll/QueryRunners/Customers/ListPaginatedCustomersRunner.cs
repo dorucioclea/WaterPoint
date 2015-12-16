@@ -6,11 +6,11 @@ using WaterPoint.Data.Entity.Pocos;
 
 namespace WaterPoint.Core.Bll.QueryRunners.Customers
 {
-    public class PaginatedCustomersRunner : IPaginatedEntitiesRunner<Customer>
+    public class ListPaginatedCustomersRunner : IPaginatedEntitiesRunner<Customer>
     {
         private readonly IDapperDbContext _dapperDbContext;
 
-        public PaginatedCustomersRunner(IDapperDbContext dapperDbContext)
+        public ListPaginatedCustomersRunner(IDapperDbContext dapperDbContext)
         {
             _dapperDbContext = dapperDbContext;
         }

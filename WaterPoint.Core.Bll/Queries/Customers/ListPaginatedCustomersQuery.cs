@@ -3,7 +3,7 @@ using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Core.Bll.Queries.Customers
 {
-    public class PaginatedCustomersQuery : IPaginatedWithOrgIdQuery
+    public class ListPaginatedCustomersQuery : IPaginatedWithOrgIdQuery
     {
         private readonly ISqlBuilderFactory _sqlBuilderFactory;
 
@@ -25,7 +25,7 @@ namespace WaterPoint.Core.Bll.Queries.Customers
                 ORDER BY {SqlPatterns.OrderBy}
                 OFFSET @offset ROWS FETCH NEXT @pageSize ROWS ONLY  ";
 
-        public PaginatedCustomersQuery(ISqlBuilderFactory sqlBuilderFactory)
+        public ListPaginatedCustomersQuery(ISqlBuilderFactory sqlBuilderFactory)
         {
             _sqlBuilderFactory = sqlBuilderFactory;
         }

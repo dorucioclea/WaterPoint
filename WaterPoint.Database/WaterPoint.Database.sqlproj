@@ -116,6 +116,8 @@
     <Build Include="apiv1\Tables\OAuthClient.sql" />
     <None Include="apiv1\Scripts\PostDeployment\MainAppOAuthClient.sql" />
     <Build Include="dbo\Views\View_ValidCredential.sql" />
+    <Build Include="dbo\StoredProcedures\List_Customers_Paginated.sql" />
+    <Build Include="dbo\StoredProcedures\List_Customers_Paginated_WithSearch.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="WaterPoint.Database.publish.xml" />
