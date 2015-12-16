@@ -5,21 +5,21 @@ using WaterPoint.Data.DbContext.Dapper;
 using WaterPoint.Data.Entity.DataEntities;
 using WaterPoint.Data.Entity.Pocos;
 
-namespace WaterPoint.Core.Bll.QueryRunners.Jobs
+namespace WaterPoint.Core.Bll.QueryRunners.JobTasks
 {
-    public class PaginatedJobsRunner : IListPaginatedEntitiesRunner<Job>
+    public class ListPaginatedJobTasksRunner : IListPaginatedEntitiesRunner<JobTask>
     {
         private readonly IDapperDbContext _dapperDbContext;
 
-        public PaginatedJobsRunner(IDapperDbContext dapperDbContext)
+        public ListPaginatedJobTasksRunner(IDapperDbContext dapperDbContext)
         {
             _dapperDbContext = dapperDbContext;
         }
 
-        public PaginatedPoco<IEnumerable<Job>> Run(IQuery query)
+        public PaginatedPoco<IEnumerable<JobTask>> Run(IQuery query)
         {
             var rawResults = _dapperDbContext
-                .List<Job, PaginatedPoco>(
+                .List<JobTask, PaginatedPoco>(
                     query.Query,
                     PaginatedPoco.SplitOnColumn,
                     query.Parameters)
@@ -28,7 +28,7 @@ namespace WaterPoint.Core.Bll.QueryRunners.Jobs
             if (!rawResults.Any())
                 return null;
 
-            var result = new PaginatedPoco<IEnumerable<Job>>
+            var result = new PaginatedPoco<IEnumerable<JobTask>>
             {
                 TotalCount = rawResults.First().Item2.TotalCount,
                 Data = rawResults.Select(i => i.Item1)

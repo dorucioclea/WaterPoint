@@ -9,10 +9,10 @@ using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Core.RequestProcessor.TaskDefinitions
 {
-    public class PaginatedTaskDefinitionsProcessor : PaginatedEntitiesWithOrgIdProcessor<TaskDefinition, TaskDefinitionContract>,
+    public class ListPaginatedTaskDefinitionsProcessor : PaginatedEntitiesWithOrgIdProcessor<TaskDefinition, TaskDefinitionContract>,
         IRequestProcessor<PaginationWithOrgIdRequest, PaginatedResult<IEnumerable<TaskDefinitionContract>>>
     {
-        public PaginatedTaskDefinitionsProcessor(
+        public ListPaginatedTaskDefinitionsProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
             IListPaginatedEntitiesRunner<TaskDefinition> paginatedTaskDefinitionRunner,
             PaginationAnalyzer paginationAnalyzer,

@@ -78,7 +78,7 @@
     <Compile Include="Credentials\ValidateCredentialRequestProcessor.cs" />
     <Compile Include="Jobs\CreateJobRequestProcessor.cs" />
     <Compile Include="Jobs\GetJobByIdRequestProcessor.cs" />
-    <Compile Include="Jobs\PaginatedJobsProcessor.cs" />
+    <Compile Include="Jobs\ListPaginatedJobsProcessor.cs" />
     <Compile Include="Customers\CreateCustomerRequestProcessor.cs" />
     <Compile Include="Customers\GetCustomerByIdRequestProcessor.cs" />
     <Compile Include="Customers\ListPaginatedCustomersProcessor.cs" />
@@ -91,11 +91,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="JobTasks\CreateJobTaskRequestProcessor.cs" />
     <Compile Include="JobTasks\GetJobTaskByIdRequestProcessor.cs" />
-    <Compile Include="JobTasks\PaginatedJobTaskProcessor.cs" />
+    <Compile Include="JobTasks\ListPaginatedJobTasksProcessor.cs" />
     <Compile Include="JobTasks\UpdateJobTaskRequestProcessor.cs" />
     <Compile Include="TaskDefinitions\CreateTaskDefinitionRequestProcessor.cs" />
     <Compile Include="TaskDefinitions\GetTaskDefinitionByIdRequestProcessor.cs" />
-    <Compile Include="TaskDefinitions\PaginatedTaskDefinitionProcessor.cs" />
+    <Compile Include="TaskDefinitions\ListPaginatedTaskDefinitionsProcessor.cs" />
     <Compile Include="TaskDefinitions\UpdateTaskDefinitionRequestProcessor.cs" />
   </ItemGroup>
   <ItemGroup>

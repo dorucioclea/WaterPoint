@@ -1,9 +1,9 @@
 ﻿using WaterPoint.Data.DbContext.Dapper;
 using WaterPoint.Data.Entity.DataEntities;
 
-namespace WaterPoint.Core.Bll.Queries.TaskDefinitions
+namespace WaterPoint.Core.Bll.Queries.JobTasks
 {
-    public class PaginatedTaskDefinitionsQuery : IListPaginatedWithOrgIdQuery
+    public class ListPaginatedJobTasksQuery : IListPaginatedWithOrgIdQuery
     {
         private readonly ISqlBuilderFactory _sqlBuilderFactory;
 
@@ -25,20 +25,20 @@ namespace WaterPoint.Core.Bll.Queries.TaskDefinitions
                 ORDER BY {SqlPatterns.OrderBy}
                 OFFSET @offset ROWS FETCH NEXT @pageSize ROWS ONLY  ";
 
-        public PaginatedTaskDefinitionsQuery(ISqlBuilderFactory sqlBuilderFactory)
+        public ListPaginatedJobTasksQuery(ISqlBuilderFactory sqlBuilderFactory)
         {
             _sqlBuilderFactory = sqlBuilderFactory;
         }
 
-        public void BuildQuery(int orgId, int offset, int pageSize, string orderBy, bool isDesc, string searchTerm)
+        public void BuildQuery(int jobId, int offset, int pageSize, string orderBy, bool isDesc, string searchTerm)
         {
             var builder = _sqlBuilderFactory.Create<SelectSqlBuilder>();
 
             builder.AddTemplate(_sqlTemplate);
-            builder.AddPrimaryColumns<TaskDefinition>();
-            builder.AddConditions<TaskDefinition>(i => i.OrganizationId == orgId);
-            builder.AddOrderBy<TaskDefinition>(orderBy, isDesc);
-            builder.AddContains<TaskDefinition>(searchTerm);
+            builder.AddPrimaryColumns<JobTask>();
+            builder.AddConditions<JobTask>(i => i.JobId == jobId);
+            builder.AddOrderBy<JobTask>(orderBy, isDesc);
+            builder.AddContains<JobTask>(searchTerm);
 
             var sql = builder.GetSql();
 
@@ -46,7 +46,7 @@ namespace WaterPoint.Core.Bll.Queries.TaskDefinitions
 
             Parameters = new
             {
-                orgId,
+                jobId,
                 offset,
                 pageSize
             };
