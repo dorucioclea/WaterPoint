@@ -32,7 +32,9 @@ namespace WaterPoint.Api.DependencyInjection
 
             Bind<IListPaginatedEntitiesRunner<Job>>().To<ListPaginatedJobsRunner>();
 
-            Bind<PaginationAnalyzer>().ToSelf();
+            Bind<PaginationQueryParameterConverter>().ToSelf();
+
+            Bind<JobStatusQueryParameterConverter>().ToSelf();
 
             Bind<CreateCommandExecutor>().ToSelf();
             Bind<GetJobByIdQuery>().ToSelf();
@@ -43,7 +45,7 @@ namespace WaterPoint.Api.DependencyInjection
 
         private void BindRequestProcessors()
         {
-            Bind<IRequestProcessor<ListPaginatedWithOrgIdRequest, PaginatedResult<IEnumerable<JobContract>>>>()
+            Bind<IRequestProcessor<ListPaginatedJobsRequest, PaginatedResult<IEnumerable<JobContract>>>>()
                 .To<ListPaginatedJobsProcessor>();
 
 

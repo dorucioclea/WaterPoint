@@ -3,7 +3,7 @@ using WaterPoint.Core.Domain.Dtos;
 
 namespace WaterPoint.Core.RequestProcessor
 {
-    public class PaginationAnalyzer
+    public class PaginationQueryParameterConverter
     {
         public int Offset { get; private set; }
 
@@ -17,7 +17,7 @@ namespace WaterPoint.Core.RequestProcessor
 
         public string SearchTerm { get; private set; }
 
-        public PaginationAnalyzer Analyze(PaginationParamter paramter, string defaultSort)
+        public PaginationQueryParameterConverter Convert(PaginationParamter paramter, string defaultSort)
         {
             Offset = (((!paramter.PageNumber.HasValue || paramter.PageNumber < 0)
                 ? 1

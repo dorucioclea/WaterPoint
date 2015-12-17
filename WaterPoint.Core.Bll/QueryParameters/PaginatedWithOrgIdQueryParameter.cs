@@ -1,6 +1,6 @@
 ﻿namespace WaterPoint.Core.Bll.QueryParameters
 {
-    public class PaginatedJobsQueryParameter : IPaginatedQueryParameter
+    public class PaginatedWithOrgIdQueryParameter : IPaginatedQueryParameter
     {
         public int OrganizationId { get; set; }
         public int Offset { get; set; }

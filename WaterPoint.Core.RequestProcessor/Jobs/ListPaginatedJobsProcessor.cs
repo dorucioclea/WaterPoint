@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Utility;
 using WaterPoint.Core.Bll.QueryParameters;
 using WaterPoint.Core.Bll.QueryRunners;
@@ -13,23 +14,28 @@ using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Core.RequestProcessor.Jobs
 {
+    //public JobStatusAna
+
     public class ListPaginatedJobsProcessor :
-        IRequestProcessor<ListPaginatedWithOrgIdRequest, PaginatedResult<IEnumerable<JobContract>>>
+        IRequestProcessor<ListPaginatedJobsRequest, PaginatedResult<IEnumerable<JobContract>>>
     {
         private readonly IDapperUnitOfWork _dapperUnitOfWork;
         private readonly IListPaginatedEntitiesRunner<Job> _paginatedJobRunner;
-        private readonly PaginationAnalyzer _paginationAnalyzer;
-        private readonly IListPaginatedWithOrgIdQuery<PaginatedWithOrgIdQueryParameter> _paginatedJobsQuery;
+        private readonly PaginationQueryParameterConverter _paginationQueryParameterConverter;
+        private readonly JobStatusQueryParameterConverter _jobStatusQueryParameterConverter;
+        private readonly IListPaginatedWithOrgIdQuery<PaginatedJobsQueryParameter> _paginatedJobsQuery;
 
         public ListPaginatedJobsProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
             IListPaginatedEntitiesRunner<Job> paginatedJobRunner,
-            PaginationAnalyzer paginationAnalyzer,
-            IListPaginatedWithOrgIdQuery<PaginatedWithOrgIdQueryParameter> paginatedJobsQuery)
+            PaginationQueryParameterConverter paginationQueryParameterConverter,
+            JobStatusQueryParameterConverter jobStatusQueryParameterConverter,
+            IListPaginatedWithOrgIdQuery<PaginatedJobsQueryParameter> paginatedJobsQuery)
         {
             _dapperUnitOfWork = dapperUnitOfWork;
             _paginatedJobRunner = paginatedJobRunner;
-            _paginationAnalyzer = paginationAnalyzer;
+            _paginationQueryParameterConverter = paginationQueryParameterConverter;
+            _jobStatusQueryParameterConverter = jobStatusQueryParameterConverter;
             _paginatedJobsQuery = paginatedJobsQuery;
         }
 
@@ -38,32 +44,31 @@ namespace WaterPoint.Core.RequestProcessor.Jobs
             return JobMapper.Map(source);
         }
 
-        public PaginatedResult<IEnumerable<JobContract>> Process(ListPaginatedWithOrgIdRequest input)
+        public PaginatedResult<IEnumerable<JobContract>> Process(ListPaginatedJobsRequest input)
         {
-            _paginationAnalyzer.Analyze(input.PaginationParamter, "Id")
-                .MapTo(new PaginatedWithOrgIdQueryParameter())
+            var parameter = new PaginatedJobsQueryParameter();
 
-            _paginatedJobsQuery.BuildQuery();.BuildQuery(
-                    input.OrganizationIdParameter.OrganizationId,
-                    _paginationAnalyzer.Offset,
-                    _paginationAnalyzer.PageSize,
-                    _paginationAnalyzer.Sort,
-                    _paginationAnalyzer.IsDesc,
-                    _paginationAnalyzer.SearchTerm);
+            _paginationQueryParameterConverter.Convert(input.PaginationParamter, "Id")
+                .MapTo(parameter);
+
+            _jobStatusQueryParameterConverter.Convert(input.JobStatusParameter)
+                .MapTo(parameter);
+
+            _paginatedJobsQuery.BuildQuery(parameter);
 
             using (_dapperUnitOfWork.Begin())
             {
-                var result = _paginatedEntitiesRunner.Run(_paginatedWithOrgIdQuery);
+                var result = _paginatedJobRunner.Run(_paginatedJobsQuery);
 
                 return (result != null)
-                    ? new PaginatedResult<IEnumerable<TContract>>
+                    ? new PaginatedResult<IEnumerable<JobContract>>
                     {
                         Data = result.Data.Select(Map),
                         TotalCount = result.TotalCount,
-                        PageNumber = _paginationAnalyzer.PageNumber,
-                        PageSize = _paginationAnalyzer.PageSize,
-                        Sort = _paginationAnalyzer.Sort,
-                        IsDesc = _paginationAnalyzer.IsDesc
+                        PageNumber = _paginationQueryParameterConverter.PageNumber,
+                        PageSize = _paginationQueryParameterConverter.PageSize,
+                        Sort = _paginationQueryParameterConverter.Sort,
+                        IsDesc = _paginationQueryParameterConverter.IsDesc
                     }
                     : null;
             }

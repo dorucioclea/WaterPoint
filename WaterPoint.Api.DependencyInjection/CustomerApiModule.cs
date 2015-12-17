@@ -35,7 +35,7 @@ namespace WaterPoint.Api.DependencyInjection
                 .To<ListPaginatedCustomersRunner>()
                 .WhenInjectedExactlyInto<ListPaginatedCustomersProcessor>();
 
-            Bind<PaginationAnalyzer>().ToSelf();
+            Bind<PaginationQueryParameterConverter>().ToSelf();
             Bind<CreateCustomerCommand>().ToSelf();
             Bind<CreateCommandExecutor>().ToSelf();
             Bind<GetCustomerByIdQueryRunner>().ToSelf();

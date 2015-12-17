@@ -87,7 +87,8 @@
     <Compile Include="Mappers\CreateCustomerPocoMapper.cs" />
     <Compile Include="OAuthClients\GetOAuthClientRequestProcessor.cs" />
     <Compile Include="PaginatedEntitiesWithOrgIdProcessor.cs" />
-    <Compile Include="PaginationAnalyzer.cs" />
+    <Compile Include="JobStatusQueryParameterConverter.cs" />
+    <Compile Include="PaginationQueryParameterConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="JobTasks\CreateJobTaskRequestProcessor.cs" />
     <Compile Include="JobTasks\GetJobTaskByIdRequestProcessor.cs" />

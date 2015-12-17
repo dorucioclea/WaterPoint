@@ -16,18 +16,18 @@ namespace WaterPoint.Core.RequestProcessor.Customers
         IRequestProcessor<ListPaginatedWithOrgIdRequest, PaginatedResult<IEnumerable<CustomerContract>>>
     {
         private readonly IDapperUnitOfWork _dapperUnitOfWork;
-        private readonly PaginationAnalyzer _paginationAnalyzer;
+        private readonly PaginationQueryParameterConverter _paginationQueryParameterConverter;
         private readonly IListPaginatedWithOrgIdQuery<PaginatedWithOrgIdQueryParameter> _paginatedCustomersQuery;
         private readonly IListPaginatedEntitiesRunner<Customer> _paginatedCustomerRunner;
 
         public ListPaginatedCustomersProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
-            PaginationAnalyzer paginationAnalyzer,
+            PaginationQueryParameterConverter paginationQueryParameterConverter,
             IListPaginatedWithOrgIdQuery<PaginatedWithOrgIdQueryParameter> paginatedCustomersQuery,
             IListPaginatedEntitiesRunner<Customer> paginatedCustomerRunner)
         {
             _dapperUnitOfWork = dapperUnitOfWork;
-            _paginationAnalyzer = paginationAnalyzer;
+            _paginationQueryParameterConverter = paginationQueryParameterConverter;
             _paginatedCustomersQuery = paginatedCustomersQuery;
             _paginatedCustomerRunner = paginatedCustomerRunner;
         }
@@ -39,7 +39,7 @@ namespace WaterPoint.Core.RequestProcessor.Customers
 
         public PaginatedResult<IEnumerable<CustomerContract>> Process(ListPaginatedWithOrgIdRequest input)
         {
-            var parameter = _paginationAnalyzer.Analyze(input.PaginationParamter, "Id")
+            var parameter = _paginationQueryParameterConverter.Convert(input.PaginationParamter, "Id")
                 .MapTo(new PaginatedWithOrgIdQueryParameter());
 
             parameter.OrganizationId = input.OrganizationIdParameter.OrganizationId;
@@ -55,10 +55,10 @@ namespace WaterPoint.Core.RequestProcessor.Customers
                     {
                         Data = result.Data.Select(Map),
                         TotalCount = result.TotalCount,
-                        PageNumber = _paginationAnalyzer.PageNumber,
-                        PageSize = _paginationAnalyzer.PageSize,
-                        Sort = _paginationAnalyzer.Sort,
-                        IsDesc = _paginationAnalyzer.IsDesc
+                        PageNumber = _paginationQueryParameterConverter.PageNumber,
+                        PageSize = _paginationQueryParameterConverter.PageSize,
+                        Sort = _paginationQueryParameterConverter.Sort,
+                        IsDesc = _paginationQueryParameterConverter.IsDesc
                     }
                     : null;
             }

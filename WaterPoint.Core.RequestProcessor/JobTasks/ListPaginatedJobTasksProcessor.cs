@@ -15,18 +15,18 @@ namespace WaterPoint.Core.RequestProcessor.JobTasks
     {
         private readonly IDapperUnitOfWork _dapperUnitOfWork;
         private readonly IListPaginatedEntitiesRunner<JobTask> _paginatedJobTaskRunner;
-        private readonly PaginationAnalyzer _paginationAnalyzer;
+        private readonly PaginationQueryParameterConverter _paginationQueryParameterConverter;
         private readonly IListPaginatedWithOrgIdQuery<PaginatedWithOrgIdQueryParameter> _paginatedJobTasksQuery;
 
         public ListPaginatedJobTasksProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
             IListPaginatedEntitiesRunner<JobTask> paginatedJobTaskRunner,
-            PaginationAnalyzer paginationAnalyzer,
+            PaginationQueryParameterConverter paginationQueryParameterConverter,
             IListPaginatedWithOrgIdQuery<PaginatedWithOrgIdQueryParameter> paginatedJobTasksQuery)
         {
             _dapperUnitOfWork = dapperUnitOfWork;
             _paginatedJobTaskRunner = paginatedJobTaskRunner;
-            _paginationAnalyzer = paginationAnalyzer;
+            _paginationQueryParameterConverter = paginationQueryParameterConverter;
             _paginatedJobTasksQuery = paginatedJobTasksQuery;
         }
 
