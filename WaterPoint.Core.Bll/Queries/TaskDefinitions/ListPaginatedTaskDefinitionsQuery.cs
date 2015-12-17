@@ -1,9 +1,10 @@
-﻿using WaterPoint.Data.DbContext.Dapper;
+﻿using WaterPoint.Core.Bll.QueryParameters;
+using WaterPoint.Data.DbContext.Dapper;
 using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Core.Bll.Queries.TaskDefinitions
 {
-    public class ListPaginatedTaskDefinitionsQuery : IListPaginatedWithOrgIdQuery
+    public class ListPaginatedTaskDefinitionsQuery : IListPaginatedWithOrgIdQuery<PaginatedWithOrgIdQueryParameter>
     {
         private readonly ISqlBuilderFactory _sqlBuilderFactory;
 
@@ -51,6 +52,12 @@ namespace WaterPoint.Core.Bll.Queries.TaskDefinitions
                 pageSize
             };
         }
+
+        public void BuildQuery(PaginatedWithOrgIdQueryParameter parameter)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public string Query { get; private set; }
         public object Parameters { get; private set; }
     }

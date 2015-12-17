@@ -19,14 +19,14 @@ namespace WaterPoint.Api.TaskDefinition.Controllers
     [RoutePrefix(RouteDefinitions.TaskDefinition.Prefix)]
     public class TaskDefinitionsController : BaseOrgnizationContextController
     {
-        private readonly IRequestProcessor<PaginationWithOrgIdRequest, PaginatedResult<IEnumerable<TaskDefinitionContract>>> _listTaskDefinitionequestProcessor;
+        private readonly IRequestProcessor<ListPaginatedWithOrgIdRequest, PaginatedResult<IEnumerable<TaskDefinitionContract>>> _listTaskDefinitionequestProcessor;
         private readonly IRequestProcessor<CreateTaskDefinitionRequest, TaskDefinitionContract> _createTaskDefinitionRequest;
         private readonly IRequestProcessor<UpdateTaskDefinitionRequest, TaskDefinitionContract> _updateRequestProcessor;
         private readonly IRequestProcessor<GetTaskDefinitionByIdRequest, TaskDefinitionContract> _getTaskDefinitionByIdProcessor;
 
 
         public TaskDefinitionsController(
-            IRequestProcessor<PaginationWithOrgIdRequest, PaginatedResult<IEnumerable<TaskDefinitionContract>>> listTaskDefinitionequestProcessor,
+            IRequestProcessor<ListPaginatedWithOrgIdRequest, PaginatedResult<IEnumerable<TaskDefinitionContract>>> listTaskDefinitionequestProcessor,
             IRequestProcessor<CreateTaskDefinitionRequest, TaskDefinitionContract> createTaskDefinitionRequest,
             IRequestProcessor<UpdateTaskDefinitionRequest, TaskDefinitionContract> updateRequestProcessor,
             IRequestProcessor<GetTaskDefinitionByIdRequest, TaskDefinitionContract> getTaskDefinitionByIdProcessor)
@@ -43,7 +43,7 @@ namespace WaterPoint.Api.TaskDefinition.Controllers
             [FromUri]PaginationParamter pagination)
         {
             //validation
-            var request = new PaginationWithOrgIdRequest
+            var request = new ListPaginatedWithOrgIdRequest
             {
                 OrganizationIdParameter = parameter,
                 PaginationParamter = pagination

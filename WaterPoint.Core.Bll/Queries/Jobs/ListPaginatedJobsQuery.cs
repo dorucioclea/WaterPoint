@@ -1,9 +1,10 @@
-﻿using WaterPoint.Data.DbContext.Dapper;
+﻿using WaterPoint.Core.Bll.QueryParameters;
+using WaterPoint.Data.DbContext.Dapper;
 using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Core.Bll.Queries.Jobs
 {
-    public class ListPaginatedJobsQuery : IListPaginatedWithOrgIdQuery
+    public class ListPaginatedJobsQuery : IListPaginatedWithOrgIdQuery<PaginatedWithOrgIdQueryParameter>
     {
         private readonly ISqlBuilderFactory _sqlBuilderFactory;
 
@@ -19,6 +20,7 @@ namespace WaterPoint.Core.Bll.Queries.Jobs
                             {SqlPatterns.FromTable}
                         WHERE
                             {SqlPatterns.Where}
+                            AND
                     )[Count]
                 WHERE
                    {SqlPatterns.Where}
@@ -30,15 +32,15 @@ namespace WaterPoint.Core.Bll.Queries.Jobs
             _sqlBuilderFactory = sqlBuilderFactory;
         }
 
-        public void BuildQuery(int orgId, int offset, int pageSize, string orderBy, bool isDesc, string searchTerm)
+        public void BuildQuery(PaginatedWithOrgIdQueryParameter parameter)
         {
             var builder = _sqlBuilderFactory.Create<SelectSqlBuilder>();
 
             builder.AddTemplate(_sqlTemplate);
             builder.AddPrimaryColumns<Job>();
-            builder.AddConditions<Job>(i => i.OrganizationId == orgId);
-            builder.AddOrderBy<Job>(orderBy, isDesc);
-            builder.AddContains<Job>(searchTerm);
+            builder.AddConditions<Job>(i => i.OrganizationId == parameter.OrganizationId);
+            builder.AddOrderBy<Job>(parameter.Sort, parameter.IsDesc);
+            builder.AddContains<Job>(parameter.SearchTerm);
 
             var sql = builder.GetSql();
 
@@ -46,9 +48,9 @@ namespace WaterPoint.Core.Bll.Queries.Jobs
 
             Parameters = new
             {
-                orgId,
-                offset,
-                pageSize
+                organizationId = parameter.OrganizationId,
+                offset = parameter.Offset,
+                pageSize = parameter.PageSize
             };
         }
         public string Query { get; private set; }

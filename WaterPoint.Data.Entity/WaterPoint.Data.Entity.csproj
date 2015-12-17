@@ -79,6 +79,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Enums\" />
+    <Folder Include="Pocos\Jobs\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

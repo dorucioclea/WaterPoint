@@ -19,14 +19,14 @@ namespace WaterPoint.Api.JobTask.Controllers
     [RoutePrefix(RouteDefinitions.JobTask.Prefix)]
     public class JobTasksController : BaseOrgnizationContextController
     {
-        private readonly IRequestProcessor<PaginationWithOrgIdRequest, PaginatedResult<IEnumerable<JobTaskContract>>> _listJobTaskequestProcessor;
+        private readonly IRequestProcessor<ListPaginatedWithOrgIdRequest, PaginatedResult<IEnumerable<JobTaskContract>>> _listJobTaskequestProcessor;
         private readonly IRequestProcessor<CreateJobTaskRequest, JobTaskContract> _createJobTaskRequest;
         private readonly IRequestProcessor<UpdateJobTaskRequest, JobTaskContract> _updateRequestProcessor;
         private readonly IRequestProcessor<GetJobTaskByIdRequest, JobTaskContract> _getJobTaskByIdProcessor;
 
 
         public JobTasksController(
-            IRequestProcessor<PaginationWithOrgIdRequest, PaginatedResult<IEnumerable<JobTaskContract>>> listJobTaskequestProcessor,
+            IRequestProcessor<ListPaginatedWithOrgIdRequest, PaginatedResult<IEnumerable<JobTaskContract>>> listJobTaskequestProcessor,
             IRequestProcessor<CreateJobTaskRequest, JobTaskContract> createJobTaskRequest,
             IRequestProcessor<UpdateJobTaskRequest, JobTaskContract> updateRequestProcessor,
             IRequestProcessor<GetJobTaskByIdRequest, JobTaskContract> getJobTaskByIdProcessor)
@@ -43,7 +43,7 @@ namespace WaterPoint.Api.JobTask.Controllers
             [FromUri]PaginationParamter pagination)
         {
             //validation
-            var request = new PaginationWithOrgIdRequest
+            var request = new ListPaginatedWithOrgIdRequest
             {
                 OrganizationIdParameter = parameter,
                 PaginationParamter = pagination

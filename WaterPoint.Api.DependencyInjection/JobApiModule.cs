@@ -2,6 +2,7 @@
 using Ninject.Modules;
 using WaterPoint.Core.Bll.Executors;
 using WaterPoint.Core.Bll.Queries.Jobs;
+using WaterPoint.Core.Bll.QueryParameters;
 using WaterPoint.Core.Bll.QueryRunners;
 using WaterPoint.Core.Bll.QueryRunners.Jobs;
 using WaterPoint.Core.Domain;
@@ -25,7 +26,7 @@ namespace WaterPoint.Api.DependencyInjection
 
         private void BindQueriesAndCommands()
         {
-            Bind<IListPaginatedWithOrgIdQuery>()
+            Bind<IListPaginatedWithOrgIdQuery<PaginatedWithOrgIdQueryParameter>>()
                 .To<ListPaginatedJobsQuery>()
                 .WhenInjectedExactlyInto<ListPaginatedJobsProcessor>();
 
@@ -42,7 +43,7 @@ namespace WaterPoint.Api.DependencyInjection
 
         private void BindRequestProcessors()
         {
-            Bind<IRequestProcessor<PaginationWithOrgIdRequest, PaginatedResult<IEnumerable<JobContract>>>>()
+            Bind<IRequestProcessor<ListPaginatedWithOrgIdRequest, PaginatedResult<IEnumerable<JobContract>>>>()
                 .To<ListPaginatedJobsProcessor>();
 
 

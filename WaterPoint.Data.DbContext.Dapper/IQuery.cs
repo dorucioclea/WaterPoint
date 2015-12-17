@@ -6,8 +6,13 @@
         object Parameters { get; }
     }
 
-    public interface IListPaginatedWithOrgIdQuery : IQuery
+    public interface IListPaginatedWithOrgIdQuery<in T> : IQuery
+        where T : IQueryParameter
     {
-        void BuildQuery(int orgId, int offset, int pageSize, string orderBy, bool isDesc, string searchTerm);
+        void BuildQuery(T parameter);
+    }
+
+    public interface IQueryParameter
+    {
     }
 }
