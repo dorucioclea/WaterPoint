@@ -62,6 +62,7 @@
     <Compile Include="Contracts\OAuthClients\OAuthClientContract.cs" />
     <Compile Include="Contracts\ResultContract.cs" />
     <Compile Include="Contracts\TaskDefinitions\TaskDefinitionContract.cs" />
+    <Compile Include="Dtos\IPaginationParameter.cs" />
     <Compile Include="Dtos\Parameters\JobStatusParameter.cs" />
     <Compile Include="Dtos\Payloads\Jobs\WriteJobPayload.cs" />
     <Compile Include="Dtos\Payloads\JobTasks\WriteJobTaskPayload.cs" />

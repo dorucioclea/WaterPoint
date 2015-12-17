@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Utility;
 using WaterPoint.Core.Bll.QueryParameters;
 using WaterPoint.Core.Bll.QueryRunners;
 using WaterPoint.Core.ContractMapper;
@@ -39,7 +40,33 @@ namespace WaterPoint.Core.RequestProcessor.Jobs
 
         public PaginatedResult<IEnumerable<JobContract>> Process(ListPaginatedWithOrgIdRequest input)
         {
-            throw new System.NotImplementedException();
+            _paginationAnalyzer.Analyze(input.PaginationParamter, "Id")
+                .MapTo(new PaginatedWithOrgIdQueryParameter())
+
+            _paginatedJobsQuery.BuildQuery();.BuildQuery(
+                    input.OrganizationIdParameter.OrganizationId,
+                    _paginationAnalyzer.Offset,
+                    _paginationAnalyzer.PageSize,
+                    _paginationAnalyzer.Sort,
+                    _paginationAnalyzer.IsDesc,
+                    _paginationAnalyzer.SearchTerm);
+
+            using (_dapperUnitOfWork.Begin())
+            {
+                var result = _paginatedEntitiesRunner.Run(_paginatedWithOrgIdQuery);
+
+                return (result != null)
+                    ? new PaginatedResult<IEnumerable<TContract>>
+                    {
+                        Data = result.Data.Select(Map),
+                        TotalCount = result.TotalCount,
+                        PageNumber = _paginationAnalyzer.PageNumber,
+                        PageSize = _paginationAnalyzer.PageSize,
+                        Sort = _paginationAnalyzer.Sort,
+                        IsDesc = _paginationAnalyzer.IsDesc
+                    }
+                    : null;
+            }
         }
     }
 

@@ -1,6 +1,6 @@
 ﻿namespace WaterPoint.Core.Domain.Dtos
 {
-    public class PaginationParamter : IUriQueryParamter
+    public class PaginationParamter : IPaginationParamter
     {
         public int? PageSize { get; set; }
         public int? PageNumber { get; set; }
