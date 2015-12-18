@@ -16,21 +16,22 @@ namespace WaterPoint.Api.Job.Controllers
     [RoutePrefix(RouteDefinitions.Jobs.Prefix)]
     public class JobsController : BaseOrgnizationContextController
     {
-        private readonly IRequestProcessor<ListPaginatedWithOrgIdRequest, PaginatedResult<IEnumerable<JobContract>>> _listJobRequestProcessor;
-        private readonly IRequestProcessor<GetJobByIdRequest, JobContract> _getJobByIdRequestProcessor;
-        private readonly IRequestProcessor<CreateJobRequest, JobContract> _createJobRequestProcessor;
-        private readonly IRequestProcessor<UpdateJobRequest, JobContract> _updateJobRequestProcessor;
+        private readonly IRequestProcessor<ListPaginatedJobsRequest, PaginatedResult<IEnumerable<JobContract>>> _listJobRequestProcessor;
+        //private readonly IRequestProcessor<GetJobByIdRequest, JobContract> _getJobByIdRequestProcessor;
+        //private readonly IRequestProcessor<CreateJobRequest, JobContract> _createJobRequestProcessor;
+        //private readonly IRequestProcessor<UpdateJobRequest, JobContract> _updateJobRequestProcessor;
 
         public JobsController(
-            IRequestProcessor<ListPaginatedWithOrgIdRequest, PaginatedResult<IEnumerable<JobContract>>> listJobRequestProcessor,
-            IRequestProcessor<GetJobByIdRequest, JobContract> getJobByIdRequestProcessor,
-            IRequestProcessor<CreateJobRequest, JobContract> createJobRequestProcessor,
-            IRequestProcessor<UpdateJobRequest, JobContract> updateJobRequestProcessor)
+            IRequestProcessor<ListPaginatedJobsRequest, PaginatedResult<IEnumerable<JobContract>>> listJobRequestProcessor
+            //IRequestProcessor<GetJobByIdRequest, JobContract> getJobByIdRequestProcessor,
+            //IRequestProcessor<CreateJobRequest, JobContract> createJobRequestProcessor,
+            //IRequestProcessor<UpdateJobRequest, JobContract> updateJobRequestProcessor
+            )
         {
             _listJobRequestProcessor = listJobRequestProcessor;
-            _getJobByIdRequestProcessor = getJobByIdRequestProcessor;
-            _createJobRequestProcessor = createJobRequestProcessor;
-            _updateJobRequestProcessor = updateJobRequestProcessor;
+            //_getJobByIdRequestProcessor = getJobByIdRequestProcessor;
+            //_createJobRequestProcessor = createJobRequestProcessor;
+            //_updateJobRequestProcessor = updateJobRequestProcessor;
         }
 
         [Route("")]
@@ -39,6 +40,11 @@ namespace WaterPoint.Api.Job.Controllers
             [FromUri]PaginationParamter pagination,
             [FromUri]JobStatusParameter jobStatusParamter)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
             //validation
             var request = new ListPaginatedJobsRequest
             {
@@ -52,54 +58,54 @@ namespace WaterPoint.Api.Job.Controllers
             return Ok(result);
         }
 
-        [Route("{id:int}")]
-        public IHttpActionResult Get([FromUri]OrganizationEntityParameter parameter)
-        {
-            var result = _getJobByIdRequestProcessor.Process(
-                new GetJobByIdRequest
-                {
-                    OrganizationEntityParameter = parameter
-                });
+        //[Route("{id:int}")]
+        //public IHttpActionResult Get([FromUri]OrganizationEntityParameter parameter)
+        //{
+        //    var result = _getJobByIdRequestProcessor.Process(
+        //        new GetJobByIdRequest
+        //        {
+        //            OrganizationEntityParameter = parameter
+        //        });
 
-            return Ok(result);
-        }
+        //    return Ok(result);
+        //}
 
 
-        [Route("")]
-        public IHttpActionResult Post(
-            [FromUri]OrganizationIdParameter parameter,
-            [FromBody]WriteJobPayload jobPayload)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest();
-            }
+        //[Route("")]
+        //public IHttpActionResult Post(
+        //    [FromUri]OrganizationIdParameter parameter,
+        //    [FromBody]WriteJobPayload jobPayload)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest();
+        //    }
 
-            var result = _createJobRequestProcessor.Process(
-                new CreateJobRequest
-                {
-                    OrganizationIdParameter = parameter,
-                    CreateJobPayload = jobPayload,
-                    StaffId = Staff.Id
-                });
+        //    var result = _createJobRequestProcessor.Process(
+        //        new CreateJobRequest
+        //        {
+        //            OrganizationIdParameter = parameter,
+        //            CreateJobPayload = jobPayload,
+        //            StaffId = Staff.Id
+        //        });
 
-            return Ok(result);
-        }
+        //    return Ok(result);
+        //}
 
-        [Route("{id:int}")]
-        public IHttpActionResult Put(
-            [FromUri] OrganizationEntityParameter parameter,
-            [FromBody] Delta<WriteJobPayload> input)
-        {
-            var job = _updateJobRequestProcessor.Process(
-                new UpdateJobRequest
-                {
-                    OrganizationEntityParameter = parameter,
-                    UpdateJobPayload = input,
-                    StaffId = Staff.Id
-                });
+        //[Route("{id:int}")]
+        //public IHttpActionResult Put(
+        //    [FromUri] OrganizationEntityParameter parameter,
+        //    [FromBody] Delta<WriteJobPayload> input)
+        //{
+        //    var job = _updateJobRequestProcessor.Process(
+        //        new UpdateJobRequest
+        //        {
+        //            OrganizationEntityParameter = parameter,
+        //            UpdateJobPayload = input,
+        //            StaffId = Staff.Id
+        //        });
 
-            return Ok(job);
-        }
+        //    return Ok(job);
+        //}
     }
 }

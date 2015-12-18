@@ -21,26 +21,35 @@ namespace WaterPoint.Api.DependencyInjection
         public override void Load()
         {
             BindRequestProcessors();
-            BindQueriesAndCommands();
+            BindQueries();
+            BindCommands();
+            BindQueryParameterAnalyzer();
         }
 
-        private void BindQueriesAndCommands()
+        private void BindQueries()
         {
-            Bind<IListPaginatedWithOrgIdQuery<PaginatedWithOrgIdQueryParameter>>()
-                .To<ListPaginatedJobsQuery>()
-                .WhenInjectedExactlyInto<ListPaginatedJobsProcessor>();
+            Bind<IListPaginatedWithOrgIdQuery<PaginatedJobsQueryParameter>>().To<ListPaginatedJobsQuery>();
+        }
 
+        private void BindQueryRunners()
+        {
             Bind<IListPaginatedEntitiesRunner<Job>>().To<ListPaginatedJobsRunner>();
+        }
 
+        public void BindCommands()
+        {
+            //Bind<CreateCommandExecutor>().ToSelf();
+            //Bind<GetJobByIdQuery>().ToSelf();
+            //Bind<GetJobByIdQueryRunner>().ToSelf();
+            //Bind<CreateJobsCommand>().ToSelf();
+            //Bind<GetJobByIdQueryRunner>().ToSelf();
+        }
+
+        private void BindQueryParameterAnalyzer()
+        {
             Bind<PaginationQueryParameterConverter>().ToSelf();
 
             Bind<JobStatusQueryParameterConverter>().ToSelf();
-
-            Bind<CreateCommandExecutor>().ToSelf();
-            Bind<GetJobByIdQuery>().ToSelf();
-            Bind<GetJobByIdQueryRunner>().ToSelf();
-            //Bind<CreateJobsCommand>().ToSelf();
-            //Bind<GetJobByIdQueryRunner>().ToSelf();
         }
 
         private void BindRequestProcessors()

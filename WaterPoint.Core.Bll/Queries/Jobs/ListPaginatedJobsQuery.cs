@@ -4,7 +4,7 @@ using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Core.Bll.Queries.Jobs
 {
-    public class ListPaginatedJobsQuery : IListPaginatedWithOrgIdQuery<PaginatedWithOrgIdQueryParameter>
+    public class ListPaginatedJobsQuery : IListPaginatedWithOrgIdQuery<PaginatedJobsQueryParameter>
     {
         private readonly ISqlBuilderFactory _sqlBuilderFactory;
 
@@ -32,7 +32,7 @@ namespace WaterPoint.Core.Bll.Queries.Jobs
             _sqlBuilderFactory = sqlBuilderFactory;
         }
 
-        public void BuildQuery(PaginatedWithOrgIdQueryParameter parameter)
+        public void BuildQuery(PaginatedJobsQueryParameter parameter)
         {
             var builder = _sqlBuilderFactory.Create<SelectSqlBuilder>();
 
@@ -53,6 +53,7 @@ namespace WaterPoint.Core.Bll.Queries.Jobs
                 pageSize = parameter.PageSize
             };
         }
+
         public string Query { get; private set; }
         public object Parameters { get; private set; }
     }

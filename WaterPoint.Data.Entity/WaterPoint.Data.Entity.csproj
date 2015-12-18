@@ -63,6 +63,7 @@
     <Compile Include="Attributes\TableAttribute.cs" />
     <Compile Include="DataEntities\Address.cs" />
     <Compile Include="DataEntities\Credential.cs" />
+    <Compile Include="DataEntities\JobStatus.cs" />
     <Compile Include="DataEntities\OAuthClient.cs" />
     <Compile Include="DataEntities\Country.cs" />
     <Compile Include="DataEntities\Customer.cs" />
@@ -74,13 +75,13 @@
     <Compile Include="Pocos\Customers\CreateCustomerPoco.cs" />
     <Compile Include="Pocos\Customers\CustomerPoco.cs" />
     <Compile Include="Pocos\JobStatuses\Class1.cs" />
+    <Compile Include="Pocos\Jobs\JobWithCustomerAndStatusPoco.cs" />
     <Compile Include="Pocos\PaginatedPoco.cs" />
     <Compile Include="Pocos\Views\ValidCredential.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Enums\" />
-    <Folder Include="Pocos\Jobs\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

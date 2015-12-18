@@ -1,4 +1,6 @@
-﻿namespace WaterPoint.Core.Bll.QueryParameters
+﻿using WaterPoint.Data.DbContext.Dapper;
+
+namespace WaterPoint.Core.Bll.QueryParameters
 {
     public class PaginatedWithOrgIdQueryParameter : IPaginatedQueryParameter
     {
