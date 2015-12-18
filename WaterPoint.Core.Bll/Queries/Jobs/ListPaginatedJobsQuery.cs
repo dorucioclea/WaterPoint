@@ -10,22 +10,24 @@ namespace WaterPoint.Core.Bll.Queries.Jobs
         private readonly ISqlBuilderFactory _sqlBuilderFactory;
 
         private readonly string _sqlTemplate = $@"
-                SELECT
-                    {SqlPatterns.Columns}
-                    ,[TotalCount]
-                FROM
-                    {SqlPatterns.FromTable}
-                    CROSS APPLY(
-                        SELECT COUNT(*) TotalCount
-                        FROM
-                            {SqlPatterns.FromTable}
-                        WHERE
-                            {SqlPatterns.Where}
-                    )[Count]
-                WHERE
-                   {SqlPatterns.Where}
-                ORDER BY {SqlPatterns.OrderBy}
-                OFFSET @offset ROWS FETCH NEXT @pageSize ROWS ONLY  ";
+            SELECT
+                {SqlPatterns.Columns}
+                ,[TotalCount]
+            FROM
+                {SqlPatterns.FromTable}
+                {SqlPatterns.Join}
+                CROSS APPLY(
+                    SELECT COUNT(*) TotalCount
+                    FROM
+                        {SqlPatterns.FromTable}
+                        {SqlPatterns.Join}
+                    WHERE
+                        {SqlPatterns.Where}
+                )[Count]
+            WHERE
+                {SqlPatterns.Where}
+            ORDER BY {SqlPatterns.OrderBy}
+            OFFSET @offset ROWS FETCH NEXT @pageSize ROWS ONLY  ";
 
         public ListPaginatedJobsQuery(ISqlBuilderFactory sqlBuilderFactory)
         {
@@ -37,7 +39,8 @@ namespace WaterPoint.Core.Bll.Queries.Jobs
             var builder = _sqlBuilderFactory.Create<SelectSqlBuilder>();
 
             builder.AddTemplate(_sqlTemplate);
-            builder.AddPrimaryColumns<JobWithCustomerAndStatusPoco>();
+            builder.AddColumns<JobWithCustomerAndStatusPoco>();
+            builder.AddJoin<JobWithCustomerAndStatusPoco>();
             builder.AddConditions<JobWithCustomerAndStatusPoco>(i => i.OrganizationId == parameter.OrganizationId);
             builder.AddOrderBy<JobWithCustomerAndStatusPoco>(parameter.Sort, parameter.IsDesc);
             builder.AddContains<JobWithCustomerAndStatusPoco>(parameter.SearchTerm);

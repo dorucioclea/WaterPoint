@@ -25,7 +25,7 @@ namespace WaterPoint.Core.Bll.Queries.Customers
             var builder = _sqlBuilderFactory.Create<SelectSqlBuilder>();
 
             builder.AddTemplate(_sqlTemplate);
-            builder.AddPrimaryColumns<Customer>();
+            builder.AddColumns<Customer>();
             builder.AddConditions<Customer>(i => i.OrganizationId == orgId && i.Id == customerId);
 
             var sql = builder.GetSql();

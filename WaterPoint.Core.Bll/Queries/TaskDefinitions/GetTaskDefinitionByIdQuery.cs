@@ -25,7 +25,7 @@ namespace WaterPoint.Core.Bll.Queries.TaskDefinitions
             var builder = _sqlBuilderFactory.Create<SelectSqlBuilder>();
 
             builder.AddTemplate(_sqlTemplate);
-            builder.AddPrimaryColumns<TaskDefinition>();
+            builder.AddColumns<TaskDefinition>();
             builder.AddConditions<TaskDefinition>(i => i.OrganizationId == orgId && i.Id == taskDefinitionId);
 
             var sql = builder.GetSql();

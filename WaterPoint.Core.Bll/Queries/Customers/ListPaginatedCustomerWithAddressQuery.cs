@@ -39,8 +39,8 @@ namespace WaterPoint.Core.Bll.Queries.Customers
             var builder = _sqlBuilderFactory.Create<SelectSqlBuilder>();
 
             builder.AddTemplate(Sql);
-            builder.AddPrimaryColumns<BasicCustomerWithPrimaryAddressPoco>();
-            builder.AddForeignColumns<AddressPoco>();
+            builder.AddColumns<BasicCustomerWithPrimaryAddressPoco>();
+            //builder.AddForeignColumns<AddressPoco>();
             builder.AddManyToManyJoin<AddressPoco>(JoinTypes.LeftJoin,
                 "dbo", "CustomerAddress", "ca", "AddressId", "CustomerId");
 

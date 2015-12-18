@@ -73,7 +73,7 @@ AND (CONTAINS((c.[Code],c.[Email]), @searchterm) OR CONTAINS((c.[SearchName]), @
             var searchTerm = SearchTermHelper.ConvertToSearchTerm("test");
 
             builder.AddTemplate(sqlTemplate);
-            builder.AddPrimaryColumns<Customer>();
+            builder.AddColumns<Customer>();
             builder.AddConditions<Customer>(i => i.OrganizationId == orgId);
             builder.AddOrderBy<Customer>("lastName", true);
             builder.AddContains<Customer>(searchTerm);

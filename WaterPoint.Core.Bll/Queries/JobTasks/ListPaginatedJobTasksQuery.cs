@@ -36,7 +36,7 @@ namespace WaterPoint.Core.Bll.Queries.JobTasks
             var builder = _sqlBuilderFactory.Create<SelectSqlBuilder>();
 
             builder.AddTemplate(_sqlTemplate);
-            builder.AddPrimaryColumns<JobTask>();
+            builder.AddColumns<JobTask>();
             builder.AddConditions<JobTask>(i => i.JobId == jobId);
             builder.AddOrderBy<JobTask>(orderBy, isDesc);
             builder.AddContains<JobTask>(searchTerm);

@@ -36,7 +36,7 @@ namespace WaterPoint.Core.Bll.Queries.TaskDefinitions
             var builder = _sqlBuilderFactory.Create<SelectSqlBuilder>();
 
             builder.AddTemplate(_sqlTemplate);
-            builder.AddPrimaryColumns<TaskDefinition>();
+            builder.AddColumns<TaskDefinition>();
             builder.AddConditions<TaskDefinition>(i => i.OrganizationId == orgId);
             builder.AddOrderBy<TaskDefinition>(orderBy, isDesc);
             builder.AddContains<TaskDefinition>(searchTerm);

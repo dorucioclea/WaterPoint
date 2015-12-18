@@ -25,7 +25,7 @@ namespace WaterPoint.Core.Bll.Queries.Credentials
             var builder = _sqlBuilderFactory.Create<SelectSqlBuilder>();
 
             builder.AddTemplate(_sqlTemplate);
-            builder.AddPrimaryColumns<ValidCredential>();
+            builder.AddColumns<ValidCredential>();
             builder.AddConditions<ValidCredential>(i => i.Email == email && i.Password == password);
 
             var sql = builder.GetSql();

@@ -25,7 +25,7 @@ namespace WaterPoint.Core.Bll.Queries.Jobs
             var builder = _sqlBuilderFactory.Create<SelectSqlBuilder>();
 
             builder.AddTemplate(_sqlTemplate);
-            builder.AddPrimaryColumns<Job>();
+            builder.AddColumns<Job>();
             builder.AddConditions<Job>(i => i.OrganizationId == orgId && i.Id == jobId);
 
             var sql = builder.GetSql();

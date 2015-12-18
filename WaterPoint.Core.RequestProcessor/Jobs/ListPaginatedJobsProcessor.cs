@@ -47,7 +47,10 @@ namespace WaterPoint.Core.RequestProcessor.Jobs
 
         public PaginatedResult<IEnumerable<JobWithCustomerAndStatusContract>> Process(ListPaginatedJobsRequest input)
         {
-            var parameter = new PaginatedJobsQueryParameter();
+            var parameter = new PaginatedJobsQueryParameter
+            {
+                OrganizationId = input.OrganizationIdParameter.OrganizationId
+            };
 
             _paginationQueryParameterConverter.Convert(input.PaginationParamter, "Id")
                 .MapTo(parameter);

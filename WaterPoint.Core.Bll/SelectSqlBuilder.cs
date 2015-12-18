@@ -89,6 +89,7 @@ namespace WaterPoint.Core.Bll
                 .Replace(SqlPatterns.FromTable, $"[{_fromSchema}].[{_fromTable}] {_fromAlias}")
                 .Replace(SqlPatterns.Columns, Columns)
                 .Replace(SqlPatterns.Where, _where)
+                .Replace(SqlPatterns.Join, string.Join("\r\n", _joins))
                 .Replace(SqlPatterns.OrderBy, _orderBy)
                 .Replace(SqlPatterns.Fetch, _fetch);
         }
@@ -106,9 +107,6 @@ namespace WaterPoint.Core.Bll
         {
             if (string.IsNullOrWhiteSpace(searchTerm))
                 return;
-
-            if (!string.IsNullOrWhiteSpace(_where))
-                _where += "\nAND (";
 
             var typePair = GetTable<T>();
 
@@ -128,11 +126,14 @@ namespace WaterPoint.Core.Bll
                 return searchColumns.Length == 0
                     ? string.Empty
                     : $"CONTAINS(({string.Join(",", searchColumns)}), @searchterm)";
-            });
+            }).Where(i=>!string.IsNullOrWhiteSpace(i)).ToArray();
+
+            if(containClauses.Length==0)
+                return;
 
             var contains = string.Join(" OR ", containClauses);
 
-            _where += contains + ") ";
+            _where += $"\n{(!string.IsNullOrWhiteSpace(_where) ? "AND" : string.Empty)} ({contains}) ";
         }
 
         public void AddManyToManyJoin<T>(JoinTypes jointype, string viaSchema, string viaTable, string viaAlias, string myColumn, string parentColumn)
@@ -164,6 +165,35 @@ namespace WaterPoint.Core.Bll
                        $" ON {typePair.Key.Alias}.[Id] = {viaAlias}.[{typePair.Key.Table}Id]");
         }
 
+        public void AddJoin<T>()
+        {
+            AddOneToOneJoin<T>();
+        }
+
+        private void AddOneToOneJoin<T>()
+        {
+            var typePair = GetTable<T>();
+
+            var properties = typePair.Value;
+
+            var parentTable = typePair.Key;
+
+            var oneToOneAttributes = properties.Where(p => p.GetCustomAttribute(typeof(OneToOneAttribute)) != null)
+                .Select(i => i.GetCustomAttribute(typeof(OneToOneAttribute)) as OneToOneAttribute).ToArray();
+
+            if (oneToOneAttributes.Length == 0)
+                return;
+
+            //JOIN [dbo].[Customer] c ON j.CustomerId = c.Id
+            var tables = oneToOneAttributes
+                .GroupBy(i => new {i.Schema, i.Alias, i.Table})
+                .Select(foreignTable =>
+                    $"JOIN [{foreignTable.Key.Schema}].[{foreignTable.Key.Table}] {foreignTable.Key.Alias} " +
+                    $"ON {parentTable.Alias}.[{foreignTable.Key.Table}Id] = {foreignTable.Key.Alias}.[Id]");
+
+            _joins.AddRange(tables);
+        }
+
         public void AddJoin<T>(JoinTypes jointype, string myColumn, string parentColumn)
         {
             string join;
@@ -190,40 +220,51 @@ namespace WaterPoint.Core.Bll
                         $" ON {typePair.Key.Alias}.[{myColumn}] = {_fromAlias}.[{parentColumn}]");
         }
 
-        public void AddForeignColumns<T>()
+        public void AddColumns<T>()
         {
-            AnalyzeColumns<T>(true);
-        }
-
-        public void AddPrimaryColumns<T>()
-        {
-            AnalyzeColumns<T>(false);
+            AnalyzePrimaryColumns<T>();
+            AnalyzeOneToOneColumns<T>();
         }
 
         #region private methods
 
-        private void AnalyzeColumns<T>(bool isForeign)
+        private void AnalyzePrimaryColumns<T>()
         {
             var typePair = GetTable<T>();
             var tableAttribute = typePair.Key;
             var properties = typePair.Value;
 
-            if (!isForeign)
-            {
-                _fromAlias = tableAttribute.Alias;
-                _fromSchema = tableAttribute.Schema;
-                _fromTable = tableAttribute.Table;
-            }
+            _fromAlias = tableAttribute.Alias;
+            _fromSchema = tableAttribute.Schema;
+            _fromTable = tableAttribute.Table;
 
-            var columns = properties.Where(i => !SqlBuilderHelper.ShouldIgnore(i, IgnoreTypes))
-                .Select
-                //main table columns e.g. [dbo].[Customer].[Id]
-                //foreign table columns e.g. [dbo].[Address].[Street] AddressStreet
-                (
-                    i => $"{tableAttribute.Alias}.[{i.Name}] {(isForeign ? tableAttribute.Table + i.Name : string.Empty)}"
-                );
+
+            var columns = properties.Where(i => !SqlBuilderHelper.ShouldIgnore(i, IgnoreNonPrimaryColumnTypes))
+                .Select(i => $"{tableAttribute.Alias}.[{i.Name}]");
 
             _columns.AddRange(columns);
+        }
+
+        private void AnalyzeOneToOneColumns<T>()
+        {
+            var typePair = GetTable<T>();
+            var properties = typePair.Value;
+
+            var foreignColumns =
+                properties.Where(property => property.GetCustomAttribute(typeof(OneToOneAttribute)) != null).ToArray();
+
+            if (foreignColumns.Length == 0)
+                return;
+
+            var columns = foreignColumns.Select(i =>
+            {
+                var p = i.GetCustomAttribute(typeof(OneToOneAttribute)) as OneToOneAttribute;
+
+                return $"{p.Alias}.[{p.Column}] AS [{i.Name}]";
+            });
+
+            _columns.AddRange(columns);
+
         }
 
         private KeyValuePair<TableAttribute, IEnumerable<PropertyInfo>> GetTable<T>()
@@ -240,13 +281,15 @@ namespace WaterPoint.Core.Bll
             return new KeyValuePair<TableAttribute, IEnumerable<PropertyInfo>>(tableAttribute, properties);
         }
 
-        private IEnumerable<Type> IgnoreTypes
+        private IEnumerable<Type> IgnoreNonPrimaryColumnTypes
         {
             get
             {
                 return new[]
                 {
-                    typeof (ForeignAttribute),
+                    typeof (ManyToManyAttribute),
+                    typeof (OneToManyAttribute),
+                    typeof (OneToOneAttribute),
                     typeof (ComputedAttribute)
                 };
             }

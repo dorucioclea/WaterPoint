@@ -37,7 +37,7 @@ namespace WaterPoint.Core.Bll.Queries.Customers
 
             builder.AddTemplate(_sqlTemplate);
 
-            builder.AddPrimaryColumns<Customer>();
+            builder.AddColumns<Customer>();
 
             builder.AddConditions<Customer>(
                 i => i.OrganizationId == parameter.OrganizationId && i.IsDeleted == false && i.IsProspect == false);

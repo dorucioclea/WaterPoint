@@ -20,17 +20,17 @@ namespace WaterPoint.Data.Entity.Pocos
         public string OtherName { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
-        [Foreign]
+        //[Foreign]
         public int AddressId { get; set; }
-        [Foreign]
+        //[Foreign]
         public string AddressStreet { get; set; }
-        [Foreign]
+        //[Foreign]
         public string AddressStreetExtraLine { get; set; }
-        [Foreign]
+        //[Foreign]
         public string AddressSuburb { get; set; }
-        [Foreign]
+        //[Foreign]
         public string AddressCity { get; set; }
-        [Foreign]
+        //[Foreign]
         public string AddressPostCode { get; set; }
     }
 

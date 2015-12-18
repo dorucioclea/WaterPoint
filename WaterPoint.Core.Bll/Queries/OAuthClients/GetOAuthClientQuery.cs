@@ -25,7 +25,7 @@ namespace WaterPoint.Core.Bll.Queries.OAuthClients
             var builder = _sqlBuilderFactory.Create<SelectSqlBuilder>();
 
             builder.AddTemplate(_sqlTemplate);
-            builder.AddPrimaryColumns<OAuthClient>();
+            builder.AddColumns<OAuthClient>();
             builder.AddConditions<OAuthClient>(
                 i => i.ClientId == clientId && i.ClientSecret == clientSecret && i.IsInternal == isInternal);
 

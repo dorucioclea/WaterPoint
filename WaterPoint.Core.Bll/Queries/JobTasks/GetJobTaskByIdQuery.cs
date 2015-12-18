@@ -25,7 +25,7 @@ namespace WaterPoint.Core.Bll.Queries.JobTasks
             var builder = _sqlBuilderFactory.Create<SelectSqlBuilder>();
 
             builder.AddTemplate(_sqlTemplate);
-            builder.AddPrimaryColumns<JobTask>();
+            builder.AddColumns<JobTask>();
             builder.AddConditions<JobTask>(i => i.Id == jobTaskId);
 
             var sql = builder.GetSql();
