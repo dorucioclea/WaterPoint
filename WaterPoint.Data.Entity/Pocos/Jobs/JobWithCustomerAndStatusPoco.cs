@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WaterPoint.Data.Entity.Attributes;
 
 namespace WaterPoint.Data.Entity.Pocos.Jobs
@@ -16,6 +12,7 @@ namespace WaterPoint.Data.Entity.Pocos.Jobs
         public int OrganizationId { get; set; }
         public int JobStatusId { get; set; }
         public int JobCategoryId { get; set; }
+        [SearchableAsEnglish]
         public string Code { get; set; }
         public int CustomerId { get; set; }
         public DateTime StartDate { get; set; }
