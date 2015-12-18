@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using WaterPoint.Data.DbContext.Dapper;
-using WaterPoint.Data.Entity.DataEntities;
 using WaterPoint.Data.Entity.Pocos;
+using WaterPoint.Data.Entity.Pocos.Jobs;
 
 namespace WaterPoint.Core.Bll.QueryRunners.Jobs
 {
-    public class ListPaginatedJobsRunner : IListPaginatedEntitiesRunner<Job>
+    public class ListPaginatedJobsRunner : IListPaginatedEntitiesRunner<JobWithCustomerAndStatusPoco>
     {
         private readonly IDapperDbContext _dapperDbContext;
 
@@ -16,10 +15,10 @@ namespace WaterPoint.Core.Bll.QueryRunners.Jobs
             _dapperDbContext = dapperDbContext;
         }
 
-        public PaginatedPoco<IEnumerable<Job>> Run(IQuery query)
+        public PaginatedPoco<IEnumerable<JobWithCustomerAndStatusPoco>> Run(IQuery query)
         {
             var rawResults = _dapperDbContext
-                .List<Job, PaginatedPoco>(
+                .List<JobWithCustomerAndStatusPoco, PaginatedPoco>(
                     query.Query,
                     PaginatedPoco.SplitOnColumn,
                     query.Parameters)
@@ -28,7 +27,7 @@ namespace WaterPoint.Core.Bll.QueryRunners.Jobs
             if (!rawResults.Any())
                 return null;
 
-            var result = new PaginatedPoco<IEnumerable<Job>>
+            var result = new PaginatedPoco<IEnumerable<JobWithCustomerAndStatusPoco>>
             {
                 TotalCount = rawResults.First().Item2.TotalCount,
                 Data = rawResults.Select(i => i.Item1)

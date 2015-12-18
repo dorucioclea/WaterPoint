@@ -13,6 +13,7 @@ using WaterPoint.Core.RequestProcessor;
 using WaterPoint.Core.RequestProcessor.Jobs;
 using WaterPoint.Data.DbContext.Dapper;
 using WaterPoint.Data.Entity.DataEntities;
+using WaterPoint.Data.Entity.Pocos.Jobs;
 
 namespace WaterPoint.Api.DependencyInjection
 {
@@ -22,6 +23,7 @@ namespace WaterPoint.Api.DependencyInjection
         {
             BindRequestProcessors();
             BindQueries();
+            BindQueryRunners();
             BindCommands();
             BindQueryParameterAnalyzer();
         }
@@ -33,7 +35,7 @@ namespace WaterPoint.Api.DependencyInjection
 
         private void BindQueryRunners()
         {
-            Bind<IListPaginatedEntitiesRunner<Job>>().To<ListPaginatedJobsRunner>();
+            Bind<IListPaginatedEntitiesRunner<JobWithCustomerAndStatusPoco>>().To<ListPaginatedJobsRunner>();
         }
 
         public void BindCommands()
@@ -54,11 +56,11 @@ namespace WaterPoint.Api.DependencyInjection
 
         private void BindRequestProcessors()
         {
-            Bind<IRequestProcessor<ListPaginatedJobsRequest, PaginatedResult<IEnumerable<JobContract>>>>()
+            Bind<IRequestProcessor<ListPaginatedJobsRequest, PaginatedResult<IEnumerable<JobWithCustomerAndStatusContract>>>>()
                 .To<ListPaginatedJobsProcessor>();
 
 
-            Bind<IRequestProcessor<GetJobByIdRequest, JobContract>>().To<GetJobByIdRequestProcessor>();
+            //Bind<IRequestProcessor<GetJobByIdRequest, JobContract>>().To<GetJobByIdRequestProcessor>();
 
 
             //Bind<IRequestProcessor<CreateCustomerRequest, CustomerContract>>()

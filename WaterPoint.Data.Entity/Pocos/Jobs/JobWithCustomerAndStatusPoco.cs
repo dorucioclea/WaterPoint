@@ -11,23 +11,20 @@ namespace WaterPoint.Data.Entity.Pocos.Jobs
     public class JobWithCustomerAndStatusPoco : IDataEntity
     {
         [Primary]
-        public int Id{get;set;}
+        public int Id { get; set; }
         [IgnoreMappingWhenUpdate]
-        public int OrganizationId{get;set;}
-        public int JobStatusId{get;set;}
-        public int JobCategoryId{get;set;}
-        public int Code{get;set;}
-        public int ShortDescription{get;set;}
-        public int LongDescription{get;set;}
-        public int CustomerId{get;set;}
-        public int StartDate{get;set;}
-        public int EndDate{get;set;}
-        public int DueDate{get;set;}
-        public int ExcludeFromWip{get;set;}
-        public int Version{get;set;}
-        public int UtcCreated{get;set;}
-        public int UtcUpdated{get;set;}
-        public int Uid{get;set;}
+        public int OrganizationId { get; set; }
+        public int JobStatusId { get; set; }
+        public int JobCategoryId { get; set; }
+        public string Code { get; set; }
+        public int CustomerId { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+        public DateTime DueDate { get; set; }
+        public byte[] Version { get; set; }
+        public DateTime UtcCreated { get; set; }
+        public DateTime UtcUpdated { get; set; }
+        public Guid Uid { get; set; }
         [Foreign]
         public string JobStatus { get; set; }
         [Foreign]
@@ -38,6 +35,6 @@ namespace WaterPoint.Data.Entity.Pocos.Jobs
         public string FirstName { get; set; }
         [Foreign]
         public string OtherName { get; set; }
-        public int TotalCount{get;set;}
+        public int TotalCount { get; set; }
     }
 }

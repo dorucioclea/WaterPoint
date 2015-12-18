@@ -14,6 +14,8 @@ namespace WaterPoint.Data.Entity.DataEntities
 
         public int JobStatusId { get; set; }
 
+        public int JobCategoryId { get; set; }
+
         public string Code { get; set; }
 
         public string ShortDescription { get; set; }

@@ -57,8 +57,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\Customers\CustomerIdNameContract.cs" />
+    <Compile Include="Contracts\JobStatuses\JobStatusIdNameContract.cs" />
     <Compile Include="Contracts\JobTasks\JobTaskContract.cs" />
-    <Compile Include="Contracts\Jobs\JobContract.cs" />
+    <Compile Include="Contracts\Jobs\JobWithCustomerAndStatusContract.cs" />
     <Compile Include="Contracts\OAuthClients\OAuthClientContract.cs" />
     <Compile Include="Contracts\ResultContract.cs" />
     <Compile Include="Contracts\TaskDefinitions\TaskDefinitionContract.cs" />

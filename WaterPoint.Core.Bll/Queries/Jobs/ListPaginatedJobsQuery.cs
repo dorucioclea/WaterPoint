@@ -1,6 +1,7 @@
 ﻿using WaterPoint.Core.Bll.QueryParameters;
 using WaterPoint.Data.DbContext.Dapper;
 using WaterPoint.Data.Entity.DataEntities;
+using WaterPoint.Data.Entity.Pocos.Jobs;
 
 namespace WaterPoint.Core.Bll.Queries.Jobs
 {
@@ -20,7 +21,6 @@ namespace WaterPoint.Core.Bll.Queries.Jobs
                             {SqlPatterns.FromTable}
                         WHERE
                             {SqlPatterns.Where}
-                            AND
                     )[Count]
                 WHERE
                    {SqlPatterns.Where}
@@ -37,10 +37,10 @@ namespace WaterPoint.Core.Bll.Queries.Jobs
             var builder = _sqlBuilderFactory.Create<SelectSqlBuilder>();
 
             builder.AddTemplate(_sqlTemplate);
-            builder.AddPrimaryColumns<Job>();
-            builder.AddConditions<Job>(i => i.OrganizationId == parameter.OrganizationId);
-            builder.AddOrderBy<Job>(parameter.Sort, parameter.IsDesc);
-            builder.AddContains<Job>(parameter.SearchTerm);
+            builder.AddPrimaryColumns<JobWithCustomerAndStatusPoco>();
+            builder.AddConditions<JobWithCustomerAndStatusPoco>(i => i.OrganizationId == parameter.OrganizationId);
+            builder.AddOrderBy<JobWithCustomerAndStatusPoco>(parameter.Sort, parameter.IsDesc);
+            builder.AddContains<JobWithCustomerAndStatusPoco>(parameter.SearchTerm);
 
             var sql = builder.GetSql();
 
