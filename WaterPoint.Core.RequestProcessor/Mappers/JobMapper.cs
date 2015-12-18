@@ -3,10 +3,9 @@ using Utility;
 using WaterPoint.Core.Domain.Contracts.Customers;
 using WaterPoint.Core.Domain.Contracts.Jobs;
 using WaterPoint.Core.Domain.Contracts.JobStatuses;
-using WaterPoint.Data.Entity.DataEntities;
 using WaterPoint.Data.Entity.Pocos.Jobs;
 
-namespace WaterPoint.Core.ContractMapper
+namespace WaterPoint.Core.RequestProcessor.Mappers
 {
     public class JobMapper
     {

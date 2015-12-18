@@ -1,7 +1,7 @@
 ﻿using System;
 using WaterPoint.Core.Bll.Queries.JobTasks;
 using WaterPoint.Core.Bll.QueryRunners.JobTasks;
-using WaterPoint.Core.ContractMapper;
+using WaterPoint.Core.RequestProcessor.Mappers;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts.JobTasks;
 using WaterPoint.Core.Domain.Dtos.Requests.JobTasks;

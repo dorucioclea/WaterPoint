@@ -8,7 +8,6 @@ using Ninject.Modules;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.RequestProcessor;
 using Ninject.Web.Common;
-using WaterPoint.Core.ContractMapper;
 using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Api.DependencyInjection

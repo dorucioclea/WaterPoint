@@ -3,7 +3,7 @@ using Utility;
 using WaterPoint.Core.Domain.Contracts.JobTasks;
 using WaterPoint.Data.Entity.DataEntities;
 
-namespace WaterPoint.Core.ContractMapper
+namespace WaterPoint.Core.RequestProcessor.Mappers
 {
     public class JobTaskMapper
     {

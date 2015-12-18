@@ -104,10 +104,6 @@
       <Project>{456075b1-80ac-47b3-851f-c31d531adbd1}</Project>
       <Name>WaterPoint.Core.Bll</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WaterPoint.Core.ContractMapper\WaterPoint.Core.ContractMapper.csproj">
-      <Project>{6D50AE7D-4AE4-41A7-8663-AF3CE0DC3414}</Project>
-      <Name>WaterPoint.Core.ContractMapper</Name>
-    </ProjectReference>
     <ProjectReference Include="..\WaterPoint.Core.Domain\WaterPoint.Core.Domain.csproj">
       <Project>{a035ac5e-bfb1-4be2-803c-6386e3297008}</Project>
       <Name>WaterPoint.Core.Domain</Name>

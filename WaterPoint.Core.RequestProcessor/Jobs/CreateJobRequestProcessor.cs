@@ -5,7 +5,7 @@
 //using System.Threading.Tasks;
 //using WaterPoint.Core.Bll.Commands.Jobs;
 //using WaterPoint.Core.Bll.Executors;
-//using WaterPoint.Core.ContractMapper;
+//using WaterPoint.Core.RequestProcessor.Mappers;
 //using WaterPoint.Core.Domain;
 //using WaterPoint.Core.Domain.Contracts.Jobs;
 //using WaterPoint.Core.Domain.Dtos.Requests.Jobs;

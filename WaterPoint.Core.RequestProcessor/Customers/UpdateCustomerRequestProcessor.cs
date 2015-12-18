@@ -11,6 +11,7 @@ using WaterPoint.Core.Domain.Contracts.Customers;
 using WaterPoint.Core.Domain.Exceptions;
 using WaterPoint.Core.Domain.Dtos.Payloads.Customers;
 using WaterPoint.Core.Domain.Dtos.Requests.Customers;
+using WaterPoint.Core.RequestProcessor.Mappers;
 using WaterPoint.Data.DbContext.Dapper;
 using WaterPoint.Data.Entity;
 using WaterPoint.Data.Entity.DataEntities;
@@ -68,7 +69,7 @@ namespace WaterPoint.Core.RequestProcessor.Customers
             var success = _updateCommandExecutor.Run(_updateCustomerByIdQuery);
 
             if (success)
-                return ContractMapper.CustomerMapper.Map(updatedCustomer);
+                return CustomerMapper.Map(updatedCustomer);
 
             var updateException = new UpdateFailedException();
 

@@ -85,6 +85,11 @@
     <Compile Include="Customers\UpdateCustomerRequestProcessor.cs" />
     <Compile Include="Jobs\UpdateJobRequestProcessor.cs" />
     <Compile Include="Mappers\CreateCustomerPocoMapper.cs" />
+    <Compile Include="Mappers\CustomerMapper.cs" />
+    <Compile Include="Mappers\JobMapper.cs" />
+    <Compile Include="Mappers\JobTaskMapper.cs" />
+    <Compile Include="Mappers\OAuthClientMapper.cs" />
+    <Compile Include="Mappers\TaskDefinitionMapper.cs" />
     <Compile Include="OAuthClients\GetOAuthClientRequestProcessor.cs" />
     <Compile Include="PaginatedEntitiesWithOrgIdProcessor.cs" />
     <Compile Include="JobStatusQueryParameterConverter.cs" />
@@ -111,10 +116,6 @@
     <ProjectReference Include="..\WaterPoint.Core.Bll\WaterPoint.Core.Bll.csproj">
       <Project>{456075B1-80AC-47B3-851F-C31D531ADBD1}</Project>
       <Name>WaterPoint.Core.Bll</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WaterPoint.Core.ContractMapper\WaterPoint.Core.ContractMapper.csproj">
-      <Project>{6d50ae7d-4ae4-41a7-8663-af3ce0dc3414}</Project>
-      <Name>WaterPoint.Core.ContractMapper</Name>
     </ProjectReference>
     <ProjectReference Include="..\WaterPoint.Core.Domain\WaterPoint.Core.Domain.csproj">
       <Project>{a035ac5e-bfb1-4be2-803c-6386e3297008}</Project>
