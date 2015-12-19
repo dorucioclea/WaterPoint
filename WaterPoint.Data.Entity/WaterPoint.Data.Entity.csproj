@@ -73,9 +73,8 @@
     <Compile Include="DataEntities\TaskDefinition.cs" />
     <Compile Include="IDataEntity.cs" />
     <Compile Include="Pocos\Customers\BasicCustomerWithAddressPoco.cs" />
-    <Compile Include="Pocos\Customers\CreateCustomerPoco.cs" />
     <Compile Include="Pocos\Customers\CustomerPoco.cs" />
-    <Compile Include="Pocos\JobStatuses\Class1.cs" />
+    <Compile Include="Pocos\JobStatuses\JobStatus.cs" />
     <Compile Include="Pocos\Jobs\JobWithCustomerAndStatusPoco.cs" />
     <Compile Include="Pocos\PaginatedPoco.cs" />
     <Compile Include="Pocos\Views\ValidCredential.cs" />

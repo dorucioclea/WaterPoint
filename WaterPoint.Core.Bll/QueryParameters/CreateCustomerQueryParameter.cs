@@ -1,10 +1,9 @@
 ﻿using System;
-using WaterPoint.Data.Entity.Attributes;
+using WaterPoint.Data.DbContext.Dapper;
 
-namespace WaterPoint.Data.Entity.Pocos.Customers
+namespace WaterPoint.Core.Bll.QueryParameters
 {
-    [Table("dbo", "Customer", "c")]
-    public class CreateCustomerPoco : IDataEntity
+    public class CreateCustomerQueryParameter : IQueryParameter
     {
         public int OrganizationId { get; set; }
 

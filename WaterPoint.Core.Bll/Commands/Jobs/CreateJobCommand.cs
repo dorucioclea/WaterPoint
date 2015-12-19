@@ -1,4 +1,5 @@
-﻿using WaterPoint.Data.DbContext.Dapper;
+﻿using WaterPoint.Core.Bll.QueryParameters;
+using WaterPoint.Data.DbContext.Dapper;
 using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Core.Bll.Commands.Jobs
@@ -12,12 +13,12 @@ namespace WaterPoint.Core.Bll.Commands.Jobs
             _sqlBuilderFactory = sqlBuilderFactory;
         }
 
-        public void BuildQuery(int orgId, Job input)
+        public void BuildQuery(CreateJobQueryParameter parameter)
         {
             var builder = _sqlBuilderFactory.Create<CreateSqlBuilder<Job>>();
 
             builder.Analyze();
-            builder.AddValueParameters(input);
+            builder.AddValueParameters(parameter);
 
             var sql = builder.GetSql();
 

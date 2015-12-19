@@ -5,11 +5,10 @@ using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts.Customers;
 using WaterPoint.Core.Domain.Dtos.Requests.Customers;
 using WaterPoint.Data.DbContext.Dapper;
-using WaterPoint.Data.Entity.DataEntities;
 using Utility;
 using WaterPoint.Core.Bll.Queries.Customers;
+using WaterPoint.Core.Bll.QueryParameters;
 using WaterPoint.Core.Bll.QueryRunners.Customers;
-using WaterPoint.Data.Entity.Pocos.Customers;
 
 namespace WaterPoint.Core.RequestProcessor.Customers
 {
@@ -45,7 +44,7 @@ namespace WaterPoint.Core.RequestProcessor.Customers
         private CustomerContract ProcessDeFacto(CreateCustomerRequest input)
         {
             #region  replace this with a proper mapper
-            var createCustomerPoco = input.CreateCustomerPayload.MapTo(new CreateCustomerPoco());
+            var createCustomerPoco = input.CreateCustomerPayload.MapTo(new CreateCustomerQueryParameter());
 
             createCustomerPoco.OrganizationId = input.OrganizationIdParameter.OrganizationId;
             #endregion

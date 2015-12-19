@@ -9,12 +9,6 @@ namespace WaterPoint.Data.Entity.DataEntities
         [Primary]
         public int Id { get; set; }
 
-        [IgnoreMappingWhenUpdate]
-        public int OrganizationId { get; set; }
-
-        [IgnoreMappingWhenUpdate]
-        public int OrganizationUserTypeId { get; set; }
-
         public string Email { get; set; }
 
         public string Password { get; set; }

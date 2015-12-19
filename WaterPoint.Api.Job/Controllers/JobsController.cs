@@ -13,6 +13,7 @@ using WaterPoint.Core.Domain.Dtos.Requests.Shared;
 
 namespace WaterPoint.Api.Job.Controllers
 {
+    [Authorize]
     [RoutePrefix(RouteDefinitions.Jobs.Prefix)]
     public class JobsController : BaseOrgnizationContextController
     {

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using WaterPoint.Core.Domain;
+using WaterPoint.Data.DbContext.Dapper;
 using WaterPoint.Data.Entity;
 using WaterPoint.Data.Entity.Attributes;
 
@@ -27,14 +28,12 @@ namespace WaterPoint.Core.Bll
 
         public string GetSql()
         {
-            var sql = string.Format(@"
-
-                INSERT INTO {0}
-                ({1})
+            var sql =
+                $@"INSERT INTO {SqlPatterns.FromTable}
+                    ({SqlPatterns.Columns})
                 VALUES
-                ({2})
-                SELECT SCOPE_IDENTITY()",
-                SqlPatterns.FromTable, SqlPatterns.Columns, SqlPatterns.Values);
+                    ({SqlPatterns.Values})
+                SELECT SCOPE_IDENTITY()";
 
             return sql
                 .Replace(SqlPatterns.FromTable, ParentTable)
@@ -51,7 +50,7 @@ namespace WaterPoint.Core.Bll
             Columns = string.Join(",\r\n", columns.Select(i => string.Format("{0}.[{1}]", ParentTable, i.Name)));
         }
 
-        public void AddValueParameters(IDataEntity input)
+        public void AddValueParameters(IQueryParameter input)
         {
             if (Parameters == null)
                 Parameters = new Dictionary<string, object>();
@@ -65,7 +64,7 @@ namespace WaterPoint.Core.Bll
                 Parameters.Add(name, value);
             }
 
-            _values = string.Join(",", _propertyInfos.Select(i => string.Format("@{0}", i.Name.ToLower())));
+            _values = string.Join(",", _propertyInfos.Select(i => $"@{i.Name.ToLower()}"));
         }
 
         private static IEnumerable<PropertyInfo> GetProperties(Type type)
