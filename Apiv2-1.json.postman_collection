@@ -1,0 +1,243 @@
+{
+	"id": "2975d9b5-152d-a33b-4b2d-c83e1352f053",
+	"name": "Apiv2-1",
+	"description": "",
+	"order": [],
+	"folders": [
+		{
+			"id": "07f59614-f6c8-e339-7c62-7c9f288a4995",
+			"name": "Auth",
+			"description": "",
+			"order": [
+				"3bcf8b6f-5426-b2b0-fec6-ce3c4bdfcc8f"
+			],
+			"owner": 0
+		},
+		{
+			"id": "1c000c17-8396-91c7-31b5-01e1625b259e",
+			"name": "Customers",
+			"description": "",
+			"order": [
+				"fafa7589-3bea-dae2-e997-e51987018775",
+				"c2e14be4-2995-b0e7-38b2-3927485b08d3",
+				"90920d29-0564-ac97-745d-9d71ac91f79e",
+				"576ab0d0-f16c-750c-d593-175db2b8217d"
+			],
+			"owner": 0
+		},
+		{
+			"id": "3fed664b-87d0-5784-d815-af194e30e8cc",
+			"name": "Jobs",
+			"description": "",
+			"order": [
+				"23b0bba4-8249-24fd-368e-4f317c10c4a9",
+				"117af133-9ab8-0d6b-308b-e16b2b54d41c",
+				"498a63f6-4bef-1632-4a60-3b5b7790d034"
+			],
+			"owner": 0
+		}
+	],
+	"timestamp": 1441232649542,
+	"owner": 0,
+	"remoteLink": "",
+	"public": false,
+	"requests": [
+		{
+			"id": "117af133-9ab8-0d6b-308b-e16b2b54d41c",
+			"headers": "Authorization: Bearer jQgjIVOudr_A42Nztp8KSSURkdiud593oVNHfe4O5PWFc9gNCClpbK5FL2kNFh8VR-n2o-ZsLElQTqaGq-Y9USDP9UyKcPr4Vnj_EjNrIiSwYMKJe4vJFc-P450ag5MRYf7zcy03_TpFud6naqAC4WzNUZMzKFHZi9GT6ztfJYxtr6kQQQWHsmN40_r5F1weVIOZjrewt8r_kCnI5tWNWOdXUz8UEX_sE9nErdDS92KiV7CNwZtmYGkXAIUxgEwUVt2y3ajmG6rdEn8d8qeXBrmiWK7NqNmFbpufPG7sbPDI-t0jPH3E7027knxCVPG4rrhL7oG92c6UOuX2w7T-Hl-UyyQIgYZcXQ69fd9odDjly8ZMEwcBlR1tGI7THQpaLXCttxdAgJUEhMOWIlYMHfgZaRccp-UX3R-Oupz5pocs9d8c2BappwlnmOvL6T839EN0jkt5UESK8HuN9HauWdsNz_HwWn-3C1b0G3zdPQFkykG1JSPpftFG7n73BroaZmEDZjT5tPTaLRRFNto9q7qqVm7Tt831JM_VRiwVe7qb6mG9r6zDZQtOeeL9y6lQniATGA\n",
+			"url": "http://localhost/WaterPoint/job-api-v1/testauth",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "GET",
+			"data": [],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1450517090961,
+			"name": "test auth",
+			"description": "",
+			"collectionId": "2975d9b5-152d-a33b-4b2d-c83e1352f053",
+			"responses": []
+		},
+		{
+			"id": "23b0bba4-8249-24fd-368e-4f317c10c4a9",
+			"headers": "Authorization: Bearer jQgjIVOudr_A42Nztp8KSSURkdiud593oVNHfe4O5PWFc9gNCClpbK5FL2kNFh8VR-n2o-ZsLElQTqaGq-Y9USDP9UyKcPr4Vnj_EjNrIiSwYMKJe4vJFc-P450ag5MRYf7zcy03_TpFud6naqAC4WzNUZMzKFHZi9GT6ztfJYxtr6kQQQWHsmN40_r5F1weVIOZjrewt8r_kCnI5tWNWOdXUz8UEX_sE9nErdDS92KiV7CNwZtmYGkXAIUxgEwUVt2y3ajmG6rdEn8d8qeXBrmiWK7NqNmFbpufPG7sbPDI-t0jPH3E7027knxCVPG4rrhL7oG92c6UOuX2w7T-Hl-UyyQIgYZcXQ69fd9odDjly8ZMEwcBlR1tGI7THQpaLXCttxdAgJUEhMOWIlYMHfgZaRccp-UX3R-Oupz5pocs9d8c2BappwlnmOvL6T839EN0jkt5UESK8HuN9HauWdsNz_HwWn-3C1b0G3zdPQFkykG1JSPpftFG7n73BroaZmEDZjT5tPTaLRRFNto9q7qqVm7Tt831JM_VRiwVe7qb6mG9r6zDZQtOeeL9y6lQniATGA\n",
+			"url": "http://localhost/WaterPoint/job-api-v1/organizations/1000/jobs?pageSize=20&pageNumber=1&isdesc=true&sort=code",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "GET",
+			"data": [],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1450517296084,
+			"name": "list jobs",
+			"description": "",
+			"collectionId": "2975d9b5-152d-a33b-4b2d-c83e1352f053",
+			"responses": []
+		},
+		{
+			"id": "3bcf8b6f-5426-b2b0-fec6-ce3c4bdfcc8f",
+			"headers": "client_secret: abc\n",
+			"url": "http://localhost/WaterPoint/authorization-api-v1/Token",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
+					"key": "grant_type",
+					"value": "password",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "client_id",
+					"value": "abcdefg",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "client_secret",
+					"value": "123456",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "username",
+					"value": "hmiaosys@gmail.com",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "password",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "scopes",
+					"value": "job",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"version": 2,
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1449995808597,
+			"name": "Auth password",
+			"description": "",
+			"collectionId": "2975d9b5-152d-a33b-4b2d-c83e1352f053",
+			"responses": [],
+			"folder": "07f59614-f6c8-e339-7c62-7c9f288a4995"
+		},
+		{
+			"id": "498a63f6-4bef-1632-4a60-3b5b7790d034",
+			"headers": "Content-Type: application/json\nAuthorization: Bearer jQgjIVOudr_A42Nztp8KSSURkdiud593oVNHfe4O5PWFc9gNCClpbK5FL2kNFh8VR-n2o-ZsLElQTqaGq-Y9USDP9UyKcPr4Vnj_EjNrIiSwYMKJe4vJFc-P450ag5MRYf7zcy03_TpFud6naqAC4WzNUZMzKFHZi9GT6ztfJYxtr6kQQQWHsmN40_r5F1weVIOZjrewt8r_kCnI5tWNWOdXUz8UEX_sE9nErdDS92KiV7CNwZtmYGkXAIUxgEwUVt2y3ajmG6rdEn8d8qeXBrmiWK7NqNmFbpufPG7sbPDI-t0jPH3E7027knxCVPG4rrhL7oG92c6UOuX2w7T-Hl-UyyQIgYZcXQ69fd9odDjly8ZMEwcBlR1tGI7THQpaLXCttxdAgJUEhMOWIlYMHfgZaRccp-UX3R-Oupz5pocs9d8c2BappwlnmOvL6T839EN0jkt5UESK8HuN9HauWdsNz_HwWn-3C1b0G3zdPQFkykG1JSPpftFG7n73BroaZmEDZjT5tPTaLRRFNto9q7qqVm7Tt831JM_VRiwVe7qb6mG9r6zDZQtOeeL9y6lQniATGA\n",
+			"url": "http://localhost/WaterPoint/job-api-v1/organizations/1000/jobs",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1450517557961,
+			"name": "create a job",
+			"description": "",
+			"collectionId": "2975d9b5-152d-a33b-4b2d-c83e1352f053",
+			"responses": [],
+			"rawModeData": "{\n    \"jobStatusId\": 100,\n    \"code\": \"GZ100001\",\n    \"shortDescription\":\"给张三做平面设计\",\n    \"CustomerId\":10000,\n    \"startDate\":\"2015-12-01T00:00:00\",\n    \"endDate\":\"2015-12-31T00:00:00\"\n}"
+		},
+		{
+			"id": "576ab0d0-f16c-750c-d593-175db2b8217d",
+			"headers": "",
+			"url": "http://localhost/WaterPoint/customer-api-v1/organizations/1000/customers/10000",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "GET",
+			"data": [],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1448176164972,
+			"name": "get customer by id",
+			"description": "",
+			"collectionId": "2975d9b5-152d-a33b-4b2d-c83e1352f053",
+			"responses": [],
+			"folder": "1c000c17-8396-91c7-31b5-01e1625b259e"
+		},
+		{
+			"id": "90920d29-0564-ac97-745d-9d71ac91f79e",
+			"headers": "Content-Type: application/json\n",
+			"url": "http://localhost/WaterPoint/customer-api-v1/organizations/1000/customers/10000",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "PUT",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1448176152479,
+			"name": "update customer",
+			"description": "",
+			"collectionId": "2975d9b5-152d-a33b-4b2d-c83e1352f053",
+			"responses": [],
+			"folder": "1c000c17-8396-91c7-31b5-01e1625b259e",
+			"rawModeData": "{\n    \"organizationId\": 1000,\n    \"customerTypeId\": null,\n    \"code\": \"HM0001\",\n    \"firstName\": \"淼\",\n    \"lastName\": \"黄\",\n    \"otherName\": \"长\",\n    \"phone\": \"0212858866\",\n    \"email\": \"hmiaosys@gmail.com\",\n    \"mobilePhone\": null,\n    \"dob\": \"1980-08-07\"\n}"
+		},
+		{
+			"id": "c2e14be4-2995-b0e7-38b2-3927485b08d3",
+			"headers": "Content-Type: application/json\n",
+			"url": "http://localhost/WaterPoint/customer-api-v1/organizations/1000/customers",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1445417393319,
+			"name": "Create customer",
+			"description": "",
+			"collectionId": "2975d9b5-152d-a33b-4b2d-c83e1352f053",
+			"responses": [],
+			"rawModeData": "{\n    \"firstName\": \"Walter\",\n    \"lastName\": \"Huang\"\n}",
+			"folder": "1c000c17-8396-91c7-31b5-01e1625b259e"
+		},
+		{
+			"id": "fafa7589-3bea-dae2-e997-e51987018775",
+			"headers": "",
+			"url": "http://localhost/WaterPoint/customer-api-v1/organizations/1000/customers?pageSize=20&pageNumber=1&isdesc=true&sort=firstName&searchTerm=hm",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "GET",
+			"data": [],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1449737629511,
+			"name": "ListCustomers",
+			"description": "",
+			"collectionId": "2975d9b5-152d-a33b-4b2d-c83e1352f053",
+			"responses": [],
+			"folder": "1c000c17-8396-91c7-31b5-01e1625b259e"
+		}
+	]
+}
