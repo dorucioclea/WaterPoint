@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WaterPoint.Data.DbContext.Dapper
+namespace WaterPoint.Core.Domain
 {
     public interface ICommand
     {

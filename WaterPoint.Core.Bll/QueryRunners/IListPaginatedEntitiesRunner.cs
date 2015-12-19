@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using WaterPoint.Data.DbContext.Dapper;
+using WaterPoint.Core.Domain;
 using WaterPoint.Data.Entity.Pocos;
 
 namespace WaterPoint.Core.Bll.QueryRunners

@@ -1,4 +1,4 @@
-﻿namespace WaterPoint.Data.DbContext.Dapper
+﻿namespace WaterPoint.Core.Domain
 {
     public interface IQuery
     {

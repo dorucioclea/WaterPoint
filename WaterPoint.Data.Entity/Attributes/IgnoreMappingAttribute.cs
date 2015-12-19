@@ -10,7 +10,11 @@ namespace WaterPoint.Data.Entity.Attributes
     {
     }
 
-    public class IgnoreMappingWhenUpdateAttribute : Attribute
+    public class IgnoreWhenUpdateAttribute : Attribute
+    {
+    }
+
+    public class IgnoreWhenReadAttribute : Attribute
     {
     }
 }

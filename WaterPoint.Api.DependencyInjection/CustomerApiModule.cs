@@ -12,7 +12,6 @@ using WaterPoint.Core.Domain.Contracts.Customers;
 using WaterPoint.Core.Domain.Dtos.Requests.Customers;
 using WaterPoint.Core.Domain.Dtos.Requests.Shared;
 using WaterPoint.Core.RequestProcessor;
-using WaterPoint.Data.DbContext.Dapper;
 using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Api.DependencyInjection

@@ -1,23 +1,23 @@
 ﻿using WaterPoint.Core.Bll.QueryParameters;
-using WaterPoint.Data.DbContext.Dapper;
+using WaterPoint.Core.Domain;
 using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Core.Bll.Commands.Jobs
 {
-    public class CreateJobCommand : ICommand
+    public class CreateBasicJobCommand : ICommand
     {
         private readonly ISqlBuilderFactory _sqlBuilderFactory;
 
-        public CreateJobCommand(ISqlBuilderFactory sqlBuilderFactory)
+        public CreateBasicJobCommand(ISqlBuilderFactory sqlBuilderFactory)
         {
             _sqlBuilderFactory = sqlBuilderFactory;
         }
 
-        public void BuildQuery(CreateJobQueryParameter parameter)
+        public void BuildQuery(CreateBasicJobQueryParameter parameter)
         {
             var builder = _sqlBuilderFactory.Create<CreateSqlBuilder<Job>>();
 
-            builder.Analyze();
+            builder.Analyze<CreateBasicJobQueryParameter>();
             builder.AddValueParameters(parameter);
 
             var sql = builder.GetSql();

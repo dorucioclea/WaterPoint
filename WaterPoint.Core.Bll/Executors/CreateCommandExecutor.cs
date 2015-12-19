@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using WaterPoint.Core.Domain;
 using WaterPoint.Data.DbContext.Dapper;
 
 namespace WaterPoint.Core.Bll.Executors

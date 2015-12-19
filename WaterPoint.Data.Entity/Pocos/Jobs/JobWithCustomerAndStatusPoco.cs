@@ -8,7 +8,7 @@ namespace WaterPoint.Data.Entity.Pocos.Jobs
     {
         [Primary]
         public int Id { get; set; }
-        [IgnoreMappingWhenUpdate]
+        [IgnoreWhenUpdate]
         public int OrganizationId { get; set; }
         public int JobStatusId { get; set; }
         public int JobCategoryId { get; set; }
@@ -19,7 +19,7 @@ namespace WaterPoint.Data.Entity.Pocos.Jobs
         public int CustomerId { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public DateTime DueDate { get; set; }
+        public DateTime? DueDate { get; set; }
         public byte[] Version { get; set; }
         public DateTime UtcCreated { get; set; }
         public DateTime UtcUpdated { get; set; }

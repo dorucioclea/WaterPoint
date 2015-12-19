@@ -6,7 +6,6 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using WaterPoint.Core.Domain;
-using WaterPoint.Data.DbContext.Dapper;
 using WaterPoint.Data.Entity;
 using WaterPoint.Data.Entity.Attributes;
 
@@ -20,6 +19,8 @@ namespace WaterPoint.Core.Bll
         public Dictionary<string, object> Parameters { get; private set; }
 
         private readonly IEnumerable<PropertyInfo> _propertyInfos;
+
+        private IEnumerable<PropertyInfo> _columns;
 
         public CreateSqlBuilder()
         {
@@ -41,30 +42,44 @@ namespace WaterPoint.Core.Bll
                 .Replace(SqlPatterns.Values, _values);
         }
 
-        public void Analyze()
+        public void Analyze<T>() where T : IQueryParameter
         {
-            var columns =
-                _propertyInfos
-                .Where(i => !SqlBuilderHelper.ShouldIgnore(i, IgnoreTypes));
+            var inputProperties = typeof(T).GetProperties().ToArray();
 
-            Columns = string.Join(",\r\n", columns.Select(i => string.Format("{0}.[{1}]", ParentTable, i.Name)));
+            _columns =
+                _propertyInfos
+                    .Where(i =>
+                        !SqlBuilderHelper.ShouldIgnore(i, IgnoreTypes)
+                        &&
+                        inputProperties
+                            .FirstOrDefault(inputPro => string.Equals(inputPro.Name, i.Name, StringComparison.CurrentCultureIgnoreCase)) != null
+                    );
+
+            Columns = string.Join(",\r\n", _columns.Select(i => $"{ParentTable}.[{i.Name}]"));
         }
 
         public void AddValueParameters(IQueryParameter input)
         {
+            var inputProperties = input.GetType().GetProperties().ToArray();
+
             if (Parameters == null)
                 Parameters = new Dictionary<string, object>();
 
             foreach (var propertyInfo in _propertyInfos)
             {
-                var value = propertyInfo.GetValue(input, null);
+                var inputPro = inputProperties.FirstOrDefault(i => string.Equals(i.Name, propertyInfo.Name, StringComparison.CurrentCultureIgnoreCase));
+
+                if (inputPro == null)
+                    continue;
+
+                var value = inputPro.GetValue(input, null);
 
                 var name = propertyInfo.Name.ToLower();
 
                 Parameters.Add(name, value);
             }
 
-            _values = string.Join(",", _propertyInfos.Select(i => $"@{i.Name.ToLower()}"));
+            _values = string.Join(",", Parameters.Select(i => $"@{i.Key.ToLower()}"));
         }
 
         private static IEnumerable<PropertyInfo> GetProperties(Type type)

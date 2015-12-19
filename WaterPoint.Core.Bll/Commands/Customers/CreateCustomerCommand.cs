@@ -1,5 +1,5 @@
 ﻿using WaterPoint.Core.Bll.QueryParameters;
-using WaterPoint.Data.DbContext.Dapper;
+using WaterPoint.Core.Domain;
 using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Core.Bll.Commands.Customers
@@ -17,7 +17,7 @@ namespace WaterPoint.Core.Bll.Commands.Customers
         {
             var builder = _sqlBuilderFactory.Create<CreateSqlBuilder<Customer>>();
 
-            builder.Analyze();
+            builder.Analyze<CreateCustomerQueryParameter>();
             builder.AddValueParameters(input);
 
             var sql = builder.GetSql();

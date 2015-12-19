@@ -94,7 +94,7 @@ namespace WaterPoint.Core.Bll
                 return new[]
                 {
                     typeof (PrimaryAttribute),
-                    typeof (IgnoreMappingWhenUpdateAttribute),
+                    typeof (IgnoreWhenUpdateAttribute),
                     typeof (ManyToManyAttribute),
                     typeof (OneToManyAttribute),
                     typeof (ComputedAttribute),

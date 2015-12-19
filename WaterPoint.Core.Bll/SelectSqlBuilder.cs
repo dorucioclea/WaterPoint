@@ -287,6 +287,7 @@ namespace WaterPoint.Core.Bll
             {
                 return new[]
                 {
+                    typeof (IgnoreWhenReadAttribute),
                     typeof (ManyToManyAttribute),
                     typeof (OneToManyAttribute),
                     typeof (OneToOneAttribute),

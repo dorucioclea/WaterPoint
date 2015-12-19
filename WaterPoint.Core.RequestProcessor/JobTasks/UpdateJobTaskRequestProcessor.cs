@@ -52,29 +52,29 @@ namespace WaterPoint.Core.RequestProcessor.JobTasks
         {
             throw new NotImplementedException();
 
-            _getJobTaskByIdQuery.BuildQuery(input.OrganizationEntityParameter.Id);
+            //_getJobTaskByIdQuery.BuildQuery(input.OrganizationEntityParameter.Id);
 
-            var existingJobTask = _getJobTaskByIdQueryRunner.Run(_getJobTaskByIdQuery);
+            //var existingJobTask = _getJobTaskByIdQueryRunner.Run(_getJobTaskByIdQuery);
 
-            var updatedJobTask = _patchEntityAdapter.PatchEnitity<WriteJobTaskPayload, JobTask>(
-                existingJobTask,
-                input.UpdateJobTaskPayload.Patch,
-                (o) => { o.UtcUpdated = DateTime.UtcNow; },
-                _getJobTaskByIdQuery);
+            //var updatedJobTask = _patchEntityAdapter.PatchEnitity<WriteJobTaskPayload, JobTask>(
+            //    existingJobTask,
+            //    input.UpdateJobTaskPayload.Patch,
+            //    (o) => { o.UtcUpdated = DateTime.UtcNow; },
+            //    _getJobTaskByIdQuery);
 
-            //then build the query to update the object.
-            _updateJobTaskByIdQuery.BuildQuery(updatedJobTask);
+            ////then build the query to update the object.
+            //_updateJobTaskByIdQuery.BuildQuery(updatedJobTask);
 
-            var success = _updateCommandExecutor.Run(_updateJobTaskByIdQuery);
+            //var success = _updateCommandExecutor.Run(_updateJobTaskByIdQuery);
 
-            if (success)
-                return JobTaskMapper.Map(updatedJobTask);
+            //if (success)
+            //    return JobTaskMapper.Map(updatedJobTask);
 
-            var updateException = new UpdateFailedException();
+            //var updateException = new UpdateFailedException();
 
-            updateException.AddMessage("operation is finished but there is no result returned");
+            //updateException.AddMessage("operation is finished but there is no result returned");
 
-            throw updateException;
+            //throw updateException;
         }
     }
 

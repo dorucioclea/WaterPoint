@@ -50,8 +50,6 @@
     <Compile Include="DapperUnitOfWork.cs" />
     <Compile Include="IDapperDbContext.cs" />
     <Compile Include="IDapperUnitOfWork.cs" />
-    <Compile Include="ICommand.cs" />
-    <Compile Include="IQuery.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="IDapperRunner.cs" />
   </ItemGroup>

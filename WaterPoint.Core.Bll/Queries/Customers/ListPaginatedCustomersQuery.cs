@@ -1,5 +1,5 @@
 ﻿using WaterPoint.Core.Bll.QueryParameters;
-using WaterPoint.Data.DbContext.Dapper;
+using WaterPoint.Core.Domain;
 using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Core.Bll.Queries.Customers

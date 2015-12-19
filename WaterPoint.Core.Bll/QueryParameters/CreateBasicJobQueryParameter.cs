@@ -1,9 +1,9 @@
 ﻿using System;
-using WaterPoint.Data.DbContext.Dapper;
+using WaterPoint.Core.Domain;
 
 namespace WaterPoint.Core.Bll.QueryParameters
 {
-    public class CreateJobQueryParameter : IQueryParameter
+    public class CreateBasicJobQueryParameter : IQueryParameter
     {
         public int OrganizationId { get; set; }
         public int JobStatusId { get; set; }

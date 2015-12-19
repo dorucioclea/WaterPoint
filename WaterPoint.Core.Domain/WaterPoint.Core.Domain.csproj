@@ -95,6 +95,8 @@
     <Compile Include="Exceptions\InvalidInputDataException.cs" />
     <Compile Include="Contracts\Customers\CustomerContract.cs" />
     <Compile Include="Contracts\Organizations\OrganizationContract.cs" />
+    <Compile Include="ICommand.cs" />
+    <Compile Include="IQuery.cs" />
     <Compile Include="IUnitOfWork.cs" />
     <Compile Include="PaginatedResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

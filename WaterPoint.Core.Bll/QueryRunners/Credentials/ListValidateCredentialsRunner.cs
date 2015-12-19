@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using WaterPoint.Core.Domain;
 using WaterPoint.Data.DbContext.Dapper;
 using WaterPoint.Data.Entity.Pocos.Views;
 

@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Utility;
+using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Exceptions;
-using WaterPoint.Data.DbContext.Dapper;
 using WaterPoint.Data.Entity;
 
 namespace WaterPoint.Api.Common

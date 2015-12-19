@@ -4,9 +4,8 @@ using WaterPoint.Core.Bll.QueryParameters;
 using WaterPoint.Data.Entity.DataEntities;
 using WaterPoint.Data.Entity.Pocos.Jobs;
 using Xunit;
-using Assert = Xunit.Assert;
 
-namespace UnitTests.SqlBuilders
+namespace WaterPoint.UnitTests.SqlBuilders
 {
     public class JobsSqlBuilderTests
     {
@@ -44,7 +43,7 @@ namespace UnitTests.SqlBuilders
 
             var obj = new CreateSqlBuilder<Job>();
 
-            obj.Analyze();
+            obj.Analyze<CreateBasicJobQueryParameter>();
             obj.AddValueParameters(job);
 
             var sql = obj.GetSql();

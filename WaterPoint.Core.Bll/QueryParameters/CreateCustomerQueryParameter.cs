@@ -1,5 +1,5 @@
 ﻿using System;
-using WaterPoint.Data.DbContext.Dapper;
+using WaterPoint.Core.Domain;
 
 namespace WaterPoint.Core.Bll.QueryParameters
 {

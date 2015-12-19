@@ -3,7 +3,7 @@
 	[Id] INT NOT NULL IDENTITY,
     [OrganizationId] INT NOT NULL,
     [JobStatusId] INT NOT NULL,
-    [JobCategoryId] INT NOT NULL,
+    [JobCategoryId] INT NULL,
     [Code] VARCHAR(50) NOT NULL,
 	[ShortDescription] NVARCHAR(200) NULL,
     [LongDescription] NVARCHAR(MAX) NULL,

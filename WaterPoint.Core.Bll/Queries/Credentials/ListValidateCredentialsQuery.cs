@@ -1,4 +1,4 @@
-﻿using WaterPoint.Data.DbContext.Dapper;
+﻿using WaterPoint.Core.Domain;
 using WaterPoint.Data.Entity.Pocos.Views;
 
 namespace WaterPoint.Core.Bll.Queries.Credentials
