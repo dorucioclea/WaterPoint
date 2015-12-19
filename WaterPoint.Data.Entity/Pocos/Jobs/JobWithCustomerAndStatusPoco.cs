@@ -14,6 +14,8 @@ namespace WaterPoint.Data.Entity.Pocos.Jobs
         public int JobCategoryId { get; set; }
         [SearchableAsEnglish]
         public string Code { get; set; }
+        [SearchableAsUnicode]
+        public string ShortDescription { get; set; }
         public int CustomerId { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }

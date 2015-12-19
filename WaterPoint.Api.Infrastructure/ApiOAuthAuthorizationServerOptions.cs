@@ -39,7 +39,7 @@ namespace WaterPoint.Api.Infrastructure
                 TokenEndpointPath = new PathString("/token"),
                 Provider = _interalOAuthAuthorizationServerProvider,
                 AuthorizeEndpointPath = new PathString("/authorize"),
-                AccessTokenExpireTimeSpan = TimeSpan.FromMinutes(60),
+                AccessTokenExpireTimeSpan = TimeSpan.FromDays(30),
                 // In production mode set AllowInsecureHttp = false
                 AllowInsecureHttp = true
             };

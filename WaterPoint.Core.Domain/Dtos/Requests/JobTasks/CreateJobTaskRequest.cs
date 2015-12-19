@@ -6,6 +6,6 @@ namespace WaterPoint.Core.Domain.Dtos.Requests.JobTasks
     {
         public OrganizationIdParameter OrganizationIdParameter { get; set; }
         public WriteJobTaskPayload CreateJobTaskPayload { get; set; }
-        public int StaffId { get; set; }
+        public int OrganizationUserId { get; set; }
     }
 }

@@ -9,6 +9,7 @@ using WaterPoint.Core.Domain.Contracts.TaskDefinitions;
 using WaterPoint.Core.Domain.Exceptions;
 using WaterPoint.Core.Domain.Dtos.Payloads.TaskDefinitions;
 using WaterPoint.Core.Domain.Dtos.Requests.TaskDefinitions;
+using WaterPoint.Core.RequestProcessor.Mappers.EntitiesToContracts;
 using WaterPoint.Data.DbContext.Dapper;
 using WaterPoint.Data.Entity.DataEntities;
 
@@ -65,7 +66,7 @@ namespace WaterPoint.Core.RequestProcessor.TaskDefinitions
             var success = _updateCommandExecutor.Run(_updateTaskDefinitionByIdQuery);
 
             if (success)
-                return ContractMapper.TaskDefinitionMapper.Map(updatedTaskDefinition);
+                return TaskDefinitionMapper.Map(updatedTaskDefinition);
 
             var updateException = new UpdateFailedException();
 

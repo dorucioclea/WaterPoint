@@ -3,7 +3,7 @@
     [Id] INT NOT NULL IDENTITY,
     [JobTimesheetTypeId] INT NOT NULL,
     [JobTaskId] INT NULL,
-    [StaffId] INT NOT NULL,
+    [OrganizationUserId] INT NOT NULL,
     [StartDateTime] DATETIME2(0) NULL,
     [EndDateTime] DATETIME2(0) NULL,
     [RoundedMinutes] INT NOT NULL DEFAULT(0),
@@ -18,5 +18,5 @@
 	[Uid] UNIQUEIDENTIFIER NOT NULL DEFAULT(NEWID()),
     CONSTRAINT [PK_dbo_JobTimesheet_Id] PRIMARY KEY CLUSTERED (Id ASC),
     CONSTRAINT [FK_JobTimesheet_JobTask] FOREIGN KEY ([JobTaskId]) REFERENCES [dbo].[JobTask]([Id]),
-    CONSTRAINT [FK_JobTimesheet_Staff] FOREIGN KEY ([StaffId]) REFERENCES [dbo].[Staff]([Id]),
+    CONSTRAINT [FK_JobTimesheet_OrganizationUser] FOREIGN KEY ([OrganizationUserId]) REFERENCES [dbo].[OrganizationUser]([Id]),
 )

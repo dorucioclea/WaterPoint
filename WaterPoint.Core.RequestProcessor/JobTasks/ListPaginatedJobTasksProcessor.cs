@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using WaterPoint.Core.Bll.QueryParameters;
 using WaterPoint.Core.Bll.QueryRunners;
-using WaterPoint.Core.RequestProcessor.Mappers;
+using WaterPoint.Core.RequestProcessor.Mappers.EntitiesToContracts;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts.JobTasks;
 using WaterPoint.Core.Domain.Dtos.Requests.Shared;

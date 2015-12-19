@@ -3,7 +3,7 @@ using Utility;
 using WaterPoint.Core.Domain.Contracts.OAuthClients;
 using WaterPoint.Data.Entity.DataEntities;
 
-namespace WaterPoint.Core.RequestProcessor.Mappers
+namespace WaterPoint.Core.RequestProcessor.Mappers.EntitiesToContracts
 {
     public class OAuthClientMapper
     {

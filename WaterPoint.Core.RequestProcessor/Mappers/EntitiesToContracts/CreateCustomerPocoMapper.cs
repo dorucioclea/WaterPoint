@@ -10,7 +10,7 @@ using WaterPoint.Core.Domain.Dtos.Requests.Customers;
 using WaterPoint.Data.Entity.DataEntities;
 using WaterPoint.Data.Entity.Pocos.Customers;
 
-namespace WaterPoint.Core.RequestProcessor.Mappers
+namespace WaterPoint.Core.RequestProcessor.Mappers.EntitiesToContracts
 {
     ////not bothered
     //public class CreateCustomerPocoMapper

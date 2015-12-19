@@ -53,7 +53,8 @@ namespace WaterPoint.Core.Bll.Queries.Jobs
             {
                 organizationId = parameter.OrganizationId,
                 offset = parameter.Offset,
-                pageSize = parameter.PageSize
+                pageSize = parameter.PageSize,
+                searchTerm = parameter.SearchTerm
             };
         }
 

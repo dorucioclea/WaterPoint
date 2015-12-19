@@ -5,7 +5,7 @@ using WaterPoint.Core.Domain.Contracts.Jobs;
 using WaterPoint.Core.Domain.Contracts.JobStatuses;
 using WaterPoint.Data.Entity.Pocos.Jobs;
 
-namespace WaterPoint.Core.RequestProcessor.Mappers
+namespace WaterPoint.Core.RequestProcessor.Mappers.EntitiesToContracts
 {
     public class JobMapper
     {

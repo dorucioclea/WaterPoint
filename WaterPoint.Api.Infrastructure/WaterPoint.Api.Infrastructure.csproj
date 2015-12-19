@@ -152,6 +152,10 @@
       <Project>{A035AC5E-BFB1-4BE2-803C-6386E3297008}</Project>
       <Name>WaterPoint.Core.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WaterPoint.Data.Entity\WaterPoint.Data.Entity.csproj">
+      <Project>{DCBDC017-96EC-486D-A491-239702696A1A}</Project>
+      <Name>WaterPoint.Data.Entity</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

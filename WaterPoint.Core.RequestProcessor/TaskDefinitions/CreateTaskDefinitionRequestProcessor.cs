@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WaterPoint.Core.Bll.Commands.TaskDefinitions;
 using WaterPoint.Core.Bll.Executors;
-using WaterPoint.Core.RequestProcessor.Mappers;
+using WaterPoint.Core.RequestProcessor.Mappers.EntitiesToContracts;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts.TaskDefinitions;
 using WaterPoint.Core.Domain.Dtos.Requests.TaskDefinitions;

@@ -1,6 +1,6 @@
 ﻿//using WaterPoint.Core.Bll.Queries.Jobs;
 //using WaterPoint.Core.Bll.QueryRunners.Jobs;
-//using WaterPoint.Core.RequestProcessor.Mappers;
+//using WaterPoint.Core.RequestProcessor.Mappers.EntitiesToContracts;
 //using WaterPoint.Core.Domain;
 //using WaterPoint.Core.Domain.Contracts.Jobs;
 //using WaterPoint.Core.Domain.Dtos.Requests.Jobs;

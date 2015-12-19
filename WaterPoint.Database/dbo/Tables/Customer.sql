@@ -20,10 +20,10 @@
 	[UtcUpdated] DATETIME2(3) NOT NULL DEFAULT(SYSUTCDATETIME()),
 	[Uid] UNIQUEIDENTIFIER NOT NULL DEFAULT(NEWID()),
 	[SearchName] AS (LastName + ' ' + FirstName + CASE WHEN OtherName IS NULL THEN '' ELSE ' ' + OtherName END),
-	CONSTRAINT [PK_Customer_Id] PRIMARY KEY CLUSTERED ([Id] ASC), -- WITH (DATA_COMPRESSION = PAGE),
-    CONSTRAINT [FK_Customer_CustomerType] FOREIGN KEY ([CustomerTypeId]) REFERENCES [dbo].[CustomerType]([Id]) ON DELETE SET NULL,
-    CONSTRAINT [FK_Customer_Organization] FOREIGN KEY ([OrganizationId]) REFERENCES [dbo].[Organization]([Id]),
-	CONSTRAINT [UQ_Customer_Uid] UNIQUE NONCLUSTERED ([Uid] ASC), -- WITH (DATA_COMPRESSION = PAGE)
+	CONSTRAINT [PK_dbo_Customer_Id] PRIMARY KEY CLUSTERED ([Id] ASC), -- WITH (DATA_COMPRESSION = PAGE),
+    CONSTRAINT [FK_dbo_Customer_CustomerType] FOREIGN KEY ([CustomerTypeId]) REFERENCES [dbo].[CustomerType]([Id]) ON DELETE SET NULL,
+    CONSTRAINT [FK_dbo_Customer_Organization] FOREIGN KEY ([OrganizationId]) REFERENCES [dbo].[Organization]([Id]),
+	CONSTRAINT [UQ_dbo_Customer_Uid] UNIQUE NONCLUSTERED ([Uid] ASC), -- WITH (DATA_COMPRESSION = PAGE)
 );
 GO
 
@@ -33,7 +33,7 @@ CREATE FULLTEXT INDEX ON [dbo].[Customer]
 	Email LANGUAGE 1033,
     SearchName LANGUAGE 2052
 )
-KEY INDEX [PK_Customer_Id]
+KEY INDEX [PK_dbo_Customer_Id]
 ON [SiteSearch]
 WITH STOPLIST OFF;
 GO

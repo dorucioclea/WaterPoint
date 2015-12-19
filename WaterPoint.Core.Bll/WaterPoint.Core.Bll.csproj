@@ -90,7 +90,7 @@
     <Compile Include="Commands\JobTasks\UpdateJobTaskByIdCommand.cs" />
     <Compile Include="Commands\TaskDefinitions\CreateTaskDefinitionCommand.cs" />
     <Compile Include="Commands\TaskDefinitions\UpdateTaskDefinitionByIdCommand.cs" />
-    <Compile Include="Queries\Credentials\ValidateCredentialQuery.cs" />
+    <Compile Include="Queries\Credentials\ListValidateCredentialsQuery.cs" />
     <Compile Include="Queries\Jobs\GetJobByIdQuery.cs" />
     <Compile Include="Queries\Jobs\ListPaginatedJobsQuery.cs" />
     <Compile Include="Queries\JobTasks\GetJobTaskByIdQuery.cs" />
@@ -101,7 +101,7 @@
     <Compile Include="QueryParameters\PaginatedJobsQueryParameter.cs" />
     <Compile Include="QueryParameters\PaginatedWithOrgIdQueryParameter.cs" />
     <Compile Include="QueryParameters\IPaginatedQueryParameter.cs" />
-    <Compile Include="QueryRunners\Credentials\ValidateCredentialQueryRunner.cs" />
+    <Compile Include="QueryRunners\Credentials\ListValidateCredentialsRunner.cs" />
     <Compile Include="QueryRunners\Jobs\GetJobByIdQueryRunner.cs" />
     <Compile Include="QueryRunners\Jobs\ListPaginatedJobsRunner.cs" />
     <Compile Include="Executors\UpdateCommandExecutor.cs" />

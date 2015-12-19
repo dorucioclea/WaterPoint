@@ -26,11 +26,11 @@ Post-Deployment Script Template
 
 :r ".\PostDeployment\DemoJobs.sql"
 
-:r ".\PostDeployment\CredentialTypes.sql"
+:r ".\PostDeployment\OrganizationUserTypes.sql"
 
 :r ".\PostDeployment\DemoCredential.sql"
 
-:r ".\PostDeployment\DemoStaff.sql"
+:r ".\PostDeployment\DemoOrganizationUser.sql"
 
 :r ".\PostDeployment\InvoiceTypes.sql"
 

@@ -11,7 +11,7 @@ using WaterPoint.Core.Domain.Contracts.Customers;
 using WaterPoint.Core.Domain.Exceptions;
 using WaterPoint.Core.Domain.Dtos.Payloads.Customers;
 using WaterPoint.Core.Domain.Dtos.Requests.Customers;
-using WaterPoint.Core.RequestProcessor.Mappers;
+using WaterPoint.Core.RequestProcessor.Mappers.EntitiesToContracts;
 using WaterPoint.Data.DbContext.Dapper;
 using WaterPoint.Data.Entity;
 using WaterPoint.Data.Entity.DataEntities;

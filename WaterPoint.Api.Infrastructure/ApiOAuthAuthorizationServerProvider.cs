@@ -1,25 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
+using Newtonsoft.Json;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts.OAuthClients;
 using WaterPoint.Core.Domain.Dtos.Requests.Credentials;
 using WaterPoint.Core.Domain.Dtos.Requests.OAuthClients;
+using WaterPoint.Data.Entity.Pocos.Views;
 
 namespace WaterPoint.Api.Infrastructure
 {
     public class ApiOAuthAuthorizationServerProvider : OAuthAuthorizationServerProvider
     {
         private readonly IRequestProcessor<GetOAuthClientRequest, OAuthClientContract> _oauthRequestProcessor;
-        private readonly IRequestProcessor<ValidateCredentialRequest, bool> _credentialRequestProcessor;
+        private readonly IRequestProcessor<ListValidateCredentialsRequest, IEnumerable<ValidCredential>> _credentialRequestProcessor;
 
         public ApiOAuthAuthorizationServerProvider(
             IRequestProcessor<GetOAuthClientRequest, OAuthClientContract> oauthRequestProcessor,
-            IRequestProcessor<ValidateCredentialRequest, bool> credentialRequestProcessor)
+            IRequestProcessor<ListValidateCredentialsRequest, IEnumerable<ValidCredential>> credentialRequestProcessor)
         {
             _oauthRequestProcessor = oauthRequestProcessor;
             _credentialRequestProcessor = credentialRequestProcessor;
@@ -41,13 +44,13 @@ namespace WaterPoint.Api.Infrastructure
                 return;
             }
 
-            var isValid = _credentialRequestProcessor.Process(new ValidateCredentialRequest
+            var credentials = _credentialRequestProcessor.Process(new ListValidateCredentialsRequest
             {
                 Username = context.UserName,
                 Password = context.Password
-            });
+            }).ToArray();
 
-            if (!isValid)
+            if (credentials.Length == 0)
             {
                 context.SetError("invalid_grant", "The user name or password is incorrect.");
 
@@ -56,14 +59,16 @@ namespace WaterPoint.Api.Infrastructure
 
             var oauthIdentity = new ClaimsIdentity(new[]
             {
-                new Claim(ClaimTypes.Name, context.UserName),
-                new Claim(ClaimTypes.Sid, context.UserName)
+                new Claim(ClaimTypes.Email, context.UserName),
+                new Claim(ClaimTypes.Sid, context.UserName),
+                new Claim(ClaimTypes.PrimaryGroupSid, JsonConvert.SerializeObject(credentials)),
             }, OAuthDefaults.AuthenticationType);
 
             var cookiesIdentity = new ClaimsIdentity(new[]
             {
-                new Claim(ClaimTypes.Name, context.UserName),
-                new Claim(ClaimTypes.Sid, context.UserName)
+                new Claim(ClaimTypes.Email, context.UserName),
+                new Claim(ClaimTypes.Sid, context.UserName),
+                new Claim(ClaimTypes.PrimaryGroupSid, JsonConvert.SerializeObject(credentials)), 
             }, CookieAuthenticationDefaults.AuthenticationType);
 
             var properties = CreateProperties(context.UserName);

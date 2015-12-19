@@ -13,7 +13,7 @@ namespace WaterPoint.Data.Entity.DataEntities
         public int OrganizationId { get; set; }
 
         [IgnoreMappingWhenUpdate]
-        public int CredentialTypeId { get; set; }
+        public int OrganizationUserTypeId { get; set; }
 
         public string Email { get; set; }
 

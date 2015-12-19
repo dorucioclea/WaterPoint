@@ -76,13 +76,13 @@ namespace WaterPoint.Api.TaskDefinition.Controllers
                 return BadRequest();
             }
 
-            //TODO: add staff id
+            //TODO: add OrganizationUser id
             var result = _createTaskDefinitionRequest.Process(
                 new CreateTaskDefinitionRequest
                 {
                     OrganizationIdParameter = parameter,
                     CreateTaskDefinitionPayload = taskDefinitionPayload,
-                    StaffId = Staff.Id
+                    OrganizationUserId = OrganizationUser.Id
                 });
 
             return Ok(result);
@@ -98,7 +98,7 @@ namespace WaterPoint.Api.TaskDefinition.Controllers
                 {
                     OrganizationEntityParameter = parameter,
                     UpdateTaskDefinitionPayload = input,
-                    StaffId = Staff.Id
+                    OrganizationUserId = OrganizationUser.Id
                 });
 
             return Ok(taskDefinition);

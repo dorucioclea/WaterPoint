@@ -5,7 +5,7 @@
 //using System.Threading.Tasks;
 //using WaterPoint.Core.Bll.Commands.Jobs;
 //using WaterPoint.Core.Bll.Executors;
-//using WaterPoint.Core.RequestProcessor.Mappers;
+//using WaterPoint.Core.RequestProcessor.Mappers.EntitiesToContracts;
 //using WaterPoint.Core.Domain;
 //using WaterPoint.Core.Domain.Contracts.Jobs;
 //using WaterPoint.Core.Domain.Dtos.Requests.Jobs;
@@ -15,7 +15,7 @@
 //namespace WaterPoint.Core.RequestProcessor.Jobs
 //{
 //    public class CreateJobRequestProcessor : BaseDapperUowRequestProcess,
-//        IRequestProcessor<CreateJobRequest, JobContract>
+//        IRequestProcessor<CreateJobRequest, JobWithCustomerAndStatusContract>
 //    {
 //        private readonly CreateJobCommand _command;
 //        private readonly CreateCommandExecutor _executor;

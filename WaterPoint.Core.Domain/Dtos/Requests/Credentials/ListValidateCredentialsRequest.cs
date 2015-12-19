@@ -2,7 +2,7 @@
 
 namespace WaterPoint.Core.Domain.Dtos.Requests.Credentials
 {
-    public class ValidateCredentialRequest : IRequest
+    public class ListValidateCredentialsRequest : IRequest
     {
         [Required]
         public string Username { get; set; }

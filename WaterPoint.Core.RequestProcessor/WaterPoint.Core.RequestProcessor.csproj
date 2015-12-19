@@ -75,7 +75,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseDapperUowRequestProcess.cs" />
-    <Compile Include="Credentials\ValidateCredentialRequestProcessor.cs" />
+    <Compile Include="Credentials\ListValidateCredentialRequestProcessor.cs" />
     <Compile Include="Jobs\CreateJobRequestProcessor.cs" />
     <Compile Include="Jobs\GetJobByIdRequestProcessor.cs" />
     <Compile Include="Jobs\ListPaginatedJobsProcessor.cs" />
@@ -84,12 +84,12 @@
     <Compile Include="Customers\ListPaginatedCustomersProcessor.cs" />
     <Compile Include="Customers\UpdateCustomerRequestProcessor.cs" />
     <Compile Include="Jobs\UpdateJobRequestProcessor.cs" />
-    <Compile Include="Mappers\CreateCustomerPocoMapper.cs" />
-    <Compile Include="Mappers\CustomerMapper.cs" />
-    <Compile Include="Mappers\JobMapper.cs" />
-    <Compile Include="Mappers\JobTaskMapper.cs" />
-    <Compile Include="Mappers\OAuthClientMapper.cs" />
-    <Compile Include="Mappers\TaskDefinitionMapper.cs" />
+    <Compile Include="Mappers\EntitiesToContracts\CreateCustomerPocoMapper.cs" />
+    <Compile Include="Mappers\EntitiesToContracts\CustomerMapper.cs" />
+    <Compile Include="Mappers\EntitiesToContracts\JobMapper.cs" />
+    <Compile Include="Mappers\EntitiesToContracts\JobTaskMapper.cs" />
+    <Compile Include="Mappers\EntitiesToContracts\OAuthClientMapper.cs" />
+    <Compile Include="Mappers\EntitiesToContracts\TaskDefinitionMapper.cs" />
     <Compile Include="OAuthClients\GetOAuthClientRequestProcessor.cs" />
     <Compile Include="PaginatedEntitiesWithOrgIdProcessor.cs" />
     <Compile Include="JobStatusQueryParameterConverter.cs" />
@@ -133,6 +133,9 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Mappers\RequestsToQueryParameters\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

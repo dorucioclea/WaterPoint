@@ -8,6 +8,6 @@ namespace WaterPoint.Core.Domain.Dtos.Requests.TaskDefinitions
     {
         public OrganizationEntityParameter OrganizationEntityParameter { get; set; }
         public Delta<WriteTaskDefinitionPayload> UpdateTaskDefinitionPayload { get; set; }
-        public int StaffId { get; set; }
+        public int OrganizationUserId { get; set; }
     }
 }

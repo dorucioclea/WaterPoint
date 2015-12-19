@@ -9,7 +9,7 @@ using WaterPoint.Core.Domain.Contracts.JobTasks;
 using WaterPoint.Core.Domain.Exceptions;
 using WaterPoint.Core.Domain.Dtos.Payloads.JobTasks;
 using WaterPoint.Core.Domain.Dtos.Requests.JobTasks;
-using WaterPoint.Core.RequestProcessor.Mappers;
+using WaterPoint.Core.RequestProcessor.Mappers.EntitiesToContracts;
 using WaterPoint.Data.DbContext.Dapper;
 using WaterPoint.Data.Entity.DataEntities;
 

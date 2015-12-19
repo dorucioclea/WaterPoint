@@ -21,4 +21,15 @@
     CONSTRAINT [FK_Job_Organization] FOREIGN KEY ([OrganizationId]) REFERENCES [dbo].[Organization]([Id]),
     CONSTRAINT [FK_Job_JobStatus] FOREIGN KEY ([JobStatusId]) REFERENCES [dbo].[JobStatus] ([Id]),
     CONSTRAINT [FK_Job_Category] FOREIGN KEY ([JobCategoryId]) REFERENCES [dbo].[JobCategory]([Id])
+);
+GO
+
+CREATE FULLTEXT INDEX ON [dbo].[Job]
+(
+	Code LANGUAGE 1033,
+    ShortDescription LANGUAGE 2052
 )
+KEY INDEX [PK_dbo_Job_Id]
+ON [SiteSearch]
+WITH STOPLIST OFF;
+GO

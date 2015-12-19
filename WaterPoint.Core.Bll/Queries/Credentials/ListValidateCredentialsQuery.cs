@@ -3,7 +3,7 @@ using WaterPoint.Data.Entity.Pocos.Views;
 
 namespace WaterPoint.Core.Bll.Queries.Credentials
 {
-    public class ValidateCredentialQuery : IQuery
+    public class ListValidateCredentialsQuery : IQuery
     {
         private readonly ISqlBuilderFactory _sqlBuilderFactory;
 
@@ -13,9 +13,10 @@ namespace WaterPoint.Core.Bll.Queries.Credentials
                 FROM
                     {SqlPatterns.FromTable}
                 WHERE
-                   {SqlPatterns.Where}";
+                   {SqlPatterns.Where}
+                ";
 
-        public ValidateCredentialQuery(ISqlBuilderFactory sqlBuilderFactory)
+        public ListValidateCredentialsQuery(ISqlBuilderFactory sqlBuilderFactory)
         {
             _sqlBuilderFactory = sqlBuilderFactory;
         }

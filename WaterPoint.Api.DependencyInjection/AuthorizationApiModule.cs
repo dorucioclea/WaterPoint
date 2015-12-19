@@ -1,4 +1,5 @@
-﻿using Microsoft.Owin.Security.Infrastructure;
+﻿using System.Collections.Generic;
+using Microsoft.Owin.Security.Infrastructure;
 using Microsoft.Owin.Security.OAuth;
 using Ninject.Modules;
 using WaterPoint.Api.Infrastructure;
@@ -12,6 +13,7 @@ using WaterPoint.Core.Domain.Dtos.Requests.Credentials;
 using WaterPoint.Core.Domain.Dtos.Requests.OAuthClients;
 using WaterPoint.Core.RequestProcessor.Credentials;
 using WaterPoint.Core.RequestProcessor.OAuthClients;
+using WaterPoint.Data.Entity.Pocos.Views;
 
 namespace WaterPoint.Api.DependencyInjection
 {
@@ -25,8 +27,8 @@ namespace WaterPoint.Api.DependencyInjection
 
         private void BindQueriesAndCommands()
         {
-            Bind<ValidateCredentialQuery>().ToSelf();
-            Bind<ValidateCredentialQueryRunner>().ToSelf();
+            Bind<ListValidateCredentialsQuery>().ToSelf();
+            Bind<ListValidateCredentialsRunner>().ToSelf();
             Bind<GetOAuthClientQuery>().ToSelf();
             Bind<GetOAuthClientQueryRunner>().ToSelf();
 
@@ -48,8 +50,8 @@ namespace WaterPoint.Api.DependencyInjection
             Bind<IRequestProcessor<GetOAuthClientRequest, OAuthClientContract>>()
                 .To<GetOAuthClientRequestProcessor>();
 
-            Bind<IRequestProcessor<ValidateCredentialRequest, bool>>()
-                .To<ValidateCredentialRequestProcessor>();
+            Bind<IRequestProcessor<ListValidateCredentialsRequest, IEnumerable<ValidCredential>>>()
+                .To<ListValidateCredentialRequestProcessor>();
         }
     }
 }

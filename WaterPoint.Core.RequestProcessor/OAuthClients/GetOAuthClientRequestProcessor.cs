@@ -1,6 +1,6 @@
 ﻿using WaterPoint.Core.Bll.Queries.OAuthClients;
 using WaterPoint.Core.Bll.QueryRunners.OAuthClients;
-using WaterPoint.Core.RequestProcessor.Mappers;
+using WaterPoint.Core.RequestProcessor.Mappers.EntitiesToContracts;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts.OAuthClients;
 using WaterPoint.Core.Domain.Dtos.Requests.OAuthClients;

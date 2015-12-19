@@ -66,10 +66,10 @@
     <Compile Include="Contracts\TaskDefinitions\TaskDefinitionContract.cs" />
     <Compile Include="Dtos\IPaginationParameter.cs" />
     <Compile Include="Dtos\Parameters\JobStatusParameter.cs" />
-    <Compile Include="Dtos\Payloads\Jobs\WriteJobPayload.cs" />
+    <Compile Include="Dtos\Payloads\Jobs\WriteBasicJobDataPayload.cs" />
     <Compile Include="Dtos\Payloads\JobTasks\WriteJobTaskPayload.cs" />
     <Compile Include="Dtos\Payloads\TaskDefinitions\WriteTaskDefinitionPayload.cs" />
-    <Compile Include="Dtos\Requests\Credentials\ValidateCredentialRequest.cs" />
+    <Compile Include="Dtos\Requests\Credentials\ListValidateCredentialsRequest.cs" />
     <Compile Include="Dtos\Requests\Customers\UpdateCustomerRequest.cs" />
     <Compile Include="Dtos\Requests\Customers\GetCustomerByIdRequest.cs" />
     <Compile Include="Dtos\Interfaces\IOrganizationEntityParameter.cs" />

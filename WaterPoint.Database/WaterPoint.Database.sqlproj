@@ -78,12 +78,10 @@
     <Build Include="dbo\Tables\Organization.sql" />
     <Build Include="dbo\Tables\Credential.sql" />
     <Build Include="im\InventoryManagement.sql" />
-    <Build Include="dbo\Tables\Staff.sql" />
     <Build Include="dbo\Tables\CustomerType.sql" />
     <Build Include="dbo\Tables\CustomerAddress.sql" />
     <Build Include="dbo\Tables\Job.sql" />
     <Build Include="dbo\Tables\JobStatus.sql" />
-    <Build Include="dbo\Tables\CredentialType.sql" />
     <Build Include="dbo\Tables\JobCategory.sql" />
     <Build Include="dbo\Tables\TaskDefinition.sql" />
     <Build Include="dbo\Tables\JobTask.sql" />
@@ -107,7 +105,7 @@
     <Build Include="dbo\Tables\QuoteTimesheet.sql" />
     <Build Include="dbo\Tables\Privilege.sql" />
     <Build Include="dbo\Tables\PrivilegeCategory.sql" />
-    <Build Include="dbo\Tables\StaffPrivilege.sql" />
+    <Build Include="dbo\Tables\OrganizationUserPrivilege.sql" />
     <Build Include="dbo\Tables\Module.sql" />
     <Build Include="dbo\Tables\Component.sql" />
     <Build Include="dbo\Tables\ModuleComponent.sql" />
@@ -116,6 +114,8 @@
     <Build Include="apiv1\Tables\OAuthClient.sql" />
     <None Include="apiv1\Scripts\PostDeployment\MainAppOAuthClient.sql" />
     <Build Include="dbo\Views\View_ValidCredential.sql" />
+    <Build Include="dbo\Tables\OrganizationUser.sql" />
+    <Build Include="dbo\Tables\OrganizationUserType.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="WaterPoint.Database.publish.xml" />
@@ -125,12 +125,12 @@
     <None Include="Scripts\PostDeployment\DemoOrganization.sql" />
     <None Include="Scripts\PostDeployment\DemoCustomerTypes.sql" />
     <None Include="Scripts\PostDeployment\DemoJobsStatuses.sql" />
-    <None Include="Scripts\PostDeployment\CredentialTypes.sql" />
+    <None Include="Scripts\PostDeployment\OrganizationUserTypes.sql" />
     <None Include="Scripts\PostDeployment\InvoiceTypes.sql" />
     <None Include="Scripts\PostDeployment\DemoJobCategories.sql" />
     <None Include="Scripts\PostDeployment\DemoCredential.sql" />
     <None Include="Scripts\PostDeployment\DemoJobs.sql" />
-    <None Include="Scripts\PostDeployment\DemoStaff.sql" />
+    <None Include="Scripts\PostDeployment\DemoOrganizationUser.sql" />
     <None Include="WaterPoint.Azure.Database.publish.xml" />
     <None Include="apiv1\Scripts\Script.PostDeployment.ApiV1.sql" />
   </ItemGroup>

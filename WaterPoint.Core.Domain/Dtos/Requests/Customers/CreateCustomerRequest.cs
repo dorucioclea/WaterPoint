@@ -6,6 +6,6 @@ namespace WaterPoint.Core.Domain.Dtos.Requests.Customers
     {
         public OrganizationIdParameter OrganizationIdParameter { get; set; }
         public WriteCustomerPayload CreateCustomerPayload { get; set; }
-        public int StaffId { get; set; }
+        public int OrganizationUserId { get; set; }
     }
 }

@@ -3,15 +3,11 @@ using System.Linq;
 using Utility;
 using WaterPoint.Core.Bll.QueryParameters;
 using WaterPoint.Core.Bll.QueryRunners;
-using WaterPoint.Core.RequestProcessor.Mappers;
+using WaterPoint.Core.RequestProcessor.Mappers.EntitiesToContracts;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts.Jobs;
-using WaterPoint.Core.Domain.Dtos.Parameters;
 using WaterPoint.Core.Domain.Dtos.Requests.Jobs;
-using WaterPoint.Core.Domain.Dtos.Requests.Shared;
-using WaterPoint.Core.RequestProcessor.Mappers;
 using WaterPoint.Data.DbContext.Dapper;
-using WaterPoint.Data.Entity.DataEntities;
 using WaterPoint.Data.Entity.Pocos.Jobs;
 
 namespace WaterPoint.Core.RequestProcessor.Jobs

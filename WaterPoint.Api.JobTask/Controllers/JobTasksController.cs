@@ -76,13 +76,13 @@ namespace WaterPoint.Api.JobTask.Controllers
                 return BadRequest();
             }
 
-            //TODO: add staff id
+            //TODO: add OrganizationUser id
             var result = _createJobTaskRequest.Process(
                 new CreateJobTaskRequest
                 {
                     OrganizationIdParameter = parameter,
                     CreateJobTaskPayload = JobTaskPayload,
-                    StaffId = Staff.Id
+                    OrganizationUserId = OrganizationUser.Id
                 });
 
             return Ok(result);
@@ -98,7 +98,7 @@ namespace WaterPoint.Api.JobTask.Controllers
                 {
                     OrganizationEntityParameter = parameter,
                     UpdateJobTaskPayload = input,
-                    StaffId = Staff.Id
+                    OrganizationUserId = OrganizationUser.Id
                 });
 
             return Ok(jobTask);

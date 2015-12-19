@@ -1,6 +1,6 @@
 ﻿using WaterPoint.Core.Bll.Commands.Customers;
 using WaterPoint.Core.Bll.Executors;
-using WaterPoint.Core.RequestProcessor.Mappers;
+using WaterPoint.Core.RequestProcessor.Mappers.EntitiesToContracts;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts.Customers;
 using WaterPoint.Core.Domain.Dtos.Requests.Customers;

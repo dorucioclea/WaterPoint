@@ -13,7 +13,10 @@ namespace WaterPoint.Data.Entity.Pocos.Views
         public int OrganizationId { get; set; }
 
         [IgnoreMappingWhenUpdate]
-        public int CredentialTypeId { get; set; }
+        public int OrganizationUserId { get; set; }
+
+        [IgnoreMappingWhenUpdate]
+        public int OrganizationUserTypeId { get; set; }
 
         public string Email { get; set; }
 

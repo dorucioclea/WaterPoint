@@ -72,13 +72,13 @@ namespace WaterPoint.Api.Customer.Controllers
                 return BadRequest();
             }
 
-            //TODO: add staff id
+            //TODO: add OrganizationUser id
             var result = _createCustomerRequest.Process(
                 new CreateCustomerRequest
                 {
                     OrganizationIdParameter = parameter,
                     CreateCustomerPayload = customerPayload,
-                    StaffId = Staff.Id
+                    OrganizationUserId = OrganizationUser.Id
                 });
 
             return Ok(result);
@@ -97,7 +97,7 @@ namespace WaterPoint.Api.Customer.Controllers
                 {
                     OrganizationEntityParameter = parameter,
                     UpdateCustomerPayload = input,
-                    StaffId = Staff.Id
+                    OrganizationUserId = OrganizationUser.Id
                 });
 
             return Ok(customer);

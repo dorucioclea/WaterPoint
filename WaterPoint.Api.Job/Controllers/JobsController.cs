@@ -18,19 +18,19 @@ namespace WaterPoint.Api.Job.Controllers
     {
         private readonly IRequestProcessor<ListPaginatedJobsRequest, PaginatedResult<IEnumerable<JobWithCustomerAndStatusContract>>> _listJobRequestProcessor;
         //private readonly IRequestProcessor<GetJobByIdRequest, JobContract> _getJobByIdRequestProcessor;
-        //private readonly IRequestProcessor<CreateJobRequest, JobContract> _createJobRequestProcessor;
+        private readonly IRequestProcessor<CreateJobRequest, JobWithCustomerAndStatusContract> _createJobRequestProcessor;
         //private readonly IRequestProcessor<UpdateJobRequest, JobContract> _updateJobRequestProcessor;
 
         public JobsController(
-            IRequestProcessor<ListPaginatedJobsRequest, PaginatedResult<IEnumerable<JobWithCustomerAndStatusContract>>> listJobRequestProcessor
+            IRequestProcessor<ListPaginatedJobsRequest, PaginatedResult<IEnumerable<JobWithCustomerAndStatusContract>>> listJobRequestProcessor,
             //IRequestProcessor<GetJobByIdRequest, JobContract> getJobByIdRequestProcessor,
-            //IRequestProcessor<CreateJobRequest, JobContract> createJobRequestProcessor,
+            IRequestProcessor<CreateJobRequest, JobWithCustomerAndStatusContract> createJobRequestProcessor
             //IRequestProcessor<UpdateJobRequest, JobContract> updateJobRequestProcessor
             )
         {
             _listJobRequestProcessor = listJobRequestProcessor;
             //_getJobByIdRequestProcessor = getJobByIdRequestProcessor;
-            //_createJobRequestProcessor = createJobRequestProcessor;
+            _createJobRequestProcessor = createJobRequestProcessor;
             //_updateJobRequestProcessor = updateJobRequestProcessor;
         }
 
@@ -71,26 +71,26 @@ namespace WaterPoint.Api.Job.Controllers
         //}
 
 
-        //[Route("")]
-        //public IHttpActionResult Post(
-        //    [FromUri]OrganizationIdParameter parameter,
-        //    [FromBody]WriteJobPayload jobPayload)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest();
-        //    }
+        [Route("")]
+        public IHttpActionResult Post(
+            [FromUri]OrganizationIdParameter parameter,
+            [FromBody]WriteBasicJobDataPayload jobPayload)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
 
-        //    var result = _createJobRequestProcessor.Process(
-        //        new CreateJobRequest
-        //        {
-        //            OrganizationIdParameter = parameter,
-        //            CreateJobPayload = jobPayload,
-        //            StaffId = Staff.Id
-        //        });
+            var result = _createJobRequestProcessor.Process(
+                new CreateJobRequest
+                {
+                    OrganizationIdParameter = parameter,
+                    CreateJobPayload = jobPayload,
+                    OrganizationUserId = OrganizationUser.Id
+                });
 
-        //    return Ok(result);
-        //}
+            return Ok(result);
+        }
 
         //[Route("{id:int}")]
         //public IHttpActionResult Put(
@@ -102,7 +102,7 @@ namespace WaterPoint.Api.Job.Controllers
         //        {
         //            OrganizationEntityParameter = parameter,
         //            UpdateJobPayload = input,
-        //            StaffId = Staff.Id
+        //            OrganizationUserId = OrganizationUser.Id
         //        });
 
         //    return Ok(job);

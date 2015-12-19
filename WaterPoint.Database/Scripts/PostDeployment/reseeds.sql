@@ -20,8 +20,8 @@ IF(NOT EXISTS(SELECT TOP 1 * FROM dbo.Job))
     END
 GO
 
-IF(NOT EXISTS(SELECT TOP 1 * FROM dbo.Staff))
+IF(NOT EXISTS(SELECT TOP 1 * FROM dbo.OrganizationUser))
     BEGIN
-        DBCC checkident ('dbo.Staff', reseed, 10000)
+        DBCC checkident ('dbo.OrganizationUser', reseed, 10000)
     END
 GO
