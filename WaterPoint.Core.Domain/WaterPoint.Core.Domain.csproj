@@ -65,11 +65,13 @@
     <Compile Include="Contracts\ResultContract.cs" />
     <Compile Include="Contracts\TaskDefinitions\TaskDefinitionContract.cs" />
     <Compile Include="Dtos\IPaginationParameter.cs" />
+    <Compile Include="Dtos\Parameters\CustomerIdOrgIdParameter.cs" />
     <Compile Include="Dtos\Parameters\JobStatusParameter.cs" />
     <Compile Include="Dtos\Payloads\Jobs\WriteBasicJobDataPayload.cs" />
     <Compile Include="Dtos\Payloads\JobTasks\WriteJobTaskPayload.cs" />
     <Compile Include="Dtos\Payloads\TaskDefinitions\WriteTaskDefinitionPayload.cs" />
     <Compile Include="Dtos\Requests\Credentials\ListValidateCredentialsRequest.cs" />
+    <Compile Include="Dtos\Requests\Customers\ListPaginatedCustomerJobsRequest.cs" />
     <Compile Include="Dtos\Requests\Customers\UpdateCustomerRequest.cs" />
     <Compile Include="Dtos\Requests\Customers\GetCustomerByIdRequest.cs" />
     <Compile Include="Dtos\Interfaces\IOrganizationEntityParameter.cs" />
@@ -85,6 +87,7 @@
     <Compile Include="Dtos\Requests\TaskDefinitions\CreateTaskDefinitionRequest.cs" />
     <Compile Include="Dtos\Requests\TaskDefinitions\GetTaskDefinitionByIdRequest.cs" />
     <Compile Include="Dtos\Requests\TaskDefinitions\UpdateTaskDefinitionRequest.cs" />
+    <Compile Include="Exceptions\InvalidOrganizationContextException.cs" />
     <Compile Include="Exceptions\UpdateFailedException.cs" />
     <Compile Include="Exceptions\NotFoundException.cs" />
     <Compile Include="HttpResults\ErrorResult.cs" />
@@ -116,7 +119,9 @@
       <Name>WaterPoint.Data.Entity</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Attributes\" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />

@@ -56,27 +56,27 @@ namespace WaterPoint.UnitTests.SqlBuilders
         {
             const string expectedSql = @"
                 SELECT
-                    j.[Id], 
-					j.[OrganizationId], 
-					j.[JobStatusId], 
-					j.[JobCategoryId], 
-					j.[Code], 
-					j.[CustomerId], 
-					j.[StartDate], 
-					j.[EndDate], 
-					j.[DueDate], 
-					j.[Version], 
-					j.[UtcCreated], 
-					j.[UtcUpdated], 
-					j.[Uid], 
-					js.[Name] AS [JobStatus], 
-					c.[CustomerTypeId] AS [CustomerTypeId], 
-					c.[LastName] AS [LastName], 
-					c.[FirstName] AS [FirstName], 
+                    j.[Id],
+					j.[OrganizationId],
+					j.[JobStatusId],
+					j.[JobCategoryId],
+					j.[Code],
+					j.[CustomerId],
+					j.[StartDate],
+					j.[EndDate],
+					j.[DueDate],
+					j.[Version],
+					j.[UtcCreated],
+					j.[UtcUpdated],
+					j.[Uid],
+					js.[Name] AS [JobStatus],
+					c.[CustomerTypeId] AS [CustomerTypeId],
+					c.[LastName] AS [LastName],
+					c.[FirstName] AS [FirstName],
 					c.[OtherName] AS [OtherName]
                     ,[TotalCount]
                 FROM
-                    [dbo].[Job] j					
+                    [dbo].[Job] j
                     JOIN [dbo].[JobStatus] js ON j.[JobStatusId] = js.[Id]
 					JOIN [dbo].[Customer] c ON j.[CustomerId] = c.[Id]
                     CROSS APPLY(
@@ -90,7 +90,7 @@ namespace WaterPoint.UnitTests.SqlBuilders
                     )[Count]
                 WHERE
                     (j.[OrganizationId] = @orgid)
-                ORDER BY 17  
+                ORDER BY 17
                 OFFSET @offset ROWS FETCH NEXT @pageSize ROWS ONLY  ";
 
             var sqlTemplate = $@"

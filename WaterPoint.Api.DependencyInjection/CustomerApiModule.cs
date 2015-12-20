@@ -9,6 +9,7 @@ using WaterPoint.Core.Bll.QueryRunners.Customers;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.RequestProcessor.Customers;
 using WaterPoint.Core.Domain.Contracts.Customers;
+using WaterPoint.Core.Domain.Contracts.Jobs;
 using WaterPoint.Core.Domain.Dtos.Requests.Customers;
 using WaterPoint.Core.Domain.Dtos.Requests.Shared;
 using WaterPoint.Core.RequestProcessor;
@@ -46,11 +47,16 @@ namespace WaterPoint.Api.DependencyInjection
                 .To<ListPaginatedCustomersProcessor>();
 
             Bind<IRequestProcessor< CreateCustomerRequest, CustomerContract >>()
-                    .To<CreateCustomerRequestProcessor>();
+                    .To<CreateCustomerProcessor>();
+
             Bind<IRequestProcessor<UpdateCustomerRequest, CustomerContract>>()
-                .To<UpdateCustomerRequestProcessor>();
+                .To<UpdateCustomerProcessor>();
+
             Bind<IRequestProcessor<GetCustomerByIdRequest, CustomerContract>>()
-                .To<GetCustomerByIdRequestProcessor>();
+                .To<GetCustomerByIdProcessor>();
+
+            Bind<IRequestProcessor<ListPaginatedCustomerJobsRequest, JobWithCustomerAndStatusContract>>()
+                .To<ListPaginatedCustomerJobsProcessor>();
 
         }
     }

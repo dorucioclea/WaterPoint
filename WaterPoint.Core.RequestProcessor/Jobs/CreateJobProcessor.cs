@@ -17,13 +17,13 @@ using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Core.RequestProcessor.Jobs
 {
-    public class CreateJobRequestProcessor : BaseDapperUowRequestProcess,
+    public class CreateJobProcessor : BaseDapperUowRequestProcess,
         IRequestProcessor<CreateJobRequest, JobWithCustomerAndStatusContract>
     {
         private readonly CreateBasicJobCommand _command;
         private readonly CreateCommandExecutor _executor;
 
-        public CreateJobRequestProcessor(
+        public CreateJobProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
             CreateBasicJobCommand command,
             CreateCommandExecutor executor)

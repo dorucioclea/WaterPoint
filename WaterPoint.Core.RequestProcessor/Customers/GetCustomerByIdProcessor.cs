@@ -8,14 +8,14 @@ using WaterPoint.Data.DbContext.Dapper;
 
 namespace WaterPoint.Core.RequestProcessor.Customers
 {
-    public class GetCustomerByIdRequestProcessor :
+    public class GetCustomerByIdProcessor :
         BaseDapperUowRequestProcess,
         IRequestProcessor<GetCustomerByIdRequest, CustomerContract>
     {
         private readonly GetCustomerByIdQuery _query;
         private readonly GetCustomerByIdQueryRunner _runner;
 
-        public GetCustomerByIdRequestProcessor(
+        public GetCustomerByIdProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
             GetCustomerByIdQuery query,
             GetCustomerByIdQueryRunner runner)

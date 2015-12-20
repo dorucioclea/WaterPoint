@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Security.Claims;
 using System.Web.Http;
 using Newtonsoft.Json;
+using WaterPoint.Core.Domain.Exceptions;
 
 namespace WaterPoint.Api.Common.BaseControllers
 {
@@ -16,7 +17,7 @@ namespace WaterPoint.Api.Common.BaseControllers
             {
                 var routeData = Request.GetRouteData();
 
-                if(!routeData.Values.ContainsKey("organizationid"))
+                if (!routeData.Values.ContainsKey("organizationid"))
                     throw new InvalidOperationException("没有 organization");
 
                 var organizationId = routeData.Values["organizationId"];
@@ -35,7 +36,12 @@ namespace WaterPoint.Api.Common.BaseControllers
 
             var users = JsonConvert.DeserializeObject<IEnumerable<OrganizationUserContext>>(userContextData);
 
-            return users.FirstOrDefault(u => u.OrganizationId == organizationId);
+            var orgUser = users.FirstOrDefault(u => u.OrganizationId == organizationId);
+
+            if (orgUser == null)
+                throw new InvalidOrganizationContextException();
+
+            return orgUser;
         }
     }
 

@@ -12,7 +12,7 @@ using WaterPoint.Core.Bll.QueryRunners.Customers;
 
 namespace WaterPoint.Core.RequestProcessor.Customers
 {
-    public class CreateCustomerRequestProcessor : BaseDapperUowRequestProcess,
+    public class CreateCustomerProcessor : BaseDapperUowRequestProcess,
         IRequestProcessor<CreateCustomerRequest, CustomerContract>
     {
         private readonly CreateCustomerCommand _command;
@@ -20,7 +20,7 @@ namespace WaterPoint.Core.RequestProcessor.Customers
         private readonly GetCustomerByIdQuery _getCustomerQuery;
         private readonly GetCustomerByIdQueryRunner _getCustomerByIdQueryRunner;
 
-        public CreateCustomerRequestProcessor(
+        public CreateCustomerProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
             CreateCustomerCommand command,
             CreateCommandExecutor executor,

@@ -18,7 +18,7 @@ using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Core.RequestProcessor.Customers
 {
-    public class UpdateCustomerRequestProcessor :
+    public class UpdateCustomerProcessor :
         BaseDapperUowRequestProcess,
         IRequestProcessor<UpdateCustomerRequest, CustomerContract>
     {
@@ -28,7 +28,7 @@ namespace WaterPoint.Core.RequestProcessor.Customers
         private readonly UpdateCustomerByIdCommand _updateCustomerByIdQuery;
         private readonly UpdateCommandExecutor _updateCommandExecutor;
 
-        public UpdateCustomerRequestProcessor(
+        public UpdateCustomerProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
             IPatchEntityAdapter patchEntityAdapter,
             GetCustomerByIdQuery getCustomerByIdQuery,

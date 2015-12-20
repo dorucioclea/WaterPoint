@@ -214,6 +214,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\CustomersController.cs" />
+    <Compile Include="Controllers\JobsController.cs" />
     <Compile Include="Controllers\TestsController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -237,6 +238,10 @@
     <ProjectReference Include="..\WaterPoint.Api.DependencyInjection\WaterPoint.Api.DependencyInjection.csproj">
       <Project>{5c64b219-7379-45ab-a0fc-f459eea2ae17}</Project>
       <Name>WaterPoint.Api.DependencyInjection</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WaterPoint.Common\Utility\Utility.csproj">
+      <Project>{32862b76-53bf-453b-a8c3-9e7960441bac}</Project>
+      <Name>Utility</Name>
     </ProjectReference>
     <ProjectReference Include="..\WaterPoint.Core.DependencyInjection\WaterPoint.Core.DependencyInjection.csproj">
       <Project>{114db23c-2257-4bad-800d-58a5ccaedf90}</Project>
