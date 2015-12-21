@@ -1,5 +1,6 @@
 ﻿using System;
 using WaterPoint.Core.Bll;
+using WaterPoint.Core.Bll.QueryParameters.Customers;
 using WaterPoint.Data.Entity.DataEntities;
 using Xunit;
 
@@ -12,22 +13,22 @@ namespace WaterPoint.UnitTests.SqlBuilders
         {
             const string expectedSql = @"
                 SELECT
-                    c.[Id] , 
-                    c.[OrganizationId] , 
-                    c.[CustomerTypeId] , 
-                    c.[IsProspect] , 
-                    c.[Code] , 
-                    c.[Phone] , 
-                    c.[Email] , 
-                    c.[FirstName] , 
-                    c.[LastName] , 
-                    c.[OtherName] , 
-                    c.[MobilePhone] , 
-                    c.[Version] , 
-                    c.[Dob] , 
-                    c.[Uid] , 
-                    c.[UtcCreated] , 
-                    c.[UtcUpdated] 
+                    c.[Id] ,
+                    c.[OrganizationId] ,
+                    c.[CustomerTypeId] ,
+                    c.[IsProspect] ,
+                    c.[Code] ,
+                    c.[Phone] ,
+                    c.[Email] ,
+                    c.[FirstName] ,
+                    c.[LastName] ,
+                    c.[OtherName] ,
+                    c.[MobilePhone] ,
+                    c.[Version] ,
+                    c.[Dob] ,
+                    c.[Uid] ,
+                    c.[UtcCreated] ,
+                    c.[UtcUpdated]
                     ,[TotalCount]
                 FROM
                     [dbo].[Customer] c
@@ -37,12 +38,12 @@ namespace WaterPoint.UnitTests.SqlBuilders
                             [dbo].[Customer] c
                         WHERE
                             (c.[OrganizationId] = 1000)
-AND (CONTAINS((c.[Code],c.[Email]), @searchterm) OR CONTAINS((c.[SearchName]), @searchterm)) 
+AND (CONTAINS((c.[Code],c.[Email]), @searchterm) OR CONTAINS((c.[SearchName]), @searchterm))
                     )[Count]
                 WHERE
                     (c.[OrganizationId] = 1000)
-AND (CONTAINS((c.[Code],c.[Email]), @searchterm) OR CONTAINS((c.[SearchName]), @searchterm)) 
-                ORDER BY 9 DESC 
+AND (CONTAINS((c.[Code],c.[Email]), @searchterm) OR CONTAINS((c.[SearchName]), @searchterm))
+                ORDER BY 9 DESC
                 OFFSET @offset ROWS FETCH NEXT @pageSize ROWS ONLY  ";
 
             var sqlTemplate = $@"
@@ -97,7 +98,7 @@ AND (CONTAINS((c.[Code],c.[Email]), @searchterm) OR CONTAINS((c.[SearchName]), @
                     [dbo].[Customer].[UtcUpdated] = @utcupdated
                 WHERE (([dbo].[Customer].[OrganizationId] = @orgid) AND ([dbo].[Customer].[Id] = @id))";
 
-            var customer = new Customer
+            var customer = new UpdateCustomerQueryParameter
             {
                 Id = 123,
                 OrganizationId = 1000,
@@ -110,13 +111,11 @@ AND (CONTAINS((c.[Code],c.[Email]), @searchterm) OR CONTAINS((c.[SearchName]), @
                 MobilePhone = "123",
                 OtherName = "cang",
                 Phone = "321",
-                Uid = Guid.NewGuid(),
-                UtcCreated = DateTime.UtcNow,
                 UtcUpdated = DateTime.UtcNow,
                 //Version = "version1"
             };
 
-            var obj = new UpdateSqlBuilder<Customer>();
+            var obj = new UpdateSqlBuilder<UpdateCustomerQueryParameter>();
 
             obj.Analyze();
             obj.AddValueParameters(customer);

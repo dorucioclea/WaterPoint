@@ -1,11 +1,12 @@
 ﻿using System.Linq;
+using WaterPoint.Core.Bll.QueryParameters.Jobs;
 using WaterPoint.Core.Domain;
 using WaterPoint.Data.DbContext.Dapper;
-using WaterPoint.Data.Entity.DataEntities;
+using WaterPoint.Data.Entity.Pocos.Jobs;
 
 namespace WaterPoint.Core.Bll.QueryRunners.Jobs
 {
-    public class GetJobByIdQueryRunner
+    public class GetJobByIdQueryRunner: IQueryRunner<GetJobDetailsQueryParameter, JobWithDetailsPoco>
     {
         private readonly IDapperDbContext _dapperDbContext;
 
@@ -14,10 +15,10 @@ namespace WaterPoint.Core.Bll.QueryRunners.Jobs
             _dapperDbContext = dapperDbContext;
         }
 
-        public Job Run(IQuery query)
+        public JobWithDetailsPoco Run(IQuery<GetJobDetailsQueryParameter> query)
         {
             var job = _dapperDbContext
-                .List<Job>(query.Query, query.Parameters)
+                .List<JobWithDetailsPoco>(query.Query, query.Parameters)
                 .SingleOrDefault();
 
             return job;

@@ -1,36 +1,36 @@
-﻿using WaterPoint.Core.Domain;
-using WaterPoint.Data.Entity.DataEntities;
+﻿//using WaterPoint.Core.Domain;
+//using WaterPoint.Data.Entity.DataEntities;
 
-namespace WaterPoint.Core.Bll.Commands.JobTasks
-{
-    public class UpdateJobTaskByIdCommand : ICommand
-    {
-        private readonly ISqlBuilderFactory _sqlBuilderFactory;
+//namespace WaterPoint.Core.Bll.Commands.JobTasks
+//{
+//    public class UpdateJobTaskByIdCommand : ICommand
+//    {
+//        private readonly ISqlBuilderFactory _sqlBuilderFactory;
 
-        public UpdateJobTaskByIdCommand(ISqlBuilderFactory sqlBuilderFactory)
-        {
-            _sqlBuilderFactory = sqlBuilderFactory;
-        }
+//        public UpdateJobTaskByIdCommand(ISqlBuilderFactory sqlBuilderFactory)
+//        {
+//            _sqlBuilderFactory = sqlBuilderFactory;
+//        }
 
-        public void BuildQuery(JobTask input)
-        {
-            var builder = _sqlBuilderFactory.Create<UpdateSqlBuilder<JobTask>>();
+//        public void BuildQuery(JobTask input)
+//        {
+//            var builder = _sqlBuilderFactory.Create<UpdateSqlBuilder<JobTask>>();
 
-            builder.Analyze();
-            builder.AddValueParameters(input);
+//            builder.Analyze();
+//            builder.AddValueParameters(input);
 
-            builder.AddConditions<JobTask>(i => i.Id == input.Id);
+//            builder.AddConditions<JobTask>(i => i.Id == input.Id);
 
-            var sql = builder.GetSql();
+//            var sql = builder.GetSql();
 
-            builder.AddParamter("id", input.Id);
+//            builder.AddParamter("id", input.Id);
 
-            Query = sql;
+//            Query = sql;
 
-            Parameters = builder.Parameters;
-        }
+//            Parameters = builder.Parameters;
+//        }
 
-        public string Query { get; private set; }
-        public object Parameters { get; private set; }
-    }
-}
+//        public string Query { get; private set; }
+//        public object Parameters { get; private set; }
+//    }
+//}

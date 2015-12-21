@@ -4,6 +4,7 @@ using WaterPoint.Core.Bll.Commands.Customers;
 using WaterPoint.Core.Bll.Executors;
 using WaterPoint.Core.Bll.Queries.Customers;
 using WaterPoint.Core.Bll.QueryParameters;
+using WaterPoint.Core.Bll.QueryParameters.Customers;
 using WaterPoint.Core.Bll.QueryRunners;
 using WaterPoint.Core.Bll.QueryRunners.Customers;
 using WaterPoint.Core.Domain;
@@ -22,23 +23,44 @@ namespace WaterPoint.Api.DependencyInjection
         public override void Load()
         {
             BindRequestProcessors();
-            BindQueriesAndCommands();
+            BindQueries();
+            BindQueryRunners();
+            BindCommands();
+            BindCommandExecutors();
+            Bind<PaginationQueryParameterConverter>().ToSelf();
         }
 
-        private void BindQueriesAndCommands()
+        private void BindQueries()
         {
             Bind<IListPaginatedWithOrgIdQuery<PaginatedWithOrgIdQueryParameter>>()
                 .To<ListPaginatedCustomersQuery>()
                 .WhenInjectedExactlyInto<ListPaginatedCustomersProcessor>();
 
-            Bind<IListPaginatedEntitiesRunner<Customer>>()
-                .To<ListPaginatedCustomersRunner>()
-                .WhenInjectedExactlyInto<ListPaginatedCustomersProcessor>();
+            Bind<IQuery<GetCustomerQueryParameter>>().To<GetCustomerByIdQuery>();
+        }
 
-            Bind<PaginationQueryParameterConverter>().ToSelf();
-            Bind<CreateCustomerCommand>().ToSelf();
-            Bind<CreateCommandExecutor>().ToSelf();
-            Bind<GetCustomerByIdQueryRunner>().ToSelf();
+        public void BindQueryRunners()
+        {
+            Bind<IListPaginatedEntitiesRunner<PaginatedWithOrgIdQueryParameter, Customer>>()
+                .To<ListPaginatedCustomersRunner>();
+
+            Bind<IQueryRunner<GetCustomerQueryParameter, Customer>>()
+                .To<GetCustomerByIdQueryRunner>();
+        }
+
+        public void BindCommands()
+        {
+            Bind<ICommand<CreateCustomerQueryParameter>>().To<CreateCustomerCommand>();
+            Bind<ICommand<UpdateCustomerQueryParameter>>().To<UpdateCustomerByIdCommand>();
+        }
+
+        public void BindCommandExecutors()
+        {
+            Bind<ICommandExecutor<CreateCustomerQueryParameter>>()
+                .To<CreateCommandExecutor<CreateCustomerQueryParameter>>();
+
+            Bind<ICommandExecutor<UpdateCustomerQueryParameter>>()
+                .To<UpdateCommandExecutor<UpdateCustomerQueryParameter>>();
         }
 
         private void BindRequestProcessors()
@@ -46,7 +68,7 @@ namespace WaterPoint.Api.DependencyInjection
             Bind<IRequestProcessor<ListPaginatedWithOrgIdRequest, PaginatedResult<IEnumerable<CustomerContract>>>>()
                 .To<ListPaginatedCustomersProcessor>();
 
-            Bind<IRequestProcessor< CreateCustomerRequest, CustomerContract >>()
+            Bind<IRequestProcessor<CreateCustomerRequest, CustomerContract>>()
                     .To<CreateCustomerProcessor>();
 
             Bind<IRequestProcessor<UpdateCustomerRequest, CustomerContract>>()
@@ -55,7 +77,7 @@ namespace WaterPoint.Api.DependencyInjection
             Bind<IRequestProcessor<GetCustomerByIdRequest, CustomerContract>>()
                 .To<GetCustomerByIdProcessor>();
 
-            Bind<IRequestProcessor<ListPaginatedCustomerJobsRequest, JobWithCustomerAndStatusContract>>()
+            Bind<IRequestProcessor<ListPaginatedCustomerJobsRequest, JobWithCustomerContract>>()
                 .To<ListPaginatedCustomerJobsProcessor>();
 
         }

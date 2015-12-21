@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using WaterPoint.Core.Bll.QueryParameters;
 using WaterPoint.Core.Domain;
 using WaterPoint.Data.DbContext.Dapper;
 using WaterPoint.Data.Entity.DataEntities;
@@ -7,7 +8,7 @@ using WaterPoint.Data.Entity.Pocos;
 
 namespace WaterPoint.Core.Bll.QueryRunners.Customers
 {
-    public class ListPaginatedCustomersRunner : IListPaginatedEntitiesRunner<Customer>
+    public class ListPaginatedCustomersRunner : IListPaginatedEntitiesRunner<PaginatedWithOrgIdQueryParameter, Customer>
     {
         private readonly IDapperDbContext _dapperDbContext;
 
@@ -16,7 +17,7 @@ namespace WaterPoint.Core.Bll.QueryRunners.Customers
             _dapperDbContext = dapperDbContext;
         }
 
-        public PaginatedPoco<IEnumerable<Customer>> Run(IQuery query)
+        public PaginatedPoco<IEnumerable<Customer>> Run(IQuery<PaginatedWithOrgIdQueryParameter> query)
         {
             var rawResults = _dapperDbContext
                 .List<Customer, PaginatedPoco>(

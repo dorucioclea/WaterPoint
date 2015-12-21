@@ -1,31 +1,28 @@
-﻿using WaterPoint.Core.Bll.Commands.Customers;
-using WaterPoint.Core.Bll.Executors;
-using WaterPoint.Core.RequestProcessor.Mappers.EntitiesToContracts;
+﻿using WaterPoint.Core.RequestProcessor.Mappers.EntitiesToContracts;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts.Customers;
 using WaterPoint.Core.Domain.Dtos.Requests.Customers;
 using WaterPoint.Data.DbContext.Dapper;
 using Utility;
-using WaterPoint.Core.Bll.Queries.Customers;
-using WaterPoint.Core.Bll.QueryParameters;
-using WaterPoint.Core.Bll.QueryRunners.Customers;
+using WaterPoint.Core.Bll.QueryParameters.Customers;
+using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Core.RequestProcessor.Customers
 {
     public class CreateCustomerProcessor : BaseDapperUowRequestProcess,
         IRequestProcessor<CreateCustomerRequest, CustomerContract>
     {
-        private readonly CreateCustomerCommand _command;
-        private readonly CreateCommandExecutor _executor;
-        private readonly GetCustomerByIdQuery _getCustomerQuery;
-        private readonly GetCustomerByIdQueryRunner _getCustomerByIdQueryRunner;
+        private readonly ICommand<CreateCustomerQueryParameter> _command;
+        private readonly ICommandExecutor<CreateCustomerQueryParameter> _executor;
+        private readonly IQuery<GetCustomerQueryParameter> _getCustomerQuery;
+        private readonly IQueryRunner<GetCustomerQueryParameter, Customer> _getCustomerByIdQueryRunner;
 
         public CreateCustomerProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
-            CreateCustomerCommand command,
-            CreateCommandExecutor executor,
-            GetCustomerByIdQuery getCustomerQuery,
-            GetCustomerByIdQueryRunner getCustomerByIdQueryRunner)
+            ICommand<CreateCustomerQueryParameter> command,
+            ICommandExecutor<CreateCustomerQueryParameter> executor,
+            IQuery<GetCustomerQueryParameter> getCustomerQuery,
+            IQueryRunner<GetCustomerQueryParameter, Customer> getCustomerByIdQueryRunner)
             : base(dapperUnitOfWork)
         {
             _command = command;
@@ -51,9 +48,13 @@ namespace WaterPoint.Core.RequestProcessor.Customers
 
             _command.BuildQuery(createCustomerPoco);
 
-            var newId = _executor.Run(_command);
+            var newId = _executor.Execute(_command);
 
-            _getCustomerQuery.BuildQuery(input.OrganizationIdParameter.OrganizationId, newId);
+            _getCustomerQuery.BuildQuery(new GetCustomerQueryParameter
+            {
+                OrganizationId = input.OrganizationIdParameter.OrganizationId,
+                CustomerId = newId
+            });
 
             var customer = _getCustomerByIdQueryRunner.Run(_getCustomerQuery);
 

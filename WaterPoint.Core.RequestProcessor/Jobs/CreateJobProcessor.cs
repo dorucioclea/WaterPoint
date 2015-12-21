@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using WaterPoint.Core.Bll.Commands.Jobs;
 using WaterPoint.Core.Bll.Executors;
 using WaterPoint.Core.Bll.QueryParameters;
+using WaterPoint.Core.Bll.QueryParameters.Jobs;
 using WaterPoint.Core.RequestProcessor.Mappers.EntitiesToContracts;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts.Customers;
@@ -18,29 +19,29 @@ using WaterPoint.Data.Entity.DataEntities;
 namespace WaterPoint.Core.RequestProcessor.Jobs
 {
     public class CreateJobProcessor : BaseDapperUowRequestProcess,
-        IRequestProcessor<CreateJobRequest, JobWithCustomerAndStatusContract>
+        IRequestProcessor<CreateJobRequest, JobWithCustomerContract>
     {
-        private readonly CreateBasicJobCommand _command;
-        private readonly CreateCommandExecutor _executor;
+        private readonly ICommand<CreateBasicJobQueryParameter> _command;
+        private readonly ICommandExecutor<CreateBasicJobQueryParameter> _executor;
 
         public CreateJobProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
-            CreateBasicJobCommand command,
-            CreateCommandExecutor executor)
+            ICommand<CreateBasicJobQueryParameter> command,
+            ICommandExecutor<CreateBasicJobQueryParameter> executor)
             : base(dapperUnitOfWork)
         {
             _command = command;
             _executor = executor;
         }
 
-        public JobWithCustomerAndStatusContract Process(CreateJobRequest input)
+        public JobWithCustomerContract Process(CreateJobRequest input)
         {
             var result = UowProcess(ProcessDeFacto, input);
 
             return result;
         }
 
-        private JobWithCustomerAndStatusContract ProcessDeFacto(CreateJobRequest input)
+        private JobWithCustomerContract ProcessDeFacto(CreateJobRequest input)
         {
             var parameter = new CreateBasicJobQueryParameter
             {
@@ -55,10 +56,10 @@ namespace WaterPoint.Core.RequestProcessor.Jobs
 
             _command.BuildQuery(parameter);
 
-            var newId = _executor.Run(_command);
+            var newId = _executor.Execute(_command);
 
-            //just a stub, use mapper 
-            var job = new JobWithCustomerAndStatusContract
+            //just a stub, use mapper
+            var job = new JobWithCustomerContract
             {
                 Id = newId,
                 OrganizationId = input.OrganizationIdParameter.OrganizationId,

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using WaterPoint.Core.Bll.Queries.Credentials;
+using WaterPoint.Core.Bll.QueryParameters.Credentials;
 using WaterPoint.Core.Bll.QueryRunners.Credentials;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Dtos.Requests.Credentials;
@@ -13,13 +14,13 @@ namespace WaterPoint.Core.RequestProcessor.Credentials
         BaseDapperUowRequestProcess,
         IRequestProcessor<ListValidateCredentialsRequest, IEnumerable<ValidCredential>>
     {
-        private readonly ListValidateCredentialsQuery _query;
-        private readonly ListValidateCredentialsRunner _runner;
+        private readonly IQuery<ListCredentialsQueryParameter> _query;
+        private readonly IQueryRunner<ListCredentialsQueryParameter, IEnumerable<ValidCredential>> _runner;
 
         public ListValidateCredentialRequestProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
-            ListValidateCredentialsQuery query,
-            ListValidateCredentialsRunner runner)
+            IQuery<ListCredentialsQueryParameter> query,
+            IQueryRunner<ListCredentialsQueryParameter, IEnumerable<ValidCredential>> runner)
             : base(dapperUnitOfWork)
         {
             _query = query;
@@ -28,7 +29,13 @@ namespace WaterPoint.Core.RequestProcessor.Credentials
 
         public IEnumerable<ValidCredential> Process(ListValidateCredentialsRequest input)
         {
-            _query.BuildQuery(input.Username, input.Password);
+            var parameter = new ListCredentialsQueryParameter
+            {
+                Email = input.Username,
+                Password = input.Password
+            };
+
+            _query.BuildQuery(parameter);
 
             using (DapperUnitOfWork.Begin())
             {

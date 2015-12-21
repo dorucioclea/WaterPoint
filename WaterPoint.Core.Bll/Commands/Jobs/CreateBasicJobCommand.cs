@@ -1,10 +1,12 @@
-﻿using WaterPoint.Core.Bll.QueryParameters;
+﻿using System.Windows.Input;
+using WaterPoint.Core.Bll.QueryParameters;
+using WaterPoint.Core.Bll.QueryParameters.Jobs;
 using WaterPoint.Core.Domain;
 using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Core.Bll.Commands.Jobs
 {
-    public class CreateBasicJobCommand : ICommand
+    public class CreateBasicJobCommand : ICommand<CreateBasicJobQueryParameter>
     {
         private readonly ISqlBuilderFactory _sqlBuilderFactory;
 

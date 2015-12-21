@@ -4,8 +4,8 @@ using WaterPoint.Data.Entity.Pocos;
 
 namespace WaterPoint.Core.Bll.QueryRunners
 {
-    public interface IListPaginatedEntitiesRunner<T>
+    public interface IListPaginatedEntitiesRunner<T, TOut> :
+        IQueryRunner<T, PaginatedPoco<IEnumerable<TOut>>> where T : IQueryParameter
     {
-        PaginatedPoco<IEnumerable<T>> Run(IQuery query);
     }
 }

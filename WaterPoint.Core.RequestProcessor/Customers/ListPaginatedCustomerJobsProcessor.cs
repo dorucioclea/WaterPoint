@@ -9,9 +9,9 @@ using WaterPoint.Core.Domain.Dtos.Requests.Customers;
 
 namespace WaterPoint.Core.RequestProcessor.Customers
 {
-    public class ListPaginatedCustomerJobsProcessor : IRequestProcessor<ListPaginatedCustomerJobsRequest, JobWithCustomerAndStatusContract>
+    public class ListPaginatedCustomerJobsProcessor : IRequestProcessor<ListPaginatedCustomerJobsRequest, JobWithCustomerContract>
     {
-        public JobWithCustomerAndStatusContract Process(ListPaginatedCustomerJobsRequest input)
+        public JobWithCustomerContract Process(ListPaginatedCustomerJobsRequest input)
         {
             throw new NotImplementedException();
         }

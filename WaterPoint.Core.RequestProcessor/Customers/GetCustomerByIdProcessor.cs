@@ -1,4 +1,6 @@
-﻿using WaterPoint.Core.Bll.Queries.Customers;
+﻿using AutoMapper.Internal;
+using WaterPoint.Core.Bll.Queries.Customers;
+using WaterPoint.Core.Bll.QueryParameters.Customers;
 using WaterPoint.Core.Bll.QueryRunners.Customers;
 using WaterPoint.Core.RequestProcessor.Mappers.EntitiesToContracts;
 using WaterPoint.Core.Domain;
@@ -12,12 +14,12 @@ namespace WaterPoint.Core.RequestProcessor.Customers
         BaseDapperUowRequestProcess,
         IRequestProcessor<GetCustomerByIdRequest, CustomerContract>
     {
-        private readonly GetCustomerByIdQuery _query;
+        private readonly IQuery<GetCustomerQueryParameter> _query;
         private readonly GetCustomerByIdQueryRunner _runner;
 
         public GetCustomerByIdProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
-            GetCustomerByIdQuery query,
+            IQuery<GetCustomerQueryParameter> query,
             GetCustomerByIdQueryRunner runner)
             : base(dapperUnitOfWork)
         {
@@ -27,7 +29,13 @@ namespace WaterPoint.Core.RequestProcessor.Customers
 
         public CustomerContract Process(GetCustomerByIdRequest input)
         {
-            _query.BuildQuery(input.OrganizationEntityParameter.OrganizationId, input.OrganizationEntityParameter.Id);
+            var parameter = new GetCustomerQueryParameter
+            {
+                OrganizationId = input.OrganizationEntityParameter.OrganizationId,
+                CustomerId = input.OrganizationEntityParameter.Id
+            };
+
+            _query.BuildQuery(parameter);
 
             using (DapperUnitOfWork.Begin())
             {

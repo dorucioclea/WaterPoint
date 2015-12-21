@@ -1,15 +1,15 @@
 ﻿namespace WaterPoint.Core.Domain
 {
-    public interface IQuery
+    public interface IQuery<in T> where T : IQueryParameter
     {
+        void BuildQuery(T parameter);
         string Query { get; }
         object Parameters { get; }
     }
 
-    public interface IListPaginatedWithOrgIdQuery<in T> : IQuery
+    public interface IListPaginatedWithOrgIdQuery<in T> : IQuery<T>
         where T : IQueryParameter
     {
-        void BuildQuery(T parameter);
     }
 
     public interface IQueryParameter
@@ -23,5 +23,11 @@
         string Sort { get; set; }
         bool IsDesc { get; set; }
         string SearchTerm { get; set; }
+    }
+
+    public interface IQueryRunner<T, TOut>
+        where T: IQueryParameter
+    {
+        TOut Run(IQuery<T> query);
     }
 }

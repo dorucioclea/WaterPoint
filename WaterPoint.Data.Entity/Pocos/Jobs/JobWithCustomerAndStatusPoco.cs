@@ -8,7 +8,6 @@ namespace WaterPoint.Data.Entity.Pocos.Jobs
     {
         [Primary]
         public int Id { get; set; }
-        [IgnoreWhenUpdate]
         public int OrganizationId { get; set; }
         public int JobStatusId { get; set; }
         public int JobCategoryId { get; set; }

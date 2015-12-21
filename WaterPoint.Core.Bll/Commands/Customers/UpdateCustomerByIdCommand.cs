@@ -1,9 +1,10 @@
-﻿using WaterPoint.Core.Domain;
+﻿using WaterPoint.Core.Bll.QueryParameters.Customers;
+using WaterPoint.Core.Domain;
 using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Core.Bll.Commands.Customers
 {
-    public class UpdateCustomerByIdCommand : ICommand
+    public class UpdateCustomerByIdCommand : ICommand<UpdateCustomerQueryParameter>
     {
         private readonly ISqlBuilderFactory _sqlBuilderFactory;
 
@@ -12,19 +13,19 @@ namespace WaterPoint.Core.Bll.Commands.Customers
             _sqlBuilderFactory = sqlBuilderFactory;
         }
 
-        public void BuildQuery(int orgId, Customer input)
+        public void BuildQuery(UpdateCustomerQueryParameter parameter)
         {
-            var builder = _sqlBuilderFactory.Create<UpdateSqlBuilder<Customer>>();
+            var builder = _sqlBuilderFactory.Create<UpdateSqlBuilder<UpdateCustomerQueryParameter>>();
 
             builder.Analyze();
-            builder.AddValueParameters(input);
+            builder.AddValueParameters(parameter);
 
-            builder.AddConditions<Customer>(i => i.OrganizationId == orgId && i.Id == input.Id);
+            builder.AddConditions<Customer>(i => i.OrganizationId == parameter.OrganizationId && i.Id == parameter.Id);
 
             var sql = builder.GetSql();
 
-            builder.AddParamter("orgId", orgId);
-            builder.AddParamter("id", input.Id);
+            builder.AddParamter("organizationId", parameter.OrganizationId);
+            builder.AddParamter("id", parameter.Id);
 
             Query = sql;
 

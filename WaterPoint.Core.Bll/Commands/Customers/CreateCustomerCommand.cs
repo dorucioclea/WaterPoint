@@ -1,10 +1,10 @@
-﻿using WaterPoint.Core.Bll.QueryParameters;
+﻿using WaterPoint.Core.Bll.QueryParameters.Customers;
 using WaterPoint.Core.Domain;
 using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Core.Bll.Commands.Customers
 {
-    public class CreateCustomerCommand : ICommand
+    public class CreateCustomerCommand : ICommand<CreateCustomerQueryParameter>
     {
         private readonly ISqlBuilderFactory _sqlBuilderFactory;
 

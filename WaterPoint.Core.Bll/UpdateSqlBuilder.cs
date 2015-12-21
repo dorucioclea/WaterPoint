@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
+using WaterPoint.Core.Domain;
 using WaterPoint.Data.Entity;
 using WaterPoint.Data.Entity.Attributes;
 
 namespace WaterPoint.Core.Bll
 {
     public class UpdateSqlBuilder<T> : SqlBuilder<T>, ICreateSqlBuilder
-           where T : IDataEntity
+           where T : IQueryParameter
     {
         private string _where = string.Empty;
 
@@ -52,7 +53,7 @@ namespace WaterPoint.Core.Bll
                 );
         }
 
-        public void AddValueParameters(IDataEntity input)
+        public void AddValueParameters(T input)
         {
             if (Parameters == null)
                 Parameters = new Dictionary<string, object>();

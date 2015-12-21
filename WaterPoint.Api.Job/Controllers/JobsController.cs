@@ -17,20 +17,20 @@ namespace WaterPoint.Api.Job.Controllers
     [RoutePrefix(RouteDefinitions.Jobs.Prefix)]
     public class JobsController : BaseOrgnizationContextController
     {
-        private readonly IRequestProcessor<ListPaginatedJobsRequest, PaginatedResult<IEnumerable<JobWithCustomerAndStatusContract>>> _listJobRequestProcessor;
-        //private readonly IRequestProcessor<GetJobByIdRequest, JobContract> _getJobByIdRequestProcessor;
-        private readonly IRequestProcessor<CreateJobRequest, JobWithCustomerAndStatusContract> _createJobRequestProcessor;
+        private readonly IRequestProcessor<ListPaginatedJobsRequest, PaginatedResult<IEnumerable<JobWithCustomerContract>>> _listJobRequestProcessor;
+        private readonly IRequestProcessor<GetJobByIdRequest, JobWithDetailsContract> _getJobByIdRequestProcessor;
+        private readonly IRequestProcessor<CreateJobRequest, JobWithCustomerContract> _createJobRequestProcessor;
         //private readonly IRequestProcessor<UpdateJobRequest, JobContract> _updateJobRequestProcessor;
 
         public JobsController(
-            IRequestProcessor<ListPaginatedJobsRequest, PaginatedResult<IEnumerable<JobWithCustomerAndStatusContract>>> listJobRequestProcessor,
-            //IRequestProcessor<GetJobByIdRequest, JobContract> getJobByIdRequestProcessor,
-            IRequestProcessor<CreateJobRequest, JobWithCustomerAndStatusContract> createJobRequestProcessor
+            IRequestProcessor<ListPaginatedJobsRequest, PaginatedResult<IEnumerable<JobWithCustomerContract>>> listJobRequestProcessor,
+            IRequestProcessor<GetJobByIdRequest, JobWithDetailsContract> getJobByIdRequestProcessor,
+            IRequestProcessor<CreateJobRequest, JobWithCustomerContract> createJobRequestProcessor
             //IRequestProcessor<UpdateJobRequest, JobContract> updateJobRequestProcessor
             )
         {
             _listJobRequestProcessor = listJobRequestProcessor;
-            //_getJobByIdRequestProcessor = getJobByIdRequestProcessor;
+            _getJobByIdRequestProcessor = getJobByIdRequestProcessor;
             _createJobRequestProcessor = createJobRequestProcessor;
             //_updateJobRequestProcessor = updateJobRequestProcessor;
         }
@@ -59,17 +59,17 @@ namespace WaterPoint.Api.Job.Controllers
             return Ok(result);
         }
 
-        //[Route("{id:int}")]
-        //public IHttpActionResult Get([FromUri]OrganizationEntityParameter parameter)
-        //{
-        //    var result = _getJobByIdRequestProcessor.Process(
-        //        new GetJobByIdRequest
-        //        {
-        //            OrganizationEntityParameter = parameter
-        //        });
+        [Route("{id:int}")]
+        public IHttpActionResult Get([FromUri]OrganizationEntityParameter parameter)
+        {
+            var result = _getJobByIdRequestProcessor.Process(
+                new GetJobByIdRequest
+                {
+                    OrganizationEntityParameter = parameter
+                });
 
-        //    return Ok(result);
-        //}
+            return Ok(result);
+        }
 
 
         [Route("")]

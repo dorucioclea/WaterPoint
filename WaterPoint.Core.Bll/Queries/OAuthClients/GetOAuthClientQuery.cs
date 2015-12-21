@@ -1,9 +1,10 @@
-﻿using WaterPoint.Core.Domain;
+﻿using WaterPoint.Core.Bll.QueryParameters.Credentials;
+using WaterPoint.Core.Domain;
 using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Core.Bll.Queries.OAuthClients
 {
-    public class GetOAuthClientQuery : IQuery
+    public class GetOAuthClientQuery : IQuery<GetAuthClientQueryParameter>
     {
         private readonly ISqlBuilderFactory _sqlBuilderFactory;
 
@@ -20,14 +21,16 @@ namespace WaterPoint.Core.Bll.Queries.OAuthClients
             _sqlBuilderFactory = sqlBuilderFactory;
         }
 
-        public void BuildQuery(string clientId, string clientSecret, bool isInternal)
+        public void BuildQuery(GetAuthClientQueryParameter parameter)
         {
             var builder = _sqlBuilderFactory.Create<SelectSqlBuilder>();
 
             builder.AddTemplate(_sqlTemplate);
             builder.AddColumns<OAuthClient>();
             builder.AddConditions<OAuthClient>(
-                i => i.ClientId == clientId && i.ClientSecret == clientSecret && i.IsInternal == isInternal);
+                i => i.ClientId == parameter.ClientId
+                && i.ClientSecret == parameter.ClientSecret
+                && i.IsInternal == parameter.IsInternal);
 
             var sql = builder.GetSql();
 
@@ -35,9 +38,9 @@ namespace WaterPoint.Core.Bll.Queries.OAuthClients
 
             Parameters = new
             {
-                clientId,
-                clientSecret,
-                isInternal
+                clientId = parameter.ClientId,
+                clientSecret = parameter.ClientSecret,
+                isInternal = parameter.IsInternal
             };
         }
 

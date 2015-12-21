@@ -1,4 +1,4 @@
-﻿using WaterPoint.Core.Bll.QueryParameters;
+﻿using WaterPoint.Core.Bll.QueryParameters.Jobs;
 using WaterPoint.Core.Domain;
 using WaterPoint.Data.Entity.Pocos.Jobs;
 

@@ -1,7 +1,7 @@
 ﻿using System;
 using WaterPoint.Core.Domain;
 
-namespace WaterPoint.Core.Bll.QueryParameters
+namespace WaterPoint.Core.Bll.QueryParameters.Jobs
 {
     public class CreateBasicJobQueryParameter : IQueryParameter
     {

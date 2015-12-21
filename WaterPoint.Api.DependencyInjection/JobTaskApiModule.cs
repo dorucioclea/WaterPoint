@@ -20,10 +20,24 @@ namespace WaterPoint.Api.DependencyInjection
         public override void Load()
         {
             BindRequestProcessors();
-            BindQueriesAndCommands();
+            BindQueries();
+            BindQueryRunners();
+            BindCommands();
         }
 
-        private void BindQueriesAndCommands()
+        private void BindQueries()
+        {
+        }
+
+        public void BindQueryRunners()
+        {
+        }
+
+        public void BindCommands()
+        {
+        }
+
+        public void BindCommandExecutors()
         {
         }
 

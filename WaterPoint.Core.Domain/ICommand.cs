@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace WaterPoint.Core.Domain
+﻿namespace WaterPoint.Core.Domain
 {
-    public interface ICommand
+    public interface ICommand<in T> where T : IQueryParameter
     {
+        void BuildQuery(T input);
         string Query { get; }
         object Parameters { get; }
+    }
+
+    public interface ICommandExecutor<T> where T : IQueryParameter
+    {
+        int Execute(ICommand<T> query);
     }
 }

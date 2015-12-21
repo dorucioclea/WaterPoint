@@ -3,6 +3,7 @@
 	[Id] INT NOT NULL IDENTITY,
     [OrganizationId] INT NOT NULL,
     [JobStatusId] INT NOT NULL,
+    [PriorityTypeId] INT NULL,
     [JobCategoryId] INT NULL,
     [Code] VARCHAR(50) NOT NULL,
 	[ShortDescription] NVARCHAR(200) NULL,
@@ -11,16 +12,18 @@
     [StartDate] DATE NOT NULL,
     [EndDate] DATE NOT NULL,
     [DueDate] DATE NULL,
+    [Budget] DECIMAL(10,3) NULL,
     [ExcludeFromWip] BIT NOT NULL DEFAULT(0),
     [Version] ROWVERSION NOT NULL,
 	[UtcCreated] DATETIME2(3) NOT NULL DEFAULT(SYSUTCDATETIME()),
 	[UtcUpdated] DATETIME2(3) NOT NULL DEFAULT(SYSUTCDATETIME()),
 	[Uid] UNIQUEIDENTIFIER NOT NULL DEFAULT(NEWID()),
     CONSTRAINT [PK_dbo_Job_Id] PRIMARY KEY CLUSTERED (Id ASC),
-    CONSTRAINT [FK_Job_Customer] FOREIGN KEY ([CustomerId]) REFERENCES [dbo].[Customer]([Id]),
-    CONSTRAINT [FK_Job_Organization] FOREIGN KEY ([OrganizationId]) REFERENCES [dbo].[Organization]([Id]),
-    CONSTRAINT [FK_Job_JobStatus] FOREIGN KEY ([JobStatusId]) REFERENCES [dbo].[JobStatus] ([Id]),
-    CONSTRAINT [FK_Job_Category] FOREIGN KEY ([JobCategoryId]) REFERENCES [dbo].[JobCategory]([Id])
+    CONSTRAINT [FK_dbo_Job_dbo_Customer] FOREIGN KEY ([CustomerId]) REFERENCES [dbo].[Customer]([Id]),
+    CONSTRAINT [FK_dbo_Job_dbo_Organization] FOREIGN KEY ([OrganizationId]) REFERENCES [dbo].[Organization]([Id]),
+    CONSTRAINT [FK_dbo_Job_dbo_JobStatus] FOREIGN KEY ([JobStatusId]) REFERENCES [dbo].[JobStatus] ([Id]),
+    CONSTRAINT [FK_dbo_Job_dbo_Category] FOREIGN KEY ([JobCategoryId]) REFERENCES [dbo].[JobCategory]([Id]),
+    CONSTRAINT [FK_dbo_Job_dbo_PriorityType] FOREIGN KEY ([PriorityTypeId]) REFERENCES [dbo].[PriorityType]([Id])
 );
 GO
 

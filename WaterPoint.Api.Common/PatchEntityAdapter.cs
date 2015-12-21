@@ -13,8 +13,7 @@ namespace WaterPoint.Api.Common
         TOutput PatchEnitity<TInput, TOutput>(
             TOutput existingEntity,
             Action<TInput> patchAction,
-            Action<TOutput> postUpdateAction,
-            IQuery existingEntityLookupQuery)
+            Action<TOutput> postUpdateAction)
             where TOutput : class,
             IDataEntity where TInput : class,
             new();
@@ -25,8 +24,7 @@ namespace WaterPoint.Api.Common
         public TOutput PatchEnitity<TInput, TOutput>(
             TOutput existingEntity,
             Action<TInput> patchAction,
-            Action<TOutput> postUpdateAction,
-            IQuery existingEntityLookupQuery)
+            Action<TOutput> postUpdateAction)
             where TOutput : class, IDataEntity
             where TInput : class, new()
         {

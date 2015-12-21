@@ -98,9 +98,14 @@
     <Compile Include="Queries\OAuthClients\GetOAuthClientQuery.cs" />
     <Compile Include="Queries\TaskDefinitions\GetTaskDefinitionByIdQuery.cs" />
     <Compile Include="Queries\TaskDefinitions\ListPaginatedTaskDefinitionsQuery.cs" />
-    <Compile Include="QueryParameters\CreateCustomerQueryParameter.cs" />
-    <Compile Include="QueryParameters\CreateBasicJobQueryParameter.cs" />
-    <Compile Include="QueryParameters\PaginatedJobsQueryParameter.cs" />
+    <Compile Include="QueryParameters\Credentials\GetAuthClientQueryParameter.cs" />
+    <Compile Include="QueryParameters\Credentials\ListCredentialsQueryParameter.cs" />
+    <Compile Include="QueryParameters\Customers\UpdateCustomerQueryParameter.cs" />
+    <Compile Include="QueryParameters\Customers\CreateCustomerQueryParameter.cs" />
+    <Compile Include="QueryParameters\Customers\GetCustomerQueryParameter.cs" />
+    <Compile Include="QueryParameters\Jobs\CreateBasicJobQueryParameter.cs" />
+    <Compile Include="QueryParameters\Jobs\GetJobDetailsQueryParameter.cs" />
+    <Compile Include="QueryParameters\Jobs\PaginatedJobsQueryParameter.cs" />
     <Compile Include="QueryParameters\PaginatedWithOrgIdQueryParameter.cs" />
     <Compile Include="QueryParameters\IPaginatedQueryParameter.cs" />
     <Compile Include="QueryRunners\Credentials\ListValidateCredentialsRunner.cs" />

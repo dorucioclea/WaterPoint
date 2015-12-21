@@ -15,19 +15,19 @@ namespace WaterPoint.Api.Customer.Controllers
     [RoutePrefix(RouteDefinitions.Customers.Prefix)]
     public class CustomersController : BaseOrgnizationContextController
     {
-        private readonly IRequestProcessor<ListPaginatedWithOrgIdRequest, PaginatedResult<IEnumerable<CustomerContract>>> _listCustomeRequestProcessor;
+        private readonly IRequestProcessor<ListPaginatedWithOrgIdRequest, PaginatedResult<IEnumerable<CustomerContract>>> _listCustomerRequestProcessor;
         private readonly IRequestProcessor<CreateCustomerRequest, CustomerContract> _createCustomerRequest;
         private readonly IRequestProcessor<UpdateCustomerRequest, CustomerContract> _updateRequestProcessor;
         private readonly IRequestProcessor<GetCustomerByIdRequest, CustomerContract> _getCustomerByIdProcessor;
 
 
         public CustomersController(
-            IRequestProcessor<ListPaginatedWithOrgIdRequest, PaginatedResult<IEnumerable<CustomerContract>>> listCustomeRequestProcessor,
+            IRequestProcessor<ListPaginatedWithOrgIdRequest, PaginatedResult<IEnumerable<CustomerContract>>> listCustomerRequestProcessor,
             IRequestProcessor<CreateCustomerRequest, CustomerContract> createCustomerRequest,
             IRequestProcessor<UpdateCustomerRequest, CustomerContract> updateRequestProcessor,
             IRequestProcessor<GetCustomerByIdRequest, CustomerContract> getCustomerByIdProcessor)
         {
-            _listCustomeRequestProcessor = listCustomeRequestProcessor;
+            _listCustomerRequestProcessor = listCustomerRequestProcessor;
             _createCustomerRequest = createCustomerRequest;
             _updateRequestProcessor = updateRequestProcessor;
             _getCustomerByIdProcessor = getCustomerByIdProcessor;
@@ -45,7 +45,7 @@ namespace WaterPoint.Api.Customer.Controllers
                 PaginationParamter = pagination
             };
 
-            var result = _listCustomeRequestProcessor.Process(request);
+            var result = _listCustomerRequestProcessor.Process(request);
 
             return Ok(result);
         }

@@ -18,10 +18,10 @@ namespace WaterPoint.Api.Customer.Controllers
     [RoutePrefix(RouteDefinitions.Customers.Prefix)]
     public class JobsController : BaseOrgnizationContextController
     {
-        private readonly IRequestProcessor<ListPaginatedCustomerJobsRequest, JobWithCustomerAndStatusContract> _listCustomerJobsRequestProcessor;
+        private readonly IRequestProcessor<ListPaginatedCustomerJobsRequest, JobWithCustomerContract> _listCustomerJobsRequestProcessor;
 
         public JobsController(
-            IRequestProcessor<ListPaginatedCustomerJobsRequest, JobWithCustomerAndStatusContract> listCustomerJobsRequestProcessor)
+            IRequestProcessor<ListPaginatedCustomerJobsRequest, JobWithCustomerContract> listCustomerJobsRequestProcessor)
         {
             _listCustomerJobsRequestProcessor = listCustomerJobsRequestProcessor;
         }
