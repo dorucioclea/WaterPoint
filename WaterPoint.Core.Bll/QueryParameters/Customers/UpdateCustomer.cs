@@ -1,10 +1,10 @@
 ﻿using System;
-using WaterPoint.Core.Domain;
+using WaterPoint.Core.Domain.Db;
 using WaterPoint.Data.Entity.Attributes;
 
 namespace WaterPoint.Core.Bll.QueryParameters.Customers
 {
-    public class UpdateCustomerQueryParameter : IQueryParameter
+    public class UpdateCustomer : IQueryParameter
     {
         [IgnoreWhenUpdate]
         public int Id { get; set; }

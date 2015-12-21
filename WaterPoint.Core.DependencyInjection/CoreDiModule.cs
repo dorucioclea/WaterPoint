@@ -3,6 +3,7 @@ using Ninject.Extensions.Factory;
 using Ninject.Modules;
 using Ninject.Web.Common;
 using WaterPoint.Core.Bll;
+using WaterPoint.Core.Domain.Db;
 using WaterPoint.Data.DbContext.Dapper;
 
 

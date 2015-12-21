@@ -1,10 +1,10 @@
 ﻿using WaterPoint.Core.Bll.QueryParameters.Customers;
-using WaterPoint.Core.Domain;
+using WaterPoint.Core.Domain.Db;
 using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Core.Bll.Commands.Customers
 {
-    public class UpdateCustomerByIdCommand : ICommand<UpdateCustomerQueryParameter>
+    public class UpdateCustomerByIdCommand : ICommand<UpdateCustomer>
     {
         private readonly ISqlBuilderFactory _sqlBuilderFactory;
 
@@ -13,9 +13,9 @@ namespace WaterPoint.Core.Bll.Commands.Customers
             _sqlBuilderFactory = sqlBuilderFactory;
         }
 
-        public void BuildQuery(UpdateCustomerQueryParameter parameter)
+        public void BuildQuery(UpdateCustomer parameter)
         {
-            var builder = _sqlBuilderFactory.Create<UpdateSqlBuilder<UpdateCustomerQueryParameter>>();
+            var builder = _sqlBuilderFactory.Create<UpdateSqlBuilder<UpdateCustomer>>();
 
             builder.Analyze();
             builder.AddValueParameters(parameter);

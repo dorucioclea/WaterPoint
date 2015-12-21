@@ -8,6 +8,7 @@ using WaterPoint.Core.Bll.QueryRunners;
 using WaterPoint.Core.Bll.QueryRunners.Jobs;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts.Jobs;
+using WaterPoint.Core.Domain.Db;
 using WaterPoint.Core.Domain.Dtos.Requests.Jobs;
 using WaterPoint.Core.RequestProcessor;
 using WaterPoint.Core.RequestProcessor.Jobs;
@@ -29,22 +30,22 @@ namespace WaterPoint.Api.DependencyInjection
 
         private void BindQueries()
         {
-            Bind<IListPaginatedWithOrgIdQuery<PaginatedJobsQueryParameter>>().To<ListPaginatedJobsQuery>();
-            Bind<IQuery<GetJobDetailsQueryParameter>>().To<GetJobByIdQuery>();
+            Bind<IQuery<PaginatedJobs>>().To<ListPaginatedJobsQuery>();
+            Bind<IQuery<GetJobDetails>>().To<GetJobByIdQuery>();
         }
 
         private void BindQueryRunners()
         {
-            Bind<IListPaginatedEntitiesRunner<PaginatedJobsQueryParameter, JobWithCustomerAndStatusPoco>>()
+            Bind<IListPaginatedEntitiesRunner<PaginatedJobs, JobWithCustomerAndStatusPoco>>()
                 .To<ListPaginatedJobsRunner>();
 
-            Bind<IQueryRunner<GetJobDetailsQueryParameter, JobWithDetailsPoco>>()
+            Bind<IQueryRunner<GetJobDetails, JobWithDetailsPoco>>()
                 .To<GetJobByIdQueryRunner>();
         }
 
         public void BindCommands()
         {
-            Bind<ICommand<CreateBasicJobQueryParameter>>().To<CreateBasicJobCommand>();
+            Bind<ICommand<CreateBasicJob>>().To<CreateBasicJobCommand>();
 
             //Bind<CreateCommandExecutor>().ToSelf();
             //Bind<GetJobByIdQuery>().ToSelf();
@@ -55,8 +56,8 @@ namespace WaterPoint.Api.DependencyInjection
 
         public void BindCommandExecutors()
         {
-            Bind<ICommandExecutor<CreateBasicJobQueryParameter>>()
-                .To<CreateCommandExecutor<CreateBasicJobQueryParameter>>();
+            Bind<ICommandExecutor<CreateBasicJob>>()
+                .To<CreateCommandExecutor<CreateBasicJob>>();
         }
 
         private void BindQueryParameterAnalyzer()

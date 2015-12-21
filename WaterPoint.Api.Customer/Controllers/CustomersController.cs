@@ -7,22 +7,22 @@ using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts.Customers;
 using WaterPoint.Core.Domain.Dtos;
 using WaterPoint.Core.Domain.Dtos.Payloads.Customers;
+using WaterPoint.Core.Domain.Dtos.RequestParameters;
 using WaterPoint.Core.Domain.Dtos.Requests.Customers;
-using WaterPoint.Core.Domain.Dtos.Requests.Shared;
 
 namespace WaterPoint.Api.Customer.Controllers
 {
     [RoutePrefix(RouteDefinitions.Customers.Prefix)]
     public class CustomersController : BaseOrgnizationContextController
     {
-        private readonly IRequestProcessor<ListPaginatedWithOrgIdRequest, PaginatedResult<IEnumerable<CustomerContract>>> _listCustomerRequestProcessor;
+        private readonly IRequestProcessor<ListCustomersRequest, PaginatedResult<IEnumerable<CustomerContract>>> _listCustomerRequestProcessor;
         private readonly IRequestProcessor<CreateCustomerRequest, CustomerContract> _createCustomerRequest;
         private readonly IRequestProcessor<UpdateCustomerRequest, CustomerContract> _updateRequestProcessor;
         private readonly IRequestProcessor<GetCustomerByIdRequest, CustomerContract> _getCustomerByIdProcessor;
 
 
         public CustomersController(
-            IRequestProcessor<ListPaginatedWithOrgIdRequest, PaginatedResult<IEnumerable<CustomerContract>>> listCustomerRequestProcessor,
+            IRequestProcessor<ListCustomersRequest, PaginatedResult<IEnumerable<CustomerContract>>> listCustomerRequestProcessor,
             IRequestProcessor<CreateCustomerRequest, CustomerContract> createCustomerRequest,
             IRequestProcessor<UpdateCustomerRequest, CustomerContract> updateRequestProcessor,
             IRequestProcessor<GetCustomerByIdRequest, CustomerContract> getCustomerByIdProcessor)
@@ -35,14 +35,14 @@ namespace WaterPoint.Api.Customer.Controllers
 
         [Route("")]
         public IHttpActionResult Get(
-            [FromUri]OrganizationIdParameter parameter,
+            [FromUri]IsProspectOrgIdParameter parameter,
             [FromUri]PaginationParamter pagination)
         {
             //validation
-            var request = new ListPaginatedWithOrgIdRequest
+            var request = new ListCustomersRequest
             {
-                OrganizationIdParameter = parameter,
-                PaginationParamter = pagination
+                IsProspectOrgId = parameter,
+                Pagination = pagination
             };
 
             var result = _listCustomerRequestProcessor.Process(request);
@@ -63,6 +63,7 @@ namespace WaterPoint.Api.Customer.Controllers
         }
 
         [Route("")]
+        [Authorize]//add to class level
         public IHttpActionResult Post(
             [FromUri]OrganizationIdParameter parameter,
             [FromBody]WriteCustomerPayload customerPayload)

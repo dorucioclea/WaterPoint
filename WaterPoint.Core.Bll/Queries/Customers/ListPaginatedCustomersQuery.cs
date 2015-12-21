@@ -1,10 +1,12 @@
 ﻿using WaterPoint.Core.Bll.QueryParameters;
+using WaterPoint.Core.Bll.QueryParameters.Customers;
 using WaterPoint.Core.Domain;
+using WaterPoint.Core.Domain.Db;
 using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Core.Bll.Queries.Customers
 {
-    public class ListPaginatedCustomersQuery : IListPaginatedWithOrgIdQuery<PaginatedWithOrgIdQueryParameter>
+    public class ListPaginatedCustomersQuery : IQuery<PaginatedOrgIdIsProspect>
     {
         private readonly ISqlBuilderFactory _sqlBuilderFactory;
 
@@ -31,7 +33,7 @@ namespace WaterPoint.Core.Bll.Queries.Customers
             _sqlBuilderFactory = sqlBuilderFactory;
         }
 
-        public void BuildQuery(PaginatedWithOrgIdQueryParameter parameter)
+        public void BuildQuery(PaginatedOrgIdIsProspect parameter)
         {
             var builder = _sqlBuilderFactory.Create<SelectSqlBuilder>();
 
@@ -39,8 +41,15 @@ namespace WaterPoint.Core.Bll.Queries.Customers
 
             builder.AddColumns<Customer>();
 
-            builder.AddConditions<Customer>(
-                i => i.OrganizationId == parameter.OrganizationId && i.IsDeleted == false && i.IsProspect == false);
+            if (parameter.IsProspect.HasValue)
+                builder.AddConditions<Customer>(
+                    i => i.OrganizationId == parameter.OrganizationId
+                         && i.IsDeleted == false
+                         && i.IsProspect == parameter.IsProspect);
+            else
+                builder.AddConditions<Customer>(
+                    i => i.OrganizationId == parameter.OrganizationId
+                         && i.IsDeleted == false);
 
             builder.AddOrderBy<Customer>(parameter.Sort, parameter.IsDesc);
 
@@ -55,7 +64,8 @@ namespace WaterPoint.Core.Bll.Queries.Customers
                 organizationId = parameter.OrganizationId,
                 offset = parameter.Offset,
                 pageSize = parameter.PageSize,
-                searchTerm = parameter.SearchTerm
+                searchTerm = parameter.SearchTerm,
+                isProspect = parameter.IsProspect
             };
         }
 

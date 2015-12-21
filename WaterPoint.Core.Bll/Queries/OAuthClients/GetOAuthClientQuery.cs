@@ -1,10 +1,11 @@
 ﻿using WaterPoint.Core.Bll.QueryParameters.Credentials;
 using WaterPoint.Core.Domain;
+using WaterPoint.Core.Domain.Db;
 using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Core.Bll.Queries.OAuthClients
 {
-    public class GetOAuthClientQuery : IQuery<GetAuthClientQueryParameter>
+    public class GetOAuthClientQuery : IQuery<GetAuthClient>
     {
         private readonly ISqlBuilderFactory _sqlBuilderFactory;
 
@@ -21,7 +22,7 @@ namespace WaterPoint.Core.Bll.Queries.OAuthClients
             _sqlBuilderFactory = sqlBuilderFactory;
         }
 
-        public void BuildQuery(GetAuthClientQueryParameter parameter)
+        public void BuildQuery(GetAuthClient parameter)
         {
             var builder = _sqlBuilderFactory.Create<SelectSqlBuilder>();
 

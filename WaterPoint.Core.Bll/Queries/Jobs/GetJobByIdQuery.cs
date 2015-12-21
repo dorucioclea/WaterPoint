@@ -1,10 +1,10 @@
 ﻿using WaterPoint.Core.Bll.QueryParameters.Jobs;
-using WaterPoint.Core.Domain;
+using WaterPoint.Core.Domain.Db;
 using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Core.Bll.Queries.Jobs
 {
-    public class GetJobByIdQuery : IQuery<GetJobDetailsQueryParameter>
+    public class GetJobByIdQuery : IQuery<GetJobDetails>
     {
         private readonly ISqlBuilderFactory _sqlBuilderFactory;
 
@@ -21,7 +21,7 @@ namespace WaterPoint.Core.Bll.Queries.Jobs
             _sqlBuilderFactory = sqlBuilderFactory;
         }
 
-        public void BuildQuery(GetJobDetailsQueryParameter parameter)
+        public void BuildQuery(GetJobDetails parameter)
         {
             var builder = _sqlBuilderFactory.Create<SelectSqlBuilder>();
 

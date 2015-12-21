@@ -1,10 +1,10 @@
 ﻿using WaterPoint.Core.Bll.QueryParameters.Credentials;
-using WaterPoint.Core.Domain;
+using WaterPoint.Core.Domain.Db;
 using WaterPoint.Data.Entity.Pocos.Views;
 
 namespace WaterPoint.Core.Bll.Queries.Credentials
 {
-    public class ListValidateCredentialsQuery : IQuery<ListCredentialsQueryParameter>
+    public class ListValidateCredentialsQuery : IQuery<ListCredentials>
     {
         private readonly ISqlBuilderFactory _sqlBuilderFactory;
 
@@ -22,7 +22,7 @@ namespace WaterPoint.Core.Bll.Queries.Credentials
             _sqlBuilderFactory = sqlBuilderFactory;
         }
 
-        public void BuildQuery(ListCredentialsQueryParameter parameter)
+        public void BuildQuery(ListCredentials parameter)
         {
             var builder = _sqlBuilderFactory.Create<SelectSqlBuilder>();
 

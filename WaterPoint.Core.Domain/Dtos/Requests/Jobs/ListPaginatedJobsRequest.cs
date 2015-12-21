@@ -1,4 +1,4 @@
-﻿using WaterPoint.Core.Domain.Dtos.Parameters;
+﻿using WaterPoint.Core.Domain.Dtos.RequestParameters;
 using WaterPoint.Core.Domain.Dtos.Requests.Shared;
 
 namespace WaterPoint.Core.Domain.Dtos.Requests.Jobs

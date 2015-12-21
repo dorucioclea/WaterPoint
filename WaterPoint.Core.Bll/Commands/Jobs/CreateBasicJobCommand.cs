@@ -2,11 +2,12 @@
 using WaterPoint.Core.Bll.QueryParameters;
 using WaterPoint.Core.Bll.QueryParameters.Jobs;
 using WaterPoint.Core.Domain;
+using WaterPoint.Core.Domain.Db;
 using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Core.Bll.Commands.Jobs
 {
-    public class CreateBasicJobCommand : ICommand<CreateBasicJobQueryParameter>
+    public class CreateBasicJobCommand : ICommand<CreateBasicJob>
     {
         private readonly ISqlBuilderFactory _sqlBuilderFactory;
 
@@ -15,11 +16,11 @@ namespace WaterPoint.Core.Bll.Commands.Jobs
             _sqlBuilderFactory = sqlBuilderFactory;
         }
 
-        public void BuildQuery(CreateBasicJobQueryParameter parameter)
+        public void BuildQuery(CreateBasicJob parameter)
         {
             var builder = _sqlBuilderFactory.Create<CreateSqlBuilder<Job>>();
 
-            builder.Analyze<CreateBasicJobQueryParameter>();
+            builder.Analyze<CreateBasicJob>();
             builder.AddValueParameters(parameter);
 
             var sql = builder.GetSql();

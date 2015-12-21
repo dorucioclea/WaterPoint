@@ -1,8 +1,8 @@
-﻿using WaterPoint.Core.Domain;
+﻿using WaterPoint.Core.Domain.Db;
 
 namespace WaterPoint.Core.Bll.QueryParameters
 {
-    public class PaginatedWithOrgIdQueryParameter : IPaginatedQueryParameter
+    public class PaginatedOrgId : IPaginatedQueryParameter
     {
         public int OrganizationId { get; set; }
         public int Offset { get; set; }

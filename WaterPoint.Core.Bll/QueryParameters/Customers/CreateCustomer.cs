@@ -1,9 +1,9 @@
 ﻿using System;
-using WaterPoint.Core.Domain;
+using WaterPoint.Core.Domain.Db;
 
 namespace WaterPoint.Core.Bll.QueryParameters.Customers
 {
-    public class CreateCustomerQueryParameter : IQueryParameter
+    public class CreateCustomer : IQueryParameter
     {
         public int OrganizationId { get; set; }
 

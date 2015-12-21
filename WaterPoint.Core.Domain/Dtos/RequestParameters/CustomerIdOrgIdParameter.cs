@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WaterPoint.Core.Domain.Dtos.Parameters
+namespace WaterPoint.Core.Domain.Dtos.RequestParameters
 {
     public class CustomerIdOrgIdParameter
     {

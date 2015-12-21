@@ -4,8 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
-using System.Runtime.Remoting.Channels;
-using WaterPoint.Data.Entity;
+using WaterPoint.Core.Domain.Db;
 using WaterPoint.Data.Entity.Attributes;
 
 namespace WaterPoint.Core.Bll

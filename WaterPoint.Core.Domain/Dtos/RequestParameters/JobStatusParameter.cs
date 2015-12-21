@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace WaterPoint.Core.Domain.Dtos.Parameters
+namespace WaterPoint.Core.Domain.Dtos.RequestParameters
 {
     public class JobStatusParameter
     {

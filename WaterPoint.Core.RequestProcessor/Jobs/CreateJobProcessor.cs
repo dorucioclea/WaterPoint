@@ -12,6 +12,7 @@ using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts.Customers;
 using WaterPoint.Core.Domain.Contracts.Jobs;
 using WaterPoint.Core.Domain.Contracts.JobStatuses;
+using WaterPoint.Core.Domain.Db;
 using WaterPoint.Core.Domain.Dtos.Requests.Jobs;
 using WaterPoint.Data.DbContext.Dapper;
 using WaterPoint.Data.Entity.DataEntities;
@@ -21,13 +22,13 @@ namespace WaterPoint.Core.RequestProcessor.Jobs
     public class CreateJobProcessor : BaseDapperUowRequestProcess,
         IRequestProcessor<CreateJobRequest, JobWithCustomerContract>
     {
-        private readonly ICommand<CreateBasicJobQueryParameter> _command;
-        private readonly ICommandExecutor<CreateBasicJobQueryParameter> _executor;
+        private readonly ICommand<CreateBasicJob> _command;
+        private readonly ICommandExecutor<CreateBasicJob> _executor;
 
         public CreateJobProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
-            ICommand<CreateBasicJobQueryParameter> command,
-            ICommandExecutor<CreateBasicJobQueryParameter> executor)
+            ICommand<CreateBasicJob> command,
+            ICommandExecutor<CreateBasicJob> executor)
             : base(dapperUnitOfWork)
         {
             _command = command;
@@ -43,7 +44,7 @@ namespace WaterPoint.Core.RequestProcessor.Jobs
 
         private JobWithCustomerContract ProcessDeFacto(CreateJobRequest input)
         {
-            var parameter = new CreateBasicJobQueryParameter
+            var parameter = new CreateBasicJob
             {
                 OrganizationId = input.OrganizationIdParameter.OrganizationId,
                 JobStatusId = input.CreateJobPayload.JobStatusId,

@@ -5,6 +5,7 @@ using WaterPoint.Core.Domain.Dtos.Requests.Customers;
 using WaterPoint.Data.DbContext.Dapper;
 using Utility;
 using WaterPoint.Core.Bll.QueryParameters.Customers;
+using WaterPoint.Core.Domain.Db;
 using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Core.RequestProcessor.Customers
@@ -12,17 +13,17 @@ namespace WaterPoint.Core.RequestProcessor.Customers
     public class CreateCustomerProcessor : BaseDapperUowRequestProcess,
         IRequestProcessor<CreateCustomerRequest, CustomerContract>
     {
-        private readonly ICommand<CreateCustomerQueryParameter> _command;
-        private readonly ICommandExecutor<CreateCustomerQueryParameter> _executor;
-        private readonly IQuery<GetCustomerQueryParameter> _getCustomerQuery;
-        private readonly IQueryRunner<GetCustomerQueryParameter, Customer> _getCustomerByIdQueryRunner;
+        private readonly ICommand<CreateCustomer> _command;
+        private readonly ICommandExecutor<CreateCustomer> _executor;
+        private readonly IQuery<GetCustomer> _getCustomerQuery;
+        private readonly IQueryRunner<GetCustomer, Customer> _getCustomerByIdQueryRunner;
 
         public CreateCustomerProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
-            ICommand<CreateCustomerQueryParameter> command,
-            ICommandExecutor<CreateCustomerQueryParameter> executor,
-            IQuery<GetCustomerQueryParameter> getCustomerQuery,
-            IQueryRunner<GetCustomerQueryParameter, Customer> getCustomerByIdQueryRunner)
+            ICommand<CreateCustomer> command,
+            ICommandExecutor<CreateCustomer> executor,
+            IQuery<GetCustomer> getCustomerQuery,
+            IQueryRunner<GetCustomer, Customer> getCustomerByIdQueryRunner)
             : base(dapperUnitOfWork)
         {
             _command = command;
@@ -41,7 +42,7 @@ namespace WaterPoint.Core.RequestProcessor.Customers
         private CustomerContract ProcessDeFacto(CreateCustomerRequest input)
         {
             #region  replace this with a proper mapper
-            var createCustomerPoco = input.CreateCustomerPayload.MapTo(new CreateCustomerQueryParameter());
+            var createCustomerPoco = input.CreateCustomerPayload.MapTo(new CreateCustomer());
 
             createCustomerPoco.OrganizationId = input.OrganizationIdParameter.OrganizationId;
             #endregion
@@ -50,7 +51,7 @@ namespace WaterPoint.Core.RequestProcessor.Customers
 
             var newId = _executor.Execute(_command);
 
-            _getCustomerQuery.BuildQuery(new GetCustomerQueryParameter
+            _getCustomerQuery.BuildQuery(new GetCustomer
             {
                 OrganizationId = input.OrganizationIdParameter.OrganizationId,
                 CustomerId = newId

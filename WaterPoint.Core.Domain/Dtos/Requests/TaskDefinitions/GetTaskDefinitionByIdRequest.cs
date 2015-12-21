@@ -1,8 +1,6 @@
-﻿using WaterPoint.Core.Domain.Dtos.Interfaces;
-
-namespace WaterPoint.Core.Domain.Dtos.Requests.TaskDefinitions
+﻿namespace WaterPoint.Core.Domain.Dtos.Requests.TaskDefinitions
 {
-    public class GetTaskDefinitionByIdRequest: IOrganizationEntityParameter, IRequest
+    public class GetTaskDefinitionByIdRequest: IRequest
     {
         public OrganizationEntityParameter OrganizationEntityParameter { get; set; }
     }

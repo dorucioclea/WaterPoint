@@ -98,7 +98,7 @@ AND (CONTAINS((c.[Code],c.[Email]), @searchterm) OR CONTAINS((c.[SearchName]), @
                     [dbo].[Customer].[UtcUpdated] = @utcupdated
                 WHERE (([dbo].[Customer].[OrganizationId] = @orgid) AND ([dbo].[Customer].[Id] = @id))";
 
-            var customer = new UpdateCustomerQueryParameter
+            var customer = new UpdateCustomer
             {
                 Id = 123,
                 OrganizationId = 1000,
@@ -115,7 +115,7 @@ AND (CONTAINS((c.[Code],c.[Email]), @searchterm) OR CONTAINS((c.[SearchName]), @
                 //Version = "version1"
             };
 
-            var obj = new UpdateSqlBuilder<UpdateCustomerQueryParameter>();
+            var obj = new UpdateSqlBuilder<UpdateCustomer>();
 
             obj.Analyze();
             obj.AddValueParameters(customer);

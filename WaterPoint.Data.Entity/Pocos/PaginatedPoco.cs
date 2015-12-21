@@ -1,7 +1,6 @@
 ﻿namespace WaterPoint.Data.Entity.Pocos
 {
     public class PaginatedPoco<T> : PaginatedPoco
-        where T : class
     {
         public T Data { get; set; }
     }

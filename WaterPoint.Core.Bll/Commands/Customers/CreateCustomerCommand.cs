@@ -1,10 +1,10 @@
 ﻿using WaterPoint.Core.Bll.QueryParameters.Customers;
-using WaterPoint.Core.Domain;
+using WaterPoint.Core.Domain.Db;
 using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Core.Bll.Commands.Customers
 {
-    public class CreateCustomerCommand : ICommand<CreateCustomerQueryParameter>
+    public class CreateCustomerCommand : ICommand<CreateCustomer>
     {
         private readonly ISqlBuilderFactory _sqlBuilderFactory;
 
@@ -13,11 +13,11 @@ namespace WaterPoint.Core.Bll.Commands.Customers
             _sqlBuilderFactory = sqlBuilderFactory;
         }
 
-        public void BuildQuery(CreateCustomerQueryParameter input)
+        public void BuildQuery(CreateCustomer input)
         {
             var builder = _sqlBuilderFactory.Create<CreateSqlBuilder<Customer>>();
 
-            builder.Analyze<CreateCustomerQueryParameter>();
+            builder.Analyze<CreateCustomer>();
             builder.AddValueParameters(input);
 
             var sql = builder.GetSql();

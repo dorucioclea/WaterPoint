@@ -1,4 +1,4 @@
-﻿using WaterPoint.Core.Domain;
+﻿using WaterPoint.Core.Domain.Db;
 using WaterPoint.Data.DbContext.Dapper;
 
 namespace WaterPoint.Core.Bll.Executors

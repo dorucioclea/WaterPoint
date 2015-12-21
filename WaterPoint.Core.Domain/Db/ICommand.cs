@@ -1,4 +1,4 @@
-﻿namespace WaterPoint.Core.Domain
+﻿namespace WaterPoint.Core.Domain.Db
 {
     public interface ICommand<in T> where T : IQueryParameter
     {

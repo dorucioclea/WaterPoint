@@ -1,23 +1,23 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using WaterPoint.Core.Bll.QueryParameters.Jobs;
+using WaterPoint.Core.Bll.QueryParameters.Customers;
 using WaterPoint.Core.Domain.Db;
 using WaterPoint.Data.DbContext.Dapper;
 using WaterPoint.Data.Entity.Pocos;
 using WaterPoint.Data.Entity.Pocos.Jobs;
 
-namespace WaterPoint.Core.Bll.QueryRunners.Jobs
+namespace WaterPoint.Core.Bll.QueryRunners.Customers
 {
-    public class ListPaginatedJobsRunner : IListPaginatedEntitiesRunner<PaginatedJobs, JobWithCustomerAndStatusPoco>
+    public class ListPaginatedCustomerJobsRunner : IListPaginatedEntitiesRunner<PaginatedCustomerIdOrgId, JobWithCustomerAndStatusPoco>
     {
         private readonly IDapperDbContext _dapperDbContext;
 
-        public ListPaginatedJobsRunner(IDapperDbContext dapperDbContext)
+        public ListPaginatedCustomerJobsRunner(IDapperDbContext dapperDbContext)
         {
             _dapperDbContext = dapperDbContext;
         }
 
-        public PaginatedPoco<IEnumerable<JobWithCustomerAndStatusPoco>> Run(IQuery<PaginatedJobs> query)
+        public PaginatedPoco<IEnumerable<JobWithCustomerAndStatusPoco>> Run(IQuery<PaginatedCustomerIdOrgId> query)
         {
             var rawResults = _dapperDbContext
                 .List<JobWithCustomerAndStatusPoco, PaginatedPoco>(

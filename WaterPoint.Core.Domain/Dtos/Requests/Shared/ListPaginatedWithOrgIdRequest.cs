@@ -1,4 +1,6 @@
-﻿namespace WaterPoint.Core.Domain.Dtos.Requests.Shared
+﻿using WaterPoint.Core.Domain.Dtos.RequestParameters;
+
+namespace WaterPoint.Core.Domain.Dtos.Requests.Shared
 {
     public class ListPaginatedWithOrgIdRequest : IRequest
     {

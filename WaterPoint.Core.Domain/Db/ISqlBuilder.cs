@@ -1,8 +1,4 @@
-﻿using System;
-using System.Linq.Expressions;
-using WaterPoint.Data.Entity;
-
-namespace WaterPoint.Core.Bll
+﻿namespace WaterPoint.Core.Domain.Db
 {
     public interface ISqlBuilder
     {

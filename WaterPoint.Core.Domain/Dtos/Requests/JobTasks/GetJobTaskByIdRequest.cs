@@ -1,8 +1,6 @@
-﻿using WaterPoint.Core.Domain.Dtos.Interfaces;
-
-namespace WaterPoint.Core.Domain.Dtos.Requests.JobTasks
+﻿namespace WaterPoint.Core.Domain.Dtos.Requests.JobTasks
 {
-    public class GetJobTaskByIdRequest: IOrganizationEntityParameter, IRequest
+    public class GetJobTaskByIdRequest: IRequest
     {
         public OrganizationEntityParameter OrganizationEntityParameter { get; set; }
     }

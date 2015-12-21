@@ -1,15 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using WaterPoint.Data.Entity.DataEntities;
-using WaterPoint.Core.Domain;
-using Dapper;
-using System.Data;
+﻿using System.Data;
+using WaterPoint.Core.Domain.Db;
 
 namespace WaterPoint.Data.DbContext.Dapper
 {

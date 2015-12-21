@@ -4,6 +4,7 @@ using WaterPoint.Core.Bll.QueryRunners.OAuthClients;
 using WaterPoint.Core.RequestProcessor.Mappers.EntitiesToContracts;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts.OAuthClients;
+using WaterPoint.Core.Domain.Db;
 using WaterPoint.Core.Domain.Dtos.Requests.OAuthClients;
 using WaterPoint.Data.DbContext.Dapper;
 using WaterPoint.Data.Entity.DataEntities;
@@ -14,13 +15,13 @@ namespace WaterPoint.Core.RequestProcessor.OAuthClients
         BaseDapperUowRequestProcess,
         IRequestProcessor<GetOAuthClientRequest, OAuthClientContract>
     {
-        private readonly IQuery<GetAuthClientQueryParameter> _query;
-        private readonly IQueryRunner<GetAuthClientQueryParameter, OAuthClient> _runner;
+        private readonly IQuery<GetAuthClient> _query;
+        private readonly IQueryRunner<GetAuthClient, OAuthClient> _runner;
 
         public GetOAuthClientRequestProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
-            IQuery<GetAuthClientQueryParameter> query,
-            IQueryRunner<GetAuthClientQueryParameter, OAuthClient> runner)
+            IQuery<GetAuthClient> query,
+            IQueryRunner<GetAuthClient, OAuthClient> runner)
             : base(dapperUnitOfWork)
         {
             _query = query;
@@ -29,7 +30,7 @@ namespace WaterPoint.Core.RequestProcessor.OAuthClients
 
         public OAuthClientContract Process(GetOAuthClientRequest input)
         {
-            var parameter = new GetAuthClientQueryParameter
+            var parameter = new GetAuthClient
             {
                 ClientId = input.ClientId,
                 ClientSecret = input.ClientSecret,

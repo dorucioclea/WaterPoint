@@ -11,6 +11,7 @@ namespace WaterPoint.Core.Domain.Contracts.Customers
         public int Id { get; set; }
         public int OrganizationId { get; set; }
         public int? CustomerTypeId { get; set; }
+        public bool IsProspect { get; set; }
         public string Code { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }

@@ -1,10 +1,10 @@
-﻿using WaterPoint.Core.Bll.QueryParameters.Jobs;
+﻿using WaterPoint.Core.Bll.QueryParameters.Customers;
 using WaterPoint.Core.Domain.Db;
 using WaterPoint.Data.Entity.Pocos.Jobs;
 
-namespace WaterPoint.Core.Bll.Queries.Jobs
+namespace WaterPoint.Core.Bll.Queries.Customers
 {
-    public class ListPaginatedJobsQuery : IQuery<PaginatedJobs>
+    public class ListPaginatedCustomerJobsQuery : IQuery<PaginatedCustomerIdOrgId>
     {
         private readonly ISqlBuilderFactory _sqlBuilderFactory;
 
@@ -28,19 +28,20 @@ namespace WaterPoint.Core.Bll.Queries.Jobs
             ORDER BY {SqlPatterns.OrderBy}
             OFFSET @offset ROWS FETCH NEXT @pageSize ROWS ONLY  ";
 
-        public ListPaginatedJobsQuery(ISqlBuilderFactory sqlBuilderFactory)
+        public ListPaginatedCustomerJobsQuery(ISqlBuilderFactory sqlBuilderFactory)
         {
             _sqlBuilderFactory = sqlBuilderFactory;
         }
 
-        public void BuildQuery(PaginatedJobs parameter)
+        public void BuildQuery(PaginatedCustomerIdOrgId parameter)
         {
             var builder = _sqlBuilderFactory.Create<SelectSqlBuilder>();
 
             builder.AddTemplate(_sqlTemplate);
             builder.AddColumns<JobWithCustomerAndStatusPoco>();
             builder.AddJoin<JobWithCustomerAndStatusPoco>();
-            builder.AddConditions<JobWithCustomerAndStatusPoco>(i => i.OrganizationId == parameter.OrganizationId);
+            builder.AddConditions<JobWithCustomerAndStatusPoco>(
+                i => i.OrganizationId == parameter.OrganizationId && i.CustomerId == parameter.CustomerId);
             builder.AddOrderBy<JobWithCustomerAndStatusPoco>(parameter.Sort, parameter.IsDesc);
             builder.AddContains<JobWithCustomerAndStatusPoco>(parameter.SearchTerm);
 
@@ -53,7 +54,8 @@ namespace WaterPoint.Core.Bll.Queries.Jobs
                 organizationId = parameter.OrganizationId,
                 offset = parameter.Offset,
                 pageSize = parameter.PageSize,
-                searchTerm = parameter.SearchTerm
+                searchTerm = parameter.SearchTerm,
+                customerId = parameter.CustomerId
             };
         }
 

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using WaterPoint.Core.Domain.Dtos.Parameters;
+using WaterPoint.Core.Domain.Dtos.RequestParameters;
 
 namespace WaterPoint.Core.RequestProcessor
 {

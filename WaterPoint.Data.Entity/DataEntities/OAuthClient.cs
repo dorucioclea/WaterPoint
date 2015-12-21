@@ -3,8 +3,8 @@ using WaterPoint.Data.Entity.Attributes;
 
 namespace WaterPoint.Data.Entity.DataEntities
 {
-    [Table("apiv1","OAuthClient", "oauthclient")]
-    public class OAuthClient
+    [Table("apiv1", "OAuthClient", "oauthclient")]
+    public class OAuthClient : IDataEntity
     {
         [Primary]
         public int Id { get; set; }

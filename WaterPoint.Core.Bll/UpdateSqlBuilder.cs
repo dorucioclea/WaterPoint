@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
-using WaterPoint.Core.Domain;
-using WaterPoint.Data.Entity;
+using WaterPoint.Core.Domain.Db;
 using WaterPoint.Data.Entity.Attributes;
 
 namespace WaterPoint.Core.Bll

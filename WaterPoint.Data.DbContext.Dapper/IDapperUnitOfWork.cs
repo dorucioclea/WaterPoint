@@ -1,5 +1,4 @@
-﻿using System.Data;
-using WaterPoint.Core.Domain;
+﻿using WaterPoint.Core.Domain.Db;
 
 namespace WaterPoint.Data.DbContext.Dapper
 {

@@ -1,15 +1,15 @@
-﻿using WaterPoint.Core.Domain;
+﻿using WaterPoint.Core.Domain.Db;
 
-namespace WaterPoint.Core.Bll.QueryParameters.Jobs
+namespace WaterPoint.Core.Bll.QueryParameters.Customers
 {
-    public class PaginatedJobsQueryParameter : IPaginatedQueryParameter
+    public class PaginatedCustomerIdOrgId : IQueryParameter
     {
         public int OrganizationId { get; set; }
+        public int CustomerId { get; set; }
         public int Offset { get; set; }
         public int PageSize { get; set; }
         public string Sort { get; set; }
         public bool IsDesc { get; set; }
         public string SearchTerm { get; set; }
-        public string Status { get; set; }
     }
 }

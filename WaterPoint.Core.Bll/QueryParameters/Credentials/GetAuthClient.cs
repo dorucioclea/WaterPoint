@@ -1,8 +1,8 @@
-﻿using WaterPoint.Core.Domain;
+﻿using WaterPoint.Core.Domain.Db;
 
 namespace WaterPoint.Core.Bll.QueryParameters.Credentials
 {
-    public class GetAuthClientQueryParameter : IQueryParameter
+    public class GetAuthClient : IQueryParameter
     {
         public string ClientId { get; set; }
         public string ClientSecret { get; set; }

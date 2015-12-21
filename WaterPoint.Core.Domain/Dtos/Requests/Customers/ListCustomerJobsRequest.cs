@@ -1,8 +1,8 @@
-﻿using WaterPoint.Core.Domain.Dtos.Parameters;
+﻿using WaterPoint.Core.Domain.Dtos.RequestParameters;
 
 namespace WaterPoint.Core.Domain.Dtos.Requests.Customers
 {
-    public class ListPaginatedCustomerJobsRequest : IRequest
+    public class ListCustomerJobsRequest : IRequest
     {
         public CustomerIdOrgIdParameter CustomerIdOrgIdParameter { get; set; }
         public PaginationParamter PaginationParamter { get; set; }

@@ -10,6 +10,7 @@ using WaterPoint.Core.Bll.QueryParameters.Customers;
 using WaterPoint.Core.Bll.QueryRunners.Customers;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts.Customers;
+using WaterPoint.Core.Domain.Db;
 using WaterPoint.Core.Domain.Exceptions;
 using WaterPoint.Core.Domain.Dtos.Payloads.Customers;
 using WaterPoint.Core.Domain.Dtos.Requests.Customers;
@@ -25,18 +26,18 @@ namespace WaterPoint.Core.RequestProcessor.Customers
         IRequestProcessor<UpdateCustomerRequest, CustomerContract>
     {
         private readonly IPatchEntityAdapter _patchEntityAdapter;
-        private readonly IQuery<GetCustomerQueryParameter> _getCustomerByIdQuery;
-        private readonly IQueryRunner<GetCustomerQueryParameter, Customer> _getCustomerByIdQueryRunner;
-        private readonly ICommand<UpdateCustomerQueryParameter> _updateCustomerByIdQuery;
-        private readonly ICommandExecutor<UpdateCustomerQueryParameter> _updateCommandExecutor;
+        private readonly IQuery<GetCustomer> _getCustomerByIdQuery;
+        private readonly IQueryRunner<GetCustomer, Customer> _getCustomerByIdQueryRunner;
+        private readonly ICommand<UpdateCustomer> _updateCustomerByIdQuery;
+        private readonly ICommandExecutor<UpdateCustomer> _updateCommandExecutor;
 
         public UpdateCustomerProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
             IPatchEntityAdapter patchEntityAdapter,
-            IQuery<GetCustomerQueryParameter> getCustomerByIdQuery,
-            IQueryRunner<GetCustomerQueryParameter, Customer> getCustomerByIdQueryRunner,
-            ICommand<UpdateCustomerQueryParameter> updateCustomerByIdQuery,
-            ICommandExecutor<UpdateCustomerQueryParameter> updateCommandExecutor)
+            IQuery<GetCustomer> getCustomerByIdQuery,
+            IQueryRunner<GetCustomer, Customer> getCustomerByIdQueryRunner,
+            ICommand<UpdateCustomer> updateCustomerByIdQuery,
+            ICommandExecutor<UpdateCustomer> updateCommandExecutor)
             : base(dapperUnitOfWork)
         {
             _patchEntityAdapter = patchEntityAdapter;
@@ -55,7 +56,7 @@ namespace WaterPoint.Core.RequestProcessor.Customers
 
         private CustomerContract ProcessDeFacto(UpdateCustomerRequest input)
         {
-            var getCusParam = new GetCustomerQueryParameter
+            var getCusParam = new GetCustomer
             {
                 CustomerId = input.OrganizationEntityParameter.Id,
                 OrganizationId = input.OrganizationEntityParameter.OrganizationId
@@ -70,7 +71,7 @@ namespace WaterPoint.Core.RequestProcessor.Customers
                 input.UpdateCustomerPayload.Patch,
                 (o) => { o.UtcUpdated = DateTime.UtcNow; });
 
-            var updateParameter = updatedCustomer.MapTo(new UpdateCustomerQueryParameter());
+            var updateParameter = updatedCustomer.MapTo(new UpdateCustomer());
 
             //then build the query to update the object.
             _updateCustomerByIdQuery.BuildQuery(updateParameter);
