@@ -19,13 +19,13 @@ namespace WaterPoint.Api.Job.Controllers
     {
         private readonly IRequestProcessor<ListPaginatedJobsRequest, PaginatedResult<IEnumerable<JobWithCustomerContract>>> _listJobRequestProcessor;
         private readonly IRequestProcessor<GetJobByIdRequest, JobWithDetailsContract> _getJobByIdRequestProcessor;
-        private readonly IRequestProcessor<CreateJobRequest, JobWithCustomerContract> _createJobRequestProcessor;
+        private readonly IRequestProcessor<CreateJobRequest, JobWithDetailsContract> _createJobRequestProcessor;
         //private readonly IRequestProcessor<UpdateJobRequest, JobContract> _updateJobRequestProcessor;
 
         public JobsController(
             IRequestProcessor<ListPaginatedJobsRequest, PaginatedResult<IEnumerable<JobWithCustomerContract>>> listJobRequestProcessor,
             IRequestProcessor<GetJobByIdRequest, JobWithDetailsContract> getJobByIdRequestProcessor,
-            IRequestProcessor<CreateJobRequest, JobWithCustomerContract> createJobRequestProcessor
+            IRequestProcessor<CreateJobRequest, JobWithDetailsContract> createJobRequestProcessor
             //IRequestProcessor<UpdateJobRequest, JobContract> updateJobRequestProcessor
             )
         {

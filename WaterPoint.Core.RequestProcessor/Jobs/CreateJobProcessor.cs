@@ -1,48 +1,44 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WaterPoint.Core.Bll.Commands.Jobs;
-using WaterPoint.Core.Bll.Executors;
-using WaterPoint.Core.Bll.QueryParameters;
-using WaterPoint.Core.Bll.QueryParameters.Jobs;
+﻿using WaterPoint.Core.Bll.QueryParameters.Jobs;
 using WaterPoint.Core.RequestProcessor.Mappers.EntitiesToContracts;
 using WaterPoint.Core.Domain;
-using WaterPoint.Core.Domain.Contracts.Customers;
 using WaterPoint.Core.Domain.Contracts.Jobs;
-using WaterPoint.Core.Domain.Contracts.JobStatuses;
 using WaterPoint.Core.Domain.Db;
 using WaterPoint.Core.Domain.Dtos.Requests.Jobs;
 using WaterPoint.Data.DbContext.Dapper;
-using WaterPoint.Data.Entity.DataEntities;
+using WaterPoint.Data.Entity.Pocos.Jobs;
 
 namespace WaterPoint.Core.RequestProcessor.Jobs
 {
     public class CreateJobProcessor : BaseDapperUowRequestProcess,
-        IRequestProcessor<CreateJobRequest, JobWithCustomerContract>
+        IRequestProcessor<CreateJobRequest, JobWithDetailsContract>
     {
         private readonly ICommand<CreateBasicJob> _command;
         private readonly ICommandExecutor<CreateBasicJob> _executor;
+        private readonly IQuery<GetJobDetails> _getQuery;
+        private readonly IQueryRunner<GetJobDetails, JobWithDetailsPoco> _getQueryRunner;
 
         public CreateJobProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
             ICommand<CreateBasicJob> command,
-            ICommandExecutor<CreateBasicJob> executor)
+            ICommandExecutor<CreateBasicJob> executor,
+            IQuery<GetJobDetails> getQuery,
+            IQueryRunner<GetJobDetails, JobWithDetailsPoco> getQueryRunner)
             : base(dapperUnitOfWork)
         {
             _command = command;
             _executor = executor;
+            _getQuery = getQuery;
+            _getQueryRunner = getQueryRunner;
         }
 
-        public JobWithCustomerContract Process(CreateJobRequest input)
+        public JobWithDetailsContract Process(CreateJobRequest input)
         {
             var result = UowProcess(ProcessDeFacto, input);
 
             return result;
         }
 
-        private JobWithCustomerContract ProcessDeFacto(CreateJobRequest input)
+        private JobWithDetailsContract  ProcessDeFacto(CreateJobRequest input)
         {
             var parameter = new CreateBasicJob
             {
@@ -59,25 +55,11 @@ namespace WaterPoint.Core.RequestProcessor.Jobs
 
             var newId = _executor.Execute(_command);
 
-            //just a stub, use mapper
-            var job = new JobWithCustomerContract
-            {
-                Id = newId,
-                OrganizationId = input.OrganizationIdParameter.OrganizationId,
-                JobStatus = new JobStatusIdNameContract { Id = input.CreateJobPayload.JobStatusId, Name = "test" },
-                Code = input.CreateJobPayload.Code,
-                ShortDescription = input.CreateJobPayload.ShortDescription,
-                Customer = new CustomerIdNameContract { Id = input.CreateJobPayload.CustomerId },
-                StartDate = input.CreateJobPayload.StartDate,
-                EndDate = input.CreateJobPayload.EndDate
-            };
+            _getQuery.BuildQuery(new GetJobDetails {JobId = newId, OrganizationId = parameter.OrganizationId});
 
-            return job;
-            //get one
+            var job = _getQueryRunner.Run(_getQuery);
 
-            //var result = JobMapper.Map(job);
-
-            //return result;
+            return JobMapper.Map(job);
         }
     }
 }

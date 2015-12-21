@@ -1,6 +1,7 @@
 ﻿using WaterPoint.Core.Bll.QueryParameters.Jobs;
 using WaterPoint.Core.Domain.Db;
 using WaterPoint.Data.Entity.DataEntities;
+using WaterPoint.Data.Entity.Pocos.Jobs;
 
 namespace WaterPoint.Core.Bll.Queries.Jobs
 {
@@ -11,8 +12,9 @@ namespace WaterPoint.Core.Bll.Queries.Jobs
         private readonly string _sqlTemplate = $@"
                 SELECT
                     {SqlPatterns.Columns}
-                FROM
+                FROM                    
                     {SqlPatterns.FromTable}
+                    {SqlPatterns.Join}
                 WHERE
                    {SqlPatterns.Where}";
 
@@ -26,8 +28,9 @@ namespace WaterPoint.Core.Bll.Queries.Jobs
             var builder = _sqlBuilderFactory.Create<SelectSqlBuilder>();
 
             builder.AddTemplate(_sqlTemplate);
-            builder.AddColumns<Job>();
-            builder.AddConditions<Job>(i => i.OrganizationId == parameter.OrganizationId && i.Id == parameter.JobId);
+            builder.AddColumns<JobWithDetailsPoco>();
+            builder.AddJoin<JobWithDetailsPoco>();
+            builder.AddConditions<JobWithDetailsPoco>(i => i.OrganizationId == parameter.OrganizationId && i.Id == parameter.JobId);
 
             var sql = builder.GetSql();
 

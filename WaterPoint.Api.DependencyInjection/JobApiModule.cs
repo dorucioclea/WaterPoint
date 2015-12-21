@@ -72,7 +72,7 @@ namespace WaterPoint.Api.DependencyInjection
             Bind<IRequestProcessor<ListPaginatedJobsRequest, PaginatedResult<IEnumerable<JobWithCustomerContract>>>>()
                 .To<ListPaginatedJobsProcessor>();
 
-            Bind<IRequestProcessor<CreateJobRequest, JobWithCustomerContract>>()
+            Bind<IRequestProcessor<CreateJobRequest, JobWithDetailsContract>>()
                 .To<CreateJobProcessor>();
 
             Bind<IRequestProcessor<GetJobByIdRequest, JobWithDetailsContract>>().To<GetJobByIdRequestProcessor>();

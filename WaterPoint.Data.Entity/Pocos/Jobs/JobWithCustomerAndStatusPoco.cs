@@ -23,15 +23,15 @@ namespace WaterPoint.Data.Entity.Pocos.Jobs
         public DateTime UtcCreated { get; set; }
         public DateTime UtcUpdated { get; set; }
         public Guid Uid { get; set; }
-        [OneToOne("dbo", "JobStatus", "Name", "js")]
+        [OneToOne("inner", "dbo", "JobStatus", "Name", "js")]
         public string JobStatus { get; set; }
-        [OneToOne("dbo", "Customer", "CustomerTypeId", "c")]
+        [OneToOne("inner", "dbo", "Customer", "CustomerTypeId", "c")]
         public int? CustomerTypeId { get; set; }
-        [OneToOne("dbo", "Customer", "LastName", "c")]
+        [OneToOne("inner", "dbo", "Customer", "LastName", "c")]
         public string LastName { get; set; }
-        [OneToOne("dbo", "Customer", "FirstName", "c")]
+        [OneToOne("inner", "dbo", "Customer", "FirstName", "c")]
         public string FirstName { get; set; }
-        [OneToOne("dbo", "Customer", "OtherName", "c")]
+        [OneToOne("inner", "dbo", "Customer", "OtherName", "c")]
         public string OtherName { get; set; }
     }
 }

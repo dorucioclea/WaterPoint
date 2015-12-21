@@ -9,8 +9,8 @@ namespace WaterPoint.Data.Entity.Pocos.Jobs
         [Primary]
         public int Id { get; set; }
         public int OrganizationId { get; set; }
-        public int PriorityTypeId { get; set; }
-        [OneToOne("dbo", "PriorityType", "Description", "js")]
+        public int? PriorityTypeId { get; set; }
+        [OneToOne("left", "dbo", "PriorityType", "Description", "p")]
         public string PriorityTypeDescription { get; set; }
         public string Code { get; set; }
         public string ShortDescription { get; set; }
@@ -22,24 +22,24 @@ namespace WaterPoint.Data.Entity.Pocos.Jobs
         public byte[] Version { get; set; }
         public DateTime UtcCreated { get; set; }
         public DateTime UtcUpdated { get; set; }
-        public string Uid { get; set; }
-        public int JobCategoryId { get; set; }
-        [OneToOne("dbo", "JobCategory", "Description", "jc")]
+        public Guid Uid { get; set; }
+        public int? JobCategoryId { get; set; }
+        [OneToOne("left", "dbo", "JobCategory", "Description", "jc")]
         public string JobCategoryDescription { get; set; }
         public int CustomerId { get; set; }
 
-        [OneToOne("dbo", "Customer", "FirstName", "c")]
+        [OneToOne("inner", "dbo", "Customer", "FirstName", "c")]
         public string CustomerFirstName { get; set; }
 
-        [OneToOne("dbo", "Customer", "LastName", "c")]
+        [OneToOne("inner", "dbo", "Customer", "LastName", "c")]
         public string CustomerLastName { get; set; }
 
-        [OneToOne("dbo", "Customer", "OtherName", "c")]
+        [OneToOne("inner", "dbo", "Customer", "OtherName", "c")]
         public string CustomerOtherName { get; set; }
 
         public int JobStatusId { get; set; }
 
-        [OneToOne("dbo", "JobStatus", "Name", "jc")]
+        [OneToOne("inner", "dbo", "JobStatus", "Name", "js")]
         public string JobStatusName { get; set; }
     }
 }

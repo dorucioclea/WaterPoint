@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System;
+using AutoMapper;
 using Utility;
 using WaterPoint.Core.Domain.Contracts.Customers;
 using WaterPoint.Core.Domain.Contracts.JobCategories;
@@ -47,31 +48,36 @@ namespace WaterPoint.Core.RequestProcessor.Mappers.EntitiesToContracts
         {
             var result = Mapper.DynamicMap<JobWithDetailsContract>(source);
 
-            result.Category = Mapper.DynamicMap<JobCategoryIdDescContract>(new
-            {
-                Id = source.JobCategoryId,
-                Description = source.JobCategoryDescription
-            });
+            result.Version = source.Version.ToSha1(source.Id.ToString());
 
-            result.Priority = Mapper.DynamicMap<PriorityTypeContract>(new
-            {
-                Id = source.PriorityTypeId,
-                Description = source.PriorityTypeDescription
-            });
+            if (source.JobCategoryId.HasValue)
+                result.Category = new JobCategoryIdDescContract
+                {
+                    Id = source.JobCategoryId.Value,
+                    Description = source.JobCategoryDescription
+                };
 
-            result.Customer = Mapper.DynamicMap<CustomerIdNameContract>(new
+            if (source.PriorityTypeId.HasValue)
+                result.Priority = new PriorityTypeContract
+                {
+                    Id = source.PriorityTypeId.Value,
+                    Description = source.PriorityTypeDescription
+                };
+
+            result.Customer = new CustomerIdNameContract
             {
                 Id = source.CustomerId,
                 FirstName = source.CustomerFirstName,
                 LastName = source.CustomerLastName,
                 OtherName = source.CustomerOtherName
 
-            });
-            result.JobStatus = Mapper.DynamicMap<JobStatusIdNameContract>(new
+            };
+
+            result.JobStatus = new JobStatusIdNameContract
             {
                 Id = source.JobStatusId,
                 Name = source.JobStatusName
-            });
+            };
 
             return result;
         }

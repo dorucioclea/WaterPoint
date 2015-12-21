@@ -185,9 +185,9 @@ namespace WaterPoint.Core.Bll
 
             //JOIN [dbo].[Customer] c ON j.CustomerId = c.Id
             var tables = oneToOneAttributes
-                .GroupBy(i => new {i.Schema, i.Alias, i.Table})
+                .GroupBy(i => new {i.JoinType, i.Schema, i.Alias, i.Table})
                 .Select(foreignTable =>
-                    $"JOIN [{foreignTable.Key.Schema}].[{foreignTable.Key.Table}] {foreignTable.Key.Alias} " +
+                    $"{foreignTable.Key.JoinType.ToUpper()} JOIN [{foreignTable.Key.Schema}].[{foreignTable.Key.Table}] {foreignTable.Key.Alias} " +
                     $"ON {parentTable.Alias}.[{foreignTable.Key.Table}Id] = {foreignTable.Key.Alias}.[Id]");
 
             _joins.AddRange(tables);
