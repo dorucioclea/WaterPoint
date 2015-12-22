@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace WaterPoint.Core.Domain.Dtos.Requests.CostItems
+﻿namespace WaterPoint.Core.Domain.Dtos.Requests.CostItems
 {
-    public class ListCostItemsRequest
+    public class ListCostItemsRequest : IRequest
     {
-        public OrgIdParameter OrganizationId { get; set; }
-        public PaginationParamter Pagination { get; set; }
+        public OrgIdRp OrganizationId { get; set; }
+        public PaginationRp Pagination { get; set; }
     }
 }

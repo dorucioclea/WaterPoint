@@ -2,6 +2,6 @@
 {
     public class GetCostItemRequest : IRequest
     {
-        public OrganizationEntityParameter OrganizationEntityParameter { get; set; }
+        public OrgEntityRp OrganizationEntityParameter { get; set; }
     }
 }

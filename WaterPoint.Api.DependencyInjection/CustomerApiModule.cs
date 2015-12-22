@@ -34,24 +34,24 @@ namespace WaterPoint.Api.DependencyInjection
         private void BindQueries()
         {
             Bind<IQuery<PaginatedOrgIdIsProspect>>()
-                .To<ListPaginatedCustomersQuery>()
-                .WhenInjectedExactlyInto<ListPaginatedCustomersProcessor>();
+                .To<ListCustomersQuery>()
+                .WhenInjectedExactlyInto<ListCustomersProcessor>();
 
             Bind<IQuery<GetCustomer>>().To<GetCustomerQuery>();
 
-            Bind<IQuery<PaginatedCustomerIdOrgId>>().To<ListPaginatedCustomerJobsQuery>();
+            Bind<IQuery<PaginatedCustomerIdOrgId>>().To<ListCustomerJobsQuery>();
         }
 
         public void BindQueryRunners()
         {
-            Bind<IListPaginatedEntitiesRunner<PaginatedOrgIdIsProspect, Customer>>()
-                .To<ListPaginatedCustomersRunner>();
+            Bind<IListEntitiesRunner<PaginatedOrgIdIsProspect, Customer>>()
+                .To<ListCustomersRunner>();
 
             Bind<IQueryRunner<GetCustomer, Customer>>()
-                .To<GetCustomerByIdQueryRunner>();
+                .To<GetCustomerRunner>();
 
-            Bind<IListPaginatedEntitiesRunner<PaginatedCustomerIdOrgId, JobWithCustomerAndStatusPoco>>()
-                .To<ListPaginatedCustomerJobsRunner>();
+            Bind<IListEntitiesRunner<PaginatedCustomerIdOrgId, JobWithCustomerAndStatusPoco>>()
+                .To<ListCustomerJobsRunner>();
         }
 
         public void BindCommands()
@@ -71,8 +71,8 @@ namespace WaterPoint.Api.DependencyInjection
 
         private void BindRequestProcessors()
         {
-            Bind<IRequestProcessor<ListCustomersRequest, PaginatedResult<IEnumerable<CustomerContract>>>>()
-                .To<ListPaginatedCustomersProcessor>();
+            Bind<IRequestProcessor<ListCustomersRequest, PaginatedResult<CustomerContract>>>()
+                .To<ListCustomersProcessor>();
 
             Bind<IRequestProcessor<CreateCustomerRequest, CustomerContract>>()
                     .To<CreateCustomerProcessor>();
@@ -83,8 +83,8 @@ namespace WaterPoint.Api.DependencyInjection
             Bind<IRequestProcessor<GetCustomerRequest, CustomerContract>>()
                 .To<GetCustomerProcessor>();
 
-            Bind<IRequestProcessor<ListCustomerJobsRequest, PaginatedResult<IEnumerable<JobWithCustomerContract>>>>()
-                .To<ListPaginatedCustomerJobsProcessor>();
+            Bind<IRequestProcessor<ListCustomerJobsRequest, PaginatedResult<JobWithCustomerContract>>>()
+                .To<ListCustomerJobsProcessor>();
 
         }
     }

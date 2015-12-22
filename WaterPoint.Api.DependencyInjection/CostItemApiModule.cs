@@ -1,8 +1,11 @@
-﻿using Ninject.Modules;
+﻿using System.Collections.Generic;
+using Ninject.Modules;
 using WaterPoint.Core.Bll.Commands.CostItems;
 using WaterPoint.Core.Bll.Executors;
 using WaterPoint.Core.Bll.Queries.CostItems;
 using WaterPoint.Core.Bll.QueryParameters.CostItems;
+using WaterPoint.Core.Bll.QueryParameters.Shared;
+using WaterPoint.Core.Bll.QueryRunners;
 using WaterPoint.Core.Bll.QueryRunners.CostItems;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts.CostItems;
@@ -29,21 +32,27 @@ namespace WaterPoint.Api.DependencyInjection
         private void BindQueries()
         {
             Bind<IQuery<GetCostItem>>().To<GetCostItemQuery>();
+
+            Bind<IQuery<PaginatedOrgId>>().To<ListCostItemsQuery>();
         }
 
         public void BindQueryRunners()
         {
             Bind<IQueryRunner<GetCostItem, CostItem>>().To<GetCostItemRunner>();
+
+            Bind<IListEntitiesRunner<PaginatedOrgId, CostItem>>().To<ListCostItemsRunner>();
         }
 
         public void BindCommands()
         {
             Bind<ICommand<CreateCostItem>>().To<CreateCostItemCommand>();
+            Bind<ICommand<UpdateCostItem>>().To<UpdateCostItemCommand>();
         }
 
         public void BindCommandExecutors()
         {
             Bind<ICommandExecutor<CreateCostItem>>().To<CreateCommandExecutor<CreateCostItem>>();
+            Bind<ICommandExecutor<UpdateCostItem>>().To<UpdateCommandExecutor<UpdateCostItem>>();
         }
 
         private void BindRequestProcessors()
@@ -53,6 +62,12 @@ namespace WaterPoint.Api.DependencyInjection
 
             Bind<IRequestProcessor<GetCostItemRequest, CostItemContract>>()
                 .To<GetCostItemProcessor>();
+
+            Bind<IRequestProcessor<ListCostItemsRequest, PaginatedResult<CostItemContract>>>()
+                .To<ListCostItemsProcessor>();
+
+            Bind<IRequestProcessor<UpdateCostItemRequest, CostItemContract>>()
+                .To<UpdateCostItemProcessor>();
         }
     }
 }

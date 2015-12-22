@@ -75,16 +75,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseDapperUowRequestProcess.cs" />
+    <Compile Include="CostItems\ListCostItemsProcessor.cs" />
     <Compile Include="CostItems\CreateCostItemProcessor.cs" />
     <Compile Include="CostItems\GetCostItemProcessor.cs" />
+    <Compile Include="CostItems\UpdateCostItemProcessor.cs" />
     <Compile Include="Credentials\ListValidateCredentialProcessor.cs" />
-    <Compile Include="Customers\ListPaginatedCustomerJobsProcessor.cs" />
+    <Compile Include="Customers\ListCustomerJobsProcessor.cs" />
     <Compile Include="Jobs\CreateJobProcessor.cs" />
     <Compile Include="Jobs\GetJobByIdProcessor.cs" />
-    <Compile Include="Jobs\ListPaginatedJobsProcessor.cs" />
+    <Compile Include="Jobs\ListJobsProcessor.cs" />
     <Compile Include="Customers\CreateCustomerProcessor.cs" />
     <Compile Include="Customers\GetCustomerProcessor.cs" />
-    <Compile Include="Customers\ListPaginatedCustomersProcessor.cs" />
+    <Compile Include="Customers\ListCustomersProcessor.cs" />
     <Compile Include="Customers\UpdateCustomerProcessor.cs" />
     <Compile Include="Jobs\UpdateJobProcessor.cs" />
     <Compile Include="Mappers\EntitiesToContracts\CostItemMapper.cs" />
@@ -102,11 +104,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="JobTasks\CreateJobTaskProcessor.cs" />
     <Compile Include="JobTasks\GetJobTaskProcessor.cs" />
-    <Compile Include="JobTasks\ListPaginatedJobTasksProcessor.cs" />
+    <Compile Include="JobTasks\ListJobTasksProcessor.cs" />
     <Compile Include="JobTasks\UpdateJobTaskProcessor.cs" />
     <Compile Include="TaskDefinitions\CreateTaskDefinitionProcessor.cs" />
     <Compile Include="TaskDefinitions\GetTaskDefinitionByIdProcessor.cs" />
-    <Compile Include="TaskDefinitions\ListPaginatedTaskDefinitionsProcessor.cs" />
+    <Compile Include="TaskDefinitions\ListTaskDefinitionsProcessor.cs" />
     <Compile Include="TaskDefinitions\UpdateTaskDefinitionProcessor.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -19,7 +19,7 @@ namespace WaterPoint.Core.RequestProcessor
             {"cancelled", "ForCancelled"},
         };
 
-        public JobStatusQueryParameterConverter Convert(JobStatusParameter paramter)
+        public JobStatusQueryParameterConverter Convert(JobStatusRp paramter)
         {
             var statusMeaningColumn = JobStatusMeaningColumns
                 .SingleOrDefault(i => string.Equals(i.Key, paramter.Status, StringComparison.CurrentCultureIgnoreCase));

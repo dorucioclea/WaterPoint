@@ -1,8 +1,10 @@
-﻿using WaterPoint.Core.Domain.Dtos;
+﻿using System.Collections.Generic;
+using WaterPoint.Core.Domain.Dtos;
 
 namespace WaterPoint.Core.Domain
 {
     public class PaginatedResult<T> : IContract
+        where T: IContract
     {
         public int TotalPages
         {
@@ -25,6 +27,6 @@ namespace WaterPoint.Core.Domain
         public bool IsDesc { get; set; }
         //TODO:
         public int MaxId { get; set; }
-        public T Data { get; set; }
+        public IEnumerable<T> Data { get; set; }
     }
 }

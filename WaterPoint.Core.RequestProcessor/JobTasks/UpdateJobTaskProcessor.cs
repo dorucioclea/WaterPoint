@@ -1,83 +1,83 @@
-﻿//using System;
-//using WaterPoint.Api.Common;
-//using WaterPoint.Core.Bll.Commands.JobTasks;
-//using WaterPoint.Core.Bll.Executors;
-//using WaterPoint.Core.Bll.Queries.JobTasks;
-//using WaterPoint.Core.Bll.QueryRunners.JobTasks;
-//using WaterPoint.Core.Domain;
-//using WaterPoint.Core.Domain.Contracts.JobTasks;
-//using WaterPoint.Core.Domain.Exceptions;
-//using WaterPoint.Core.Domain.Dtos.Payloads.JobTasks;
-//using WaterPoint.Core.Domain.Dtos.Requests.JobTasks;
-//using WaterPoint.Core.RequestProcessor.Mappers.EntitiesToContracts;
-//using WaterPoint.Data.DbContext.Dapper;
-//using WaterPoint.Data.Entity.DataEntities;
+﻿using Utility;
+using WaterPoint.Api.Common;
+using WaterPoint.Core.Bll.QueryParameters.JobTasks;
+using WaterPoint.Core.Domain;
+using WaterPoint.Core.Domain.Contracts.JobTasks;
+using WaterPoint.Core.Domain.Db;
+using WaterPoint.Core.Domain.Exceptions;
+using WaterPoint.Core.Domain.Dtos.Payloads.JobTasks;
+using WaterPoint.Core.Domain.Dtos.Requests.JobTasks;
+using WaterPoint.Core.RequestProcessor.Mappers.EntitiesToContracts;
+using WaterPoint.Data.DbContext.Dapper;
+using WaterPoint.Data.Entity.DataEntities;
 
-//namespace WaterPoint.Core.RequestProcessor.JobTasks
-//{
-//    public class UpdateJobTaskRequestProcessor :
-//        BaseDapperUowRequestProcess,
-//        IRequestProcessor<UpdateJobTaskRequest, JobTaskContract>
-//    {
-//        private readonly IPatchEntityAdapter _patchEntityAdapter;
-//        private readonly GetJobTaskByIdQuery _getJobTaskByIdQuery;
-//        private readonly GetJobTaskByIdQueryRunner _getJobTaskByIdQueryRunner;
-//        private readonly UpdateJobTaskByIdCommand _updateJobTaskByIdQuery;
-//        private readonly UpdateCommandExecutor _updateCommandExecutor;
+namespace WaterPoint.Core.RequestProcessor.JobTasks
+{
+    public class UpdateJobTaskRequestProcessor :
+        BaseDapperUowRequestProcess,
+        IRequestProcessor<UpdateJobTaskRequest, JobTaskContract>
+    {
+        private readonly IPatchEntityAdapter _patchEntityAdapter;
+        private readonly ICommand<UpdateJobTask> _command;
+        private readonly ICommandExecutor<UpdateJobTask> _executor;
+        private readonly IQuery<GetJobTask> _query;
+        private readonly IQueryRunner<GetJobTask, JobTask> _runner;
 
-//        public UpdateJobTaskRequestProcessor(
-//            IDapperUnitOfWork dapperUnitOfWork,
-//            IPatchEntityAdapter patchEntityAdapter,
-//            GetJobTaskByIdQuery getJobTaskByIdQuery,
-//            GetJobTaskByIdQueryRunner getJobTaskByIdQueryRunner,
-//            UpdateJobTaskByIdCommand updateJobTaskByIdQuery,
-//            UpdateCommandExecutor updateCommandExecutor)
-//            : base(dapperUnitOfWork)
-//        {
-//            _patchEntityAdapter = patchEntityAdapter;
-//            _getJobTaskByIdQuery = getJobTaskByIdQuery;
-//            _getJobTaskByIdQueryRunner = getJobTaskByIdQueryRunner;
-//            _updateJobTaskByIdQuery = updateJobTaskByIdQuery;
-//            _updateCommandExecutor = updateCommandExecutor;
-//        }
+        public UpdateJobTaskRequestProcessor(
+            IDapperUnitOfWork dapperUnitOfWork,
+            IPatchEntityAdapter patchEntityAdapter,
+            ICommand<UpdateJobTask> command,
+            ICommandExecutor<UpdateJobTask> executor,
+            IQuery<GetJobTask> query,
+            IQueryRunner<GetJobTask, JobTask> runner)
+            : base(dapperUnitOfWork)
+        {
+            _patchEntityAdapter = patchEntityAdapter;
+            _command = command;
+            _executor = executor;
+            _query = query;
+            _runner = runner;
+        }
 
-//        public JobTaskContract Process(UpdateJobTaskRequest input)
-//        {
-//            var result = UowProcess(ProcessDeFacto, input);
+        public JobTaskContract Process(UpdateJobTaskRequest input)
+        {
+            var result = UowProcess(ProcessDeFacto, input);
 
-//            return result;
-//        }
+            return result;
+        }
 
-//        private JobTaskContract ProcessDeFacto(UpdateJobTaskRequest input)
-//        {
-//            throw new NotImplementedException();
+        private JobTaskContract ProcessDeFacto(UpdateJobTaskRequest input)
+        {
+            var getJobTaskParam = new GetJobTask
+            {
+                JobTaskId = input.Parameter.Id,
+                OrganizationId = input.Parameter.OrganizationId,
+                JobId = input.Parameter.JobId
+            };
 
-//            //_getJobTaskByIdQuery.BuildQuery(input.OrganizationEntityParameter.Id);
+            _query.BuildQuery(getJobTaskParam);
 
-//            //var existingJobTask = _getJobTaskByIdQueryRunner.Run(_getJobTaskByIdQuery);
+            var existingJobTask = _runner.Run(_query);
 
-//            //var updatedJobTask = _patchEntityAdapter.PatchEnitity<WriteJobTaskPayload, JobTask>(
-//            //    existingJobTask,
-//            //    input.UpdateJobTaskPayload.Patch,
-//            //    (o) => { o.UtcUpdated = DateTime.UtcNow; },
-//            //    _getJobTaskByIdQuery);
+            var updatedJobTask = _patchEntityAdapter.PatchEnitity<WriteJobTaskPayload, JobTask, UpdateJobTask>(
+                existingJobTask,
+                input.Payload.Patch);
 
-//            ////then build the query to update the object.
-//            //_updateJobTaskByIdQuery.BuildQuery(updatedJobTask);
+            var updateParameter = updatedJobTask.MapTo(new UpdateJobTask());
 
-//            //var success = _updateCommandExecutor.Run(_updateJobTaskByIdQuery);
+            //then build the query to update the object.
+            _command.BuildQuery(updateParameter);
 
-//            //if (success)
-//            //    return JobTaskMapper.Map(updatedJobTask);
+            var success = _executor.Execute(_command) > 0;
 
-//            //var updateException = new UpdateFailedException();
+            if (success)
+                return JobTaskMapper.Map(existingJobTask);
 
-//            //updateException.AddMessage("operation is finished but there is no result returned");
+            var updateException = new UpdateFailedException();
 
-//            //throw updateException;
-//        }
-//    }
+            updateException.AddMessage("operation is finished but there is no result returned");
 
-
-
-//}
+            throw updateException;
+        }
+    }
+}

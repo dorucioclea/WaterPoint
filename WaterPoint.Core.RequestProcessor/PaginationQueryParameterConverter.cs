@@ -17,7 +17,7 @@ namespace WaterPoint.Core.RequestProcessor
 
         public string SearchTerm { get; private set; }
 
-        public PaginationQueryParameterConverter Convert(PaginationParamter paramter, string defaultSort)
+        public PaginationQueryParameterConverter Convert(PaginationRp paramter, string defaultSort)
         {
             Offset = (((!paramter.PageNumber.HasValue || paramter.PageNumber < 0)
                 ? 1

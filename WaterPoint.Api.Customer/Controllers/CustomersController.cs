@@ -15,14 +15,14 @@ namespace WaterPoint.Api.Customer.Controllers
     [RoutePrefix(RouteDefinitions.Customers.Prefix)]
     public class CustomersController : BaseOrgnizationContextController
     {
-        private readonly IRequestProcessor<ListCustomersRequest, PaginatedResult<IEnumerable<CustomerContract>>> _listCustomerRequestProcessor;
+        private readonly IRequestProcessor<ListCustomersRequest, PaginatedResult<CustomerContract>> _listCustomerRequestProcessor;
         private readonly IRequestProcessor<CreateCustomerRequest, CustomerContract> _createCustomerRequest;
         private readonly IRequestProcessor<UpdateCustomerRequest, CustomerContract> _updateRequestProcessor;
         private readonly IRequestProcessor<GetCustomerRequest, CustomerContract> _getCustomerByIdProcessor;
 
 
         public CustomersController(
-            IRequestProcessor<ListCustomersRequest, PaginatedResult<IEnumerable<CustomerContract>>> listCustomerRequestProcessor,
+            IRequestProcessor<ListCustomersRequest, PaginatedResult<CustomerContract>> listCustomerRequestProcessor,
             IRequestProcessor<CreateCustomerRequest, CustomerContract> createCustomerRequest,
             IRequestProcessor<UpdateCustomerRequest, CustomerContract> updateRequestProcessor,
             IRequestProcessor<GetCustomerRequest, CustomerContract> getCustomerByIdProcessor)
@@ -35,8 +35,8 @@ namespace WaterPoint.Api.Customer.Controllers
 
         [Route("")]
         public IHttpActionResult Get(
-            [FromUri]IsProspectOrgIdParameter parameter,
-            [FromUri]PaginationParamter pagination)
+            [FromUri]IsProspectOrgIdRp parameter,
+            [FromUri]PaginationRp pagination)
         {
             //validation
             var request = new ListCustomersRequest
@@ -51,7 +51,7 @@ namespace WaterPoint.Api.Customer.Controllers
         }
 
         [Route("{id:int}")]
-        public IHttpActionResult Get([FromUri]OrganizationEntityParameter parameter)
+        public IHttpActionResult Get([FromUri]OrgEntityRp parameter)
         {
             var result = _getCustomerByIdProcessor.Process(
                 new GetCustomerRequest
@@ -65,7 +65,7 @@ namespace WaterPoint.Api.Customer.Controllers
         [Route("")]
         [Authorize]//add to class level
         public IHttpActionResult Post(
-            [FromUri]OrgIdParameter parameter,
+            [FromUri]OrgIdRp parameter,
             [FromBody]WriteCustomerPayload customerPayload)
         {
             if (!ModelState.IsValid)
@@ -88,7 +88,7 @@ namespace WaterPoint.Api.Customer.Controllers
         [Route("{id:int}")]
         [Authorize]
         public IHttpActionResult Put(
-            [FromUri] OrganizationEntityParameter parameter,
+            [FromUri] OrgEntityRp parameter,
             [FromBody] Delta<WriteCustomerPayload> input)
         {
             //map customer to an updatecustomerrequest so it gets all data

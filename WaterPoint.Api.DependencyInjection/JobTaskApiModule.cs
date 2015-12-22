@@ -11,13 +11,16 @@ using WaterPoint.Core.Bll.QueryRunners.Jobs;
 using WaterPoint.Core.Bll.QueryRunners.JobTasks;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts.Jobs;
+using WaterPoint.Core.Domain.Contracts.JobTasks;
 using WaterPoint.Core.Domain.Contracts.TaskDefinitions;
 using WaterPoint.Core.Domain.Db;
 using WaterPoint.Core.Domain.Dtos.Requests.Jobs;
+using WaterPoint.Core.Domain.Dtos.Requests.JobTasks;
 using WaterPoint.Core.Domain.Dtos.Requests.Shared;
 using WaterPoint.Core.Domain.Dtos.Requests.TaskDefinitions;
 using WaterPoint.Core.RequestProcessor;
 using WaterPoint.Core.RequestProcessor.Jobs;
+using WaterPoint.Core.RequestProcessor.JobTasks;
 using WaterPoint.Core.RequestProcessor.TaskDefinitions;
 using WaterPoint.Data.DbContext.Dapper;
 using WaterPoint.Data.Entity.DataEntities;
@@ -37,11 +40,13 @@ namespace WaterPoint.Api.DependencyInjection
         private void BindQueries()
         {
             Bind<IQuery<GetJobTask>>().To<GetJobTaskQuery>();
+            Bind<IQuery<ListJobTasks>>().To<ListJobTasksQuery>();
         }
 
         public void BindQueryRunners()
         {
             Bind<IQueryRunner<GetJobTask, JobTask>>().To<GetJobTaskRunner>();
+            Bind<IListEntitiesRunner<ListJobTasks, JobTask>>().To<ListJobTasksRunner>();
         }
 
         public void BindCommands()
@@ -60,6 +65,9 @@ namespace WaterPoint.Api.DependencyInjection
         {
             Bind<IRequestProcessor<CreateTaskDefinitionRequest, TaskDefinitionContract>>()
                 .To<CreateTaskDefinitionProcessor>();
+
+            Bind<IRequestProcessor<ListJobTasksRequest, PaginatedResult<JobTaskContract>>>()
+                .To<ListJobTasksProcessor>();
         }
     }
 }
