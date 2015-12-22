@@ -1,8 +1,9 @@
 ﻿using System;
+using WaterPoint.Core.Domain.Dtos;
 
 namespace WaterPoint.Core.Domain.Contracts.TaskDefinitions
 {
-    public class TaskDefinitionContract
+    public class TaskDefinitionContract : IContract
     {
         public int Id { get; set; }
         public int OrganizationId { get; set; }

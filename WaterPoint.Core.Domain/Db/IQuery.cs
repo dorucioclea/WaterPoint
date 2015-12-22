@@ -1,4 +1,6 @@
-﻿using WaterPoint.Data.Entity;
+﻿using System.Collections.Generic;
+using WaterPoint.Core.Domain.Dtos;
+using WaterPoint.Data.Entity;
 
 namespace WaterPoint.Core.Domain.Db
 {
@@ -22,8 +24,16 @@ namespace WaterPoint.Core.Domain.Db
         string SearchTerm { get; set; }
     }
 
-    public interface IQueryRunner<T, TOut>
+    public interface IQueryRunner<T, out TOut>
         where T : IQueryParameter
+        where TOut : IDataEntity
+    {
+        TOut Run(IQuery<T> query);
+    }
+
+    public interface IQueryCollectionRunner<T, out TOut>
+        where T : IQueryParameter
+        where TOut : IEnumerable<IDataEntity>
     {
         TOut Run(IQuery<T> query);
     }

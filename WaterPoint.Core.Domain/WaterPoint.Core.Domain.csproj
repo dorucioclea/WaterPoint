@@ -57,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\Credentials\ValidCredentialContract.cs" />
     <Compile Include="Contracts\Customers\CustomerIdNameContract.cs" />
     <Compile Include="Contracts\JobCategories\JobCategoryIdDescContract.cs" />
     <Compile Include="Contracts\JobStatuses\JobStatusIdNameContract.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="Contracts\TaskDefinitions\TaskDefinitionContract.cs" />
     <Compile Include="Db\ISqlBuilder.cs" />
     <Compile Include="Db\ISqlBuilderFactory.cs" />
+    <Compile Include="Dtos\IContract.cs" />
     <Compile Include="Dtos\IPaginationParameter.cs" />
     <Compile Include="Dtos\RequestParameters\IsProspectOrgIdParameter .cs" />
     <Compile Include="Dtos\RequestParameters\CustomerIdOrgIdParameter.cs" />

@@ -1,6 +1,8 @@
-﻿namespace WaterPoint.Core.Domain
+﻿using WaterPoint.Core.Domain.Dtos;
+
+namespace WaterPoint.Core.Domain
 {
-    public class PaginatedResult<T>
+    public class PaginatedResult<T> : IContract
     {
         public int TotalPages
         {

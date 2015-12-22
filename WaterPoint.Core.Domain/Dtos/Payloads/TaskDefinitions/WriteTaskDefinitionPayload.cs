@@ -6,6 +6,5 @@
         public string Description { get; set; }
         public decimal BaseRate { get; set; }
         public decimal BillableRate { get; set; }
-        public bool IsDeleted { get; set; }
     }
 }

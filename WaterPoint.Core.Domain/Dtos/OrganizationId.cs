@@ -1,6 +1,6 @@
 ﻿namespace WaterPoint.Core.Domain.Dtos
 {
-    public class OrganizationIdParameter : IUriPathParameter
+    public class OrgIdParameter : IUriPathParameter
     {
         public int OrganizationId { get; set; }
     }

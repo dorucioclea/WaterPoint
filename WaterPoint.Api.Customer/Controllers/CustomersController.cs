@@ -65,7 +65,7 @@ namespace WaterPoint.Api.Customer.Controllers
         [Route("")]
         [Authorize]//add to class level
         public IHttpActionResult Post(
-            [FromUri]OrganizationIdParameter parameter,
+            [FromUri]OrgIdParameter parameter,
             [FromBody]WriteCustomerPayload customerPayload)
         {
             if (!ModelState.IsValid)

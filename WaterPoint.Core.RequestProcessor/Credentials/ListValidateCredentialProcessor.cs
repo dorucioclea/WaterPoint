@@ -1,34 +1,37 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using WaterPoint.Core.Bll.Queries.Credentials;
 using WaterPoint.Core.Bll.QueryParameters.Credentials;
 using WaterPoint.Core.Bll.QueryRunners.Credentials;
 using WaterPoint.Core.Domain;
+using WaterPoint.Core.Domain.Contracts.Credentials;
 using WaterPoint.Core.Domain.Db;
 using WaterPoint.Core.Domain.Dtos.Requests.Credentials;
+using WaterPoint.Core.RequestProcessor.Mappers.EntitiesToContracts;
 using WaterPoint.Data.DbContext.Dapper;
 using WaterPoint.Data.Entity.Pocos.Views;
 
 namespace WaterPoint.Core.RequestProcessor.Credentials
 {
-    public class ListValidateCredentialRequestProcessor :
+    public class ListValidateCredentialProcessor :
         BaseDapperUowRequestProcess,
-        IRequestProcessor<ListValidateCredentialsRequest, IEnumerable<ValidCredential>>
+        IRequestCollectionProcessor<ListValidateCredentialsRequest, IEnumerable<ValidCredentialContract>>
     {
         private readonly IQuery<ListCredentials> _query;
-        private readonly IQueryRunner<ListCredentials, IEnumerable<ValidCredential>> _runner;
+        private readonly IQueryCollectionRunner<ListCredentials, IEnumerable<ValidCredential>> _runner;
 
-        public ListValidateCredentialRequestProcessor(
+        public ListValidateCredentialProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
             IQuery<ListCredentials> query,
-            IQueryRunner<ListCredentials, IEnumerable<ValidCredential>> runner)
+            IQueryCollectionRunner<ListCredentials, IEnumerable<ValidCredential>> runner)
             : base(dapperUnitOfWork)
         {
             _query = query;
             _runner = runner;
         }
 
-        public IEnumerable<ValidCredential> Process(ListValidateCredentialsRequest input)
+        public IEnumerable<ValidCredentialContract> Process(ListValidateCredentialsRequest input)
         {
             var parameter = new ListCredentials
             {
@@ -42,7 +45,7 @@ namespace WaterPoint.Core.RequestProcessor.Credentials
             {
                 var credentials = _runner.Run(_query);
 
-                return credentials;
+                return credentials.Select(CredentialMapper.Map);
             }
         }
     }
