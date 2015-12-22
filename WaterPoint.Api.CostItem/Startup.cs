@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.Owin;
+﻿using Microsoft.Owin;
 using Ninject;
-using Owin;
 using WaterPoint.Api.Common;
 using WaterPoint.Api.DependencyInjection;
 
