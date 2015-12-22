@@ -94,7 +94,7 @@
     <Compile Include="Queries\Customers\ListPaginatedCustomerJobsQuery.cs" />
     <Compile Include="Queries\Jobs\GetJobByIdQuery.cs" />
     <Compile Include="Queries\Jobs\ListPaginatedJobsQuery.cs" />
-    <Compile Include="Queries\JobTasks\GetJobTaskByIdQuery.cs" />
+    <Compile Include="Queries\JobTasks\GetJobTaskQuery.cs" />
     <Compile Include="Queries\JobTasks\ListPaginatedJobTasksQuery.cs" />
     <Compile Include="Queries\OAuthClients\GetOAuthClientQuery.cs" />
     <Compile Include="Queries\TaskDefinitions\GetTaskDefinitionQuery.cs" />
@@ -109,6 +109,8 @@
     <Compile Include="QueryParameters\Jobs\CreateBasicJob.cs" />
     <Compile Include="QueryParameters\Jobs\GetJobDetails.cs" />
     <Compile Include="QueryParameters\Jobs\PaginatedJobs.cs" />
+    <Compile Include="QueryParameters\JobTasks\CreateJobTask.cs" />
+    <Compile Include="QueryParameters\JobTasks\GetJobTask.cs" />
     <Compile Include="QueryParameters\TaskDefinitions\CreateTaskDefinition.cs" />
     <Compile Include="QueryParameters\TaskDefinitions\GetTaskDefinition.cs" />
     <Compile Include="QueryParameters\TaskDefinitions\PaginatedTaskDefinitions.cs" />
@@ -120,7 +122,7 @@
     <Compile Include="Executors\UpdateCommandExecutor.cs" />
     <Compile Include="Executors\CreateCommandExecutor.cs" />
     <Compile Include="QueryRunners\IListPaginatedEntitiesRunner.cs" />
-    <Compile Include="QueryRunners\JobTasks\GetJobTaskByIdQueryRunner.cs" />
+    <Compile Include="QueryRunners\JobTasks\GetJobTaskRunner.cs" />
     <Compile Include="QueryRunners\JobTasks\ListPaginatedJobTasksRunner.cs" />
     <Compile Include="QueryRunners\OAuthClients\GetOAuthClientQueryRunner.cs" />
     <Compile Include="QueryRunners\TaskDefinitions\GetTaskDefinitionRunner.cs" />

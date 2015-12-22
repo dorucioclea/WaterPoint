@@ -98,7 +98,7 @@
     <Compile Include="PaginationQueryParameterConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="JobTasks\CreateJobTaskProcessor.cs" />
-    <Compile Include="JobTasks\GetJobTaskByIdProcessor.cs" />
+    <Compile Include="JobTasks\GetJobTaskProcessor.cs" />
     <Compile Include="JobTasks\ListPaginatedJobTasksProcessor.cs" />
     <Compile Include="JobTasks\UpdateJobTaskProcessor.cs" />
     <Compile Include="TaskDefinitions\CreateTaskDefinitionProcessor.cs" />

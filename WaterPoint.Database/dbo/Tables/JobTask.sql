@@ -4,7 +4,7 @@
     [JobId] INT NOT NULL,
     [TaskDefinitionId] INT NOT NULL,
     [DisplayOrder] INT NOT NULL,
-    [EstimatedTimeInMinutes] INT NOT NULL,
+    [EstimatedTimeInMinutes] INT NULL,
     [StartDate] DATETIME2(0) NULL,
     [EndDate] DATETIME2(0) NULL,
     [CompletedDate] DATETIME2(0) NULL,

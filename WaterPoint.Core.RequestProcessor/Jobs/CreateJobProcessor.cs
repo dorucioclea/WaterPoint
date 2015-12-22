@@ -43,12 +43,12 @@ namespace WaterPoint.Core.RequestProcessor.Jobs
             var parameter = new CreateBasicJob
             {
                 OrganizationId = input.OrganizationIdParameter.OrganizationId,
-                JobStatusId = input.CreateJobPayload.JobStatusId,
+                JobStatusId = input.CreateJobPayload.JobStatusId.Value,
                 Code = input.CreateJobPayload.Code,
                 ShortDescription = input.CreateJobPayload.ShortDescription,
-                CustomerId = input.CreateJobPayload.CustomerId,
-                StartDate = input.CreateJobPayload.StartDate,
-                EndDate = input.CreateJobPayload.EndDate
+                CustomerId = input.CreateJobPayload.CustomerId.Value,
+                StartDate = input.CreateJobPayload.StartDate.Value,
+                EndDate = input.CreateJobPayload.EndDate.Value
             };
 
             _command.BuildQuery(parameter);

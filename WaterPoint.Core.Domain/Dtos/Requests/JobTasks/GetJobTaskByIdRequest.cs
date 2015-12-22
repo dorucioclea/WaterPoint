@@ -2,6 +2,6 @@
 {
     public class GetJobTaskByIdRequest: IRequest
     {
-        public OrganizationEntityParameter OrganizationEntityParameter { get; set; }
+        public int Id { get; set; }
     }
 }

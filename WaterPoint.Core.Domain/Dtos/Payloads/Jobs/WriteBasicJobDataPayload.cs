@@ -6,7 +6,7 @@ namespace WaterPoint.Core.Domain.Dtos.Payloads.Jobs
     public class WriteBasicJobDataPayload
     {
         [Required]
-        public int JobStatusId { get; set; }
+        public int? JobStatusId { get; set; }
 
         public string Code { get; set; }
 
@@ -14,12 +14,12 @@ namespace WaterPoint.Core.Domain.Dtos.Payloads.Jobs
         public string ShortDescription { get; set; }
 
         [Required]
-        public int CustomerId { get; set; }
+        public int? CustomerId { get; set; }
 
         [Required]
-        public DateTime StartDate { get; set; }
+        public DateTime? StartDate { get; set; }
 
         [Required]
-        public DateTime EndDate { get; set; }
+        public DateTime? EndDate { get; set; }
     }
 }
