@@ -5,7 +5,7 @@
         public T Data { get; set; }
     }
 
-    public class PaginatedPoco
+    public class PaginatedPoco : IDataEntity
     {
         public const string SplitOnColumn = "TotalCount";
         public int TotalCount { get; set; }

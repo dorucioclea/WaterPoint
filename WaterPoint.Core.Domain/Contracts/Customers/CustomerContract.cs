@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WaterPoint.Core.Domain.Dtos;
 
 namespace WaterPoint.Core.Domain.Contracts.Customers
 {
-    public class CustomerContract
+    public class CustomerContract : IContract
     {
         public int Id { get; set; }
         public int OrganizationId { get; set; }

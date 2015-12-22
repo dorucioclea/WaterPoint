@@ -25,3 +25,10 @@ IF(NOT EXISTS(SELECT TOP 1 * FROM dbo.OrganizationUser))
         DBCC checkident ('dbo.OrganizationUser', reseed, 10000)
     END
 GO
+
+
+IF(NOT EXISTS(SELECT TOP 1 * FROM dbo.TaskDefinition))
+    BEGIN
+        DBCC checkident ('dbo.TaskDefinition', reseed, 10000)
+    END
+GO

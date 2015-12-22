@@ -37,7 +37,7 @@ namespace WaterPoint.Api.Job.Controllers
 
         [Route("")]
         public IHttpActionResult Get(
-            [FromUri]OrganizationIdParameter parameter,
+            [FromUri]OrgIdParameter parameter,
             [FromUri]PaginationParamter pagination,
             [FromUri]JobStatusParameter jobStatusParamter)
         {
@@ -74,7 +74,7 @@ namespace WaterPoint.Api.Job.Controllers
 
         [Route("")]
         public IHttpActionResult Post(
-            [FromUri]OrganizationIdParameter parameter,
+            [FromUri]OrgIdParameter parameter,
             [FromBody]WriteBasicJobDataPayload jobPayload)
         {
             if (!ModelState.IsValid)

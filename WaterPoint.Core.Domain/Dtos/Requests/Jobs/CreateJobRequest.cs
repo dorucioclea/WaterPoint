@@ -4,7 +4,7 @@ namespace WaterPoint.Core.Domain.Dtos.Requests.Jobs
 {
     public class CreateJobRequest : IRequest
     {
-        public OrganizationIdParameter OrganizationIdParameter { get; set; }
+        public OrgIdParameter OrganizationIdParameter { get; set; }
         public WriteBasicJobDataPayload CreateJobPayload { get; set; }
         public int OrganizationUserId { get; set; }
     }

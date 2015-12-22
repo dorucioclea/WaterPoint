@@ -7,7 +7,7 @@ using WaterPoint.Data.Entity.Pocos.Views;
 
 namespace WaterPoint.Core.Bll.QueryRunners.Credentials
 {
-    public class ListValidateCredentialsRunner : IQueryRunner<ListCredentials, IEnumerable<ValidCredential>>
+    public class ListValidateCredentialsRunner : IQueryCollectionRunner<ListCredentials, IEnumerable<ValidCredential>>
     {
         private readonly IDapperDbContext _dapperDbContext;
 

@@ -11,14 +11,14 @@ using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Core.RequestProcessor.OAuthClients
 {
-    public class GetOAuthClientRequestProcessor :
+    public class GetOAuthClientProcessor :
         BaseDapperUowRequestProcess,
         IRequestProcessor<GetOAuthClientRequest, OAuthClientContract>
     {
         private readonly IQuery<GetAuthClient> _query;
         private readonly IQueryRunner<GetAuthClient, OAuthClient> _runner;
 
-        public GetOAuthClientRequestProcessor(
+        public GetOAuthClientProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
             IQuery<GetAuthClient> query,
             IQueryRunner<GetAuthClient, OAuthClient> runner)

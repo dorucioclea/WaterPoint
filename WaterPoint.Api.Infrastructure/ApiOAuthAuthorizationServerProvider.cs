@@ -8,6 +8,7 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
 using Newtonsoft.Json;
 using WaterPoint.Core.Domain;
+using WaterPoint.Core.Domain.Contracts.Credentials;
 using WaterPoint.Core.Domain.Contracts.OAuthClients;
 using WaterPoint.Core.Domain.Dtos.Requests.Credentials;
 using WaterPoint.Core.Domain.Dtos.Requests.OAuthClients;
@@ -18,11 +19,11 @@ namespace WaterPoint.Api.Infrastructure
     public class ApiOAuthAuthorizationServerProvider : OAuthAuthorizationServerProvider
     {
         private readonly IRequestProcessor<GetOAuthClientRequest, OAuthClientContract> _oauthRequestProcessor;
-        private readonly IRequestProcessor<ListValidateCredentialsRequest, IEnumerable<ValidCredential>> _credentialRequestProcessor;
+        private readonly IRequestCollectionProcessor<ListValidateCredentialsRequest, IEnumerable<ValidCredentialContract>> _credentialRequestProcessor;
 
         public ApiOAuthAuthorizationServerProvider(
             IRequestProcessor<GetOAuthClientRequest, OAuthClientContract> oauthRequestProcessor,
-            IRequestProcessor<ListValidateCredentialsRequest, IEnumerable<ValidCredential>> credentialRequestProcessor)
+            IRequestCollectionProcessor<ListValidateCredentialsRequest, IEnumerable<ValidCredentialContract>> credentialRequestProcessor)
         {
             _oauthRequestProcessor = oauthRequestProcessor;
             _credentialRequestProcessor = credentialRequestProcessor;
@@ -68,7 +69,7 @@ namespace WaterPoint.Api.Infrastructure
             {
                 new Claim(ClaimTypes.Email, context.UserName),
                 new Claim(ClaimTypes.Sid, context.UserName),
-                new Claim(ClaimTypes.PrimaryGroupSid, JsonConvert.SerializeObject(credentials)), 
+                new Claim(ClaimTypes.PrimaryGroupSid, JsonConvert.SerializeObject(credentials)),
             }, CookieAuthenticationDefaults.AuthenticationType);
 
             var properties = CreateProperties(context.UserName);

@@ -9,6 +9,7 @@ using WaterPoint.Core.Bll.QueryParameters.Credentials;
 using WaterPoint.Core.Bll.QueryRunners.Credentials;
 using WaterPoint.Core.Bll.QueryRunners.OAuthClients;
 using WaterPoint.Core.Domain;
+using WaterPoint.Core.Domain.Contracts.Credentials;
 using WaterPoint.Core.Domain.Contracts.OAuthClients;
 using WaterPoint.Core.Domain.Db;
 using WaterPoint.Core.Domain.Dtos.Requests.Credentials;
@@ -41,7 +42,7 @@ namespace WaterPoint.Api.DependencyInjection
 
         public void BindQueryRunners()
         {
-            Bind<IQueryRunner<ListCredentials, IEnumerable<ValidCredential>>>()
+            Bind<IQueryCollectionRunner<ListCredentials, IEnumerable<ValidCredential>>>()
                 .To<ListValidateCredentialsRunner>();
 
             Bind<IQueryRunner<GetAuthClient, OAuthClient>>()
@@ -50,10 +51,10 @@ namespace WaterPoint.Api.DependencyInjection
         private void BindRequestProcessors()
         {
             Bind<IRequestProcessor<GetOAuthClientRequest, OAuthClientContract>>()
-                .To<GetOAuthClientRequestProcessor>();
+                .To<GetOAuthClientProcessor>();
 
-            Bind<IRequestProcessor<ListValidateCredentialsRequest, IEnumerable<ValidCredential>>>()
-                .To<ListValidateCredentialRequestProcessor>();
+            Bind<IRequestCollectionProcessor<ListValidateCredentialsRequest, IEnumerable<ValidCredentialContract>>>()
+                .To<ListValidateCredentialProcessor>();
         }
 
         public void BindProviders()

@@ -1,65 +1,62 @@
-﻿//using WaterPoint.Core.Bll.QueryParameters;
-//using WaterPoint.Core.Domain;
-//using WaterPoint.Core.Domain.Db;
-//using WaterPoint.Data.Entity.DataEntities;
+﻿using WaterPoint.Core.Bll.QueryParameters;
+using WaterPoint.Core.Bll.QueryParameters.TaskDefinitions;
+using WaterPoint.Core.Domain;
+using WaterPoint.Core.Domain.Db;
+using WaterPoint.Data.Entity.DataEntities;
 
-//namespace WaterPoint.Core.Bll.Queries.TaskDefinitions
-//{
-//    public class ListPaginatedTaskDefinitionsQuery : IListPaginatedWithOrgIdQuery<PaginatedOrgId>
-//    {
-//        private readonly ISqlBuilderFactory _sqlBuilderFactory;
+namespace WaterPoint.Core.Bll.Queries.TaskDefinitions
+{
+    public class ListPaginatedTaskDefinitionsQuery : IQuery<PaginatedTaskDefinitions>
+    {
+        private readonly ISqlBuilderFactory _sqlBuilderFactory;
 
-//        private readonly string _sqlTemplate = $@"
-//                SELECT
-//                    {SqlPatterns.Columns}
-//                    ,[TotalCount]
-//                FROM
-//                    {SqlPatterns.FromTable}
-//                    CROSS APPLY(
-//                        SELECT COUNT(*) TotalCount
-//                        FROM
-//                            {SqlPatterns.FromTable}
-//                        WHERE
-//                            {SqlPatterns.Where}
-//                    )[Count]
-//                WHERE
-//                   {SqlPatterns.Where}
-//                ORDER BY {SqlPatterns.OrderBy}
-//                OFFSET @offset ROWS FETCH NEXT @pageSize ROWS ONLY  ";
+        private readonly string _sqlTemplate = $@"
+                SELECT
+                    {SqlPatterns.Columns}
+                    ,[TotalCount]
+                FROM
+                    {SqlPatterns.FromTable}
+                    CROSS APPLY(
+                        SELECT COUNT(*) TotalCount
+                        FROM
+                            {SqlPatterns.FromTable}
+                        WHERE
+                            {SqlPatterns.Where}
+                    )[Count]
+                WHERE
+                    {SqlPatterns.Where}
+                ORDER BY {SqlPatterns.OrderBy}
+                OFFSET @offset ROWS FETCH NEXT @pageSize ROWS ONLY  ";
 
-//        public ListPaginatedTaskDefinitionsQuery(ISqlBuilderFactory sqlBuilderFactory)
-//        {
-//            _sqlBuilderFactory = sqlBuilderFactory;
-//        }
+        public ListPaginatedTaskDefinitionsQuery(ISqlBuilderFactory sqlBuilderFactory)
+        {
+            _sqlBuilderFactory = sqlBuilderFactory;
+        }
 
-//        public void BuildQuery(int orgId, int offset, int pageSize, string orderBy, bool isDesc, string searchTerm)
-//        {
-//            var builder = _sqlBuilderFactory.Create<SelectSqlBuilder>();
+        public void BuildQuery(PaginatedTaskDefinitions parameter)
+        {
+            var builder = _sqlBuilderFactory.Create<SelectSqlBuilder>();
 
-//            builder.AddTemplate(_sqlTemplate);
-//            builder.AddColumns<TaskDefinition>();
-//            builder.AddConditions<TaskDefinition>(i => i.OrganizationId == orgId);
-//            builder.AddOrderBy<TaskDefinition>(orderBy, isDesc);
-//            builder.AddContains<TaskDefinition>(searchTerm);
+            builder.AddTemplate(_sqlTemplate);
+            builder.AddColumns<TaskDefinition>();
+            builder.AddConditions<TaskDefinition>(i => i.OrganizationId == parameter.OrganizationId);
+            builder.AddOrderBy<TaskDefinition>(parameter.Sort, parameter.IsDesc);
+            builder.AddContains<TaskDefinition>(parameter.SearchTerm);
 
-//            var sql = builder.GetSql();
+            var sql = builder.GetSql();
 
-//            Query = sql;
+            Query = sql;
 
-//            Parameters = new
-//            {
-//                orgId,
-//                offset,
-//                pageSize
-//            };
-//        }
+            Parameters = new
+            {
+                organizationId = parameter.OrganizationId,
+                offset = parameter.Offset,
+                pageSize = parameter.PageSize,
+                searchTerm = parameter.SearchTerm
+            };
+        }
 
-//        public void BuildQuery(PaginatedOrgId parameter)
-//        {
-//            throw new System.NotImplementedException();
-//        }
-
-//        public string Query { get; private set; }
-//        public object Parameters { get; private set; }
-//    }
-//}
+        public string Query { get; private set; }
+        public object Parameters { get; private set; }
+    }
+}
