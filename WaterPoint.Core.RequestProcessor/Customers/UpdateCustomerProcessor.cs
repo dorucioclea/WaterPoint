@@ -66,10 +66,9 @@ namespace WaterPoint.Core.RequestProcessor.Customers
 
             var existingCustomer = _getCustomerByIdQueryRunner.Run(_getCustomerByIdQuery);
 
-            var updatedCustomer = _patchEntityAdapter.PatchEnitity<WriteCustomerPayload, Customer>(
+            var updatedCustomer = _patchEntityAdapter.PatchEnitity<WriteCustomerPayload, Customer, UpdateCustomer>(
                 existingCustomer,
-                input.UpdateCustomerPayload.Patch,
-                (o) => { o.UtcUpdated = DateTime.UtcNow; });
+                input.UpdateCustomerPayload.Patch);
 
             var updateParameter = updatedCustomer.MapTo(new UpdateCustomer());
 
@@ -79,7 +78,7 @@ namespace WaterPoint.Core.RequestProcessor.Customers
             var success = _updateCommandExecutor.Execute(_updateCustomerByIdQuery) > 0;
 
             if (success)
-                return CustomerMapper.Map(updatedCustomer);
+                return CustomerMapper.Map(existingCustomer);
 
             var updateException = new UpdateFailedException();
 

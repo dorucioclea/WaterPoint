@@ -57,7 +57,7 @@ namespace WaterPoint.Api.DependencyInjection
         public void BindCommands()
         {
             Bind<ICommand<CreateCustomer>>().To<CreateCustomerCommand>();
-            Bind<ICommand<UpdateCustomer>>().To<UpdateCustomerByIdCommand>();
+            Bind<ICommand<UpdateCustomer>>().To<UpdateCustomerCommand>();
         }
 
         public void BindCommandExecutors()

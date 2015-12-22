@@ -86,6 +86,7 @@ namespace WaterPoint.Api.Customer.Controllers
         }
 
         [Route("{id:int}")]
+        [Authorize]
         public IHttpActionResult Put(
             [FromUri] OrganizationEntityParameter parameter,
             [FromBody] Delta<WriteCustomerPayload> input)

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Windows.Input;
 using Ninject.Modules;
 using WaterPoint.Core.Bll.Commands.TaskDefinitions;
 using WaterPoint.Core.Bll.Executors;
@@ -54,11 +55,13 @@ namespace WaterPoint.Api.DependencyInjection
         public void BindCommands()
         {
             Bind<ICommand<CreateTaskDefinition>>().To<CreateTaskDefinitionCommand>();
+            Bind<ICommand<UpdateTaskDefinition>>().To<UpdateTaskDefinitionCommand>();
         }
 
         public void BindCommandExecutors()
         {
             Bind<ICommandExecutor<CreateTaskDefinition>>().To<CreateCommandExecutor<CreateTaskDefinition>>();
+            Bind<ICommandExecutor<UpdateTaskDefinition>>().To<UpdateCommandExecutor<UpdateTaskDefinition>>();
         }
 
         private void BindRequestProcessors()
@@ -71,6 +74,9 @@ namespace WaterPoint.Api.DependencyInjection
 
             Bind<IRequestProcessor<ListPaginatedWithOrgIdRequest, PaginatedResult<IEnumerable<TaskDefinitionContract>>>>()
                 .To<ListPaginatedTaskDefinitionsProcessor>();
+
+            Bind<IRequestProcessor<UpdateTaskDefinitionRequest, TaskDefinitionContract>>()
+                .To<UpdateTaskDefinitionProcessor>();
         }
     }
 }
