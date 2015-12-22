@@ -4,28 +4,25 @@ using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Core.Bll.Commands.Customers
 {
-    public class UpdateCustomerByIdCommand : ICommand<UpdateCustomer>
+    public class UpdateCustomerCommand : ICommand<UpdateCustomer>
     {
         private readonly ISqlBuilderFactory _sqlBuilderFactory;
 
-        public UpdateCustomerByIdCommand(ISqlBuilderFactory sqlBuilderFactory)
+        public UpdateCustomerCommand(ISqlBuilderFactory sqlBuilderFactory)
         {
             _sqlBuilderFactory = sqlBuilderFactory;
         }
 
         public void BuildQuery(UpdateCustomer parameter)
         {
-            var builder = _sqlBuilderFactory.Create<UpdateSqlBuilder<UpdateCustomer>>();
+            var builder = _sqlBuilderFactory.Create<UpdateSqlBuilder<Customer>>();
 
-            builder.Analyze();
+            builder.Analyze(parameter);
             builder.AddValueParameters(parameter);
 
             builder.AddConditions<Customer>(i => i.OrganizationId == parameter.OrganizationId && i.Id == parameter.Id);
 
             var sql = builder.GetSql();
-
-            builder.AddParamter("organizationId", parameter.OrganizationId);
-            builder.AddParamter("id", parameter.Id);
 
             Query = sql;
 

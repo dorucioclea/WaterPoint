@@ -4,12 +4,13 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using WaterPoint.Core.Domain.Db;
+using WaterPoint.Data.Entity;
 using WaterPoint.Data.Entity.Attributes;
 
 namespace WaterPoint.Core.Bll
 {
     public class UpdateSqlBuilder<T> : SqlBuilder<T>, ICreateSqlBuilder
-           where T : IQueryParameter
+           where T : IDataEntity
     {
         private string _where = string.Empty;
 
@@ -40,10 +41,10 @@ namespace WaterPoint.Core.Bll
                 .Replace(SqlPatterns.Where, _where);
         }
 
-        public void Analyze()
+        public void Analyze(IQueryParameter input)
         {
             var columns =
-                _propertyInfos
+                input.GetType().GetProperties()
                 .Where(i => !SqlBuilderHelper.ShouldIgnore(i, IgnoreTypes));
 
             Columns = string.Join(
@@ -52,22 +53,27 @@ namespace WaterPoint.Core.Bll
                 );
         }
 
-        public void AddValueParameters(T input)
+        public void AddValueParameters(IQueryParameter input)
         {
+            var inputProperties = input.GetType().GetProperties().ToArray();
+
             if (Parameters == null)
                 Parameters = new Dictionary<string, object>();
 
             foreach (var propertyInfo in _propertyInfos)
             {
-                if (SqlBuilderHelper.ShouldIgnore(propertyInfo, IgnoreTypes))
+                var inputPro = inputProperties.FirstOrDefault(i => string.Equals(i.Name, propertyInfo.Name, StringComparison.CurrentCultureIgnoreCase));
+
+                if (inputPro == null)
                     continue;
 
-                var value = propertyInfo.GetValue(input, null);
+                var value = inputPro.GetValue(input, null);
 
                 var name = propertyInfo.Name.ToLower();
 
                 Parameters.Add(name, value);
             }
+
         }
 
         public void AddParamter(string key, object value)

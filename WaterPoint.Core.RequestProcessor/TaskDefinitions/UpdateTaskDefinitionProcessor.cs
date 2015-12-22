@@ -1,81 +1,86 @@
-﻿//using System;
-//using WaterPoint.Api.Common;
-//using WaterPoint.Core.Bll.Commands.TaskDefinitions;
-//using WaterPoint.Core.Bll.Executors;
-//using WaterPoint.Core.Bll.Queries.TaskDefinitions;
-//using WaterPoint.Core.Bll.QueryRunners.TaskDefinitions;
-//using WaterPoint.Core.Domain;
-//using WaterPoint.Core.Domain.Contracts.TaskDefinitions;
-//using WaterPoint.Core.Domain.Exceptions;
-//using WaterPoint.Core.Domain.Dtos.Payloads.TaskDefinitions;
-//using WaterPoint.Core.Domain.Dtos.Requests.TaskDefinitions;
-//using WaterPoint.Core.RequestProcessor.Mappers.EntitiesToContracts;
-//using WaterPoint.Data.DbContext.Dapper;
-//using WaterPoint.Data.Entity.DataEntities;
+﻿using System;
+using System.Windows.Input;
+using WaterPoint.Api.Common;
+using WaterPoint.Core.Bll.Commands.TaskDefinitions;
+using WaterPoint.Core.Bll.Executors;
+using WaterPoint.Core.Bll.Queries.TaskDefinitions;
+using WaterPoint.Core.Bll.QueryParameters.TaskDefinitions;
+using WaterPoint.Core.Bll.QueryRunners.TaskDefinitions;
+using WaterPoint.Core.Domain;
+using WaterPoint.Core.Domain.Contracts.TaskDefinitions;
+using WaterPoint.Core.Domain.Db;
+using WaterPoint.Core.Domain.Exceptions;
+using WaterPoint.Core.Domain.Dtos.Payloads.TaskDefinitions;
+using WaterPoint.Core.Domain.Dtos.Requests.TaskDefinitions;
+using WaterPoint.Core.RequestProcessor.Mappers.EntitiesToContracts;
+using WaterPoint.Data.DbContext.Dapper;
+using WaterPoint.Data.Entity.DataEntities;
 
-//namespace WaterPoint.Core.RequestProcessor.TaskDefinitions
-//{
-//    public class UpdateTaskDefinitionRequestProcessor :
-//        BaseDapperUowRequestProcess,
-//        IRequestProcessor<UpdateTaskDefinitionRequest, TaskDefinitionContract>
-//    {
-//        private readonly IPatchEntityAdapter _patchEntityAdapter;
-//        private readonly GetTaskDefinitionByIdQuery _getTaskDefinitionByIdQuery;
-//        private readonly GetTaskDefinitionByIdQueryRunner _getTaskDefinitionByIdQueryRunner;
-//        private readonly UpdateTaskDefinitionByIdCommand _updateTaskDefinitionByIdQuery;
-//        private readonly UpdateCommandExecutor _updateCommandExecutor;
+namespace WaterPoint.Core.RequestProcessor.TaskDefinitions
+{
+    public class UpdateTaskDefinitionProcessor :
+        BaseDapperUowRequestProcess,
+        IRequestProcessor<UpdateTaskDefinitionRequest, TaskDefinitionContract>
+    {
+        private readonly IPatchEntityAdapter _patchEntityAdapter;
+        private readonly IQuery<GetTaskDefinition> _getTaskDefinitionByIdQuery;
+        private readonly IQueryRunner<GetTaskDefinition, TaskDefinition> _getTaskDefinitionByIdQueryRunner;
+        private readonly ICommand<UpdateTaskDefinition> _updateCommand;
+        private readonly ICommandExecutor<UpdateTaskDefinition> _updateCommandExecutor;
 
-//        public UpdateTaskDefinitionRequestProcessor(
-//            IDapperUnitOfWork dapperUnitOfWork,
-//            IPatchEntityAdapter patchEntityAdapter,
-//            GetTaskDefinitionByIdQuery getTaskDefinitionByIdQuery,
-//            GetTaskDefinitionByIdQueryRunner getTaskDefinitionByIdQueryRunner,
-//            UpdateTaskDefinitionByIdCommand updateTaskDefinitionByIdQuery,
-//            UpdateCommandExecutor updateCommandExecutor)
-//            : base(dapperUnitOfWork)
-//        {
-//            _patchEntityAdapter = patchEntityAdapter;
-//            _getTaskDefinitionByIdQuery = getTaskDefinitionByIdQuery;
-//            _getTaskDefinitionByIdQueryRunner = getTaskDefinitionByIdQueryRunner;
-//            _updateTaskDefinitionByIdQuery = updateTaskDefinitionByIdQuery;
-//            _updateCommandExecutor = updateCommandExecutor;
-//        }
+        public UpdateTaskDefinitionProcessor(
+            IDapperUnitOfWork dapperUnitOfWork,
+            IPatchEntityAdapter patchEntityAdapter,
+            IQuery<GetTaskDefinition> getTaskDefinitionByIdQuery,
+            IQueryRunner<GetTaskDefinition, TaskDefinition> getTaskDefinitionByIdQueryRunner,
+            ICommand<UpdateTaskDefinition> updateCommand,
+            ICommandExecutor<UpdateTaskDefinition> updateCommandExecutor)
+            : base(dapperUnitOfWork)
+        {
+            _patchEntityAdapter = patchEntityAdapter;
+            _getTaskDefinitionByIdQuery = getTaskDefinitionByIdQuery;
+            _getTaskDefinitionByIdQueryRunner = getTaskDefinitionByIdQueryRunner;
+            _updateCommand = updateCommand;
+            _updateCommandExecutor = updateCommandExecutor;
+        }
 
-//        public TaskDefinitionContract Process(UpdateTaskDefinitionRequest input)
-//        {
-//            var result = UowProcess(ProcessDeFacto, input);
+        public TaskDefinitionContract Process(UpdateTaskDefinitionRequest input)
+        {
+            var result = UowProcess(ProcessDeFacto, input);
 
-//            return result;
-//        }
+            return result;
+        }
 
-//        private TaskDefinitionContract ProcessDeFacto(UpdateTaskDefinitionRequest input)
-//        {
-//            _getTaskDefinitionByIdQuery.BuildQuery(input.OrganizationEntityParameter.OrganizationId, input.OrganizationEntityParameter.Id);
+        private TaskDefinitionContract ProcessDeFacto(UpdateTaskDefinitionRequest input)
+        {
+            _getTaskDefinitionByIdQuery.BuildQuery(new GetTaskDefinition
+            {
+                OrganizationId = input.Parameter.OrganizationId,
+                TaskDefinitionId = input.Parameter.Id
+            });
 
-//            var existingTaskDefinition = _getTaskDefinitionByIdQueryRunner.Run(_getTaskDefinitionByIdQuery);
+            var existingTaskDefinition = _getTaskDefinitionByIdQueryRunner.Run(_getTaskDefinitionByIdQuery);
 
-//            var updatedTaskDefinition = _patchEntityAdapter.PatchEnitity<WriteTaskDefinitionPayload, TaskDefinition>(
-//                existingTaskDefinition,
-//                input.UpdateTaskDefinitionPayload.Patch,
-//                (o) => { o.UtcUpdated = DateTime.UtcNow; },
-//                _getTaskDefinitionByIdQuery);
+            var updatedTaskDefinition = _patchEntityAdapter
+                .PatchEnitity<WriteTaskDefinitionPayload, TaskDefinition, UpdateTaskDefinition>(existingTaskDefinition,
+                input.Payload.Patch);
 
-//            //then build the query to update the object.
-//            _updateTaskDefinitionByIdQuery.BuildQuery(input.OrganizationEntityParameter.OrganizationId, updatedTaskDefinition);
+            //then build the query to update the object.
+            _updateCommand.BuildQuery(updatedTaskDefinition);
 
-//            var success = _updateCommandExecutor.Run(_updateTaskDefinitionByIdQuery);
+            var success = _updateCommandExecutor.Execute(_updateCommand);
 
-//            if (success)
-//                return TaskDefinitionMapper.Map(updatedTaskDefinition);
+            if (success > 0)
+                return TaskDefinitionMapper.Map(existingTaskDefinition);
 
-//            var updateException = new UpdateFailedException();
+            var updateException = new UpdateFailedException();
 
-//            updateException.AddMessage("operation is finished but there is no result returned");
+            updateException.AddMessage("operation is finished but there is no result returned");
 
-//            throw updateException;
-//        }
-//    }
+            throw updateException;
+        }
+    }
 
 
 
-//}
+}

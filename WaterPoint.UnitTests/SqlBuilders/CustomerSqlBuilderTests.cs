@@ -115,9 +115,9 @@ AND (CONTAINS((c.[Code],c.[Email]), @searchterm) OR CONTAINS((c.[SearchName]), @
                 //Version = "version1"
             };
 
-            var obj = new UpdateSqlBuilder<UpdateCustomer>();
+            var obj = new UpdateSqlBuilder<Customer>();
 
-            obj.Analyze();
+            obj.Analyze(customer);
             obj.AddValueParameters(customer);
 
             var orgId = 1000;

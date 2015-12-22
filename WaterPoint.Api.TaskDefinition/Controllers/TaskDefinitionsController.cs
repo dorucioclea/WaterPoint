@@ -22,20 +22,20 @@ namespace WaterPoint.Api.TaskDefinition.Controllers
     {
         private readonly IRequestProcessor<ListPaginatedWithOrgIdRequest, PaginatedResult<IEnumerable<TaskDefinitionContract>>> _listTaskDefinitionequestProcessor;
         private readonly IRequestProcessor<CreateTaskDefinitionRequest, TaskDefinitionContract> _createTaskDefinitionRequest;
-        //private readonly IRequestProcessor<UpdateTaskDefinitionRequest, TaskDefinitionContract> _updateRequestProcessor;
+        private readonly IRequestProcessor<UpdateTaskDefinitionRequest, TaskDefinitionContract> _updateRequestProcessor;
         private readonly IRequestProcessor<GetTaskDefinitionByIdRequest, TaskDefinitionContract> _getTaskDefinitionByIdProcessor;
 
 
         public TaskDefinitionsController(
             IRequestProcessor<ListPaginatedWithOrgIdRequest, PaginatedResult<IEnumerable<TaskDefinitionContract>>> listTaskDefinitionequestProcessor,
             IRequestProcessor<CreateTaskDefinitionRequest, TaskDefinitionContract> createTaskDefinitionRequest,
-            //IRequestProcessor<UpdateTaskDefinitionRequest, TaskDefinitionContract> updateRequestProcessor,
+            IRequestProcessor<UpdateTaskDefinitionRequest, TaskDefinitionContract> updateRequestProcessor,
             IRequestProcessor<GetTaskDefinitionByIdRequest, TaskDefinitionContract> getTaskDefinitionByIdProcessor
             )
         {
             _listTaskDefinitionequestProcessor = listTaskDefinitionequestProcessor;
             _createTaskDefinitionRequest = createTaskDefinitionRequest;
-            //_updateRequestProcessor = updateRequestProcessor;
+            _updateRequestProcessor = updateRequestProcessor;
             _getTaskDefinitionByIdProcessor = getTaskDefinitionByIdProcessor;
         }
 
@@ -88,21 +88,21 @@ namespace WaterPoint.Api.TaskDefinition.Controllers
             return Ok(result);
         }
 
-        //[Route("{id:int}")]
-        //public IHttpActionResult Put(
-        //    [FromUri] OrganizationEntityParameter parameter,
-        //    [FromBody] Delta<WriteTaskDefinitionPayload> input)
-        //{
-        //    var taskDefinition = _updateRequestProcessor.Process(
-        //        new UpdateTaskDefinitionRequest
-        //        {
-        //            OrganizationEntityParameter = parameter,
-        //            UpdateTaskDefinitionPayload = input,
-        //            OrganizationUserId = OrganizationUser.Id
-        //        });
+        [Route("{id:int}")]
+        public IHttpActionResult Put(
+            [FromUri] OrganizationEntityParameter parameter,
+            [FromBody] Delta<WriteTaskDefinitionPayload> input)
+        {
+            var taskDefinition = _updateRequestProcessor.Process(
+                new UpdateTaskDefinitionRequest
+                {
+                    Parameter = parameter,
+                    Payload = input,
+                    OrganizationUserId = OrganizationUser.Id
+                });
 
-        //    return Ok(taskDefinition);
-        //}
+            return Ok(taskDefinition);
+        }
     }
 
 }
