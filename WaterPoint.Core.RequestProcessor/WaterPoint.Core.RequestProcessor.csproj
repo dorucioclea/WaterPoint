@@ -75,16 +75,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseDapperUowRequestProcess.cs" />
+    <Compile Include="CostItems\CreateCostItemProcessor.cs" />
+    <Compile Include="CostItems\GetCostItemProcessor.cs" />
     <Compile Include="Credentials\ListValidateCredentialProcessor.cs" />
     <Compile Include="Customers\ListPaginatedCustomerJobsProcessor.cs" />
     <Compile Include="Jobs\CreateJobProcessor.cs" />
     <Compile Include="Jobs\GetJobByIdProcessor.cs" />
     <Compile Include="Jobs\ListPaginatedJobsProcessor.cs" />
     <Compile Include="Customers\CreateCustomerProcessor.cs" />
-    <Compile Include="Customers\GetCustomerByIdProcessor.cs" />
+    <Compile Include="Customers\GetCustomerProcessor.cs" />
     <Compile Include="Customers\ListPaginatedCustomersProcessor.cs" />
     <Compile Include="Customers\UpdateCustomerProcessor.cs" />
     <Compile Include="Jobs\UpdateJobProcessor.cs" />
+    <Compile Include="Mappers\EntitiesToContracts\CostItemMapper.cs" />
     <Compile Include="Mappers\EntitiesToContracts\CredentialMapper.cs" />
     <Compile Include="Mappers\EntitiesToContracts\CreateCustomerPocoMapper.cs" />
     <Compile Include="Mappers\EntitiesToContracts\CustomerMapper.cs" />

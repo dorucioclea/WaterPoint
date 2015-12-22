@@ -18,14 +18,14 @@ namespace WaterPoint.Api.Customer.Controllers
         private readonly IRequestProcessor<ListCustomersRequest, PaginatedResult<IEnumerable<CustomerContract>>> _listCustomerRequestProcessor;
         private readonly IRequestProcessor<CreateCustomerRequest, CustomerContract> _createCustomerRequest;
         private readonly IRequestProcessor<UpdateCustomerRequest, CustomerContract> _updateRequestProcessor;
-        private readonly IRequestProcessor<GetCustomerByIdRequest, CustomerContract> _getCustomerByIdProcessor;
+        private readonly IRequestProcessor<GetCustomerRequest, CustomerContract> _getCustomerByIdProcessor;
 
 
         public CustomersController(
             IRequestProcessor<ListCustomersRequest, PaginatedResult<IEnumerable<CustomerContract>>> listCustomerRequestProcessor,
             IRequestProcessor<CreateCustomerRequest, CustomerContract> createCustomerRequest,
             IRequestProcessor<UpdateCustomerRequest, CustomerContract> updateRequestProcessor,
-            IRequestProcessor<GetCustomerByIdRequest, CustomerContract> getCustomerByIdProcessor)
+            IRequestProcessor<GetCustomerRequest, CustomerContract> getCustomerByIdProcessor)
         {
             _listCustomerRequestProcessor = listCustomerRequestProcessor;
             _createCustomerRequest = createCustomerRequest;
@@ -54,7 +54,7 @@ namespace WaterPoint.Api.Customer.Controllers
         public IHttpActionResult Get([FromUri]OrganizationEntityParameter parameter)
         {
             var result = _getCustomerByIdProcessor.Process(
-                new GetCustomerByIdRequest
+                new GetCustomerRequest
                 {
                     OrganizationEntityParameter = parameter
                 });

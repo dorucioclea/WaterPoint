@@ -81,6 +81,7 @@
   <ItemGroup>
     <Compile Include="ApiDiModule.cs" />
     <Compile Include="AuthorizationApiModule.cs" />
+    <Compile Include="CostItemApiModule.cs" />
     <Compile Include="JobTaskApiModule.cs" />
     <Compile Include="TaskDefinitionApiModule.cs" />
     <Compile Include="JobApiModule.cs" />

@@ -39,9 +39,9 @@ namespace WaterPoint.Core.Bll
                 .Replace(SqlPatterns.Values, _values);
         }
 
-        public void Analyze<T>() where T : IQueryParameter
+        public void Analyze<TParam>() where TParam : IQueryParameter
         {
-            var inputProperties = typeof(T).GetProperties().ToArray();
+            var inputProperties = typeof(TParam).GetProperties().ToArray();
 
             _columns =
                 _propertyInfos

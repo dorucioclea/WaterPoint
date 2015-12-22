@@ -84,12 +84,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\CostItems\CreateCostItemCommand.cs" />
     <Compile Include="Commands\Jobs\CreateBasicJobCommand.cs" />
     <Compile Include="Commands\Jobs\UpdateJobByIdCommand.cs" />
     <Compile Include="Commands\JobTasks\CreateJobTaskCommand.cs" />
     <Compile Include="Commands\JobTasks\UpdateJobTaskByIdCommand.cs" />
     <Compile Include="Commands\TaskDefinitions\CreateTaskDefinitionCommand.cs" />
     <Compile Include="Commands\TaskDefinitions\UpdateTaskDefinitionCommand.cs" />
+    <Compile Include="Queries\CostItems\GetCostItemQuery.cs" />
     <Compile Include="Queries\Credentials\ListValidateCredentialsQuery.cs" />
     <Compile Include="Queries\Customers\ListPaginatedCustomerJobsQuery.cs" />
     <Compile Include="Queries\Jobs\GetJobByIdQuery.cs" />
@@ -99,6 +101,8 @@
     <Compile Include="Queries\OAuthClients\GetOAuthClientQuery.cs" />
     <Compile Include="Queries\TaskDefinitions\GetTaskDefinitionQuery.cs" />
     <Compile Include="Queries\TaskDefinitions\ListPaginatedTaskDefinitionsQuery.cs" />
+    <Compile Include="QueryParameters\CostItems\GetCostItem.cs" />
+    <Compile Include="QueryParameters\CostItems\CreateCostItem.cs" />
     <Compile Include="QueryParameters\Credentials\GetAuthClient.cs" />
     <Compile Include="QueryParameters\Credentials\ListCredentials.cs" />
     <Compile Include="QueryParameters\Customers\PaginatedOrgIdIsProspect.cs" />
@@ -115,6 +119,7 @@
     <Compile Include="QueryParameters\TaskDefinitions\GetTaskDefinition.cs" />
     <Compile Include="QueryParameters\TaskDefinitions\PaginatedTaskDefinitions.cs" />
     <Compile Include="QueryParameters\TaskDefinitions\UpdateTaskDefinition.cs" />
+    <Compile Include="QueryRunners\CostItems\GetCostItemRunner.cs" />
     <Compile Include="QueryRunners\Credentials\ListValidateCredentialsRunner.cs" />
     <Compile Include="QueryRunners\Customers\ListPaginatedCustomerJobsRunner.cs" />
     <Compile Include="QueryRunners\Jobs\GetJobByIdQueryRunner.cs" />
@@ -129,7 +134,7 @@
     <Compile Include="QueryRunners\TaskDefinitions\ListPaginatedTaskDefinitionsRunner.cs" />
     <Compile Include="UpdateSqlBuilder.cs" />
     <Compile Include="Commands\Customers\UpdateCustomerCommand.cs" />
-    <Compile Include="Queries\Customers\GetCustomerByIdQuery.cs" />
+    <Compile Include="Queries\Customers\GetCustomerQuery.cs" />
     <Compile Include="Queries\Customers\ListPaginatedCustomerWithAddressQuery.cs" />
     <Compile Include="QueryRunners\Customers\GetCustomerByIdQueryRunner.cs" />
     <Compile Include="SqlBuilder.cs" />

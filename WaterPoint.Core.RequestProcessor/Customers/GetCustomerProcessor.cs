@@ -8,27 +8,28 @@ using WaterPoint.Core.Domain.Contracts.Customers;
 using WaterPoint.Core.Domain.Db;
 using WaterPoint.Core.Domain.Dtos.Requests.Customers;
 using WaterPoint.Data.DbContext.Dapper;
+using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Core.RequestProcessor.Customers
 {
-    public class GetCustomerByIdProcessor :
+    public class GetCustomerProcessor :
         BaseDapperUowRequestProcess,
-        IRequestProcessor<GetCustomerByIdRequest, CustomerContract>
+        IRequestProcessor<GetCustomerRequest, CustomerContract>
     {
         private readonly IQuery<GetCustomer> _query;
-        private readonly GetCustomerByIdQueryRunner _runner;
+        private readonly IQueryRunner<GetCustomer, Customer> _runner;
 
-        public GetCustomerByIdProcessor(
+        public GetCustomerProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
             IQuery<GetCustomer> query,
-            GetCustomerByIdQueryRunner runner)
+            IQueryRunner<GetCustomer, Customer> runner)
             : base(dapperUnitOfWork)
         {
             _query = query;
             _runner = runner;
         }
 
-        public CustomerContract Process(GetCustomerByIdRequest input)
+        public CustomerContract Process(GetCustomerRequest input)
         {
             var parameter = new GetCustomer
             {
