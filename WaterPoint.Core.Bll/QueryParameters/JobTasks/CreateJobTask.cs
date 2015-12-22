@@ -1,11 +1,11 @@
 ﻿using System;
-using WaterPoint.Core.Domain.Dtos;
+using WaterPoint.Core.Domain.Db;
 
-namespace WaterPoint.Core.Domain.Contracts.JobTasks
+namespace WaterPoint.Core.Bll.QueryParameters.JobTasks
 {
-    public class JobTaskContract : IContract
+    public class CreateJobTask : IQueryParameter
     {
-        public int Id { get; set; }
+        public int OrganizationId { get; set; }
 
         public int JobId { get; set; }
 
@@ -15,11 +15,11 @@ namespace WaterPoint.Core.Domain.Contracts.JobTasks
 
         public int EstimatedTimeInMinutes { get; set; }
 
-        public DateTime StartDate { get; set; }
+        public DateTime? StartDate { get; set; }
 
-        public DateTime EndDate { get; set; }
+        public DateTime? EndDate { get; set; }
 
-        public DateTime CompletedDate { get; set; }
+        public DateTime? CompletedDate { get; set; }
 
         public bool IsBillable { get; set; }
 
@@ -32,13 +32,5 @@ namespace WaterPoint.Core.Domain.Contracts.JobTasks
         public string ShortDescription { get; set; }
 
         public string LongDescription { get; set; }
-
-        public string Version { get; set; }
-
-        public string Uid { get; set; }
-
-        public DateTime UtcCreated { get; set; }
-
-        public DateTime UtcUpdated { get; set; }
     }
 }

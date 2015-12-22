@@ -9,8 +9,8 @@ namespace WaterPoint.Core.Domain.Dtos.Payloads.TaskDefinitions
         [Required]
         public string Description { get; set; }
         [Required]
-        public decimal BaseRate { get; set; }
+        public decimal? BaseRate { get; set; }
         [Required]
-        public decimal BillableRate { get; set; }
+        public decimal? BillableRate { get; set; }
     }
 }

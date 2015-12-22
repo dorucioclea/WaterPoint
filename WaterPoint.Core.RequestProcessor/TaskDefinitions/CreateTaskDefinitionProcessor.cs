@@ -51,8 +51,8 @@ namespace WaterPoint.Core.RequestProcessor.TaskDefinitions
             {
                 OrganizationId = input.OrganizationId.OrganizationId,
                 Name = input.Payload.Name,
-                BaseRate = input.Payload.BaseRate,
-                BillableRate = input.Payload.BillableRate,
+                BaseRate = input.Payload.BaseRate.Value,
+                BillableRate = input.Payload.BillableRate.Value,
                 Description = input.Payload.Description
             };
 

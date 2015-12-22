@@ -89,6 +89,7 @@
     <Compile Include="Dtos\Requests\Jobs\GetJobByIdRequest.cs" />
     <Compile Include="Dtos\Requests\Jobs\ListPaginatedJobsRequest.cs" />
     <Compile Include="Dtos\Requests\Jobs\UpdateJobRequest.cs" />
+    <Compile Include="Dtos\Requests\JobTasks\ListJobTasksRequest.cs" />
     <Compile Include="Dtos\Requests\JobTasks\CreateJobTaskRequest.cs" />
     <Compile Include="Dtos\Requests\JobTasks\GetJobTaskByIdRequest.cs" />
     <Compile Include="Dtos\Requests\JobTasks\UpdateJobTaskRequest.cs" />
