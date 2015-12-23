@@ -27,7 +27,12 @@ namespace WaterPoint.Core.RequestProcessor.JobTasks
 
         public JobTaskContract Process(GetJobTaskByIdRequest input)
         {
-            _query.BuildQuery(new GetJobTask {JobTaskId = input.Id});
+            _query.BuildQuery(new GetJobTask
+            {
+                JobTaskId = input.Id,
+                OrganizationId = input.OrganizationId,
+                JobId = input.JobId
+            });
 
             using (DapperUnitOfWork.Begin())
             {

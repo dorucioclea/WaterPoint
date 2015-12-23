@@ -8,6 +8,7 @@ using System.Web.Http.OData;
 using WaterPoint.Api.Common;
 using WaterPoint.Api.Common.BaseControllers;
 using WaterPoint.Core.Domain;
+using WaterPoint.Core.Domain.Contracts;
 using WaterPoint.Core.Domain.Contracts.TaskDefinitions;
 using WaterPoint.Core.Domain.Dtos;
 using WaterPoint.Core.Domain.Dtos.Payloads.TaskDefinitions;
@@ -20,16 +21,16 @@ namespace WaterPoint.Api.TaskDefinition.Controllers
     [RoutePrefix(RouteDefinitions.TaskDefinition.Prefix)]
     public class TaskDefinitionsController : BaseOrgnizationContextController
     {
-        private readonly IRequestProcessor<ListPaginatedWithOrgIdRequest, PaginatedResult<IEnumerable<TaskDefinitionContract>>> _listTaskDefinitionequestProcessor;
-        private readonly IRequestProcessor<CreateTaskDefinitionRequest, TaskDefinitionContract> _createTaskDefinitionRequest;
-        private readonly IRequestProcessor<UpdateTaskDefinitionRequest, TaskDefinitionContract> _updateRequestProcessor;
+        private readonly IRequestProcessor<ListWithOrgIdRequest, PaginatedResult<TaskDefinitionContract>> _listTaskDefinitionequestProcessor;
+        private readonly IRequestProcessor<CreateTaskDefinitionRequest, CommandResultContract> _createTaskDefinitionRequest;
+        private readonly IRequestProcessor<UpdateTaskDefinitionRequest, CommandResultContract> _updateRequestProcessor;
         private readonly IRequestProcessor<GetTaskDefinitionByIdRequest, TaskDefinitionContract> _getTaskDefinitionByIdProcessor;
 
 
         public TaskDefinitionsController(
-            IRequestProcessor<ListPaginatedWithOrgIdRequest, PaginatedResult<IEnumerable<TaskDefinitionContract>>> listTaskDefinitionequestProcessor,
-            IRequestProcessor<CreateTaskDefinitionRequest, TaskDefinitionContract> createTaskDefinitionRequest,
-            IRequestProcessor<UpdateTaskDefinitionRequest, TaskDefinitionContract> updateRequestProcessor,
+            IRequestProcessor<ListWithOrgIdRequest, PaginatedResult<TaskDefinitionContract>> listTaskDefinitionequestProcessor,
+            IRequestProcessor<CreateTaskDefinitionRequest, CommandResultContract> createTaskDefinitionRequest,
+            IRequestProcessor<UpdateTaskDefinitionRequest, CommandResultContract> updateRequestProcessor,
             IRequestProcessor<GetTaskDefinitionByIdRequest, TaskDefinitionContract> getTaskDefinitionByIdProcessor
             )
         {
@@ -41,10 +42,10 @@ namespace WaterPoint.Api.TaskDefinition.Controllers
 
         [Route("")]
         public IHttpActionResult Get(
-            [FromUri]OrgIdParameter parameter,
-            [FromUri]PaginationParamter pagination)
+            [FromUri]OrgIdRp parameter,
+            [FromUri]PaginationRp pagination)
         {
-            var request = new ListPaginatedWithOrgIdRequest
+            var request = new ListWithOrgIdRequest
             {
                 OrganizationIdParameter = parameter,
                 PaginationParamter = pagination
@@ -56,7 +57,7 @@ namespace WaterPoint.Api.TaskDefinition.Controllers
         }
 
         [Route("{id:int}")]
-        public IHttpActionResult Get([FromUri]OrganizationEntityParameter parameter)
+        public IHttpActionResult Get([FromUri]OrgEntityRp parameter)
         {
             var result = _getTaskDefinitionByIdProcessor.Process(
                 new GetTaskDefinitionByIdRequest
@@ -69,12 +70,12 @@ namespace WaterPoint.Api.TaskDefinition.Controllers
 
         [Route("")]
         public IHttpActionResult Post(
-            [FromUri]OrgIdParameter parameter,
+            [FromUri]OrgIdRp parameter,
             [FromBody]WriteTaskDefinitionPayload taskDefinitionPayload)
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest();
+                return BadRequest(ModelState);
             }
 
             var result = _createTaskDefinitionRequest.Process(
@@ -90,7 +91,7 @@ namespace WaterPoint.Api.TaskDefinition.Controllers
 
         [Route("{id:int}")]
         public IHttpActionResult Put(
-            [FromUri] OrganizationEntityParameter parameter,
+            [FromUri] OrgEntityRp parameter,
             [FromBody] Delta<WriteTaskDefinitionPayload> input)
         {
             var taskDefinition = _updateRequestProcessor.Process(

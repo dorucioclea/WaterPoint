@@ -1,80 +1,79 @@
-﻿//using System;
-//using WaterPoint.Api.Common;
-//using WaterPoint.Core.Bll.Commands.Jobs;
-//using WaterPoint.Core.Bll.Executors;
-//using WaterPoint.Core.Bll.Queries.Jobs;
-//using WaterPoint.Core.Bll.QueryRunners.Jobs;
-//using WaterPoint.Core.Domain;
-//using WaterPoint.Core.Domain.Contracts.Jobs;
-//using WaterPoint.Core.Domain.Exceptions;
-//using WaterPoint.Core.Domain.Dtos.Payloads.Jobs;
-//using WaterPoint.Core.Domain.Dtos.Requests.Jobs;
-//using WaterPoint.Data.DbContext.Dapper;
-//using WaterPoint.Data.Entity.DataEntities;
+﻿using WaterPoint.Api.Common;
+using WaterPoint.Core.Bll.QueryParameters.Jobs;
+using WaterPoint.Core.Domain;
+using WaterPoint.Core.Domain.Contracts;
+using WaterPoint.Core.Domain.Db;
+using WaterPoint.Core.Domain.Dtos.Payloads.Jobs;
+using WaterPoint.Core.Domain.Dtos.Requests.Jobs;
+using WaterPoint.Data.DbContext.Dapper;
+using WaterPoint.Data.Entity.Pocos.Jobs;
 
-//namespace WaterPoint.Core.RequestProcessor.Jobs
-//{
-//    public class UpdateJobRequestProcessor :
-//        BaseDapperUowRequestProcess,
-//        IRequestProcessor<UpdateJobRequest, JobWithCustomerAndStatusContract>
-//    {
-//        private readonly IPatchEntityAdapter _patchEntityAdapter;
-//        private readonly GetJobByIdQuery _getJobByIdQuery;
-//        private readonly GetJobByIdQueryRunner _getJobByIdQueryRunner;
-//        private readonly UpdateJobByIdCommand _updateJobByIdQuery;
-//        private readonly UpdateCommandExecutor _updateCommandExecutor;
+namespace WaterPoint.Core.RequestProcessor.Jobs
+{
+    public class UpdateJobRequestProcessor :
+        BaseDapperUowRequestProcess,
+        IRequestProcessor<UpdateJobRequest, CommandResultContract>
+    {
+        private readonly IPatchEntityAdapter _patchEntityAdapter;
+        private readonly ICommand<UpdateJob> _updateCommand;
+        private readonly ICommandExecutor<UpdateJob> _updateCommandExecutor;
+        private readonly IQuery<GetJob> _getJobQuery;
+        private readonly IQueryRunner<GetJob, JobWithDetailsPoco> _getJobQueryRunner;
 
-//        public UpdateJobRequestProcessor(
-//            IDapperUnitOfWork dapperUnitOfWork,
-//            IPatchEntityAdapter patchEntityAdapter,
-//            GetJobByIdQuery getJobByIdQuery,
-//            GetJobByIdQueryRunner getJobByIdQueryRunner,
-//            UpdateJobByIdCommand updateJobByIdQuery,
-//            UpdateCommandExecutor updateCommandExecutor)
-//            : base(dapperUnitOfWork)
-//        {
-//            _patchEntityAdapter = patchEntityAdapter;
-//            _getJobByIdQuery = getJobByIdQuery;
-//            _getJobByIdQueryRunner = getJobByIdQueryRunner;
-//            _updateJobByIdQuery = updateJobByIdQuery;
-//            _updateCommandExecutor = updateCommandExecutor;
-//        }
+        public UpdateJobRequestProcessor(
+            IDapperUnitOfWork dapperUnitOfWork,
+            IPatchEntityAdapter patchEntityAdapter,
+            ICommand<UpdateJob> updateCommand,
+            ICommandExecutor<UpdateJob> updateCommandExecutor,
+            IQuery<GetJob> getJobQuery,
+            IQueryRunner<GetJob, JobWithDetailsPoco> getJobQueryRunner)
+            : base(dapperUnitOfWork)
+        {
+            _patchEntityAdapter = patchEntityAdapter;
+            _updateCommand = updateCommand;
+            _updateCommandExecutor = updateCommandExecutor;
+            _getJobQuery = getJobQuery;
+            _getJobQueryRunner = getJobQueryRunner;
+        }
 
-//        public JobWithCustomerAndStatusContract Process(UpdateJobRequest input)
-//        {
-//            var result = UowProcess(ProcessDeFacto, input);
+        public CommandResultContract Process(UpdateJobRequest input)
+        {
+            var result = UowProcess(ProcessDeFacto, input);
 
-//            return result;
-//        }
+            return result;
+        }
 
-//        private JobWithCustomerAndStatusContract ProcessDeFacto(UpdateJobRequest input)
-//        {
-//            _getJobByIdQuery.BuildQuery(input.OrganizationEntityParameter.OrganizationId, input.OrganizationEntityParameter.Id);
+        private CommandResultContract ProcessDeFacto(UpdateJobRequest input)
+        {
+            _getJobQuery.BuildQuery(new GetJob
+            {
+                OrganizationId = input.Parameter.OrganizationId,
+                JobId = input.Parameter.Id
+            });
 
-//            var existingJob = _getJobByIdQueryRunner.Run(_getJobByIdQuery);
+            var existingJob = _getJobQueryRunner.Run(_getJobQuery);
 
-//            var updatedJob = _patchEntityAdapter.PatchEnitity<WriteJobPayload, Job>(
-//                existingJob,
-//                input.UpdateJobPayload.Patch,
-//                (o) => { o.UtcUpdated = DateTime.UtcNow; },
-//                _getJobByIdQuery);
+            var updatedJob = _patchEntityAdapter.PatchEnitity<WriteJobPayload, JobWithDetailsPoco, UpdateJob>(
+                existingJob,
+                input.Payload.Patch);
 
-//            //then build the query to update the object.
-//            _updateJobByIdQuery.BuildQuery(input.OrganizationEntityParameter.OrganizationId, updatedJob);
+            //then build the query to update the object.
+            _updateCommand.BuildQuery(updatedJob);
 
-//            var success = _updateCommandExecutor.Run(_updateJobByIdQuery);
+            var success = _updateCommandExecutor.Execute(_updateCommand);
 
-//            if (success)
-//                return ContractMapper.JobMapper.Map(updatedJob);
+            if (success > 0)
+                return new CommandResultContract
+                {
+                    Message = $"job {input.Parameter.Id} has been updated",
+                    Status = CommandResultContract.Success
+                };
 
-//            var updateException = new UpdateFailedException();
-
-//            updateException.AddMessage("operation is finished but there is no result returned");
-
-//            throw updateException;
-//        }
-//    }
-
-
-
-//}
+            return new CommandResultContract
+            {
+                Message = $"job {input.Parameter.Id} has not been updated, operation is finished but there is no result returned",
+                Status = CommandResultContract.Failed
+            };
+        }
+    }
+}

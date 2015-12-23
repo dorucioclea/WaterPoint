@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Web.Http;
+﻿using System.Web.Http;
 using WaterPoint.Api.Common;
 using WaterPoint.Api.Common.BaseControllers;
 using WaterPoint.Core.Domain;
@@ -10,25 +9,25 @@ using WaterPoint.Core.Domain.Dtos.Requests.Customers;
 
 namespace WaterPoint.Api.Customer.Controllers
 {
-    [RoutePrefix(RouteDefinitions.Customers.Prefix)]
+    [RoutePrefix(RouteDefinitions.Customers.JobsPrefix)]
     public class JobsController : BaseOrgnizationContextController
     {
-        private readonly IRequestProcessor<ListCustomerJobsRequest, PaginatedResult<IEnumerable<JobWithCustomerContract>>> _listCustomerJobsRequestProcessor;
+        private readonly IRequestProcessor<ListCustomerJobsRequest, PaginatedResult<JobWithCustomerContract>> _listCustomerJobsRequestProcessor;
 
         public JobsController(
-            IRequestProcessor<ListCustomerJobsRequest, PaginatedResult<IEnumerable<JobWithCustomerContract>>> listCustomerJobsRequestProcessor)
+            IRequestProcessor<ListCustomerJobsRequest, PaginatedResult<JobWithCustomerContract>> listCustomerJobsRequestProcessor)
         {
             _listCustomerJobsRequestProcessor = listCustomerJobsRequestProcessor;
         }
 
-        [Route(RouteDefinitions.Customers.Jobs)]
+        [Route("")]
         public IHttpActionResult Get(
-            [FromUri]CustomerIdOrgIdParameter customerIdOrgIdParameter,
-            [FromUri]PaginationParamter paginationParamter)
+            [FromUri]CustomerIdOrgIdRp customerIdOrgIdRp,
+            [FromUri]PaginationRp paginationParamter)
         {
             var request = new ListCustomerJobsRequest
             {
-                CustomerIdOrgIdParameter = customerIdOrgIdParameter,
+                CustomerIdOrgIdRp = customerIdOrgIdRp,
                 PaginationParamter = paginationParamter
             };
 

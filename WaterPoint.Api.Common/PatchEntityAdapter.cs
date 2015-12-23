@@ -51,8 +51,6 @@ namespace WaterPoint.Api.Common
                 throw exception;
             }
 
-            payloadBeingPatched.MapTo(existingEntity);
-
             //valid then merge the temp dto to the existing DB object
             //TODO: valid then update the object
             var queryParameter = existingEntity.MapTo(new TOutput());

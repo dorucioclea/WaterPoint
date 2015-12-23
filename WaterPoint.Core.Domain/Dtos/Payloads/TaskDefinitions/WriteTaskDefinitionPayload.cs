@@ -1,13 +1,14 @@
-﻿using Microsoft.Build.Framework;
+﻿
+using System.ComponentModel.DataAnnotations;
 
 namespace WaterPoint.Core.Domain.Dtos.Payloads.TaskDefinitions
 {
     public class WriteTaskDefinitionPayload
     {
         [Required]
-        public string Name { get; set; }
+        public string ShortDescription { get; set; }
         [Required]
-        public string Description { get; set; }
+        public string LongDescription { get; set; }
         [Required]
         public decimal? BaseRate { get; set; }
         [Required]

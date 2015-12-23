@@ -15,13 +15,17 @@ namespace WaterPoint.Data.Entity.DataEntities
 
         public int DisplayOrder { get; set; }
 
-        public int EstimatedTimeInMinutes { get; set; }
+        public int? EstimatedTimeInMinutes { get; set; }
 
-        public DateTime StartDate { get; set; }
+        public DateTime? StartDate { get; set; }
 
-        public DateTime EndDate { get; set; }
+        public DateTime? EndDate { get; set; }
 
-        public DateTime CompletedDate { get; set; }
+        public DateTime? CompletedDate { get; set; }
+
+        public decimal BaseRate { get; set; }
+
+        public decimal BillableRate { get; set; }
 
         public bool IsBillable { get; set; }
 

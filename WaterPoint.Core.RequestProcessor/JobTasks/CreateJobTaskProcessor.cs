@@ -1,37 +1,34 @@
 ﻿using WaterPoint.Core.Bll.QueryParameters.JobTasks;
+using WaterPoint.Core.Bll.QueryParameters.TaskDefinitions;
 using WaterPoint.Core.RequestProcessor.Mappers.EntitiesToContracts;
 using WaterPoint.Core.Domain;
+using WaterPoint.Core.Domain.Contracts;
 using WaterPoint.Core.Domain.Contracts.JobTasks;
 using WaterPoint.Core.Domain.Db;
 using WaterPoint.Core.Domain.Dtos.Requests.JobTasks;
+using WaterPoint.Core.Domain.Exceptions;
 using WaterPoint.Data.DbContext.Dapper;
 using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Core.RequestProcessor.JobTasks
 {
     public class CreateJobTaskRequestProcessor : BaseDapperUowRequestProcess,
-        IRequestProcessor<CreateJobTaskRequest, JobTaskContract>
+        IRequestProcessor<CreateJobTaskRequest, CommandResultContract>
     {
         private readonly ICommand<CreateJobTask> _command;
         private readonly ICommandExecutor<CreateJobTask> _executor;
-        private readonly IQuery<GetJobTask> _query;
-        private readonly IQueryRunner<GetJobTask, JobTask> _queryRunner;
 
         public CreateJobTaskRequestProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
             ICommand<CreateJobTask> command,
-            ICommandExecutor<CreateJobTask> executor,
-            IQuery<GetJobTask> query,
-            IQueryRunner<GetJobTask, JobTask> queryRunner)
+            ICommandExecutor<CreateJobTask> executor)
             : base(dapperUnitOfWork)
         {
             _command = command;
             _executor = executor;
-            _query = query;
-            _queryRunner = queryRunner;
         }
 
-        public JobTaskContract Process(CreateJobTaskRequest input)
+        public CommandResultContract Process(CreateJobTaskRequest input)
         {
             var result = UowProcess(ProcessDeFacto, input);
 
@@ -42,39 +39,42 @@ namespace WaterPoint.Core.RequestProcessor.JobTasks
         {
             return new CreateJobTask
             {
-                OrganizationId = input.OrganizationUserId,
+                OrganizationId = input.Parameter.OrganizationId,
                 TaskDefinitionId = input.Payload.TaskDefinitionId.Value,
-                JobId = input.Payload.JobId.Value,
-                CompletedDate = input.Payload.CompletedDate.Value,
-                DisplayOrder = input.Payload.DisplayOrder.Value,
-                EndDate = input.Payload.EndDate.Value,
-                EstimatedTimeInMinutes = input.Payload.EstimatedTimeInMinutes.Value,
-                IsAllocated = input.Payload.IsAllocated.Value,
+                JobId = input.Parameter.JobId,
+                CompletedDate = input.Payload.CompletedDate,
+                DisplayOrder = input.Payload.DisplayOrder,
+                EndDate = input.Payload.EndDate,
+                EstimatedTimeInMinutes = input.Payload.EstimatedTimeInMinutes,
                 IsBillable = input.Payload.IsBillable.Value,
-                IsCompleted = input.Payload.IsCompleted.Value,
-                IsScheduled = input.Payload.IsScheduled.Value,
                 LongDescription = input.Payload.LongDescription,
                 ShortDescription = input.Payload.ShortDescription,
-                StartDate = input.Payload.StartDate.Value
+                StartDate = input.Payload.StartDate,
+                BillableRate = input.Payload.BillableRate,
+                BaseRate = input.Payload.BaseRate
             };
         }
 
-        private JobTaskContract ProcessDeFacto(CreateJobTaskRequest input)
+        private CommandResultContract ProcessDeFacto(CreateJobTaskRequest input)
         {
             _command.BuildQuery(AnalyzeParameter(input));
 
             var newId = _executor.Execute(_command);
 
-            _query.BuildQuery(new GetJobTask
+            if (newId > 0)
+                return new CommandResultContract
+                {
+                    Data = newId,
+                    Message = $"job task {newId} has been created",
+                    Status = CommandResultContract.Success
+                };
+
+            return new CommandResultContract
             {
-                JobTaskId = newId
-            });
-
-            var jobTask = _queryRunner.Run(_query);
-
-            var result = JobTaskMapper.Map(jobTask);
-
-            return result;
+                Data = null,
+                Message = "operation is finished but there is no result returned",
+                Status = CommandResultContract.Failed
+            };
         }
     }
 }

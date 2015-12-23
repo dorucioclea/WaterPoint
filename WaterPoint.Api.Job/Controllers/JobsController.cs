@@ -4,6 +4,7 @@ using System.Web.Http.OData;
 using WaterPoint.Api.Common;
 using WaterPoint.Api.Common.BaseControllers;
 using WaterPoint.Core.Domain;
+using WaterPoint.Core.Domain.Contracts;
 using WaterPoint.Core.Domain.Contracts.Jobs;
 using WaterPoint.Core.Domain.Dtos;
 using WaterPoint.Core.Domain.Dtos.RequestParameters;
@@ -17,29 +18,29 @@ namespace WaterPoint.Api.Job.Controllers
     [RoutePrefix(RouteDefinitions.Jobs.Prefix)]
     public class JobsController : BaseOrgnizationContextController
     {
-        private readonly IRequestProcessor<ListPaginatedJobsRequest, PaginatedResult<IEnumerable<JobWithCustomerContract>>> _listJobRequestProcessor;
-        private readonly IRequestProcessor<GetJobByIdRequest, JobWithDetailsContract> _getJobByIdRequestProcessor;
-        private readonly IRequestProcessor<CreateJobRequest, JobWithDetailsContract> _createJobRequestProcessor;
-        //private readonly IRequestProcessor<UpdateJobRequest, JobContract> _updateJobRequestProcessor;
+        private readonly IRequestProcessor<ListJobsRequest, PaginatedResult<JobWithCustomerContract>> _listJobRequestProcessor;
+        private readonly IRequestProcessor<GetJobByIdRequest, JobDetailsContract> _getJobByIdRequestProcessor;
+        private readonly IRequestProcessor<CreateJobRequest, CommandResultContract> _createJobRequestProcessor;
+        private readonly IRequestProcessor<UpdateJobRequest, CommandResultContract> _updateJobRequestProcessor;
 
         public JobsController(
-            IRequestProcessor<ListPaginatedJobsRequest, PaginatedResult<IEnumerable<JobWithCustomerContract>>> listJobRequestProcessor,
-            IRequestProcessor<GetJobByIdRequest, JobWithDetailsContract> getJobByIdRequestProcessor,
-            IRequestProcessor<CreateJobRequest, JobWithDetailsContract> createJobRequestProcessor
-            //IRequestProcessor<UpdateJobRequest, JobContract> updateJobRequestProcessor
+            IRequestProcessor<ListJobsRequest, PaginatedResult<JobWithCustomerContract>> listJobRequestProcessor,
+            IRequestProcessor<GetJobByIdRequest, JobDetailsContract> getJobByIdRequestProcessor,
+            IRequestProcessor<CreateJobRequest, CommandResultContract> createJobRequestProcessor,
+            IRequestProcessor<UpdateJobRequest, CommandResultContract> updateJobRequestProcessor
             )
         {
             _listJobRequestProcessor = listJobRequestProcessor;
             _getJobByIdRequestProcessor = getJobByIdRequestProcessor;
             _createJobRequestProcessor = createJobRequestProcessor;
-            //_updateJobRequestProcessor = updateJobRequestProcessor;
+            _updateJobRequestProcessor = updateJobRequestProcessor;
         }
 
         [Route("")]
         public IHttpActionResult Get(
-            [FromUri]OrgIdParameter parameter,
-            [FromUri]PaginationParamter pagination,
-            [FromUri]JobStatusParameter jobStatusParamter)
+            [FromUri]OrgIdRp parameter,
+            [FromUri]PaginationRp pagination,
+            [FromUri]JobStatusRp jobStatusParamter)
         {
             if (!ModelState.IsValid)
             {
@@ -47,7 +48,7 @@ namespace WaterPoint.Api.Job.Controllers
             }
 
             //validation
-            var request = new ListPaginatedJobsRequest
+            var request = new ListJobsRequest
             {
                 OrganizationIdParameter = parameter,
                 PaginationParamter = pagination,
@@ -60,7 +61,7 @@ namespace WaterPoint.Api.Job.Controllers
         }
 
         [Route("{id:int}")]
-        public IHttpActionResult Get([FromUri]OrganizationEntityParameter parameter)
+        public IHttpActionResult Get([FromUri]OrgEntityRp parameter)
         {
             var result = _getJobByIdRequestProcessor.Process(
                 new GetJobByIdRequest
@@ -74,8 +75,8 @@ namespace WaterPoint.Api.Job.Controllers
 
         [Route("")]
         public IHttpActionResult Post(
-            [FromUri]OrgIdParameter parameter,
-            [FromBody]WriteBasicJobDataPayload jobPayload)
+            [FromUri]OrgIdRp parameter,
+            [FromBody]WriteJobPayload jobPayload)
         {
             if (!ModelState.IsValid)
             {
@@ -93,20 +94,20 @@ namespace WaterPoint.Api.Job.Controllers
             return Ok(result);
         }
 
-        //[Route("{id:int}")]
-        //public IHttpActionResult Put(
-        //    [FromUri] OrganizationEntityParameter parameter,
-        //    [FromBody] Delta<WriteJobPayload> input)
-        //{
-        //    var job = _updateJobRequestProcessor.Process(
-        //        new UpdateJobRequest
-        //        {
-        //            OrganizationEntityParameter = parameter,
-        //            UpdateJobPayload = input,
-        //            OrganizationUserId = OrganizationUser.Id
-        //        });
+        [Route("{id:int}")]
+        public IHttpActionResult Put(
+            [FromUri] OrgEntityRp parameter,
+            [FromBody] Delta<WriteJobPayload> input)
+        {
+            var job = _updateJobRequestProcessor.Process(
+                new UpdateJobRequest
+                {
+                    Parameter = parameter,
+                    Payload = input,
+                    OrganizationUserId = OrganizationUser.Id
+                });
 
-        //    return Ok(job);
-        //}
+            return Ok(job);
+        }
     }
 }

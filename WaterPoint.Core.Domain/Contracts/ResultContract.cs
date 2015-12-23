@@ -1,17 +1,14 @@
-﻿namespace WaterPoint.Core.Domain.Contracts
+﻿using WaterPoint.Core.Domain.Dtos;
+
+namespace WaterPoint.Core.Domain.Contracts
 {
-    public class ResultContract<T>
+    public class CommandResultContract : IContract
     {
-        public T Data { get; set; }
+        public const string Success = "success";
+        public const string Failed = "failed";
 
-        public void SetData(T obj)
-        {
-            Data = obj;
-        }
-
-        public ResultContract(T obj)
-        {
-            Data = obj;
-        }
+        public object Data { get; set; }
+        public string Status { get; set; }
+        public string Message { get; set; }
     }
 }

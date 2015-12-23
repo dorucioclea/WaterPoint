@@ -1,8 +1,10 @@
-﻿namespace WaterPoint.Core.Domain.Dtos.Requests.JobTasks
+﻿using WaterPoint.Core.Domain.Dtos.RequestParameters;
+
+namespace WaterPoint.Core.Domain.Dtos.Requests.JobTasks
 {
-    public class ListJobTasksRequest
+    public class ListJobTasksRequest : IRequest
     {
-        public OrgIdParameter OrganizationId { get; set; }
-        public PaginationParamter Pagination { get; set; }
+        public JobIdOrgIdRp Parameter { get; set; }
+        public PaginationRp Pagination { get; set; }
     }
 }

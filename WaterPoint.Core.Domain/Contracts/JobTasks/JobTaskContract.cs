@@ -11,8 +11,6 @@ namespace WaterPoint.Core.Domain.Contracts.JobTasks
 
         public int TaskDefinitionId { get; set; }
 
-        public int DisplayOrder { get; set; }
-
         public int EstimatedTimeInMinutes { get; set; }
 
         public DateTime StartDate { get; set; }

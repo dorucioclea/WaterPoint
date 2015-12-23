@@ -7,6 +7,10 @@ namespace WaterPoint.Api.Common
         public override void Load()
         {
             Bind<IPatchEntityAdapter>().To<PatchEntityAdapter>().InSingletonScope();
+
+            Bind<PaginationQueryParameterConverter>().ToSelf();
+
+            Bind<JobStatusQueryParameterConverter>().ToSelf();
         }
     }
 }

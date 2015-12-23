@@ -2,8 +2,8 @@
 (
     [Id] INT NOT NULL IDENTITY,
     [OrganizationId] INT NOT NULL,
-    [Name] NVARCHAR(200) NOT NULL,
-    [Description] NVARCHAR(MAX) NOT NULL,
+    [ShortDescription] NVARCHAR(200) NOT NULL,
+    [LongDescription] NVARCHAR(MAX) NOT NULL,
     [BaseRate] DECIMAL(10,3) NOT NULL DEFAULT(0),
     [BillableRate] DECIMAL(10,3) NOT NULL DEFAULT(0),
     [IsDeleted] BIT NOT NULL DEFAULT(0),

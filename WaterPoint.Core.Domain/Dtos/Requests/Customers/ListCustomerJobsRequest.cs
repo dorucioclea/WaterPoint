@@ -4,7 +4,7 @@ namespace WaterPoint.Core.Domain.Dtos.Requests.Customers
 {
     public class ListCustomerJobsRequest : IRequest
     {
-        public CustomerIdOrgIdParameter CustomerIdOrgIdParameter { get; set; }
-        public PaginationParamter PaginationParamter { get; set; }
+        public CustomerIdOrgIdRp CustomerIdOrgIdRp { get; set; }
+        public PaginationRp PaginationParamter { get; set; }
     }
 }

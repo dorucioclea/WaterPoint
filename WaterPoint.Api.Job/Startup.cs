@@ -18,6 +18,7 @@ namespace WaterPoint.Api.Job
             var kernel = base.CreateKernel();
 
             kernel.Load(new JobApiModule());
+            kernel.Load(new JobTaskApiModule());
 
             return kernel;
         }

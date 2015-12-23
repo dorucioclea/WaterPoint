@@ -7,6 +7,7 @@ using WaterPoint.Core.Bll.QueryParameters.Jobs;
 using WaterPoint.Core.Bll.QueryRunners;
 using WaterPoint.Core.Bll.QueryRunners.Jobs;
 using WaterPoint.Core.Domain;
+using WaterPoint.Core.Domain.Contracts;
 using WaterPoint.Core.Domain.Contracts.Jobs;
 using WaterPoint.Core.Domain.Db;
 using WaterPoint.Core.Domain.Dtos.Requests.Jobs;
@@ -25,65 +26,51 @@ namespace WaterPoint.Api.DependencyInjection
             BindQueryRunners();
             BindCommands();
             BindCommandExecutors();
-            BindQueryParameterAnalyzer();
         }
 
         private void BindQueries()
         {
-            Bind<IQuery<PaginatedJobs>>().To<ListPaginatedJobsQuery>();
-            Bind<IQuery<GetJobDetails>>().To<GetJobByIdQuery>();
+            Bind<IQuery<PaginatedJobs>>().To<ListJobsQuery>();
+            Bind<IQuery<GetJob>>().To<GetJobDetailsQuery>();
         }
 
         private void BindQueryRunners()
         {
-            Bind<IListPaginatedEntitiesRunner<PaginatedJobs, JobWithCustomerAndStatusPoco>>()
-                .To<ListPaginatedJobsRunner>();
+            Bind<IListEntitiesRunner<PaginatedJobs, JobWithCustomerAndStatusPoco>>()
+                .To<ListJobsRunner>();
 
-            Bind<IQueryRunner<GetJobDetails, JobWithDetailsPoco>>()
-                .To<GetJobByIdQueryRunner>();
+            Bind<IQueryRunner<GetJob, JobWithDetailsPoco>>()
+                .To<GetJobDetailsRunner>();
         }
 
         public void BindCommands()
         {
-            Bind<ICommand<CreateBasicJob>>().To<CreateBasicJobCommand>();
+            Bind<ICommand<CreateJob>>().To<CreateJobCommand>();
 
-            //Bind<CreateCommandExecutor>().ToSelf();
-            //Bind<GetJobByIdQuery>().ToSelf();
-            //Bind<GetJobByIdQueryRunner>().ToSelf();
-            //Bind<CreateJobsCommand>().ToSelf();
-            //Bind<GetJobByIdQueryRunner>().ToSelf();
+            Bind<ICommand<UpdateJob>>().To<UpdateJobCommand>();
         }
 
         public void BindCommandExecutors()
         {
-            Bind<ICommandExecutor<CreateBasicJob>>()
-                .To<CreateCommandExecutor<CreateBasicJob>>();
-        }
+            Bind<ICommandExecutor<CreateJob>>()
+                .To<CreateCommandExecutor<CreateJob>>();
 
-        private void BindQueryParameterAnalyzer()
-        {
-            Bind<PaginationQueryParameterConverter>().ToSelf();
-
-            Bind<JobStatusQueryParameterConverter>().ToSelf();
+            Bind<ICommandExecutor<UpdateJob>>()
+                .To<UpdateCommandExecutor<UpdateJob>>();
         }
 
         private void BindRequestProcessors()
         {
-            Bind<IRequestProcessor<ListPaginatedJobsRequest, PaginatedResult<IEnumerable<JobWithCustomerContract>>>>()
-                .To<ListPaginatedJobsProcessor>();
+            Bind<IRequestProcessor<ListJobsRequest, PaginatedResult<JobWithCustomerContract>>>()
+                .To<ListJobsProcessor>();
 
-            Bind<IRequestProcessor<CreateJobRequest, JobWithDetailsContract>>()
+            Bind<IRequestProcessor<CreateJobRequest, CommandResultContract>>()
                 .To<CreateJobProcessor>();
 
-            Bind<IRequestProcessor<GetJobByIdRequest, JobWithDetailsContract>>().To<GetJobByIdRequestProcessor>();
+            Bind<IRequestProcessor<GetJobByIdRequest, JobDetailsContract>>().To<GetJobByIdRequestProcessor>();
 
-
-
-
-            //Bind<IRequestProcessor<UpdateCustomerRequest, CustomerContract>>()
-            //    .To<UpdateCustomerRequestProcessor>();
-            //Bind<IRequestProcessor<GetCustomerByIdRequest, CustomerContract>>()
-            //    .To<GetCustomerByIdRequestProcessor>();
+            Bind<IRequestProcessor<UpdateJobRequest, CommandResultContract>>()
+                .To<UpdateJobRequestProcessor>();
 
         }
     }

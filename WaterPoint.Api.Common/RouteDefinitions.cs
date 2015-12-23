@@ -16,23 +16,20 @@ namespace WaterPoint.Api.Common
 
         public class Customers
         {
+            public const string JobsPrefix = OrganizationNode + "/customers/{customerId:int}/jobs";
             public const string Prefix = OrganizationNode + "/customers";
-            public const string Jobs = "{customerId:int}/jobs";
         }
 
         public class Jobs
         {
+            public const string TasksPrefix = OrganizationNode + "/jobs/{jobId:int}/tasks";
+
             public const string Prefix = OrganizationNode + "/jobs";
         }
 
         public class TaskDefinition
         {
             public const string Prefix = OrganizationNode + "/taskdefinitions";
-        }
-
-        public class JobTask
-        {
-            public const string Prefix = OrganizationNode + "/jobtasks";
         }
     }
 }

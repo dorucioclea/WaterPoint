@@ -4,6 +4,7 @@ using System.Web.Http.OData;
 using WaterPoint.Api.Common;
 using WaterPoint.Api.Common.BaseControllers;
 using WaterPoint.Core.Domain;
+using WaterPoint.Core.Domain.Contracts;
 using WaterPoint.Core.Domain.Contracts.Customers;
 using WaterPoint.Core.Domain.Dtos;
 using WaterPoint.Core.Domain.Dtos.Payloads.Customers;
@@ -15,16 +16,16 @@ namespace WaterPoint.Api.Customer.Controllers
     [RoutePrefix(RouteDefinitions.Customers.Prefix)]
     public class CustomersController : BaseOrgnizationContextController
     {
-        private readonly IRequestProcessor<ListCustomersRequest, PaginatedResult<IEnumerable<CustomerContract>>> _listCustomerRequestProcessor;
-        private readonly IRequestProcessor<CreateCustomerRequest, CustomerContract> _createCustomerRequest;
-        private readonly IRequestProcessor<UpdateCustomerRequest, CustomerContract> _updateRequestProcessor;
+        private readonly IRequestProcessor<ListCustomersRequest, PaginatedResult<CustomerContract>> _listCustomerRequestProcessor;
+        private readonly IRequestProcessor<CreateCustomerRequest, CommandResultContract> _createCustomerRequest;
+        private readonly IRequestProcessor<UpdateCustomerRequest, CommandResultContract> _updateRequestProcessor;
         private readonly IRequestProcessor<GetCustomerRequest, CustomerContract> _getCustomerByIdProcessor;
 
 
         public CustomersController(
-            IRequestProcessor<ListCustomersRequest, PaginatedResult<IEnumerable<CustomerContract>>> listCustomerRequestProcessor,
-            IRequestProcessor<CreateCustomerRequest, CustomerContract> createCustomerRequest,
-            IRequestProcessor<UpdateCustomerRequest, CustomerContract> updateRequestProcessor,
+            IRequestProcessor<ListCustomersRequest, PaginatedResult<CustomerContract>> listCustomerRequestProcessor,
+            IRequestProcessor<CreateCustomerRequest, CommandResultContract> createCustomerRequest,
+            IRequestProcessor<UpdateCustomerRequest, CommandResultContract> updateRequestProcessor,
             IRequestProcessor<GetCustomerRequest, CustomerContract> getCustomerByIdProcessor)
         {
             _listCustomerRequestProcessor = listCustomerRequestProcessor;
@@ -35,8 +36,8 @@ namespace WaterPoint.Api.Customer.Controllers
 
         [Route("")]
         public IHttpActionResult Get(
-            [FromUri]IsProspectOrgIdParameter parameter,
-            [FromUri]PaginationParamter pagination)
+            [FromUri]IsProspectOrgIdRp parameter,
+            [FromUri]PaginationRp pagination)
         {
             //validation
             var request = new ListCustomersRequest
@@ -51,7 +52,7 @@ namespace WaterPoint.Api.Customer.Controllers
         }
 
         [Route("{id:int}")]
-        public IHttpActionResult Get([FromUri]OrganizationEntityParameter parameter)
+        public IHttpActionResult Get([FromUri]OrgEntityRp parameter)
         {
             var result = _getCustomerByIdProcessor.Process(
                 new GetCustomerRequest
@@ -65,7 +66,7 @@ namespace WaterPoint.Api.Customer.Controllers
         [Route("")]
         [Authorize]//add to class level
         public IHttpActionResult Post(
-            [FromUri]OrgIdParameter parameter,
+            [FromUri]OrgIdRp parameter,
             [FromBody]WriteCustomerPayload customerPayload)
         {
             if (!ModelState.IsValid)
@@ -88,7 +89,7 @@ namespace WaterPoint.Api.Customer.Controllers
         [Route("{id:int}")]
         [Authorize]
         public IHttpActionResult Put(
-            [FromUri] OrganizationEntityParameter parameter,
+            [FromUri] OrgEntityRp parameter,
             [FromBody] Delta<WriteCustomerPayload> input)
         {
             //map customer to an updatecustomerrequest so it gets all data
@@ -97,8 +98,8 @@ namespace WaterPoint.Api.Customer.Controllers
             var customer = _updateRequestProcessor.Process(
                 new UpdateCustomerRequest
                 {
-                    OrganizationEntityParameter = parameter,
-                    UpdateCustomerPayload = input,
+                    Parameter = parameter,
+                    Payload = input,
                     OrganizationUserId = OrganizationUser.Id
                 });
 
