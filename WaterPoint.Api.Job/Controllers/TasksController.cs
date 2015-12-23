@@ -9,10 +9,10 @@ using WaterPoint.Api.Common.BaseControllers;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts;
 using WaterPoint.Core.Domain.Contracts.JobTasks;
-using WaterPoint.Core.Domain.Dtos;
-using WaterPoint.Core.Domain.Dtos.Payloads.JobTasks;
-using WaterPoint.Core.Domain.Dtos.RequestParameters;
-using WaterPoint.Core.Domain.Dtos.Requests.JobTasks;
+
+using WaterPoint.Core.Domain.Payloads.JobTasks;
+using WaterPoint.Core.Domain.RequestParameters;
+using WaterPoint.Core.Domain.Requests.JobTasks;
 
 namespace WaterPoint.Api.Job.Controllers
 {

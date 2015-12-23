@@ -1,7 +1,7 @@
 ﻿using System;
 using WaterPoint.Api.Common;
 using WaterPoint.Core.Bll;
-using WaterPoint.Core.Bll.QueryParameters.Customers;
+using WaterPoint.Core.Domain.QueryParameters.Customers;
 using WaterPoint.Data.Entity.DataEntities;
 using Xunit;
 

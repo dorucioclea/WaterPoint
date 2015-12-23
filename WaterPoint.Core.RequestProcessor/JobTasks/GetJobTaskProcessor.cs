@@ -1,9 +1,9 @@
-﻿using WaterPoint.Core.Bll.QueryParameters.JobTasks;
+﻿using WaterPoint.Core.Domain.QueryParameters.JobTasks;
 using WaterPoint.Core.RequestProcessor.Mappers.EntitiesToContracts;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts.JobTasks;
 using WaterPoint.Core.Domain.Db;
-using WaterPoint.Core.Domain.Dtos.Requests.JobTasks;
+using WaterPoint.Core.Domain.Requests.JobTasks;
 using WaterPoint.Data.DbContext.Dapper;
 using WaterPoint.Data.Entity.DataEntities;
 

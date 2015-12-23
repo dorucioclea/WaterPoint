@@ -6,10 +6,10 @@ using WaterPoint.Api.Common.BaseControllers;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts;
 using WaterPoint.Core.Domain.Contracts.Customers;
-using WaterPoint.Core.Domain.Dtos;
-using WaterPoint.Core.Domain.Dtos.Payloads.Customers;
-using WaterPoint.Core.Domain.Dtos.RequestParameters;
-using WaterPoint.Core.Domain.Dtos.Requests.Customers;
+
+using WaterPoint.Core.Domain.Payloads.Customers;
+using WaterPoint.Core.Domain.RequestParameters;
+using WaterPoint.Core.Domain.Requests.Customers;
 
 namespace WaterPoint.Api.Customer.Controllers
 {

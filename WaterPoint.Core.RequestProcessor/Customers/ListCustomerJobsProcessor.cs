@@ -2,14 +2,14 @@
 using System.Linq;
 using Utility;
 using WaterPoint.Api.Common;
-using WaterPoint.Core.Bll.QueryParameters;
-using WaterPoint.Core.Bll.QueryParameters.Customers;
+using WaterPoint.Core.Domain.QueryParameters;
+using WaterPoint.Core.Domain.QueryParameters.Customers;
 using WaterPoint.Core.Bll.QueryRunners;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts.Jobs;
 using WaterPoint.Core.Domain.Db;
-using WaterPoint.Core.Domain.Dtos;
-using WaterPoint.Core.Domain.Dtos.Requests.Customers;
+
+using WaterPoint.Core.Domain.Requests.Customers;
 using WaterPoint.Core.RequestProcessor.Mappers.EntitiesToContracts;
 using WaterPoint.Data.DbContext.Dapper;
 using WaterPoint.Data.Entity.Pocos;

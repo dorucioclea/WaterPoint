@@ -6,11 +6,11 @@ using WaterPoint.Api.Common.BaseControllers;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts;
 using WaterPoint.Core.Domain.Contracts.Jobs;
-using WaterPoint.Core.Domain.Dtos;
-using WaterPoint.Core.Domain.Dtos.RequestParameters;
-using WaterPoint.Core.Domain.Dtos.Payloads.Jobs;
-using WaterPoint.Core.Domain.Dtos.Requests.Jobs;
-using WaterPoint.Core.Domain.Dtos.Requests.Shared;
+
+using WaterPoint.Core.Domain.RequestParameters;
+using WaterPoint.Core.Domain.Payloads.Jobs;
+using WaterPoint.Core.Domain.Requests.Jobs;
+using WaterPoint.Core.Domain.Requests.Shared;
 
 namespace WaterPoint.Api.Job.Controllers
 {

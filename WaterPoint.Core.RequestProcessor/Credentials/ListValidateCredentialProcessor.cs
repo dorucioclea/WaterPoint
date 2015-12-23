@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using WaterPoint.Core.Bll.Queries.Credentials;
-using WaterPoint.Core.Bll.QueryParameters.Credentials;
+using WaterPoint.Core.Domain.QueryParameters.Credentials;
 using WaterPoint.Core.Bll.QueryRunners.Credentials;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts.Credentials;
 using WaterPoint.Core.Domain.Db;
-using WaterPoint.Core.Domain.Dtos.Requests.Credentials;
+using WaterPoint.Core.Domain.Requests.Credentials;
 using WaterPoint.Core.RequestProcessor.Mappers.EntitiesToContracts;
 using WaterPoint.Data.DbContext.Dapper;
 using WaterPoint.Data.Entity.Pocos.Views;

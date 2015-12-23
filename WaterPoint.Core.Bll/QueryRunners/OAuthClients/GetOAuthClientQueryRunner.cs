@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using WaterPoint.Core.Bll.QueryParameters.Credentials;
+using WaterPoint.Core.Domain.QueryParameters.Credentials;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Db;
 using WaterPoint.Data.DbContext.Dapper;

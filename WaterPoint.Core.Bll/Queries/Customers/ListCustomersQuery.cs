@@ -1,5 +1,5 @@
-﻿using WaterPoint.Core.Bll.QueryParameters;
-using WaterPoint.Core.Bll.QueryParameters.Customers;
+﻿using WaterPoint.Core.Domain.QueryParameters;
+using WaterPoint.Core.Domain.QueryParameters.Customers;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Db;
 using WaterPoint.Data.Entity.DataEntities;

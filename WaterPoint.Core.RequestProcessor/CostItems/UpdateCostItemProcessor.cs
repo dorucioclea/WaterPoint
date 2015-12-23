@@ -1,11 +1,11 @@
 ﻿using Utility;
 using WaterPoint.Api.Common;
-using WaterPoint.Core.Bll.QueryParameters.CostItems;
+using WaterPoint.Core.Domain.QueryParameters.CostItems;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts;
 using WaterPoint.Core.Domain.Db;
-using WaterPoint.Core.Domain.Dtos.Payloads.CostItems;
-using WaterPoint.Core.Domain.Dtos.Requests.CostItems;
+using WaterPoint.Core.Domain.Payloads.CostItems;
+using WaterPoint.Core.Domain.Requests.CostItems;
 using WaterPoint.Data.DbContext.Dapper;
 using WaterPoint.Data.Entity.DataEntities;
 

@@ -3,9 +3,9 @@ using WaterPoint.Api.Common;
 using WaterPoint.Api.Common.BaseControllers;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts.Jobs;
-using WaterPoint.Core.Domain.Dtos;
-using WaterPoint.Core.Domain.Dtos.RequestParameters;
-using WaterPoint.Core.Domain.Dtos.Requests.Customers;
+
+using WaterPoint.Core.Domain.RequestParameters;
+using WaterPoint.Core.Domain.Requests.Customers;
 
 namespace WaterPoint.Api.Customer.Controllers
 {

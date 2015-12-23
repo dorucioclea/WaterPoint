@@ -1,4 +1,4 @@
-﻿using WaterPoint.Core.Bll.QueryParameters.Shared;
+﻿using WaterPoint.Core.Domain.QueryParameters.Shared;
 using WaterPoint.Core.Domain.Db;
 using WaterPoint.Data.Entity.DataEntities;
 

@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using WaterPoint.Core.Domain.Dtos;
+
 using WaterPoint.Data.Entity;
 
 namespace WaterPoint.Core.Domain.Db

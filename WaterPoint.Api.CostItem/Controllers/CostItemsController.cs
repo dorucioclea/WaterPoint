@@ -5,9 +5,9 @@ using WaterPoint.Api.Common.BaseControllers;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts;
 using WaterPoint.Core.Domain.Contracts.CostItems;
-using WaterPoint.Core.Domain.Dtos;
-using WaterPoint.Core.Domain.Dtos.Payloads.CostItems;
-using WaterPoint.Core.Domain.Dtos.Requests.CostItems;
+using WaterPoint.Core.Domain.Payloads.CostItems;
+using WaterPoint.Core.Domain.RequestParameters;
+using WaterPoint.Core.Domain.Requests.CostItems;
 
 namespace WaterPoint.Api.CostItem.Controllers
 {

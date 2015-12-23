@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using WaterPoint.Core.Bll.QueryParameters.Jobs;
+using WaterPoint.Core.Domain.QueryParameters.Jobs;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Db;
 using WaterPoint.Data.DbContext.Dapper;

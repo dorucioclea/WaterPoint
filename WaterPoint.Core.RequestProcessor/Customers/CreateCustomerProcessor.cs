@@ -1,10 +1,10 @@
 ﻿using WaterPoint.Core.RequestProcessor.Mappers.EntitiesToContracts;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts.Customers;
-using WaterPoint.Core.Domain.Dtos.Requests.Customers;
+using WaterPoint.Core.Domain.Requests.Customers;
 using WaterPoint.Data.DbContext.Dapper;
 using Utility;
-using WaterPoint.Core.Bll.QueryParameters.Customers;
+using WaterPoint.Core.Domain.QueryParameters.Customers;
 using WaterPoint.Core.Domain.Contracts;
 using WaterPoint.Core.Domain.Db;
 using WaterPoint.Data.Entity.DataEntities;

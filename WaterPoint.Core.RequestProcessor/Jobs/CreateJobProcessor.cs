@@ -1,8 +1,8 @@
-﻿using WaterPoint.Core.Bll.QueryParameters.Jobs;
+﻿using WaterPoint.Core.Domain.QueryParameters.Jobs;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts;
 using WaterPoint.Core.Domain.Db;
-using WaterPoint.Core.Domain.Dtos.Requests.Jobs;
+using WaterPoint.Core.Domain.Requests.Jobs;
 using WaterPoint.Data.DbContext.Dapper;
 
 namespace WaterPoint.Core.RequestProcessor.Jobs

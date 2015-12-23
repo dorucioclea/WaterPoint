@@ -1,4 +1,4 @@
-﻿using WaterPoint.Core.Domain.Dtos;
+﻿
 
 namespace WaterPoint.Core.Domain.Contracts
 {

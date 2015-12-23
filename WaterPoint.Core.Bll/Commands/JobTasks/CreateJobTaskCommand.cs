@@ -1,4 +1,4 @@
-﻿using WaterPoint.Core.Bll.QueryParameters.JobTasks;
+﻿using WaterPoint.Core.Domain.QueryParameters.JobTasks;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Db;
 using WaterPoint.Data.Entity.DataEntities;

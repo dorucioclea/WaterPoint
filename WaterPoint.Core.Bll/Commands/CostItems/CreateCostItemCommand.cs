@@ -1,4 +1,4 @@
-﻿using WaterPoint.Core.Bll.QueryParameters.CostItems;
+﻿using WaterPoint.Core.Domain.QueryParameters.CostItems;
 using WaterPoint.Core.Domain.Db;
 using WaterPoint.Data.Entity.DataEntities;
 
