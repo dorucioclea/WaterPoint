@@ -11,9 +11,9 @@ namespace WaterPoint.Core.Bll.QueryParameters.JobTasks
 
         public int TaskDefinitionId { get; set; }
 
-        public int DisplayOrder { get; set; }
+        public int? DisplayOrder { get; set; }
 
-        public int EstimatedTimeInMinutes { get; set; }
+        public int? EstimatedTimeInMinutes { get; set; }
 
         public DateTime? StartDate { get; set; }
 
@@ -22,12 +22,6 @@ namespace WaterPoint.Core.Bll.QueryParameters.JobTasks
         public DateTime? CompletedDate { get; set; }
 
         public bool IsBillable { get; set; }
-
-        public bool IsCompleted { get; set; }
-
-        public bool IsAllocated { get; set; }
-
-        public bool IsScheduled { get; set; }
 
         public string ShortDescription { get; set; }
 

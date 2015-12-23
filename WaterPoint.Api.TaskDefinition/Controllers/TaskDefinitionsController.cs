@@ -8,6 +8,7 @@ using System.Web.Http.OData;
 using WaterPoint.Api.Common;
 using WaterPoint.Api.Common.BaseControllers;
 using WaterPoint.Core.Domain;
+using WaterPoint.Core.Domain.Contracts;
 using WaterPoint.Core.Domain.Contracts.TaskDefinitions;
 using WaterPoint.Core.Domain.Dtos;
 using WaterPoint.Core.Domain.Dtos.Payloads.TaskDefinitions;
@@ -21,15 +22,15 @@ namespace WaterPoint.Api.TaskDefinition.Controllers
     public class TaskDefinitionsController : BaseOrgnizationContextController
     {
         private readonly IRequestProcessor<ListWithOrgIdRequest, PaginatedResult<TaskDefinitionContract>> _listTaskDefinitionequestProcessor;
-        private readonly IRequestProcessor<CreateTaskDefinitionRequest, TaskDefinitionContract> _createTaskDefinitionRequest;
-        private readonly IRequestProcessor<UpdateTaskDefinitionRequest, TaskDefinitionContract> _updateRequestProcessor;
+        private readonly IRequestProcessor<CreateTaskDefinitionRequest, CommandResultContract> _createTaskDefinitionRequest;
+        private readonly IRequestProcessor<UpdateTaskDefinitionRequest, CommandResultContract> _updateRequestProcessor;
         private readonly IRequestProcessor<GetTaskDefinitionByIdRequest, TaskDefinitionContract> _getTaskDefinitionByIdProcessor;
 
 
         public TaskDefinitionsController(
             IRequestProcessor<ListWithOrgIdRequest, PaginatedResult<TaskDefinitionContract>> listTaskDefinitionequestProcessor,
-            IRequestProcessor<CreateTaskDefinitionRequest, TaskDefinitionContract> createTaskDefinitionRequest,
-            IRequestProcessor<UpdateTaskDefinitionRequest, TaskDefinitionContract> updateRequestProcessor,
+            IRequestProcessor<CreateTaskDefinitionRequest, CommandResultContract> createTaskDefinitionRequest,
+            IRequestProcessor<UpdateTaskDefinitionRequest, CommandResultContract> updateRequestProcessor,
             IRequestProcessor<GetTaskDefinitionByIdRequest, TaskDefinitionContract> getTaskDefinitionByIdProcessor
             )
         {

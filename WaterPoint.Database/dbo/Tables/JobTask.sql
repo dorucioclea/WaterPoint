@@ -3,7 +3,7 @@
     [Id] INT NOT NULL IDENTITY,
     [JobId] INT NOT NULL,
     [TaskDefinitionId] INT NOT NULL,
-    [DisplayOrder] INT NOT NULL,
+    [DisplayOrder] INT NOT NULL DEFAULT(9999),
     [EstimatedTimeInMinutes] INT NULL,
     [StartDate] DATETIME2(0) NULL,
     [EndDate] DATETIME2(0) NULL,

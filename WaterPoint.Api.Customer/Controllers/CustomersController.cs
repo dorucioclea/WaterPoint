@@ -4,6 +4,7 @@ using System.Web.Http.OData;
 using WaterPoint.Api.Common;
 using WaterPoint.Api.Common.BaseControllers;
 using WaterPoint.Core.Domain;
+using WaterPoint.Core.Domain.Contracts;
 using WaterPoint.Core.Domain.Contracts.Customers;
 using WaterPoint.Core.Domain.Dtos;
 using WaterPoint.Core.Domain.Dtos.Payloads.Customers;
@@ -16,15 +17,15 @@ namespace WaterPoint.Api.Customer.Controllers
     public class CustomersController : BaseOrgnizationContextController
     {
         private readonly IRequestProcessor<ListCustomersRequest, PaginatedResult<CustomerContract>> _listCustomerRequestProcessor;
-        private readonly IRequestProcessor<CreateCustomerRequest, CustomerContract> _createCustomerRequest;
-        private readonly IRequestProcessor<UpdateCustomerRequest, CustomerContract> _updateRequestProcessor;
+        private readonly IRequestProcessor<CreateCustomerRequest, CommandResultContract> _createCustomerRequest;
+        private readonly IRequestProcessor<UpdateCustomerRequest, CommandResultContract> _updateRequestProcessor;
         private readonly IRequestProcessor<GetCustomerRequest, CustomerContract> _getCustomerByIdProcessor;
 
 
         public CustomersController(
             IRequestProcessor<ListCustomersRequest, PaginatedResult<CustomerContract>> listCustomerRequestProcessor,
-            IRequestProcessor<CreateCustomerRequest, CustomerContract> createCustomerRequest,
-            IRequestProcessor<UpdateCustomerRequest, CustomerContract> updateRequestProcessor,
+            IRequestProcessor<CreateCustomerRequest, CommandResultContract> createCustomerRequest,
+            IRequestProcessor<UpdateCustomerRequest, CommandResultContract> updateRequestProcessor,
             IRequestProcessor<GetCustomerRequest, CustomerContract> getCustomerByIdProcessor)
         {
             _listCustomerRequestProcessor = listCustomerRequestProcessor;

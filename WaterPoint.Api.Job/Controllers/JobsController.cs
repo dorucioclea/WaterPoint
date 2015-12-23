@@ -4,6 +4,7 @@ using System.Web.Http.OData;
 using WaterPoint.Api.Common;
 using WaterPoint.Api.Common.BaseControllers;
 using WaterPoint.Core.Domain;
+using WaterPoint.Core.Domain.Contracts;
 using WaterPoint.Core.Domain.Contracts.Jobs;
 using WaterPoint.Core.Domain.Dtos;
 using WaterPoint.Core.Domain.Dtos.RequestParameters;
@@ -19,14 +20,14 @@ namespace WaterPoint.Api.Job.Controllers
     {
         private readonly IRequestProcessor<ListJobsRequest, PaginatedResult<JobWithCustomerContract>> _listJobRequestProcessor;
         private readonly IRequestProcessor<GetJobByIdRequest, JobDetailsContract> _getJobByIdRequestProcessor;
-        private readonly IRequestProcessor<CreateJobRequest, JobDetailsContract> _createJobRequestProcessor;
-        private readonly IRequestProcessor<UpdateJobRequest, JobDetailsContract> _updateJobRequestProcessor;
+        private readonly IRequestProcessor<CreateJobRequest, CommandResultContract> _createJobRequestProcessor;
+        private readonly IRequestProcessor<UpdateJobRequest, CommandResultContract> _updateJobRequestProcessor;
 
         public JobsController(
             IRequestProcessor<ListJobsRequest, PaginatedResult<JobWithCustomerContract>> listJobRequestProcessor,
             IRequestProcessor<GetJobByIdRequest, JobDetailsContract> getJobByIdRequestProcessor,
-            IRequestProcessor<CreateJobRequest, JobDetailsContract> createJobRequestProcessor,
-            IRequestProcessor<UpdateJobRequest, JobDetailsContract> updateJobRequestProcessor
+            IRequestProcessor<CreateJobRequest, CommandResultContract> createJobRequestProcessor,
+            IRequestProcessor<UpdateJobRequest, CommandResultContract> updateJobRequestProcessor
             )
         {
             _listJobRequestProcessor = listJobRequestProcessor;

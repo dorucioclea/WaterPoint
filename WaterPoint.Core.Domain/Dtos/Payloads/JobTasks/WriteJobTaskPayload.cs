@@ -24,15 +24,10 @@ namespace WaterPoint.Core.Domain.Dtos.Payloads.JobTasks
         [Required]
         public bool? IsBillable { get; set; }
 
-        public bool? IsCompleted { get; set; }
-
-        public bool? IsAllocated { get; set; }
-
-        public bool? IsScheduled { get; set; }
-
-        [Required, MaxLength(100)]
+        [MaxLength(100)]
         public string ShortDescription { get; set; }
 
+        [MaxLength(2000)]
         public string LongDescription { get; set; }
     }
 }

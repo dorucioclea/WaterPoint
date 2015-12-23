@@ -3,6 +3,7 @@ using System.Web.Http.OData;
 using WaterPoint.Api.Common;
 using WaterPoint.Api.Common.BaseControllers;
 using WaterPoint.Core.Domain;
+using WaterPoint.Core.Domain.Contracts;
 using WaterPoint.Core.Domain.Contracts.CostItems;
 using WaterPoint.Core.Domain.Dtos;
 using WaterPoint.Core.Domain.Dtos.Payloads.CostItems;
@@ -13,16 +14,16 @@ namespace WaterPoint.Api.CostItem.Controllers
     [RoutePrefix(RouteDefinitions.CostItems.Prefix)]
     public class CostItemsController : BaseOrgnizationContextController
     {
-        private readonly IRequestProcessor<CreateCostItemRequest, CostItemContract> _createRequestProcessor;
+        private readonly IRequestProcessor<CreateCostItemRequest, CommandResultContract> _createRequestProcessor;
         private readonly IRequestProcessor<GetCostItemRequest, CostItemContract> _getRequestProcessor;
         private readonly IRequestProcessor<ListCostItemsRequest, PaginatedResult<CostItemContract>> _listRequestProcessor;
-        private readonly IRequestProcessor<UpdateCostItemRequest, CostItemContract> _updateRequestProcessor;
+        private readonly IRequestProcessor<UpdateCostItemRequest, CommandResultContract> _updateRequestProcessor;
 
         public CostItemsController(
-            IRequestProcessor<CreateCostItemRequest, CostItemContract> createRequestProcessor,
+            IRequestProcessor<CreateCostItemRequest, CommandResultContract> createRequestProcessor,
             IRequestProcessor<GetCostItemRequest, CostItemContract> getRequestProcessor,
             IRequestProcessor<ListCostItemsRequest, PaginatedResult<CostItemContract>> listRequestProcessor,
-            IRequestProcessor<UpdateCostItemRequest, CostItemContract> updateRequestProcessor)
+            IRequestProcessor<UpdateCostItemRequest, CommandResultContract> updateRequestProcessor)
         {
             _createRequestProcessor = createRequestProcessor;
             _getRequestProcessor = getRequestProcessor;

@@ -1,4 +1,5 @@
 ﻿using WaterPoint.Core.Bll.QueryParameters.JobTasks;
+using WaterPoint.Core.Bll.QueryParameters.TaskDefinitions;
 using WaterPoint.Core.RequestProcessor.Mappers.EntitiesToContracts;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts;
@@ -40,17 +41,14 @@ namespace WaterPoint.Core.RequestProcessor.JobTasks
                 OrganizationId = input.OrganizationUserId,
                 TaskDefinitionId = input.Payload.TaskDefinitionId.Value,
                 JobId = input.Payload.JobId.Value,
-                CompletedDate = input.Payload.CompletedDate.Value,
-                DisplayOrder = input.Payload.DisplayOrder.Value,
-                EndDate = input.Payload.EndDate.Value,
-                EstimatedTimeInMinutes = input.Payload.EstimatedTimeInMinutes.Value,
-                IsAllocated = input.Payload.IsAllocated.Value,
+                CompletedDate = input.Payload.CompletedDate,
+                DisplayOrder = input.Payload.DisplayOrder,
+                EndDate = input.Payload.EndDate,
+                EstimatedTimeInMinutes = input.Payload.EstimatedTimeInMinutes,
                 IsBillable = input.Payload.IsBillable.Value,
-                IsCompleted = input.Payload.IsCompleted.Value,
-                IsScheduled = input.Payload.IsScheduled.Value,
                 LongDescription = input.Payload.LongDescription,
                 ShortDescription = input.Payload.ShortDescription,
-                StartDate = input.Payload.StartDate.Value
+                StartDate = input.Payload.StartDate
             };
         }
 
