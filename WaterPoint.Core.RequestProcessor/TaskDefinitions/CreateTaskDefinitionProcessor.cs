@@ -35,10 +35,10 @@ namespace WaterPoint.Core.RequestProcessor.TaskDefinitions
             var parameter = new CreateTaskDefinition
             {
                 OrganizationId = input.OrganizationId.OrganizationId,
-                Name = input.Payload.Name,
+                ShortDescription = input.Payload.ShortDescription,
                 BaseRate = input.Payload.BaseRate.Value,
                 BillableRate = input.Payload.BillableRate.Value,
-                Description = input.Payload.Description
+                LongDescription = input.Payload.LongDescription
             };
 
             _command.BuildQuery(parameter);

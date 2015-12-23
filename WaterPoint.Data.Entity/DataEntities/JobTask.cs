@@ -23,6 +23,10 @@ namespace WaterPoint.Data.Entity.DataEntities
 
         public DateTime? CompletedDate { get; set; }
 
+        public decimal BaseRate { get; set; }
+
+        public decimal BillableRate { get; set; }
+
         public bool IsBillable { get; set; }
 
         public bool IsCompleted { get; set; }

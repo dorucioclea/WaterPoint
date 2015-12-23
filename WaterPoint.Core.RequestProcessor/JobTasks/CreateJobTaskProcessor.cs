@@ -6,6 +6,7 @@ using WaterPoint.Core.Domain.Contracts;
 using WaterPoint.Core.Domain.Contracts.JobTasks;
 using WaterPoint.Core.Domain.Db;
 using WaterPoint.Core.Domain.Dtos.Requests.JobTasks;
+using WaterPoint.Core.Domain.Exceptions;
 using WaterPoint.Data.DbContext.Dapper;
 using WaterPoint.Data.Entity.DataEntities;
 
@@ -16,15 +17,21 @@ namespace WaterPoint.Core.RequestProcessor.JobTasks
     {
         private readonly ICommand<CreateJobTask> _command;
         private readonly ICommandExecutor<CreateJobTask> _executor;
+        private readonly IQuery<GetTaskDefinition> _getTaskDefQuery;
+        private readonly IQueryRunner<GetTaskDefinition, TaskDefinition> _getTaskDefRunner;
 
         public CreateJobTaskRequestProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
             ICommand<CreateJobTask> command,
-            ICommandExecutor<CreateJobTask> executor)
+            ICommandExecutor<CreateJobTask> executor,
+            IQuery<GetTaskDefinition> getTaskDefQuery,
+            IQueryRunner<GetTaskDefinition, TaskDefinition> getTaskDefRunner)
             : base(dapperUnitOfWork)
         {
             _command = command;
             _executor = executor;
+            _getTaskDefQuery = getTaskDefQuery;
+            _getTaskDefRunner = getTaskDefRunner;
         }
 
         public CommandResultContract Process(CreateJobTaskRequest input)
@@ -48,7 +55,9 @@ namespace WaterPoint.Core.RequestProcessor.JobTasks
                 IsBillable = input.Payload.IsBillable.Value,
                 LongDescription = input.Payload.LongDescription,
                 ShortDescription = input.Payload.ShortDescription,
-                StartDate = input.Payload.StartDate
+                StartDate = input.Payload.StartDate,
+                BillableRate = input.Payload.BillableRate,
+                BaseRate = input.Payload.BaseRate
             };
         }
 

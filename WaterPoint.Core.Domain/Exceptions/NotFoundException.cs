@@ -5,8 +5,14 @@ namespace WaterPoint.Core.Domain.Exceptions
     public class NotFoundException : Exception
     {
         public NotFoundException()
-            : base("resource cannot be found.")
+            : this(string.Empty)
         {
+        }
+
+        public NotFoundException(string resource)
+            : base($"{resource} cannot be found.")
+        {
+
         }
     }
 }

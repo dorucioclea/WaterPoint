@@ -15,6 +15,10 @@ namespace WaterPoint.Core.Domain.Dtos.Payloads.JobTasks
 
         public int? EstimatedTimeInMinutes { get; set; }
 
+        public decimal BaseRate { get; set; }
+
+        public decimal BillableRate { get; set; }
+
         public DateTime? StartDate { get; set; }
 
         public DateTime? EndDate { get; set; }
@@ -24,7 +28,7 @@ namespace WaterPoint.Core.Domain.Dtos.Payloads.JobTasks
         [Required]
         public bool? IsBillable { get; set; }
 
-        [MaxLength(100)]
+        [MaxLength(200)]
         public string ShortDescription { get; set; }
 
         [MaxLength(2000)]
