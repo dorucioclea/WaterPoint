@@ -6,7 +6,7 @@ using WaterPoint.Core.Domain.Dtos;
 
 namespace WaterPoint.Core.Domain.Contracts.Jobs
 {
-    public class JobWithDetailsContract : IContract
+    public class JobDetailsContract : IContract
     {
         public int Id { get; set; }
         public int OrganizationId { get; set; }

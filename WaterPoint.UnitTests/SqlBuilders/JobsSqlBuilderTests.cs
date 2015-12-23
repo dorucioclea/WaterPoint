@@ -31,7 +31,7 @@ namespace WaterPoint.UnitTests.SqlBuilders
                 )
                 SELECT SCOPE_IDENTITY()";
 
-            var job = new CreateBasicJob
+            var job = new CreateJob
             {
                 OrganizationId = 1000,
                 Code = "testcode",
@@ -44,7 +44,7 @@ namespace WaterPoint.UnitTests.SqlBuilders
 
             var obj = new CreateSqlBuilder<Job>();
 
-            obj.Analyze<CreateBasicJob>();
+            obj.Analyze<CreateJob>();
             obj.AddValueParameters(job);
 
             var sql = obj.GetSql();

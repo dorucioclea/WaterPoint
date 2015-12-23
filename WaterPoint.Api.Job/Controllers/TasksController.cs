@@ -16,7 +16,7 @@ using WaterPoint.Core.Domain.Dtos.Requests.JobTasks;
 namespace WaterPoint.Api.Job.Controllers
 {
     [Authorize]
-    [RoutePrefix(RouteDefinitions.Jobs.Prefix)]
+    [RoutePrefix("organizations/{organizationId:int}/jobs/{jobId:int}/tasks")]
     public class TasksController : BaseOrgnizationContextController
     {
         private readonly IRequestProcessor<CreateJobTaskRequest, JobTaskContract> _createJobTaskRequest;
@@ -37,7 +37,7 @@ namespace WaterPoint.Api.Job.Controllers
             _getJobTaskByIdProcessor = getJobTaskByIdProcessor;
         }
 
-        [Route(RouteDefinitions.Jobs.Tasks)]
+        [Route("")]
         public IHttpActionResult Get(
             [FromUri]JobIdOrgIdRp parameter,
             [FromUri]PaginationRp pagination)
@@ -54,7 +54,7 @@ namespace WaterPoint.Api.Job.Controllers
             return Ok(result);
         }
 
-        [Route(RouteDefinitions.Jobs.GetTask)]
+        [Route("{taskId:int}")]
         public IHttpActionResult Get([FromUri]OrgEntityRp parameter)
         {
             var result = _getJobTaskByIdProcessor.Process(
@@ -66,7 +66,7 @@ namespace WaterPoint.Api.Job.Controllers
             return Ok(result);
         }
 
-        [Route(RouteDefinitions.Jobs.Tasks)]
+        [Route("")]
         public IHttpActionResult Post(
             [FromUri]OrgIdRp parameter,
             [FromBody]WriteJobTaskPayload jobTaskPayload)
@@ -87,7 +87,7 @@ namespace WaterPoint.Api.Job.Controllers
             return Ok(result);
         }
 
-        [Route(RouteDefinitions.Jobs.Tasks)]
+        [Route("")]
         public IHttpActionResult Put(
             [FromUri] OrgEntityJobId parameter,
             [FromBody] Delta<WriteJobTaskPayload> input)

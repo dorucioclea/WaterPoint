@@ -62,7 +62,7 @@
     <Compile Include="Contracts\Customers\CustomerIdNameContract.cs" />
     <Compile Include="Contracts\JobCategories\JobCategoryIdDescContract.cs" />
     <Compile Include="Contracts\JobStatuses\JobStatusIdNameContract.cs" />
-    <Compile Include="Contracts\Jobs\JobWithDetailsContract.cs" />
+    <Compile Include="Contracts\Jobs\JobDetailsContract.cs" />
     <Compile Include="Contracts\Jobs\PriorityTypeContract.cs" />
     <Compile Include="Contracts\JobTasks\JobTaskContract.cs" />
     <Compile Include="Contracts\Jobs\JobWithCustomerContract.cs" />
@@ -79,7 +79,7 @@
     <Compile Include="Dtos\RequestParameters\IsProspectOrgIdRp.cs" />
     <Compile Include="Dtos\RequestParameters\CustomerIdOrgIdRp.cs" />
     <Compile Include="Dtos\RequestParameters\JobStatusRP.cs" />
-    <Compile Include="Dtos\Payloads\Jobs\WriteBasicJobDataPayload.cs" />
+    <Compile Include="Dtos\Payloads\Jobs\WriteJobPayload.cs" />
     <Compile Include="Dtos\Payloads\JobTasks\WriteJobTaskPayload.cs" />
     <Compile Include="Dtos\Payloads\TaskDefinitions\WriteTaskDefinitionPayload.cs" />
     <Compile Include="Dtos\Requests\CostItems\CreateCostItemRequest.cs" />

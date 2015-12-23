@@ -1,27 +1,19 @@
-﻿using System.Collections.Generic;
-using System.Windows.Input;
-using Ninject.Modules;
+﻿using Ninject.Modules;
 using WaterPoint.Core.Bll.Commands.TaskDefinitions;
 using WaterPoint.Core.Bll.Executors;
-using WaterPoint.Core.Bll.Queries.Jobs;
 using WaterPoint.Core.Bll.Queries.TaskDefinitions;
 using WaterPoint.Core.Bll.QueryParameters.Shared;
 using WaterPoint.Core.Bll.QueryParameters.TaskDefinitions;
 using WaterPoint.Core.Bll.QueryRunners;
-using WaterPoint.Core.Bll.QueryRunners.Jobs;
 using WaterPoint.Core.Bll.QueryRunners.TaskDefinitions;
 using WaterPoint.Core.Domain;
-using WaterPoint.Core.Domain.Contracts.Jobs;
+using WaterPoint.Core.Domain.Contracts;
 using WaterPoint.Core.Domain.Contracts.TaskDefinitions;
 using WaterPoint.Core.Domain.Db;
-using WaterPoint.Core.Domain.Dtos.Requests.Jobs;
 using WaterPoint.Core.Domain.Dtos.Requests.Shared;
 using WaterPoint.Core.Domain.Dtos.Requests.TaskDefinitions;
 using WaterPoint.Core.RequestProcessor;
-using WaterPoint.Core.RequestProcessor.Customers;
-using WaterPoint.Core.RequestProcessor.Jobs;
 using WaterPoint.Core.RequestProcessor.TaskDefinitions;
-using WaterPoint.Data.DbContext.Dapper;
 using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Api.DependencyInjection
@@ -67,7 +59,7 @@ namespace WaterPoint.Api.DependencyInjection
 
         private void BindRequestProcessors()
         {
-            Bind<IRequestProcessor<CreateTaskDefinitionRequest, TaskDefinitionContract>>()
+            Bind<IRequestProcessor<CreateTaskDefinitionRequest, CommandResultContract>>()
                 .To<CreateTaskDefinitionProcessor>();
 
             Bind<IRequestProcessor<GetTaskDefinitionByIdRequest, TaskDefinitionContract>>()
@@ -76,7 +68,7 @@ namespace WaterPoint.Api.DependencyInjection
             Bind<IRequestProcessor<ListWithOrgIdRequest, PaginatedResult<TaskDefinitionContract>>>()
                 .To<ListTaskDefinitionsProcessor>();
 
-            Bind<IRequestProcessor<UpdateTaskDefinitionRequest, TaskDefinitionContract>>()
+            Bind<IRequestProcessor<UpdateTaskDefinitionRequest, CommandResultContract>>()
                 .To<UpdateTaskDefinitionProcessor>();
         }
     }

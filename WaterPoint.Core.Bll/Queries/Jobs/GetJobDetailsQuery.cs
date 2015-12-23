@@ -5,25 +5,25 @@ using WaterPoint.Data.Entity.Pocos.Jobs;
 
 namespace WaterPoint.Core.Bll.Queries.Jobs
 {
-    public class GetJobByIdQuery : IQuery<GetJobDetails>
+    public class GetJobDetailsQuery : IQuery<GetJob>
     {
         private readonly ISqlBuilderFactory _sqlBuilderFactory;
 
         private readonly string _sqlTemplate = $@"
                 SELECT
                     {SqlPatterns.Columns}
-                FROM                    
+                FROM
                     {SqlPatterns.FromTable}
                     {SqlPatterns.Join}
                 WHERE
                    {SqlPatterns.Where}";
 
-        public GetJobByIdQuery(ISqlBuilderFactory sqlBuilderFactory)
+        public GetJobDetailsQuery(ISqlBuilderFactory sqlBuilderFactory)
         {
             _sqlBuilderFactory = sqlBuilderFactory;
         }
 
-        public void BuildQuery(GetJobDetails parameter)
+        public void BuildQuery(GetJob parameter)
         {
             var builder = _sqlBuilderFactory.Create<SelectSqlBuilder>();
 

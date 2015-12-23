@@ -2,6 +2,7 @@
 using WaterPoint.Api.Common;
 using WaterPoint.Core.Bll.QueryParameters.JobTasks;
 using WaterPoint.Core.Domain;
+using WaterPoint.Core.Domain.Contracts;
 using WaterPoint.Core.Domain.Contracts.JobTasks;
 using WaterPoint.Core.Domain.Db;
 using WaterPoint.Core.Domain.Exceptions;
@@ -13,9 +14,9 @@ using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Core.RequestProcessor.JobTasks
 {
-    public class UpdateJobTaskRequestProcessor :
+    public class UpdateJobTaskProcessor :
         BaseDapperUowRequestProcess,
-        IRequestProcessor<UpdateJobTaskRequest, JobTaskContract>
+        IRequestProcessor<UpdateJobTaskRequest, CommandResultContract>
     {
         private readonly IPatchEntityAdapter _patchEntityAdapter;
         private readonly ICommand<UpdateJobTask> _command;
@@ -23,7 +24,7 @@ namespace WaterPoint.Core.RequestProcessor.JobTasks
         private readonly IQuery<GetJobTask> _query;
         private readonly IQueryRunner<GetJobTask, JobTask> _runner;
 
-        public UpdateJobTaskRequestProcessor(
+        public UpdateJobTaskProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
             IPatchEntityAdapter patchEntityAdapter,
             ICommand<UpdateJobTask> command,
@@ -39,14 +40,14 @@ namespace WaterPoint.Core.RequestProcessor.JobTasks
             _runner = runner;
         }
 
-        public JobTaskContract Process(UpdateJobTaskRequest input)
+        public CommandResultContract Process(UpdateJobTaskRequest input)
         {
             var result = UowProcess(ProcessDeFacto, input);
 
             return result;
         }
 
-        private JobTaskContract ProcessDeFacto(UpdateJobTaskRequest input)
+        private CommandResultContract ProcessDeFacto(UpdateJobTaskRequest input)
         {
             var getJobTaskParam = new GetJobTask
             {
@@ -71,13 +72,17 @@ namespace WaterPoint.Core.RequestProcessor.JobTasks
             var success = _executor.Execute(_command) > 0;
 
             if (success)
-                return JobTaskMapper.Map(existingJobTask);
+                return new CommandResultContract
+                {
+                    Message = $"job task {input.Parameter.Id} has been updated",
+                    Status = CommandResultContract.Success
+                };
 
-            var updateException = new UpdateFailedException();
-
-            updateException.AddMessage("operation is finished but there is no result returned");
-
-            throw updateException;
+            return new CommandResultContract
+            {
+                Message = $"job task {input.Parameter.Id} has not been updated, operation is finished but there is no result returned",
+                Status = CommandResultContract.Failed
+            };
         }
     }
 }

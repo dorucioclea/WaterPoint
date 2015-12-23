@@ -9,6 +9,7 @@ using WaterPoint.Core.Bll.Queries.Customers;
 using WaterPoint.Core.Bll.QueryParameters.Customers;
 using WaterPoint.Core.Bll.QueryRunners.Customers;
 using WaterPoint.Core.Domain;
+using WaterPoint.Core.Domain.Contracts;
 using WaterPoint.Core.Domain.Contracts.Customers;
 using WaterPoint.Core.Domain.Db;
 using WaterPoint.Core.Domain.Exceptions;
@@ -23,7 +24,7 @@ namespace WaterPoint.Core.RequestProcessor.Customers
 {
     public class UpdateCustomerProcessor :
         BaseDapperUowRequestProcess,
-        IRequestProcessor<UpdateCustomerRequest, CustomerContract>
+        IRequestProcessor<UpdateCustomerRequest, CommandResultContract>
     {
         private readonly IPatchEntityAdapter _patchEntityAdapter;
         private readonly IQuery<GetCustomer> _getCustomerByIdQuery;
@@ -47,19 +48,19 @@ namespace WaterPoint.Core.RequestProcessor.Customers
             _updateCommandExecutor = updateCommandExecutor;
         }
 
-        public CustomerContract Process(UpdateCustomerRequest input)
+        public CommandResultContract Process(UpdateCustomerRequest input)
         {
             var result = UowProcess(ProcessDeFacto, input);
 
             return result;
         }
 
-        private CustomerContract ProcessDeFacto(UpdateCustomerRequest input)
+        private CommandResultContract ProcessDeFacto(UpdateCustomerRequest input)
         {
             var getCusParam = new GetCustomer
             {
-                CustomerId = input.OrganizationEntityParameter.Id,
-                OrganizationId = input.OrganizationEntityParameter.OrganizationId
+                CustomerId = input.Parameter.Id,
+                OrganizationId = input.Parameter.OrganizationId
             };
 
             _getCustomerByIdQuery.BuildQuery(getCusParam);
@@ -68,7 +69,7 @@ namespace WaterPoint.Core.RequestProcessor.Customers
 
             var updatedCustomer = _patchEntityAdapter.PatchEnitity<WriteCustomerPayload, Customer, UpdateCustomer>(
                 existingCustomer,
-                input.UpdateCustomerPayload.Patch);
+                input.Payload.Patch);
 
             var updateParameter = updatedCustomer.MapTo(new UpdateCustomer());
 
@@ -78,13 +79,17 @@ namespace WaterPoint.Core.RequestProcessor.Customers
             var success = _updateCommandExecutor.Execute(_updateCustomerByIdQuery) > 0;
 
             if (success)
-                return CustomerMapper.Map(existingCustomer);
+                return new CommandResultContract
+                {
+                    Message = $"customer {input.Parameter.Id} has been updated",
+                    Status = CommandResultContract.Success
+                };
 
-            var updateException = new UpdateFailedException();
-
-            updateException.AddMessage("operation is finished but there is no result returned");
-
-            throw updateException;
+            return new CommandResultContract
+            {
+                Message = $"customer {input.Parameter.Id} has not been updated, operation is finished but there is no result returned",
+                Status = CommandResultContract.Failed
+            };
         }
     }
 

@@ -8,6 +8,7 @@ using WaterPoint.Core.Bll.QueryParameters.Shared;
 using WaterPoint.Core.Bll.QueryRunners;
 using WaterPoint.Core.Bll.QueryRunners.CostItems;
 using WaterPoint.Core.Domain;
+using WaterPoint.Core.Domain.Contracts;
 using WaterPoint.Core.Domain.Contracts.CostItems;
 using WaterPoint.Core.Domain.Db;
 using WaterPoint.Core.Domain.Dtos.Requests.CostItems;
@@ -57,7 +58,7 @@ namespace WaterPoint.Api.DependencyInjection
 
         private void BindRequestProcessors()
         {
-            Bind<IRequestProcessor<CreateCostItemRequest, CostItemContract>>()
+            Bind<IRequestProcessor<CreateCostItemRequest, CommandResultContract>>()
                 .To<CreateCostItemProcessor>();
 
             Bind<IRequestProcessor<GetCostItemRequest, CostItemContract>>()
@@ -66,7 +67,7 @@ namespace WaterPoint.Api.DependencyInjection
             Bind<IRequestProcessor<ListCostItemsRequest, PaginatedResult<CostItemContract>>>()
                 .To<ListCostItemsProcessor>();
 
-            Bind<IRequestProcessor<UpdateCostItemRequest, CostItemContract>>()
+            Bind<IRequestProcessor<UpdateCostItemRequest, CommandResultContract>>()
                 .To<UpdateCostItemProcessor>();
         }
     }

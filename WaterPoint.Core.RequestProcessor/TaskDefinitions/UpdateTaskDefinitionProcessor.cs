@@ -7,6 +7,7 @@ using WaterPoint.Core.Bll.Queries.TaskDefinitions;
 using WaterPoint.Core.Bll.QueryParameters.TaskDefinitions;
 using WaterPoint.Core.Bll.QueryRunners.TaskDefinitions;
 using WaterPoint.Core.Domain;
+using WaterPoint.Core.Domain.Contracts;
 using WaterPoint.Core.Domain.Contracts.TaskDefinitions;
 using WaterPoint.Core.Domain.Db;
 using WaterPoint.Core.Domain.Exceptions;
@@ -20,7 +21,7 @@ namespace WaterPoint.Core.RequestProcessor.TaskDefinitions
 {
     public class UpdateTaskDefinitionProcessor :
         BaseDapperUowRequestProcess,
-        IRequestProcessor<UpdateTaskDefinitionRequest, TaskDefinitionContract>
+        IRequestProcessor<UpdateTaskDefinitionRequest, CommandResultContract>
     {
         private readonly IPatchEntityAdapter _patchEntityAdapter;
         private readonly IQuery<GetTaskDefinition> _getTaskDefinitionByIdQuery;
@@ -44,14 +45,14 @@ namespace WaterPoint.Core.RequestProcessor.TaskDefinitions
             _updateCommandExecutor = updateCommandExecutor;
         }
 
-        public TaskDefinitionContract Process(UpdateTaskDefinitionRequest input)
+        public CommandResultContract Process(UpdateTaskDefinitionRequest input)
         {
             var result = UowProcess(ProcessDeFacto, input);
 
             return result;
         }
 
-        private TaskDefinitionContract ProcessDeFacto(UpdateTaskDefinitionRequest input)
+        private CommandResultContract ProcessDeFacto(UpdateTaskDefinitionRequest input)
         {
             _getTaskDefinitionByIdQuery.BuildQuery(new GetTaskDefinition
             {
@@ -71,13 +72,17 @@ namespace WaterPoint.Core.RequestProcessor.TaskDefinitions
             var success = _updateCommandExecutor.Execute(_updateCommand);
 
             if (success > 0)
-                return TaskDefinitionMapper.Map(existingTaskDefinition);
+                return new CommandResultContract
+                {
+                    Message = $"task definition {input.Parameter.Id} has been updated",
+                    Status = CommandResultContract.Success
+                };
 
-            var updateException = new UpdateFailedException();
-
-            updateException.AddMessage("operation is finished but there is no result returned");
-
-            throw updateException;
+            return new CommandResultContract
+            {
+                Message = $"job definition {input.Parameter.Id} has not been updated, operation is finished but there is no result returned",
+                Status = CommandResultContract.Failed
+            };
         }
     }
 

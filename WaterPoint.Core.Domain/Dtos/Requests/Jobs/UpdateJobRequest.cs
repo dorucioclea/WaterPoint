@@ -5,8 +5,8 @@ namespace WaterPoint.Core.Domain.Dtos.Requests.Jobs
 {
     public class UpdateJobRequest : IRequest
     {
-        public OrgEntityRp OrganizationEntityParameter { get; set; }
-        public Delta<WriteBasicJobDataPayload> UpdateJobPayload { get; set; }
+        public OrgEntityRp Parameter { get; set; }
+        public Delta<WriteJobPayload> Payload { get; set; }
         public int OrganizationUserId { get; set; }
     }
 }

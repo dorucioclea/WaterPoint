@@ -5,41 +5,36 @@ using WaterPoint.Core.Domain.Dtos.Requests.Customers;
 using WaterPoint.Data.DbContext.Dapper;
 using Utility;
 using WaterPoint.Core.Bll.QueryParameters.Customers;
+using WaterPoint.Core.Domain.Contracts;
 using WaterPoint.Core.Domain.Db;
 using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Core.RequestProcessor.Customers
 {
     public class CreateCustomerProcessor : BaseDapperUowRequestProcess,
-        IRequestProcessor<CreateCustomerRequest, CustomerContract>
+        IRequestProcessor<CreateCustomerRequest, CommandResultContract>
     {
         private readonly ICommand<CreateCustomer> _command;
         private readonly ICommandExecutor<CreateCustomer> _executor;
-        private readonly IQuery<GetCustomer> _getCustomerQuery;
-        private readonly IQueryRunner<GetCustomer, Customer> _getCustomerByIdQueryRunner;
 
         public CreateCustomerProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
             ICommand<CreateCustomer> command,
-            ICommandExecutor<CreateCustomer> executor,
-            IQuery<GetCustomer> getCustomerQuery,
-            IQueryRunner<GetCustomer, Customer> getCustomerByIdQueryRunner)
+            ICommandExecutor<CreateCustomer> executor)
             : base(dapperUnitOfWork)
         {
             _command = command;
             _executor = executor;
-            _getCustomerQuery = getCustomerQuery;
-            _getCustomerByIdQueryRunner = getCustomerByIdQueryRunner;
         }
 
-        public CustomerContract Process(CreateCustomerRequest input)
+        public CommandResultContract Process(CreateCustomerRequest input)
         {
             var result = UowProcess(ProcessDeFacto, input);
 
             return result;
         }
 
-        private CustomerContract ProcessDeFacto(CreateCustomerRequest input)
+        private CommandResultContract ProcessDeFacto(CreateCustomerRequest input)
         {
             #region  replace this with a proper mapper
             var createCustomerPoco = input.CreateCustomerPayload.MapTo(new CreateCustomer());
@@ -51,17 +46,20 @@ namespace WaterPoint.Core.RequestProcessor.Customers
 
             var newId = _executor.Execute(_command);
 
-            _getCustomerQuery.BuildQuery(new GetCustomer
+            if (newId > 0)
+                return new CommandResultContract
+                {
+                    Data = newId,
+                    Message = $"customer {newId} has been created",
+                    Status = CommandResultContract.Success
+                };
+
+            return new CommandResultContract
             {
-                OrganizationId = input.OrganizationIdParameter.OrganizationId,
-                CustomerId = newId
-            });
-
-            var customer = _getCustomerByIdQueryRunner.Run(_getCustomerQuery);
-
-            var result = CustomerMapper.Map(customer);
-
-            return result;
+                Data = null,
+                Message = "operation is finished but there is no result returned",
+                Status = CommandResultContract.Failed
+            };
         }
     }
 }

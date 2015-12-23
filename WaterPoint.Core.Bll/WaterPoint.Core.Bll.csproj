@@ -86,8 +86,8 @@
   <ItemGroup>
     <Compile Include="Commands\CostItems\UpdateCostItemCommand.cs" />
     <Compile Include="Commands\CostItems\CreateCostItemCommand.cs" />
-    <Compile Include="Commands\Jobs\CreateBasicJobCommand.cs" />
-    <Compile Include="Commands\Jobs\UpdateJobByIdCommand.cs" />
+    <Compile Include="Commands\Jobs\CreateJobCommand.cs" />
+    <Compile Include="Commands\Jobs\UpdateJobCommand.cs" />
     <Compile Include="Commands\JobTasks\CreateJobTaskCommand.cs" />
     <Compile Include="Commands\JobTasks\UpdateJobTaskCommand.cs" />
     <Compile Include="Commands\TaskDefinitions\CreateTaskDefinitionCommand.cs" />
@@ -96,7 +96,7 @@
     <Compile Include="Queries\CostItems\GetCostItemQuery.cs" />
     <Compile Include="Queries\Credentials\ListValidateCredentialsQuery.cs" />
     <Compile Include="Queries\Customers\ListCustomerJobsQuery.cs" />
-    <Compile Include="Queries\Jobs\GetJobByIdQuery.cs" />
+    <Compile Include="Queries\Jobs\GetJobDetailsQuery.cs" />
     <Compile Include="Queries\Jobs\ListJobsQuery.cs" />
     <Compile Include="Queries\JobTasks\GetJobTaskQuery.cs" />
     <Compile Include="Queries\JobTasks\ListJobTasksQuery.cs" />
@@ -114,9 +114,10 @@
     <Compile Include="QueryParameters\Customers\UpdateCustomer.cs" />
     <Compile Include="QueryParameters\Customers\CreateCustomer.cs" />
     <Compile Include="QueryParameters\Customers\GetCustomer.cs" />
-    <Compile Include="QueryParameters\Jobs\CreateBasicJob.cs" />
-    <Compile Include="QueryParameters\Jobs\GetJobDetails.cs" />
+    <Compile Include="QueryParameters\Jobs\CreateJob.cs" />
+    <Compile Include="QueryParameters\Jobs\GetJob.cs" />
     <Compile Include="QueryParameters\Jobs\PaginatedJobs.cs" />
+    <Compile Include="QueryParameters\Jobs\UpdateJob.cs" />
     <Compile Include="QueryParameters\JobTasks\ListJobTasks.cs" />
     <Compile Include="QueryParameters\JobTasks\CreateJobTask.cs" />
     <Compile Include="QueryParameters\JobTasks\GetJobTask.cs" />
@@ -129,7 +130,7 @@
     <Compile Include="QueryRunners\CostItems\GetCostItemRunner.cs" />
     <Compile Include="QueryRunners\Credentials\ListValidateCredentialsRunner.cs" />
     <Compile Include="QueryRunners\Customers\ListCustomerJobsRunner.cs" />
-    <Compile Include="QueryRunners\Jobs\GetJobByIdQueryRunner.cs" />
+    <Compile Include="QueryRunners\Jobs\GetJobDetailsRunner.cs" />
     <Compile Include="QueryRunners\Jobs\ListJobsRunner.cs" />
     <Compile Include="Executors\UpdateCommandExecutor.cs" />
     <Compile Include="Executors\CreateCommandExecutor.cs" />

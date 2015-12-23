@@ -2,12 +2,10 @@
 using WaterPoint.Api.Common;
 using WaterPoint.Core.Bll.QueryParameters.CostItems;
 using WaterPoint.Core.Domain;
-using WaterPoint.Core.Domain.Contracts.CostItems;
+using WaterPoint.Core.Domain.Contracts;
 using WaterPoint.Core.Domain.Db;
 using WaterPoint.Core.Domain.Dtos.Payloads.CostItems;
 using WaterPoint.Core.Domain.Dtos.Requests.CostItems;
-using WaterPoint.Core.Domain.Exceptions;
-using WaterPoint.Core.RequestProcessor.Mappers.EntitiesToContracts;
 using WaterPoint.Data.DbContext.Dapper;
 using WaterPoint.Data.Entity.DataEntities;
 
@@ -15,7 +13,7 @@ namespace WaterPoint.Core.RequestProcessor.CostItems
 {
     public class UpdateCostItemProcessor :
         BaseDapperUowRequestProcess,
-        IRequestProcessor<UpdateCostItemRequest, CostItemContract>
+        IRequestProcessor<UpdateCostItemRequest, CommandResultContract>
     {
         private readonly IPatchEntityAdapter _patchEntityAdapter;
         private readonly IQuery<GetCostItem> _getCostItemByIdQuery;
@@ -39,14 +37,14 @@ namespace WaterPoint.Core.RequestProcessor.CostItems
             _updateCommandExecutor = updateCommandExecutor;
         }
 
-        public CostItemContract Process(UpdateCostItemRequest input)
+        public CommandResultContract Process(UpdateCostItemRequest input)
         {
             var result = UowProcess(ProcessDeFacto, input);
 
             return result;
         }
 
-        private CostItemContract ProcessDeFacto(UpdateCostItemRequest input)
+        private CommandResultContract ProcessDeFacto(UpdateCostItemRequest input)
         {
             var getCusParam = new GetCostItem
             {
@@ -70,13 +68,17 @@ namespace WaterPoint.Core.RequestProcessor.CostItems
             var success = _updateCommandExecutor.Execute(_updateCostItemByIdQuery) > 0;
 
             if (success)
-                return CostItemMapper.Map(existingCostItem);
+                return new CommandResultContract
+                {
+                    Message = $"cost item {input.Parameter.Id} has been updated",
+                    Status = CommandResultContract.Success
+                };
 
-            var updateException = new UpdateFailedException();
-
-            updateException.AddMessage("operation is finished but there is no result returned");
-
-            throw updateException;
+            return new CommandResultContract
+            {
+                Message = $"cost item {input.Parameter.Id} has not been updated, operation is finished but there is no result returned",
+                Status = CommandResultContract.Failed
+            };
         }
     }
 

@@ -10,24 +10,24 @@ using WaterPoint.Data.Entity.Pocos.Jobs;
 namespace WaterPoint.Core.RequestProcessor.Jobs
 {
     public class GetJobByIdRequestProcessor : BaseDapperUowRequestProcess,
-        IRequestProcessor<GetJobByIdRequest, JobWithDetailsContract>
+        IRequestProcessor<GetJobByIdRequest, JobDetailsContract>
     {
-        private readonly IQuery<GetJobDetails> _query;
-        private readonly IQueryRunner<GetJobDetails, JobWithDetailsPoco> _runner;
+        private readonly IQuery<GetJob> _query;
+        private readonly IQueryRunner<GetJob, JobWithDetailsPoco> _runner;
 
         public GetJobByIdRequestProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
-            IQuery<GetJobDetails> query,
-            IQueryRunner<GetJobDetails, JobWithDetailsPoco> runner)
+            IQuery<GetJob> query,
+            IQueryRunner<GetJob, JobWithDetailsPoco> runner)
             : base(dapperUnitOfWork)
         {
             _query = query;
             _runner = runner;
         }
 
-        public JobWithDetailsContract Process(GetJobByIdRequest input)
+        public JobDetailsContract Process(GetJobByIdRequest input)
         {
-            var parameter = new GetJobDetails
+            var parameter = new GetJob
             {
                 OrganizationId = input.OrganizationEntityParameter.OrganizationId,
                 JobId = input.OrganizationEntityParameter.Id

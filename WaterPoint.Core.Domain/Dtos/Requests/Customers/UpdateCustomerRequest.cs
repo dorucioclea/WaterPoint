@@ -5,8 +5,8 @@ namespace WaterPoint.Core.Domain.Dtos.Requests.Customers
 {
     public class UpdateCustomerRequest : IRequest
     {
-        public OrgEntityRp OrganizationEntityParameter { get; set; }
-        public Delta<WriteCustomerPayload> UpdateCustomerPayload { get; set; }
+        public OrgEntityRp Parameter { get; set; }
+        public Delta<WriteCustomerPayload> Payload { get; set; }
         public int OrganizationUserId { get; set; }
     }
 }

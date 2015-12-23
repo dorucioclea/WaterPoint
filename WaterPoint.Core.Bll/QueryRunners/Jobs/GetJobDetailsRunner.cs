@@ -7,16 +7,16 @@ using WaterPoint.Data.Entity.Pocos.Jobs;
 
 namespace WaterPoint.Core.Bll.QueryRunners.Jobs
 {
-    public class GetJobByIdQueryRunner: IQueryRunner<GetJobDetails, JobWithDetailsPoco>
+    public class GetJobDetailsRunner: IQueryRunner<GetJob, JobWithDetailsPoco>
     {
         private readonly IDapperDbContext _dapperDbContext;
 
-        public GetJobByIdQueryRunner(IDapperDbContext dapperDbContext)
+        public GetJobDetailsRunner(IDapperDbContext dapperDbContext)
         {
             _dapperDbContext = dapperDbContext;
         }
 
-        public JobWithDetailsPoco Run(IQuery<GetJobDetails> query)
+        public JobWithDetailsPoco Run(IQuery<GetJob> query)
         {
             var job = _dapperDbContext
                 .List<JobWithDetailsPoco>(query.Query, query.Parameters)

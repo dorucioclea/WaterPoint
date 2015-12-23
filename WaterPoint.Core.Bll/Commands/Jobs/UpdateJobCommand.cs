@@ -1,33 +1,34 @@
-﻿using System.Windows.Input;
-using WaterPoint.Core.Bll.QueryParameters;
-using WaterPoint.Core.Bll.QueryParameters.Jobs;
-using WaterPoint.Core.Domain;
+﻿using WaterPoint.Core.Bll.QueryParameters.Jobs;
 using WaterPoint.Core.Domain.Db;
 using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Core.Bll.Commands.Jobs
 {
-    public class CreateBasicJobCommand : ICommand<CreateBasicJob>
+    public class UpdateJobCommand : ICommand<UpdateJob>
     {
         private readonly ISqlBuilderFactory _sqlBuilderFactory;
 
-        public CreateBasicJobCommand(ISqlBuilderFactory sqlBuilderFactory)
+        public UpdateJobCommand(ISqlBuilderFactory sqlBuilderFactory)
         {
             _sqlBuilderFactory = sqlBuilderFactory;
         }
 
-        public void BuildQuery(CreateBasicJob parameter)
+        public void BuildQuery(UpdateJob parameter)
         {
-            var builder = _sqlBuilderFactory.Create<CreateSqlBuilder<Job>>();
+            var builder = _sqlBuilderFactory.Create<UpdateSqlBuilder<Job>>();
 
-            builder.Analyze<CreateBasicJob>();
+            builder.Analyze(parameter);
             builder.AddValueParameters(parameter);
+
+            builder.AddConditions<Job>(i => i.OrganizationId == parameter.OrganizationId && i.Id == parameter.Id);
 
             var sql = builder.GetSql();
 
             Query = sql;
+
             Parameters = builder.Parameters;
         }
+
         public string Query { get; private set; }
         public object Parameters { get; private set; }
     }

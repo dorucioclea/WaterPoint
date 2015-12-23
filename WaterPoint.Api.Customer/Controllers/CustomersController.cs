@@ -97,8 +97,8 @@ namespace WaterPoint.Api.Customer.Controllers
             var customer = _updateRequestProcessor.Process(
                 new UpdateCustomerRequest
                 {
-                    OrganizationEntityParameter = parameter,
-                    UpdateCustomerPayload = input,
+                    Parameter = parameter,
+                    Payload = input,
                     OrganizationUserId = OrganizationUser.Id
                 });
 
