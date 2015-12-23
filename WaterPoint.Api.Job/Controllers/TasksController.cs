@@ -20,16 +20,16 @@ namespace WaterPoint.Api.Job.Controllers
     [RoutePrefix("organizations/{organizationId:int}/jobs/{jobId:int}/tasks")]
     public class TasksController : BaseOrgnizationContextController
     {
-        private readonly IRequestProcessor<CreateJobTaskRequest, JobTaskContract> _createJobTaskRequest;
+        private readonly IRequestProcessor<CreateJobTaskRequest, CommandResultContract> _createJobTaskRequest;
         private readonly IRequestProcessor<ListJobTasksRequest, PaginatedResult<JobTaskContract>> _listJobTaskequestProcessor;
         private readonly IRequestProcessor<UpdateJobTaskRequest, CommandResultContract> _updateRequestProcessor;
-        private readonly IRequestProcessor<GetJobTaskByIdRequest, CommandResultContract> _getJobTaskByIdProcessor;
+        private readonly IRequestProcessor<GetJobTaskByIdRequest, JobTaskContract> _getJobTaskByIdProcessor;
 
         public TasksController(
-            IRequestProcessor<CreateJobTaskRequest, JobTaskContract> createJobTaskRequest,
+            IRequestProcessor<CreateJobTaskRequest, CommandResultContract> createJobTaskRequest,
             IRequestProcessor<ListJobTasksRequest, PaginatedResult<JobTaskContract>> listJobTaskequestProcessor,
             IRequestProcessor<UpdateJobTaskRequest, CommandResultContract> updateRequestProcessor,
-            IRequestProcessor<GetJobTaskByIdRequest, CommandResultContract> getJobTaskByIdProcessor)
+            IRequestProcessor<GetJobTaskByIdRequest, JobTaskContract> getJobTaskByIdProcessor)
         {
             _listJobTaskequestProcessor = listJobTaskequestProcessor;
             _createJobTaskRequest = createJobTaskRequest;
@@ -54,12 +54,14 @@ namespace WaterPoint.Api.Job.Controllers
             return Ok(result);
         }
 
-        [Route("{taskId:int}")]
-        public IHttpActionResult Get([FromUri]OrgEntityRp parameter)
+        [Route("{id:int}")]
+        public IHttpActionResult Get([FromUri]OrgEntityJobId parameter)
         {
             var result = _getJobTaskByIdProcessor.Process(
                 new GetJobTaskByIdRequest
                 {
+                    OrganizationId = parameter.OrganizationId,
+                    JobId = parameter.JobId,
                     Id = parameter.Id
                 });
 
@@ -68,7 +70,7 @@ namespace WaterPoint.Api.Job.Controllers
 
         [Route("")]
         public IHttpActionResult Post(
-            [FromUri]OrgIdRp parameter,
+            [FromUri]JobIdOrgIdRp parameter,
             [FromBody]WriteJobTaskPayload jobTaskPayload)
         {
             if (!ModelState.IsValid)
@@ -79,7 +81,7 @@ namespace WaterPoint.Api.Job.Controllers
             var result = _createJobTaskRequest.Process(
                 new CreateJobTaskRequest
                 {
-                    OrganizationId = parameter,
+                    Parameter = parameter,
                     Payload = jobTaskPayload,
                     OrganizationUserId = OrganizationUser.Id
                 });
@@ -87,10 +89,10 @@ namespace WaterPoint.Api.Job.Controllers
             return Ok(result);
         }
 
-        [Route("")]
+        [Route("{id:int}")]
         public IHttpActionResult Put(
-            [FromUri] OrgEntityJobId parameter,
-            [FromBody] Delta<WriteJobTaskPayload> input)
+            [FromUri]OrgEntityJobId parameter,
+            [FromBody]Delta<WriteJobTaskPayload> input)
         {
             var jobTask = _updateRequestProcessor.Process(
                 new UpdateJobTaskRequest

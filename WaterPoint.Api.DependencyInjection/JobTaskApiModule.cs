@@ -23,6 +23,8 @@ namespace WaterPoint.Api.DependencyInjection
             BindQueries();
             BindQueryRunners();
             BindCommands();
+            BindCommandExecutors();
+
         }
 
         private void BindQueries()

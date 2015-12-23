@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Utility;
+using WaterPoint.Api.Common;
 using WaterPoint.Core.Bll.QueryParameters.Jobs;
 using WaterPoint.Core.Bll.QueryRunners;
 using WaterPoint.Core.RequestProcessor.Mappers.EntitiesToContracts;

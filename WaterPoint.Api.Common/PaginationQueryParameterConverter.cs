@@ -1,7 +1,6 @@
-﻿using WaterPoint.Core.Bll;
-using WaterPoint.Core.Domain.Dtos;
+﻿using WaterPoint.Core.Domain.Dtos;
 
-namespace WaterPoint.Core.RequestProcessor
+namespace WaterPoint.Api.Common
 {
     public class PaginationQueryParameterConverter
     {

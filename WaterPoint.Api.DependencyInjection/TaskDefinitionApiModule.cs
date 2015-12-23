@@ -27,7 +27,6 @@ namespace WaterPoint.Api.DependencyInjection
             BindQueryRunners();
             BindCommands();
             BindCommandExecutors();
-            Bind<PaginationQueryParameterConverter>().ToSelf();
         }
 
         private void BindQueries()

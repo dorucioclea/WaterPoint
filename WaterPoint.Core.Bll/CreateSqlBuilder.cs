@@ -17,7 +17,7 @@ namespace WaterPoint.Core.Bll
 
         private readonly IEnumerable<PropertyInfo> _propertyInfos;
 
-        private IEnumerable<PropertyInfo> _columns;
+        private List<PropertyInfo> _columns;
 
         public CreateSqlBuilder()
         {
@@ -26,6 +26,8 @@ namespace WaterPoint.Core.Bll
 
         public string GetSql()
         {
+            Columns = string.Join(",\r\n", _columns.Select(i => $"{ParentTable}.[{i.Name}]"));
+
             var sql =
                 $@"INSERT INTO {SqlPatterns.FromTable}
                     ({SqlPatterns.Columns})
@@ -50,9 +52,7 @@ namespace WaterPoint.Core.Bll
                         &&
                         inputProperties
                             .FirstOrDefault(inputPro => string.Equals(inputPro.Name, i.Name, StringComparison.CurrentCultureIgnoreCase)) != null
-                    );
-
-            Columns = string.Join(",\r\n", _columns.Select(i => $"{ParentTable}.[{i.Name}]"));
+                    ).ToList();
         }
 
         public void AddValueParameters(IQueryParameter input)
@@ -70,6 +70,16 @@ namespace WaterPoint.Core.Bll
                     continue;
 
                 var value = inputPro.GetValue(input, null);
+
+                if (value == null)
+                {
+                    var toremove = _columns.FirstOrDefault(i => string.Equals(i.Name, inputPro.Name, StringComparison.CurrentCultureIgnoreCase));
+
+                    if (toremove != null)
+                        _columns.Remove(toremove);
+
+                    continue;
+                }
 
                 var name = propertyInfo.Name.ToLower();
 

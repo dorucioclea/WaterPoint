@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using WaterPoint.Core.Domain.Dtos.RequestParameters;
 
-namespace WaterPoint.Core.RequestProcessor
+namespace WaterPoint.Api.Common
 {
     public class JobStatusQueryParameterConverter
     {

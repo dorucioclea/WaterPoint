@@ -76,6 +76,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\WaterPoint.Api.Common\WaterPoint.Api.Common.csproj">
+      <Project>{C033A553-F357-4844-805D-A4984A80226E}</Project>
+      <Name>WaterPoint.Api.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WaterPoint.Core.Bll\WaterPoint.Core.Bll.csproj">
       <Project>{456075b1-80ac-47b3-851f-c31d531adbd1}</Project>
       <Name>WaterPoint.Core.Bll</Name>

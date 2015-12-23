@@ -1,4 +1,5 @@
-﻿using Microsoft.Build.Framework;
+﻿
+using System.ComponentModel.DataAnnotations;
 
 namespace WaterPoint.Core.Domain.Dtos.Payloads.TaskDefinitions
 {

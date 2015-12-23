@@ -6,9 +6,6 @@ namespace WaterPoint.Core.Domain.Dtos.Payloads.JobTasks
     public class WriteJobTaskPayload
     {
         [Required]
-        public int? JobId { get; set; }
-
-        [Required]
         public int? TaskDefinitionId { get; set; }
 
         public int? DisplayOrder { get; set; }

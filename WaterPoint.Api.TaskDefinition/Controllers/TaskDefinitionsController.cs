@@ -75,7 +75,7 @@ namespace WaterPoint.Api.TaskDefinition.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest();
+                return BadRequest(ModelState);
             }
 
             var result = _createTaskDefinitionRequest.Process(

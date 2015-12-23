@@ -26,7 +26,6 @@ namespace WaterPoint.Api.DependencyInjection
             BindQueryRunners();
             BindCommands();
             BindCommandExecutors();
-            BindQueryParameterAnalyzer();
         }
 
         private void BindQueries()
@@ -58,13 +57,6 @@ namespace WaterPoint.Api.DependencyInjection
 
             Bind<ICommandExecutor<UpdateJob>>()
                 .To<UpdateCommandExecutor<UpdateJob>>();
-        }
-
-        private void BindQueryParameterAnalyzer()
-        {
-            Bind<PaginationQueryParameterConverter>().ToSelf();
-
-            Bind<JobStatusQueryParameterConverter>().ToSelf();
         }
 
         private void BindRequestProcessors()

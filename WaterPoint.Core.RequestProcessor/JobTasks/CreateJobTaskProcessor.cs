@@ -17,21 +17,15 @@ namespace WaterPoint.Core.RequestProcessor.JobTasks
     {
         private readonly ICommand<CreateJobTask> _command;
         private readonly ICommandExecutor<CreateJobTask> _executor;
-        private readonly IQuery<GetTaskDefinition> _getTaskDefQuery;
-        private readonly IQueryRunner<GetTaskDefinition, TaskDefinition> _getTaskDefRunner;
 
         public CreateJobTaskRequestProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
             ICommand<CreateJobTask> command,
-            ICommandExecutor<CreateJobTask> executor,
-            IQuery<GetTaskDefinition> getTaskDefQuery,
-            IQueryRunner<GetTaskDefinition, TaskDefinition> getTaskDefRunner)
+            ICommandExecutor<CreateJobTask> executor)
             : base(dapperUnitOfWork)
         {
             _command = command;
             _executor = executor;
-            _getTaskDefQuery = getTaskDefQuery;
-            _getTaskDefRunner = getTaskDefRunner;
         }
 
         public CommandResultContract Process(CreateJobTaskRequest input)
@@ -45,9 +39,9 @@ namespace WaterPoint.Core.RequestProcessor.JobTasks
         {
             return new CreateJobTask
             {
-                OrganizationId = input.OrganizationUserId,
+                OrganizationId = input.Parameter.OrganizationId,
                 TaskDefinitionId = input.Payload.TaskDefinitionId.Value,
-                JobId = input.Payload.JobId.Value,
+                JobId = input.Parameter.JobId,
                 CompletedDate = input.Payload.CompletedDate,
                 DisplayOrder = input.Payload.DisplayOrder,
                 EndDate = input.Payload.EndDate,
