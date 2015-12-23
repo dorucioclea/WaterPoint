@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using WaterPoint.Core.Bll.QueryParameters.Customers;
+using WaterPoint.Core.Domain.QueryParameters.Customers;
 using WaterPoint.Core.Domain.Db;
 using WaterPoint.Data.DbContext.Dapper;
 using WaterPoint.Data.Entity.DataEntities;

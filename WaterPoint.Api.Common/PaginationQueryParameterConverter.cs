@@ -1,4 +1,4 @@
-﻿using WaterPoint.Core.Domain.Dtos;
+﻿using WaterPoint.Core.Domain.RequestParameters;
 
 namespace WaterPoint.Api.Common
 {

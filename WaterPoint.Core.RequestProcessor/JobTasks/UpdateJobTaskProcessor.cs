@@ -1,13 +1,13 @@
 ﻿using Utility;
 using WaterPoint.Api.Common;
-using WaterPoint.Core.Bll.QueryParameters.JobTasks;
+using WaterPoint.Core.Domain.QueryParameters.JobTasks;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts;
 using WaterPoint.Core.Domain.Contracts.JobTasks;
 using WaterPoint.Core.Domain.Db;
 using WaterPoint.Core.Domain.Exceptions;
-using WaterPoint.Core.Domain.Dtos.Payloads.JobTasks;
-using WaterPoint.Core.Domain.Dtos.Requests.JobTasks;
+using WaterPoint.Core.Domain.Payloads.JobTasks;
+using WaterPoint.Core.Domain.Requests.JobTasks;
 using WaterPoint.Core.RequestProcessor.Mappers.EntitiesToContracts;
 using WaterPoint.Data.DbContext.Dapper;
 using WaterPoint.Data.Entity.DataEntities;

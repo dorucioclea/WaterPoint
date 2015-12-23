@@ -10,10 +10,11 @@ using WaterPoint.Api.Common.BaseControllers;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts;
 using WaterPoint.Core.Domain.Contracts.TaskDefinitions;
-using WaterPoint.Core.Domain.Dtos;
-using WaterPoint.Core.Domain.Dtos.Payloads.TaskDefinitions;
-using WaterPoint.Core.Domain.Dtos.Requests.Shared;
-using WaterPoint.Core.Domain.Dtos.Requests.TaskDefinitions;
+
+using WaterPoint.Core.Domain.Payloads.TaskDefinitions;
+using WaterPoint.Core.Domain.RequestParameters;
+using WaterPoint.Core.Domain.Requests.Shared;
+using WaterPoint.Core.Domain.Requests.TaskDefinitions;
 
 namespace WaterPoint.Api.TaskDefinition.Controllers
 {

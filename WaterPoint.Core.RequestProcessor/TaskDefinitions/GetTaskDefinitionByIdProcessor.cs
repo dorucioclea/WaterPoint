@@ -1,11 +1,11 @@
 ﻿using WaterPoint.Core.Bll.Queries.TaskDefinitions;
-using WaterPoint.Core.Bll.QueryParameters.TaskDefinitions;
+using WaterPoint.Core.Domain.QueryParameters.TaskDefinitions;
 using WaterPoint.Core.Bll.QueryRunners.TaskDefinitions;
 using WaterPoint.Core.RequestProcessor.Mappers.EntitiesToContracts;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts.TaskDefinitions;
 using WaterPoint.Core.Domain.Db;
-using WaterPoint.Core.Domain.Dtos.Requests.TaskDefinitions;
+using WaterPoint.Core.Domain.Requests.TaskDefinitions;
 using WaterPoint.Data.DbContext.Dapper;
 using WaterPoint.Data.Entity.DataEntities;
 

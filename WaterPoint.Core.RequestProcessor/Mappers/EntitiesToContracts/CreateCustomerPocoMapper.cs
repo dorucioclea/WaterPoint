@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Utility;
 using WaterPoint.Core.Domain.Contracts.Customers;
-using WaterPoint.Core.Domain.Dtos.Requests.Customers;
+using WaterPoint.Core.Domain.Requests.Customers;
 using WaterPoint.Data.Entity.DataEntities;
 using WaterPoint.Data.Entity.Pocos.Customers;
 

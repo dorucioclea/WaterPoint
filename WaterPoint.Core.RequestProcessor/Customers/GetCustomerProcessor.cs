@@ -1,12 +1,12 @@
 ﻿using AutoMapper.Internal;
 using WaterPoint.Core.Bll.Queries.Customers;
-using WaterPoint.Core.Bll.QueryParameters.Customers;
+using WaterPoint.Core.Domain.QueryParameters.Customers;
 using WaterPoint.Core.Bll.QueryRunners.Customers;
 using WaterPoint.Core.RequestProcessor.Mappers.EntitiesToContracts;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts.Customers;
 using WaterPoint.Core.Domain.Db;
-using WaterPoint.Core.Domain.Dtos.Requests.Customers;
+using WaterPoint.Core.Domain.Requests.Customers;
 using WaterPoint.Data.DbContext.Dapper;
 using WaterPoint.Data.Entity.DataEntities;
 

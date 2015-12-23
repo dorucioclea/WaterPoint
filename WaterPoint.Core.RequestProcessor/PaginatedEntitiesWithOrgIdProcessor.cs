@@ -1,9 +1,9 @@
 ﻿//using System.Collections.Generic;
 //using System.Linq;
-//using WaterPoint.Core.Bll.QueryParameters;
+//using WaterPoint.Core.Domain.QueryParameters;
 //using WaterPoint.Core.Bll.QueryRunners;
 //using WaterPoint.Core.Domain;
-//using WaterPoint.Core.Domain.Dtos.Requests.Shared;
+//using WaterPoint.Core.Domain.Requests.Shared;
 //using WaterPoint.Data.DbContext.Dapper;
 
 //namespace WaterPoint.Core.RequestProcessor

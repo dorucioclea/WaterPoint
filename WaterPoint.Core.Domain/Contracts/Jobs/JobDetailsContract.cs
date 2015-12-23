@@ -2,7 +2,7 @@
 using WaterPoint.Core.Domain.Contracts.Customers;
 using WaterPoint.Core.Domain.Contracts.JobCategories;
 using WaterPoint.Core.Domain.Contracts.JobStatuses;
-using WaterPoint.Core.Domain.Dtos;
+
 
 namespace WaterPoint.Core.Domain.Contracts.Jobs
 {

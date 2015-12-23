@@ -1,7 +1,7 @@
 ﻿using System;
 using WaterPoint.Core.Bll;
-using WaterPoint.Core.Bll.QueryParameters;
-using WaterPoint.Core.Bll.QueryParameters.Jobs;
+using WaterPoint.Core.Domain.QueryParameters;
+using WaterPoint.Core.Domain.QueryParameters.Jobs;
 using WaterPoint.Data.Entity.DataEntities;
 using WaterPoint.Data.Entity.Pocos.Jobs;
 using Xunit;

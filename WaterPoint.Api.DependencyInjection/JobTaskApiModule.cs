@@ -2,14 +2,14 @@
 using WaterPoint.Core.Bll.Commands.JobTasks;
 using WaterPoint.Core.Bll.Executors;
 using WaterPoint.Core.Bll.Queries.JobTasks;
-using WaterPoint.Core.Bll.QueryParameters.JobTasks;
+using WaterPoint.Core.Domain.QueryParameters.JobTasks;
 using WaterPoint.Core.Bll.QueryRunners;
 using WaterPoint.Core.Bll.QueryRunners.JobTasks;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts;
 using WaterPoint.Core.Domain.Contracts.JobTasks;
 using WaterPoint.Core.Domain.Db;
-using WaterPoint.Core.Domain.Dtos.Requests.JobTasks;
+using WaterPoint.Core.Domain.Requests.JobTasks;
 using WaterPoint.Core.RequestProcessor.JobTasks;
 using WaterPoint.Data.Entity.DataEntities;
 

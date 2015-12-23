@@ -10,8 +10,8 @@ using Newtonsoft.Json;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts.Credentials;
 using WaterPoint.Core.Domain.Contracts.OAuthClients;
-using WaterPoint.Core.Domain.Dtos.Requests.Credentials;
-using WaterPoint.Core.Domain.Dtos.Requests.OAuthClients;
+using WaterPoint.Core.Domain.Requests.Credentials;
+using WaterPoint.Core.Domain.Requests.OAuthClients;
 using WaterPoint.Data.Entity.Pocos.Views;
 
 namespace WaterPoint.Api.Infrastructure

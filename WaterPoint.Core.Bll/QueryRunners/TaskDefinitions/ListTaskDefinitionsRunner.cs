@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using WaterPoint.Core.Bll.QueryParameters.Shared;
-using WaterPoint.Core.Bll.QueryParameters.TaskDefinitions;
+using WaterPoint.Core.Domain.QueryParameters.Shared;
+using WaterPoint.Core.Domain.QueryParameters.TaskDefinitions;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Db;
 using WaterPoint.Data.DbContext.Dapper;

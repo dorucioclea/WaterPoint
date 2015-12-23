@@ -1,5 +1,5 @@
 ﻿using System;
-using WaterPoint.Core.Domain.Dtos;
+using WaterPoint.Core.Domain.Contracts;
 
 namespace WaterPoint.Core.Domain.Contracts.CostItems
 {
