@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace WaterPoint.Core.Domain.Payloads.JobTasks
+namespace WaterPoint.Core.Domain.Payloads.Jobs
 {
     public class WriteJobTaskPayload
     {

@@ -10,7 +10,7 @@ using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts;
 using WaterPoint.Core.Domain.Contracts.JobTasks;
 
-using WaterPoint.Core.Domain.Payloads.JobTasks;
+using WaterPoint.Core.Domain.Payloads.Jobs;
 using WaterPoint.Core.Domain.RequestParameters;
 using WaterPoint.Core.Domain.Requests.JobTasks;
 
