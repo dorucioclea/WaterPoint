@@ -6,7 +6,7 @@ using WaterPoint.Core.Domain.Contracts;
 using WaterPoint.Core.Domain.Contracts.JobTasks;
 using WaterPoint.Core.Domain.Db;
 using WaterPoint.Core.Domain.Exceptions;
-using WaterPoint.Core.Domain.Payloads.JobTasks;
+using WaterPoint.Core.Domain.Payloads.Jobs;
 using WaterPoint.Core.Domain.Requests.JobTasks;
 using WaterPoint.Core.RequestProcessor.Mappers.EntitiesToContracts;
 using WaterPoint.Data.DbContext.Dapper;

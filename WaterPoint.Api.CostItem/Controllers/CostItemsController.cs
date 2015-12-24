@@ -63,7 +63,7 @@ namespace WaterPoint.Api.CostItem.Controllers
         [Route("")]
         public IHttpActionResult Post(
             [FromUri]OrgIdRp orgId,
-            [FromUri]WriteCostItemPayload payload)
+            [FromBody]WriteCostItemPayload payload)
         {
             var request = new CreateCostItemRequest
             {

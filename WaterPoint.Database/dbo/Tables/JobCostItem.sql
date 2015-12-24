@@ -2,7 +2,7 @@
 (
     [Id] INT NOT NULL IDENTITY,
     [JobId] INT NOT NULL,
-    [CostItemId] INT NULL,
+    [CostItemId] INT NOT NULL,
     [ShortDescription] NVARCHAR(200) NOT NULL,
     [LongDescription] NVARCHAR(MAX) NULL,
     [Code] VARCHAR(50) NULL,

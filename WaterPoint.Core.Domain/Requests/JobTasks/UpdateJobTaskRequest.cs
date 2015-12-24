@@ -1,5 +1,5 @@
 ﻿using System.Web.Http.OData;
-using WaterPoint.Core.Domain.Payloads.JobTasks;
+using WaterPoint.Core.Domain.Payloads.Jobs;
 using WaterPoint.Core.Domain.RequestParameters;
 
 namespace WaterPoint.Core.Domain.Requests.JobTasks
