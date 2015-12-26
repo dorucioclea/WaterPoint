@@ -97,6 +97,7 @@
     <Compile Include="Queries\CostItems\GetCostItemQuery.cs" />
     <Compile Include="Queries\Credentials\ListValidateCredentialsQuery.cs" />
     <Compile Include="Queries\Customers\ListCustomerJobsQuery.cs" />
+    <Compile Include="Queries\JobCostItems\GetJobCostItemQuery.cs" />
     <Compile Include="Queries\Jobs\GetJobDetailsQuery.cs" />
     <Compile Include="Queries\Jobs\ListJobsQuery.cs" />
     <Compile Include="Queries\JobCostItems\ListJobCostItemsQuery.cs" />

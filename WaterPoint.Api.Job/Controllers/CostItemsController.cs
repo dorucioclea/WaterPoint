@@ -17,19 +17,19 @@ namespace WaterPoint.Api.Job.Controllers
         private readonly IRequestProcessor<CreateJobCostItemRequest, CommandResultContract> _createJobCostItemRequest;
         private readonly IRequestProcessor<ListJobCostItemsRequest, PaginatedResult<JobCostItemContract>> _listJobCostItemequestProcessor;
         //private readonly IRequestProcessor<UpdateJobCostItemRequest, CommandResultContract> _updateRequestProcessor;
-        //private readonly IRequestProcessor<GetJobCostItemByIdRequest, CommandResultContract> _getJobCostItemByIdProcessor;
+        private readonly IRequestProcessor<GetJobCostItemRequest, JobCostItemContract> _getJobCostItemProcessor;
 
         public CostItemsController(
             IRequestProcessor<CreateJobCostItemRequest, CommandResultContract> createJobCostItemRequest,
-            IRequestProcessor<ListJobCostItemsRequest, PaginatedResult<JobCostItemContract>> listJobCostItemequestProcessor
+            IRequestProcessor<ListJobCostItemsRequest, PaginatedResult<JobCostItemContract>> listJobCostItemequestProcessor,
             //IRequestProcessor<UpdateJobCostItemRequest, CommandResultContract> updateRequestProcessor,
-            //IRequestProcessor<GetJobCostItemByIdRequest, CommandResultContract> getJobCostItemByIdProcessor
+            IRequestProcessor<GetJobCostItemRequest, JobCostItemContract> getJobCostItemProcessor
             )
         {
             _listJobCostItemequestProcessor = listJobCostItemequestProcessor;
             _createJobCostItemRequest = createJobCostItemRequest;
             //_updateRequestProcessor = updateRequestProcessor;
-            //_getJobCostItemByIdProcessor = getJobCostItemByIdProcessor;
+            _getJobCostItemProcessor = getJobCostItemProcessor;
         }
 
         [Route("")]
@@ -49,17 +49,21 @@ namespace WaterPoint.Api.Job.Controllers
             return Ok(result);
         }
 
-        //[Route("{taskId:int}")]
-        //public IHttpActionResult Get([FromUri]OrgEntityRp parameter)
-        //{
-        //    var result = _getJobCostItemByIdProcessor.Process(
-        //        new GetJobCostItemByIdRequest
-        //        {
-        //            Id = parameter.Id
-        //        });
+        [Route("{id:int}")]
+        public IHttpActionResult Get(
+            [FromUri]JobIdOrgIdRp parameter,
+            [FromUri]int id
+            )
+        {
+            var result = _getJobCostItemProcessor.Process(
+                new GetJobCostItemRequest
+                {
+                    JobIdOrgId = parameter,
+                    JobCostItemId = id
+                });
 
-        //    return Ok(result);
-        //}
+            return Ok(result);
+        }
 
         [Route("")]
         public IHttpActionResult Post(
