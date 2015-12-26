@@ -1,7 +1,7 @@
 ﻿using WaterPoint.Core.Domain.Payloads.Jobs;
 using WaterPoint.Core.Domain.RequestParameters;
 
-namespace WaterPoint.Core.Domain.Requests.Jobs
+namespace WaterPoint.Core.Domain.Requests.JobCostItems
 {
     public class CreateJobCostItemRequest : IRequest
     {

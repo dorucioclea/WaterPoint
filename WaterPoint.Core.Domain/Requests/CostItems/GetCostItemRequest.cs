@@ -4,6 +4,6 @@ namespace WaterPoint.Core.Domain.Requests.CostItems
 {
     public class GetCostItemRequest : IRequest
     {
-        public OrgEntityRp OrganizationEntityParameter { get; set; }
+        public OrgEntityRp Parameter { get; set; }
     }
 }

@@ -1,12 +1,21 @@
 ﻿using Ninject.Modules;
 using WaterPoint.Core.Bll.Commands.Jobs;
 using WaterPoint.Core.Bll.Executors;
+using WaterPoint.Core.Bll.Queries.JobCostItems;
+using WaterPoint.Core.Bll.QueryRunners;
 using WaterPoint.Core.Domain;
+using WaterPoint.Core.Domain.Contracts;
+using WaterPoint.Core.Domain.Contracts.JobCostItems;
 using WaterPoint.Core.Domain.Contracts.Jobs;
 using WaterPoint.Core.Domain.Db;
+using WaterPoint.Core.Domain.QueryParameters.JobCostItems;
 using WaterPoint.Core.Domain.QueryParameters.Jobs;
+using WaterPoint.Core.Domain.QueryParameters.JobTasks;
+using WaterPoint.Core.Domain.Requests.JobCostItems;
 using WaterPoint.Core.Domain.Requests.Jobs;
+using WaterPoint.Core.RequestProcessor.JobCostItems;
 using WaterPoint.Core.RequestProcessor.Jobs;
+using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Api.DependencyInjection
 {
@@ -24,11 +33,13 @@ namespace WaterPoint.Api.DependencyInjection
 
         private void BindQueries()
         {
-
+            Bind<IQuery<ListJobCostItems>>().To<ListJobCostItemsQuery>();
         }
 
         public void BindQueryRunners()
         {
+            Bind<IListEntitiesRunner<ListJobCostItems, JobCostItem>>()
+                .To<PaginatedQueryRunner<ListJobCostItems, JobCostItem>>();
         }
 
         public void BindCommands()
@@ -43,8 +54,11 @@ namespace WaterPoint.Api.DependencyInjection
 
         private void BindRequestProcessors()
         {
-            Bind<IRequestProcessor<CreateJobCostItemRequest, JobCostItemContract>>()
+            Bind<IRequestProcessor<CreateJobCostItemRequest, CommandResultContract>>()
                 .To<CreateJobCostItemProcessor>();
+
+            Bind<IRequestProcessor<ListJobCostItemsRequest, PaginatedResult<JobCostItemContract>>>()
+                .To<ListJobCostItemsProcessor>();
         }
     }
 }

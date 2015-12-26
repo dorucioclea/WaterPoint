@@ -33,8 +33,8 @@ namespace WaterPoint.Core.Domain.Db
 
     public interface IQueryCollectionRunner<T, out TOut>
         where T : IQueryParameter
-        where TOut : IEnumerable<IDataEntity>
+        where TOut : IDataEntity
     {
-        TOut Run(IQuery<T> query);
+        IEnumerable<TOut> Run(IQuery<T> query);
     }
 }

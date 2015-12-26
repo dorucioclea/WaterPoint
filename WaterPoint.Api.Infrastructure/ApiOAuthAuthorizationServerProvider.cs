@@ -19,11 +19,11 @@ namespace WaterPoint.Api.Infrastructure
     public class ApiOAuthAuthorizationServerProvider : OAuthAuthorizationServerProvider
     {
         private readonly IRequestProcessor<GetOAuthClientRequest, OAuthClientContract> _oauthRequestProcessor;
-        private readonly IRequestCollectionProcessor<ListValidateCredentialsRequest, IEnumerable<ValidCredentialContract>> _credentialRequestProcessor;
+        private readonly IRequestCollectionProcessor<ListValidateCredentialsRequest, ValidCredentialContract> _credentialRequestProcessor;
 
         public ApiOAuthAuthorizationServerProvider(
             IRequestProcessor<GetOAuthClientRequest, OAuthClientContract> oauthRequestProcessor,
-            IRequestCollectionProcessor<ListValidateCredentialsRequest, IEnumerable<ValidCredentialContract>> credentialRequestProcessor)
+            IRequestCollectionProcessor<ListValidateCredentialsRequest, ValidCredentialContract> credentialRequestProcessor)
         {
             _oauthRequestProcessor = oauthRequestProcessor;
             _credentialRequestProcessor = credentialRequestProcessor;

@@ -36,7 +36,7 @@ namespace WaterPoint.Core.Bll.Queries.CostItems
             Parameters = new
             {
                 organizationId = parameter.OrganizationId,
-                customerId = parameter.CostItemId
+                costItemId = parameter.CostItemId
             };
         }
 

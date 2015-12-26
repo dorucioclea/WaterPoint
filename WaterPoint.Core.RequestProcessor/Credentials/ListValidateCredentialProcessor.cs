@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using WaterPoint.Core.Bll.Queries.Credentials;
 using WaterPoint.Core.Domain.QueryParameters.Credentials;
-using WaterPoint.Core.Bll.QueryRunners.Credentials;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts.Credentials;
 using WaterPoint.Core.Domain.Db;
@@ -16,15 +13,15 @@ namespace WaterPoint.Core.RequestProcessor.Credentials
 {
     public class ListValidateCredentialProcessor :
         BaseDapperUowRequestProcess,
-        IRequestCollectionProcessor<ListValidateCredentialsRequest, IEnumerable<ValidCredentialContract>>
+        IRequestCollectionProcessor<ListValidateCredentialsRequest, ValidCredentialContract>
     {
         private readonly IQuery<ListCredentials> _query;
-        private readonly IQueryCollectionRunner<ListCredentials, IEnumerable<ValidCredential>> _runner;
+        private readonly IQueryCollectionRunner<ListCredentials, ValidCredential> _runner;
 
         public ListValidateCredentialProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
             IQuery<ListCredentials> query,
-            IQueryCollectionRunner<ListCredentials, IEnumerable<ValidCredential>> runner)
+            IQueryCollectionRunner<ListCredentials, ValidCredential> runner)
             : base(dapperUnitOfWork)
         {
             _query = query;

@@ -16,8 +16,8 @@ namespace WaterPoint.Core.Domain
 
     public interface IRequestCollectionProcessor<in TInput, out TOutput>
         where TInput : IRequest
-        where TOutput : IEnumerable<IContract>
+        where TOutput : IContract
     {
-        TOutput Process(TInput input);
+        IEnumerable<TOutput> Process(TInput input);
     }
 }
