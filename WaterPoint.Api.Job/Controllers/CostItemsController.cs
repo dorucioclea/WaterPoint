@@ -1,57 +1,53 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
+﻿using System.Web.Http;
 using WaterPoint.Api.Common;
 using WaterPoint.Api.Common.BaseControllers;
 using WaterPoint.Core.Domain;
-using WaterPoint.Core.Domain.Contracts.Jobs;
+using WaterPoint.Core.Domain.Contracts;
+using WaterPoint.Core.Domain.Contracts.JobCostItems;
 using WaterPoint.Core.Domain.Payloads.Jobs;
 using WaterPoint.Core.Domain.RequestParameters;
-using WaterPoint.Core.Domain.Requests.Jobs;
+using WaterPoint.Core.Domain.Requests.JobCostItems;
 
 namespace WaterPoint.Api.Job.Controllers
 {
     [Authorize]
-    [Route(RouteDefinitions.Jobs.CostsPrefix)]
-    public class CostsController : BaseOrgnizationContextController
+    [RoutePrefix(RouteDefinitions.Jobs.CostItemsPrefix)]
+    public class CostItemsController : BaseOrgnizationContextController
     {
-        private readonly IRequestProcessor<CreateJobCostItemRequest, JobCostItemContract> _createJobCostItemRequest;
-        //private readonly IRequestProcessor<ListJobCostItemsRequest, PaginatedResult<JobCostItemContract>> _listJobCostItemequestProcessor;
+        private readonly IRequestProcessor<CreateJobCostItemRequest, CommandResultContract> _createJobCostItemRequest;
+        private readonly IRequestProcessor<ListJobCostItemsRequest, PaginatedResult<JobCostItemContract>> _listJobCostItemequestProcessor;
         //private readonly IRequestProcessor<UpdateJobCostItemRequest, CommandResultContract> _updateRequestProcessor;
         //private readonly IRequestProcessor<GetJobCostItemByIdRequest, CommandResultContract> _getJobCostItemByIdProcessor;
 
-        public CostsController(
-            IRequestProcessor<CreateJobCostItemRequest, JobCostItemContract> createJobCostItemRequest
-            //IRequestProcessor<ListJobCostItemsRequest, PaginatedResult<JobCostItemContract>> listJobCostItemequestProcessor,
+        public CostItemsController(
+            IRequestProcessor<CreateJobCostItemRequest, CommandResultContract> createJobCostItemRequest,
+            IRequestProcessor<ListJobCostItemsRequest, PaginatedResult<JobCostItemContract>> listJobCostItemequestProcessor
             //IRequestProcessor<UpdateJobCostItemRequest, CommandResultContract> updateRequestProcessor,
             //IRequestProcessor<GetJobCostItemByIdRequest, CommandResultContract> getJobCostItemByIdProcessor
             )
         {
-            //_listJobCostItemequestProcessor = listJobCostItemequestProcessor;
+            _listJobCostItemequestProcessor = listJobCostItemequestProcessor;
             _createJobCostItemRequest = createJobCostItemRequest;
             //_updateRequestProcessor = updateRequestProcessor;
             //_getJobCostItemByIdProcessor = getJobCostItemByIdProcessor;
         }
 
-        //[Route("")]
-        //public IHttpActionResult Get(
-        //    [FromUri]JobIdOrgIdRp parameter,
-        //    [FromUri]PaginationRp pagination)
-        //{
-        //    //validation
-        //    var request = new ListJobCostItemsRequest
-        //    {
-        //        Parameter = parameter,
-        //        Pagination = pagination
-        //    };
+        [Route("")]
+        public IHttpActionResult Get(
+            [FromUri]JobIdOrgIdRp parameter,
+            [FromUri]PaginationRp pagination)
+        {
+            //validation
+            var request = new ListJobCostItemsRequest
+            {
+                Parameter = parameter,
+                Pagination = pagination
+            };
 
-        //    var result = _listJobCostItemequestProcessor.Process(request);
+            var result = _listJobCostItemequestProcessor.Process(request);
 
-        //    return Ok(result);
-        //}
+            return Ok(result);
+        }
 
         //[Route("{taskId:int}")]
         //public IHttpActionResult Get([FromUri]OrgEntityRp parameter)

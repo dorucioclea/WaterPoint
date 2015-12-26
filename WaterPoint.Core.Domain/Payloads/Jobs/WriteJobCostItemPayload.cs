@@ -5,9 +5,6 @@ namespace WaterPoint.Core.Domain.Payloads.Jobs
     public class WriteJobCostItemPayload
     {
         [Range(1, int.MaxValue)]
-        public int JobId { get; set; }
-
-        [Range(1, int.MaxValue)]
         public int? CostItemId { get; set; }
 
         [StringLength(200)]

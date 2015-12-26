@@ -5,7 +5,6 @@ using WaterPoint.Core.Bll.Queries.TaskDefinitions;
 using WaterPoint.Core.Domain.QueryParameters.Shared;
 using WaterPoint.Core.Domain.QueryParameters.TaskDefinitions;
 using WaterPoint.Core.Bll.QueryRunners;
-using WaterPoint.Core.Bll.QueryRunners.TaskDefinitions;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts;
 using WaterPoint.Core.Domain.Contracts.TaskDefinitions;
@@ -38,10 +37,11 @@ namespace WaterPoint.Api.DependencyInjection
 
         public void BindQueryRunners()
         {
-            Bind<IQueryRunner<GetTaskDefinition, TaskDefinition>>().To<GetTaskDefinitionByIdQueryRunner>();
+            Bind<IQueryRunner<GetTaskDefinition, TaskDefinition>>()
+                .To<QueryRunner<GetTaskDefinition, TaskDefinition>>();
 
             Bind<IListEntitiesRunner<PaginatedOrgId, TaskDefinition>>()
-                .To<ListTaskDefinitionsRunner>();
+                .To<PaginatedQueryRunner<PaginatedOrgId, TaskDefinition>>();
         }
 
         public void BindCommands()

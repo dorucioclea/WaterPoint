@@ -1,4 +1,5 @@
 ﻿using WaterPoint.Core.Domain.Db;
+using WaterPoint.Core.Domain.QueryParameters.JobCostItems;
 using WaterPoint.Core.Domain.QueryParameters.Jobs;
 using WaterPoint.Data.Entity.DataEntities;
 

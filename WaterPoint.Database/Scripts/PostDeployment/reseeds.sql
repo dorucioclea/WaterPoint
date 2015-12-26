@@ -32,3 +32,21 @@ IF(NOT EXISTS(SELECT TOP 1 * FROM dbo.TaskDefinition))
         DBCC checkident ('dbo.TaskDefinition', reseed, 10000)
     END
 GO
+
+
+
+IF(NOT EXISTS(SELECT TOP 1 * FROM dbo.JobTask))
+    BEGIN
+        DBCC checkident ('dbo.JobTask', reseed, 1000)
+    END
+GO
+
+IF(NOT EXISTS(SELECT TOP 1 * FROM dbo.JobCostItem))
+    BEGIN
+        DBCC checkident ('dbo.JobCostItem', reseed, 1000)
+    END
+GO
+
+
+
+

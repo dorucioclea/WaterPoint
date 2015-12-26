@@ -6,7 +6,6 @@ using WaterPoint.Core.Bll.Queries.CostItems;
 using WaterPoint.Core.Domain.QueryParameters.CostItems;
 using WaterPoint.Core.Domain.QueryParameters.Shared;
 using WaterPoint.Core.Bll.QueryRunners;
-using WaterPoint.Core.Bll.QueryRunners.CostItems;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts;
 using WaterPoint.Core.Domain.Contracts.CostItems;
@@ -38,9 +37,9 @@ namespace WaterPoint.Api.DependencyInjection
 
         public void BindQueryRunners()
         {
-            Bind<IQueryRunner<GetCostItem, CostItem>>().To<GetCostItemRunner>();
+            Bind<IQueryRunner<GetCostItem, CostItem>>().To<QueryRunner<GetCostItem, CostItem>>();
 
-            Bind<IListEntitiesRunner<PaginatedOrgId, CostItem>>().To<ListCostItemsRunner>();
+            Bind<IListEntitiesRunner<PaginatedOrgId, CostItem>>().To<PaginatedQueryRunner<PaginatedOrgId, CostItem>>();
         }
 
         public void BindCommands()

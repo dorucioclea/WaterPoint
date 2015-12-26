@@ -81,7 +81,8 @@
     <Compile Include="CostItems\UpdateCostItemProcessor.cs" />
     <Compile Include="Credentials\ListValidateCredentialProcessor.cs" />
     <Compile Include="Customers\ListCustomerJobsProcessor.cs" />
-    <Compile Include="Jobs\CreateJobCostItemProcessor.cs" />
+    <Compile Include="JobCostItems\CreateJobCostItemProcessor.cs" />
+    <Compile Include="JobCostItems\ListJobCostItemsProcessor.cs" />
     <Compile Include="Jobs\CreateJobProcessor.cs" />
     <Compile Include="Jobs\GetJobByIdProcessor.cs" />
     <Compile Include="Jobs\ListJobsProcessor.cs" />
@@ -95,6 +96,7 @@
     <Compile Include="Mappers\EntitiesToContracts\CreateCustomerPocoMapper.cs" />
     <Compile Include="Mappers\EntitiesToContracts\CustomerMapper.cs" />
     <Compile Include="Mappers\EntitiesToContracts\JobMapper.cs" />
+    <Compile Include="Mappers\EntitiesToContracts\JobCostItemMapper.cs" />
     <Compile Include="Mappers\EntitiesToContracts\JobTaskMapper.cs" />
     <Compile Include="Mappers\EntitiesToContracts\OAuthClientMapper.cs" />
     <Compile Include="Mappers\EntitiesToContracts\TaskDefinitionMapper.cs" />

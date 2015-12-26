@@ -62,7 +62,7 @@
     <Compile Include="Contracts\Customers\CustomerIdNameContract.cs" />
     <Compile Include="Contracts\JobCategories\JobCategoryIdDescContract.cs" />
     <Compile Include="Contracts\JobStatuses\JobStatusIdNameContract.cs" />
-    <Compile Include="Contracts\Jobs\JobCostItemContract.cs" />
+    <Compile Include="Contracts\JobCostItems\JobCostItemContract.cs" />
     <Compile Include="Contracts\Jobs\JobDetailsContract.cs" />
     <Compile Include="Contracts\Jobs\PriorityTypeContract.cs" />
     <Compile Include="Contracts\JobTasks\JobTaskContract.cs" />
@@ -86,13 +86,14 @@
     <Compile Include="QueryParameters\Customers\PaginatedCustomerIdOrgId.cs" />
     <Compile Include="QueryParameters\Customers\PaginatedOrgIdIsProspect.cs" />
     <Compile Include="QueryParameters\Customers\UpdateCustomer.cs" />
-    <Compile Include="QueryParameters\Jobs\CreateJobCostItem.cs" />
+    <Compile Include="QueryParameters\JobCostItems\CreateJobCostItem.cs" />
     <Compile Include="QueryParameters\Jobs\CreateJob.cs" />
     <Compile Include="QueryParameters\Jobs\GetJob.cs" />
     <Compile Include="QueryParameters\Jobs\PaginatedJobs.cs" />
     <Compile Include="QueryParameters\Jobs\UpdateJob.cs" />
     <Compile Include="QueryParameters\JobTasks\CreateJobTask.cs" />
     <Compile Include="QueryParameters\JobTasks\GetJobTask.cs" />
+    <Compile Include="QueryParameters\JobTasks\ListJobCostItems.cs" />
     <Compile Include="QueryParameters\JobTasks\ListJobTasks.cs" />
     <Compile Include="QueryParameters\JobTasks\UpdateJobTask.cs" />
     <Compile Include="QueryParameters\Shared\PaginatedOrgId.cs" />
@@ -118,7 +119,8 @@
     <Compile Include="Requests\Customers\UpdateCustomerRequest.cs" />
     <Compile Include="Requests\Customers\GetCustomerRequest.cs" />
     <Compile Include="Requests\Customers\CreateCustomerRequest.cs" />
-    <Compile Include="Requests\Jobs\CreateJobCostItemRequest.cs" />
+    <Compile Include="Requests\JobCostItems\ListJobCostItemsRequest.cs" />
+    <Compile Include="Requests\JobCostItems\CreateJobCostItemRequest.cs" />
     <Compile Include="Requests\Jobs\CreateJobRequest.cs" />
     <Compile Include="Requests\Jobs\GetJobByIdRequest.cs" />
     <Compile Include="Requests\Jobs\ListJobsRequest.cs" />

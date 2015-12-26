@@ -35,6 +35,7 @@ namespace WaterPoint.Core.Bll.Queries.JobTasks
 
             Parameters = new
             {
+                jobId = parameter.JobId,
                 jobTaskId = parameter.JobTaskId
             };
         }

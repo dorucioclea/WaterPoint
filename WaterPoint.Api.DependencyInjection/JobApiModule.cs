@@ -5,7 +5,6 @@ using WaterPoint.Core.Bll.Executors;
 using WaterPoint.Core.Bll.Queries.Jobs;
 using WaterPoint.Core.Domain.QueryParameters.Jobs;
 using WaterPoint.Core.Bll.QueryRunners;
-using WaterPoint.Core.Bll.QueryRunners.Jobs;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts;
 using WaterPoint.Core.Domain.Contracts.Jobs;
@@ -37,10 +36,10 @@ namespace WaterPoint.Api.DependencyInjection
         private void BindQueryRunners()
         {
             Bind<IListEntitiesRunner<PaginatedJobs, JobWithCustomerAndStatusPoco>>()
-                .To<ListJobsRunner>();
+                .To<PaginatedQueryRunner<PaginatedJobs, JobWithCustomerAndStatusPoco>>();
 
             Bind<IQueryRunner<GetJob, JobWithDetailsPoco>>()
-                .To<GetJobDetailsRunner>();
+                .To<QueryRunner<GetJob, JobWithDetailsPoco>>();
         }
 
         public void BindCommands()

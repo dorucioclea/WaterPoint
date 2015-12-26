@@ -52,7 +52,7 @@ namespace WaterPoint.Api.CostItem.Controllers
         {
             var request = new GetCostItemRequest
             {
-                OrganizationEntityParameter = parameter
+                Parameter = parameter
             };
 
             var result = _getRequestProcessor.Process(request);

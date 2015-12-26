@@ -1,19 +1,10 @@
-﻿using System;
-using System.Windows.Input;
-using WaterPoint.Api.Common;
-using WaterPoint.Core.Bll.Commands.TaskDefinitions;
-using WaterPoint.Core.Bll.Executors;
-using WaterPoint.Core.Bll.Queries.TaskDefinitions;
+﻿using WaterPoint.Api.Common;
 using WaterPoint.Core.Domain.QueryParameters.TaskDefinitions;
-using WaterPoint.Core.Bll.QueryRunners.TaskDefinitions;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts;
-using WaterPoint.Core.Domain.Contracts.TaskDefinitions;
 using WaterPoint.Core.Domain.Db;
-using WaterPoint.Core.Domain.Exceptions;
 using WaterPoint.Core.Domain.Payloads.TaskDefinitions;
 using WaterPoint.Core.Domain.Requests.TaskDefinitions;
-using WaterPoint.Core.RequestProcessor.Mappers.EntitiesToContracts;
 using WaterPoint.Data.DbContext.Dapper;
 using WaterPoint.Data.Entity.DataEntities;
 

@@ -1,26 +1,27 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using WaterPoint.Core.Domain.QueryParameters.JobTasks;
+using System.Text;
+using System.Threading.Tasks;
 using WaterPoint.Core.Domain.Db;
 using WaterPoint.Data.DbContext.Dapper;
-using WaterPoint.Data.Entity.DataEntities;
 using WaterPoint.Data.Entity.Pocos;
 
-namespace WaterPoint.Core.Bll.QueryRunners.JobTasks
+namespace WaterPoint.Core.Bll.QueryRunners
 {
-    public class ListJobTasksRunner : IListEntitiesRunner<ListJobTasks, JobTask>
+    public class PaginatedQueryRunner<T, TOut> : IListEntitiesRunner<T, TOut> where T : IQueryParameter
     {
         private readonly IDapperDbContext _dapperDbContext;
 
-        public ListJobTasksRunner(IDapperDbContext dapperDbContext)
+        public PaginatedQueryRunner(IDapperDbContext dapperDbContext)
         {
             _dapperDbContext = dapperDbContext;
         }
 
-        public PaginatedPoco<IEnumerable<JobTask>> Run(IQuery<ListJobTasks> query)
+        public PaginatedPoco<IEnumerable<TOut>> Run(IQuery<T> query)
         {
             var rawResults = _dapperDbContext
-                .List<JobTask, PaginatedPoco>(
+                .List<TOut, PaginatedPoco>(
                     query.Query,
                     PaginatedPoco.SplitOnColumn,
                     query.Parameters)
@@ -29,7 +30,7 @@ namespace WaterPoint.Core.Bll.QueryRunners.JobTasks
             if (!rawResults.Any())
                 return null;
 
-            var result = new PaginatedPoco<IEnumerable<JobTask>>
+            var result = new PaginatedPoco<IEnumerable<TOut>>
             {
                 TotalCount = rawResults.First().Item2.TotalCount,
                 Data = rawResults.Select(i => i.Item1)

@@ -1,11 +1,9 @@
-﻿using System;
+﻿using WaterPoint.Core.Domain.Db;
 
-namespace WaterPoint.Core.Domain.Contracts.Jobs
+namespace WaterPoint.Core.Domain.QueryParameters.JobCostItems
 {
-    public class JobCostItemContract : IContract
+    public class CreateJobCostItem : IQueryParameter
     {
-        public int Id { get; set; }
-
         public int JobId { get; set; }
 
         public int? CostItemId { get; set; }
@@ -23,13 +21,5 @@ namespace WaterPoint.Core.Domain.Contracts.Jobs
         public int Quantity { get; set; }
 
         public bool IsBillable { get; set; }
-
-        public string Version { get; set; }
-
-        public DateTime UtcCreated { get; set; }
-
-        public DateTime UtcUpdated { get; set; }
-
-        public Guid Uid { get; set; }
     }
 }
