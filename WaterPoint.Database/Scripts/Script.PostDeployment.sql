@@ -37,3 +37,5 @@ Post-Deployment Script Template
 :r "..\apiv1\Scripts\Script.PostDeployment.ApiV1.sql"
 
 :r ".\PostDeployment\PriorityTypes.sql"
+
+:r ".\PostDeployment\JobTimesheetTypes.sql"

@@ -216,7 +216,7 @@
     <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\JobsController.cs" />
     <Compile Include="Controllers\TestsController.cs" />
-    <Compile Include="Controllers\TimesheetController.cs" />
+    <Compile Include="Controllers\JobTimesheetController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>

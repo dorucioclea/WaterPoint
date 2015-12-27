@@ -92,12 +92,16 @@
     <Compile Include="Customers\ListCustomersProcessor.cs" />
     <Compile Include="Customers\UpdateCustomerProcessor.cs" />
     <Compile Include="Jobs\UpdateJobProcessor.cs" />
+    <Compile Include="Mappers\EntitiesToContracts\StaffMapper.cs" />
+    <Compile Include="Staff\GetStaffProcessor.cs" />
+    <Compile Include="Timesheet\CreateJobTimesheetProcessor.cs" />
     <Compile Include="Mappers\EntitiesToContracts\CostItemMapper.cs" />
     <Compile Include="Mappers\EntitiesToContracts\CredentialMapper.cs" />
     <Compile Include="Mappers\EntitiesToContracts\CreateCustomerPocoMapper.cs" />
     <Compile Include="Mappers\EntitiesToContracts\CustomerMapper.cs" />
     <Compile Include="Mappers\EntitiesToContracts\JobMapper.cs" />
     <Compile Include="Mappers\EntitiesToContracts\JobCostItemMapper.cs" />
+    <Compile Include="Mappers\EntitiesToContracts\JobTimesheetMapper.cs" />
     <Compile Include="Mappers\EntitiesToContracts\JobTaskMapper.cs" />
     <Compile Include="Mappers\EntitiesToContracts\OAuthClientMapper.cs" />
     <Compile Include="Mappers\EntitiesToContracts\TaskDefinitionMapper.cs" />

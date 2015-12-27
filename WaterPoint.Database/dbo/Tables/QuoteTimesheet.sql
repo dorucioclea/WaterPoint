@@ -2,7 +2,7 @@
 (
     [Id] INT NOT NULL IDENTITY,
     [TaskDefinitionId] INT NULL,
-    [OrganizationUserId] INT NOT NULL,
+    [StaffId] INT NOT NULL,
     [StartDateTime] DATETIME2(0) NULL,
     [EndDateTime] DATETIME2(0) NULL,
     [RoundedMinutes] INT NOT NULL DEFAULT(0),
@@ -17,5 +17,5 @@
 	[Uid] UNIQUEIDENTIFIER NOT NULL DEFAULT(NEWID()),
     CONSTRAINT [PK_dbo_QuoteTimesheet_Id] PRIMARY KEY CLUSTERED (Id ASC),
     CONSTRAINT [FK_QuoteTimesheet_Task] FOREIGN KEY ([TaskDefinitionId]) REFERENCES [dbo].[JobTask]([Id]),
-    CONSTRAINT [FK_QuoteTimesheet_OrganizationUser] FOREIGN KEY ([OrganizationUserId]) REFERENCES [dbo].[OrganizationUser]([Id]),
+    CONSTRAINT [FK_QuoteTimesheet_dbo_Staff] FOREIGN KEY ([StaffId]) REFERENCES [dbo].[Staff]([Id]),
 )

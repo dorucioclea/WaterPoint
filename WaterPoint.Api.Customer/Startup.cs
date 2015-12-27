@@ -18,6 +18,7 @@ namespace WaterPoint.Api.Customer
             var kernel = base.CreateKernel();
 
             kernel.Load(new CustomerApiModule());
+            kernel.Load(new JobTimesheetApiModule());
 
             return kernel;
         }
