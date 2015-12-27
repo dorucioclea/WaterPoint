@@ -12,9 +12,4 @@ namespace WaterPoint.Core.Domain.QueryParameters.JobTasks
         public bool IsDesc { get; set; }
         public string SearchTerm { get; set; }
     }
-
-    public class ListUserJobTasks : ListJobTasks
-    {
-        public int OrganizationUserId { get; set; }
-    }
 }

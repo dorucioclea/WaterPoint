@@ -63,6 +63,8 @@
     <Compile Include="Attributes\StringValueAttribute.cs" />
     <Compile Include="Attributes\TableAttribute.cs" />
     <Compile Include="DataEntities\Address.cs" />
+    <Compile Include="DataEntities\Staff.cs" />
+    <Compile Include="DataEntities\JobTimesheet.cs" />
     <Compile Include="DataEntities\CostItem.cs" />
     <Compile Include="DataEntities\Credential.cs" />
     <Compile Include="DataEntities\JobCostItem.cs" />
@@ -73,6 +75,8 @@
     <Compile Include="DataEntities\Job.cs" />
     <Compile Include="DataEntities\JobTask.cs" />
     <Compile Include="DataEntities\TaskDefinition.cs" />
+    <Compile Include="Enums\OrganizationUserTypes.cs" />
+    <Compile Include="Enums\JobTimesheetTypes.cs" />
     <Compile Include="IDataEntity.cs" />
     <Compile Include="Pocos\Customers\BasicCustomerWithAddressPoco.cs" />
     <Compile Include="Pocos\Customers\CustomerPoco.cs" />
@@ -83,9 +87,7 @@
     <Compile Include="Pocos\Views\ValidCredential.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Enums\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
