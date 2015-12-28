@@ -29,11 +29,9 @@ namespace WaterPoint.Core.Domain.QueryParameters.JobTimesheet
 
         public string LongDescription { get; set; }
 
-        public bool IsBillable { get; set; }
-
         public bool IsDuration { get; set; }
 
-        public bool IsActual { get; set; }
+        public bool IsBillable { get; set; }
 
         public decimal BaseRate { get; set; }
 

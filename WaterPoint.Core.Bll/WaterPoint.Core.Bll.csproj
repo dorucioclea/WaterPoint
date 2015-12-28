@@ -92,6 +92,7 @@
     <Compile Include="Commands\Jobs\UpdateJobCommand.cs" />
     <Compile Include="Commands\JobTasks\CreateJobTaskCommand.cs" />
     <Compile Include="Commands\JobTasks\UpdateJobTaskCommand.cs" />
+    <Compile Include="Commands\JobTimesheet\UpdateJobTimesheetCommand.cs" />
     <Compile Include="Commands\JobTimesheet\CreateJobTimesheetCommand.cs" />
     <Compile Include="Commands\TaskDefinitions\CreateTaskDefinitionCommand.cs" />
     <Compile Include="Commands\TaskDefinitions\UpdateTaskDefinitionCommand.cs" />
@@ -105,7 +106,7 @@
     <Compile Include="Queries\JobCostItems\ListJobCostItemsQuery.cs" />
     <Compile Include="Queries\JobTasks\GetJobTaskQuery.cs" />
     <Compile Include="Queries\JobTasks\ListJobTasksQuery.cs" />
-    <Compile Include="Queries\JobTimesheet\Class1.cs" />
+    <Compile Include="Queries\JobTimesheet\GetJobTimesheetQuery.cs" />
     <Compile Include="Queries\JobTimesheet\ListJobTimesheetQuery.cs" />
     <Compile Include="Queries\OAuthClients\GetOAuthClientQuery.cs" />
     <Compile Include="Queries\Staff\GetStaffQuery.cs" />

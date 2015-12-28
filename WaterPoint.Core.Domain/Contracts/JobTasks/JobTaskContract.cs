@@ -3,7 +3,7 @@
 
 namespace WaterPoint.Core.Domain.Contracts.JobTasks
 {
-    public class JobTaskContract : IContract
+    public class JobTaskContract : IJobTaskBasicContract
     {
         public int Id { get; set; }
 

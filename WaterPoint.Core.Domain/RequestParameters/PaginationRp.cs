@@ -1,6 +1,8 @@
-﻿namespace WaterPoint.Core.Domain.RequestParameters
+﻿using WaterPoint.Core.Domain.RequestParameters.Interfaces;
+
+namespace WaterPoint.Core.Domain.RequestParameters
 {
-    public class PaginationRp : IPaginationParamter
+    public class PaginationRp : IPagination
     {
         public int? PageSize { get; set; }
         public int? PageNumber { get; set; }

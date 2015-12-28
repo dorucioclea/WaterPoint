@@ -1,6 +1,6 @@
-﻿namespace WaterPoint.Core.Domain.RequestParameters
+﻿namespace WaterPoint.Core.Domain.RequestParameters.Interfaces
 {
-    public interface IPaginationParamter : IUriQueryParamter
+    public interface IPagination
     {
         int? PageSize { get; set; }
         int? PageNumber { get; set; }

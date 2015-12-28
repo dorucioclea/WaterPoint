@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WaterPoint.Core.Domain.Contracts.JobTimesheet
 {
-    public class JobTimesheetContract : IJobTimesheetBasicContract
+    public class JobTimesheetBasicContract : IJobTimesheetBasicContract
     {
         public int Id { get; set; }
 
@@ -21,10 +21,6 @@ namespace WaterPoint.Core.Domain.Contracts.JobTimesheet
         public DateTime? EndDateTime { get; set; }
 
         public int RoundedMinutes { get; set; }
-
-        public string ShortDescription { get; set; }
-
-        public string LongDescription { get; set; }
 
         public bool IsBillable { get; set; }
 

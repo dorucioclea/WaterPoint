@@ -2,8 +2,9 @@
 
 namespace WaterPoint.Core.Domain.RequestParameters
 {
-    public class OrgEntityRp : IOrgEntity
+    public class OrgEntityJobId : IOrgEntity, IRequest
     {
+        public int JobId { get; set; }
         public int OrganizationId { get; set; }
         public int Id { get; set; }
     }

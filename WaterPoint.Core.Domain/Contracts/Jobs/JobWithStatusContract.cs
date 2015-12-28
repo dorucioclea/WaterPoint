@@ -1,11 +1,10 @@
 ﻿using System;
-using WaterPoint.Core.Domain.Contracts.Customers;
 using WaterPoint.Core.Domain.Contracts.JobStatuses;
 
 
 namespace WaterPoint.Core.Domain.Contracts.Jobs
 {
-    public class JobWithStatusContract : IContract
+    public class JobWithStatusContract : IJobBasicContract
     {
         public int Id { get; set; }
         public int OrganizationId { get; set; }
@@ -19,6 +18,4 @@ namespace WaterPoint.Core.Domain.Contracts.Jobs
         public string Uid { get; set; }
         public JobStatusIdNameContract JobStatus { get; set; }
     }
-
-
 }

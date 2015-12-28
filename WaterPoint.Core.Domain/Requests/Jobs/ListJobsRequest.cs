@@ -1,10 +1,10 @@
 ﻿using WaterPoint.Core.Domain.RequestParameters;
-using WaterPoint.Core.Domain.Requests.Shared;
 
 namespace WaterPoint.Core.Domain.Requests.Jobs
 {
-    public class ListJobsRequest : ListWithOrgIdRequest
+    public class ListJobsRequest : IRequest
     {
-        public JobStatusRp JobStatusParameter { get; set; }
+        public PaginationRp Pagination { get; set; }
+        public JobStatusRp Parameter { get; set; }
     }
 }

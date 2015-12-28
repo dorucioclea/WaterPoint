@@ -6,16 +6,16 @@ namespace WaterPoint.Core.Domain.Payloads.JobTimesheet
     public class WriteJobTimesheetPayload
     {
         [Required]
-        public int JobTaskId { get; set; }
+        public int? StaffId { get; set; }
 
         [Required]
-        public int StaffId { get; set; }
+        public int? JobTaskId { get; set; }
 
         public DateTime? StartDateTime { get; set; }
 
         public DateTime? EndDateTime { get; set; }
 
-        public int? Minutes { get; set; }
+        public int Minutes { get; set; }
 
         public string ShortDescription { get; set; }
 
@@ -26,9 +26,6 @@ namespace WaterPoint.Core.Domain.Payloads.JobTimesheet
 
         [Required]
         public bool? IsDuration { get; set; }
-
-        [Required]
-        public bool? IsActual { get; set; }
 
         public decimal BaseRate { get; set; }
 

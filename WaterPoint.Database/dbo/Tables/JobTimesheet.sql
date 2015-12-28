@@ -13,7 +13,6 @@
     [IsBillable] BIT NOT NULL DEFAULT(0),
     [BaseRate] DECIMAL(10,3) NOT NULL DEFAULT(0),
     [BillableRate] DECIMAL(10,3) NOT NULL DEFAULT(0),
-    [IsActual] BIT NOT NULL DEFAULT(1),
     [IsDuration] BIT NOT NULL,
     [IsDeleted] BIT NOT NULL DEFAULT(0),
     [Version] ROWVERSION NOT NULL,

@@ -46,18 +46,17 @@ namespace WaterPoint.Core.RequestProcessor.Timesheet
             {
                 JobTimesheetTypeId = (int)_jobTimesheetTypeAnalyzer.AnalyzeType(input.Payload),
                 JobId = input.Parameter.JobId,
-                JobTaskId = input.Payload.JobTaskId,
+                JobTaskId = input.Payload.JobTaskId.Value,
                 BillableRate = input.Payload.BillableRate,
                 BaseRate = input.Payload.BaseRate,
                 ShortDescription = input.Payload.ShortDescription,
                 LongDescription = input.Payload.LongDescription,
                 IsBillable = input.Payload.IsBillable.Value,
                 EndDateTime = input.Payload.EndDateTime,
-                IsActual = input.Payload.IsActual.Value,
                 IsDuration = input.Payload.IsDuration.Value,
                 OriginalMinutes = _jobTimesheetTypeAnalyzer.AnalyzeOriginalMinute(input.Payload),
                 RoundedMinutes = _jobTimesheetTypeAnalyzer.AnalyzeRoundedMinute(input.Payload),
-                StaffId = input.Payload.StaffId,
+                StaffId = input.Payload.StaffId.Value,
                 StartDateTime = input.Payload.StartDateTime
             };
 

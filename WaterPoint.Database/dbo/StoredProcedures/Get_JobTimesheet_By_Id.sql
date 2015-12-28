@@ -18,7 +18,6 @@ BEGIN
         jt.[LongDescription],
         jt.[IsBillable],
         jt.[IsDuration],
-        jt.[IsActual],
         jt.[BaseRate],
         jt.[BillableRate],
         jt.[Version],

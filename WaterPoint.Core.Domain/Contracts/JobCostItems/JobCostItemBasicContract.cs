@@ -2,7 +2,7 @@
 
 namespace WaterPoint.Core.Domain.Contracts.JobCostItems
 {
-    public class JobCostItemListContract : IContract
+    public class JobCostItemBasicContract : IContract, IJobCostItemBasicContract
     {
         public int Id { get; set; }
 
@@ -20,8 +20,10 @@ namespace WaterPoint.Core.Domain.Contracts.JobCostItems
 
         public bool IsBillable { get; set; }
 
+        public bool IsActual { get; set; }
+
         public string Version { get; set; }
 
-        public Guid Uid { get; set; }
+        public string Uid { get; set; }
     }
 }

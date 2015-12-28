@@ -38,7 +38,6 @@ namespace WaterPoint.Api.Job.Controllers
 
         [Route("")]
         public IHttpActionResult Get(
-            [FromUri]OrgIdRp parameter,
             [FromUri]PaginationRp pagination,
             [FromUri]JobStatusRp jobStatusParamter)
         {
@@ -50,9 +49,8 @@ namespace WaterPoint.Api.Job.Controllers
             //validation
             var request = new ListJobsRequest
             {
-                OrganizationIdParameter = parameter,
-                PaginationParamter = pagination,
-                JobStatusParameter = jobStatusParamter
+                Pagination = pagination,
+                Parameter = jobStatusParamter
             };
 
             var result = _listJobRequestProcessor.Process(request);
