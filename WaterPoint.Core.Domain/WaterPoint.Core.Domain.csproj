@@ -67,6 +67,7 @@
     <Compile Include="Contracts\Jobs\PriorityTypeContract.cs" />
     <Compile Include="Contracts\JobTasks\JobTaskContract.cs" />
     <Compile Include="Contracts\Jobs\JobWithCustomerContract.cs" />
+    <Compile Include="Contracts\JobTimesheet\JobTimesheetListContract.cs" />
     <Compile Include="Contracts\JobTimesheet\JobTimesheetContract.cs" />
     <Compile Include="Contracts\LinkItemContract.cs" />
     <Compile Include="Contracts\OAuthClients\OAuthClientContract.cs" />
@@ -99,6 +100,8 @@
     <Compile Include="QueryParameters\JobTasks\ListJobCostItems.cs" />
     <Compile Include="QueryParameters\JobTasks\ListJobTasks.cs" />
     <Compile Include="QueryParameters\JobTasks\UpdateJobTask.cs" />
+    <Compile Include="QueryParameters\JobTimesheet\GetJobTimesheet.cs" />
+    <Compile Include="QueryParameters\JobTimesheet\ListJobTimesheet.cs" />
     <Compile Include="QueryParameters\JobTimesheet\CreateJobTimesheet.cs" />
     <Compile Include="QueryParameters\Shared\PaginatedOrgId.cs" />
     <Compile Include="QueryParameters\Staff\GetStaff.cs" />
@@ -109,7 +112,8 @@
     <Compile Include="RequestParameters\OrgIdCusIdJobId.cs" />
     <Compile Include="RequestParameters\IPaginationParameter.cs" />
     <Compile Include="Payloads\CostItems\WriteCostItemPayload.cs" />
-    <Compile Include="RequestParameters\JobIdOrgIdRp.cs" />
+    <Compile Include="RequestParameters\OrgIdJobIdIdRp.cs" />
+    <Compile Include="RequestParameters\OrgIdJobIdRp.cs" />
     <Compile Include="RequestParameters\IsProspectOrgIdRp.cs" />
     <Compile Include="RequestParameters\CustomerIdOrgIdRp.cs" />
     <Compile Include="RequestParameters\JobStatusRP.cs" />
@@ -137,6 +141,8 @@
     <Compile Include="Requests\JobTasks\CreateJobTaskRequest.cs" />
     <Compile Include="Requests\JobTasks\GetJobTaskByIdRequest.cs" />
     <Compile Include="Requests\JobTasks\UpdateJobTaskRequest.cs" />
+    <Compile Include="Requests\JobTimesheet\GetJobTimesheetRequest.cs" />
+    <Compile Include="Requests\JobTimesheet\ListJobTimesheetRequest.cs" />
     <Compile Include="Requests\JobTimesheet\CreateJobTimesheetRequest.cs" />
     <Compile Include="Requests\OAuthClients\GetOAuthClientRequest.cs" />
     <Compile Include="Requests\Staff\GetStaffRequest.cs" />
@@ -167,6 +173,7 @@
     <Compile Include="RequestParameters\IUriQueryParameter.cs" />
     <Compile Include="RequestParameters\IUriPathParamter.cs" />
     <Compile Include="RequestParameters\PaginationRp.cs" />
+    <Compile Include="SimplePaginatedResult.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WaterPoint.Data.Entity\WaterPoint.Data.Entity.csproj">

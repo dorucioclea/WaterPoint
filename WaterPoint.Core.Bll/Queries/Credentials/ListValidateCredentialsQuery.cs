@@ -41,6 +41,7 @@ namespace WaterPoint.Core.Bll.Queries.Credentials
             };
         }
 
+        public bool IsStoredProcedure { get { return false; } }
         public string Query { get; private set; }
         public object Parameters { get; private set; }
     }

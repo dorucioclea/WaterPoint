@@ -12,7 +12,7 @@ namespace WaterPoint.Core.Domain.Contracts.JobTimesheet
 
         public int JobTimesheetTypeId { get; set; }
 
-        public int? JobTaskId { get; set; }
+        public int JobTaskId { get; set; }
 
         public int StaffId { get; set; }
 
@@ -22,21 +22,21 @@ namespace WaterPoint.Core.Domain.Contracts.JobTimesheet
 
         public int RoundedMinutes { get; set; }
 
-        public int ShortDescription { get; set; }
+        public string ShortDescription { get; set; }
 
-        public int LongDescription { get; set; }
+        public string LongDescription { get; set; }
 
-        public int IsBillable { get; set; }
+        public bool IsBillable { get; set; }
+
+        public bool IsDuration { get; set; }
+
+        public bool IsActual { get; set; }
 
         public int BaseRate { get; set; }
 
         public int BillableRate { get; set; }
 
         public string Version { get; set; }
-
-        public DateTime UtcCreated { get; set; }
-
-        public DateTime UtcUpdated { get; set; }
 
         public Guid Uid { get; set; }
     }

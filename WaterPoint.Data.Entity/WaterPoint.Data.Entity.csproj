@@ -80,14 +80,16 @@
     <Compile Include="IDataEntity.cs" />
     <Compile Include="Pocos\Customers\BasicCustomerWithAddressPoco.cs" />
     <Compile Include="Pocos\Customers\CustomerPoco.cs" />
-    <Compile Include="Pocos\JobStatuses\JobStatus.cs" />
     <Compile Include="Pocos\Jobs\JobWithDetailsPoco.cs" />
     <Compile Include="Pocos\Jobs\JobWithCustomerAndStatusPoco.cs" />
+    <Compile Include="Pocos\JobTimesheet\JobTimesheetPoco.cs" />
     <Compile Include="Pocos\PaginatedPoco.cs" />
     <Compile Include="Pocos\Views\ValidCredential.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Pocos\JobStatuses\" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>

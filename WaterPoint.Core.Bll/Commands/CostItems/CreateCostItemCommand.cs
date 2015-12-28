@@ -25,6 +25,7 @@ namespace WaterPoint.Core.Bll.Commands.CostItems
             Query = sql;
             Parameters = builder.Parameters;
         }
+        public bool IsStoredProcedure => false;
         public string Query { get; private set; }
         public object Parameters { get; private set; }
     }

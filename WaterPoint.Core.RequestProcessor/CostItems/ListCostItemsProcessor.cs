@@ -18,13 +18,13 @@ namespace WaterPoint.Core.RequestProcessor.CostItems
         private readonly IDapperUnitOfWork _dapperUnitOfWork;
         private readonly PaginationQueryParameterConverter _paginationQueryParameterConverter;
         private readonly IQuery<PaginatedOrgId> _paginatedcostItemsQuery;
-        private readonly IListEntitiesRunner<PaginatedOrgId, CostItem> _paginatedcostItemRunner;
+        private readonly IListQueryRunner<PaginatedOrgId, CostItem> _paginatedcostItemRunner;
 
         public ListCostItemsProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
             PaginationQueryParameterConverter paginationQueryParameterConverter,
             IQuery<PaginatedOrgId> paginatedcostItemsQuery,
-            IListEntitiesRunner<PaginatedOrgId, CostItem> paginatedcostItemRunner)
+            IListQueryRunner<PaginatedOrgId, CostItem> paginatedcostItemRunner)
         {
             _dapperUnitOfWork = dapperUnitOfWork;
             _paginationQueryParameterConverter = paginationQueryParameterConverter;

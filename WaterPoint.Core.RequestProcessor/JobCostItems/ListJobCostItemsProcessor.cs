@@ -18,13 +18,13 @@ namespace WaterPoint.Core.RequestProcessor.JobCostItems
         IRequestProcessor<ListJobCostItemsRequest, PaginatedResult<JobCostItemContract>>
     {
         private readonly IDapperUnitOfWork _dapperUnitOfWork;
-        private readonly IListEntitiesRunner<ListJobCostItems, JobCostItem> _paginatedJobCostRunner;
+        private readonly IListQueryRunner<ListJobCostItems, JobCostItem> _paginatedJobCostRunner;
         private readonly PaginationQueryParameterConverter _paginationQueryParameterConverter;
         private readonly IQuery<ListJobCostItems> _paginatedJobCostItemsQuery;
 
         public ListJobCostItemsProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
-            IListEntitiesRunner<ListJobCostItems, JobCostItem> paginatedJobCostRunner,
+            IListQueryRunner<ListJobCostItems, JobCostItem> paginatedJobCostRunner,
             PaginationQueryParameterConverter paginationQueryParameterConverter,
             IQuery<ListJobCostItems> paginatedJobCostItemsQuery)
         {

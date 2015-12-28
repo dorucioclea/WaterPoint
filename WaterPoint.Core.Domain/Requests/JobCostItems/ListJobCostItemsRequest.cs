@@ -9,7 +9,7 @@ namespace WaterPoint.Core.Domain.Requests.JobCostItems
 {
     public class ListJobCostItemsRequest : IRequest
     {
-        public JobIdOrgIdRp Parameter { get; set; }
+        public OrgIdJobIdRp Parameter { get; set; }
         public PaginationRp Pagination { get; set; }
     }
 }

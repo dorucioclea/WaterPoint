@@ -9,6 +9,7 @@ namespace WaterPoint.Core.Domain.Db
         void BuildQuery(T parameter);
         string Query { get; }
         object Parameters { get; }
+        bool IsStoredProcedure { get; }
     }
 
     public interface IQueryParameter
@@ -22,6 +23,12 @@ namespace WaterPoint.Core.Domain.Db
         string Sort { get; set; }
         bool IsDesc { get; set; }
         string SearchTerm { get; set; }
+    }
+
+    public interface ISimplePaginatedQueryParameter : IQueryParameter
+    {
+        int Offset { get; set; }
+        int PageSize { get; set; }
     }
 
     public interface IQueryRunner<T, out TOut>

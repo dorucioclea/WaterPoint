@@ -21,13 +21,13 @@ namespace WaterPoint.Core.RequestProcessor.Customers
         private readonly IDapperUnitOfWork _dapperUnitOfWork;
         private readonly PaginationQueryParameterConverter _paginationQueryParameterConverter;
         private readonly IQuery<PaginatedOrgIdIsProspect> _paginatedCustomersQuery;
-        private readonly IListEntitiesRunner<PaginatedOrgIdIsProspect, Customer> _paginatedCustomerRunner;
+        private readonly IListQueryRunner<PaginatedOrgIdIsProspect, Customer> _paginatedCustomerRunner;
 
         public ListCustomersProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
             PaginationQueryParameterConverter paginationQueryParameterConverter,
             IQuery<PaginatedOrgIdIsProspect> paginatedCustomersQuery,
-            IListEntitiesRunner<PaginatedOrgIdIsProspect, Customer> paginatedCustomerRunner)
+            IListQueryRunner<PaginatedOrgIdIsProspect, Customer> paginatedCustomerRunner)
         {
             _dapperUnitOfWork = dapperUnitOfWork;
             _paginationQueryParameterConverter = paginationQueryParameterConverter;

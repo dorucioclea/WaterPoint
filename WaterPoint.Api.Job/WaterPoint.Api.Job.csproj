@@ -207,6 +207,7 @@
   <ItemGroup>
     <Compile Include="Controllers\CostItemsController.cs" />
     <Compile Include="Controllers\JobsController.cs" />
+    <Compile Include="Controllers\JobTimesheetController.cs" />
     <Compile Include="Controllers\TasksController.cs" />
     <Compile Include="Controllers\TestAuthController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

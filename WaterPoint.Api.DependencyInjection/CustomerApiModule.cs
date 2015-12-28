@@ -44,13 +44,13 @@ namespace WaterPoint.Api.DependencyInjection
 
         public void BindQueryRunners()
         {
-            Bind<IListEntitiesRunner<PaginatedOrgIdIsProspect, Customer>>()
+            Bind<IListQueryRunner<PaginatedOrgIdIsProspect, Customer>>()
                 .To<PaginatedQueryRunner<PaginatedOrgIdIsProspect, Customer>>();
 
             Bind<IQueryRunner<GetCustomer, Customer>>()
                 .To<QueryRunner<GetCustomer, Customer>>();
 
-            Bind<IListEntitiesRunner<PaginatedCustomerIdOrgId, JobWithCustomerAndStatusPoco>>()
+            Bind<IListQueryRunner<PaginatedCustomerIdOrgId, JobWithCustomerAndStatusPoco>>()
                 .To<PaginatedQueryRunner<PaginatedCustomerIdOrgId, JobWithCustomerAndStatusPoco>>();
         }
 
