@@ -14,6 +14,7 @@
     [IsCompleted] BIT NOT NULL DEFAULT(0),
     [IsAllocated] BIT NOT NULL DEFAULT(0),
     [IsScheduled] BIT NOT NULL DEFAULT(0),
+    [IsDeleted] BIT NOT NULL DEFAULT(0),
     [ShortDescription] NVARCHAR (200) NULL,
     [LongDescription] NVARCHAR (MAX) NULL,
     [Version] ROWVERSION NOT NULL,

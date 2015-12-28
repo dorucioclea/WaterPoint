@@ -54,6 +54,7 @@ namespace WaterPoint.Core.Bll.Queries.TaskDefinitions
             };
         }
 
+        public bool IsStoredProcedure => false;
         public string Query { get; private set; }
         public object Parameters { get; private set; }
     }

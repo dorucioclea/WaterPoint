@@ -5,7 +5,7 @@ namespace WaterPoint.Core.Domain.Requests.JobTimesheet
 {
     public class CreateJobTimesheetRequest : IRequest
     {
-        public OrgIdCusIdJobId Parameter { get; set; }
+        public OrgIdJobIdIdRp Parameter { get; set; }
         public WriteJobTimesheetPayload Payload { get; set; }
     }
 }

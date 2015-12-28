@@ -35,7 +35,7 @@ namespace WaterPoint.Api.DependencyInjection
 
         private void BindQueryRunners()
         {
-            Bind<IListEntitiesRunner<PaginatedJobs, JobWithCustomerAndStatusPoco>>()
+            Bind<IListQueryRunner<PaginatedJobs, JobWithCustomerAndStatusPoco>>()
                 .To<PaginatedQueryRunner<PaginatedJobs, JobWithCustomerAndStatusPoco>>();
 
             Bind<IQueryRunner<GetJob, JobWithDetailsPoco>>()

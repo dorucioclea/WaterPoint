@@ -20,14 +20,14 @@ namespace WaterPoint.Core.RequestProcessor.Jobs
         IRequestProcessor<ListJobsRequest, PaginatedResult<JobWithCustomerContract>>
     {
         private readonly IDapperUnitOfWork _dapperUnitOfWork;
-        private readonly IListEntitiesRunner<PaginatedJobs, JobWithCustomerAndStatusPoco> _paginatedJobRunner;
+        private readonly IListQueryRunner<PaginatedJobs, JobWithCustomerAndStatusPoco> _paginatedJobRunner;
         private readonly PaginationQueryParameterConverter _paginationQueryParameterConverter;
         private readonly JobStatusQueryParameterConverter _jobStatusQueryParameterConverter;
         private readonly IQuery<PaginatedJobs> _paginatedJobsQuery;
 
         public ListJobsProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
-            IListEntitiesRunner<PaginatedJobs, JobWithCustomerAndStatusPoco> paginatedJobRunner,
+            IListQueryRunner<PaginatedJobs, JobWithCustomerAndStatusPoco> paginatedJobRunner,
             PaginationQueryParameterConverter paginationQueryParameterConverter,
             JobStatusQueryParameterConverter jobStatusQueryParameterConverter,
             IQuery<PaginatedJobs> paginatedJobsQuery)

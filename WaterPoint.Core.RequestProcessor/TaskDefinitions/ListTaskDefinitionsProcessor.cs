@@ -19,13 +19,13 @@ namespace WaterPoint.Core.RequestProcessor.TaskDefinitions
         IRequestProcessor<ListWithOrgIdRequest, PaginatedResult<TaskDefinitionContract>>
     {
         private readonly IDapperUnitOfWork _dapperUnitOfWork;
-        private readonly IListEntitiesRunner<PaginatedOrgId, TaskDefinition> _paginatedTaskDefinitionRunner;
+        private readonly IListQueryRunner<PaginatedOrgId, TaskDefinition> _paginatedTaskDefinitionRunner;
         private readonly PaginationQueryParameterConverter _paginationQueryParameterConverter;
         private readonly IQuery<PaginatedOrgId> _paginatedTaskDefinitionsQuery;
 
         public ListTaskDefinitionsProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
-            IListEntitiesRunner<PaginatedOrgId, TaskDefinition> paginatedTaskDefinitionRunner,
+            IListQueryRunner<PaginatedOrgId, TaskDefinition> paginatedTaskDefinitionRunner,
             PaginationQueryParameterConverter paginationQueryParameterConverter,
             IQuery<PaginatedOrgId> paginatedTaskDefinitionsQuery)
         {

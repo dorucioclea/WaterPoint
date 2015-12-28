@@ -13,8 +13,6 @@ namespace WaterPoint.Core.Domain.QueryParameters.JobTimesheet
 
         public int JobTimesheetTypeId { get; set; }
 
-        public int CustomerId { get; set; }
-
         public int JobTaskId { get; set; }
 
         public int StaffId { get; set; }
@@ -23,7 +21,9 @@ namespace WaterPoint.Core.Domain.QueryParameters.JobTimesheet
 
         public DateTime? EndDateTime { get; set; }
 
-        public int Minutes { get; set; }
+        public int RoundedMinutes { get; set; }
+
+        public int OriginalMinutes { get; set; }
 
         public string ShortDescription { get; set; }
 

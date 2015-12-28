@@ -39,7 +39,7 @@ namespace WaterPoint.Api.DependencyInjection
         {
             Bind<IQueryRunner<GetCostItem, CostItem>>().To<QueryRunner<GetCostItem, CostItem>>();
 
-            Bind<IListEntitiesRunner<PaginatedOrgId, CostItem>>().To<PaginatedQueryRunner<PaginatedOrgId, CostItem>>();
+            Bind<IListQueryRunner<PaginatedOrgId, CostItem>>().To<PaginatedQueryRunner<PaginatedOrgId, CostItem>>();
         }
 
         public void BindCommands()

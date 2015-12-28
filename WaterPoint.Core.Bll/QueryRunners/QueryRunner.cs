@@ -2,6 +2,7 @@
 using WaterPoint.Core.Domain.Db;
 using WaterPoint.Data.DbContext.Dapper;
 using WaterPoint.Data.Entity;
+using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Core.Bll.QueryRunners
 {
@@ -16,9 +17,9 @@ namespace WaterPoint.Core.Bll.QueryRunners
 
         public TOut Run(IQuery<T> query)
         {
-            var result = _dapperDbContext
-                   .List<TOut>(query.Query, query.Parameters)
-                   .SingleOrDefault();
+            var result = query.IsStoredProcedure
+                ? _dapperDbContext.ExecuteStoredProcedure<TOut>(query.Query, query.Parameters).SingleOrDefault()
+                : _dapperDbContext.List<TOut>(query.Query, query.Parameters).SingleOrDefault();
 
             return result;
         }

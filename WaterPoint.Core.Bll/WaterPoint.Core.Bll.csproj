@@ -104,6 +104,8 @@
     <Compile Include="Queries\JobCostItems\ListJobCostItemsQuery.cs" />
     <Compile Include="Queries\JobTasks\GetJobTaskQuery.cs" />
     <Compile Include="Queries\JobTasks\ListJobTasksQuery.cs" />
+    <Compile Include="Queries\JobTimesheet\Class1.cs" />
+    <Compile Include="Queries\JobTimesheet\ListJobTimesheetQuery.cs" />
     <Compile Include="Queries\OAuthClients\GetOAuthClientQuery.cs" />
     <Compile Include="Queries\Staff\GetStaffQuery.cs" />
     <Compile Include="Queries\TaskDefinitions\GetTaskDefinitionQuery.cs" />
@@ -113,7 +115,7 @@
     <Compile Include="QueryRunners\PaginatedQueryRunner.cs" />
     <Compile Include="Executors\UpdateCommandExecutor.cs" />
     <Compile Include="Executors\CreateCommandExecutor.cs" />
-    <Compile Include="QueryRunners\IListEntitiesRunner.cs" />
+    <Compile Include="QueryRunners\IListQueryRunner.cs" />
     <Compile Include="UpdateSqlBuilder.cs" />
     <Compile Include="Commands\Customers\UpdateCustomerCommand.cs" />
     <Compile Include="Queries\Customers\GetCustomerQuery.cs" />

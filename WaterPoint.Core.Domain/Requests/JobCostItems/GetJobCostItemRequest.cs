@@ -9,7 +9,7 @@ namespace WaterPoint.Core.Domain.Requests.JobCostItems
 {
     public class GetJobCostItemRequest : IRequest
     {
-        public JobIdOrgIdRp JobIdOrgId { get; set; }
+        public OrgIdJobIdRp JobIdOrgId { get; set; }
         public int JobCostItemId { get; set; }
     }
 }

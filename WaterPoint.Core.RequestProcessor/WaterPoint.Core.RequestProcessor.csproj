@@ -94,6 +94,8 @@
     <Compile Include="Jobs\UpdateJobProcessor.cs" />
     <Compile Include="Mappers\EntitiesToContracts\StaffMapper.cs" />
     <Compile Include="Staff\GetStaffProcessor.cs" />
+    <Compile Include="Timesheet\GetJobTimesheetProcessor.cs" />
+    <Compile Include="Timesheet\ListJobTimesheetProcessor.cs" />
     <Compile Include="Timesheet\CreateJobTimesheetProcessor.cs" />
     <Compile Include="Mappers\EntitiesToContracts\CostItemMapper.cs" />
     <Compile Include="Mappers\EntitiesToContracts\CredentialMapper.cs" />

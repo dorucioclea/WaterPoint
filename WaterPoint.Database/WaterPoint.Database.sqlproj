@@ -118,6 +118,8 @@
     <Build Include="dbo\Tables\OrganizationUserType.sql" />
     <Build Include="dbo\Tables\PriorityType.sql" />
     <Build Include="dbo\Tables\Staff.sql" />
+    <Build Include="dbo\StoredProcedures\List_JobTimesheet_By_JobId.sql" />
+    <Build Include="dbo\StoredProcedures\Get_JobTimesheet_By_Id.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="WaterPoint.Database.publish.xml" />

@@ -9,7 +9,7 @@ using WaterPoint.Data.Entity.Pocos;
 
 namespace WaterPoint.Core.Bll.QueryRunners
 {
-    public class PaginatedQueryRunner<T, TOut> : IListEntitiesRunner<T, TOut> where T : IQueryParameter
+    public class PaginatedQueryRunner<T, TOut> : IListQueryRunner<T, TOut> where T : IQueryParameter
     {
         private readonly IDapperDbContext _dapperDbContext;
 
@@ -20,12 +20,15 @@ namespace WaterPoint.Core.Bll.QueryRunners
 
         public PaginatedPoco<IEnumerable<TOut>> Run(IQuery<T> query)
         {
-            var rawResults = _dapperDbContext
-                .List<TOut, PaginatedPoco>(
-                    query.Query,
-                    PaginatedPoco.SplitOnColumn,
-                    query.Parameters)
-                .ToArray();
+            var rawResults = query.IsStoredProcedure
+                    ? _dapperDbContext.ExecuteStoredProcedure<TOut, PaginatedPoco>(
+                        query.Query,
+                        PaginatedPoco.SplitOnColumn,
+                        query.Parameters).ToArray()
+                    : _dapperDbContext.List<TOut, PaginatedPoco>(
+                        query.Query,
+                        PaginatedPoco.SplitOnColumn,
+                        query.Parameters).ToArray();
 
             if (!rawResults.Any())
                 return null;
