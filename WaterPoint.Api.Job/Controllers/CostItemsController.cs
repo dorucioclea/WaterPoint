@@ -1,9 +1,11 @@
 ﻿using System.Web.Http;
+using System.Web.Http.OData;
 using WaterPoint.Api.Common;
 using WaterPoint.Api.Common.BaseControllers;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts;
 using WaterPoint.Core.Domain.Contracts.JobCostItems;
+using WaterPoint.Core.Domain.Payloads.JobCostItems;
 using WaterPoint.Core.Domain.Payloads.Jobs;
 using WaterPoint.Core.Domain.RequestParameters;
 using WaterPoint.Core.Domain.Requests.JobCostItems;
@@ -15,20 +17,20 @@ namespace WaterPoint.Api.Job.Controllers
     public class CostItemsController : BaseOrgnizationContextController
     {
         private readonly IRequestProcessor<CreateJobCostItemRequest, CommandResultContract> _createJobCostItemRequest;
-        private readonly IRequestProcessor<ListJobCostItemsRequest, PaginatedResult<JobCostItemContract>> _listJobCostItemequestProcessor;
-        //private readonly IRequestProcessor<UpdateJobCostItemRequest, CommandResultContract> _updateRequestProcessor;
+        private readonly IRequestProcessor<ListJobCostItemsRequest, SimplePaginatedResult<JobCostItemListContract>> _listJobCostItemequestProcessor;
+        private readonly IRequestProcessor<UpdateJobCostItemRequest, CommandResultContract> _updateRequestProcessor;
         private readonly IRequestProcessor<GetJobCostItemRequest, JobCostItemContract> _getJobCostItemProcessor;
 
         public CostItemsController(
             IRequestProcessor<CreateJobCostItemRequest, CommandResultContract> createJobCostItemRequest,
-            IRequestProcessor<ListJobCostItemsRequest, PaginatedResult<JobCostItemContract>> listJobCostItemequestProcessor,
-            //IRequestProcessor<UpdateJobCostItemRequest, CommandResultContract> updateRequestProcessor,
+            IRequestProcessor<ListJobCostItemsRequest, SimplePaginatedResult<JobCostItemListContract>> listJobCostItemequestProcessor,
+            IRequestProcessor<UpdateJobCostItemRequest, CommandResultContract> updateRequestProcessor,
             IRequestProcessor<GetJobCostItemRequest, JobCostItemContract> getJobCostItemProcessor
             )
         {
             _listJobCostItemequestProcessor = listJobCostItemequestProcessor;
             _createJobCostItemRequest = createJobCostItemRequest;
-            //_updateRequestProcessor = updateRequestProcessor;
+            _updateRequestProcessor = updateRequestProcessor;
             _getJobCostItemProcessor = getJobCostItemProcessor;
         }
 
@@ -86,20 +88,20 @@ namespace WaterPoint.Api.Job.Controllers
             return Ok(result);
         }
 
-        //[Route("")]
-        //public IHttpActionResult Put(
-        //    [FromUri] OrgEntityJobId parameter,
-        //    [FromBody] Delta<WriteJobCostItemPayload> input)
-        //{
-        //    var jobCostItem = _updateRequestProcessor.Process(
-        //        new UpdateJobCostItemRequest
-        //        {
-        //            Parameter = parameter,
-        //            Payload = input,
-        //            OrganizationUserId = OrganizationUser.Id
-        //        });
+        [Route("{id:int}")]
+        public IHttpActionResult Put(
+            [FromUri]OrgEntityJobId parameter,
+            [FromBody]Delta<WriteJobCostItemPayload> input)
+        {
+            var jobCostItem = _updateRequestProcessor.Process(
+                new UpdateJobCostItemRequest
+                {
+                    Parameter = parameter,
+                    Payload = input,
+                    OrganizationUserId = OrganizationUser.Id
+                });
 
-        //    return Ok(jobCostItem);
-        //}
+            return Ok(jobCostItem);
+        }
     }
 }

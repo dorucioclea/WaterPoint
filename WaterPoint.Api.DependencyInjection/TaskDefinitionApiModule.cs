@@ -41,7 +41,7 @@ namespace WaterPoint.Api.DependencyInjection
                 .To<QueryRunner<GetTaskDefinition, TaskDefinition>>();
 
             Bind<IListQueryRunner<PaginatedOrgId, TaskDefinition>>()
-                .To<PaginatedQueryRunner<PaginatedOrgId, TaskDefinition>>();
+                .To<ListQueryRunner<PaginatedOrgId, TaskDefinition>>();
         }
 
         public void BindCommands()

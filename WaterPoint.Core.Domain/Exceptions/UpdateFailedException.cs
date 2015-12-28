@@ -22,10 +22,10 @@ namespace WaterPoint.Core.Domain.Exceptions
         public DetailedException(string msg)
             : base(msg)
         {
-
+            Messages = new List<string>();
         }
 
-        public IList<string> Messages { get; private set; }
+        public IList<string> Messages { get; }
 
         public void AddMessage(string message)
         {

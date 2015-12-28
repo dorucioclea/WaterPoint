@@ -2,14 +2,11 @@
 
 namespace WaterPoint.Core.Domain.QueryParameters.Customers
 {
-    public class PaginatedCustomerIdOrgId : IQueryParameter
+    public class ListCustomerJobs : ISimplePaginatedQueryParameter
     {
         public int OrganizationId { get; set; }
         public int CustomerId { get; set; }
         public int Offset { get; set; }
         public int PageSize { get; set; }
-        public string Sort { get; set; }
-        public bool IsDesc { get; set; }
-        public string SearchTerm { get; set; }
     }
 }

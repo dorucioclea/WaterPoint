@@ -5,10 +5,11 @@ using WaterPoint.Core.Domain.Contracts.JobStatuses;
 
 namespace WaterPoint.Core.Domain.Contracts.Jobs
 {
-    public class JobWithCustomerContract : IContract
+    public class JobWithStatusContract : IContract
     {
         public int Id { get; set; }
         public int OrganizationId { get; set; }
+        public int CustomerId { get; set; }
         public string Code { get; set; }
         public string ShortDescription { get; set; }
         public DateTime StartDate { get; set; }
@@ -16,7 +17,6 @@ namespace WaterPoint.Core.Domain.Contracts.Jobs
         public DateTime? DueDate { get; set; }
         public string Version { get; set; }
         public string Uid { get; set; }
-        public CustomerIdNameContract Customer { get; set; }
         public JobStatusIdNameContract JobStatus { get; set; }
     }
 

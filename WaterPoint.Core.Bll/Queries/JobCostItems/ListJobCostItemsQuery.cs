@@ -1,6 +1,7 @@
 ﻿using WaterPoint.Core.Domain.QueryParameters.JobTasks;
 using WaterPoint.Core.Domain.Db;
 using WaterPoint.Data.Entity.DataEntities;
+using WaterPoint.Data.Entity.Pocos.JobCostItems;
 
 namespace WaterPoint.Core.Bll.Queries.JobCostItems
 {
@@ -23,7 +24,7 @@ namespace WaterPoint.Core.Bll.Queries.JobCostItems
                     )[Count]
                 WHERE
                    {SqlPatterns.Where}
-                ORDER BY {SqlPatterns.OrderBy}
+                ORDER BY 1 DESC
                 OFFSET @offset ROWS FETCH NEXT @pageSize ROWS ONLY  ";
 
         public ListJobCostItemsQuery(ISqlBuilderFactory sqlBuilderFactory)
@@ -36,10 +37,8 @@ namespace WaterPoint.Core.Bll.Queries.JobCostItems
             var builder = _sqlBuilderFactory.Create<SelectSqlBuilder>();
 
             builder.AddTemplate(_sqlTemplate);
-            builder.AddColumns<JobCostItem>();
-            builder.AddConditions<JobCostItem>(i => i.JobId == parameter.JobId);
-            builder.AddOrderBy<JobCostItem>(parameter.Sort, parameter.IsDesc);
-            builder.AddContains<JobCostItem>(parameter.SearchTerm);
+            builder.AddColumns<JobCostItemListPoco>();
+            builder.AddConditions<JobCostItemListPoco>(i => i.JobId == parameter.JobId);
 
             var sql = builder.GetSql();
 

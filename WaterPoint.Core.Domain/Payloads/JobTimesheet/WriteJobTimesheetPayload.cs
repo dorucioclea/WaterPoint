@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Build.Framework;
 
-namespace WaterPoint.Core.Domain.Payloads.Customers
+namespace WaterPoint.Core.Domain.Payloads.JobTimesheet
 {
     public class WriteJobTimesheetPayload
     {

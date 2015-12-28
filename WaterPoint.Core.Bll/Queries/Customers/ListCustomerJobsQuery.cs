@@ -4,7 +4,7 @@ using WaterPoint.Data.Entity.Pocos.Jobs;
 
 namespace WaterPoint.Core.Bll.Queries.Customers
 {
-    public class ListCustomerJobsQuery : IQuery<PaginatedCustomerIdOrgId>
+    public class ListCustomerJobsQuery : IQuery<ListCustomerJobs>
     {
         private readonly ISqlBuilderFactory _sqlBuilderFactory;
 
@@ -25,7 +25,7 @@ namespace WaterPoint.Core.Bll.Queries.Customers
                 )[Count]
             WHERE
                 {SqlPatterns.Where}
-            ORDER BY {SqlPatterns.OrderBy}
+            ORDER BY 1 DESC
             OFFSET @offset ROWS FETCH NEXT @pageSize ROWS ONLY  ";
 
         public ListCustomerJobsQuery(ISqlBuilderFactory sqlBuilderFactory)
@@ -33,17 +33,15 @@ namespace WaterPoint.Core.Bll.Queries.Customers
             _sqlBuilderFactory = sqlBuilderFactory;
         }
 
-        public void BuildQuery(PaginatedCustomerIdOrgId parameter)
+        public void BuildQuery(ListCustomerJobs parameter)
         {
             var builder = _sqlBuilderFactory.Create<SelectSqlBuilder>();
 
             builder.AddTemplate(_sqlTemplate);
-            builder.AddColumns<JobWithCustomerAndStatusPoco>();
-            builder.AddJoin<JobWithCustomerAndStatusPoco>();
-            builder.AddConditions<JobWithCustomerAndStatusPoco>(
+            builder.AddColumns<JobWithStatusPoco>();
+            builder.AddJoin<JobWithStatusPoco>();
+            builder.AddConditions<JobWithStatusPoco>(
                 i => i.OrganizationId == parameter.OrganizationId && i.CustomerId == parameter.CustomerId);
-            builder.AddOrderBy<JobWithCustomerAndStatusPoco>(parameter.Sort, parameter.IsDesc);
-            builder.AddContains<JobWithCustomerAndStatusPoco>(parameter.SearchTerm);
 
             var sql = builder.GetSql();
 
@@ -54,7 +52,6 @@ namespace WaterPoint.Core.Bll.Queries.Customers
                 organizationId = parameter.OrganizationId,
                 offset = parameter.Offset,
                 pageSize = parameter.PageSize,
-                searchTerm = parameter.SearchTerm,
                 customerId = parameter.CustomerId
             };
         }

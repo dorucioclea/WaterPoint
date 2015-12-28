@@ -1,6 +1,5 @@
 ﻿using System;
-using WaterPoint.Core.Domain.Payloads.Customers;
-using WaterPoint.Core.Domain.RequestParameters;
+using WaterPoint.Core.Domain.Payloads.JobTimesheet;
 using WaterPoint.Data.Entity.Enums;
 
 namespace WaterPoint.Api.Common

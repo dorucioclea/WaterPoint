@@ -18,18 +18,18 @@ using WaterPoint.Data.Entity.Pocos.Jobs;
 namespace WaterPoint.Core.RequestProcessor.Customers
 {
     public class ListCustomerJobsProcessor :
-        IRequestProcessor<ListCustomerJobsRequest, PaginatedResult<JobWithCustomerContract>>
+        IRequestProcessor<ListCustomerJobsRequest, SimplePaginatedResult<JobWithStatusContract>>
     {
         private readonly IDapperUnitOfWork _dapperUnitOfWork;
         private readonly PaginationQueryParameterConverter _paginationQueryParameterConverter;
-        private readonly IQuery<PaginatedCustomerIdOrgId> _paginatedcustomerJobsQuery;
-        private readonly IListQueryRunner<PaginatedCustomerIdOrgId, JobWithCustomerAndStatusPoco> _paginatedCustomerRunner;
+        private readonly IQuery<ListCustomerJobs> _paginatedcustomerJobsQuery;
+        private readonly IListQueryRunner<ListCustomerJobs, JobWithStatusPoco> _paginatedCustomerRunner;
 
         public ListCustomerJobsProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
             PaginationQueryParameterConverter paginationQueryParameterConverter,
-            IQuery<PaginatedCustomerIdOrgId> paginatedcustomerJobsQuery,
-            IListQueryRunner<PaginatedCustomerIdOrgId, JobWithCustomerAndStatusPoco> paginatedCustomerRunner)
+            IQuery<ListCustomerJobs> paginatedcustomerJobsQuery,
+            IListQueryRunner<ListCustomerJobs, JobWithStatusPoco> paginatedCustomerRunner)
         {
             _dapperUnitOfWork = dapperUnitOfWork;
             _paginationQueryParameterConverter = paginationQueryParameterConverter;
@@ -37,15 +37,15 @@ namespace WaterPoint.Core.RequestProcessor.Customers
             _paginatedCustomerRunner = paginatedCustomerRunner;
         }
 
-        public JobWithCustomerContract Map(JobWithCustomerAndStatusPoco source)
+        public JobWithStatusContract Map(JobWithStatusPoco source)
         {
             return JobMapper.Map(source);
         }
 
-        public PaginatedResult<JobWithCustomerContract> Process(ListCustomerJobsRequest input)
+        public SimplePaginatedResult<JobWithStatusContract> Process(ListCustomerJobsRequest input)
         {
             var parameter = _paginationQueryParameterConverter.Convert(input.PaginationParamter, "Id")
-                .MapTo(new PaginatedCustomerIdOrgId());
+                .MapTo(new ListCustomerJobs());
 
             parameter.OrganizationId = input.CustomerIdOrgIdRp.OrganizationId;
             parameter.CustomerId = input.CustomerIdOrgIdRp.CustomerId;
@@ -57,14 +57,12 @@ namespace WaterPoint.Core.RequestProcessor.Customers
                 var result = _paginatedCustomerRunner.Run(_paginatedcustomerJobsQuery);
 
                 return (result != null)
-                    ? new PaginatedResult<JobWithCustomerContract>
+                    ? new SimplePaginatedResult<JobWithStatusContract>
                     {
                         Data = result.Data.Select(Map),
                         TotalCount = result.TotalCount,
                         PageNumber = _paginationQueryParameterConverter.PageNumber,
-                        PageSize = _paginationQueryParameterConverter.PageSize,
-                        Sort = _paginationQueryParameterConverter.Sort,
-                        IsDesc = _paginationQueryParameterConverter.IsDesc
+                        PageSize = _paginationQueryParameterConverter.PageSize
                     }
                     : null;
             }

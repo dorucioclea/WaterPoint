@@ -20,14 +20,14 @@ namespace WaterPoint.Core.RequestProcessor.Customers
     {
         private readonly IDapperUnitOfWork _dapperUnitOfWork;
         private readonly PaginationQueryParameterConverter _paginationQueryParameterConverter;
-        private readonly IQuery<PaginatedOrgIdIsProspect> _paginatedCustomersQuery;
-        private readonly IListQueryRunner<PaginatedOrgIdIsProspect, Customer> _paginatedCustomerRunner;
+        private readonly IQuery<ListCustomers> _paginatedCustomersQuery;
+        private readonly IListQueryRunner<ListCustomers, Customer> _paginatedCustomerRunner;
 
         public ListCustomersProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
             PaginationQueryParameterConverter paginationQueryParameterConverter,
-            IQuery<PaginatedOrgIdIsProspect> paginatedCustomersQuery,
-            IListQueryRunner<PaginatedOrgIdIsProspect, Customer> paginatedCustomerRunner)
+            IQuery<ListCustomers> paginatedCustomersQuery,
+            IListQueryRunner<ListCustomers, Customer> paginatedCustomerRunner)
         {
             _dapperUnitOfWork = dapperUnitOfWork;
             _paginationQueryParameterConverter = paginationQueryParameterConverter;
@@ -43,7 +43,7 @@ namespace WaterPoint.Core.RequestProcessor.Customers
         public PaginatedResult<CustomerContract> Process(ListCustomersRequest input)
         {
             var parameter = _paginationQueryParameterConverter.Convert(input.Pagination, "Id")
-                .MapTo(new PaginatedOrgIdIsProspect());
+                .MapTo(new ListCustomers());
 
             parameter.OrganizationId = input.IsProspectOrgId.OrganizationId;
             parameter.IsProspect = input.IsProspectOrgId.IsProspect;

@@ -18,7 +18,12 @@ namespace WaterPoint.Core.Domain.Exceptions
 
             if (context.Exception is InvalidInputDataException)
             {
+                var exception = context.Exception as InvalidInputDataException;
+
                 result = new ErrorResult(HttpStatusCode.BadRequest, context.Exception.Message, apicontroller);
+
+                foreach (var exp in exception.Messages)
+                    result.AddError(exp, null);
 
                 context.Response = await result.ExecuteAsync(cancellationToken);
             }
@@ -28,6 +33,7 @@ namespace WaterPoint.Core.Domain.Exceptions
             {
                 result = new ErrorResult(HttpStatusCode.InternalServerError, context.Exception.Message, apicontroller);
 
+                //TODO: add internal server error message instead of the .net one.
                 result.AddError(context.Exception.ToString(), null);
 
                 context.Response = await result.ExecuteAsync(cancellationToken);

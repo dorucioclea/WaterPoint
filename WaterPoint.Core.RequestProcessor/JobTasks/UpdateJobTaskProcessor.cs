@@ -3,12 +3,9 @@ using WaterPoint.Api.Common;
 using WaterPoint.Core.Domain.QueryParameters.JobTasks;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts;
-using WaterPoint.Core.Domain.Contracts.JobTasks;
 using WaterPoint.Core.Domain.Db;
-using WaterPoint.Core.Domain.Exceptions;
-using WaterPoint.Core.Domain.Payloads.Jobs;
+using WaterPoint.Core.Domain.Payloads.JobTasks;
 using WaterPoint.Core.Domain.Requests.JobTasks;
-using WaterPoint.Core.RequestProcessor.Mappers.EntitiesToContracts;
 using WaterPoint.Data.DbContext.Dapper;
 using WaterPoint.Data.Entity.DataEntities;
 
@@ -60,14 +57,12 @@ namespace WaterPoint.Core.RequestProcessor.JobTasks
 
             var existingJobTask = _runner.Run(_query);
 
-            var updatedJobTask = _patchEntityAdapter.PatchEnitity<WriteJobTaskPayload, JobTask, UpdateJobTask>(
+            var updatedJobTask = _patchEntityAdapter.PatchEnitity<UpdateJobTaskPayload, JobTask, UpdateJobTask>(
                 existingJobTask,
                 input.Payload.Patch);
 
-            var updateParameter = updatedJobTask.MapTo(new UpdateJobTask());
-
             //then build the query to update the object.
-            _command.BuildQuery(updateParameter);
+            _command.BuildQuery(updatedJobTask);
 
             var success = _executor.Execute(_command) > 0;
 

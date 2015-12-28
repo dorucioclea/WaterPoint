@@ -47,7 +47,7 @@ namespace WaterPoint.Core.RequestProcessor.JobCostItems
             return new CreateJobCostItem
             {
                 JobId = input.Parameter.JobId,
-                IsBillable = input.Payload.IsBillable,
+                IsBillable = input.Payload.IsBillable.Value,
                 LongDescription = input.Payload.LongDescription,
                 ShortDescription = input.Payload.ShortDescription,
                 Code = input.Payload.Code,

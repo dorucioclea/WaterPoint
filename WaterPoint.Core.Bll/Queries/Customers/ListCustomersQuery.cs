@@ -6,7 +6,7 @@ using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Core.Bll.Queries.Customers
 {
-    public class ListCustomersQuery : IQuery<PaginatedOrgIdIsProspect>
+    public class ListCustomersQuery : IQuery<ListCustomers>
     {
         private readonly ISqlBuilderFactory _sqlBuilderFactory;
 
@@ -33,7 +33,7 @@ namespace WaterPoint.Core.Bll.Queries.Customers
             _sqlBuilderFactory = sqlBuilderFactory;
         }
 
-        public void BuildQuery(PaginatedOrgIdIsProspect parameter)
+        public void BuildQuery(ListCustomers parameter)
         {
             var builder = _sqlBuilderFactory.Create<SelectSqlBuilder>();
 

@@ -11,6 +11,7 @@ using WaterPoint.Core.Domain.Db;
 using WaterPoint.Core.Domain.Requests.JobTasks;
 using WaterPoint.Core.RequestProcessor.JobTasks;
 using WaterPoint.Data.Entity.DataEntities;
+using WaterPoint.Data.Entity.Pocos.JobTasks;
 
 namespace WaterPoint.Api.DependencyInjection
 {
@@ -35,7 +36,7 @@ namespace WaterPoint.Api.DependencyInjection
         public void BindQueryRunners()
         {
             Bind<IQueryRunner<GetJobTask, JobTask>>().To<QueryRunner<GetJobTask, JobTask>>();
-            Bind<IListQueryRunner<ListJobTasks, JobTask>>().To<PaginatedQueryRunner<ListJobTasks, JobTask>>();
+            Bind<IListQueryRunner<ListJobTasks, JobTaskListPoco>>().To<ListQueryRunner<ListJobTasks, JobTaskListPoco>>();
         }
 
         public void BindCommands()
@@ -61,7 +62,7 @@ namespace WaterPoint.Api.DependencyInjection
             Bind<IRequestProcessor<CreateJobTaskRequest, CommandResultContract>>()
                 .To<CreateJobTaskRequestProcessor>();
 
-            Bind<IRequestProcessor<ListJobTasksRequest, PaginatedResult<JobTaskContract>>>()
+            Bind<IRequestProcessor<ListJobTasksRequest, SimplePaginatedResult<JobTaskListContract>>>()
                 .To<ListJobTasksProcessor>();
         }
     }

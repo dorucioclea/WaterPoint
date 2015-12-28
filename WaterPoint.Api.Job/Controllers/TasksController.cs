@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Http;
+﻿using System.Web.Http;
 using System.Web.Http.OData;
-using WaterPoint.Api.Common;
 using WaterPoint.Api.Common.BaseControllers;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts;
 using WaterPoint.Core.Domain.Contracts.JobTasks;
-
-using WaterPoint.Core.Domain.Payloads.Jobs;
+using WaterPoint.Core.Domain.Payloads.JobTasks;
 using WaterPoint.Core.Domain.RequestParameters;
 using WaterPoint.Core.Domain.Requests.JobTasks;
 
@@ -21,13 +15,13 @@ namespace WaterPoint.Api.Job.Controllers
     public class TasksController : BaseOrgnizationContextController
     {
         private readonly IRequestProcessor<CreateJobTaskRequest, CommandResultContract> _createJobTaskRequest;
-        private readonly IRequestProcessor<ListJobTasksRequest, PaginatedResult<JobTaskContract>> _listJobTaskequestProcessor;
+        private readonly IRequestProcessor<ListJobTasksRequest, SimplePaginatedResult<JobTaskListContract>> _listJobTaskequestProcessor;
         private readonly IRequestProcessor<UpdateJobTaskRequest, CommandResultContract> _updateRequestProcessor;
         private readonly IRequestProcessor<GetJobTaskByIdRequest, JobTaskContract> _getJobTaskByIdProcessor;
 
         public TasksController(
             IRequestProcessor<CreateJobTaskRequest, CommandResultContract> createJobTaskRequest,
-            IRequestProcessor<ListJobTasksRequest, PaginatedResult<JobTaskContract>> listJobTaskequestProcessor,
+            IRequestProcessor<ListJobTasksRequest, SimplePaginatedResult<JobTaskListContract>> listJobTaskequestProcessor,
             IRequestProcessor<UpdateJobTaskRequest, CommandResultContract> updateRequestProcessor,
             IRequestProcessor<GetJobTaskByIdRequest, JobTaskContract> getJobTaskByIdProcessor)
         {
@@ -71,7 +65,7 @@ namespace WaterPoint.Api.Job.Controllers
         [Route("")]
         public IHttpActionResult Post(
             [FromUri]OrgIdJobIdRp parameter,
-            [FromBody]WriteJobTaskPayload jobTaskPayload)
+            [FromBody]CreateJobTaskPayload jobTaskPayload)
         {
             if (!ModelState.IsValid)
             {
@@ -92,7 +86,7 @@ namespace WaterPoint.Api.Job.Controllers
         [Route("{id:int}")]
         public IHttpActionResult Put(
             [FromUri]OrgEntityJobId parameter,
-            [FromBody]Delta<WriteJobTaskPayload> input)
+            [FromBody]Delta<UpdateJobTaskPayload> input)
         {
             var jobTask = _updateRequestProcessor.Process(
                 new UpdateJobTaskRequest

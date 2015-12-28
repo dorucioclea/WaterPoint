@@ -10,20 +10,21 @@ using WaterPoint.Core.Domain.Db;
 using WaterPoint.Core.Domain.Requests.JobTasks;
 using WaterPoint.Data.DbContext.Dapper;
 using WaterPoint.Data.Entity.DataEntities;
+using WaterPoint.Data.Entity.Pocos.JobTasks;
 
 namespace WaterPoint.Core.RequestProcessor.JobTasks
 {
     public class ListJobTasksProcessor :
-        IRequestProcessor<ListJobTasksRequest, PaginatedResult<JobTaskContract>>
+        IRequestProcessor<ListJobTasksRequest, SimplePaginatedResult<JobTaskListContract>>
     {
         private readonly IDapperUnitOfWork _dapperUnitOfWork;
-        private readonly IListQueryRunner<ListJobTasks, JobTask> _paginatedJobTaskRunner;
+        private readonly IListQueryRunner<ListJobTasks, JobTaskListPoco> _paginatedJobTaskRunner;
         private readonly PaginationQueryParameterConverter _paginationQueryParameterConverter;
         private readonly IQuery<ListJobTasks> _paginatedJobTasksQuery;
 
         public ListJobTasksProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
-            IListQueryRunner<ListJobTasks, JobTask> paginatedJobTaskRunner,
+            IListQueryRunner<ListJobTasks, JobTaskListPoco> paginatedJobTaskRunner,
             PaginationQueryParameterConverter paginationQueryParameterConverter,
             IQuery<ListJobTasks> paginatedJobTasksQuery)
         {
@@ -33,12 +34,12 @@ namespace WaterPoint.Core.RequestProcessor.JobTasks
             _paginatedJobTasksQuery = paginatedJobTasksQuery;
         }
 
-        public JobTaskContract Map(JobTask source)
+        public JobTaskListContract Map(JobTaskListPoco source)
         {
             return JobTaskMapper.Map(source);
         }
 
-        public PaginatedResult<JobTaskContract> Process(ListJobTasksRequest input)
+        public SimplePaginatedResult<JobTaskListContract> Process(ListJobTasksRequest input)
         {
             var parameter = _paginationQueryParameterConverter.Convert(input.Pagination, "Id")
                 .MapTo(new ListJobTasks());
@@ -53,14 +54,12 @@ namespace WaterPoint.Core.RequestProcessor.JobTasks
                 var result = _paginatedJobTaskRunner.Run(_paginatedJobTasksQuery);
 
                 return (result != null)
-                    ? new PaginatedResult<JobTaskContract>
+                    ? new SimplePaginatedResult<JobTaskListContract>
                     {
                         Data = result.Data.Select(Map),
                         TotalCount = result.TotalCount,
                         PageNumber = _paginationQueryParameterConverter.PageNumber,
-                        PageSize = _paginationQueryParameterConverter.PageSize,
-                        Sort = _paginationQueryParameterConverter.Sort,
-                        IsDesc = _paginationQueryParameterConverter.IsDesc
+                        PageSize = _paginationQueryParameterConverter.PageSize
                     }
                     : null;
             }

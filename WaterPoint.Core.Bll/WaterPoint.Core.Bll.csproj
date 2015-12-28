@@ -86,6 +86,7 @@
   <ItemGroup>
     <Compile Include="Commands\CostItems\UpdateCostItemCommand.cs" />
     <Compile Include="Commands\CostItems\CreateCostItemCommand.cs" />
+    <Compile Include="Commands\JobCostItems\UpdateJobCostItemCommand.cs" />
     <Compile Include="Commands\Jobs\CreateJobCommand.cs" />
     <Compile Include="Commands\Jobs\CreateJobCostItemCommand.cs" />
     <Compile Include="Commands\Jobs\UpdateJobCommand.cs" />
@@ -112,7 +113,7 @@
     <Compile Include="Queries\TaskDefinitions\ListTaskDefinitionsQuery.cs" />
     <Compile Include="QueryRunners\QueryCollectionRunner.cs" />
     <Compile Include="QueryRunners\QueryRunner.cs" />
-    <Compile Include="QueryRunners\PaginatedQueryRunner.cs" />
+    <Compile Include="QueryRunners\ListQueryRunner.cs" />
     <Compile Include="Executors\UpdateCommandExecutor.cs" />
     <Compile Include="Executors\CreateCommandExecutor.cs" />
     <Compile Include="QueryRunners\IListQueryRunner.cs" />
