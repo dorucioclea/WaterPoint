@@ -11,20 +11,21 @@ using WaterPoint.Core.Domain.QueryParameters.JobTasks;
 using WaterPoint.Core.Domain.Requests.JobCostItems;
 using WaterPoint.Data.DbContext.Dapper;
 using WaterPoint.Data.Entity.DataEntities;
+using WaterPoint.Data.Entity.Pocos.JobCostItems;
 
 namespace WaterPoint.Core.RequestProcessor.JobCostItems
 {
     public class ListJobCostItemsProcessor :
-        IRequestProcessor<ListJobCostItemsRequest, PaginatedResult<JobCostItemContract>>
+        IRequestProcessor<ListJobCostItemsRequest, SimplePaginatedResult<JobCostItemListContract>>
     {
         private readonly IDapperUnitOfWork _dapperUnitOfWork;
-        private readonly IListQueryRunner<ListJobCostItems, JobCostItem> _paginatedJobCostRunner;
+        private readonly IListQueryRunner<ListJobCostItems, JobCostItemListPoco> _paginatedJobCostRunner;
         private readonly PaginationQueryParameterConverter _paginationQueryParameterConverter;
         private readonly IQuery<ListJobCostItems> _paginatedJobCostItemsQuery;
 
         public ListJobCostItemsProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
-            IListQueryRunner<ListJobCostItems, JobCostItem> paginatedJobCostRunner,
+            IListQueryRunner<ListJobCostItems, JobCostItemListPoco> paginatedJobCostRunner,
             PaginationQueryParameterConverter paginationQueryParameterConverter,
             IQuery<ListJobCostItems> paginatedJobCostItemsQuery)
         {
@@ -34,12 +35,12 @@ namespace WaterPoint.Core.RequestProcessor.JobCostItems
             _paginatedJobCostItemsQuery = paginatedJobCostItemsQuery;
         }
 
-        public JobCostItemContract Map(JobCostItem source)
+        public JobCostItemListContract Map(JobCostItemListPoco source)
         {
             return JobCostItemMapper.Map(source);
         }
 
-        public PaginatedResult<JobCostItemContract> Process(ListJobCostItemsRequest input)
+        public SimplePaginatedResult<JobCostItemListContract> Process(ListJobCostItemsRequest input)
         {
             var parameter = _paginationQueryParameterConverter.Convert(input.Pagination, "Id")
                 .MapTo(new ListJobCostItems());
@@ -54,14 +55,12 @@ namespace WaterPoint.Core.RequestProcessor.JobCostItems
                 var result = _paginatedJobCostRunner.Run(_paginatedJobCostItemsQuery);
 
                 return (result != null)
-                    ? new PaginatedResult<JobCostItemContract>
+                    ? new SimplePaginatedResult<JobCostItemListContract>
                     {
                         Data = result.Data.Select(Map),
                         TotalCount = result.TotalCount,
                         PageNumber = _paginationQueryParameterConverter.PageNumber,
-                        PageSize = _paginationQueryParameterConverter.PageSize,
-                        Sort = _paginationQueryParameterConverter.Sort,
-                        IsDesc = _paginationQueryParameterConverter.IsDesc
+                        PageSize = _paginationQueryParameterConverter.PageSize
                     }
                     : null;
             }

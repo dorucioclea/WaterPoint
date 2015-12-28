@@ -44,6 +44,21 @@ namespace WaterPoint.Core.RequestProcessor.Mappers.EntitiesToContracts
             return Mapper.Map<JobWithCustomerContract>(source);
         }
 
+        public static JobWithStatusContract Map(JobWithStatusPoco source)
+        {
+            var result = Mapper.DynamicMap<JobWithStatusContract>(source);
+
+            result.Version = source.Version.ToSha1(source.Id.ToString());
+
+            result.JobStatus = new JobStatusIdNameContract
+            {
+                Id = source.JobStatusId,
+                Name = source.JobStatusName
+            };
+
+            return result;
+        }
+
         public static JobDetailsContract Map(JobWithDetailsPoco source)
         {
             var result = Mapper.DynamicMap<JobDetailsContract>(source);

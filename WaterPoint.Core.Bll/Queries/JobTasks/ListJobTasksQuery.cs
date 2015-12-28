@@ -1,6 +1,7 @@
 ﻿using WaterPoint.Core.Domain.QueryParameters.JobTasks;
 using WaterPoint.Core.Domain.Db;
 using WaterPoint.Data.Entity.DataEntities;
+using WaterPoint.Data.Entity.Pocos.JobTasks;
 
 namespace WaterPoint.Core.Bll.Queries.JobTasks
 {
@@ -23,7 +24,7 @@ namespace WaterPoint.Core.Bll.Queries.JobTasks
                     )[Count]
                 WHERE
                    {SqlPatterns.Where}
-                ORDER BY {SqlPatterns.OrderBy}
+                ORDER BY 1 DESC
                 OFFSET @offset ROWS FETCH NEXT @pageSize ROWS ONLY  ";
 
         public ListJobTasksQuery(ISqlBuilderFactory sqlBuilderFactory)
@@ -36,10 +37,8 @@ namespace WaterPoint.Core.Bll.Queries.JobTasks
             var builder = _sqlBuilderFactory.Create<SelectSqlBuilder>();
 
             builder.AddTemplate(_sqlTemplate);
-            builder.AddColumns<JobTask>();
-            builder.AddConditions<JobTask>(i => i.JobId == parameter.JobId);
-            builder.AddOrderBy<JobTask>(parameter.Sort, parameter.IsDesc);
-            builder.AddContains<JobTask>(parameter.SearchTerm);
+            builder.AddColumns<JobTaskListPoco>();
+            builder.AddConditions<JobTaskListPoco>(i => i.JobId == parameter.JobId);
 
             var sql = builder.GetSql();
 
@@ -50,7 +49,6 @@ namespace WaterPoint.Core.Bll.Queries.JobTasks
                 organizationId = parameter.OrganizationId,
                 offset = parameter.Offset,
                 pageSize = parameter.PageSize,
-                searchTerm = parameter.SearchTerm,
                 jobId = parameter.JobId
             };
         }

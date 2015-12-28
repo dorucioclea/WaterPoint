@@ -1,9 +1,10 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using WaterPoint.Data.Entity.Attributes;
 
-namespace WaterPoint.Core.Domain.Payloads.Jobs
+namespace WaterPoint.Core.Domain.Payloads.JobTasks
 {
-    public class WriteJobTaskPayload
+    public class CreateJobTaskPayload
     {
         [Required]
         public int? TaskDefinitionId { get; set; }
@@ -25,7 +26,7 @@ namespace WaterPoint.Core.Domain.Payloads.Jobs
         [Required]
         public bool? IsBillable { get; set; }
 
-        [MaxLength(200)]
+        [MaxLength(5)]
         public string ShortDescription { get; set; }
 
         [MaxLength(2000)]

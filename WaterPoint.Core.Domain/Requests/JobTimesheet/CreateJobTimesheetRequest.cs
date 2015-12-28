@@ -1,4 +1,4 @@
-﻿using WaterPoint.Core.Domain.Payloads.Customers;
+﻿using WaterPoint.Core.Domain.Payloads.JobTimesheet;
 using WaterPoint.Core.Domain.RequestParameters;
 
 namespace WaterPoint.Core.Domain.Requests.JobTimesheet

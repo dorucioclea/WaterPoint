@@ -9,11 +9,11 @@ using WaterPoint.Data.Entity.Pocos;
 
 namespace WaterPoint.Core.Bll.QueryRunners
 {
-    public class PaginatedQueryRunner<T, TOut> : IListQueryRunner<T, TOut> where T : IQueryParameter
+    public class ListQueryRunner<T, TOut> : IListQueryRunner<T, TOut> where T : IQueryParameter
     {
         private readonly IDapperDbContext _dapperDbContext;
 
-        public PaginatedQueryRunner(IDapperDbContext dapperDbContext)
+        public ListQueryRunner(IDapperDbContext dapperDbContext)
         {
             _dapperDbContext = dapperDbContext;
         }

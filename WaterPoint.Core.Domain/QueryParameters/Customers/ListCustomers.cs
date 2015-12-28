@@ -2,7 +2,7 @@
 
 namespace WaterPoint.Core.Domain.QueryParameters.Customers
 {
-    public class PaginatedOrgIdIsProspect : IPaginatedQueryParameter
+    public class ListCustomers : IPaginatedQueryParameter
     {
         public int OrganizationId { get; set; }
         public int Offset { get; set; }

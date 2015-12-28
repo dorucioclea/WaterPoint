@@ -1,13 +1,19 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using WaterPoint.Core.Domain.Db;
+using WaterPoint.Data.Entity.Attributes;
 
-namespace WaterPoint.Core.Domain.Payloads.Jobs
+namespace WaterPoint.Core.Domain.QueryParameters.JobCostItems
 {
-    public class WriteJobCostItemPayload
+    public class UpdateJobCostItem : IQueryParameter
     {
-        [Range(1, int.MaxValue)]
+        [IgnoreWhenUpdate]
+        public int Id { get; set; }
+
+        [IgnoreWhenUpdate]
+        public int JobId { get; set; }
+
         public int? CostItemId { get; set; }
 
-        [StringLength(200)]
         public string ShortDescription { get; set; }
 
         public string LongDescription { get; set; }
@@ -20,7 +26,6 @@ namespace WaterPoint.Core.Domain.Payloads.Jobs
 
         public int Quantity { get; set; }
 
-        [Required]
         public bool IsBillable { get; set; }
     }
 }

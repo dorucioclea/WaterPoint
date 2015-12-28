@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
+﻿using System.Web.Http;
 using WaterPoint.Api.Common;
 using WaterPoint.Api.Common.BaseControllers;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts;
 using WaterPoint.Core.Domain.Contracts.JobTimesheet;
-using WaterPoint.Core.Domain.Payloads.Customers;
+using WaterPoint.Core.Domain.Payloads.JobTimesheet;
 using WaterPoint.Core.Domain.RequestParameters;
 using WaterPoint.Core.Domain.Requests.JobTimesheet;
 

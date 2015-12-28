@@ -1,4 +1,5 @@
-﻿using WaterPoint.Core.Domain.Payloads.Jobs;
+﻿using WaterPoint.Core.Domain.Payloads.JobCostItems;
+using WaterPoint.Core.Domain.Payloads.Jobs;
 using WaterPoint.Core.Domain.RequestParameters;
 
 namespace WaterPoint.Core.Domain.Requests.JobCostItems

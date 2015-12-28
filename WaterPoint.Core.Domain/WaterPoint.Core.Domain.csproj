@@ -61,10 +61,13 @@
     <Compile Include="Contracts\Credentials\ValidCredentialContract.cs" />
     <Compile Include="Contracts\Customers\CustomerIdNameContract.cs" />
     <Compile Include="Contracts\JobCategories\JobCategoryIdDescContract.cs" />
+    <Compile Include="Contracts\JobCostItems\JobCostItemListContract.cs" />
     <Compile Include="Contracts\JobStatuses\JobStatusIdNameContract.cs" />
     <Compile Include="Contracts\JobCostItems\JobCostItemContract.cs" />
     <Compile Include="Contracts\Jobs\JobDetailsContract.cs" />
+    <Compile Include="Contracts\Jobs\JobWithStatusContract.cs" />
     <Compile Include="Contracts\Jobs\PriorityTypeContract.cs" />
+    <Compile Include="Contracts\JobTasks\JobTaskListContract.cs" />
     <Compile Include="Contracts\JobTasks\JobTaskContract.cs" />
     <Compile Include="Contracts\Jobs\JobWithCustomerContract.cs" />
     <Compile Include="Contracts\JobTimesheet\JobTimesheetListContract.cs" />
@@ -77,8 +80,9 @@
     <Compile Include="Db\ISqlBuilder.cs" />
     <Compile Include="Db\ISqlBuilderFactory.cs" />
     <Compile Include="Contracts\IContract.cs" />
-    <Compile Include="Payloads\Customers\WriteJobTimesheetPayload.cs" />
-    <Compile Include="Payloads\Jobs\WriteJobCostItemPayload.cs" />
+    <Compile Include="Payloads\JobTasks\UpdateJobTaskPayload.cs" />
+    <Compile Include="Payloads\JobTimesheet\WriteJobTimesheetPayload.cs" />
+    <Compile Include="Payloads\JobCostItems\WriteJobCostItemPayload.cs" />
     <Compile Include="QueryParameters\CostItems\CreateCostItem.cs" />
     <Compile Include="QueryParameters\CostItems\GetCostItem.cs" />
     <Compile Include="QueryParameters\CostItems\PaginatedCostItems.cs" />
@@ -87,10 +91,11 @@
     <Compile Include="QueryParameters\Credentials\ListCredentials.cs" />
     <Compile Include="QueryParameters\Customers\CreateCustomer.cs" />
     <Compile Include="QueryParameters\Customers\GetCustomer.cs" />
-    <Compile Include="QueryParameters\Customers\PaginatedCustomerIdOrgId.cs" />
-    <Compile Include="QueryParameters\Customers\PaginatedOrgIdIsProspect.cs" />
+    <Compile Include="QueryParameters\Customers\ListCustomerJobs.cs" />
+    <Compile Include="QueryParameters\Customers\ListCustomers.cs" />
     <Compile Include="QueryParameters\Customers\UpdateCustomer.cs" />
     <Compile Include="QueryParameters\JobCostItems\CreateJobCostItem.cs" />
+    <Compile Include="QueryParameters\JobCostItems\UpdateJobCostItem.cs" />
     <Compile Include="QueryParameters\Jobs\CreateJob.cs" />
     <Compile Include="QueryParameters\Jobs\GetJob.cs" />
     <Compile Include="QueryParameters\Jobs\PaginatedJobs.cs" />
@@ -118,7 +123,7 @@
     <Compile Include="RequestParameters\CustomerIdOrgIdRp.cs" />
     <Compile Include="RequestParameters\JobStatusRP.cs" />
     <Compile Include="Payloads\Jobs\WriteJobPayload.cs" />
-    <Compile Include="Payloads\Jobs\WriteJobTaskPayload.cs" />
+    <Compile Include="Payloads\JobTasks\CreateJobTaskPayload.cs" />
     <Compile Include="Payloads\TaskDefinitions\WriteTaskDefinitionPayload.cs" />
     <Compile Include="Requests\CostItems\CreateCostItemRequest.cs" />
     <Compile Include="Requests\CostItems\GetCostItemRequest.cs" />
@@ -130,6 +135,7 @@
     <Compile Include="Requests\Customers\UpdateCustomerRequest.cs" />
     <Compile Include="Requests\Customers\GetCustomerRequest.cs" />
     <Compile Include="Requests\Customers\CreateCustomerRequest.cs" />
+    <Compile Include="Requests\JobCostItems\Class1.cs" />
     <Compile Include="Requests\JobCostItems\GetJobCostItemRequest.cs" />
     <Compile Include="Requests\JobCostItems\ListJobCostItemsRequest.cs" />
     <Compile Include="Requests\JobCostItems\CreateJobCostItemRequest.cs" />

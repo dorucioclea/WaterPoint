@@ -20,7 +20,7 @@ namespace WaterPoint.Core.Bll.Commands.JobTasks
             builder.Analyze(input);
             builder.AddValueParameters(input);
 
-            builder.AddConditions<JobTask>(i => i.Id == input.Id && i.Id == input.JobId);
+            builder.AddConditions<JobTask>(i => i.Id == input.Id && i.JobId == input.JobId);
 
             var sql = builder.GetSql();
 
