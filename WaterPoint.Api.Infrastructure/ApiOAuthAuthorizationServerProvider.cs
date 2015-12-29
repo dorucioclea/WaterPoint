@@ -10,8 +10,11 @@ using Newtonsoft.Json;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts.Credentials;
 using WaterPoint.Core.Domain.Contracts.OAuthClients;
+using WaterPoint.Core.Domain.Contracts.Privileges;
+using WaterPoint.Core.Domain.QueryParameters.Priviledges;
 using WaterPoint.Core.Domain.Requests.Credentials;
 using WaterPoint.Core.Domain.Requests.OAuthClients;
+using WaterPoint.Core.Domain.Requests.Priviledges;
 using WaterPoint.Data.Entity.Pocos.Views;
 
 namespace WaterPoint.Api.Infrastructure
@@ -19,14 +22,17 @@ namespace WaterPoint.Api.Infrastructure
     public class ApiOAuthAuthorizationServerProvider : OAuthAuthorizationServerProvider
     {
         private readonly IRequestProcessor<GetOAuthClientRequest, OAuthClientContract> _oauthRequestProcessor;
-        private readonly IRequestCollectionProcessor<ListValidateCredentialsRequest, ValidCredentialContract> _credentialRequestProcessor;
+        private readonly IRequestListProcessor<ListValidateCredentialsRequest, ValidCredentialContract> _credentialRequestProcessor;
+        private readonly IRequestListProcessor<ListUserPrivilegesRequest, UserPrivilegeContract> _listUserPrivilegesProcessor;
 
         public ApiOAuthAuthorizationServerProvider(
             IRequestProcessor<GetOAuthClientRequest, OAuthClientContract> oauthRequestProcessor,
-            IRequestCollectionProcessor<ListValidateCredentialsRequest, ValidCredentialContract> credentialRequestProcessor)
+            IRequestListProcessor<ListValidateCredentialsRequest, ValidCredentialContract> credentialRequestProcessor,
+            IRequestListProcessor<ListUserPrivilegesRequest, UserPrivilegeContract> listUserPrivilegesProcessor)
         {
             _oauthRequestProcessor = oauthRequestProcessor;
             _credentialRequestProcessor = credentialRequestProcessor;
+            _listUserPrivilegesProcessor = listUserPrivilegesProcessor;
         }
 
         public override Task GrantRefreshToken(OAuthGrantRefreshTokenContext context)
@@ -58,17 +64,22 @@ namespace WaterPoint.Api.Infrastructure
                 return;
             }
 
+            var userPrivileges = _listUserPrivilegesProcessor.Process(new ListUserPrivilegesRequest
+            {
+                OrganizationUserIds = string.Join(",", credentials.Select(i => i.OrganizationUserId))
+            });
+
             var oauthIdentity = new ClaimsIdentity(new[]
             {
                 new Claim(ClaimTypes.Email, context.UserName),
-                new Claim(ClaimTypes.Sid, context.UserName),
-                new Claim(ClaimTypes.PrimaryGroupSid, JsonConvert.SerializeObject(credentials)),
+                new Claim(ClaimTypes.Sid, JsonConvert.SerializeObject(userPrivileges)),
+                new Claim(ClaimTypes.PrimaryGroupSid, JsonConvert.SerializeObject(credentials)) 
             }, OAuthDefaults.AuthenticationType);
 
             var cookiesIdentity = new ClaimsIdentity(new[]
             {
                 new Claim(ClaimTypes.Email, context.UserName),
-                new Claim(ClaimTypes.Sid, context.UserName),
+                new Claim(ClaimTypes.Sid, JsonConvert.SerializeObject(userPrivileges)),
                 new Claim(ClaimTypes.PrimaryGroupSid, JsonConvert.SerializeObject(credentials)),
             }, CookieAuthenticationDefaults.AuthenticationType);
 

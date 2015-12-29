@@ -78,6 +78,7 @@
     <Compile Include="Contracts\JobTimesheet\JobTimesheetContract.cs" />
     <Compile Include="Contracts\LinkItemContract.cs" />
     <Compile Include="Contracts\OAuthClients\OAuthClientContract.cs" />
+    <Compile Include="Contracts\Privileges\UserPrivilegeContract.cs" />
     <Compile Include="Contracts\ResultContract.cs" />
     <Compile Include="Contracts\Staff\StaffContract.cs" />
     <Compile Include="Contracts\TaskDefinitions\TaskDefinitionContract.cs" />
@@ -113,6 +114,7 @@
     <Compile Include="QueryParameters\JobTimesheet\ListJobTimesheet.cs" />
     <Compile Include="QueryParameters\JobTimesheet\CreateJobTimesheet.cs" />
     <Compile Include="QueryParameters\JobTimesheet\UpdateJobTimesheet.cs" />
+    <Compile Include="QueryParameters\Priviledges\ListUserPrivileges.cs" />
     <Compile Include="QueryParameters\Shared\PaginatedOrgId.cs" />
     <Compile Include="QueryParameters\Staff\GetStaff.cs" />
     <Compile Include="QueryParameters\TaskDefinitions\CreateTaskDefinition.cs" />
@@ -160,6 +162,7 @@
     <Compile Include="Requests\JobTimesheet\ListJobTimesheetRequest.cs" />
     <Compile Include="Requests\JobTimesheet\CreateJobTimesheetRequest.cs" />
     <Compile Include="Requests\OAuthClients\GetOAuthClientRequest.cs" />
+    <Compile Include="Requests\Priviledges\Class1.cs" />
     <Compile Include="Requests\Staff\GetStaffRequest.cs" />
     <Compile Include="Requests\TaskDefinitions\CreateTaskDefinitionRequest.cs" />
     <Compile Include="Requests\TaskDefinitions\GetTaskDefinitionByIdRequest.cs" />

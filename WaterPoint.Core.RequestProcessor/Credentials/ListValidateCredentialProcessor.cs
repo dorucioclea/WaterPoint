@@ -13,15 +13,15 @@ namespace WaterPoint.Core.RequestProcessor.Credentials
 {
     public class ListValidateCredentialProcessor :
         BaseDapperUowRequestProcess,
-        IRequestCollectionProcessor<ListValidateCredentialsRequest, ValidCredentialContract>
+        IRequestListProcessor<ListValidateCredentialsRequest, ValidCredentialContract>
     {
         private readonly IQuery<ListCredentials> _query;
-        private readonly IQueryCollectionRunner<ListCredentials, ValidCredential> _runner;
+        private readonly IQueryListRunner<ListCredentials, ValidCredential> _runner;
 
         public ListValidateCredentialProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
             IQuery<ListCredentials> query,
-            IQueryCollectionRunner<ListCredentials, ValidCredential> runner)
+            IQueryListRunner<ListCredentials, ValidCredential> runner)
             : base(dapperUnitOfWork)
         {
             _query = query;

@@ -87,6 +87,7 @@
     <Compile Include="Pocos\JobTasks\JobTaskBasicPoco.cs" />
     <Compile Include="Pocos\JobTimesheet\JobTimesheetPoco.cs" />
     <Compile Include="Pocos\PaginatedPoco.cs" />
+    <Compile Include="Pocos\Priviledges\OrganizationUserPrivilegePoco.cs" />
     <Compile Include="Pocos\Views\ValidCredential.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

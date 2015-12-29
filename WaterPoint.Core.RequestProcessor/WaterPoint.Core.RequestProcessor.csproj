@@ -94,6 +94,7 @@
     <Compile Include="Customers\UpdateCustomerProcessor.cs" />
     <Compile Include="Jobs\UpdateJobProcessor.cs" />
     <Compile Include="Mappers\EntitiesToContracts\StaffMapper.cs" />
+    <Compile Include="Privileges\ListUserPrivilegesProcessor.cs" />
     <Compile Include="Staff\GetStaffProcessor.cs" />
     <Compile Include="Timesheet\UpdateJobTimesheetProcessor.cs" />
     <Compile Include="Timesheet\GetJobTimesheetProcessor.cs" />
