@@ -7,6 +7,7 @@ using System.Web.Http;
 using System.Web.Http.ModelBinding;
 using Newtonsoft.Json;
 using WaterPoint.Api.Common.HttpActionResults;
+using WaterPoint.Core.Domain.Contracts.Privileges;
 using WaterPoint.Core.Domain.Exceptions;
 
 namespace WaterPoint.Api.Common.BaseControllers
@@ -36,12 +37,18 @@ namespace WaterPoint.Api.Common.BaseControllers
 
             var userContextData = user.Claims.First(i => i.Type == ClaimTypes.PrimaryGroupSid).Value;
 
+            var privilegeData = user.Claims.First(i => i.Type == ClaimTypes.Sid).Value;
+
             var users = JsonConvert.DeserializeObject<IEnumerable<OrganizationUserContext>>(userContextData);
+
+            var privileges = JsonConvert.DeserializeObject<IEnumerable<UserPrivilegeContract>>(privilegeData);
 
             var orgUser = users.FirstOrDefault(u => u.OrganizationId == organizationId);
 
             if (orgUser == null)
                 throw new InvalidOrganizationContextException();
+
+            orgUser.Privileges = privileges.First(i => i.U == orgUser.OrganizationUserId).Ps;
 
             return orgUser;
         }

@@ -13,6 +13,8 @@ namespace WaterPoint.Core.Domain.Contracts.Credentials
 
         public int OrganizationUserTypeId { get; set; }
 
+        public int EntityId { get; set; }
+
         public string Email { get; set; }
 
         public bool IsDeleted { get; set; }

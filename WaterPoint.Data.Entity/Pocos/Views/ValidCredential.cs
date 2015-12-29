@@ -15,6 +15,8 @@ namespace WaterPoint.Data.Entity.Pocos.Views
 
         public int OrganizationUserTypeId { get; set; }
 
+        public int EntityId { get; set; }
+
         public string Email { get; set; }
 
         public string Password { get; set; }

@@ -4,13 +4,13 @@ namespace WaterPoint.Core.Domain.Contracts.Privileges
 {
     public class UserPrivilegeContract : IContract
     {
-        public int OrganizationUserId { get; set; }
-        public IEnumerable<PrivilegeContract> Privileges { get; set; }
+        public int U { get; set; }
+        public IEnumerable<PrivilegeContract> Ps { get; set; }
     }
 
     public class PrivilegeContract
     {
         public int Id { get; set; }
-        public bool IsFull { get; set; }
+        public byte F { get; set; }
     }
 }
