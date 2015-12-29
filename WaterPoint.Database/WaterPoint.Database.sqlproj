@@ -70,6 +70,7 @@
     <Folder Include="apiv1\Scripts" />
     <Folder Include="apiv1\Scripts\PostDeployment" />
     <Folder Include="dbo\Views" />
+    <Folder Include="dbo\Functions" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Address.sql" />
@@ -119,6 +120,8 @@
     <Build Include="dbo\Tables\Staff.sql" />
     <Build Include="dbo\StoredProcedures\List_JobTimesheet_By_JobId.sql" />
     <Build Include="dbo\StoredProcedures\Get_JobTimesheet_By_Id.sql" />
+    <Build Include="dbo\Functions\IntTextToTable.sql" />
+    <Build Include="dbo\StoredProcedures\List_Privileges_By_UserIds.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="WaterPoint.Database.publish.xml" />

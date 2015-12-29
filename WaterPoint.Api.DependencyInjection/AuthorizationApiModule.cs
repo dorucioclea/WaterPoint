@@ -5,17 +5,23 @@ using Ninject.Modules;
 using WaterPoint.Api.Infrastructure;
 using WaterPoint.Core.Bll.Queries.Credentials;
 using WaterPoint.Core.Bll.Queries.OAuthClients;
+using WaterPoint.Core.Bll.Queries.Privileges;
 using WaterPoint.Core.Bll.QueryRunners;
 using WaterPoint.Core.Domain.QueryParameters.Credentials;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts.Credentials;
 using WaterPoint.Core.Domain.Contracts.OAuthClients;
+using WaterPoint.Core.Domain.Contracts.Privileges;
 using WaterPoint.Core.Domain.Db;
+using WaterPoint.Core.Domain.QueryParameters.Priviledges;
 using WaterPoint.Core.Domain.Requests.Credentials;
 using WaterPoint.Core.Domain.Requests.OAuthClients;
+using WaterPoint.Core.Domain.Requests.Priviledges;
 using WaterPoint.Core.RequestProcessor.Credentials;
 using WaterPoint.Core.RequestProcessor.OAuthClients;
+using WaterPoint.Core.RequestProcessor.Privileges;
 using WaterPoint.Data.Entity.DataEntities;
+using WaterPoint.Data.Entity.Pocos.Priviledges;
 using WaterPoint.Data.Entity.Pocos.Views;
 
 namespace WaterPoint.Api.DependencyInjection
@@ -37,23 +43,31 @@ namespace WaterPoint.Api.DependencyInjection
             Bind<IQuery<ListCredentials>>().To<ListValidateCredentialsQuery>();
 
             Bind<IQuery<GetAuthClient>>().To<GetOAuthClientQuery>();
+
+            Bind<IQuery<ListUserPrivileges>>().To<ListUserPrivilegesQuery>();
         }
 
         public void BindQueryRunners()
         {
-            Bind<IQueryCollectionRunner<ListCredentials, ValidCredential>>()
-                .To<QueryCollectionRunner<ListCredentials, ValidCredential>>();
+            Bind<IQueryListRunner<ListCredentials, ValidCredential>>()
+                .To<QueryListRunner<ListCredentials, ValidCredential>>();
 
             Bind<IQueryRunner<GetAuthClient, OAuthClient>>()
                 .To<QueryRunner<GetAuthClient, OAuthClient>>();
+
+            Bind<IQueryListRunner<ListUserPrivileges, OrganizationUserPrivilegePoco>>()
+                .To<QueryListRunner<ListUserPrivileges, OrganizationUserPrivilegePoco>>();
         }
         private void BindRequestProcessors()
         {
             Bind<IRequestProcessor<GetOAuthClientRequest, OAuthClientContract>>()
                 .To<GetOAuthClientProcessor>();
 
-            Bind<IRequestCollectionProcessor<ListValidateCredentialsRequest, ValidCredentialContract>>()
+            Bind<IRequestListProcessor<ListValidateCredentialsRequest, ValidCredentialContract>>()
                 .To<ListValidateCredentialProcessor>();
+
+            Bind<IRequestListProcessor<ListUserPrivilegesRequest, UserPrivilegeContract>>()
+                .To<ListUserPrivilegesProcessor>();
         }
 
         public void BindProviders()

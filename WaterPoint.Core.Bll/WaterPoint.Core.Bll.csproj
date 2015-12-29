@@ -109,6 +109,7 @@
     <Compile Include="Queries\JobTimesheet\GetJobTimesheetQuery.cs" />
     <Compile Include="Queries\JobTimesheet\ListJobTimesheetQuery.cs" />
     <Compile Include="Queries\OAuthClients\GetOAuthClientQuery.cs" />
+    <Compile Include="Queries\Privileges\ListUserPrivilegesQuery.cs" />
     <Compile Include="Queries\Staff\GetStaffQuery.cs" />
     <Compile Include="Queries\TaskDefinitions\GetTaskDefinitionQuery.cs" />
     <Compile Include="Queries\TaskDefinitions\ListTaskDefinitionsQuery.cs" />
