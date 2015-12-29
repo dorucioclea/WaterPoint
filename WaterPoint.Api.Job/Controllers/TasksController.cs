@@ -15,13 +15,13 @@ namespace WaterPoint.Api.Job.Controllers
     public class TasksController : BaseOrgnizationContextController
     {
         private readonly IRequestProcessor<CreateJobTaskRequest, CommandResultContract> _createJobTaskRequest;
-        private readonly IRequestProcessor<ListJobTasksRequest, SimplePaginatedResult<JobTaskListContract>> _listJobTaskequestProcessor;
+        private readonly IRequestProcessor<ListJobTasksRequest, SimplePaginatedResult<JobTaskBasicContract>> _listJobTaskequestProcessor;
         private readonly IRequestProcessor<UpdateJobTaskRequest, CommandResultContract> _updateRequestProcessor;
         private readonly IRequestProcessor<GetJobTaskByIdRequest, JobTaskContract> _getJobTaskByIdProcessor;
 
         public TasksController(
             IRequestProcessor<CreateJobTaskRequest, CommandResultContract> createJobTaskRequest,
-            IRequestProcessor<ListJobTasksRequest, SimplePaginatedResult<JobTaskListContract>> listJobTaskequestProcessor,
+            IRequestProcessor<ListJobTasksRequest, SimplePaginatedResult<JobTaskBasicContract>> listJobTaskequestProcessor,
             IRequestProcessor<UpdateJobTaskRequest, CommandResultContract> updateRequestProcessor,
             IRequestProcessor<GetJobTaskByIdRequest, JobTaskContract> getJobTaskByIdProcessor)
         {
@@ -69,7 +69,7 @@ namespace WaterPoint.Api.Job.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return BadRequestWithErrors(ModelState);
             }
 
             var result = _createJobTaskRequest.Process(

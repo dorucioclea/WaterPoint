@@ -39,3 +39,7 @@ Post-Deployment Script Template
 :r ".\PostDeployment\PriorityTypes.sql"
 
 :r ".\PostDeployment\JobTimesheetTypes.sql"
+
+:r ".\PostDeployment\Privileges.sql"
+
+:r ".\PostDeployment\DemoOrgnizationUserPrivileges.sql"

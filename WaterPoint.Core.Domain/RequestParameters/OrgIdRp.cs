@@ -1,6 +1,6 @@
 ﻿namespace WaterPoint.Core.Domain.RequestParameters
 {
-    public class OrgIdRp : IUriPathParameter
+    public class OrgIdRp
     {
         public int OrganizationId { get; set; }
     }

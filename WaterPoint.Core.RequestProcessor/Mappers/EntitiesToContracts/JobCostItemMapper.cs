@@ -14,7 +14,7 @@ namespace WaterPoint.Core.RequestProcessor.Mappers.EntitiesToContracts
             Mapper.CreateMap<JobCostItem, JobCostItemContract>()
                 .ForMember(o => o.Version, i => i.MapFrom(d => d.Version.ToSha1(d.Id.ToString())));
 
-            Mapper.CreateMap<JobCostItemListPoco, JobCostItemListContract>()
+            Mapper.CreateMap<JobCostItemListPoco, JobCostItemBasicContract>()
                 .ForMember(o => o.Version, i => i.MapFrom(d => d.Version.ToSha1(d.Id.ToString())));
         }
 
@@ -23,9 +23,9 @@ namespace WaterPoint.Core.RequestProcessor.Mappers.EntitiesToContracts
             return Mapper.Map<JobCostItemContract>(source);
         }
 
-        public static JobCostItemListContract Map(JobCostItemListPoco source)
+        public static JobCostItemBasicContract Map(JobCostItemListPoco source)
         {
-            return Mapper.Map<JobCostItemListContract>(source);
+            return Mapper.Map<JobCostItemBasicContract>(source);
         }
     }
 }

@@ -84,7 +84,7 @@ namespace WaterPoint.Api.CostItem.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest();
+                return BadRequestWithErrors(ModelState);
             }
 
             var request = new UpdateCostItemRequest

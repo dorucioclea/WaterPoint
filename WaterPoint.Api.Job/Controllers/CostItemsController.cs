@@ -17,13 +17,13 @@ namespace WaterPoint.Api.Job.Controllers
     public class CostItemsController : BaseOrgnizationContextController
     {
         private readonly IRequestProcessor<CreateJobCostItemRequest, CommandResultContract> _createJobCostItemRequest;
-        private readonly IRequestProcessor<ListJobCostItemsRequest, SimplePaginatedResult<JobCostItemListContract>> _listJobCostItemequestProcessor;
+        private readonly IRequestProcessor<ListJobCostItemsRequest, SimplePaginatedResult<JobCostItemBasicContract>> _listJobCostItemequestProcessor;
         private readonly IRequestProcessor<UpdateJobCostItemRequest, CommandResultContract> _updateRequestProcessor;
         private readonly IRequestProcessor<GetJobCostItemRequest, JobCostItemContract> _getJobCostItemProcessor;
 
         public CostItemsController(
             IRequestProcessor<CreateJobCostItemRequest, CommandResultContract> createJobCostItemRequest,
-            IRequestProcessor<ListJobCostItemsRequest, SimplePaginatedResult<JobCostItemListContract>> listJobCostItemequestProcessor,
+            IRequestProcessor<ListJobCostItemsRequest, SimplePaginatedResult<JobCostItemBasicContract>> listJobCostItemequestProcessor,
             IRequestProcessor<UpdateJobCostItemRequest, CommandResultContract> updateRequestProcessor,
             IRequestProcessor<GetJobCostItemRequest, JobCostItemContract> getJobCostItemProcessor
             )
@@ -74,7 +74,7 @@ namespace WaterPoint.Api.Job.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return BadRequestWithErrors(ModelState);
             }
 
             var result = _createJobCostItemRequest.Process(

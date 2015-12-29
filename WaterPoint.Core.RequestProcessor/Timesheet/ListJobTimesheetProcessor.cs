@@ -21,7 +21,7 @@ using WaterPoint.Data.Entity.Pocos.JobTimesheet;
 namespace WaterPoint.Core.RequestProcessor.Timesheet
 {
     public class ListJobTimesheetProcessor :
-         IRequestProcessor<ListJobTimesheetRequest, SimplePaginatedResult<JobTimesheetListContract>>
+         IRequestProcessor<ListJobTimesheetRequest, SimplePaginatedResult<JobTimesheetBasicContract>>
     {
         private readonly IDapperUnitOfWork _dapperUnitOfWork;
         private readonly IListQueryRunner<ListJobTimesheet, JobTimesheetPoco> _paginatedJobTimesheetRunner;
@@ -40,7 +40,7 @@ namespace WaterPoint.Core.RequestProcessor.Timesheet
             _paginatedJobTimesheetsQuery = paginatedJobTimesheetsQuery;
         }
 
-        public JobTimesheetListContract Map(JobTimesheetPoco source)
+        public JobTimesheetBasicContract Map(JobTimesheetPoco source)
         {
             return JobTimesheetMapper.Map(source);
         }
@@ -56,7 +56,7 @@ namespace WaterPoint.Core.RequestProcessor.Timesheet
             return parameter;
         }
 
-        public SimplePaginatedResult<JobTimesheetListContract> Process(ListJobTimesheetRequest input)
+        public SimplePaginatedResult<JobTimesheetBasicContract> Process(ListJobTimesheetRequest input)
         {
             var parameter = AnalyzeParameter(input);
 
@@ -67,7 +67,7 @@ namespace WaterPoint.Core.RequestProcessor.Timesheet
                 var result = _paginatedJobTimesheetRunner.Run(_paginatedJobTimesheetsQuery);
 
                 return (result != null)
-                    ? new SimplePaginatedResult<JobTimesheetListContract>
+                    ? new SimplePaginatedResult<JobTimesheetBasicContract>
                     {
                         Data = result.Data.Select(Map),
                         TotalCount = result.TotalCount,

@@ -32,7 +32,7 @@ namespace WaterPoint.Core.RequestProcessor.JobTasks
         {
             var result = UowProcess(ProcessDeFacto, input);
 
-            return result;
+            return new CommandResultContract(result, "job task", result > 0);
         }
 
         public CreateJobTask AnalyzeParameter(CreateJobTaskRequest input)
@@ -55,26 +55,11 @@ namespace WaterPoint.Core.RequestProcessor.JobTasks
             };
         }
 
-        private CommandResultContract ProcessDeFacto(CreateJobTaskRequest input)
+        private int ProcessDeFacto(CreateJobTaskRequest input)
         {
             _command.BuildQuery(AnalyzeParameter(input));
 
-            var newId = _executor.Execute(_command);
-
-            if (newId > 0)
-                return new CommandResultContract
-                {
-                    Data = newId,
-                    Message = $"job task {newId} has been created",
-                    Status = CommandResultContract.Success
-                };
-
-            return new CommandResultContract
-            {
-                Data = null,
-                Message = "operation is finished but there is no result returned",
-                Status = CommandResultContract.Failed
-            };
+            return _executor.Execute(_command);
         }
     }
 }

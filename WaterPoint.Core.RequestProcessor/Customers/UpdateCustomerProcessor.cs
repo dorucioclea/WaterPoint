@@ -52,10 +52,10 @@ namespace WaterPoint.Core.RequestProcessor.Customers
         {
             var result = UowProcess(ProcessDeFacto, input);
 
-            return result;
+            return new CommandResultContract(input.Parameter.Id, "customer", result > 0);
         }
 
-        private CommandResultContract ProcessDeFacto(UpdateCustomerRequest input)
+        private int ProcessDeFacto(UpdateCustomerRequest input)
         {
             var getCusParam = new GetCustomer
             {
@@ -76,23 +76,7 @@ namespace WaterPoint.Core.RequestProcessor.Customers
             //then build the query to update the object.
             _updateCustomerByIdQuery.BuildQuery(updateParameter);
 
-            var success = _updateCommandExecutor.Execute(_updateCustomerByIdQuery) > 0;
-
-            if (success)
-                return new CommandResultContract
-                {
-                    Message = $"customer {input.Parameter.Id} has been updated",
-                    Status = CommandResultContract.Success
-                };
-
-            return new CommandResultContract
-            {
-                Message = $"customer {input.Parameter.Id} has not been updated, operation is finished but there is no result returned",
-                Status = CommandResultContract.Failed
-            };
+            return _updateCommandExecutor.Execute(_updateCustomerByIdQuery);
         }
     }
-
-
-
 }

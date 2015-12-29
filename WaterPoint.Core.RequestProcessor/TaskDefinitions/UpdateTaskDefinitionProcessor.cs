@@ -40,10 +40,10 @@ namespace WaterPoint.Core.RequestProcessor.TaskDefinitions
         {
             var result = UowProcess(ProcessDeFacto, input);
 
-            return result;
+            return new CommandResultContract(result, "task definition", result > 0);
         }
 
-        private CommandResultContract ProcessDeFacto(UpdateTaskDefinitionRequest input)
+        private int ProcessDeFacto(UpdateTaskDefinitionRequest input)
         {
             _getTaskDefinitionByIdQuery.BuildQuery(new GetTaskDefinition
             {
@@ -60,20 +60,7 @@ namespace WaterPoint.Core.RequestProcessor.TaskDefinitions
             //then build the query to update the object.
             _updateCommand.BuildQuery(updatedTaskDefinition);
 
-            var success = _updateCommandExecutor.Execute(_updateCommand);
-
-            if (success > 0)
-                return new CommandResultContract
-                {
-                    Message = $"task definition {input.Parameter.Id} has been updated",
-                    Status = CommandResultContract.Success
-                };
-
-            return new CommandResultContract
-            {
-                Message = $"job definition {input.Parameter.Id} has not been updated, operation is finished but there is no result returned",
-                Status = CommandResultContract.Failed
-            };
+            return _updateCommandExecutor.Execute(_updateCommand);
         }
     }
 

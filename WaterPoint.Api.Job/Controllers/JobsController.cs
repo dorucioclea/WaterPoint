@@ -38,21 +38,14 @@ namespace WaterPoint.Api.Job.Controllers
 
         [Route("")]
         public IHttpActionResult Get(
-            [FromUri]OrgIdRp parameter,
             [FromUri]PaginationRp pagination,
             [FromUri]JobStatusRp jobStatusParamter)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest();
-            }
-
             //validation
             var request = new ListJobsRequest
             {
-                OrganizationIdParameter = parameter,
-                PaginationParamter = pagination,
-                JobStatusParameter = jobStatusParamter
+                Pagination = pagination,
+                Parameter = jobStatusParamter
             };
 
             var result = _listJobRequestProcessor.Process(request);
@@ -80,7 +73,7 @@ namespace WaterPoint.Api.Job.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest();
+                return BadRequestWithErrors(ModelState);
             }
 
             var result = _createJobRequestProcessor.Process(

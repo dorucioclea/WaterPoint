@@ -40,10 +40,10 @@ namespace WaterPoint.Core.RequestProcessor.Jobs
         {
             var result = UowProcess(ProcessDeFacto, input);
 
-            return result;
+            return new CommandResultContract(result, "job", result > 0);
         }
 
-        private CommandResultContract ProcessDeFacto(UpdateJobRequest input)
+        private int ProcessDeFacto(UpdateJobRequest input)
         {
             _getJobQuery.BuildQuery(new GetJob
             {
@@ -60,20 +60,7 @@ namespace WaterPoint.Core.RequestProcessor.Jobs
             //then build the query to update the object.
             _updateCommand.BuildQuery(updatedJob);
 
-            var success = _updateCommandExecutor.Execute(_updateCommand);
-
-            if (success > 0)
-                return new CommandResultContract
-                {
-                    Message = $"job {input.Parameter.Id} has been updated",
-                    Status = CommandResultContract.Success
-                };
-
-            return new CommandResultContract
-            {
-                Message = $"job {input.Parameter.Id} has not been updated, operation is finished but there is no result returned",
-                Status = CommandResultContract.Failed
-            };
+            return _updateCommandExecutor.Execute(_updateCommand);
         }
     }
 }

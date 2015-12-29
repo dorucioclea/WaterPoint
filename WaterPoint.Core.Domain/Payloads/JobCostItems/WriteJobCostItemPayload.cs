@@ -10,13 +10,16 @@ namespace WaterPoint.Core.Domain.Payloads.JobCostItems
         [Required, MaxLength(200)]
         public string ShortDescription { get; set; }
 
+        [MaxLength(2000)]
         public string LongDescription { get; set; }
 
         public string Code { get; set; }
 
-        public decimal UnitCost { get; set; }
+        [Required]
+        public decimal? UnitCost { get; set; }
 
-        public decimal UnitPrice { get; set; }
+        [Required]
+        public decimal? UnitPrice { get; set; }
 
         public int Quantity { get; set; }
 

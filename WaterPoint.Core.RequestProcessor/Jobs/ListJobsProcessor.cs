@@ -48,13 +48,13 @@ namespace WaterPoint.Core.RequestProcessor.Jobs
         {
             var parameter = new PaginatedJobs
             {
-                OrganizationId = input.OrganizationIdParameter.OrganizationId
+                OrganizationId = input.Parameter.OrganizationId
             };
 
-            _paginationQueryParameterConverter.Convert(input.PaginationParamter, "Id")
+            _paginationQueryParameterConverter.Convert(input.Pagination, "Id")
                 .MapTo(parameter);
 
-            _jobStatusQueryParameterConverter.Convert(input.JobStatusParameter)
+            _jobStatusQueryParameterConverter.Convert(input.Parameter)
                 .MapTo(parameter);
 
             _paginatedJobsQuery.BuildQuery(parameter);

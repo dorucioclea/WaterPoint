@@ -1,4 +1,5 @@
 ﻿using System.Web.Http;
+using System.Web.Http.OData;
 using WaterPoint.Api.Common;
 using WaterPoint.Api.Common.BaseControllers;
 using WaterPoint.Core.Domain;
@@ -15,17 +16,20 @@ namespace WaterPoint.Api.Job.Controllers
     public class JobTimesheetController : BaseOrgnizationContextController
     {
         private readonly IRequestProcessor<CreateJobTimesheetRequest, CommandResultContract> _createRequestProcessor;
-        private readonly IRequestProcessor<ListJobTimesheetRequest, SimplePaginatedResult<JobTimesheetListContract>> _listoRequestProcessor;
+        private readonly IRequestProcessor<ListJobTimesheetRequest, SimplePaginatedResult<JobTimesheetBasicContract>> _listoRequestProcessor;
         private readonly IRequestProcessor<GetJobTimesheetRequest, JobTimesheetContract> _getRequestProcessor;
+        private readonly IRequestProcessor<UpdateJobTimesheetRequest, CommandResultContract> _updateRequestProcessor;
 
         public JobTimesheetController(
             IRequestProcessor<CreateJobTimesheetRequest, CommandResultContract> createRequestProcessor,
-            IRequestProcessor<ListJobTimesheetRequest, SimplePaginatedResult<JobTimesheetListContract>> listoRequestProcessor,
-            IRequestProcessor<GetJobTimesheetRequest, JobTimesheetContract> getRequestProcessor)
+            IRequestProcessor<ListJobTimesheetRequest, SimplePaginatedResult<JobTimesheetBasicContract>> listoRequestProcessor,
+            IRequestProcessor<GetJobTimesheetRequest, JobTimesheetContract> getRequestProcessor,
+            IRequestProcessor<UpdateJobTimesheetRequest, CommandResultContract> updateRequestProcessor)
         {
             _createRequestProcessor = createRequestProcessor;
             _listoRequestProcessor = listoRequestProcessor;
             _getRequestProcessor = getRequestProcessor;
+            _updateRequestProcessor = updateRequestProcessor;
         }
 
         [Route("")]
@@ -49,7 +53,7 @@ namespace WaterPoint.Api.Job.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest();
+                return BadRequestWithErrors(ModelState);
             }
 
             //TODO: validator
@@ -69,6 +73,19 @@ namespace WaterPoint.Api.Job.Controllers
         {
             var result = _getRequestProcessor.Process(new GetJobTimesheetRequest
             {
+                Parameter = parameter
+            });
+
+            return Ok(result);
+        }
+
+        public IHttpActionResult Put(
+            [FromUri]OrgIdJobIdIdRp parameter,
+            [FromUri]Delta<WriteJobTimesheetPayload> payload)
+        {
+            var result = _updateRequestProcessor.Process(new UpdateJobTimesheetRequest
+            {
+                Payload = payload,
                 Parameter = parameter
             });
 

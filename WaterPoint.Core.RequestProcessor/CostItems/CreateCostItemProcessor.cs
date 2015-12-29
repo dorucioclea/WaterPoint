@@ -30,10 +30,10 @@ namespace WaterPoint.Core.RequestProcessor.CostItems
         {
             var result = UowProcess(ProcessDeFacto, input);
 
-            return result;
+            return new CommandResultContract(result, "cost item", result > 0);
         }
 
-        private CommandResultContract ProcessDeFacto(CreateCostItemRequest input)
+        private int ProcessDeFacto(CreateCostItemRequest input)
         {
             var parameter = new CreateCostItem
             {
@@ -49,22 +49,7 @@ namespace WaterPoint.Core.RequestProcessor.CostItems
 
             _command.BuildQuery(parameter);
 
-            var newId = _executor.Execute(_command);
-
-            if(newId > 0)
-                return new CommandResultContract
-                {
-                    Data = newId,
-                    Message = $"cost item {newId} has been created",
-                    Status = CommandResultContract.Success
-                };
-
-            return new CommandResultContract
-            {
-                Data = null,
-                Message = "operation is finished but there is no result returned",
-                Status = CommandResultContract.Failed
-            };
+            return _executor.Execute(_command);
         }
     }
 }

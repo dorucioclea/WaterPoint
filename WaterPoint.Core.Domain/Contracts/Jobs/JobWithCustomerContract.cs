@@ -5,7 +5,7 @@ using WaterPoint.Core.Domain.Contracts.JobStatuses;
 
 namespace WaterPoint.Core.Domain.Contracts.Jobs
 {
-    public class JobWithCustomerContract : IContract
+    public class JobWithCustomerContract : IJobBasicContract
     {
         public int Id { get; set; }
         public int OrganizationId { get; set; }

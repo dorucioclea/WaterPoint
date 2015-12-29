@@ -4,7 +4,9 @@ using System.Linq;
 using System.Net.Http;
 using System.Security.Claims;
 using System.Web.Http;
+using System.Web.Http.ModelBinding;
 using Newtonsoft.Json;
+using WaterPoint.Api.Common.HttpActionResults;
 using WaterPoint.Core.Domain.Exceptions;
 
 namespace WaterPoint.Api.Common.BaseControllers
@@ -43,5 +45,14 @@ namespace WaterPoint.Api.Common.BaseControllers
 
             return orgUser;
         }
+
+        #region Response results
+
+        protected virtual BadRequestWithErrorsResult BadRequestWithErrors(ModelStateDictionary modelState)
+        {
+            return new BadRequestWithErrorsResult(modelState, this);
+        }
+
+        #endregion
     }
 }

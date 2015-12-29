@@ -27,10 +27,10 @@ namespace WaterPoint.Core.RequestProcessor.TaskDefinitions
         {
             var result = UowProcess(ProcessDeFacto, input);
 
-            return result;
+            return new CommandResultContract(result, "task definition", result > 0);
         }
 
-        private CommandResultContract ProcessDeFacto(CreateTaskDefinitionRequest input)
+        private int ProcessDeFacto(CreateTaskDefinitionRequest input)
         {
             var parameter = new CreateTaskDefinition
             {
@@ -43,22 +43,7 @@ namespace WaterPoint.Core.RequestProcessor.TaskDefinitions
 
             _command.BuildQuery(parameter);
 
-            var newId = _executor.Execute(_command);
-
-            if (newId > 0)
-                return new CommandResultContract
-                {
-                    Data = newId,
-                    Message = $"task definition {newId} has been created",
-                    Status = CommandResultContract.Success
-                };
-
-            return new CommandResultContract
-            {
-                Data = null,
-                Message = "operation is finished but there is no result returned",
-                Status = CommandResultContract.Failed
-            };
+            return _executor.Execute(_command);
         }
     }
 }

@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace WaterPoint.Core.Domain.Contracts.JobTimesheet
 {
-    public class JobTimesheetContract : IContract
+    public class JobTimesheetContract : IJobTimesheetBasicContract
     {
         public int Id { get; set; }
 
         public int JobTimesheetTypeId { get; set; }
 
-        public int JobTaskId { get; set; }
+        public int? JobTaskId { get; set; }
 
         public int StaffId { get; set; }
 
@@ -30,11 +30,9 @@ namespace WaterPoint.Core.Domain.Contracts.JobTimesheet
 
         public bool IsDuration { get; set; }
 
-        public bool IsActual { get; set; }
+        public decimal BaseRate { get; set; }
 
-        public int BaseRate { get; set; }
-
-        public int BillableRate { get; set; }
+        public decimal BillableRate { get; set; }
 
         public string Version { get; set; }
 

@@ -15,16 +15,16 @@ using WaterPoint.Data.Entity.Pocos.JobTasks;
 namespace WaterPoint.Core.RequestProcessor.JobTasks
 {
     public class ListJobTasksProcessor :
-        IRequestProcessor<ListJobTasksRequest, SimplePaginatedResult<JobTaskListContract>>
+        IRequestProcessor<ListJobTasksRequest, SimplePaginatedResult<JobTaskBasicContract>>
     {
         private readonly IDapperUnitOfWork _dapperUnitOfWork;
-        private readonly IListQueryRunner<ListJobTasks, JobTaskListPoco> _paginatedJobTaskRunner;
+        private readonly IListQueryRunner<ListJobTasks, JobTaskBasicPoco> _paginatedJobTaskRunner;
         private readonly PaginationQueryParameterConverter _paginationQueryParameterConverter;
         private readonly IQuery<ListJobTasks> _paginatedJobTasksQuery;
 
         public ListJobTasksProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
-            IListQueryRunner<ListJobTasks, JobTaskListPoco> paginatedJobTaskRunner,
+            IListQueryRunner<ListJobTasks, JobTaskBasicPoco> paginatedJobTaskRunner,
             PaginationQueryParameterConverter paginationQueryParameterConverter,
             IQuery<ListJobTasks> paginatedJobTasksQuery)
         {
@@ -34,12 +34,12 @@ namespace WaterPoint.Core.RequestProcessor.JobTasks
             _paginatedJobTasksQuery = paginatedJobTasksQuery;
         }
 
-        public JobTaskListContract Map(JobTaskListPoco source)
+        public JobTaskBasicContract Map(JobTaskBasicPoco source)
         {
             return JobTaskMapper.Map(source);
         }
 
-        public SimplePaginatedResult<JobTaskListContract> Process(ListJobTasksRequest input)
+        public SimplePaginatedResult<JobTaskBasicContract> Process(ListJobTasksRequest input)
         {
             var parameter = _paginationQueryParameterConverter.Convert(input.Pagination, "Id")
                 .MapTo(new ListJobTasks());
@@ -54,7 +54,7 @@ namespace WaterPoint.Core.RequestProcessor.JobTasks
                 var result = _paginatedJobTaskRunner.Run(_paginatedJobTasksQuery);
 
                 return (result != null)
-                    ? new SimplePaginatedResult<JobTaskListContract>
+                    ? new SimplePaginatedResult<JobTaskBasicContract>
                     {
                         Data = result.Data.Select(Map),
                         TotalCount = result.TotalCount,

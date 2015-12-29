@@ -9,7 +9,7 @@ namespace WaterPoint.Core.Domain.Payloads.Customers
 
         public bool IsProspect { get; set; }
 
-        [RegularExpression("^[mfMF]$")]
+        [RegularExpression("^[mfMF]$", ErrorMessage = "value can only be m, f, M, F, or null")]
         public string Gender { get; set; }
 
         public string Code { get; set; }

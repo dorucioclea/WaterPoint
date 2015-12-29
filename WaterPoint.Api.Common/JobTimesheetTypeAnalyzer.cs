@@ -8,7 +8,7 @@ namespace WaterPoint.Api.Common
     {
         public JobTimesheetTypes AnalyzeType(WriteJobTimesheetPayload payload)
         {
-            if (payload.IsDuration.Value && !payload.Minutes.HasValue)
+            if (payload.IsDuration.Value)
                 return JobTimesheetTypes.Draft;
 
             if (!payload.IsDuration.Value && (!payload.StartDateTime.HasValue || !payload.EndDateTime.HasValue))
@@ -20,7 +20,7 @@ namespace WaterPoint.Api.Common
         public int AnalyzeOriginalMinute(WriteJobTimesheetPayload payload)
         {
             if (payload.IsDuration.Value)
-                return payload.Minutes.Value;
+                return payload.Minutes;
 
             return Convert.ToInt32((payload.EndDateTime - payload.StartDateTime).Value.TotalMinutes);
         }

@@ -35,16 +35,10 @@ namespace WaterPoint.Api.Customer.Controllers
         }
 
         [Route("")]
-        public IHttpActionResult Get(
-            [FromUri]IsProspectOrgIdRp parameter,
-            [FromUri]PaginationRp pagination)
+        public IHttpActionResult Get([FromUri]ListCustomerRp parameter)
         {
             //validation
-            var request = new ListCustomersRequest
-            {
-                IsProspectOrgId = parameter,
-                Pagination = pagination
-            };
+            var request = new ListCustomersRequest { Parameter = parameter };
 
             var result = _listCustomerRequestProcessor.Process(request);
 
@@ -71,7 +65,7 @@ namespace WaterPoint.Api.Customer.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest();
+                return BadRequestWithErrors(ModelState);
             }
 
             //TODO: add OrganizationUser id

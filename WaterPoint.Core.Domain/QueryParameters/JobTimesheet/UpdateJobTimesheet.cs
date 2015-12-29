@@ -1,18 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using WaterPoint.Core.Domain.Db;
+using WaterPoint.Data.Entity.Attributes;
 
-namespace WaterPoint.Core.Domain.Contracts.JobTimesheet
+namespace WaterPoint.Core.Domain.QueryParameters.JobTimesheet
 {
-    public class JobTimesheetListContract : IContract
+    public class UpdateJobTimesheet : IQueryParameter
     {
+        [IgnoreWhenUpdate]
         public int Id { get; set; }
 
         public int JobTimesheetTypeId { get; set; }
 
-        public int? JobTaskId { get; set; }
+        public int JobTaskId { get; set; }
 
         public int StaffId { get; set; }
 
@@ -20,20 +19,20 @@ namespace WaterPoint.Core.Domain.Contracts.JobTimesheet
 
         public DateTime? EndDateTime { get; set; }
 
+        public int OriginalMinutes { get; set; }
+
         public int RoundedMinutes { get; set; }
+
+        public string ShortDescription { get; set; }
+
+        public string LongDescription { get; set; }
 
         public bool IsBillable { get; set; }
 
         public bool IsDuration { get; set; }
 
-        public bool IsActual { get; set; }
-
         public decimal BaseRate { get; set; }
 
         public decimal BillableRate { get; set; }
-
-        public string Version { get; set; }
-
-        public Guid Uid { get; set; }
     }
 }

@@ -27,10 +27,6 @@ namespace WaterPoint.Data.Entity.Pocos.JobTimesheet
 
         public bool IsDuration { get; set; }
 
-        public bool IsActual { get; set; }
-
-        public bool IsDeleted { get; set; }
-
         public decimal BaseRate { get; set; }
 
         public decimal BillableRate { get; set; }

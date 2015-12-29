@@ -1,9 +1,0 @@
-﻿CREATE TABLE [dbo].[PrivilegeCategory]
-(
-    [Id] INT NOT NULL,
-    [Description] NVARCHAR(100) NOT NULL,
-    [Version] ROWVERSION NOT NULL,
-	[UtcCreated] DATETIME2(3) NOT NULL DEFAULT(SYSUTCDATETIME()),
-	[UtcUpdated] DATETIME2(3) NOT NULL DEFAULT(SYSUTCDATETIME()),
-    CONSTRAINT [PK_dbo_PrivilegeCategory_Id] PRIMARY KEY CLUSTERED (Id ASC),
-)
