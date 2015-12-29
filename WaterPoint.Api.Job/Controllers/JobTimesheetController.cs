@@ -53,7 +53,7 @@ namespace WaterPoint.Api.Job.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest();
+                return BadRequestWithErrors(ModelState);
             }
 
             //TODO: validator

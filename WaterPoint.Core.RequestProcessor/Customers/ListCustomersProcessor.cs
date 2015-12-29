@@ -42,11 +42,11 @@ namespace WaterPoint.Core.RequestProcessor.Customers
 
         public PaginatedResult<CustomerContract> Process(ListCustomersRequest input)
         {
-            var parameter = _paginationQueryParameterConverter.Convert(input.Pagination, "Id")
+            var parameter = _paginationQueryParameterConverter.Convert(input.Parameter, "Id")
                 .MapTo(new ListCustomers());
 
-            parameter.OrganizationId = input.IsProspectOrgId.OrganizationId;
-            parameter.IsProspect = input.IsProspectOrgId.IsProspect;
+            parameter.OrganizationId = input.Parameter.OrganizationId;
+            parameter.IsProspect = input.Parameter.IsProspect;
 
             _paginatedCustomersQuery.BuildQuery(parameter);
 

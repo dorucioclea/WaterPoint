@@ -31,10 +31,10 @@ namespace WaterPoint.Core.RequestProcessor.Customers
         {
             var result = UowProcess(ProcessDeFacto, input);
 
-            return result;
+            return new CommandResultContract(result, "customer", result > 0);
         }
 
-        private CommandResultContract ProcessDeFacto(CreateCustomerRequest input)
+        private int ProcessDeFacto(CreateCustomerRequest input)
         {
             #region  replace this with a proper mapper
             var createCustomerPoco = input.CreateCustomerPayload.MapTo(new CreateCustomer());
@@ -44,22 +44,7 @@ namespace WaterPoint.Core.RequestProcessor.Customers
 
             _command.BuildQuery(createCustomerPoco);
 
-            var newId = _executor.Execute(_command);
-
-            if (newId > 0)
-                return new CommandResultContract
-                {
-                    Data = newId,
-                    Message = $"customer {newId} has been created",
-                    Status = CommandResultContract.Success
-                };
-
-            return new CommandResultContract
-            {
-                Data = null,
-                Message = "operation is finished but there is no result returned",
-                Status = CommandResultContract.Failed
-            };
+            return  _executor.Execute(_command);
         }
     }
 }

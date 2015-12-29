@@ -11,6 +11,7 @@ namespace WaterPoint.Core.Domain.Contracts.JobCostItems
         int Quantity { get; set; }
         bool IsBillable { get; set; }
         bool IsActual { get; set; }
+        bool IsDeleted { get; set; }
         string Version { get; set; }
         string Uid { get; set; }
     }

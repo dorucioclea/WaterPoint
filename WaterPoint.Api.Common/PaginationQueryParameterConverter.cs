@@ -1,4 +1,5 @@
 ﻿using WaterPoint.Core.Domain.RequestParameters;
+using WaterPoint.Core.Domain.RequestParameters.Interfaces;
 
 namespace WaterPoint.Api.Common
 {
@@ -16,7 +17,7 @@ namespace WaterPoint.Api.Common
 
         public string SearchTerm { get; private set; }
 
-        public PaginationQueryParameterConverter Convert(PaginationRp paramter, string defaultSort)
+        public PaginationQueryParameterConverter Convert(IPagination paramter, string defaultSort)
         {
             Offset = (((!paramter.PageNumber.HasValue || paramter.PageNumber < 0)
                 ? 1

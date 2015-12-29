@@ -69,7 +69,7 @@ namespace WaterPoint.Api.Job.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return BadRequestWithErrors(ModelState);
             }
 
             var result = _createJobTaskRequest.Process(

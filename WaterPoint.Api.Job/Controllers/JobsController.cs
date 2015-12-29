@@ -41,11 +41,6 @@ namespace WaterPoint.Api.Job.Controllers
             [FromUri]PaginationRp pagination,
             [FromUri]JobStatusRp jobStatusParamter)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest();
-            }
-
             //validation
             var request = new ListJobsRequest
             {
@@ -78,7 +73,7 @@ namespace WaterPoint.Api.Job.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest();
+                return BadRequestWithErrors(ModelState);
             }
 
             var result = _createJobRequestProcessor.Process(

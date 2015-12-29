@@ -45,10 +45,10 @@ namespace WaterPoint.Core.RequestProcessor.Timesheet
         {
             var result = UowProcess(ProcessDeFacto, input);
 
-            return result;
+            return new CommandResultContract(result, "job timesheet", result > 0);
         }
 
-        private CommandResultContract ProcessDeFacto(UpdateJobTimesheetRequest input)
+        private int ProcessDeFacto(UpdateJobTimesheetRequest input)
         {
             var getJobTimesheetParam = new GetJobTimesheet
             {
@@ -71,20 +71,7 @@ namespace WaterPoint.Core.RequestProcessor.Timesheet
             //then build the query to update the object.
             _updateJobTimesheetByIdQuery.BuildQuery(updatedJobTimesheet);
 
-            var success = _updateCommandExecutor.Execute(_updateJobTimesheetByIdQuery) > 0;
-
-            if (success)
-                return new CommandResultContract
-                {
-                    Message = $"JobTimesheet {input.Parameter.Id} has been updated",
-                    Status = CommandResultContract.Success
-                };
-
-            return new CommandResultContract
-            {
-                Message = $"JobTimesheet {input.Parameter.Id} has not been updated, operation is finished but there is no result returned",
-                Status = CommandResultContract.Failed
-            };
+            return _updateCommandExecutor.Execute(_updateJobTimesheetByIdQuery);
         }
     }
 }

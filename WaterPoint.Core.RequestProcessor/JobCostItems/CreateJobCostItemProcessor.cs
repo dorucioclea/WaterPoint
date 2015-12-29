@@ -39,7 +39,7 @@ namespace WaterPoint.Core.RequestProcessor.JobCostItems
         {
             var result = UowProcess(ProcessDeFacto, input);
 
-            return result;
+            return new CommandResultContract(result, "job cost item", result > 0);
         }
 
         public CreateJobCostItem AnalyzeParameter(CreateJobCostItemRequest input)
@@ -53,31 +53,16 @@ namespace WaterPoint.Core.RequestProcessor.JobCostItems
                 Code = input.Payload.Code,
                 CostItemId = input.Payload.CostItemId,
                 Quantity = input.Payload.Quantity,
-                UnitCost = input.Payload.UnitCost,
-                UnitPrice = input.Payload.UnitPrice
+                UnitCost = input.Payload.UnitCost.Value,
+                UnitPrice = input.Payload.UnitPrice.Value
             };
         }
 
-        private CommandResultContract ProcessDeFacto(CreateJobCostItemRequest input)
+        private int ProcessDeFacto(CreateJobCostItemRequest input)
         {
             _command.BuildQuery(AnalyzeParameter(input));
 
-            var newId = _executor.Execute(_command);
-
-            if (newId > 0)
-                return new CommandResultContract
-                {
-                    Data = newId,
-                    Message = $"job task {newId} has been created",
-                    Status = CommandResultContract.Success
-                };
-
-            return new CommandResultContract
-            {
-                Data = null,
-                Message = "operation is finished but there is no result returned",
-                Status = CommandResultContract.Failed
-            };
+            return _executor.Execute(_command);
         }
     }
 }

@@ -127,7 +127,7 @@
     <Compile Include="Payloads\CostItems\WriteCostItemPayload.cs" />
     <Compile Include="RequestParameters\OrgIdJobIdIdRp.cs" />
     <Compile Include="RequestParameters\OrgIdJobIdRp.cs" />
-    <Compile Include="RequestParameters\IsProspectOrgIdRp.cs" />
+    <Compile Include="RequestParameters\ListCustomerRp.cs" />
     <Compile Include="RequestParameters\CustomerIdOrgIdRp.cs" />
     <Compile Include="RequestParameters\JobStatusRP.cs" />
     <Compile Include="Payloads\Jobs\WriteJobPayload.cs" />
