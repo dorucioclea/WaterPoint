@@ -15,4 +15,3 @@
         (@orgId, @orgUserId, 80, 100, N'淼', N'黄')
 END
 GO
-
