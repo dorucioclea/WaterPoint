@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using WaterPoint.Core.Domain.Contracts.Privileges;
 
 namespace WaterPoint.Api.Common
 {
@@ -10,20 +12,16 @@ namespace WaterPoint.Api.Common
 
         public int OrganizationUserId { get; set; }
 
+        public int EntityId { get; set; }
+
         public int OrganizationUserTypeId { get; set; }
 
         public string Email { get; set; }
 
         public string Password { get; set; }
 
-        public bool IsDeleted { get; set; }
-
-        public string Version { get; set; }
-
-        public DateTime UtcCreated { get; set; }
-
-        public DateTime UtcUpdated { get; set; }
-
         public Guid Uid { get; set; }
+
+        public IEnumerable<PrivilegeContract> Privileges { get; set; }
     }
 }
