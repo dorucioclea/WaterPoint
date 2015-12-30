@@ -88,6 +88,7 @@
     <Compile Include="Payloads\JobTasks\UpdateJobTaskPayload.cs" />
     <Compile Include="Payloads\JobTimesheet\WriteJobTimesheetPayload.cs" />
     <Compile Include="Payloads\JobCostItems\WriteJobCostItemPayload.cs" />
+    <Compile Include="Payloads\Quotes\CreateQuotePayload.cs" />
     <Compile Include="QueryParameters\CostItems\CreateCostItem.cs" />
     <Compile Include="QueryParameters\CostItems\GetCostItem.cs" />
     <Compile Include="QueryParameters\CostItems\PaginatedCostItems.cs" />
@@ -115,6 +116,7 @@
     <Compile Include="QueryParameters\JobTimesheet\CreateJobTimesheet.cs" />
     <Compile Include="QueryParameters\JobTimesheet\UpdateJobTimesheet.cs" />
     <Compile Include="QueryParameters\Priviledges\ListUserPrivileges.cs" />
+    <Compile Include="QueryParameters\Quotes\CreateQuote.cs" />
     <Compile Include="QueryParameters\Shared\PaginatedOrgId.cs" />
     <Compile Include="QueryParameters\Staff\GetStaff.cs" />
     <Compile Include="QueryParameters\TaskDefinitions\CreateTaskDefinition.cs" />
@@ -130,7 +132,7 @@
     <Compile Include="RequestParameters\OrgIdJobIdIdRp.cs" />
     <Compile Include="RequestParameters\OrgIdJobIdRp.cs" />
     <Compile Include="RequestParameters\ListCustomerRp.cs" />
-    <Compile Include="RequestParameters\CustomerIdOrgIdRp.cs" />
+    <Compile Include="RequestParameters\OrgIdCusIdRp.cs" />
     <Compile Include="RequestParameters\JobStatusRP.cs" />
     <Compile Include="Payloads\Jobs\WriteJobPayload.cs" />
     <Compile Include="Payloads\JobTasks\CreateJobTaskPayload.cs" />
@@ -145,6 +147,7 @@
     <Compile Include="Requests\Customers\UpdateCustomerRequest.cs" />
     <Compile Include="Requests\Customers\GetCustomerRequest.cs" />
     <Compile Include="Requests\Customers\CreateCustomerRequest.cs" />
+    <Compile Include="Requests\Invoices\Class1.cs" />
     <Compile Include="Requests\JobCostItems\UpdateJobCostItemRequest.cs" />
     <Compile Include="Requests\JobCostItems\GetJobCostItemRequest.cs" />
     <Compile Include="Requests\JobCostItems\ListJobCostItemsRequest.cs" />
@@ -162,7 +165,8 @@
     <Compile Include="Requests\JobTimesheet\ListJobTimesheetRequest.cs" />
     <Compile Include="Requests\JobTimesheet\CreateJobTimesheetRequest.cs" />
     <Compile Include="Requests\OAuthClients\GetOAuthClientRequest.cs" />
-    <Compile Include="Requests\Priviledges\Class1.cs" />
+    <Compile Include="Requests\Priviledges\ListUserPrivilegesRequest.cs" />
+    <Compile Include="Requests\Quotes\CreateQuoteRequest.cs" />
     <Compile Include="Requests\Staff\GetStaffRequest.cs" />
     <Compile Include="Requests\TaskDefinitions\CreateTaskDefinitionRequest.cs" />
     <Compile Include="Requests\TaskDefinitions\GetTaskDefinitionByIdRequest.cs" />

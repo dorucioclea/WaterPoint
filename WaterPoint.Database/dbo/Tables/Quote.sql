@@ -2,16 +2,13 @@
 (
     [Id] INT NOT NULL IDENTITY,
     [OrganizationId] INT NOT NULL,
+    [QuoteStatusId] INT NOT NULL,
+    [Name] NVARCHAR(200) NOT NULL,
     [JobId] INT NULL,
-    [QuoteTypeId] INT NOT NULL,
     [CustomerId] INT NOT NULL,
     [ContactId] INT NULL,
     [Code] VARCHAR(50) NOT NULL,
     [DueDate] DATETIME2(0) NULL,
-    [ConfirmIsApprovedDate] DATETIME2(0) NULL,
-    [IsDraft] BIT NOT NULL DEFAULT(0),
-    [IsCancelled] BIT NOT NULL DEFAULT(0),
-    [IsApproved] BIT NOT NULL DEFAULT(0),
     [IsFixedPrice] BIT NOT NULL DEFAULT(0),
     [TotalPrice] DECIMAL(10,3) DEFAULT(0),
     [TotalPriceWithTax] DECIMAL(10,3) DEFAULT(0),
@@ -22,7 +19,7 @@
 	[Uid] UNIQUEIDENTIFIER NOT NULL DEFAULT(NEWID()),
     CONSTRAINT [PK_dbo_Quote_Id] PRIMARY KEY CLUSTERED (Id ASC),
     CONSTRAINT [FK_Quote_Organization] FOREIGN KEY ([OrganizationId]) REFERENCES [dbo].[Organization]([Id]),
-    CONSTRAINT [FK_Quote_QuoteType] FOREIGN KEY ([QuoteTypeId]) REFERENCES [dbo].[QuoteType]([Id]),
     CONSTRAINT [FK_Quote_Customer] FOREIGN KEY ([CustomerId]) REFERENCES [dbo].[Customer]([Id]),
-    CONSTRAINT [FK_Quote_Contact] FOREIGN KEY ([ContactId]) REFERENCES [dbo].[Contact]([Id])
+    CONSTRAINT [FK_Quote_Contact] FOREIGN KEY ([ContactId]) REFERENCES [dbo].[Contact]([Id]),
+    CONSTRAINT [FK_dbo_Quote_dbo_QuoteStatus] FOREIGN KEY ([QuoteStatusId]) REFERENCES [dbo].[QuoteStatus]([Id])
 )

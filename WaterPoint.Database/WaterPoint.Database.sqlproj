@@ -100,10 +100,8 @@
     <Build Include="dbo\Tables\JobTimesheetType.sql" />
     <Build Include="dbo\Tables\InvoiceJobTimesheet.sql" />
     <Build Include="dbo\Tables\Quote.sql" />
-    <Build Include="dbo\Tables\QuoteType.sql" />
     <Build Include="dbo\Tables\QuoteCostItem.sql" />
     <Build Include="dbo\Tables\QuoteTask.sql" />
-    <Build Include="dbo\Tables\QuoteTimesheet.sql" />
     <Build Include="dbo\Tables\Privilege.sql" />
     <Build Include="dbo\Tables\OrganizationUserPrivilege.sql" />
     <Build Include="dbo\Tables\Module.sql" />
@@ -122,6 +120,9 @@
     <Build Include="dbo\StoredProcedures\Get_JobTimesheet_By_Id.sql" />
     <Build Include="dbo\Functions\IntTextToTable.sql" />
     <Build Include="dbo\StoredProcedures\List_Privileges_By_UserIds.sql" />
+    <Build Include="dbo\Tables\QuoteStatus.sql" />
+    <Build Include="dbo\Tables\InvoiceStatus.sql" />
+    <None Include="Scripts\PostDeployment\InvoiceStatuses.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="WaterPoint.Database.publish.xml" />
@@ -143,6 +144,8 @@
     <None Include="Scripts\PostDeployment\JobTimesheetTypes.sql" />
     <None Include="Scripts\PostDeployment\Privileges.sql" />
     <None Include="Scripts\PostDeployment\DemoOrgnizationUserPrivileges.sql" />
+    <None Include="Scripts\classgenerator.sql" />
+    <None Include="Scripts\PostDeployment\QuoteStatuses.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="WaterPoint.Database.refactorlog" />

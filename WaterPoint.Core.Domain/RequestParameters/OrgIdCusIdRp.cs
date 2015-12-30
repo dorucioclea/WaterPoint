@@ -2,7 +2,7 @@
 
 namespace WaterPoint.Core.Domain.RequestParameters
 {
-    public class CustomerIdOrgIdRp : IOrgId
+    public class OrgIdCusIdRp : IOrgId
     {
         public int OrganizationId { get; set; }
 

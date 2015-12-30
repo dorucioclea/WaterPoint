@@ -22,13 +22,13 @@ namespace WaterPoint.Api.Customer.Controllers
 
         [Route("")]
         public IHttpActionResult Get(
-            [FromUri]CustomerIdOrgIdRp customerIdOrgIdRp,
-            [FromUri]PaginationRp paginationParamter)
+            [FromUri]OrgIdCusIdRp parameter,
+            [FromUri]PaginationRp pagination)
         {
             var request = new ListCustomerJobsRequest
             {
-                CustomerIdOrgIdRp = customerIdOrgIdRp,
-                PaginationParamter = paginationParamter
+                Parameter = parameter,
+                Pagination = pagination
             };
 
             var result = _listCustomerJobsRequestProcessor.Process(request);
