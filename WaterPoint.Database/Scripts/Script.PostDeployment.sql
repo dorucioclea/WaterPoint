@@ -34,6 +34,8 @@ Post-Deployment Script Template
 
 :r ".\PostDeployment\InvoiceTypes.sql"
 
+:r ".\PostDeployment\InvoiceStatuses.sql"
+
 :r "..\apiv1\Scripts\Script.PostDeployment.ApiV1.sql"
 
 :r ".\PostDeployment\PriorityTypes.sql"
@@ -43,3 +45,6 @@ Post-Deployment Script Template
 :r ".\PostDeployment\Privileges.sql"
 
 :r ".\PostDeployment\DemoOrgnizationUserPrivileges.sql"
+
+:r ".\PostDeployment\QuoteStatuses.sql"
+

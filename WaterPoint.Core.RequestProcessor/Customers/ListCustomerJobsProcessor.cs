@@ -44,11 +44,11 @@ namespace WaterPoint.Core.RequestProcessor.Customers
 
         public SimplePaginatedResult<JobWithStatusContract> Process(ListCustomerJobsRequest input)
         {
-            var parameter = _paginationQueryParameterConverter.Convert(input.PaginationParamter, "Id")
+            var parameter = _paginationQueryParameterConverter.Convert(input.Pagination, "Id")
                 .MapTo(new ListCustomerJobs());
 
-            parameter.OrganizationId = input.CustomerIdOrgIdRp.OrganizationId;
-            parameter.CustomerId = input.CustomerIdOrgIdRp.CustomerId;
+            parameter.OrganizationId = input.Parameter.OrganizationId;
+            parameter.CustomerId = input.Parameter.CustomerId;
 
             _paginatedcustomerJobsQuery.BuildQuery(parameter);
 
