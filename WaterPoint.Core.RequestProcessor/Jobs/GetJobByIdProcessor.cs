@@ -29,8 +29,8 @@ namespace WaterPoint.Core.RequestProcessor.Jobs
         {
             var parameter = new GetJob
             {
-                OrganizationId = input.OrganizationEntityParameter.OrganizationId,
-                JobId = input.OrganizationEntityParameter.Id
+                OrganizationId = input.OrganizationId,
+                JobId = input.Id
             };
 
             _query.BuildQuery(parameter);

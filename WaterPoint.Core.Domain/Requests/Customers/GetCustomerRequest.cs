@@ -2,8 +2,9 @@
 
 namespace WaterPoint.Core.Domain.Requests.Customers
 {
-    public class GetCustomerRequest : IRequest
+    public class GetCustomerRequest : IRequest, IOrgEntity
     {
-        public OrgEntityRp OrganizationEntityParameter { get; set; }
+        public int OrganizationId { get; set; }
+        public int Id { get; set; }
     }
 }

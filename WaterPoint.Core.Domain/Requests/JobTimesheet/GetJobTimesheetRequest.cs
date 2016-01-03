@@ -10,6 +10,10 @@ namespace WaterPoint.Core.Domain.Requests.JobTimesheet
 {
     public class GetJobTimesheetRequest : IRequest
     {
-        public OrgIdJobIdIdRp Parameter { get; set; }
+        public int OrganizationId { get; set; }
+
+        public int JobId { get; set; }
+
+        public int Id { get; set; }
     }
 }

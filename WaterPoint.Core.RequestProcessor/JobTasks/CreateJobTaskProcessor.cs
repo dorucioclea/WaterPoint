@@ -13,7 +13,7 @@ using WaterPoint.Data.Entity.DataEntities;
 namespace WaterPoint.Core.RequestProcessor.JobTasks
 {
     public class CreateJobTaskRequestProcessor : BaseDapperUowRequestProcess,
-        IRequestProcessor<CreateJobTaskRequest, CommandResultContract>
+        IWriteRequestProcessor<CreateJobTaskRequest>
     {
         private readonly ICommand<CreateJobTask> _command;
         private readonly ICommandExecutor<CreateJobTask> _executor;
@@ -28,20 +28,20 @@ namespace WaterPoint.Core.RequestProcessor.JobTasks
             _executor = executor;
         }
 
-        public CommandResultContract Process(CreateJobTaskRequest input)
+        public CommandResult Process(CreateJobTaskRequest input)
         {
             var result = UowProcess(ProcessDeFacto, input);
 
-            return new CommandResultContract(result, "job task", result > 0);
+            return new CommandResult(result, "job task", result > 0);
         }
 
         public CreateJobTask AnalyzeParameter(CreateJobTaskRequest input)
         {
             return new CreateJobTask
             {
-                OrganizationId = input.Parameter.OrganizationId,
+                OrganizationId = input.OrganizationId,
                 TaskDefinitionId = input.Payload.TaskDefinitionId.Value,
-                JobId = input.Parameter.JobId,
+                JobId = input.JobId,
                 CompletedDate = input.Payload.CompletedDate,
                 DisplayOrder = input.Payload.DisplayOrder,
                 EndDate = input.Payload.EndDate,

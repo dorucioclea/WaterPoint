@@ -3,10 +3,10 @@ using WaterPoint.Core.Domain.RequestParameters;
 
 namespace WaterPoint.Core.Domain.Requests.Jobs
 {
-    public class CreateJobRequest : IRequest
+    public class CreateJobRequest : IRequest, IOrgId
     {
-        public OrgIdRp OrganizationIdParameter { get; set; }
-        public WriteJobPayload CreateJobPayload { get; set; }
+        public WriteJobPayload Payload { get; set; }
         public int OrganizationUserId { get; set; }
+        public int OrganizationId { get; set; }
     }
 }

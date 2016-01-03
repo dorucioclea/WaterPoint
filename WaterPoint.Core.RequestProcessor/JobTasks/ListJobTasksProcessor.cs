@@ -15,7 +15,7 @@ using WaterPoint.Data.Entity.Pocos.JobTasks;
 namespace WaterPoint.Core.RequestProcessor.JobTasks
 {
     public class ListJobTasksProcessor :
-        IRequestProcessor<ListJobTasksRequest, SimplePaginatedResult<JobTaskBasicContract>>
+        ISimplePaginatedProcessor<ListJobTasksRequest, JobTaskBasicContract>
     {
         private readonly IDapperUnitOfWork _dapperUnitOfWork;
         private readonly IListQueryRunner<ListJobTasks, JobTaskBasicPoco> _paginatedJobTaskRunner;
@@ -41,11 +41,11 @@ namespace WaterPoint.Core.RequestProcessor.JobTasks
 
         public SimplePaginatedResult<JobTaskBasicContract> Process(ListJobTasksRequest input)
         {
-            var parameter = _paginationQueryParameterConverter.Convert(input.Pagination, "Id")
+            var parameter = _paginationQueryParameterConverter.Convert(input, "Id")
                 .MapTo(new ListJobTasks());
 
-            parameter.OrganizationId = input.Parameter.OrganizationId;
-            parameter.JobId= input.Parameter.JobId;
+            parameter.OrganizationId = input.OrganizationId;
+            parameter.JobId= input.JobId;
 
             _paginatedJobTasksQuery.BuildQuery(parameter);
 

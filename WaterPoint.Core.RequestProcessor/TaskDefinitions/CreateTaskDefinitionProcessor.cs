@@ -8,7 +8,7 @@ using WaterPoint.Data.DbContext.Dapper;
 namespace WaterPoint.Core.RequestProcessor.TaskDefinitions
 {
     public class CreateTaskDefinitionProcessor : BaseDapperUowRequestProcess,
-        IRequestProcessor<CreateTaskDefinitionRequest, CommandResultContract>
+        IWriteRequestProcessor<CreateTaskDefinitionRequest>
     {
         private readonly ICommand<CreateTaskDefinition> _command;
         private readonly ICommandExecutor<CreateTaskDefinition> _executor;
@@ -23,18 +23,18 @@ namespace WaterPoint.Core.RequestProcessor.TaskDefinitions
             _executor = executor;
         }
 
-        public CommandResultContract Process(CreateTaskDefinitionRequest input)
+        public CommandResult Process(CreateTaskDefinitionRequest input)
         {
             var result = UowProcess(ProcessDeFacto, input);
 
-            return new CommandResultContract(result, "task definition", result > 0);
+            return new CommandResult(result, "task definition", result > 0);
         }
 
         private int ProcessDeFacto(CreateTaskDefinitionRequest input)
         {
             var parameter = new CreateTaskDefinition
             {
-                OrganizationId = input.OrganizationId.OrganizationId,
+                OrganizationId = input.OrganizationId,
                 ShortDescription = input.Payload.ShortDescription,
                 BaseRate = input.Payload.BaseRate.Value,
                 BillableRate = input.Payload.BillableRate.Value,

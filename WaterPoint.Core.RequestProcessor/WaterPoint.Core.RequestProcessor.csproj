@@ -95,7 +95,9 @@
     <Compile Include="Jobs\UpdateJobProcessor.cs" />
     <Compile Include="Mappers\EntitiesToContracts\StaffMapper.cs" />
     <Compile Include="Privileges\ListUserPrivilegesProcessor.cs" />
+    <Compile Include="Quotes\CreateQuoteTaskProcessor.cs" />
     <Compile Include="Quotes\CreateQuoteProcessor.cs" />
+    <Compile Include="QuoteTasks\ListQuoteTasksRequest.cs" />
     <Compile Include="Staff\GetStaffProcessor.cs" />
     <Compile Include="Timesheet\UpdateJobTimesheetProcessor.cs" />
     <Compile Include="Timesheet\GetJobTimesheetProcessor.cs" />

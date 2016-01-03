@@ -7,7 +7,6 @@ using WaterPoint.Core.Bll.Commands.Customers;
 using WaterPoint.Core.Bll.Executors;
 using WaterPoint.Core.Bll.Queries.Customers;
 using WaterPoint.Core.Domain.QueryParameters.Customers;
-//using WaterPoint.Core.Bll.QueryRunners.Customers;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts;
 using WaterPoint.Core.Domain.Contracts.Customers;
@@ -24,7 +23,7 @@ namespace WaterPoint.Core.RequestProcessor.Customers
 {
     public class UpdateCustomerProcessor :
         BaseDapperUowRequestProcess,
-        IRequestProcessor<UpdateCustomerRequest, CommandResultContract>
+        IWriteRequestProcessor<UpdateCustomerRequest>
     {
         private readonly IPatchEntityAdapter _patchEntityAdapter;
         private readonly IQuery<GetCustomer> _getCustomerByIdQuery;
@@ -48,19 +47,19 @@ namespace WaterPoint.Core.RequestProcessor.Customers
             _updateCommandExecutor = updateCommandExecutor;
         }
 
-        public CommandResultContract Process(UpdateCustomerRequest input)
+        public CommandResult Process(UpdateCustomerRequest input)
         {
             var result = UowProcess(ProcessDeFacto, input);
 
-            return new CommandResultContract(input.Parameter.Id, "customer", result > 0);
+            return new CommandResult(input.Id, "customer", result > 0);
         }
 
         private int ProcessDeFacto(UpdateCustomerRequest input)
         {
             var getCusParam = new GetCustomer
             {
-                CustomerId = input.Parameter.Id,
-                OrganizationId = input.Parameter.OrganizationId
+                CustomerId = input.Id,
+                OrganizationId = input.OrganizationId
             };
 
             _getCustomerByIdQuery.BuildQuery(getCusParam);

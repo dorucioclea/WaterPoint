@@ -56,16 +56,16 @@ namespace WaterPoint.Api.DependencyInjection
 
         private void BindRequestProcessors()
         {
-            Bind<IRequestProcessor<CreateCostItemRequest, CommandResultContract>>()
+            Bind<IWriteRequestProcessor<CreateCostItemRequest>>()
                 .To<CreateCostItemProcessor>();
 
             Bind<IRequestProcessor<GetCostItemRequest, CostItemContract>>()
                 .To<GetCostItemProcessor>();
 
-            Bind<IRequestProcessor<ListCostItemsRequest, PaginatedResult<CostItemContract>>>()
+            Bind<IPaginatedProcessor<ListCostItemsRequest, CostItemContract>>()
                 .To<ListCostItemsProcessor>();
 
-            Bind<IRequestProcessor<UpdateCostItemRequest, CommandResultContract>>()
+            Bind<IWriteRequestProcessor<UpdateCostItemRequest>>()
                 .To<UpdateCostItemProcessor>();
         }
     }

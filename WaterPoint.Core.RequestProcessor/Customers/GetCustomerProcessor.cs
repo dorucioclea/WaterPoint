@@ -33,8 +33,8 @@ namespace WaterPoint.Core.RequestProcessor.Customers
         {
             var parameter = new GetCustomer
             {
-                OrganizationId = input.OrganizationEntityParameter.OrganizationId,
-                CustomerId = input.OrganizationEntityParameter.Id
+                OrganizationId = input.OrganizationId,
+                CustomerId = input.Id
             };
 
             _query.BuildQuery(parameter);

@@ -57,10 +57,10 @@ namespace WaterPoint.Api.DependencyInjection
 
         private void BindRequestProcessors()
         {
-            Bind<IRequestProcessor<CreateJobTimesheetRequest, CommandResultContract>>()
+            Bind<IWriteRequestProcessor<CreateJobTimesheetRequest>>()
                     .To<CreateJobTimesheetProcessor>();
 
-            Bind<IRequestProcessor<ListJobTimesheetRequest, SimplePaginatedResult<JobTimesheetBasicContract>>>()
+            Bind<ISimplePaginatedProcessor<ListJobTimesheetRequest, JobTimesheetBasicContract>>()
                     .To<ListJobTimesheetProcessor>();
 
             Bind<IRequestProcessor<GetJobTimesheetRequest, JobTimesheetContract>>()

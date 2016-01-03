@@ -15,7 +15,7 @@ using WaterPoint.Data.DbContext.Dapper;
 namespace WaterPoint.Core.RequestProcessor.Timesheet
 {
     public class CreateJobTimesheetProcessor : BaseDapperUowRequestProcess,
-        IRequestProcessor<CreateJobTimesheetRequest, CommandResultContract>
+        IWriteRequestProcessor<CreateJobTimesheetRequest>
     {
         private readonly ICommand<CreateJobTimesheet> _command;
         private readonly ICommandExecutor<CreateJobTimesheet> _executor;
@@ -33,11 +33,11 @@ namespace WaterPoint.Core.RequestProcessor.Timesheet
             _jobTimesheetTypeAnalyzer = jobTimesheetTypeAnalyzer;
         }
 
-        public CommandResultContract Process(CreateJobTimesheetRequest input)
+        public CommandResult Process(CreateJobTimesheetRequest input)
         {
             var result = UowProcess(ProcessDeFacto, input);
 
-            return new CommandResultContract(result, "job timesheet", result > 0);
+            return new CommandResult(result, "job timesheet", result > 0);
         }
 
         private int ProcessDeFacto(CreateJobTimesheetRequest input)
@@ -45,7 +45,7 @@ namespace WaterPoint.Core.RequestProcessor.Timesheet
             var parameter = new CreateJobTimesheet
             {
                 JobTimesheetTypeId = (int)_jobTimesheetTypeAnalyzer.AnalyzeType(input.Payload),
-                JobId = input.Parameter.JobId,
+                JobId = input.JobId,
                 JobTaskId = input.Payload.JobTaskId.Value,
                 BillableRate = input.Payload.BillableRate,
                 BaseRate = input.Payload.BaseRate,

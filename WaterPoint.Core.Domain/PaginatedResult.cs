@@ -2,7 +2,7 @@
 
 namespace WaterPoint.Core.Domain
 {
-    public class PaginatedResult<T> :SimplePaginatedResult<T>
+    public class PaginatedResult<T> : SimplePaginatedResult<T>
         where T: IContract
     {
         public string Sort { get; set; }

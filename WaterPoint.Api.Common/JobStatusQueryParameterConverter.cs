@@ -19,12 +19,12 @@ namespace WaterPoint.Api.Common
             {"cancelled", "ForCancelled"},
         };
 
-        public JobStatusQueryParameterConverter Convert(JobStatusRp paramter)
+        public JobStatusQueryParameterConverter Convert(object paramter)
         {
-            var statusMeaningColumn = JobStatusMeaningColumns
-                .SingleOrDefault(i => string.Equals(i.Key, paramter.Status, StringComparison.CurrentCultureIgnoreCase));
+            //var statusMeaningColumn = JobStatusMeaningColumns
+            //    .SingleOrDefault(i => string.Equals(i.Key, paramter.Status, StringComparison.CurrentCultureIgnoreCase));
 
-            Status = statusMeaningColumn.Value;
+            //Status = statusMeaningColumn.Value;
 
             return this;
         }

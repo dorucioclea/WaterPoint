@@ -13,7 +13,7 @@ namespace WaterPoint.Core.RequestProcessor.CostItems
 {
     public class UpdateCostItemProcessor :
         BaseDapperUowRequestProcess,
-        IRequestProcessor<UpdateCostItemRequest, CommandResultContract>
+        IWriteRequestProcessor<UpdateCostItemRequest>
     {
         private readonly IPatchEntityAdapter _patchEntityAdapter;
         private readonly IQuery<GetCostItem> _getCostItemByIdQuery;
@@ -37,19 +37,19 @@ namespace WaterPoint.Core.RequestProcessor.CostItems
             _updateCommandExecutor = updateCommandExecutor;
         }
 
-        public CommandResultContract Process(UpdateCostItemRequest input)
+        public CommandResult Process(UpdateCostItemRequest input)
         {
             var result = UowProcess(ProcessDeFacto, input);
 
-            return new CommandResultContract(result, "cost item", result > 0);
+            return new CommandResult(result, "cost item", result > 0);
         }
 
         private int ProcessDeFacto(UpdateCostItemRequest input)
         {
             var getCusParam = new GetCostItem
             {
-                CostItemId = input.Parameter.Id,
-                OrganizationId = input.Parameter.OrganizationId
+                CostItemId = input.Id,
+                OrganizationId = input.OrganizationId
             };
 
             _getCostItemByIdQuery.BuildQuery(getCusParam);

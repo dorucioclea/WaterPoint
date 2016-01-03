@@ -1,4 +1,4 @@
-﻿namespace WaterPoint.Core.Domain.RequestParameters.Interfaces
+﻿namespace WaterPoint.Core.Domain.RequestParameters
 {
     public interface IPagination
     {

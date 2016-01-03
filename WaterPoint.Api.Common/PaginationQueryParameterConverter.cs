@@ -1,5 +1,4 @@
 ﻿using WaterPoint.Core.Domain.RequestParameters;
-using WaterPoint.Core.Domain.RequestParameters.Interfaces;
 
 namespace WaterPoint.Api.Common
 {

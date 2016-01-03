@@ -2,7 +2,7 @@
 
 namespace WaterPoint.Core.Domain.Contracts
 {
-    public class CommandResultContract : IContract
+    public class CommandResult
     {
         private const string Success = "success";
         private const string Failed = "failed";
@@ -11,7 +11,7 @@ namespace WaterPoint.Core.Domain.Contracts
         public string Status { get; set; }
         public string Message { get; set; }
 
-        public CommandResultContract(object data, string target, bool success)
+        public CommandResult(object data, string target, bool success)
         {
             Data = data;
             Status = (success ? Success : Failed);

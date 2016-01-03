@@ -8,7 +8,7 @@ using WaterPoint.Data.DbContext.Dapper;
 namespace WaterPoint.Core.RequestProcessor.Jobs
 {
     public class CreateJobProcessor : BaseDapperUowRequestProcess,
-        IRequestProcessor<CreateJobRequest, CommandResultContract>
+        IWriteRequestProcessor<CreateJobRequest>
     {
         private readonly ICommand<CreateJob> _command;
         private readonly ICommandExecutor<CreateJob> _executor;
@@ -23,24 +23,24 @@ namespace WaterPoint.Core.RequestProcessor.Jobs
             _executor = executor;
         }
 
-        public CommandResultContract Process(CreateJobRequest input)
+        public CommandResult Process(CreateJobRequest input)
         {
             var result = UowProcess(ProcessDeFacto, input);
 
-            return new CommandResultContract(result, "job", result > 0);
+            return new CommandResult(result, "job", result > 0);
         }
 
         private int ProcessDeFacto(CreateJobRequest input)
         {
             var parameter = new CreateJob
             {
-                OrganizationId = input.OrganizationIdParameter.OrganizationId,
-                JobStatusId = input.CreateJobPayload.JobStatusId.Value,
-                Code = input.CreateJobPayload.Code,
-                ShortDescription = input.CreateJobPayload.ShortDescription,
-                CustomerId = input.CreateJobPayload.CustomerId.Value,
-                StartDate = input.CreateJobPayload.StartDate.Value,
-                EndDate = input.CreateJobPayload.EndDate.Value
+                OrganizationId = input.OrganizationId,
+                JobStatusId = input.Payload.JobStatusId.Value,
+                Code = input.Payload.Code,
+                ShortDescription = input.Payload.ShortDescription,
+                CustomerId = input.Payload.CustomerId.Value,
+                StartDate = input.Payload.StartDate.Value,
+                EndDate = input.Payload.EndDate.Value
             };
 
             _command.BuildQuery(parameter);

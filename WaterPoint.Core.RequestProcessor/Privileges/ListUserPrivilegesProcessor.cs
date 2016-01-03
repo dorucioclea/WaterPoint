@@ -12,7 +12,7 @@ using WaterPoint.Data.Entity.Pocos.Priviledges;
 
 namespace WaterPoint.Core.RequestProcessor.Privileges
 {
-    public class ListUserPrivilegesProcessor : IRequestListProcessor<ListUserPrivilegesRequest, UserPrivilegeContract>
+    public class ListUserPrivilegesProcessor : IListProcessor<ListUserPrivilegesRequest, UserPrivilegeContract>
     {
         private readonly IQuery<ListUserPrivileges> _query;
         private readonly IQueryListRunner<ListUserPrivileges, OrganizationUserPrivilegePoco> _runner;

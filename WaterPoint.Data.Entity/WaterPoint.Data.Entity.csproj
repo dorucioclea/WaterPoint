@@ -92,6 +92,7 @@
     <Compile Include="Pocos\JobTimesheet\JobTimesheetPoco.cs" />
     <Compile Include="Pocos\PaginatedPoco.cs" />
     <Compile Include="Pocos\Priviledges\OrganizationUserPrivilegePoco.cs" />
+    <Compile Include="Pocos\QuoteTasks\QuoteTaskBasicPoco.cs" />
     <Compile Include="Pocos\Views\ValidCredential.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -4,10 +4,11 @@ using WaterPoint.Core.Domain.RequestParameters;
 
 namespace WaterPoint.Core.Domain.Requests.Customers
 {
-    public class UpdateCustomerRequest : IRequest
+    public class UpdateCustomerRequest : IRequest, IOrgEntity
     {
-        public OrgEntityRp Parameter { get; set; }
         public Delta<WriteCustomerPayload> Payload { get; set; }
         public int OrganizationUserId { get; set; }
+        public int OrganizationId { get; set; }
+        public int Id { get; set; }
     }
 }

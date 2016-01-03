@@ -16,7 +16,7 @@ using WaterPoint.Data.Entity.DataEntities;
 namespace WaterPoint.Core.RequestProcessor.TaskDefinitions
 {
     public class ListTaskDefinitionsProcessor :
-        IRequestProcessor<ListWithOrgIdRequest, PaginatedResult<TaskDefinitionContract>>
+        IPaginatedProcessor<ListWithOrgIdRequest, TaskDefinitionContract>
     {
         private readonly IDapperUnitOfWork _dapperUnitOfWork;
         private readonly IListQueryRunner<PaginatedOrgId, TaskDefinition> _paginatedTaskDefinitionRunner;
@@ -42,10 +42,10 @@ namespace WaterPoint.Core.RequestProcessor.TaskDefinitions
 
         public PaginatedOrgId AnalyzeParameter(ListWithOrgIdRequest input)
         {
-            var parameter = _paginationQueryParameterConverter.Convert(input.PaginationParamter, "Id")
+            var parameter = _paginationQueryParameterConverter.Convert(input, "Id")
                 .MapTo(new PaginatedOrgId());
 
-            parameter.OrganizationId = input.OrganizationIdParameter.OrganizationId;
+            parameter.OrganizationId = input.OrganizationId;
 
             return parameter;
         }

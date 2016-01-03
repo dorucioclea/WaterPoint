@@ -15,16 +15,16 @@ namespace WaterPoint.Api.Job.Controllers
     [RoutePrefix(RouteDefinitions.Jobs.JobTimesheetPrefix)]
     public class JobTimesheetController : BaseOrgnizationContextController
     {
-        private readonly IRequestProcessor<CreateJobTimesheetRequest, CommandResultContract> _createRequestProcessor;
-        private readonly IRequestProcessor<ListJobTimesheetRequest, SimplePaginatedResult<JobTimesheetBasicContract>> _listoRequestProcessor;
+        private readonly IWriteRequestProcessor<CreateJobTimesheetRequest> _createRequestProcessor;
+        private readonly ISimplePaginatedProcessor<ListJobTimesheetRequest, JobTimesheetBasicContract> _listoRequestProcessor;
         private readonly IRequestProcessor<GetJobTimesheetRequest, JobTimesheetContract> _getRequestProcessor;
-        private readonly IRequestProcessor<UpdateJobTimesheetRequest, CommandResultContract> _updateRequestProcessor;
+        private readonly IWriteRequestProcessor<UpdateJobTimesheetRequest> _updateRequestProcessor;
 
         public JobTimesheetController(
-            IRequestProcessor<CreateJobTimesheetRequest, CommandResultContract> createRequestProcessor,
-            IRequestProcessor<ListJobTimesheetRequest, SimplePaginatedResult<JobTimesheetBasicContract>> listoRequestProcessor,
+            IWriteRequestProcessor<CreateJobTimesheetRequest> createRequestProcessor,
+            ISimplePaginatedProcessor<ListJobTimesheetRequest, JobTimesheetBasicContract> listoRequestProcessor,
             IRequestProcessor<GetJobTimesheetRequest, JobTimesheetContract> getRequestProcessor,
-            IRequestProcessor<UpdateJobTimesheetRequest, CommandResultContract> updateRequestProcessor)
+            IWriteRequestProcessor<UpdateJobTimesheetRequest> updateRequestProcessor)
         {
             _createRequestProcessor = createRequestProcessor;
             _listoRequestProcessor = listoRequestProcessor;
@@ -34,21 +34,16 @@ namespace WaterPoint.Api.Job.Controllers
 
         [Route("")]
         public IHttpActionResult Get(
-            [FromUri]OrgIdJobIdIdRp parameter,
-            [FromUri]PaginationRp pagination)
+            [FromUri]ListJobTimesheetRequest request)
         {
-            var result = _listoRequestProcessor.Process(new ListJobTimesheetRequest
-            {
-                Parameter = parameter,
-                Pagination = pagination
-            });
+            var result = _listoRequestProcessor.Process(request);
 
             return Ok(result);
         }
 
         [Route("")]
         public IHttpActionResult Post(
-            [FromUri]OrgIdJobIdIdRp parameter,
+            [FromUri]CreateJobTimesheetRequest request,
             [FromBody]WriteJobTimesheetPayload payload)
         {
             if (!ModelState.IsValid)
@@ -58,36 +53,28 @@ namespace WaterPoint.Api.Job.Controllers
 
             //TODO: validator
             //TODO: staff privilege (admin can create timesheet for others, but others can only create for themselves)
+            request.Payload = payload;
 
-            var result = _createRequestProcessor.Process(new CreateJobTimesheetRequest
-            {
-                Parameter = parameter,
-                Payload = payload
-            });
+            var result = _createRequestProcessor.Process(request);
 
             return Ok(result);
         }
 
         [Route("{id:int}")]
-        public IHttpActionResult Get([FromUri]OrgIdJobIdIdRp parameter)
+        public IHttpActionResult Get([FromUri]GetJobTimesheetRequest request)
         {
-            var result = _getRequestProcessor.Process(new GetJobTimesheetRequest
-            {
-                Parameter = parameter
-            });
+            var result = _getRequestProcessor.Process(request);
 
             return Ok(result);
         }
 
         public IHttpActionResult Put(
-            [FromUri]OrgIdJobIdIdRp parameter,
+            [FromUri]UpdateJobTimesheetRequest request,
             [FromUri]Delta<WriteJobTimesheetPayload> payload)
         {
-            var result = _updateRequestProcessor.Process(new UpdateJobTimesheetRequest
-            {
-                Payload = payload,
-                Parameter = parameter
-            });
+            request.Payload = payload;
+
+            var result = _updateRequestProcessor.Process(request);
 
             return Ok(result);
         }

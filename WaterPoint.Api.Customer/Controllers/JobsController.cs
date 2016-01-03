@@ -12,25 +12,18 @@ namespace WaterPoint.Api.Customer.Controllers
     [RoutePrefix(RouteDefinitions.Customers.JobsPrefix)]
     public class JobsController : BaseOrgnizationContextController
     {
-        private readonly IRequestProcessor<ListCustomerJobsRequest, SimplePaginatedResult<JobWithStatusContract>> _listCustomerJobsRequestProcessor;
+        private readonly ISimplePaginatedProcessor<ListCustomerJobsRequest, JobWithStatusContract> _listCustomerJobsRequestProcessor;
 
         public JobsController(
-            IRequestProcessor<ListCustomerJobsRequest, SimplePaginatedResult<JobWithStatusContract>> listCustomerJobsRequestProcessor)
+            ISimplePaginatedProcessor<ListCustomerJobsRequest, JobWithStatusContract> listCustomerJobsRequestProcessor)
         {
             _listCustomerJobsRequestProcessor = listCustomerJobsRequestProcessor;
         }
 
         [Route("")]
         public IHttpActionResult Get(
-            [FromUri]OrgIdCusIdRp parameter,
-            [FromUri]PaginationRp pagination)
+            [FromUri]ListCustomerJobsRequest request)
         {
-            var request = new ListCustomerJobsRequest
-            {
-                Parameter = parameter,
-                Pagination = pagination
-            };
-
             var result = _listCustomerJobsRequestProcessor.Process(request);
 
             return Ok(result);

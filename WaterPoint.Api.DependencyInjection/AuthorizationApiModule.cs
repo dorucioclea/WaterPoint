@@ -63,10 +63,10 @@ namespace WaterPoint.Api.DependencyInjection
             Bind<IRequestProcessor<GetOAuthClientRequest, OAuthClientContract>>()
                 .To<GetOAuthClientProcessor>();
 
-            Bind<IRequestListProcessor<ListValidateCredentialsRequest, ValidCredentialContract>>()
+            Bind<IListProcessor<ListValidateCredentialsRequest, ValidCredentialContract>>()
                 .To<ListValidateCredentialProcessor>();
 
-            Bind<IRequestListProcessor<ListUserPrivilegesRequest, UserPrivilegeContract>>()
+            Bind<IListProcessor<ListUserPrivilegesRequest, UserPrivilegeContract>>()
                 .To<ListUserPrivilegesProcessor>();
         }
 

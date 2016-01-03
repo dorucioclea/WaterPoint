@@ -6,7 +6,9 @@ namespace WaterPoint.Core.Domain.Requests.JobCostItems
 {
     public class CreateJobCostItemRequest : IRequest
     {
-        public OrgIdJobIdRp Parameter { get; set; }
+        public int OrganizationId { get; set; }
+
+        public int JobId { get; set; }
 
         public WriteJobCostItemPayload Payload { get; set; }
 

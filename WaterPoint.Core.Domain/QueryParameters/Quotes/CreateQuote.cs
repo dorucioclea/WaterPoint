@@ -5,6 +5,7 @@ namespace WaterPoint.Core.Domain.QueryParameters.Quotes
     public class CreateQuote : IQueryParameter
     {
         public int OrganizationId { get; set; }
+        public int QuoteStatusId { get; set; }
         public int CustomerId { get; set; }
         public string Name { get; set; }
         public int? JobId { get; set; }

@@ -16,15 +16,15 @@ namespace WaterPoint.Api.Job.Controllers
     [RoutePrefix(RouteDefinitions.Jobs.CostItemsPrefix)]
     public class CostItemsController : BaseOrgnizationContextController
     {
-        private readonly IRequestProcessor<CreateJobCostItemRequest, CommandResultContract> _createJobCostItemRequest;
-        private readonly IRequestProcessor<ListJobCostItemsRequest, SimplePaginatedResult<JobCostItemBasicContract>> _listJobCostItemequestProcessor;
-        private readonly IRequestProcessor<UpdateJobCostItemRequest, CommandResultContract> _updateRequestProcessor;
+        private readonly IWriteRequestProcessor<CreateJobCostItemRequest> _createJobCostItemRequest;
+        private readonly ISimplePaginatedProcessor<ListJobCostItemsRequest, JobCostItemBasicContract> _listJobCostItemequestProcessor;
+        private readonly IWriteRequestProcessor<UpdateJobCostItemRequest> _updateRequestProcessor;
         private readonly IRequestProcessor<GetJobCostItemRequest, JobCostItemContract> _getJobCostItemProcessor;
 
         public CostItemsController(
-            IRequestProcessor<CreateJobCostItemRequest, CommandResultContract> createJobCostItemRequest,
-            IRequestProcessor<ListJobCostItemsRequest, SimplePaginatedResult<JobCostItemBasicContract>> listJobCostItemequestProcessor,
-            IRequestProcessor<UpdateJobCostItemRequest, CommandResultContract> updateRequestProcessor,
+            IWriteRequestProcessor<CreateJobCostItemRequest> createJobCostItemRequest,
+            ISimplePaginatedProcessor<ListJobCostItemsRequest, JobCostItemBasicContract> listJobCostItemequestProcessor,
+            IWriteRequestProcessor<UpdateJobCostItemRequest> updateRequestProcessor,
             IRequestProcessor<GetJobCostItemRequest, JobCostItemContract> getJobCostItemProcessor
             )
         {
@@ -35,41 +35,24 @@ namespace WaterPoint.Api.Job.Controllers
         }
 
         [Route("")]
-        public IHttpActionResult Get(
-            [FromUri]OrgIdJobIdRp parameter,
-            [FromUri]PaginationRp pagination)
+        public IHttpActionResult Get([FromUri]ListJobCostItemsRequest request)
         {
-            //validation
-            var request = new ListJobCostItemsRequest
-            {
-                Parameter = parameter,
-                Pagination = pagination
-            };
-
             var result = _listJobCostItemequestProcessor.Process(request);
 
             return Ok(result);
         }
 
         [Route("{id:int}")]
-        public IHttpActionResult Get(
-            [FromUri]OrgIdJobIdRp parameter,
-            [FromUri]int id
-            )
+        public IHttpActionResult Get([FromUri]GetJobCostItemRequest request)
         {
-            var result = _getJobCostItemProcessor.Process(
-                new GetJobCostItemRequest
-                {
-                    JobIdOrgId = parameter,
-                    JobCostItemId = id
-                });
+            var result = _getJobCostItemProcessor.Process(request);
 
             return Ok(result);
         }
 
         [Route("")]
         public IHttpActionResult Post(
-            [FromUri]OrgIdJobIdRp parameter,
+            [FromUri]CreateJobCostItemRequest request,
             [FromBody]WriteJobCostItemPayload jobCostItemPayload)
         {
             if (!ModelState.IsValid)
@@ -77,29 +60,23 @@ namespace WaterPoint.Api.Job.Controllers
                 return BadRequestWithErrors(ModelState);
             }
 
-            var result = _createJobCostItemRequest.Process(
-                new CreateJobCostItemRequest
-                {
-                    Parameter = parameter,
-                    Payload = jobCostItemPayload,
-                    OrganizationUserId = OrganizationUser.Id
-                });
+            request.Payload = jobCostItemPayload;
+            request.OrganizationUserId = OrganizationUser.Id;
+
+            var result = _createJobCostItemRequest.Process(request);
 
             return Ok(result);
         }
 
         [Route("{id:int}")]
         public IHttpActionResult Put(
-            [FromUri]OrgEntityJobId parameter,
+            [FromUri]UpdateJobCostItemRequest request,
             [FromBody]Delta<WriteJobCostItemPayload> input)
         {
-            var jobCostItem = _updateRequestProcessor.Process(
-                new UpdateJobCostItemRequest
-                {
-                    Parameter = parameter,
-                    Payload = input,
-                    OrganizationUserId = OrganizationUser.Id
-                });
+            request.Payload = input;
+            request.OrganizationUserId = OrganizationUser.Id;
+
+            var jobCostItem = _updateRequestProcessor.Process(request);
 
             return Ok(jobCostItem);
         }

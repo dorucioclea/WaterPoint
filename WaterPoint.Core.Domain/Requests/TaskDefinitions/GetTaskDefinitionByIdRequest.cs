@@ -1,9 +1,8 @@
-﻿using WaterPoint.Core.Domain.RequestParameters;
-
-namespace WaterPoint.Core.Domain.Requests.TaskDefinitions
+﻿namespace WaterPoint.Core.Domain.Requests.TaskDefinitions
 {
-    public class GetTaskDefinitionByIdRequest: IRequest
+    public class GetTaskDefinitionByIdRequest : IRequest
     {
-        public OrgEntityRp OrganizationEntityParameter { get; set; }
+        public int OrganizationId { get; set; }
+        public int Id { get; set; }
     }
 }

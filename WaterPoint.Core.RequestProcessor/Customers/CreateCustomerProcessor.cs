@@ -12,7 +12,7 @@ using WaterPoint.Data.Entity.DataEntities;
 namespace WaterPoint.Core.RequestProcessor.Customers
 {
     public class CreateCustomerProcessor : BaseDapperUowRequestProcess,
-        IRequestProcessor<CreateCustomerRequest, CommandResultContract>
+        IWriteRequestProcessor<CreateCustomerRequest>
     {
         private readonly ICommand<CreateCustomer> _command;
         private readonly ICommandExecutor<CreateCustomer> _executor;
@@ -27,19 +27,19 @@ namespace WaterPoint.Core.RequestProcessor.Customers
             _executor = executor;
         }
 
-        public CommandResultContract Process(CreateCustomerRequest input)
+        public CommandResult Process(CreateCustomerRequest input)
         {
             var result = UowProcess(ProcessDeFacto, input);
 
-            return new CommandResultContract(result, "customer", result > 0);
+            return new CommandResult(result, "customer", result > 0);
         }
 
         private int ProcessDeFacto(CreateCustomerRequest input)
         {
             #region  replace this with a proper mapper
-            var createCustomerPoco = input.CreateCustomerPayload.MapTo(new CreateCustomer());
+            var createCustomerPoco = input.Payload.MapTo(new CreateCustomer());
 
-            createCustomerPoco.OrganizationId = input.OrganizationIdParameter.OrganizationId;
+            createCustomerPoco.OrganizationId = input.OrganizationId;
             #endregion
 
             _command.BuildQuery(createCustomerPoco);

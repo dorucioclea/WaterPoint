@@ -17,7 +17,7 @@ using WaterPoint.Data.Entity.Pocos.JobTimesheet;
 namespace WaterPoint.Core.RequestProcessor.Timesheet
 {
     public class UpdateJobTimesheetProcessor : BaseDapperUowRequestProcess,
-        IRequestProcessor<UpdateJobTimesheetRequest, CommandResultContract>
+        IWriteRequestProcessor<UpdateJobTimesheetRequest>
     {
         private readonly IPatchEntityAdapter _patchEntityAdapter;
         private readonly IQuery<GetJobTimesheet> _getJobTimesheetByIdQuery;
@@ -41,20 +41,20 @@ namespace WaterPoint.Core.RequestProcessor.Timesheet
             _updateCommandExecutor = updateCommandExecutor;
         }
 
-        public CommandResultContract Process(UpdateJobTimesheetRequest input)
+        public CommandResult Process(UpdateJobTimesheetRequest input)
         {
             var result = UowProcess(ProcessDeFacto, input);
 
-            return new CommandResultContract(result, "job timesheet", result > 0);
+            return new CommandResult(result, "job timesheet", result > 0);
         }
 
         private int ProcessDeFacto(UpdateJobTimesheetRequest input)
         {
             var getJobTimesheetParam = new GetJobTimesheet
             {
-                Id = input.Parameter.Id,
-                JobId = input.Parameter.JobId,
-                OrganizationId = input.Parameter.OrganizationId
+                Id = input.Id,
+                JobId = input.JobId,
+                OrganizationId = input.OrganizationId
             };
 
             _getJobTimesheetByIdQuery.BuildQuery(getJobTimesheetParam);

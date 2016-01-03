@@ -37,11 +37,11 @@ namespace WaterPoint.Core.RequestProcessor.JobCostItems
         {
             var parameter = new GetJobCostItem
             {
-                OrganizationId = input.JobIdOrgId.OrganizationId,
+                OrganizationId = input.OrganizationId,
 
-                JobId = input.JobIdOrgId.JobId,
+                JobId = input.JobId,
 
-                Id = input.JobCostItemId
+                Id = input.Id
             };
 
             _query.BuildQuery(parameter);

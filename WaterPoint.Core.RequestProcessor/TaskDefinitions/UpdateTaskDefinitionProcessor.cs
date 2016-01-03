@@ -12,7 +12,7 @@ namespace WaterPoint.Core.RequestProcessor.TaskDefinitions
 {
     public class UpdateTaskDefinitionProcessor :
         BaseDapperUowRequestProcess,
-        IRequestProcessor<UpdateTaskDefinitionRequest, CommandResultContract>
+        IWriteRequestProcessor<UpdateTaskDefinitionRequest>
     {
         private readonly IPatchEntityAdapter _patchEntityAdapter;
         private readonly IQuery<GetTaskDefinition> _getTaskDefinitionByIdQuery;
@@ -36,19 +36,19 @@ namespace WaterPoint.Core.RequestProcessor.TaskDefinitions
             _updateCommandExecutor = updateCommandExecutor;
         }
 
-        public CommandResultContract Process(UpdateTaskDefinitionRequest input)
+        public CommandResult Process(UpdateTaskDefinitionRequest input)
         {
             var result = UowProcess(ProcessDeFacto, input);
 
-            return new CommandResultContract(result, "task definition", result > 0);
+            return new CommandResult(result, "task definition", result > 0);
         }
 
         private int ProcessDeFacto(UpdateTaskDefinitionRequest input)
         {
             _getTaskDefinitionByIdQuery.BuildQuery(new GetTaskDefinition
             {
-                OrganizationId = input.Parameter.OrganizationId,
-                TaskDefinitionId = input.Parameter.Id
+                OrganizationId = input.OrganizationId,
+                TaskDefinitionId = input.Id
             });
 
             var existingTaskDefinition = _getTaskDefinitionByIdQueryRunner.Run(_getTaskDefinitionByIdQuery);

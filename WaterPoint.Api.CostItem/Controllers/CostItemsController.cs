@@ -14,16 +14,16 @@ namespace WaterPoint.Api.CostItem.Controllers
     [RoutePrefix(RouteDefinitions.CostItems.Prefix)]
     public class CostItemsController : BaseOrgnizationContextController
     {
-        private readonly IRequestProcessor<CreateCostItemRequest, CommandResultContract> _createRequestProcessor;
+        private readonly IWriteRequestProcessor<CreateCostItemRequest> _createRequestProcessor;
         private readonly IRequestProcessor<GetCostItemRequest, CostItemContract> _getRequestProcessor;
-        private readonly IRequestProcessor<ListCostItemsRequest, PaginatedResult<CostItemContract>> _listRequestProcessor;
-        private readonly IRequestProcessor<UpdateCostItemRequest, CommandResultContract> _updateRequestProcessor;
+        private readonly IPaginatedProcessor<ListCostItemsRequest, CostItemContract> _listRequestProcessor;
+        private readonly IWriteRequestProcessor<UpdateCostItemRequest> _updateRequestProcessor;
 
         public CostItemsController(
-            IRequestProcessor<CreateCostItemRequest, CommandResultContract> createRequestProcessor,
+            IWriteRequestProcessor<CreateCostItemRequest> createRequestProcessor,
             IRequestProcessor<GetCostItemRequest, CostItemContract> getRequestProcessor,
-            IRequestProcessor<ListCostItemsRequest, PaginatedResult<CostItemContract>> listRequestProcessor,
-            IRequestProcessor<UpdateCostItemRequest, CommandResultContract> updateRequestProcessor)
+            IPaginatedProcessor<ListCostItemsRequest, CostItemContract> listRequestProcessor,
+            IWriteRequestProcessor<UpdateCostItemRequest> updateRequestProcessor)
         {
             _createRequestProcessor = createRequestProcessor;
             _getRequestProcessor = getRequestProcessor;
@@ -32,29 +32,16 @@ namespace WaterPoint.Api.CostItem.Controllers
         }
 
         [Route("")]
-        public IHttpActionResult Get(
-            [FromUri]OrgIdRp orgId,
-            [FromUri]PaginationRp pagination)
+        public IHttpActionResult Get([FromUri]ListCostItemsRequest request)
         {
-            var request = new ListCostItemsRequest
-            {
-                OrganizationId = orgId,
-                Pagination = pagination
-            };
-
             var result = _listRequestProcessor.Process(request);
 
             return Ok(result);
         }
 
         [Route("{id:int}")]
-        public IHttpActionResult Get([FromUri]OrgEntityRp parameter)
+        public IHttpActionResult Get([FromUri]GetCostItemRequest request)
         {
-            var request = new GetCostItemRequest
-            {
-                Parameter = parameter
-            };
-
             var result = _getRequestProcessor.Process(request);
 
             return Ok(result);
@@ -62,15 +49,11 @@ namespace WaterPoint.Api.CostItem.Controllers
 
         [Route("")]
         public IHttpActionResult Post(
-            [FromUri]OrgIdRp orgId,
+            [FromUri]CreateCostItemRequest request,
             [FromBody]WriteCostItemPayload payload)
         {
-            var request = new CreateCostItemRequest
-            {
-                CreateCustomerPayload = payload,
-                OrganizationIdParameter = orgId,
-                OrganizationUserId = OrganizationUser.Id
-            };
+            request.Payload = payload;
+            request.OrganizationUserId = OrganizationUser.Id;
 
             var result = _createRequestProcessor.Process(request);
 
@@ -79,20 +62,16 @@ namespace WaterPoint.Api.CostItem.Controllers
 
         [Route("")]
         public IHttpActionResult Put(
-            [FromUri]OrgEntityRp orgId,
-            [FromUri]Delta<WriteCostItemPayload> payload)
+            [FromUri]UpdateCostItemRequest request,
+            [FromBody]Delta<WriteCostItemPayload> payload)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequestWithErrors(ModelState);
             }
 
-            var request = new UpdateCostItemRequest
-            {
-                Payload = payload,
-                Parameter = orgId,
-                OrganizationUserId = OrganizationUser.Id
-            };
+            request.Payload = payload;
+            request.OrganizationUserId = OrganizationUser.Id;
 
             var result = _updateRequestProcessor.Process(request);
 

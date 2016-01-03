@@ -16,7 +16,7 @@ using WaterPoint.Data.Entity.DataEntities;
 namespace WaterPoint.Core.RequestProcessor.Customers
 {
     public class ListCustomersProcessor :
-        IRequestProcessor<ListCustomersRequest, PaginatedResult<CustomerContract>>
+        IPaginatedProcessor<ListCustomersRequest, CustomerContract>
     {
         private readonly IDapperUnitOfWork _dapperUnitOfWork;
         private readonly PaginationQueryParameterConverter _paginationQueryParameterConverter;
@@ -42,11 +42,11 @@ namespace WaterPoint.Core.RequestProcessor.Customers
 
         public PaginatedResult<CustomerContract> Process(ListCustomersRequest input)
         {
-            var parameter = _paginationQueryParameterConverter.Convert(input.Parameter, "Id")
+            var parameter = _paginationQueryParameterConverter.Convert(input, "Id")
                 .MapTo(new ListCustomers());
 
-            parameter.OrganizationId = input.Parameter.OrganizationId;
-            parameter.IsProspect = input.Parameter.IsProspect;
+            parameter.OrganizationId = input.OrganizationId;
+            parameter.IsProspect = input.IsProspect;
 
             _paginatedCustomersQuery.BuildQuery(parameter);
 
@@ -54,17 +54,15 @@ namespace WaterPoint.Core.RequestProcessor.Customers
             {
                 var result = _paginatedCustomerRunner.Run(_paginatedCustomersQuery);
 
-                return (result != null)
-                    ? new PaginatedResult<CustomerContract>
-                    {
-                        Data = result.Data.Select(Map),
-                        TotalCount = result.TotalCount,
-                        PageNumber = _paginationQueryParameterConverter.PageNumber,
-                        PageSize = _paginationQueryParameterConverter.PageSize,
-                        Sort = _paginationQueryParameterConverter.Sort,
-                        IsDesc = _paginationQueryParameterConverter.IsDesc
-                    }
-                    : null;
+                return new PaginatedResult<CustomerContract>
+                {
+                    Data = result.Data.Select(Map),
+                    TotalCount = result.TotalCount,
+                    PageNumber = _paginationQueryParameterConverter.PageNumber,
+                    PageSize = _paginationQueryParameterConverter.PageSize,
+                    Sort = _paginationQueryParameterConverter.Sort,
+                    IsDesc = _paginationQueryParameterConverter.IsDesc
+                };
             }
         }
     }

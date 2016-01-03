@@ -17,7 +17,7 @@ namespace WaterPoint.Core.RequestProcessor.Jobs
     //public JobStatusAna
 
     public class ListJobsProcessor :
-        IRequestProcessor<ListJobsRequest, PaginatedResult<JobWithCustomerContract>>
+        IPaginatedProcessor<ListJobsRequest, JobWithCustomerContract>
     {
         private readonly IDapperUnitOfWork _dapperUnitOfWork;
         private readonly IListQueryRunner<PaginatedJobs, JobWithCustomerAndStatusPoco> _paginatedJobRunner;
@@ -48,13 +48,13 @@ namespace WaterPoint.Core.RequestProcessor.Jobs
         {
             var parameter = new PaginatedJobs
             {
-                OrganizationId = input.Parameter.OrganizationId
+                OrganizationId = input.OrganizationId
             };
 
-            _paginationQueryParameterConverter.Convert(input.Pagination, "Id")
+            _paginationQueryParameterConverter.Convert(input, "Id")
                 .MapTo(parameter);
 
-            _jobStatusQueryParameterConverter.Convert(input.Parameter)
+            _jobStatusQueryParameterConverter.Convert(input)
                 .MapTo(parameter);
 
             _paginatedJobsQuery.BuildQuery(parameter);

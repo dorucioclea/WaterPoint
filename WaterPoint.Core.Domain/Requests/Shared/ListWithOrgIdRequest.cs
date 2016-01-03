@@ -2,9 +2,13 @@
 
 namespace WaterPoint.Core.Domain.Requests.Shared
 {
-    public class ListWithOrgIdRequest : IRequest
+    public class ListWithOrgIdRequest : IRequest, IPagination
     {
-        public OrgIdRp OrganizationIdParameter { get; set; }
-        public PaginationRp PaginationParamter { get; set; }
+        public int OrganizationId { get; set; }
+        public int? PageSize { get; set; }
+        public int? PageNumber { get; set; }
+        public string Sort { get; set; }
+        public bool? IsDesc { get; set; }
+        public string SearchTerm { get; set; }
     }
 }

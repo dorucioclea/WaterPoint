@@ -1,5 +1,5 @@
 ﻿using System;
-using Microsoft.Build.Framework;
+using System.ComponentModel.DataAnnotations;
 
 namespace WaterPoint.Core.Domain.Payloads.Jobs
 {

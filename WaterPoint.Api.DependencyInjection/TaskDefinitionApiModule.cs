@@ -58,16 +58,16 @@ namespace WaterPoint.Api.DependencyInjection
 
         private void BindRequestProcessors()
         {
-            Bind<IRequestProcessor<CreateTaskDefinitionRequest, CommandResultContract>>()
+            Bind<IWriteRequestProcessor<CreateTaskDefinitionRequest>>()
                 .To<CreateTaskDefinitionProcessor>();
 
             Bind<IRequestProcessor<GetTaskDefinitionByIdRequest, TaskDefinitionContract>>()
                 .To<GetTaskDefinitionByIdRequestProcessor>();
 
-            Bind<IRequestProcessor<ListWithOrgIdRequest, PaginatedResult<TaskDefinitionContract>>>()
+            Bind<IPaginatedProcessor<ListWithOrgIdRequest, TaskDefinitionContract>>()
                 .To<ListTaskDefinitionsProcessor>();
 
-            Bind<IRequestProcessor<UpdateTaskDefinitionRequest, CommandResultContract>>()
+            Bind<IWriteRequestProcessor<UpdateTaskDefinitionRequest>>()
                 .To<UpdateTaskDefinitionProcessor>();
         }
     }

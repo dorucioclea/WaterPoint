@@ -21,7 +21,7 @@ using WaterPoint.Data.Entity.Pocos.JobTimesheet;
 namespace WaterPoint.Core.RequestProcessor.Timesheet
 {
     public class ListJobTimesheetProcessor :
-         IRequestProcessor<ListJobTimesheetRequest, SimplePaginatedResult<JobTimesheetBasicContract>>
+         ISimplePaginatedProcessor<ListJobTimesheetRequest, JobTimesheetBasicContract>
     {
         private readonly IDapperUnitOfWork _dapperUnitOfWork;
         private readonly IListQueryRunner<ListJobTimesheet, JobTimesheetPoco> _paginatedJobTimesheetRunner;
@@ -47,11 +47,11 @@ namespace WaterPoint.Core.RequestProcessor.Timesheet
 
         public ListJobTimesheet AnalyzeParameter(ListJobTimesheetRequest input)
         {
-            var parameter = _paginationQueryParameterConverter.Convert(input.Pagination, "Id")
+            var parameter = _paginationQueryParameterConverter.Convert(input, "Id")
                 .MapTo(new ListJobTimesheet());
 
-            parameter.OrganizationId = input.Parameter.OrganizationId;
-            parameter.JobId = input.Parameter.JobId;
+            parameter.OrganizationId = input.OrganizationId;
+            parameter.JobId = input.JobId;
 
             return parameter;
         }

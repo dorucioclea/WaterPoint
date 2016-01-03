@@ -56,13 +56,13 @@ namespace WaterPoint.Api.DependencyInjection
             Bind<IRequestProcessor<GetJobTaskByIdRequest, JobTaskContract>>()
                 .To<GetJobTaskProcessor>();
 
-            Bind<IRequestProcessor<UpdateJobTaskRequest, CommandResultContract>>()
+            Bind<IWriteRequestProcessor<UpdateJobTaskRequest>>()
                 .To<UpdateJobTaskProcessor>();
 
-            Bind<IRequestProcessor<CreateJobTaskRequest, CommandResultContract>>()
+            Bind<IWriteRequestProcessor<CreateJobTaskRequest>>()
                 .To<CreateJobTaskRequestProcessor>();
 
-            Bind<IRequestProcessor<ListJobTasksRequest, SimplePaginatedResult<JobTaskBasicContract>>>()
+            Bind<ISimplePaginatedProcessor<ListJobTasksRequest, JobTaskBasicContract>>()
                 .To<ListJobTasksProcessor>();
         }
     }

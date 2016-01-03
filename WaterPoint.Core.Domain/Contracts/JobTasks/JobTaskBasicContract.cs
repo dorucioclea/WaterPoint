@@ -25,8 +25,6 @@ namespace WaterPoint.Core.Domain.Contracts.JobTasks
 
         public bool IsAllocated { get; set; }
 
-        public bool IsScheduled { get; set; }
-
         public string ShortDescription { get; set; }
 
         public string Version { get; set; }

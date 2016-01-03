@@ -6,7 +6,9 @@ namespace WaterPoint.Core.Domain.Requests.JobTasks
 {
     public class UpdateJobTaskRequest : IRequest
     {
-        public OrgEntityJobId Parameter { get; set; }
+        public int JobId { get; set; }
+        public int OrganizationId { get; set; }
+        public int Id { get; set; }
         public Delta<UpdateJobTaskPayload> Payload { get; set; }
         public int OrganizationUserId { get; set; }
     }

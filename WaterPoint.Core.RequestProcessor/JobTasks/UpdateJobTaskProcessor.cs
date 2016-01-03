@@ -13,7 +13,7 @@ namespace WaterPoint.Core.RequestProcessor.JobTasks
 {
     public class UpdateJobTaskProcessor :
         BaseDapperUowRequestProcess,
-        IRequestProcessor<UpdateJobTaskRequest, CommandResultContract>
+        IWriteRequestProcessor<UpdateJobTaskRequest>
     {
         private readonly IPatchEntityAdapter _patchEntityAdapter;
         private readonly ICommand<UpdateJobTask> _command;
@@ -37,20 +37,20 @@ namespace WaterPoint.Core.RequestProcessor.JobTasks
             _runner = runner;
         }
 
-        public CommandResultContract Process(UpdateJobTaskRequest input)
+        public CommandResult Process(UpdateJobTaskRequest input)
         {
             var result = UowProcess(ProcessDeFacto, input);
 
-            return new CommandResultContract(result, "job task", result > 0);
+            return new CommandResult(result, "job task", result > 0);
         }
 
         private int ProcessDeFacto(UpdateJobTaskRequest input)
         {
             var getJobTaskParam = new GetJobTask
             {
-                JobTaskId = input.Parameter.Id,
-                OrganizationId = input.Parameter.OrganizationId,
-                JobId = input.Parameter.JobId
+                JobTaskId = input.Id,
+                OrganizationId = input.OrganizationId,
+                JobId = input.JobId
             };
 
             _query.BuildQuery(getJobTaskParam);
