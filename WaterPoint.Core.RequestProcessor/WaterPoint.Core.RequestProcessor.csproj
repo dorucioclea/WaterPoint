@@ -93,10 +93,11 @@
     <Compile Include="Customers\ListCustomersProcessor.cs" />
     <Compile Include="Customers\UpdateCustomerProcessor.cs" />
     <Compile Include="Jobs\UpdateJobProcessor.cs" />
-    <Compile Include="Mappers\EntitiesToContracts\Class1.cs" />
+    <Compile Include="Mappers\EntitiesToContracts\QuoteTaskMapper.cs" />
     <Compile Include="Mappers\EntitiesToContracts\StaffMapper.cs" />
     <Compile Include="Privileges\ListUserPrivilegesProcessor.cs" />
     <Compile Include="QuoteCostItems\CreateQuoteCostItemProcessor.cs" />
+    <Compile Include="QuoteTasks\GetQuoteTaskProcessor.cs" />
     <Compile Include="QuoteTasks\CreateQuoteTaskProcessor.cs" />
     <Compile Include="Quotes\CreateQuoteProcessor.cs" />
     <Compile Include="QuoteTasks\ListQuoteTasksRequest.cs" />

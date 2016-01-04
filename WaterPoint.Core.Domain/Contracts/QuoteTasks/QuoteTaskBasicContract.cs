@@ -1,19 +1,39 @@
-﻿namespace WaterPoint.Core.Domain.Contracts.QuoteTasks
+﻿using System;
+
+namespace WaterPoint.Core.Domain.Contracts.QuoteTasks
 {
-    public class QuoteTaskBasicContract : IContract
+    public class QuoteTaskContract : IContract
     {
         public int Id { get; set; }
+
         public int QuoteId { get; set; }
+
         public int TaskDefinitionId { get; set; }
+
         public int? DisplayOrder { get; set; }
+
         public int EstimatedTimeInMinutes { get; set; }
-        public int? StartDate { get; set; }
-        public int? EndDate { get; set; }
-        public int? CompletedDate { get; set; }
-        public int IsBillable { get; set; }
-        public int IsCompleted { get; set; }
-        public int ShortDescription { get; set; }
+
+        public DateTime? StartDate { get; set; }
+
+        public DateTime? EndDate { get; set; }
+
+        public DateTime? CompletedDate { get; set; }
+
+        public decimal BaseRate { get; set; }
+
+        public decimal BillableRate { get; set; }
+
+        public bool IsBillable { get; set; }
+
+        public bool IsCompleted { get; set; }
+
+        public string ShortDescription { get; set; }
+
+        public string LongDescription { get; set; }
+
         public string Version { get; set; }
+
         public string Uid { get; set; }
     }
 }

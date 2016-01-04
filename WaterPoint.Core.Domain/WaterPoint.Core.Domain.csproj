@@ -57,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\QuoteTasks\QuoteTaskContract.cs" />
     <Compile Include="Contracts\QuoteTasks\QuoteTaskBasicContract.cs" />
     <Compile Include="Contracts\CostItems\CostItemContract.cs" />
     <Compile Include="Contracts\Credentials\ValidCredentialContract.cs" />
@@ -90,6 +91,7 @@
     <Compile Include="Payloads\JobTimesheet\WriteJobTimesheetPayload.cs" />
     <Compile Include="Payloads\JobCostItems\WriteJobCostItemPayload.cs" />
     <Compile Include="Payloads\QuoteCostItems\CreateQuoteCostItemPayload.cs" />
+    <Compile Include="Payloads\QuoteTasks\UpdateQuoteTaskPayload.cs" />
     <Compile Include="Payloads\QuoteTasks\CreateQuoteTaskPayload.cs" />
     <Compile Include="Payloads\Quotes\CreateQuotePayload.cs" />
     <Compile Include="QueryParameters\CostItems\CreateCostItem.cs" />
@@ -120,6 +122,8 @@
     <Compile Include="QueryParameters\JobTimesheet\UpdateJobTimesheet.cs" />
     <Compile Include="QueryParameters\Priviledges\ListUserPrivileges.cs" />
     <Compile Include="QueryParameters\QuoteCostItems\CreateQuoteCostItems.cs" />
+    <Compile Include="QueryParameters\QuoteTasks\UpdateQuoteTask.cs" />
+    <Compile Include="QueryParameters\QuoteTasks\GetQuoteTask.cs" />
     <Compile Include="QueryParameters\QuoteTasks\CreateQuoteTask.cs" />
     <Compile Include="QueryParameters\Quotes\CreateQuote.cs" />
     <Compile Include="QueryParameters\QuoteTasks\ListQuoteTasks.cs" />
@@ -165,6 +169,8 @@
     <Compile Include="Requests\OAuthClients\GetOAuthClientRequest.cs" />
     <Compile Include="Requests\Priviledges\ListUserPrivilegesRequest.cs" />
     <Compile Include="Requests\QuoteCostItems\CreateQuoteCostItemRequest.cs" />
+    <Compile Include="Requests\QuoteTasks\UpdateQuoteTaskRequest.cs" />
+    <Compile Include="Requests\QuoteTasks\GetQuoteTaskRequest.cs" />
     <Compile Include="Requests\QuoteTasks\CreateQuoteTaskRequest.cs" />
     <Compile Include="Requests\Quotes\CreateQuoteRequest.cs" />
     <Compile Include="Requests\QuoteTasks\ListQuoteTasksRequest.cs" />
