@@ -16,13 +16,13 @@ namespace WaterPoint.Api.CostItem.Controllers
     {
         private readonly IWriteRequestProcessor<CreateCostItemRequest> _createRequestProcessor;
         private readonly IRequestProcessor<GetCostItemRequest, CostItemContract> _getRequestProcessor;
-        private readonly IPaginatedProcessor<ListCostItemsRequest, CostItemContract> _listRequestProcessor;
+        private readonly IPagedProcessor<ListCostItemsRequest, CostItemContract> _listRequestProcessor;
         private readonly IWriteRequestProcessor<UpdateCostItemRequest> _updateRequestProcessor;
 
         public CostItemsController(
             IWriteRequestProcessor<CreateCostItemRequest> createRequestProcessor,
             IRequestProcessor<GetCostItemRequest, CostItemContract> getRequestProcessor,
-            IPaginatedProcessor<ListCostItemsRequest, CostItemContract> listRequestProcessor,
+            IPagedProcessor<ListCostItemsRequest, CostItemContract> listRequestProcessor,
             IWriteRequestProcessor<UpdateCostItemRequest> updateRequestProcessor)
         {
             _createRequestProcessor = createRequestProcessor;

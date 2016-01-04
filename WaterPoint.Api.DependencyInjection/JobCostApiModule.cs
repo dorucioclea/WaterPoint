@@ -41,8 +41,8 @@ namespace WaterPoint.Api.DependencyInjection
 
         public void BindQueryRunners()
         {
-            Bind<IListQueryRunner<ListJobCostItems, JobCostItemListPoco>>()
-                .To<ListQueryRunner<ListJobCostItems, JobCostItemListPoco>>();
+            Bind<IPagedQueryRunner<ListJobCostItems, JobCostItemListPoco>>()
+                .To<PagedQueryRunner<ListJobCostItems, JobCostItemListPoco>>();
             Bind<IQueryRunner<GetJobCostItem, JobCostItem>>().To<QueryRunner<GetJobCostItem, JobCostItem>>();
         }
 
@@ -65,7 +65,7 @@ namespace WaterPoint.Api.DependencyInjection
             Bind<IWriteRequestProcessor<CreateJobCostItemRequest>>()
                 .To<CreateJobCostItemProcessor>();
 
-            Bind<ISimplePaginatedProcessor<ListJobCostItemsRequest, JobCostItemBasicContract>>()
+            Bind<ISimplePagedProcessor<ListJobCostItemsRequest, JobCostItemBasicContract>>()
                 .To<ListJobCostItemsProcessor>();
 
             Bind<IRequestProcessor<GetJobCostItemRequest, JobCostItemContract>>()

@@ -1,11 +1,13 @@
-﻿namespace WaterPoint.Data.Entity.Pocos
+﻿using System.Collections.Generic;
+
+namespace WaterPoint.Data.Entity.Pocos
 {
-    public class PaginatedPoco<T> : PaginatedPoco
+    public class PagedPoco<T> : PagedPoco
     {
         public T Data { get; set; }
     }
 
-    public class PaginatedPoco : IDataEntity
+    public class PagedPoco : IDataEntity
     {
         public const string SplitOnColumn = "TotalCount";
         public int TotalCount { get; set; }

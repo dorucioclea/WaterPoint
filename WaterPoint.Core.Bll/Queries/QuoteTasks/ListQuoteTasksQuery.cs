@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WaterPoint.Core.Domain.QueryParameters.Shared;
+﻿using WaterPoint.Core.Domain.QueryParameters.QuoteTasks;
 using WaterPoint.Core.Domain.Db;
-using WaterPoint.Data.Entity.DataEntities;
+using WaterPoint.Data.Entity.Pocos.QuoteTasks;
 
-namespace WaterPoint.Core.Bll.Queries.CostItems
+namespace WaterPoint.Core.Bll.Queries.QuoteTasks
 {
-    public class ListCostItemsQuery : IQuery<PagedOrgId>
+    public class ListQuoteTasksQuery : IQuery<ListQuoteTasks>
     {
         private readonly ISqlBuilderFactory _sqlBuilderFactory;
 
@@ -19,37 +14,33 @@ namespace WaterPoint.Core.Bll.Queries.CostItems
                     ,[TotalCount]
                 FROM
                     {SqlPatterns.FromTable}
+                    JOIN dbo.[Quote] q ON qt.QuoteId = q.Id
                     CROSS APPLY(
                         SELECT COUNT(*) TotalCount
                         FROM
                             {SqlPatterns.FromTable}
                         WHERE
                             {SqlPatterns.Where}
+                            AND (q.OrganizationId = @organizationid)
                     )[Count]
                 WHERE
                     {SqlPatterns.Where}
-                ORDER BY {SqlPatterns.OrderBy}
+                    AND (q.OrganizationId = @organizationid)
+                ORDER BY 1 DESC
                 OFFSET @offset ROWS FETCH NEXT @pageSize ROWS ONLY  ";
 
-        public ListCostItemsQuery(ISqlBuilderFactory sqlBuilderFactory)
+        public ListQuoteTasksQuery(ISqlBuilderFactory sqlBuilderFactory)
         {
             _sqlBuilderFactory = sqlBuilderFactory;
         }
 
-        public void BuildQuery(PagedOrgId parameter)
+        public void BuildQuery(ListQuoteTasks parameter)
         {
             var builder = _sqlBuilderFactory.Create<SelectSqlBuilder>();
 
             builder.AddTemplate(_sqlTemplate);
-
-            builder.AddColumns<CostItem>();
-
-            builder.AddConditions<CostItem>(
-                i => i.OrganizationId == parameter.OrganizationId && i.IsDeleted == false);
-
-            builder.AddOrderBy<CostItem>(parameter.Sort, parameter.IsDesc);
-
-            builder.AddContains<CostItem>(parameter.SearchTerm);
+            builder.AddColumns<QuoteTaskBasicPoco>();
+            builder.AddConditions<QuoteTaskBasicPoco>(i => i.QuoteId == parameter.QuoteId);
 
             var sql = builder.GetSql();
 
@@ -59,8 +50,7 @@ namespace WaterPoint.Core.Bll.Queries.CostItems
             {
                 organizationId = parameter.OrganizationId,
                 offset = parameter.Offset,
-                pageSize = parameter.PageSize,
-                searchTerm = parameter.SearchTerm
+                pageSize = parameter.PageSize
             };
         }
 

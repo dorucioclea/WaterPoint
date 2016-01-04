@@ -95,7 +95,7 @@
     <Compile Include="Commands\JobTimesheet\UpdateJobTimesheetCommand.cs" />
     <Compile Include="Commands\JobTimesheet\CreateJobTimesheetCommand.cs" />
     <Compile Include="Commands\Quotes\CreateQuoteCommand.cs" />
-    <Compile Include="Commands\QuoteTasks\Class1.cs" />
+    <Compile Include="Commands\QuoteTasks\CreateQuoteTaskCommand.cs" />
     <Compile Include="Commands\TaskDefinitions\CreateTaskDefinitionCommand.cs" />
     <Compile Include="Commands\TaskDefinitions\UpdateTaskDefinitionCommand.cs" />
     <Compile Include="Queries\CostItems\ListCostItemQuery.cs" />
@@ -112,12 +112,13 @@
     <Compile Include="Queries\JobTimesheet\ListJobTimesheetQuery.cs" />
     <Compile Include="Queries\OAuthClients\GetOAuthClientQuery.cs" />
     <Compile Include="Queries\Privileges\ListUserPrivilegesQuery.cs" />
+    <Compile Include="Queries\QuoteTasks\ListQuoteTasksQuery.cs" />
     <Compile Include="Queries\Staff\GetStaffQuery.cs" />
     <Compile Include="Queries\TaskDefinitions\GetTaskDefinitionQuery.cs" />
     <Compile Include="Queries\TaskDefinitions\ListTaskDefinitionsQuery.cs" />
-    <Compile Include="QueryRunners\QueryCollectionRunner.cs" />
+    <Compile Include="QueryRunners\QueryListRunner.cs" />
     <Compile Include="QueryRunners\QueryRunner.cs" />
-    <Compile Include="QueryRunners\ListQueryRunner.cs" />
+    <Compile Include="QueryRunners\PagedQueryRunner.cs" />
     <Compile Include="Executors\UpdateCommandExecutor.cs" />
     <Compile Include="Executors\CreateCommandExecutor.cs" />
     <Compile Include="QueryRunners\IListQueryRunner.cs" />

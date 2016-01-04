@@ -38,8 +38,8 @@ namespace WaterPoint.Api.DependencyInjection
 
         public void BindQueryRunners()
         {
-            Bind<IListQueryRunner<ListJobTimesheet, JobTimesheetPoco>>()
-                .To<ListQueryRunner<ListJobTimesheet, JobTimesheetPoco>>();
+            Bind<IPagedQueryRunner<ListJobTimesheet, JobTimesheetPoco>>()
+                .To<PagedQueryRunner<ListJobTimesheet, JobTimesheetPoco>>();
 
             Bind<IQueryRunner<GetJobTimesheet, JobTimesheet>>()
                 .To<QueryRunner<GetJobTimesheet, JobTimesheet>>();
@@ -60,7 +60,7 @@ namespace WaterPoint.Api.DependencyInjection
             Bind<IWriteRequestProcessor<CreateJobTimesheetRequest>>()
                     .To<CreateJobTimesheetProcessor>();
 
-            Bind<ISimplePaginatedProcessor<ListJobTimesheetRequest, JobTimesheetBasicContract>>()
+            Bind<ISimplePagedProcessor<ListJobTimesheetRequest, JobTimesheetBasicContract>>()
                     .To<ListJobTimesheetProcessor>();
 
             Bind<IRequestProcessor<GetJobTimesheetRequest, JobTimesheetContract>>()

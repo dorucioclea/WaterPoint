@@ -1,8 +1,8 @@
 ﻿using WaterPoint.Core.Domain.Db;
 
-namespace WaterPoint.Core.Domain.QueryParameters.Jobs
+namespace WaterPoint.Core.Domain.QueryParameters.Shared
 {
-    public class PaginatedJobs : IPaginatedQueryParameter
+    public class PagedOrgId : IPagedQueryParameter
     {
         public int OrganizationId { get; set; }
         public int Offset { get; set; }
@@ -10,6 +10,5 @@ namespace WaterPoint.Core.Domain.QueryParameters.Jobs
         public string Sort { get; set; }
         public bool IsDesc { get; set; }
         public string SearchTerm { get; set; }
-        public string Status { get; set; }
     }
 }

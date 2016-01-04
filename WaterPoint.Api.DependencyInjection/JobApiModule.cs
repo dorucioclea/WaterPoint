@@ -29,14 +29,14 @@ namespace WaterPoint.Api.DependencyInjection
 
         private void BindQueries()
         {
-            Bind<IQuery<PaginatedJobs>>().To<ListJobsQuery>();
+            Bind<IQuery<PagedJobs>>().To<ListJobsQuery>();
             Bind<IQuery<GetJob>>().To<GetJobDetailsQuery>();
         }
 
         private void BindQueryRunners()
         {
-            Bind<IListQueryRunner<PaginatedJobs, JobWithCustomerAndStatusPoco>>()
-                .To<ListQueryRunner<PaginatedJobs, JobWithCustomerAndStatusPoco>>();
+            Bind<IPagedQueryRunner<PagedJobs, JobWithCustomerAndStatusPoco>>()
+                .To<PagedQueryRunner<PagedJobs, JobWithCustomerAndStatusPoco>>();
 
             Bind<IQueryRunner<GetJob, JobWithDetailsPoco>>()
                 .To<QueryRunner<GetJob, JobWithDetailsPoco>>();
@@ -60,7 +60,7 @@ namespace WaterPoint.Api.DependencyInjection
 
         private void BindRequestProcessors()
         {
-            Bind<IPaginatedProcessor<ListJobsRequest, JobWithCustomerContract>>()
+            Bind<IPagedProcessor<ListJobsRequest, JobWithCustomerContract>>()
                 .To<ListJobsProcessor>();
 
             Bind<IWriteRequestProcessor<CreateJobRequest>>()

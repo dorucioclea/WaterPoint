@@ -5,40 +5,41 @@ using System.Text;
 using System.Threading.Tasks;
 using WaterPoint.Core.Domain.Db;
 using WaterPoint.Data.DbContext.Dapper;
+using WaterPoint.Data.Entity;
 using WaterPoint.Data.Entity.Pocos;
 
 namespace WaterPoint.Core.Bll.QueryRunners
 {
-    public class ListQueryRunner<T, TOut> : IListQueryRunner<T, TOut>
+    public class PagedQueryRunner<T, TOut> : IPagedQueryRunner<T, TOut>
         where T : IQueryParameter
-        where TOut : new()
+        where TOut : IDataEntity, new()
     {
         private readonly IDapperDbContext _dapperDbContext;
 
-        public ListQueryRunner(IDapperDbContext dapperDbContext)
+        public PagedQueryRunner(IDapperDbContext dapperDbContext)
         {
             _dapperDbContext = dapperDbContext;
         }
 
-        public PaginatedPoco<IEnumerable<TOut>> Run(IQuery<T> query)
+        public PagedPoco<IEnumerable<TOut>> Run(IQuery<T> query)
         {
             var rawResults = query.IsStoredProcedure
-                    ? _dapperDbContext.ExecuteStoredProcedure<TOut, PaginatedPoco>(
+                    ? _dapperDbContext.ExecuteStoredProcedure<TOut, PagedPoco>(
                         query.Query,
-                        PaginatedPoco.SplitOnColumn,
+                        PagedPoco.SplitOnColumn,
                         query.Parameters).ToArray()
-                    : _dapperDbContext.List<TOut, PaginatedPoco>(
+                    : _dapperDbContext.List<TOut, PagedPoco>(
                         query.Query,
-                        PaginatedPoco.SplitOnColumn,
+                        PagedPoco.SplitOnColumn,
                         query.Parameters).ToArray();
 
             return (!rawResults.Any())
-                ? new PaginatedPoco<IEnumerable<TOut>>()
+                ? new PagedPoco<IEnumerable<TOut>>()
                 {
                     TotalCount = 0,
                     Data = new List<TOut>()
                 }
-                : new PaginatedPoco<IEnumerable<TOut>>
+                : new PagedPoco<IEnumerable<TOut>>
                 {
                     TotalCount = rawResults.First().Item2.TotalCount,
                     Data = rawResults.Select(i => i.Item1)

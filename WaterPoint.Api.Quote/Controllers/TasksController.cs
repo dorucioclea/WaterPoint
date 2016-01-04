@@ -8,9 +8,11 @@ using WaterPoint.Api.Common;
 using WaterPoint.Api.Common.BaseControllers;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts;
+using WaterPoint.Core.Domain.Contracts.QuoteTasks;
 using WaterPoint.Core.Domain.Payloads.Quotes;
 using WaterPoint.Core.Domain.RequestParameters;
 using WaterPoint.Core.Domain.Requests.Quotes;
+using WaterPoint.Core.Domain.Requests.QuoteTasks;
 
 namespace WaterPoint.Api.Quote.Controllers
 {
@@ -18,15 +20,15 @@ namespace WaterPoint.Api.Quote.Controllers
     public class TasksController : BaseOrgnizationContextController
     {
         private readonly IWriteRequestProcessor<CreateQuoteTaskRequest> _createProcessor;
+        private readonly ISimplePagedProcessor<ListQuoteTasksRequest, QuoteTaskBasicContract> _listQuoteTasksProcessor;
 
         public TasksController(
-            IWriteRequestProcessor<CreateQuoteTaskRequest> createProcessor
-            //,
-            //ISimplePaginatedProcessor<ListQuoteTasksRequest, QuoteListContract> listQuoteTasksProcessor
-            )
+            IWriteRequestProcessor<CreateQuoteTaskRequest> createProcessor,
+            ISimplePagedProcessor<ListQuoteTasksRequest, QuoteTaskBasicContract> listQuoteTasksProcessor)
 
         {
             _createProcessor = createProcessor;
+            _listQuoteTasksProcessor = listQuoteTasksProcessor;
         }
 
         [Route("customers/{customerId:int}/quotes/{quoteId:int}/tasks")]
@@ -39,9 +41,17 @@ namespace WaterPoint.Api.Quote.Controllers
 
             request.Payload = payload;
 
-            _createProcessor.Process(request);
+            var result = _createProcessor.Process(request);
 
-            return Ok(request);
+            return Ok(result);
+        }
+
+        [Route("customers/{customerId:int}/quotes/{quoteId:int}/tasks")]
+        public IHttpActionResult Get([FromUri]ListQuoteTasksRequest request)
+        {
+            var result = _listQuoteTasksProcessor.Process(request);
+
+            return Ok(result);
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace WaterPoint.Core.Domain.QueryParameters.JobTimesheet
 {
-    public class ListJobTimesheet : ISimplePaginatedQueryParameter
+    public class ListJobTimesheet : ISimplePagedQueryParameter
     {
         public int OrganizationId { get; set; }
         public int JobId { get; set; }

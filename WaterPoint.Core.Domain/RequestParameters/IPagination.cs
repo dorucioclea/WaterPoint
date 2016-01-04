@@ -1,11 +1,15 @@
 ﻿namespace WaterPoint.Core.Domain.RequestParameters
 {
-    public interface IPagination
+    public interface IPagination : ISimplePagination
     {
-        int? PageSize { get; set; }
-        int? PageNumber { get; set; }
         string Sort { get; set; }
         bool? IsDesc { get; set; }
         string SearchTerm { get; set; }
+    }
+
+    public interface ISimplePagination
+    {
+        int? PageSize { get; set; }
+        int? PageNumber { get; set; }
     }
 }

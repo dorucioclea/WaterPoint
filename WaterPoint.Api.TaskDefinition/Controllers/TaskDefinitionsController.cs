@@ -22,14 +22,14 @@ namespace WaterPoint.Api.TaskDefinition.Controllers
     [RoutePrefix(RouteDefinitions.TaskDefinition.Prefix)]
     public class TaskDefinitionsController : BaseOrgnizationContextController
     {
-        private readonly IPaginatedProcessor<ListWithOrgIdRequest, TaskDefinitionContract> _listTaskDefinitionequestProcessor;
+        private readonly IPagedProcessor<ListWithOrgIdRequest, TaskDefinitionContract> _listTaskDefinitionequestProcessor;
         private readonly IWriteRequestProcessor<CreateTaskDefinitionRequest> _createTaskDefinitionRequest;
         private readonly IWriteRequestProcessor<UpdateTaskDefinitionRequest> _updateRequestProcessor;
         private readonly IRequestProcessor<GetTaskDefinitionByIdRequest, TaskDefinitionContract> _getTaskDefinitionByIdProcessor;
 
 
         public TaskDefinitionsController(
-            IPaginatedProcessor<ListWithOrgIdRequest, TaskDefinitionContract> listTaskDefinitionequestProcessor,
+            IPagedProcessor<ListWithOrgIdRequest, TaskDefinitionContract> listTaskDefinitionequestProcessor,
             IWriteRequestProcessor<CreateTaskDefinitionRequest> createTaskDefinitionRequest,
             IWriteRequestProcessor<UpdateTaskDefinitionRequest> updateRequestProcessor,
             IRequestProcessor<GetTaskDefinitionByIdRequest, TaskDefinitionContract> getTaskDefinitionByIdProcessor

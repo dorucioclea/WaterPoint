@@ -10,6 +10,8 @@
     [CompletedDate] DATETIME2(0) NULL,
     [IsBillable] BIT NOT NULL DEFAULT(1),
     [IsCompleted] BIT NOT NULL DEFAULT(0),
+    [BaseRate] DECIMAL(10,3) NOT NULL DEFAULT(0),
+    [BillableRate] DECIMAL(10,3) NOT NULL DEFAULT(0),
     [ShortDescription] NVARCHAR (100) NULL,
     [LongDescription] NVARCHAR (MAX) NULL,
     [Version] ROWVERSION NOT NULL,

@@ -1,71 +1,42 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Utility;
+﻿using Utility;
 using WaterPoint.Api.Common;
-using WaterPoint.Core.Domain.QueryParameters;
 using WaterPoint.Core.Domain.QueryParameters.Customers;
 using WaterPoint.Core.Bll.QueryRunners;
-using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts.Jobs;
 using WaterPoint.Core.Domain.Db;
-
 using WaterPoint.Core.Domain.Requests.Customers;
 using WaterPoint.Core.RequestProcessor.Mappers.EntitiesToContracts;
 using WaterPoint.Data.DbContext.Dapper;
-using WaterPoint.Data.Entity.Pocos;
 using WaterPoint.Data.Entity.Pocos.Jobs;
 
 namespace WaterPoint.Core.RequestProcessor.Customers
 {
     public class ListCustomerJobsProcessor :
-        ISimplePaginatedProcessor<ListCustomerJobsRequest, JobWithStatusContract>
+        SimplePagedProcessor<ListCustomerJobsRequest, ListCustomerJobs, JobWithStatusPoco, JobWithStatusContract>
     {
-        private readonly IDapperUnitOfWork _dapperUnitOfWork;
-        private readonly PaginationQueryParameterConverter _paginationQueryParameterConverter;
-        private readonly IQuery<ListCustomerJobs> _paginatedcustomerJobsQuery;
-        private readonly IListQueryRunner<ListCustomerJobs, JobWithStatusPoco> _paginatedCustomerRunner;
-
         public ListCustomerJobsProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
-            PaginationQueryParameterConverter paginationQueryParameterConverter,
-            IQuery<ListCustomerJobs> paginatedcustomerJobsQuery,
-            IListQueryRunner<ListCustomerJobs, JobWithStatusPoco> paginatedCustomerRunner)
+            IQuery<ListCustomerJobs> listQuery,
+            IPagedQueryRunner<ListCustomerJobs, JobWithStatusPoco> listQueryRunner,
+            SimplePaginationParameterConverter converter)
+            :base(dapperUnitOfWork, listQuery, listQueryRunner, converter)
         {
-            _dapperUnitOfWork = dapperUnitOfWork;
-            _paginationQueryParameterConverter = paginationQueryParameterConverter;
-            _paginatedcustomerJobsQuery = paginatedcustomerJobsQuery;
-            _paginatedCustomerRunner = paginatedCustomerRunner;
         }
 
-        public JobWithStatusContract Map(JobWithStatusPoco source)
+        public override JobWithStatusContract Map(JobWithStatusPoco source)
         {
             return JobMapper.Map(source);
         }
 
-        public SimplePaginatedResult<JobWithStatusContract> Process(ListCustomerJobsRequest input)
+        public override ListCustomerJobs GetParameter(ListCustomerJobsRequest input)
         {
-            var parameter = _paginationQueryParameterConverter.Convert(input, "Id")
+            var parameter = Converter.Convert(input, "Id")
                 .MapTo(new ListCustomerJobs());
 
             parameter.OrganizationId = input.OrganizationId;
             parameter.CustomerId = input.CustomerId;
 
-            _paginatedcustomerJobsQuery.BuildQuery(parameter);
-
-            using (_dapperUnitOfWork.Begin())
-            {
-                var result = _paginatedCustomerRunner.Run(_paginatedcustomerJobsQuery);
-
-                return (result != null)
-                    ? new SimplePaginatedResult<JobWithStatusContract>
-                    {
-                        Data = result.Data.Select(Map),
-                        TotalCount = result.TotalCount,
-                        PageNumber = _paginationQueryParameterConverter.PageNumber,
-                        PageSize = _paginationQueryParameterConverter.PageSize
-                    }
-                    : null;
-            }
+            return parameter;
         }
     }
 }

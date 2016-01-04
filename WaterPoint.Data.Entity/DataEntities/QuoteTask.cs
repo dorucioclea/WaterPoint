@@ -8,7 +8,7 @@ using WaterPoint.Data.Entity.Attributes;
 namespace WaterPoint.Data.Entity.DataEntities
 {
     [Table("dbo", "QuoteTask", "qt")]
-    public class QuoteTask
+    public class QuoteTask : IDataEntity
     {
         [Primary]
         public int Id { get; set; }
@@ -26,6 +26,10 @@ namespace WaterPoint.Data.Entity.DataEntities
         public DateTime? EndDate { get; set; }
 
         public DateTime? CompletedDate { get; set; }
+
+        public decimal BaseRate { get; set; }
+
+        public decimal BillableRate { get; set; }
 
         public bool IsBillable { get; set; }
 

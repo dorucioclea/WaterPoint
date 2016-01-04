@@ -14,18 +14,18 @@ namespace WaterPoint.Core.Domain
         TOutput Process(TInput input);
     }
 
-    public interface ISimplePaginatedProcessor<in TInput, TOutput>
+    public interface ISimplePagedProcessor<in TInput, TOutput>
         where TInput : IRequest
         where TOutput : IContract
     {
-        SimplePaginatedResult<TOutput> Process(TInput input);
+        SimplePagedResult<TOutput> Process(TInput input);
     }
 
-    public interface IPaginatedProcessor<in TInput, TOutput>
+    public interface IPagedProcessor<in TInput, TOutput>
         where TInput : IRequest
         where TOutput : IContract
     {
-        PaginatedResult<TOutput> Process(TInput input);
+        PagedResult<TOutput> Process(TInput input);
     }
 
     public interface IListProcessor<in TInput, out TOutput>

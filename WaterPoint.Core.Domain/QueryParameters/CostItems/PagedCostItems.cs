@@ -1,8 +1,8 @@
 ﻿using WaterPoint.Core.Domain.Db;
 
-namespace WaterPoint.Core.Domain.QueryParameters.Shared
+namespace WaterPoint.Core.Domain.QueryParameters.CostItems
 {
-    public class PaginatedOrgId : IPaginatedQueryParameter
+    public class PagedCostItems : IPagedQueryParameter
     {
         public int OrganizationId { get; set; }
         public int Offset { get; set; }

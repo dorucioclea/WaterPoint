@@ -16,7 +16,7 @@ namespace WaterPoint.Core.Domain.Db
     {
     }
 
-    public interface IPaginatedQueryParameter : IQueryParameter
+    public interface IPagedQueryParameter : IQueryParameter
     {
         int Offset { get; set; }
         int PageSize { get; set; }
@@ -25,7 +25,7 @@ namespace WaterPoint.Core.Domain.Db
         string SearchTerm { get; set; }
     }
 
-    public interface ISimplePaginatedQueryParameter : IQueryParameter
+    public interface ISimplePagedQueryParameter : IQueryParameter
     {
         int Offset { get; set; }
         int PageSize { get; set; }

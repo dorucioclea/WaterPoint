@@ -32,14 +32,14 @@ namespace WaterPoint.Api.DependencyInjection
         {
             Bind<IQuery<GetCostItem>>().To<GetCostItemQuery>();
 
-            Bind<IQuery<PaginatedOrgId>>().To<ListCostItemsQuery>();
+            Bind<IQuery<PagedOrgId>>().To<ListCostItemsQuery>();
         }
 
         public void BindQueryRunners()
         {
             Bind<IQueryRunner<GetCostItem, CostItem>>().To<QueryRunner<GetCostItem, CostItem>>();
 
-            Bind<IListQueryRunner<PaginatedOrgId, CostItem>>().To<ListQueryRunner<PaginatedOrgId, CostItem>>();
+            Bind<IPagedQueryRunner<PagedOrgId, CostItem>>().To<PagedQueryRunner<PagedOrgId, CostItem>>();
         }
 
         public void BindCommands()
@@ -62,7 +62,7 @@ namespace WaterPoint.Api.DependencyInjection
             Bind<IRequestProcessor<GetCostItemRequest, CostItemContract>>()
                 .To<GetCostItemProcessor>();
 
-            Bind<IPaginatedProcessor<ListCostItemsRequest, CostItemContract>>()
+            Bind<IPagedProcessor<ListCostItemsRequest, CostItemContract>>()
                 .To<ListCostItemsProcessor>();
 
             Bind<IWriteRequestProcessor<UpdateCostItemRequest>>()

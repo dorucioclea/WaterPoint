@@ -93,7 +93,7 @@
     <Compile Include="Payloads\Quotes\CreateQuotePayload.cs" />
     <Compile Include="QueryParameters\CostItems\CreateCostItem.cs" />
     <Compile Include="QueryParameters\CostItems\GetCostItem.cs" />
-    <Compile Include="QueryParameters\CostItems\PaginatedCostItems.cs" />
+    <Compile Include="QueryParameters\CostItems\PagedCostItems.cs" />
     <Compile Include="QueryParameters\CostItems\UpdateCostItem.cs" />
     <Compile Include="QueryParameters\Credentials\GetAuthClient.cs" />
     <Compile Include="QueryParameters\Credentials\ListCredentials.cs" />
@@ -106,7 +106,7 @@
     <Compile Include="QueryParameters\JobCostItems\UpdateJobCostItem.cs" />
     <Compile Include="QueryParameters\Jobs\CreateJob.cs" />
     <Compile Include="QueryParameters\Jobs\GetJob.cs" />
-    <Compile Include="QueryParameters\Jobs\PaginatedJobs.cs" />
+    <Compile Include="QueryParameters\Jobs\PagedJobs.cs" />
     <Compile Include="QueryParameters\Jobs\UpdateJob.cs" />
     <Compile Include="QueryParameters\JobTasks\CreateJobTask.cs" />
     <Compile Include="QueryParameters\JobTasks\GetJobTask.cs" />
@@ -120,7 +120,8 @@
     <Compile Include="QueryParameters\Priviledges\ListUserPrivileges.cs" />
     <Compile Include="QueryParameters\Quotes\CreateQuoteTask.cs" />
     <Compile Include="QueryParameters\Quotes\CreateQuote.cs" />
-    <Compile Include="QueryParameters\Shared\PaginatedOrgId.cs" />
+    <Compile Include="QueryParameters\QuoteTasks\ListQuoteTasks.cs" />
+    <Compile Include="QueryParameters\Shared\PagedOrgId.cs" />
     <Compile Include="QueryParameters\Staff\GetStaff.cs" />
     <Compile Include="QueryParameters\TaskDefinitions\CreateTaskDefinition.cs" />
     <Compile Include="QueryParameters\TaskDefinitions\GetTaskDefinition.cs" />
@@ -163,7 +164,7 @@
     <Compile Include="Requests\Priviledges\ListUserPrivilegesRequest.cs" />
     <Compile Include="Requests\Quotes\CreateQuoteTaskRequest.cs" />
     <Compile Include="Requests\Quotes\CreateQuoteRequest.cs" />
-    <Compile Include="Requests\QuoteTasks\Class1.cs" />
+    <Compile Include="Requests\QuoteTasks\ListQuoteTasksRequest.cs" />
     <Compile Include="Requests\Staff\GetStaffRequest.cs" />
     <Compile Include="Requests\TaskDefinitions\CreateTaskDefinitionRequest.cs" />
     <Compile Include="Requests\TaskDefinitions\GetTaskDefinitionByIdRequest.cs" />
@@ -182,12 +183,12 @@
     <Compile Include="Db\ICommand.cs" />
     <Compile Include="Db\IQuery.cs" />
     <Compile Include="Db\IUnitOfWork.cs" />
-    <Compile Include="PaginatedResult.cs" />
+    <Compile Include="PagedResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="IRequestProcessor.cs" />
     <Compile Include="Requests\Shared\ListWithOrgIdRequest.cs" />
     <Compile Include="Payloads\Customers\WriteCustomerPayload.cs" />
-    <Compile Include="SimplePaginatedResult.cs" />
+    <Compile Include="SimplePagedResult.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WaterPoint.Data.Entity\WaterPoint.Data.Entity.csproj">

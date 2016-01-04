@@ -17,6 +17,10 @@ namespace WaterPoint.Core.Domain.QueryParameters.Quotes
 
         public int EstimatedTimeInMinutes { get; set; }
 
+        public decimal BaseRate { get; set; }
+
+        public decimal BillableRate { get; set; }
+
         public DateTime? StartDate { get; set; }
 
         public DateTime? EndDate { get; set; }

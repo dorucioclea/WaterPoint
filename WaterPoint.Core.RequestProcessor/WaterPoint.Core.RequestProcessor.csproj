@@ -93,11 +93,14 @@
     <Compile Include="Customers\ListCustomersProcessor.cs" />
     <Compile Include="Customers\UpdateCustomerProcessor.cs" />
     <Compile Include="Jobs\UpdateJobProcessor.cs" />
+    <Compile Include="Mappers\EntitiesToContracts\Class1.cs" />
     <Compile Include="Mappers\EntitiesToContracts\StaffMapper.cs" />
     <Compile Include="Privileges\ListUserPrivilegesProcessor.cs" />
     <Compile Include="Quotes\CreateQuoteTaskProcessor.cs" />
     <Compile Include="Quotes\CreateQuoteProcessor.cs" />
     <Compile Include="QuoteTasks\ListQuoteTasksRequest.cs" />
+    <Compile Include="SimplePagedProcessor.cs" />
+    <Compile Include="PagedProcessor.cs" />
     <Compile Include="Staff\GetStaffProcessor.cs" />
     <Compile Include="Timesheet\UpdateJobTimesheetProcessor.cs" />
     <Compile Include="Timesheet\GetJobTimesheetProcessor.cs" />
@@ -114,7 +117,6 @@
     <Compile Include="Mappers\EntitiesToContracts\OAuthClientMapper.cs" />
     <Compile Include="Mappers\EntitiesToContracts\TaskDefinitionMapper.cs" />
     <Compile Include="OAuthClients\GetOAuthClientProcessor.cs" />
-    <Compile Include="PaginatedEntitiesWithOrgIdProcessor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="JobTasks\CreateJobTaskProcessor.cs" />
     <Compile Include="JobTasks\GetJobTaskProcessor.cs" />

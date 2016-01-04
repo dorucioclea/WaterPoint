@@ -16,13 +16,13 @@ namespace WaterPoint.Api.Job.Controllers
     public class JobTimesheetController : BaseOrgnizationContextController
     {
         private readonly IWriteRequestProcessor<CreateJobTimesheetRequest> _createRequestProcessor;
-        private readonly ISimplePaginatedProcessor<ListJobTimesheetRequest, JobTimesheetBasicContract> _listoRequestProcessor;
+        private readonly ISimplePagedProcessor<ListJobTimesheetRequest, JobTimesheetBasicContract> _listoRequestProcessor;
         private readonly IRequestProcessor<GetJobTimesheetRequest, JobTimesheetContract> _getRequestProcessor;
         private readonly IWriteRequestProcessor<UpdateJobTimesheetRequest> _updateRequestProcessor;
 
         public JobTimesheetController(
             IWriteRequestProcessor<CreateJobTimesheetRequest> createRequestProcessor,
-            ISimplePaginatedProcessor<ListJobTimesheetRequest, JobTimesheetBasicContract> listoRequestProcessor,
+            ISimplePagedProcessor<ListJobTimesheetRequest, JobTimesheetBasicContract> listoRequestProcessor,
             IRequestProcessor<GetJobTimesheetRequest, JobTimesheetContract> getRequestProcessor,
             IWriteRequestProcessor<UpdateJobTimesheetRequest> updateRequestProcessor)
         {

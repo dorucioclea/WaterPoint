@@ -8,9 +8,11 @@ namespace WaterPoint.Api.Common
         {
             Bind<IPatchEntityAdapter>().To<PatchEntityAdapter>().InSingletonScope();
 
-            Bind<PaginationQueryParameterConverter>().ToSelf();
+            Bind<PaginationParameterConverter>().ToSelf();
 
             Bind<JobStatusQueryParameterConverter>().ToSelf();
+
+            Bind<SimplePaginationParameterConverter>().ToSelf();
         }
     }
 }

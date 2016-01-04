@@ -15,13 +15,13 @@ namespace WaterPoint.Api.Job.Controllers
     public class TasksController : BaseOrgnizationContextController
     {
         private readonly IWriteRequestProcessor<CreateJobTaskRequest> _createJobTaskRequest;
-        private readonly ISimplePaginatedProcessor<ListJobTasksRequest, JobTaskBasicContract> _listJobTaskequestProcessor;
+        private readonly ISimplePagedProcessor<ListJobTasksRequest, JobTaskBasicContract> _listJobTaskequestProcessor;
         private readonly IWriteRequestProcessor<UpdateJobTaskRequest> _updateRequestProcessor;
         private readonly IRequestProcessor<GetJobTaskByIdRequest, JobTaskContract> _getJobTaskByIdProcessor;
 
         public TasksController(
             IWriteRequestProcessor<CreateJobTaskRequest> createJobTaskRequest,
-            ISimplePaginatedProcessor<ListJobTasksRequest, JobTaskBasicContract> listJobTaskequestProcessor,
+            ISimplePagedProcessor<ListJobTasksRequest, JobTaskBasicContract> listJobTaskequestProcessor,
             IWriteRequestProcessor<UpdateJobTaskRequest> updateRequestProcessor,
             IRequestProcessor<GetJobTaskByIdRequest, JobTaskContract> getJobTaskByIdProcessor)
         {

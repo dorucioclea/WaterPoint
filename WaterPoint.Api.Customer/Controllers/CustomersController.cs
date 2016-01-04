@@ -16,14 +16,14 @@ namespace WaterPoint.Api.Customer.Controllers
     [RoutePrefix(RouteDefinitions.Customers.Prefix)]
     public class CustomersController : BaseOrgnizationContextController
     {
-        private readonly IPaginatedProcessor<ListCustomersRequest, CustomerContract> _listCustomerRequestProcessor;
+        private readonly IPagedProcessor<ListCustomersRequest, CustomerContract> _listCustomerRequestProcessor;
         private readonly IWriteRequestProcessor<CreateCustomerRequest> _createCustomerRequest;
         private readonly IWriteRequestProcessor<UpdateCustomerRequest> _updateRequestProcessor;
         private readonly IRequestProcessor<GetCustomerRequest, CustomerContract> _getCustomerByIdProcessor;
 
 
         public CustomersController(
-            IPaginatedProcessor<ListCustomersRequest, CustomerContract> listCustomerRequestProcessor,
+            IPagedProcessor<ListCustomersRequest, CustomerContract> listCustomerRequestProcessor,
             IWriteRequestProcessor<CreateCustomerRequest> createCustomerRequest,
             IWriteRequestProcessor<UpdateCustomerRequest> updateRequestProcessor,
             IRequestProcessor<GetCustomerRequest, CustomerContract> getCustomerByIdProcessor)

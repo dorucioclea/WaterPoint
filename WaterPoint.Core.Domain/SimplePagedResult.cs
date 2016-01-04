@@ -3,7 +3,7 @@ using WaterPoint.Core.Domain.Contracts;
 
 namespace WaterPoint.Core.Domain
 {
-    public class SimplePaginatedResult<T>
+    public class SimplePagedResult<T>
         where T : IContract
     {
         public int TotalPages

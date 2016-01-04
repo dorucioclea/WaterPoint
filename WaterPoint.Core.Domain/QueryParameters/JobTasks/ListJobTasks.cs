@@ -2,7 +2,7 @@
 
 namespace WaterPoint.Core.Domain.QueryParameters.JobTasks
 {
-    public class ListJobTasks : IPaginatedQueryParameter
+    public class ListJobTasks : IPagedQueryParameter
     {
         public int OrganizationId { get; set; }
         public int JobId { get; set; }

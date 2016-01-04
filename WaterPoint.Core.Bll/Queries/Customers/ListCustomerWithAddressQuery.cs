@@ -6,7 +6,7 @@
 
 //namespace WaterPoint.Core.Bll.Queries.Customers
 //{
-//    public class ListPaginatedCustomerWithAddressQuery : IQuery
+//    public class ListPagedCustomerWithAddressQuery : IQuery
 //    {
 //        private readonly ISqlBuilderFactory _sqlBuilderFactory;
 
@@ -29,7 +29,7 @@
 //                OFFSET @offset ROWS FETCH NEXT @fetch ROWS ONLY  ",
 //            SqlPatterns.Columns, SqlPatterns.FromTable, SqlPatterns.Where, SqlPatterns.OrderDesc);
 
-//        public ListPaginatedCustomerWithAddressQuery(ISqlBuilderFactory sqlBuilderFactory)
+//        public ListPagedCustomerWithAddressQuery(ISqlBuilderFactory sqlBuilderFactory)
 //        {
 //            _sqlBuilderFactory = sqlBuilderFactory;
 //        }
