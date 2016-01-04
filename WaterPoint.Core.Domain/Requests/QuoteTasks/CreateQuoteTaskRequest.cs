@@ -1,7 +1,6 @@
-﻿using WaterPoint.Core.Domain.Payloads.Quotes;
-using WaterPoint.Core.Domain.RequestParameters;
+﻿using WaterPoint.Core.Domain.Payloads.QuoteTasks;
 
-namespace WaterPoint.Core.Domain.Requests.Quotes
+namespace WaterPoint.Core.Domain.Requests.QuoteTasks
 {
     public class CreateQuoteTaskRequest : IRequest
     {

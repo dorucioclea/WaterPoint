@@ -89,7 +89,8 @@
     <Compile Include="Payloads\JobTasks\UpdateJobTaskPayload.cs" />
     <Compile Include="Payloads\JobTimesheet\WriteJobTimesheetPayload.cs" />
     <Compile Include="Payloads\JobCostItems\WriteJobCostItemPayload.cs" />
-    <Compile Include="Payloads\Quotes\CreateQuoteTaskPayload.cs" />
+    <Compile Include="Payloads\QuoteCostItems\CreateQuoteCostItemPayload.cs" />
+    <Compile Include="Payloads\QuoteTasks\CreateQuoteTaskPayload.cs" />
     <Compile Include="Payloads\Quotes\CreateQuotePayload.cs" />
     <Compile Include="QueryParameters\CostItems\CreateCostItem.cs" />
     <Compile Include="QueryParameters\CostItems\GetCostItem.cs" />
@@ -118,7 +119,8 @@
     <Compile Include="QueryParameters\JobTimesheet\CreateJobTimesheet.cs" />
     <Compile Include="QueryParameters\JobTimesheet\UpdateJobTimesheet.cs" />
     <Compile Include="QueryParameters\Priviledges\ListUserPrivileges.cs" />
-    <Compile Include="QueryParameters\Quotes\CreateQuoteTask.cs" />
+    <Compile Include="QueryParameters\QuoteCostItems\CreateQuoteCostItems.cs" />
+    <Compile Include="QueryParameters\QuoteTasks\CreateQuoteTask.cs" />
     <Compile Include="QueryParameters\Quotes\CreateQuote.cs" />
     <Compile Include="QueryParameters\QuoteTasks\ListQuoteTasks.cs" />
     <Compile Include="QueryParameters\Shared\PagedOrgId.cs" />
@@ -162,7 +164,8 @@
     <Compile Include="Requests\JobTimesheet\CreateJobTimesheetRequest.cs" />
     <Compile Include="Requests\OAuthClients\GetOAuthClientRequest.cs" />
     <Compile Include="Requests\Priviledges\ListUserPrivilegesRequest.cs" />
-    <Compile Include="Requests\Quotes\CreateQuoteTaskRequest.cs" />
+    <Compile Include="Requests\QuoteCostItems\CreateQuoteCostItemRequest.cs" />
+    <Compile Include="Requests\QuoteTasks\CreateQuoteTaskRequest.cs" />
     <Compile Include="Requests\Quotes\CreateQuoteRequest.cs" />
     <Compile Include="Requests\QuoteTasks\ListQuoteTasksRequest.cs" />
     <Compile Include="Requests\Staff\GetStaffRequest.cs" />

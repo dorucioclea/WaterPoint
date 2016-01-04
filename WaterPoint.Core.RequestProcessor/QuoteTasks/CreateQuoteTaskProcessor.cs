@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Utility;
+﻿using Utility;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts;
 using WaterPoint.Core.Domain.Db;
-using WaterPoint.Core.Domain.QueryParameters.Quotes;
-using WaterPoint.Core.Domain.Requests.Quotes;
+using WaterPoint.Core.Domain.QueryParameters.QuoteTasks;
+using WaterPoint.Core.Domain.Requests.QuoteTasks;
 using WaterPoint.Data.DbContext.Dapper;
 
-namespace WaterPoint.Core.RequestProcessor.Quotes
+namespace WaterPoint.Core.RequestProcessor.QuoteTasks
 {
     public class CreateQuoteTaskProcessor :
         BaseDapperUowRequestProcess,

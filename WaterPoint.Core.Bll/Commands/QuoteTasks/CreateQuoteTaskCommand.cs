@@ -1,6 +1,5 @@
-﻿using System;
-using WaterPoint.Core.Domain.Db;
-using WaterPoint.Core.Domain.QueryParameters.Quotes;
+﻿using WaterPoint.Core.Domain.Db;
+using WaterPoint.Core.Domain.QueryParameters.QuoteTasks;
 using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Core.Bll.Commands.QuoteTasks

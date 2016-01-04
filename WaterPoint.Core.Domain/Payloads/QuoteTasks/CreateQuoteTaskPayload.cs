@@ -1,21 +1,19 @@
 ﻿using System;
-using WaterPoint.Core.Domain.Db;
+using System.ComponentModel.DataAnnotations;
 
-namespace WaterPoint.Core.Domain.QueryParameters.Quotes
+namespace WaterPoint.Core.Domain.Payloads.QuoteTasks
 {
-    public class CreateQuoteTask : IQueryParameter
+    public class CreateQuoteTaskPayload
     {
-        public int OrganizationId { get; set; }
-
-        public int CustomerId { get; set; }
-
-        public int QuoteId { get; set; }
-
-        public int TaskDefinitionId { get; set; }
+        [Required]
+        public int? TaskDefinitionId { get; set; }
 
         public int? DisplayOrder { get; set; }
 
         public int EstimatedTimeInMinutes { get; set; }
+
+        [Required]
+        public string ShortDescription { get; set; }
 
         public decimal BaseRate { get; set; }
 
@@ -27,7 +25,8 @@ namespace WaterPoint.Core.Domain.QueryParameters.Quotes
 
         public DateTime? CompletedDate { get; set; }
 
-        public bool IsBillable { get; set; }
+        [Required]
+        public bool? IsBillable { get; set; }
 
         public bool IsCompleted { get; set; }
     }

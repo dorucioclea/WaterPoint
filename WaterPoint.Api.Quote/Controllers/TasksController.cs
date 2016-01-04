@@ -1,17 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
-using WaterPoint.Api.Common;
+﻿using System.Web.Http;
 using WaterPoint.Api.Common.BaseControllers;
 using WaterPoint.Core.Domain;
-using WaterPoint.Core.Domain.Contracts;
 using WaterPoint.Core.Domain.Contracts.QuoteTasks;
-using WaterPoint.Core.Domain.Payloads.Quotes;
-using WaterPoint.Core.Domain.RequestParameters;
-using WaterPoint.Core.Domain.Requests.Quotes;
+using WaterPoint.Core.Domain.Payloads.QuoteTasks;
 using WaterPoint.Core.Domain.Requests.QuoteTasks;
 
 namespace WaterPoint.Api.Quote.Controllers

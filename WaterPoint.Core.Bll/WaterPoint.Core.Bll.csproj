@@ -95,6 +95,7 @@
     <Compile Include="Commands\JobTimesheet\UpdateJobTimesheetCommand.cs" />
     <Compile Include="Commands\JobTimesheet\CreateJobTimesheetCommand.cs" />
     <Compile Include="Commands\Quotes\CreateQuoteCommand.cs" />
+    <Compile Include="Commands\QuoteCostItems\CreateQuoteCostItemCommand.cs" />
     <Compile Include="Commands\QuoteTasks\CreateQuoteTaskCommand.cs" />
     <Compile Include="Commands\TaskDefinitions\CreateTaskDefinitionCommand.cs" />
     <Compile Include="Commands\TaskDefinitions\UpdateTaskDefinitionCommand.cs" />
