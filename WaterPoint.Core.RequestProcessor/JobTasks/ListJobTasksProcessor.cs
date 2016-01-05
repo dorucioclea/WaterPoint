@@ -17,27 +17,14 @@ namespace WaterPoint.Core.RequestProcessor.JobTasks
         public ListJobTasksProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
             IQuery<ListJobTasks> listQuery,
-            IPagedQueryRunner<ListJobTasks, JobTaskBasicPoco> listQueryRunner,
-            SimplePaginationParameterConverter converter)
-            : base(dapperUnitOfWork, listQuery, listQueryRunner, converter)
+            IPagedQueryRunner<ListJobTasks, JobTaskBasicPoco> listQueryRunner)
+            : base(dapperUnitOfWork, listQuery, listQueryRunner)
         {
         }
 
         public override JobTaskBasicContract Map(JobTaskBasicPoco source)
         {
             return JobTaskMapper.Map(source);
-        }
-
-        public override ListJobTasks GetParameter(ListJobTasksRequest input)
-        {
-
-            var parameter = Converter.Convert(input, "Id")
-                .MapTo(new ListJobTasks());
-
-            parameter.OrganizationId = input.OrganizationId;
-            parameter.JobId = input.JobId;
-
-            return parameter;
         }
     }
 }

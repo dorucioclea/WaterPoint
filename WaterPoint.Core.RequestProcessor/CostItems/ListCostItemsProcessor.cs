@@ -19,25 +19,14 @@ namespace WaterPoint.Core.RequestProcessor.CostItems
         public ListCostItemsProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
             IQuery<PagedOrgId> query,
-            IPagedQueryRunner<PagedOrgId, CostItem> runner,
-            PaginationParameterConverter converter)
-            : base(dapperUnitOfWork, query, runner, converter)
+            IPagedQueryRunner<PagedOrgId, CostItem> runner)
+            : base(dapperUnitOfWork, query, runner)
         {
         }
 
         public override CostItemContract Map(CostItem source)
         {
             return CostItemMapper.Map(source);
-        }
-
-        public override PagedOrgId GetParameter(ListCostItemsRequest input)
-        {
-            var parameter = Converter.Convert(input, "Id")
-                .MapTo(new PagedOrgId());
-
-            parameter.OrganizationId = input.OrganizationId;
-
-            return parameter;
         }
     }
 }

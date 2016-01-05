@@ -13,7 +13,7 @@ namespace WaterPoint.Core.RequestProcessor
         IPagedProcessor<TRequest, TContract>
         where TContract : IContract
         where TRequest : IRequest
-        where TParameter : IQueryParameter
+        where TParameter : class, IPagedQueryParameter, new()
         where TDataEntity : IDataEntity, new()
     {
         private readonly IDapperUnitOfWork _dapperUnitOfWork;
@@ -23,20 +23,19 @@ namespace WaterPoint.Core.RequestProcessor
         protected PagedProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
             IQuery<TParameter> listQuery,
-            IPagedQueryRunner<TParameter, TDataEntity> listQueryRunner,
-            PaginationParameterConverter converter)
+            IPagedQueryRunner<TParameter, TDataEntity> listQueryRunner)
         {
             _dapperUnitOfWork = dapperUnitOfWork;
             _listQuery = listQuery;
             _listQueryRunner = listQueryRunner;
-            Converter = converter;
         }
-
-        public PaginationParameterConverter Converter { get; private set; }
 
         public abstract TContract Map(TDataEntity source);
 
-        public abstract TParameter GetParameter(TRequest input);
+        public virtual TParameter GetParameter(TRequest input)
+        {
+            return input == null ? null : input.ConvertToParameter<TParameter>();
+        }
 
         public virtual PagedResult<TContract> Process(TRequest input)
         {
@@ -52,10 +51,10 @@ namespace WaterPoint.Core.RequestProcessor
                 {
                     Data = result.Data.Select(Map),
                     TotalCount = result.TotalCount,
-                    PageNumber = Converter.PageNumber,
-                    PageSize = Converter.PageSize,
-                    Sort = Converter.Sort,
-                    IsDesc = Converter.IsDesc
+                    PageNumber = parameter.PageNumber,
+                    PageSize = parameter.PageSize,
+                    Sort = parameter.Sort,
+                    IsDesc = parameter.IsDesc
                 };
             }
         }

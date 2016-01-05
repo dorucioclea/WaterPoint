@@ -17,26 +17,14 @@ namespace WaterPoint.Core.RequestProcessor.JobCostItems
         public ListJobCostItemsProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
             IQuery<ListJobCostItems> listQuery,
-            IPagedQueryRunner<ListJobCostItems, JobCostItemListPoco> listQueryRunner,
-            SimplePaginationParameterConverter converter)
-            :base(dapperUnitOfWork, listQuery, listQueryRunner, converter)
+            IPagedQueryRunner<ListJobCostItems, JobCostItemListPoco> listQueryRunner)
+            : base(dapperUnitOfWork, listQuery, listQueryRunner)
         {
         }
 
         public override JobCostItemBasicContract Map(JobCostItemListPoco source)
         {
             return JobCostItemMapper.Map(source);
-        }
-
-        public override ListJobCostItems GetParameter(ListJobCostItemsRequest input)
-        {
-            var parameter = Converter.Convert(input, "Id")
-                .MapTo(new ListJobCostItems());
-
-            parameter.OrganizationId = input.OrganizationId;
-            parameter.JobId = input.JobId;
-
-            return parameter;
         }
     }
 }

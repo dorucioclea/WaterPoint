@@ -11,9 +11,9 @@ namespace Utility
         public static TOutput MapTo<TInput, TOutput>(this TInput source, TOutput output)
             where TInput : class
         {
-            var inputProperties = typeof(TInput).GetProperties();
+            var inputProperties = source.GetType().GetProperties();
 
-            var outputProperties = typeof(TOutput).GetProperties();
+            var outputProperties = output.GetType().GetProperties();
 
             foreach (var property in inputProperties)
             {

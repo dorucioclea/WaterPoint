@@ -6,7 +6,6 @@ namespace WaterPoint.Core.Domain.Requests.QuoteCostItems
     {
         public int OrganizationId { get; set; }
         public int QuoteId { get; set; }
-        public int CustomerId { get; set; }
         public CreateQuoteCostItemPayload Payload { get; set; }
     }
 }

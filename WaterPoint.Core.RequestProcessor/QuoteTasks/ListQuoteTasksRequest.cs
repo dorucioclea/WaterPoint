@@ -17,27 +17,14 @@ namespace WaterPoint.Core.RequestProcessor.QuoteTasks
         public ListQuoteTasksProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
             IQuery<ListQuoteTasks> listQuery,
-            IPagedQueryRunner<ListQuoteTasks, QuoteTaskBasicPoco> listRunner,
-            SimplePaginationParameterConverter converter)
-            :base(dapperUnitOfWork, listQuery, listRunner, converter)
+            IPagedQueryRunner<ListQuoteTasks, QuoteTaskBasicPoco> listRunner)
+            : base(dapperUnitOfWork, listQuery, listRunner)
         {
         }
 
         public override QuoteTaskBasicContract Map(QuoteTaskBasicPoco source)
         {
             return QuoteTaskMapper.Map(source);
-        }
-
-        public override ListQuoteTasks GetParameter(ListQuoteTasksRequest input)
-        {
-            var parameter = Converter.Convert(input, "Id")
-                .MapTo(new ListQuoteTasks());
-
-            parameter.OrganizationId = input.OrganizationId;
-
-            parameter.QuoteId = input.QuoteId;
-
-            return parameter;
         }
     }
 }

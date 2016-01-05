@@ -57,6 +57,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\QuoteCostItems\QuoteCostItemBasicContract.cs" />
+    <Compile Include="Contracts\QuoteCostItems\QuoteCostItemContract.cs" />
     <Compile Include="Contracts\QuoteTasks\QuoteTaskContract.cs" />
     <Compile Include="Contracts\QuoteTasks\QuoteTaskBasicContract.cs" />
     <Compile Include="Contracts\CostItems\CostItemContract.cs" />
@@ -90,6 +92,7 @@
     <Compile Include="Payloads\JobTasks\UpdateJobTaskPayload.cs" />
     <Compile Include="Payloads\JobTimesheet\WriteJobTimesheetPayload.cs" />
     <Compile Include="Payloads\JobCostItems\WriteJobCostItemPayload.cs" />
+    <Compile Include="Payloads\QuoteCostItems\UpdateQuoteCostItemPayload.cs" />
     <Compile Include="Payloads\QuoteCostItems\CreateQuoteCostItemPayload.cs" />
     <Compile Include="Payloads\QuoteTasks\UpdateQuoteTaskPayload.cs" />
     <Compile Include="Payloads\QuoteTasks\CreateQuoteTaskPayload.cs" />
@@ -121,6 +124,9 @@
     <Compile Include="QueryParameters\JobTimesheet\CreateJobTimesheet.cs" />
     <Compile Include="QueryParameters\JobTimesheet\UpdateJobTimesheet.cs" />
     <Compile Include="QueryParameters\Priviledges\ListUserPrivileges.cs" />
+    <Compile Include="QueryParameters\QuoteCostItems\UpdateQuoteCostItem.cs" />
+    <Compile Include="QueryParameters\QuoteCostItems\GetQuoteCostItem.cs" />
+    <Compile Include="QueryParameters\QuoteCostItems\ListQuoteCostItems.cs" />
     <Compile Include="QueryParameters\QuoteCostItems\CreateQuoteCostItems.cs" />
     <Compile Include="QueryParameters\QuoteTasks\UpdateQuoteTask.cs" />
     <Compile Include="QueryParameters\QuoteTasks\GetQuoteTask.cs" />
@@ -168,6 +174,9 @@
     <Compile Include="Requests\JobTimesheet\CreateJobTimesheetRequest.cs" />
     <Compile Include="Requests\OAuthClients\GetOAuthClientRequest.cs" />
     <Compile Include="Requests\Priviledges\ListUserPrivilegesRequest.cs" />
+    <Compile Include="Requests\QuoteCostItems\GetQuoteCostItemRequest.cs" />
+    <Compile Include="Requests\QuoteCostItems\Class2.cs" />
+    <Compile Include="Requests\QuoteCostItems\ListQuoteCostItemsRequest.cs" />
     <Compile Include="Requests\QuoteCostItems\CreateQuoteCostItemRequest.cs" />
     <Compile Include="Requests\QuoteTasks\UpdateQuoteTaskRequest.cs" />
     <Compile Include="Requests\QuoteTasks\GetQuoteTaskRequest.cs" />

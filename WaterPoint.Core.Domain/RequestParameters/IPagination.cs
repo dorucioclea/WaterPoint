@@ -7,7 +7,7 @@
         string SearchTerm { get; set; }
     }
 
-    public interface ISimplePagination
+    public interface ISimplePagination : IRequest
     {
         int? PageSize { get; set; }
         int? PageNumber { get; set; }

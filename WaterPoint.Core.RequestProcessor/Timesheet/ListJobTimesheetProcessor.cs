@@ -17,26 +17,14 @@ namespace WaterPoint.Core.RequestProcessor.Timesheet
         public ListJobTimesheetProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
             IQuery<ListJobTimesheet> listQuery,
-            IPagedQueryRunner<ListJobTimesheet, JobTimesheetPoco> listQueryRunner,
-            SimplePaginationParameterConverter converter)
-            : base(dapperUnitOfWork, listQuery, listQueryRunner, converter)
+            IPagedQueryRunner<ListJobTimesheet, JobTimesheetPoco> listQueryRunner)
+            : base(dapperUnitOfWork, listQuery, listQueryRunner)
         {
         }
 
         public override JobTimesheetBasicContract Map(JobTimesheetPoco source)
         {
             return JobTimesheetMapper.Map(source);
-        }
-
-        public override ListJobTimesheet GetParameter(ListJobTimesheetRequest input)
-        {
-            var parameter = Converter.Convert(input, "Id")
-                .MapTo(new ListJobTimesheet());
-
-            parameter.OrganizationId = input.OrganizationId;
-            parameter.JobId = input.JobId;
-
-            return parameter;
         }
     }
 }

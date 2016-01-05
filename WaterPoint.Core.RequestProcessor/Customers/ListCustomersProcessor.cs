@@ -17,26 +17,14 @@ namespace WaterPoint.Core.RequestProcessor.Customers
         public ListCustomersProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
             IQuery<ListCustomers> listQuery,
-            IPagedQueryRunner<ListCustomers, Customer> listQueryRunner,
-            PaginationParameterConverter converter)
-            : base(dapperUnitOfWork, listQuery, listQueryRunner, converter)
+            IPagedQueryRunner<ListCustomers, Customer> listQueryRunner)
+            : base(dapperUnitOfWork, listQuery, listQueryRunner)
         {
         }
 
         public override CustomerContract Map(Customer source)
         {
             return CustomerMapper.Map(source);
-        }
-
-        public override ListCustomers GetParameter(ListCustomersRequest input)
-        {
-            var parameter = Converter.Convert(input, "Id")
-                .MapTo(new ListCustomers());
-
-            parameter.OrganizationId = input.OrganizationId;
-            parameter.IsProspect = input.IsProspect;
-
-            return parameter;
         }
     }
 }

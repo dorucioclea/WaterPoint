@@ -187,7 +187,7 @@
     <Compile Include="SearchTermHelper.cs" />
     <Compile Include="JobStatusQueryParameterConverter.cs" />
     <Compile Include="OrganizationUserContext.cs" />
-    <Compile Include="PaginationQueryParameterConverter.cs" />
+    <Compile Include="RequestToParameterExtensions.cs" />
     <Compile Include="PatchEntityAdapter.cs" />
     <Compile Include="DeltaCamelCaseContractResolver.cs" />
     <Compile Include="CommonStartUp.cs" />

@@ -114,6 +114,8 @@
     <Compile Include="Queries\JobTimesheet\ListJobTimesheetQuery.cs" />
     <Compile Include="Queries\OAuthClients\GetOAuthClientQuery.cs" />
     <Compile Include="Queries\Privileges\ListUserPrivilegesQuery.cs" />
+    <Compile Include="Queries\QuoteCostItems\GetQuoteCostItemQuery.cs" />
+    <Compile Include="Queries\QuoteCostItems\ListQuoteCostItemsQuery.cs" />
     <Compile Include="Queries\QuoteTasks\GetQuoteTaskQuery.cs" />
     <Compile Include="Queries\QuoteTasks\ListQuoteTasksQuery.cs" />
     <Compile Include="Queries\Staff\GetStaffQuery.cs" />

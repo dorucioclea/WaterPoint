@@ -21,9 +21,8 @@ namespace WaterPoint.Core.RequestProcessor.TaskDefinitions
         public ListTaskDefinitionsProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
             IQuery<PagedOrgId> query,
-            IPagedQueryRunner<PagedOrgId, TaskDefinition> runner,
-            PaginationParameterConverter converter)
-            : base(dapperUnitOfWork, query, runner, converter)
+            IPagedQueryRunner<PagedOrgId, TaskDefinition> runner)
+            : base(dapperUnitOfWork, query, runner)
         {
         }
 
@@ -34,8 +33,9 @@ namespace WaterPoint.Core.RequestProcessor.TaskDefinitions
 
         public override PagedOrgId GetParameter(ListWithOrgIdRequest input)
         {
-            var parameter = Converter.Convert(input, "Id")
-                .MapTo(new PagedOrgId());
+            var parameter = new PagedOrgId();
+
+            parameter.ConvertToPagedParameter(input, "Id");
 
             parameter.OrganizationId = input.OrganizationId;
 

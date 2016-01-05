@@ -11,5 +11,6 @@ namespace WaterPoint.Core.Domain.QueryParameters.Customers
         public bool IsDesc { get; set; }
         public string SearchTerm { get; set; }
         public bool? IsProspect { get; set; }
+        public int PageNumber { get; set; }
     }
 }

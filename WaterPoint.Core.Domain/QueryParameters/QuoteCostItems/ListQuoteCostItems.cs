@@ -1,11 +1,11 @@
 ﻿using WaterPoint.Core.Domain.Db;
 
-namespace WaterPoint.Core.Domain.QueryParameters.JobTimesheet
+namespace WaterPoint.Core.Domain.QueryParameters.QuoteCostItems
 {
-    public class ListJobTimesheet : ISimplePagedQueryParameter
+    public class ListQuoteCostItems : ISimplePagedQueryParameter
     {
         public int OrganizationId { get; set; }
-        public int JobId { get; set; }
+        public int QuoteId { get; set; }
         public int Offset { get; set; }
         public int PageSize { get; set; }
         public int PageNumber { get; set; }
