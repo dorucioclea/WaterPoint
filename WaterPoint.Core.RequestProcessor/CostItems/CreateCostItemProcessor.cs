@@ -1,38 +1,23 @@
 ﻿using WaterPoint.Core.Domain.QueryParameters.CostItems;
-using WaterPoint.Core.Domain;
-using WaterPoint.Core.Domain.Contracts;
 using WaterPoint.Core.Domain.Db;
 using WaterPoint.Core.Domain.Requests.CostItems;
 using WaterPoint.Data.DbContext.Dapper;
 
 namespace WaterPoint.Core.RequestProcessor.CostItems
 {
-    public class CreateCostItemProcessor : BaseDapperUowRequestProcess,
-        IWriteRequestProcessor<CreateCostItemRequest>
+    public class CreateCostItemProcessor : BaseCreateProcessor<CreateCostItemRequest, CreateCostItem>
     {
-        private readonly ICommand<CreateCostItem> _command;
-        private readonly ICommandExecutor<CreateCostItem> _executor;
-
         public CreateCostItemProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
             ICommand<CreateCostItem> command,
             ICommandExecutor<CreateCostItem> executor)
-            : base(dapperUnitOfWork)
+            : base(dapperUnitOfWork, command, executor)
         {
-            _command = command;
-            _executor = executor;
         }
 
-        public CommandResult Process(CreateCostItemRequest input)
+        public override CreateCostItem BuildParameter(CreateCostItemRequest input)
         {
-            var result = UowProcess(ProcessDeFacto, input);
-
-            return new CommandResult(result, "cost item", result > 0);
-        }
-
-        private int ProcessDeFacto(CreateCostItemRequest input)
-        {
-            var parameter = new CreateCostItem
+            return new CreateCostItem
             {
                 OrganizationId = input.OrganizationId,
                 Code = input.Payload.Code,
@@ -43,10 +28,6 @@ namespace WaterPoint.Core.RequestProcessor.CostItems
                 UnitCost = input.Payload.UnitCost,
                 UnitPrice = input.Payload.UnitPrice
             };
-
-            _command.BuildQuery(parameter);
-
-            return _executor.Execute(_command);
         }
     }
 }

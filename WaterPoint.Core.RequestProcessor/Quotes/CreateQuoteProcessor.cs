@@ -14,30 +14,17 @@ using WaterPoint.Data.Entity.Enums;
 
 namespace WaterPoint.Core.RequestProcessor.Quotes
 {
-    public class CreateQuoteProcessor : BaseDapperUowRequestProcess,
-        IWriteRequestProcessor<CreateQuoteRequest>
+    public class CreateQuoteProcessor : BaseCreateProcessor<CreateQuoteRequest, CreateQuote>
     {
-        private readonly ICommand<CreateQuote> _command;
-        private readonly ICommandExecutor<CreateQuote> _executor;
-
         public CreateQuoteProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
             ICommand<CreateQuote> command,
             ICommandExecutor<CreateQuote> executor)
-            : base(dapperUnitOfWork)
+            : base(dapperUnitOfWork, command, executor)
         {
-            _command = command;
-            _executor = executor;
         }
 
-        public CommandResult Process(CreateQuoteRequest input)
-        {
-            var result = UowProcess(ProcessDeFacto, input);
-
-            return new CommandResult(result, "Quote", result > 0);
-        }
-
-        private static CreateQuote GetParameter(CreateQuoteRequest input)
+        public override CreateQuote BuildParameter(CreateQuoteRequest input)
         {
             var createQuote = input.Payload.MapTo(new CreateQuote());
 
@@ -48,15 +35,6 @@ namespace WaterPoint.Core.RequestProcessor.Quotes
             createQuote.CustomerId = input.CustomerId;
 
             return createQuote;
-        }
-
-        private int ProcessDeFacto(CreateQuoteRequest input)
-        {
-            var createQuote = GetParameter(input);
-
-            _command.BuildQuery(createQuote);
-
-            return _executor.Execute(_command);
         }
     }
 }

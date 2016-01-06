@@ -63,6 +63,7 @@
     <Compile Include="Attributes\StringValueAttribute.cs" />
     <Compile Include="Attributes\TableAttribute.cs" />
     <Compile Include="DataEntities\Address.cs" />
+    <Compile Include="DataEntities\Invoice.cs" />
     <Compile Include="DataEntities\QuoteCostItem.cs" />
     <Compile Include="DataEntities\QuoteTask.cs" />
     <Compile Include="DataEntities\Quote.cs" />
@@ -98,6 +99,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Pocos\Invoices\" />
     <Folder Include="Pocos\JobStatuses\" />
   </ItemGroup>
   <ItemGroup>

@@ -26,8 +26,6 @@ namespace WaterPoint.Api.DependencyInjection
             BindQueryRunners();
             BindCommands();
             BindCommandExecutors();
-
-            Bind<JobTimesheetAnalyzer>().ToSelf().InSingletonScope();
         }
 
         private void BindQueries()

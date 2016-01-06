@@ -10,17 +10,17 @@ namespace WaterPoint.Api.Common
         public static T ConvertToParameter<T>(this IRequest request)
             where T : IQueryParameter, new()
         {
-            var source = new T();
+            var result = new T();
 
-            request.MapTo(source);
+            request.MapTo(result);
 
-            if (source is ISimplePagedQueryParameter && request is ISimplePagination)
-                (source as ISimplePagedQueryParameter).ConvertToPagedParameter(((ISimplePagination)request), "Id");
+            if (result is ISimplePagedQueryParameter && request is ISimplePagination)
+                (result as ISimplePagedQueryParameter).ConvertToPagedParameter(((ISimplePagination)request), "Id");
 
-            if (source is IPagedQueryParameter && request is IPagination)
-                (source as IPagedQueryParameter).ConvertToPagedParameter(((IPagination)request), "Id");
+            if (result is IPagedQueryParameter && request is IPagination)
+                (result as IPagedQueryParameter).ConvertToPagedParameter(((IPagination)request), "Id");
 
-            return source;
+            return result;
         }
 
         public static void ConvertToPagedParameter(

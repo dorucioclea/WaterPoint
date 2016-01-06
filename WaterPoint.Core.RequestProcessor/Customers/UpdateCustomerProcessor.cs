@@ -51,7 +51,7 @@ namespace WaterPoint.Core.RequestProcessor.Customers
         {
             var result = UowProcess(ProcessDeFacto, input);
 
-            return new CommandResult(input.Id, "customer", result > 0);
+            return new CommandResult(input.Id, result > 0);
         }
 
         private int ProcessDeFacto(UpdateCustomerRequest input)

@@ -7,32 +7,17 @@ using WaterPoint.Data.DbContext.Dapper;
 
 namespace WaterPoint.Core.RequestProcessor.JobCostItems
 {
-    public class CreateJobCostItemProcessor : BaseDapperUowRequestProcess,
-        IWriteRequestProcessor<CreateJobCostItemRequest>
+    public class CreateJobCostItemProcessor : BaseCreateProcessor<CreateJobCostItemRequest, CreateJobCostItem>
     {
-        private readonly IDapperUnitOfWork _dapperUnitOfWork;
-        private readonly ICommand<CreateJobCostItem> _command;
-        private readonly ICommandExecutor<CreateJobCostItem> _executor;
-
         public CreateJobCostItemProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
             ICommand<CreateJobCostItem> command,
             ICommandExecutor<CreateJobCostItem> executor)
-            : base(dapperUnitOfWork)
+            : base(dapperUnitOfWork, command, executor)
         {
-            _dapperUnitOfWork = dapperUnitOfWork;
-            _command = command;
-            _executor = executor;
         }
 
-        public CommandResult Process(CreateJobCostItemRequest input)
-        {
-            var result = UowProcess(ProcessDeFacto, input);
-
-            return new CommandResult(result, "job cost item", result > 0);
-        }
-
-        public CreateJobCostItem AnalyzeParameter(CreateJobCostItemRequest input)
+        public override CreateJobCostItem BuildParameter(CreateJobCostItemRequest input)
         {
             return new CreateJobCostItem
             {
@@ -46,13 +31,6 @@ namespace WaterPoint.Core.RequestProcessor.JobCostItems
                 UnitCost = input.Payload.UnitCost.Value,
                 UnitPrice = input.Payload.UnitPrice.Value
             };
-        }
-
-        private int ProcessDeFacto(CreateJobCostItemRequest input)
-        {
-            _command.BuildQuery(AnalyzeParameter(input));
-
-            return _executor.Execute(_command);
         }
     }
 }

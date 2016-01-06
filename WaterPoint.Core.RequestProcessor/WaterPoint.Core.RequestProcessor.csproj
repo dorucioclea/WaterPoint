@@ -75,12 +75,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseDapperUowRequestProcess.cs" />
+    <Compile Include="BaseCreateProcessor.cs" />
     <Compile Include="CostItems\ListCostItemsProcessor.cs" />
     <Compile Include="CostItems\CreateCostItemProcessor.cs" />
     <Compile Include="CostItems\GetCostItemProcessor.cs" />
     <Compile Include="CostItems\UpdateCostItemProcessor.cs" />
     <Compile Include="Credentials\ListValidateCredentialProcessor.cs" />
     <Compile Include="Customers\ListCustomerJobsProcessor.cs" />
+    <Compile Include="Invoices\Class1.cs" />
     <Compile Include="JobCostItems\UpdateJobCostItemProcessor.cs" />
     <Compile Include="JobCostItems\GetJobCostItemProcessor.cs" />
     <Compile Include="JobCostItems\CreateJobCostItemProcessor.cs" />

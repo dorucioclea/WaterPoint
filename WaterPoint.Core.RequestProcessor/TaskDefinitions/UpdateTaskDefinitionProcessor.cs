@@ -40,7 +40,7 @@ namespace WaterPoint.Core.RequestProcessor.TaskDefinitions
         {
             var result = UowProcess(ProcessDeFacto, input);
 
-            return new CommandResult(result, "task definition", result > 0);
+            return new CommandResult(result, result > 0);
         }
 
         private int ProcessDeFacto(UpdateTaskDefinitionRequest input)

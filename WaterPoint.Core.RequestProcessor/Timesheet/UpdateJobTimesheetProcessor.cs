@@ -45,7 +45,7 @@ namespace WaterPoint.Core.RequestProcessor.Timesheet
         {
             var result = UowProcess(ProcessDeFacto, input);
 
-            return new CommandResult(result, "job timesheet", result > 0);
+            return new CommandResult(result, result > 0);
         }
 
         private int ProcessDeFacto(UpdateJobTimesheetRequest input)

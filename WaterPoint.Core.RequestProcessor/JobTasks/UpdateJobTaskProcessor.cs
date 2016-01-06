@@ -41,7 +41,7 @@ namespace WaterPoint.Core.RequestProcessor.JobTasks
         {
             var result = UowProcess(ProcessDeFacto, input);
 
-            return new CommandResult(result, "job task", result > 0);
+            return new CommandResult(result, result > 0);
         }
 
         private int ProcessDeFacto(UpdateJobTaskRequest input)

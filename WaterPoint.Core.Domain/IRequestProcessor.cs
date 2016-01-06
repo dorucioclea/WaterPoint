@@ -1,9 +1,14 @@
 ﻿using System.Collections.Generic;
 using WaterPoint.Core.Domain.Contracts;
+using WaterPoint.Core.Domain.Db;
 
 namespace WaterPoint.Core.Domain
 {
     public interface IRequest
+    {
+    }
+
+    public interface IWriteRequest
     {
     }
 

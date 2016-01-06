@@ -46,7 +46,7 @@ namespace WaterPoint.Core.RequestProcessor.JobCostItems
         {
             var result = UowProcess(ProcessDeFacto, input);
 
-            return new CommandResult(result, "job cost item", result > 0);
+            return new CommandResult(result, result > 0);
         }
 
         private int ProcessDeFacto(UpdateJobCostItemRequest input)

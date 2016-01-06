@@ -89,6 +89,7 @@
     <Compile Include="Db\ISqlBuilder.cs" />
     <Compile Include="Db\ISqlBuilderFactory.cs" />
     <Compile Include="Contracts\IContract.cs" />
+    <Compile Include="Payloads\Invoices\CreateInvoicePayload.cs" />
     <Compile Include="Payloads\JobTasks\UpdateJobTaskPayload.cs" />
     <Compile Include="Payloads\JobTimesheet\WriteJobTimesheetPayload.cs" />
     <Compile Include="Payloads\JobCostItems\WriteJobCostItemPayload.cs" />
@@ -108,6 +109,7 @@
     <Compile Include="QueryParameters\Customers\ListCustomerJobs.cs" />
     <Compile Include="QueryParameters\Customers\ListCustomers.cs" />
     <Compile Include="QueryParameters\Customers\UpdateCustomer.cs" />
+    <Compile Include="QueryParameters\Invoices\Class1.cs" />
     <Compile Include="QueryParameters\JobCostItems\CreateJobCostItem.cs" />
     <Compile Include="QueryParameters\JobCostItems\UpdateJobCostItem.cs" />
     <Compile Include="QueryParameters\Jobs\CreateJob.cs" />
@@ -155,7 +157,7 @@
     <Compile Include="Requests\Customers\UpdateCustomerRequest.cs" />
     <Compile Include="Requests\Customers\GetCustomerRequest.cs" />
     <Compile Include="Requests\Customers\CreateCustomerRequest.cs" />
-    <Compile Include="Requests\Invoices\Class1.cs" />
+    <Compile Include="Requests\Invoices\CreateInvoiceRequest.cs" />
     <Compile Include="Requests\JobCostItems\UpdateJobCostItemRequest.cs" />
     <Compile Include="Requests\JobCostItems\GetJobCostItemRequest.cs" />
     <Compile Include="Requests\JobCostItems\ListJobCostItemsRequest.cs" />

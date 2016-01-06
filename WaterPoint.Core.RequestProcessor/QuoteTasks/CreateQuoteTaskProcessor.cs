@@ -1,6 +1,4 @@
 ﻿using Utility;
-using WaterPoint.Core.Domain;
-using WaterPoint.Core.Domain.Contracts;
 using WaterPoint.Core.Domain.Db;
 using WaterPoint.Core.Domain.QueryParameters.QuoteTasks;
 using WaterPoint.Core.Domain.Requests.QuoteTasks;
@@ -8,46 +6,23 @@ using WaterPoint.Data.DbContext.Dapper;
 
 namespace WaterPoint.Core.RequestProcessor.QuoteTasks
 {
-    public class CreateQuoteTaskProcessor :
-        BaseDapperUowRequestProcess,
-        IWriteRequestProcessor<CreateQuoteTaskRequest>
+    public class CreateQuoteTaskProcessor : BaseCreateProcessor<CreateQuoteTaskRequest, CreateQuoteTask>
     {
-        private readonly ICommand<CreateQuoteTask> _command;
-        private readonly ICommandExecutor<CreateQuoteTask> _executor;
-
         public CreateQuoteTaskProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
             ICommand<CreateQuoteTask> command,
             ICommandExecutor<CreateQuoteTask> executor)
-            : base(dapperUnitOfWork)
+            : base(dapperUnitOfWork, command, executor)
         {
-            _command = command;
-            _executor = executor;
         }
 
-        public CommandResult Process(CreateQuoteTaskRequest input)
-        {
-            var result = UowProcess(ProcessDeFacto, input);
-
-            return new CommandResult(result, "Quote task", result > 0);
-        }
-
-        private static CreateQuoteTask GetParameter(CreateQuoteTaskRequest input)
+        public override CreateQuoteTask BuildParameter(CreateQuoteTaskRequest input)
         {
             var createQuoteTask = input.MapTo(new CreateQuoteTask());
 
             input.Payload.MapTo(createQuoteTask);
 
             return createQuoteTask;
-        }
-
-        private int ProcessDeFacto(CreateQuoteTaskRequest input)
-        {
-            var createQuote = GetParameter(input);
-
-            _command.BuildQuery(createQuote);
-
-            return _executor.Execute(_command);
         }
     }
 }
