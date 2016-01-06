@@ -2,7 +2,7 @@
 
 namespace WaterPoint.Core.Domain.Requests.Customers
 {
-    public class ListCustomersRequest : IRequest, IOrgId, IPagination
+    public class ListCustomersRequest : IOrgId, IPaginationRequest
     {
         public int OrganizationId { get; set; }
         public bool? IsProspect { get; set; }

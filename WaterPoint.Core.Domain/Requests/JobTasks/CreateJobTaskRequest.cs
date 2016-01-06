@@ -1,9 +1,8 @@
 ﻿using WaterPoint.Core.Domain.Payloads.JobTasks;
-using WaterPoint.Core.Domain.RequestParameters;
 
 namespace WaterPoint.Core.Domain.Requests.JobTasks
 {
-    public class CreateJobTaskRequest : IRequest
+    public class CreateJobTaskRequest : ICreateRequest<CreateJobTaskPayload>
     {
         public int OrganizationId { get; set; }
         public int JobId { get; set; }

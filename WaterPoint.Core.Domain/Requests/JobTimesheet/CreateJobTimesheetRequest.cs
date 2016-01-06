@@ -1,9 +1,8 @@
 ﻿using WaterPoint.Core.Domain.Payloads.JobTimesheet;
-using WaterPoint.Core.Domain.RequestParameters;
 
 namespace WaterPoint.Core.Domain.Requests.JobTimesheet
 {
-    public class CreateJobTimesheetRequest : IRequest
+    public class CreateJobTimesheetRequest : ICreateRequest<WriteJobTimesheetPayload>
     {
         public int OrganizationId { get; set; }
 

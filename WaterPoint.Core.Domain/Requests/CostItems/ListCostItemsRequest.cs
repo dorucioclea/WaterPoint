@@ -2,7 +2,7 @@
 
 namespace WaterPoint.Core.Domain.Requests.CostItems
 {
-    public class ListCostItemsRequest : IRequest, IPagination, IOrgId
+    public class ListCostItemsRequest : IPaginationRequest, IOrgId
     {
         public int? PageSize { get; set; }
         public int? PageNumber { get; set; }

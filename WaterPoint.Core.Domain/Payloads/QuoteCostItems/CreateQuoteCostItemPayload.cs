@@ -2,7 +2,7 @@
 
 namespace WaterPoint.Core.Domain.Payloads.QuoteCostItems
 {
-    public class CreateQuoteCostItemPayload
+    public class CreateQuoteCostItemPayload : IPayload
     {
         [Required]
         public int? CostItemId { get; set; }

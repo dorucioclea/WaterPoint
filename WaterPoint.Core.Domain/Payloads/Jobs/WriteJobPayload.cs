@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace WaterPoint.Core.Domain.Payloads.Jobs
 {
-    public class WriteJobPayload
+    public class WriteJobPayload : IPayload
     {
         [Required]
         public int? JobStatusId { get; set; }

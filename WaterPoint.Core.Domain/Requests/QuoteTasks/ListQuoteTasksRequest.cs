@@ -2,7 +2,7 @@
 
 namespace WaterPoint.Core.Domain.Requests.QuoteTasks
 {
-    public class ListQuoteTasksRequest : IRequest, ISimplePagination
+    public class ListQuoteTasksRequest : ISimplePagedRequest
     {
         public int QuoteId { get; set; }
         public int OrganizationId { get; set; }

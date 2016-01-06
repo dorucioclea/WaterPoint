@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Web.Http.OData;
 using WaterPoint.Core.Domain.Contracts;
 using WaterPoint.Core.Domain.Db;
 
@@ -8,8 +9,21 @@ namespace WaterPoint.Core.Domain
     {
     }
 
-    public interface IWriteRequest
+    public interface ICreateRequest<T> : IRequest
+        where T : IPayload
     {
+        T Payload { get; set; }
+    }
+
+    public interface IUpdateRequest<T> : IRequest
+        where T : class, IPayload
+    {
+        Delta<T> Payload { get; set; }
+    }
+
+    public interface IPayload
+    {
+
     }
 
     public interface IRequestProcessor<in TInput, out TOutput>

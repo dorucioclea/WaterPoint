@@ -3,7 +3,7 @@ using WaterPoint.Core.Domain.Payloads.TaskDefinitions;
 
 namespace WaterPoint.Core.Domain.Requests.TaskDefinitions
 {
-    public class UpdateTaskDefinitionRequest : IRequest
+    public class UpdateTaskDefinitionRequest : IUpdateRequest<WriteTaskDefinitionPayload>
     {
         public int OrganizationId { get; set; }
         public int Id { get; set; }

@@ -4,7 +4,7 @@ using WaterPoint.Core.Domain.RequestParameters;
 
 namespace WaterPoint.Core.Domain.Requests.CostItems
 {
-    public class UpdateCostItemRequest : IRequest, IOrgEntity
+    public class UpdateCostItemRequest : IUpdateRequest<WriteCostItemPayload>, IOrgEntity
     {
         public Delta<WriteCostItemPayload> Payload { get; set; }
         public int OrganizationUserId { get; set; }

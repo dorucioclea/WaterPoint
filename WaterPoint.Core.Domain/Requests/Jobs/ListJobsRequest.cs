@@ -2,7 +2,7 @@
 
 namespace WaterPoint.Core.Domain.Requests.Jobs
 {
-    public class ListJobsRequest : IRequest, IPagination
+    public class ListJobsRequest : IPaginationRequest
     {
         //[RegularExpression(@"\b^((?i)inprogress|cancelled|planned|deleted|onhold|completed?(?-i))$\b")]
         public string Status { get; set; }

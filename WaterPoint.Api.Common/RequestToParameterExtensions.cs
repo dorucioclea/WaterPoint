@@ -14,17 +14,17 @@ namespace WaterPoint.Api.Common
 
             request.MapTo(result);
 
-            if (result is ISimplePagedQueryParameter && request is ISimplePagination)
-                (result as ISimplePagedQueryParameter).ConvertToPagedParameter(((ISimplePagination)request), "Id");
+            if (result is ISimplePagedQueryParameter && request is ISimplePagedRequest)
+                (result as ISimplePagedQueryParameter).ConvertToPagedParameter(((ISimplePagedRequest)request), "Id");
 
-            if (result is IPagedQueryParameter && request is IPagination)
-                (result as IPagedQueryParameter).ConvertToPagedParameter(((IPagination)request), "Id");
+            if (result is IPagedQueryParameter && request is IPaginationRequest)
+                (result as IPagedQueryParameter).ConvertToPagedParameter(((IPaginationRequest)request), "Id");
 
             return result;
         }
 
         public static void ConvertToPagedParameter(
-            this ISimplePagedQueryParameter source, ISimplePagination request, string defaultSort)
+            this ISimplePagedQueryParameter source, ISimplePagedRequest request, string defaultSort)
         {
             if (source == null)
                 return;
@@ -39,7 +39,7 @@ namespace WaterPoint.Api.Common
         }
 
         public static void ConvertToPagedParameter(
-            this IPagedQueryParameter source, IPagination request, string defaultSort)
+            this IPagedQueryParameter source, IPaginationRequest request, string defaultSort)
         {
             if (source == null)
                 return;

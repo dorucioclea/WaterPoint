@@ -2,7 +2,7 @@
 
 namespace WaterPoint.Core.Domain.Requests.Quotes
 {
-    public class CreateQuoteRequest : IRequest
+    public class CreateQuoteRequest : ICreateRequest<CreateQuotePayload>
     {
         public int OrganizationId { get; set; }
         public int CustomerId { get; set; }

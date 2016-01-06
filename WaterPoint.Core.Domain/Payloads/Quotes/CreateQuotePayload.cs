@@ -2,7 +2,7 @@
 
 namespace WaterPoint.Core.Domain.Payloads.Quotes
 {
-    public class CreateQuotePayload
+    public class CreateQuotePayload : IPayload
     {
         public int? JobId { get; set; }
         public int? ContactId { get; set; }

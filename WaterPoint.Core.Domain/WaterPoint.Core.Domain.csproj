@@ -177,7 +177,7 @@
     <Compile Include="Requests\OAuthClients\GetOAuthClientRequest.cs" />
     <Compile Include="Requests\Priviledges\ListUserPrivilegesRequest.cs" />
     <Compile Include="Requests\QuoteCostItems\GetQuoteCostItemRequest.cs" />
-    <Compile Include="Requests\QuoteCostItems\Class2.cs" />
+    <Compile Include="Requests\QuoteCostItems\UpdateQuoteCostItemRequest.cs" />
     <Compile Include="Requests\QuoteCostItems\ListQuoteCostItemsRequest.cs" />
     <Compile Include="Requests\QuoteCostItems\CreateQuoteCostItemRequest.cs" />
     <Compile Include="Requests\QuoteTasks\UpdateQuoteTaskRequest.cs" />

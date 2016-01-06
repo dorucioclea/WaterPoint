@@ -82,7 +82,7 @@
     <Compile Include="CostItems\UpdateCostItemProcessor.cs" />
     <Compile Include="Credentials\ListValidateCredentialProcessor.cs" />
     <Compile Include="Customers\ListCustomerJobsProcessor.cs" />
-    <Compile Include="Invoices\Class1.cs" />
+    <Compile Include="Invoices\CreateInvoiceProcessor.cs" />
     <Compile Include="JobCostItems\UpdateJobCostItemProcessor.cs" />
     <Compile Include="JobCostItems\GetJobCostItemProcessor.cs" />
     <Compile Include="JobCostItems\CreateJobCostItemProcessor.cs" />
@@ -134,6 +134,7 @@
     <Compile Include="TaskDefinitions\GetTaskDefinitionByIdProcessor.cs" />
     <Compile Include="TaskDefinitions\ListTaskDefinitionsProcessor.cs" />
     <Compile Include="TaskDefinitions\UpdateTaskDefinitionProcessor.cs" />
+    <Compile Include="BaseUpdateProcessor.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WaterPoint.Api.Common\WaterPoint.Api.Common.csproj">

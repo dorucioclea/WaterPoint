@@ -2,7 +2,7 @@
 
 namespace WaterPoint.Core.Domain.Requests.JobCostItems
 {
-    public class ListJobCostItemsRequest : IRequest, IPagination
+    public class ListJobCostItemsRequest : IPaginationRequest
     {
         public int OrganizationId { get; set; }
         public int JobId { get; set; }

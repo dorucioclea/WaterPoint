@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace WaterPoint.Core.Domain.Payloads.Customers
 {
-    public class WriteCustomerPayload
+    public class WriteCustomerPayload : IPayload
     {
         public int? CustomerTypeId { get; set; }
 

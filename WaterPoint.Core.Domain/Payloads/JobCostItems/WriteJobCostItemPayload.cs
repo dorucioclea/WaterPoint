@@ -2,7 +2,7 @@
 
 namespace WaterPoint.Core.Domain.Payloads.JobCostItems
 {
-    public class WriteJobCostItemPayload
+    public class WriteJobCostItemPayload : IPayload
     {
         [Range(1, int.MaxValue)]
         public int? CostItemId { get; set; }

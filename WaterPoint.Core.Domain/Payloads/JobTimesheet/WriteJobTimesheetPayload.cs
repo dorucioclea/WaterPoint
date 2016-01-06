@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace WaterPoint.Core.Domain.Payloads.JobTimesheet
 {
-    public class WriteJobTimesheetPayload
+    public class WriteJobTimesheetPayload : IPayload
     {
         [Required]
         public int? StaffId { get; set; }

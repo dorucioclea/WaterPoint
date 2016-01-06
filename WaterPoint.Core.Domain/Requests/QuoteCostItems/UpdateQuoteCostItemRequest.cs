@@ -3,7 +3,7 @@ using WaterPoint.Core.Domain.Payloads.QuoteCostItems;
 
 namespace WaterPoint.Core.Domain.Requests.QuoteCostItems
 {
-    public class UpdateQuoteCostItemRequest : IRequest
+    public class UpdateQuoteCostItemRequest : IUpdateRequest<UpdateQuoteCostItemPayload>
     {
         public int OrganizationId { get; set; }
         public int QuoteId { get; set; }

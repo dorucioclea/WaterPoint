@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace WaterPoint.Core.Domain.Payloads.QuoteTasks
 {
-    public class UpdateQuoteTaskPayload
+    public class UpdateQuoteTaskPayload : IPayload
     {
         [Required]
         public int? TaskDefinitionId { get; set; }

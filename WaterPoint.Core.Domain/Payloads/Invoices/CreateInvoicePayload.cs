@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace WaterPoint.Core.Domain.Payloads.Invoices
 {
-    public class CreateInvoicePayload
+    public class CreateInvoicePayload : IPayload
     {
         [Required]
         public int InvoiceTypeId { get; set; }

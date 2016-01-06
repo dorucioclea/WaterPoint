@@ -2,7 +2,7 @@
 
 namespace WaterPoint.Core.Domain.Requests.Customers
 {
-    public class ListCustomerJobsRequest : IRequest, IPagination
+    public class ListCustomerJobsRequest : IPaginationRequest
     {
         public int OrganizationId { get; set; }
         public int CustomerId { get; set; }

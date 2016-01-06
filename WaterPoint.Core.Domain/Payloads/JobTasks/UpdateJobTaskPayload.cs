@@ -4,7 +4,7 @@ using WaterPoint.Data.Entity.Attributes;
 
 namespace WaterPoint.Core.Domain.Payloads.JobTasks
 {
-    public class UpdateJobTaskPayload
+    public class UpdateJobTaskPayload : IPayload
     {
         public int? DisplayOrder { get; set; }
 

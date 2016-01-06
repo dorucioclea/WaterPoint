@@ -2,7 +2,7 @@
 
 namespace WaterPoint.Core.Domain.Requests.TaskDefinitions
 {
-    public class CreateTaskDefinitionRequest : IRequest
+    public class CreateTaskDefinitionRequest : ICreateRequest<WriteTaskDefinitionPayload>
     {
         public int OrganizationId { get; set; }
         public WriteTaskDefinitionPayload Payload { get; set; }

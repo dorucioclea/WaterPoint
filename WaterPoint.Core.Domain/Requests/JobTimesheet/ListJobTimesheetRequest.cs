@@ -2,7 +2,7 @@
 
 namespace WaterPoint.Core.Domain.Requests.JobTimesheet
 {
-    public class ListJobTimesheetRequest : IRequest, IPagination
+    public class ListJobTimesheetRequest : IPaginationRequest
     {
         public int OrganizationId { get; set; }
 

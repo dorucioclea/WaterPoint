@@ -2,7 +2,7 @@
 
 namespace WaterPoint.Core.Domain.Requests.Shared
 {
-    public class ListWithOrgIdRequest : IRequest, IPagination
+    public class ListWithOrgIdRequest : IPaginationRequest
     {
         public int OrganizationId { get; set; }
         public int? PageSize { get; set; }
