@@ -98,6 +98,7 @@
     <Compile Include="Pocos\InvoiceJobCostItems\InvoiceJobCostItemBasicPoco.cs" />
     <Compile Include="Pocos\QuoteCostItems\QuoteCostItemBasicPoco.cs" />
     <Compile Include="Pocos\InvoiceJobTasks\InvoiceJobTaskBasicPoco.cs" />
+    <Compile Include="Pocos\Quotes\QuoteBasicPoco.cs" />
     <Compile Include="Pocos\QuoteTasks\QuoteTaskBasicPoco.cs" />
     <Compile Include="Pocos\Views\ValidCredential.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
