@@ -97,7 +97,8 @@
     <Compile Include="Jobs\UpdateJobProcessor.cs" />
     <Compile Include="Mappers\EntitiesToContracts\InvoiceJobCostItemMapper.cs" />
     <Compile Include="Mappers\EntitiesToContracts\QuoteCostItemMapper.cs" />
-    <Compile Include="Mappers\EntitiesToContracts\QuoteTaskMapper - Copy.cs" />
+    <Compile Include="Mappers\EntitiesToContracts\InvoiceJobTaskMapper.cs" />
+    <Compile Include="Mappers\EntitiesToContracts\QuoteMapper.cs" />
     <Compile Include="Mappers\EntitiesToContracts\QuoteTaskMapper.cs" />
     <Compile Include="Mappers\EntitiesToContracts\StaffMapper.cs" />
     <Compile Include="Privileges\ListUserPrivilegesProcessor.cs" />
@@ -112,10 +113,14 @@
     <Compile Include="InvoiceJobTasks\CreateInvoiceJobTaskProcessor.cs" />
     <Compile Include="InvoiceJobTasks\GetInvoiceJobTaskProcessor.cs" />
     <Compile Include="InvoiceJobTasks\ListQuoteTasksRequest.cs" />
+    <Compile Include="Quotes\GetQuoteProcessor.cs" />
+    <Compile Include="Quotes\ListQuotesProcessor.cs" />
+    <Compile Include="Quotes\UpdateQuoteProcessor.cs" />
     <Compile Include="QuoteTasks\GetQuoteTaskProcessor.cs" />
     <Compile Include="QuoteTasks\CreateQuoteTaskProcessor.cs" />
     <Compile Include="Quotes\CreateQuoteProcessor.cs" />
     <Compile Include="QuoteTasks\ListQuoteTasksRequest.cs" />
+    <Compile Include="QuoteTasks\UpdateQuoteTaskProcessor.cs" />
     <Compile Include="SimplePagedProcessor.cs" />
     <Compile Include="PagedProcessor.cs" />
     <Compile Include="Staff\GetStaffProcessor.cs" />

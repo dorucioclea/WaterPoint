@@ -96,10 +96,12 @@
     <Compile Include="Commands\JobTimesheet\UpdateJobTimesheetCommand.cs" />
     <Compile Include="Commands\JobTimesheet\CreateJobTimesheetCommand.cs" />
     <Compile Include="Commands\InvoiceJobCostItems\CreateQuoteCostItemCommand.cs" />
+    <Compile Include="Commands\QuoteCostItems\UpdateQuoteCostItemCommand.cs" />
     <Compile Include="Commands\Quotes\CreateQuoteCommand.cs" />
     <Compile Include="Commands\QuoteCostItems\CreateQuoteCostItemCommand.cs" />
     <Compile Include="Commands\InvoiceJobTasks\CreateInvoiceJobTaskCommand.cs" />
     <Compile Include="Commands\InvoiceJobTasks\UpdateInvoiceJobTaskCommand.cs" />
+    <Compile Include="Commands\Quotes\UpdateQuoteCommand.cs" />
     <Compile Include="Commands\QuoteTasks\UpdateQuoteTaskCommand.cs" />
     <Compile Include="Commands\QuoteTasks\CreateQuoteTaskCommand.cs" />
     <Compile Include="Commands\TaskDefinitions\CreateTaskDefinitionCommand.cs" />
@@ -124,6 +126,8 @@
     <Compile Include="Queries\QuoteCostItems\ListQuoteCostItemsQuery.cs" />
     <Compile Include="Queries\InvoiceJobTasks\GetInvoiceJobTaskQuery.cs" />
     <Compile Include="Queries\InvoiceJobTasks\ListInvoiceJobTasksQuery.cs" />
+    <Compile Include="Queries\Quotes\GetQuoteQuery.cs" />
+    <Compile Include="Queries\Quotes\ListQuotesQuery.cs" />
     <Compile Include="Queries\QuoteTasks\GetQuoteTaskQuery.cs" />
     <Compile Include="Queries\QuoteTasks\ListQuoteTasksQuery.cs" />
     <Compile Include="Queries\Staff\GetStaffQuery.cs" />
