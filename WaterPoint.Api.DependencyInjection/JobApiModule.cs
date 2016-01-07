@@ -29,14 +29,14 @@ namespace WaterPoint.Api.DependencyInjection
 
         private void BindQueries()
         {
-            Bind<IQuery<PaginatedJobs>>().To<ListJobsQuery>();
+            Bind<IQuery<PagedJobs>>().To<ListJobsQuery>();
             Bind<IQuery<GetJob>>().To<GetJobDetailsQuery>();
         }
 
         private void BindQueryRunners()
         {
-            Bind<IListQueryRunner<PaginatedJobs, JobWithCustomerAndStatusPoco>>()
-                .To<ListQueryRunner<PaginatedJobs, JobWithCustomerAndStatusPoco>>();
+            Bind<IPagedQueryRunner<PagedJobs, JobWithCustomerAndStatusPoco>>()
+                .To<PagedQueryRunner<PagedJobs, JobWithCustomerAndStatusPoco>>();
 
             Bind<IQueryRunner<GetJob, JobWithDetailsPoco>>()
                 .To<QueryRunner<GetJob, JobWithDetailsPoco>>();
@@ -60,16 +60,16 @@ namespace WaterPoint.Api.DependencyInjection
 
         private void BindRequestProcessors()
         {
-            Bind<IRequestProcessor<ListJobsRequest, PaginatedResult<JobWithCustomerContract>>>()
+            Bind<IPagedProcessor<ListJobsRequest, JobWithCustomerContract>>()
                 .To<ListJobsProcessor>();
 
-            Bind<IRequestProcessor<CreateJobRequest, CommandResultContract>>()
+            Bind<IWriteRequestProcessor<CreateJobRequest>>()
                 .To<CreateJobProcessor>();
 
             Bind<IRequestProcessor<GetJobByIdRequest, JobDetailsContract>>().To<GetJobByIdRequestProcessor>();
 
-            Bind<IRequestProcessor<UpdateJobRequest, CommandResultContract>>()
-                .To<UpdateJobRequestProcessor>();
+            Bind<IWriteRequestProcessor<UpdateJobRequest>>()
+                .To<UpdateJobProcessor>();
 
         }
     }

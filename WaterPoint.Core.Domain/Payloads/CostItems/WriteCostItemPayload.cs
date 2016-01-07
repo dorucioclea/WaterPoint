@@ -1,8 +1,8 @@
-﻿using Microsoft.Build.Framework;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace WaterPoint.Core.Domain.Payloads.CostItems
 {
-    public class WriteCostItemPayload
+    public class WriteCostItemPayload : IPayload
     {
         public int? SupplierId { get; set; }
 

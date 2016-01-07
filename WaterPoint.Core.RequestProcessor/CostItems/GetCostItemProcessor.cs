@@ -30,8 +30,8 @@ namespace WaterPoint.Core.RequestProcessor.CostItems
         {
             var parameter = new GetCostItem
             {
-                OrganizationId = input.Parameter.OrganizationId,
-                CostItemId = input.Parameter.Id
+                OrganizationId = input.OrganizationId,
+                CostItemId = input.Id
             };
 
             _query.BuildQuery(parameter);

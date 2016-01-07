@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace WaterPoint.Core.Domain.Payloads.TaskDefinitions
 {
-    public class WriteTaskDefinitionPayload
+    public class WriteTaskDefinitionPayload : IPayload
     {
         [Required]
         public string ShortDescription { get; set; }

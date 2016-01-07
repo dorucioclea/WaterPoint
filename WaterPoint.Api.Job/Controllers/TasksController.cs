@@ -14,15 +14,15 @@ namespace WaterPoint.Api.Job.Controllers
     [RoutePrefix("organizations/{organizationId:int}/jobs/{jobId:int}/tasks")]
     public class TasksController : BaseOrgnizationContextController
     {
-        private readonly IRequestProcessor<CreateJobTaskRequest, CommandResultContract> _createJobTaskRequest;
-        private readonly IRequestProcessor<ListJobTasksRequest, SimplePaginatedResult<JobTaskBasicContract>> _listJobTaskequestProcessor;
-        private readonly IRequestProcessor<UpdateJobTaskRequest, CommandResultContract> _updateRequestProcessor;
+        private readonly IWriteRequestProcessor<CreateJobTaskRequest> _createJobTaskRequest;
+        private readonly ISimplePagedProcessor<ListJobTasksRequest, JobTaskBasicContract> _listJobTaskequestProcessor;
+        private readonly IWriteRequestProcessor<UpdateJobTaskRequest> _updateRequestProcessor;
         private readonly IRequestProcessor<GetJobTaskByIdRequest, JobTaskContract> _getJobTaskByIdProcessor;
 
         public TasksController(
-            IRequestProcessor<CreateJobTaskRequest, CommandResultContract> createJobTaskRequest,
-            IRequestProcessor<ListJobTasksRequest, SimplePaginatedResult<JobTaskBasicContract>> listJobTaskequestProcessor,
-            IRequestProcessor<UpdateJobTaskRequest, CommandResultContract> updateRequestProcessor,
+            IWriteRequestProcessor<CreateJobTaskRequest> createJobTaskRequest,
+            ISimplePagedProcessor<ListJobTasksRequest, JobTaskBasicContract> listJobTaskequestProcessor,
+            IWriteRequestProcessor<UpdateJobTaskRequest> updateRequestProcessor,
             IRequestProcessor<GetJobTaskByIdRequest, JobTaskContract> getJobTaskByIdProcessor)
         {
             _listJobTaskequestProcessor = listJobTaskequestProcessor;
@@ -33,38 +33,24 @@ namespace WaterPoint.Api.Job.Controllers
 
         [Route("")]
         public IHttpActionResult Get(
-            [FromUri]OrgIdJobIdRp parameter,
-            [FromUri]PaginationRp pagination)
+            [FromUri]ListJobTasksRequest request)
         {
-            //validation
-            var request = new ListJobTasksRequest
-            {
-                Parameter = parameter,
-                Pagination = pagination
-            };
-
             var result = _listJobTaskequestProcessor.Process(request);
 
             return Ok(result);
         }
 
         [Route("{id:int}")]
-        public IHttpActionResult Get([FromUri]OrgEntityJobId parameter)
+        public IHttpActionResult Get([FromUri]GetJobTaskByIdRequest request)
         {
-            var result = _getJobTaskByIdProcessor.Process(
-                new GetJobTaskByIdRequest
-                {
-                    OrganizationId = parameter.OrganizationId,
-                    JobId = parameter.JobId,
-                    Id = parameter.Id
-                });
+            var result = _getJobTaskByIdProcessor.Process(request);
 
             return Ok(result);
         }
 
         [Route("")]
         public IHttpActionResult Post(
-            [FromUri]OrgIdJobIdRp parameter,
+            [FromUri]CreateJobTaskRequest request,
             [FromBody]CreateJobTaskPayload jobTaskPayload)
         {
             if (!ModelState.IsValid)
@@ -72,29 +58,23 @@ namespace WaterPoint.Api.Job.Controllers
                 return BadRequestWithErrors(ModelState);
             }
 
-            var result = _createJobTaskRequest.Process(
-                new CreateJobTaskRequest
-                {
-                    Parameter = parameter,
-                    Payload = jobTaskPayload,
-                    OrganizationUserId = OrganizationUser.Id
-                });
+            request.Payload = jobTaskPayload;
+            request.OrganizationUserId = OrganizationUser.Id;
+
+            var result = _createJobTaskRequest.Process(request);
 
             return Ok(result);
         }
 
         [Route("{id:int}")]
         public IHttpActionResult Put(
-            [FromUri]OrgEntityJobId parameter,
+            [FromUri]UpdateJobTaskRequest request,
             [FromBody]Delta<UpdateJobTaskPayload> input)
         {
-            var jobTask = _updateRequestProcessor.Process(
-                new UpdateJobTaskRequest
-                {
-                    Parameter = parameter,
-                    Payload = input,
-                    OrganizationUserId = OrganizationUser.Id
-                });
+            request.Payload = input;
+            request.OrganizationUserId = OrganizationUser.Id;
+
+            var jobTask = _updateRequestProcessor.Process(request);
 
             return Ok(jobTask);
         }

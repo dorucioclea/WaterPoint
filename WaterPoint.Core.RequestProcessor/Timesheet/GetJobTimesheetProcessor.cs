@@ -41,9 +41,9 @@ namespace WaterPoint.Core.RequestProcessor.Timesheet
         {
             var parameter = new GetJobTimesheet
             {
-                OrganizationId = input.Parameter.OrganizationId,
-                Id = input.Parameter.Id,
-                JobId = input.Parameter.JobId
+                OrganizationId = input.OrganizationId,
+                Id = input.Id,
+                JobId = input.JobId
             };
 
             _query.BuildQuery(parameter);

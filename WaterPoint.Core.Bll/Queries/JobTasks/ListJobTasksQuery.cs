@@ -1,6 +1,5 @@
 ﻿using WaterPoint.Core.Domain.QueryParameters.JobTasks;
 using WaterPoint.Core.Domain.Db;
-using WaterPoint.Data.Entity.DataEntities;
 using WaterPoint.Data.Entity.Pocos.JobTasks;
 
 namespace WaterPoint.Core.Bll.Queries.JobTasks

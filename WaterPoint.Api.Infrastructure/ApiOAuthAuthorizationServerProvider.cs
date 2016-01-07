@@ -22,13 +22,13 @@ namespace WaterPoint.Api.Infrastructure
     public class ApiOAuthAuthorizationServerProvider : OAuthAuthorizationServerProvider
     {
         private readonly IRequestProcessor<GetOAuthClientRequest, OAuthClientContract> _oauthRequestProcessor;
-        private readonly IRequestListProcessor<ListValidateCredentialsRequest, ValidCredentialContract> _credentialRequestProcessor;
-        private readonly IRequestListProcessor<ListUserPrivilegesRequest, UserPrivilegeContract> _listUserPrivilegesProcessor;
+        private readonly IListProcessor<ListValidateCredentialsRequest, ValidCredentialContract> _credentialRequestProcessor;
+        private readonly IListProcessor<ListUserPrivilegesRequest, UserPrivilegeContract> _listUserPrivilegesProcessor;
 
         public ApiOAuthAuthorizationServerProvider(
             IRequestProcessor<GetOAuthClientRequest, OAuthClientContract> oauthRequestProcessor,
-            IRequestListProcessor<ListValidateCredentialsRequest, ValidCredentialContract> credentialRequestProcessor,
-            IRequestListProcessor<ListUserPrivilegesRequest, UserPrivilegeContract> listUserPrivilegesProcessor)
+            IListProcessor<ListValidateCredentialsRequest, ValidCredentialContract> credentialRequestProcessor,
+            IListProcessor<ListUserPrivilegesRequest, UserPrivilegeContract> listUserPrivilegesProcessor)
         {
             _oauthRequestProcessor = oauthRequestProcessor;
             _credentialRequestProcessor = credentialRequestProcessor;
@@ -73,7 +73,7 @@ namespace WaterPoint.Api.Infrastructure
             {
                 new Claim(ClaimTypes.Email, context.UserName),
                 new Claim(ClaimTypes.Sid, JsonConvert.SerializeObject(userPrivileges)),
-                new Claim(ClaimTypes.PrimaryGroupSid, JsonConvert.SerializeObject(credentials)) 
+                new Claim(ClaimTypes.PrimaryGroupSid, JsonConvert.SerializeObject(credentials))
             }, OAuthDefaults.AuthenticationType);
 
             var cookiesIdentity = new ClaimsIdentity(new[]

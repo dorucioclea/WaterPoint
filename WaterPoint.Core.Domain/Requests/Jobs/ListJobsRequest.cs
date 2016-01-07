@@ -2,9 +2,15 @@
 
 namespace WaterPoint.Core.Domain.Requests.Jobs
 {
-    public class ListJobsRequest : IRequest
+    public class ListJobsRequest : IPaginationRequest
     {
-        public PaginationRp Pagination { get; set; }
-        public JobStatusRp Parameter { get; set; }
+        //[RegularExpression(@"\b^((?i)inprogress|cancelled|planned|deleted|onhold|completed?(?-i))$\b")]
+        public string Status { get; set; }
+        public int OrganizationId { get; set; }
+        public int? PageSize { get; set; }
+        public int? PageNumber { get; set; }
+        public string Sort { get; set; }
+        public bool? IsDesc { get; set; }
+        public string SearchTerm { get; set; }
     }
 }

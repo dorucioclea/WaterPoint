@@ -4,7 +4,7 @@ using WaterPoint.Data.Entity.Attributes;
 
 namespace WaterPoint.Core.Domain.Payloads.JobTasks
 {
-    public class CreateJobTaskPayload
+    public class CreateJobTaskPayload : IPayload
     {
         [Required]
         public int? TaskDefinitionId { get; set; }

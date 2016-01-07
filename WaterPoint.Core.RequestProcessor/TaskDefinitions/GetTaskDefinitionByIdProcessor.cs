@@ -29,8 +29,8 @@ namespace WaterPoint.Core.RequestProcessor.TaskDefinitions
         {
             var parameter = new GetTaskDefinition
             {
-                OrganizationId = input.OrganizationEntityParameter.OrganizationId,
-                TaskDefinitionId = input.OrganizationEntityParameter.Id
+                OrganizationId = input.OrganizationId,
+                TaskDefinitionId = input.Id
             };
 
             _query.BuildQuery(parameter);

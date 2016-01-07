@@ -10,50 +10,31 @@ using WaterPoint.Core.Domain.Db;
 using WaterPoint.Core.Domain.QueryParameters.Quotes;
 using WaterPoint.Core.Domain.Requests.Quotes;
 using WaterPoint.Data.DbContext.Dapper;
+using WaterPoint.Data.Entity.Enums;
 
 namespace WaterPoint.Core.RequestProcessor.Quotes
 {
-    public class CreateQuoteProcessor : BaseDapperUowRequestProcess,
-        IRequestProcessor<CreateQuoteRequest, CommandResultContract>
+    public class CreateQuoteProcessor : BaseCreateProcessor<CreateQuoteRequest, CreateQuote>
     {
-        private readonly ICommand<CreateQuote> _command;
-        private readonly ICommandExecutor<CreateQuote> _executor;
-
         public CreateQuoteProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
             ICommand<CreateQuote> command,
             ICommandExecutor<CreateQuote> executor)
-            : base(dapperUnitOfWork)
+            : base(dapperUnitOfWork, command, executor)
         {
-            _command = command;
-            _executor = executor;
         }
 
-        public CommandResultContract Process(CreateQuoteRequest input)
-        {
-            var result = UowProcess(ProcessDeFacto, input);
-
-            return new CommandResultContract(result, "Quote", result > 0);
-        }
-
-        private static CreateQuote GetParameter(CreateQuoteRequest input)
+        public override CreateQuote BuildParameter(CreateQuoteRequest input)
         {
             var createQuote = input.Payload.MapTo(new CreateQuote());
 
-            createQuote.OrganizationId = input.Parameter.OrganizationId;
+            createQuote.QuoteStatusId = (int)QuoteStatuses.Draft;
 
-            createQuote.CustomerId = input.Parameter.CustomerId;
+            createQuote.OrganizationId = input.OrganizationId;
+
+            createQuote.CustomerId = input.CustomerId;
 
             return createQuote;
-        }
-
-        private int ProcessDeFacto(CreateQuoteRequest input)
-        {
-            var createQuote = GetParameter(input);
-
-            _command.BuildQuery(createQuote);
-
-            return _executor.Execute(_command);
         }
     }
 }

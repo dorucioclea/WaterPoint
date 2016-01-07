@@ -4,7 +4,7 @@ using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Core.Bll.Queries.TaskDefinitions
 {
-    public class ListTaskDefinitionsQuery : IQuery<PaginatedOrgId>
+    public class ListTaskDefinitionsQuery : IQuery<PagedOrgId>
     {
         private readonly ISqlBuilderFactory _sqlBuilderFactory;
 
@@ -31,7 +31,7 @@ namespace WaterPoint.Core.Bll.Queries.TaskDefinitions
             _sqlBuilderFactory = sqlBuilderFactory;
         }
 
-        public void BuildQuery(PaginatedOrgId parameter)
+        public void BuildQuery(PagedOrgId parameter)
         {
             var builder = _sqlBuilderFactory.Create<SelectSqlBuilder>();
 

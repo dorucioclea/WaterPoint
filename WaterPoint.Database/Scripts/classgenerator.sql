@@ -1,7 +1,7 @@
 ﻿declare @TableName sysname = 'QuoteTimesheet'
 declare @Result varchar(max) = '[Table("dbo", "' + @TableName  + '", "qt")]'+
 '
-public class ' + @TableName + '
+public class ' + @TableName + ' : IDataEntity
 {'
 
 select @Result = @Result + '

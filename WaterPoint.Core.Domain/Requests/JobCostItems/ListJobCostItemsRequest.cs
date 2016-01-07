@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WaterPoint.Core.Domain.RequestParameters;
+﻿using WaterPoint.Core.Domain.RequestParameters;
 
 namespace WaterPoint.Core.Domain.Requests.JobCostItems
 {
-    public class ListJobCostItemsRequest : IRequest
+    public class ListJobCostItemsRequest : IPaginationRequest
     {
-        public OrgIdJobIdRp Parameter { get; set; }
-        public PaginationRp Pagination { get; set; }
+        public int OrganizationId { get; set; }
+        public int JobId { get; set; }
+        public int? PageSize { get; set; }
+        public int? PageNumber { get; set; }
+        public string Sort { get; set; }
+        public bool? IsDesc { get; set; }
+        public string SearchTerm { get; set; }
     }
 }

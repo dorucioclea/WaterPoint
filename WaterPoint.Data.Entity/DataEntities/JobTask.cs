@@ -31,10 +31,6 @@ namespace WaterPoint.Data.Entity.DataEntities
 
         public bool IsCompleted { get; set; }
 
-        public bool IsAllocated { get; set; }
-
-        public bool IsScheduled { get; set; }
-
         public string ShortDescription { get; set; }
 
         public string LongDescription { get; set; }

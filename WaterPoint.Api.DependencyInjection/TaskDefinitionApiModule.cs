@@ -32,7 +32,7 @@ namespace WaterPoint.Api.DependencyInjection
         {
             Bind<IQuery<GetTaskDefinition>>().To<GetTaskDefinitionQuery>();
 
-            Bind<IQuery<PaginatedOrgId>>().To<ListTaskDefinitionsQuery>();
+            Bind<IQuery<PagedOrgId>>().To<ListTaskDefinitionsQuery>();
         }
 
         public void BindQueryRunners()
@@ -40,8 +40,8 @@ namespace WaterPoint.Api.DependencyInjection
             Bind<IQueryRunner<GetTaskDefinition, TaskDefinition>>()
                 .To<QueryRunner<GetTaskDefinition, TaskDefinition>>();
 
-            Bind<IListQueryRunner<PaginatedOrgId, TaskDefinition>>()
-                .To<ListQueryRunner<PaginatedOrgId, TaskDefinition>>();
+            Bind<IPagedQueryRunner<PagedOrgId, TaskDefinition>>()
+                .To<PagedQueryRunner<PagedOrgId, TaskDefinition>>();
         }
 
         public void BindCommands()
@@ -58,16 +58,16 @@ namespace WaterPoint.Api.DependencyInjection
 
         private void BindRequestProcessors()
         {
-            Bind<IRequestProcessor<CreateTaskDefinitionRequest, CommandResultContract>>()
+            Bind<IWriteRequestProcessor<CreateTaskDefinitionRequest>>()
                 .To<CreateTaskDefinitionProcessor>();
 
             Bind<IRequestProcessor<GetTaskDefinitionByIdRequest, TaskDefinitionContract>>()
                 .To<GetTaskDefinitionByIdRequestProcessor>();
 
-            Bind<IRequestProcessor<ListWithOrgIdRequest, PaginatedResult<TaskDefinitionContract>>>()
+            Bind<IPagedProcessor<ListWithOrgIdRequest, TaskDefinitionContract>>()
                 .To<ListTaskDefinitionsProcessor>();
 
-            Bind<IRequestProcessor<UpdateTaskDefinitionRequest, CommandResultContract>>()
+            Bind<IWriteRequestProcessor<UpdateTaskDefinitionRequest>>()
                 .To<UpdateTaskDefinitionProcessor>();
         }
     }

@@ -7,43 +7,28 @@ using WaterPoint.Data.DbContext.Dapper;
 
 namespace WaterPoint.Core.RequestProcessor.TaskDefinitions
 {
-    public class CreateTaskDefinitionProcessor : BaseDapperUowRequestProcess,
-        IRequestProcessor<CreateTaskDefinitionRequest, CommandResultContract>
+    public class CreateTaskDefinitionProcessor : BaseCreateProcessor<CreateTaskDefinitionRequest, CreateTaskDefinition>
     {
-        private readonly ICommand<CreateTaskDefinition> _command;
-        private readonly ICommandExecutor<CreateTaskDefinition> _executor;
-
         public CreateTaskDefinitionProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
             ICommand<CreateTaskDefinition> command,
             ICommandExecutor<CreateTaskDefinition> executor)
-            : base(dapperUnitOfWork)
+            : base(dapperUnitOfWork, command, executor)
         {
-            _command = command;
-            _executor = executor;
         }
 
-        public CommandResultContract Process(CreateTaskDefinitionRequest input)
-        {
-            var result = UowProcess(ProcessDeFacto, input);
-
-            return new CommandResultContract(result, "task definition", result > 0);
-        }
-
-        private int ProcessDeFacto(CreateTaskDefinitionRequest input)
+        public override CreateTaskDefinition BuildParameter(CreateTaskDefinitionRequest input)
         {
             var parameter = new CreateTaskDefinition
             {
-                OrganizationId = input.OrganizationId.OrganizationId,
+                OrganizationId = input.OrganizationId,
                 ShortDescription = input.Payload.ShortDescription,
                 BaseRate = input.Payload.BaseRate.Value,
                 BillableRate = input.Payload.BillableRate.Value,
                 LongDescription = input.Payload.LongDescription
             };
 
-            _command.BuildQuery(parameter);
-
-            return _executor.Execute(_command);
+            return parameter;
         }
     }
 }

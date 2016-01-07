@@ -2,7 +2,7 @@
 
 namespace WaterPoint.Core.Domain.QueryParameters.Customers
 {
-    public class ListCustomers : IPaginatedQueryParameter
+    public class ListCustomers : IPagedQueryParameter
     {
         public int OrganizationId { get; set; }
         public int Offset { get; set; }
@@ -11,5 +11,6 @@ namespace WaterPoint.Core.Domain.QueryParameters.Customers
         public bool IsDesc { get; set; }
         public string SearchTerm { get; set; }
         public bool? IsProspect { get; set; }
+        public int PageNumber { get; set; }
     }
 }

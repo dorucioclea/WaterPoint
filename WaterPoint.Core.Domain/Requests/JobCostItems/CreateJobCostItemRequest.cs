@@ -1,12 +1,12 @@
 ﻿using WaterPoint.Core.Domain.Payloads.JobCostItems;
-using WaterPoint.Core.Domain.Payloads.Jobs;
-using WaterPoint.Core.Domain.RequestParameters;
 
 namespace WaterPoint.Core.Domain.Requests.JobCostItems
 {
-    public class CreateJobCostItemRequest : IRequest
+    public class CreateJobCostItemRequest : ICreateRequest<WriteJobCostItemPayload>
     {
-        public OrgIdJobIdRp Parameter { get; set; }
+        public int OrganizationId { get; set; }
+
+        public int JobId { get; set; }
 
         public WriteJobCostItemPayload Payload { get; set; }
 

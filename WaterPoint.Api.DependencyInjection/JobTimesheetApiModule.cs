@@ -26,8 +26,6 @@ namespace WaterPoint.Api.DependencyInjection
             BindQueryRunners();
             BindCommands();
             BindCommandExecutors();
-
-            Bind<JobTimesheetAnalyzer>().ToSelf().InSingletonScope();
         }
 
         private void BindQueries()
@@ -38,8 +36,8 @@ namespace WaterPoint.Api.DependencyInjection
 
         public void BindQueryRunners()
         {
-            Bind<IListQueryRunner<ListJobTimesheet, JobTimesheetPoco>>()
-                .To<ListQueryRunner<ListJobTimesheet, JobTimesheetPoco>>();
+            Bind<IPagedQueryRunner<ListJobTimesheet, JobTimesheetPoco>>()
+                .To<PagedQueryRunner<ListJobTimesheet, JobTimesheetPoco>>();
 
             Bind<IQueryRunner<GetJobTimesheet, JobTimesheet>>()
                 .To<QueryRunner<GetJobTimesheet, JobTimesheet>>();
@@ -57,10 +55,10 @@ namespace WaterPoint.Api.DependencyInjection
 
         private void BindRequestProcessors()
         {
-            Bind<IRequestProcessor<CreateJobTimesheetRequest, CommandResultContract>>()
+            Bind<IWriteRequestProcessor<CreateJobTimesheetRequest>>()
                     .To<CreateJobTimesheetProcessor>();
 
-            Bind<IRequestProcessor<ListJobTimesheetRequest, SimplePaginatedResult<JobTimesheetBasicContract>>>()
+            Bind<ISimplePagedProcessor<ListJobTimesheetRequest, JobTimesheetBasicContract>>()
                     .To<ListJobTimesheetProcessor>();
 
             Bind<IRequestProcessor<GetJobTimesheetRequest, JobTimesheetContract>>()

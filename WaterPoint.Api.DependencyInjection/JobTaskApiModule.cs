@@ -36,7 +36,7 @@ namespace WaterPoint.Api.DependencyInjection
         public void BindQueryRunners()
         {
             Bind<IQueryRunner<GetJobTask, JobTask>>().To<QueryRunner<GetJobTask, JobTask>>();
-            Bind<IListQueryRunner<ListJobTasks, JobTaskBasicPoco>>().To<ListQueryRunner<ListJobTasks, JobTaskBasicPoco>>();
+            Bind<IPagedQueryRunner<ListJobTasks, JobTaskBasicPoco>>().To<PagedQueryRunner<ListJobTasks, JobTaskBasicPoco>>();
         }
 
         public void BindCommands()
@@ -56,13 +56,13 @@ namespace WaterPoint.Api.DependencyInjection
             Bind<IRequestProcessor<GetJobTaskByIdRequest, JobTaskContract>>()
                 .To<GetJobTaskProcessor>();
 
-            Bind<IRequestProcessor<UpdateJobTaskRequest, CommandResultContract>>()
+            Bind<IWriteRequestProcessor<UpdateJobTaskRequest>>()
                 .To<UpdateJobTaskProcessor>();
 
-            Bind<IRequestProcessor<CreateJobTaskRequest, CommandResultContract>>()
+            Bind<IWriteRequestProcessor<CreateJobTaskRequest>>()
                 .To<CreateJobTaskRequestProcessor>();
 
-            Bind<IRequestProcessor<ListJobTasksRequest, SimplePaginatedResult<JobTaskBasicContract>>>()
+            Bind<ISimplePagedProcessor<ListJobTasksRequest, JobTaskBasicContract>>()
                 .To<ListJobTasksProcessor>();
         }
     }

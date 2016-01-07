@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Utility;
+using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Db;
 using WaterPoint.Core.Domain.Exceptions;
 using WaterPoint.Data.Entity;
@@ -13,7 +14,7 @@ namespace WaterPoint.Api.Common
         TOutput PatchEnitity<TInput, TExisting, TOutput>(TExisting existingEntity, Action<TInput> patchAction)
             where TOutput : class, IQueryParameter, new()
             where TExisting : class, IDataEntity
-            where TInput : class, new();
+            where TInput : class, IPayload, new();
     }
 
     public class PatchEntityAdapter : IPatchEntityAdapter
@@ -21,7 +22,7 @@ namespace WaterPoint.Api.Common
         public TOutput PatchEnitity<TInput, TExisting, TOutput>(TExisting existingEntity, Action<TInput> patchAction)
             where TOutput : class, IQueryParameter, new()
             where TExisting : class, IDataEntity
-            where TInput : class, new()
+            where TInput : class, IPayload, new()
         {
             if (existingEntity == null)
                 //TODO: Add message to resource file.

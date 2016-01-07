@@ -2,7 +2,7 @@
 
 namespace WaterPoint.Core.Domain.Contracts
 {
-    public class CommandResultContract : IContract
+    public class CommandResult
     {
         private const string Success = "success";
         private const string Failed = "failed";
@@ -11,13 +11,13 @@ namespace WaterPoint.Core.Domain.Contracts
         public string Status { get; set; }
         public string Message { get; set; }
 
-        public CommandResultContract(object data, string target, bool success)
+        public CommandResult(object data, bool success)
         {
             Data = data;
             Status = (success ? Success : Failed);
             Message = !success
-                ? $"{target} {data ?? string.Empty}: operation is finished but there is no result returned"
-                : $"{target} {data ?? string.Empty}: operation is finished with no errors.";
+                ? "operation is finished but there is no result returned"
+                : "operation is finished with no errors.";
         }
     }
 }

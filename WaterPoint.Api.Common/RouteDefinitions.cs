@@ -41,10 +41,5 @@ namespace WaterPoint.Api.Common
         {
             public const string Prefix = OrganizationNode + "/taskdefinitions";
         }
-
-        public class Quotes
-        {
-            public const string Prefix = OrganizationNode + "/quotes";
-        }
     }
 }

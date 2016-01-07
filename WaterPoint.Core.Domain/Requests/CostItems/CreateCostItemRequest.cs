@@ -3,10 +3,10 @@ using WaterPoint.Core.Domain.RequestParameters;
 
 namespace WaterPoint.Core.Domain.Requests.CostItems
 {
-    public class CreateCostItemRequest : IRequest
+    public class CreateCostItemRequest : ICreateRequest<WriteCostItemPayload>, IOrgId
     {
-        public OrgIdRp OrganizationIdParameter { get; set; }
-        public WriteCostItemPayload CreateCustomerPayload { get; set; }
+        public WriteCostItemPayload Payload { get; set; }
         public int OrganizationUserId { get; set; }
+        public int OrganizationId { get; set; }
     }
 }

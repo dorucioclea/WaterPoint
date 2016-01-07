@@ -12,36 +12,23 @@ using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Core.RequestProcessor.JobTasks
 {
-    public class CreateJobTaskRequestProcessor : BaseDapperUowRequestProcess,
-        IRequestProcessor<CreateJobTaskRequest, CommandResultContract>
+    public class CreateJobTaskRequestProcessor : BaseCreateProcessor<CreateJobTaskRequest, CreateJobTask>
     {
-        private readonly ICommand<CreateJobTask> _command;
-        private readonly ICommandExecutor<CreateJobTask> _executor;
-
         public CreateJobTaskRequestProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
             ICommand<CreateJobTask> command,
             ICommandExecutor<CreateJobTask> executor)
-            : base(dapperUnitOfWork)
+            : base(dapperUnitOfWork, command, executor)
         {
-            _command = command;
-            _executor = executor;
         }
 
-        public CommandResultContract Process(CreateJobTaskRequest input)
-        {
-            var result = UowProcess(ProcessDeFacto, input);
-
-            return new CommandResultContract(result, "job task", result > 0);
-        }
-
-        public CreateJobTask AnalyzeParameter(CreateJobTaskRequest input)
+        public override CreateJobTask BuildParameter(CreateJobTaskRequest input)
         {
             return new CreateJobTask
             {
-                OrganizationId = input.Parameter.OrganizationId,
+                OrganizationId = input.OrganizationId,
                 TaskDefinitionId = input.Payload.TaskDefinitionId.Value,
-                JobId = input.Parameter.JobId,
+                JobId = input.JobId,
                 CompletedDate = input.Payload.CompletedDate,
                 DisplayOrder = input.Payload.DisplayOrder,
                 EndDate = input.Payload.EndDate,
@@ -53,13 +40,6 @@ namespace WaterPoint.Core.RequestProcessor.JobTasks
                 BillableRate = input.Payload.BillableRate,
                 BaseRate = input.Payload.BaseRate
             };
-        }
-
-        private int ProcessDeFacto(CreateJobTaskRequest input)
-        {
-            _command.BuildQuery(AnalyzeParameter(input));
-
-            return _executor.Execute(_command);
         }
     }
 }

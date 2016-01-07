@@ -4,7 +4,7 @@ using WaterPoint.Data.Entity.Pocos.Jobs;
 
 namespace WaterPoint.Core.Bll.Queries.Jobs
 {
-    public class ListJobsQuery : IQuery<PaginatedJobs>
+    public class ListJobsQuery : IQuery<PagedJobs>
     {
         private readonly ISqlBuilderFactory _sqlBuilderFactory;
 
@@ -33,7 +33,7 @@ namespace WaterPoint.Core.Bll.Queries.Jobs
             _sqlBuilderFactory = sqlBuilderFactory;
         }
 
-        public void BuildQuery(PaginatedJobs parameter)
+        public void BuildQuery(PagedJobs parameter)
         {
             var builder = _sqlBuilderFactory.Create<SelectSqlBuilder>();
 

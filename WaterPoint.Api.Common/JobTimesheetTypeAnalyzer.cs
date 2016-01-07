@@ -4,9 +4,9 @@ using WaterPoint.Data.Entity.Enums;
 
 namespace WaterPoint.Api.Common
 {
-    public class JobTimesheetAnalyzer
+    public static class JobTimesheetAnalyzer
     {
-        public JobTimesheetTypes AnalyzeType(WriteJobTimesheetPayload payload)
+        public static JobTimesheetTypes AnalyzeType(WriteJobTimesheetPayload payload)
         {
             if (payload.IsDuration.Value)
                 return JobTimesheetTypes.Draft;
@@ -17,7 +17,7 @@ namespace WaterPoint.Api.Common
             return JobTimesheetTypes.Timesheet;
         }
 
-        public int AnalyzeOriginalMinute(WriteJobTimesheetPayload payload)
+        public static int AnalyzeOriginalMinute(WriteJobTimesheetPayload payload)
         {
             if (payload.IsDuration.Value)
                 return payload.Minutes;
@@ -25,7 +25,7 @@ namespace WaterPoint.Api.Common
             return Convert.ToInt32((payload.EndDateTime - payload.StartDateTime).Value.TotalMinutes);
         }
 
-        public int AnalyzeRoundedMinute(WriteJobTimesheetPayload payload)
+        public static int AnalyzeRoundedMinute(WriteJobTimesheetPayload payload)
         {
             var minutes = AnalyzeOriginalMinute(payload);
 

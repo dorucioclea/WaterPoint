@@ -28,6 +28,5 @@ namespace WaterPoint.Core.Bll.Commands.Quotes
 
         public string Query { get; private set; }
         public object Parameters { get; private set; }
-        public bool IsStoredProcedure => true;
     }
 }
