@@ -11,15 +11,8 @@ using WaterPoint.Data.Entity.DataEntities;
 namespace WaterPoint.Core.RequestProcessor.QuoteCostItems
 {
     public class UpdateQuoteCostItemProcessor :
-        BaseDapperUowRequestProcess,
-        IWriteRequestProcessor<UpdateQuoteCostItemRequest>
+        BaseUpdateProcessor<UpdateQuoteCostItemRequest, UpdateQuoteCostItemPayload, UpdateQuoteCostItem, GetQuoteCostItem, QuoteCostItem>
     {
-        private readonly IPatchEntityAdapter _patchEntityAdapter;
-        private readonly ICommand<UpdateQuoteCostItem> _command;
-        private readonly ICommandExecutor<UpdateQuoteCostItem> _executor;
-        private readonly IQuery<GetQuoteCostItem> _query;
-        private readonly IQueryRunner<GetQuoteCostItem, QuoteCostItem> _runner;
-
         public UpdateQuoteCostItemProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
             IPatchEntityAdapter patchEntityAdapter,
@@ -27,23 +20,11 @@ namespace WaterPoint.Core.RequestProcessor.QuoteCostItems
             ICommandExecutor<UpdateQuoteCostItem> executor,
             IQuery<GetQuoteCostItem> query,
             IQueryRunner<GetQuoteCostItem, QuoteCostItem> runner)
-            : base(dapperUnitOfWork)
+            : base(dapperUnitOfWork, patchEntityAdapter, query, runner, command, executor)
         {
-            _patchEntityAdapter = patchEntityAdapter;
-            _command = command;
-            _executor = executor;
-            _query = query;
-            _runner = runner;
         }
 
-        public CommandResult Process(UpdateQuoteCostItemRequest input)
-        {
-            var result = UowProcess(ProcessDeFacto, input);
-
-            return new CommandResult(result, result > 0);
-        }
-
-        private int ProcessDeFacto(UpdateQuoteCostItemRequest input)
+        public override GetQuoteCostItem BuildGetParameter(UpdateQuoteCostItemRequest input)
         {
             var getQuoteCostItemParam = new GetQuoteCostItem
             {
@@ -52,18 +33,7 @@ namespace WaterPoint.Core.RequestProcessor.QuoteCostItems
                 QuoteId = input.QuoteId
             };
 
-            _query.BuildQuery(getQuoteCostItemParam);
-
-            var existingQuoteCostItem = _runner.Run(_query);
-
-            var updatedQuoteCostItem = _patchEntityAdapter
-                .PatchEnitity<UpdateQuoteCostItemPayload, QuoteCostItem, UpdateQuoteCostItem>
-                (existingQuoteCostItem, input.Payload.Patch);
-
-            //then build the query to update the object.
-            _command.BuildQuery(updatedQuoteCostItem);
-
-            return _executor.Execute(_command);
+            return getQuoteCostItemParam;
         }
     }
 }

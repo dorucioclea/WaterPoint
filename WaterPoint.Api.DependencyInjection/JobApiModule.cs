@@ -69,7 +69,7 @@ namespace WaterPoint.Api.DependencyInjection
             Bind<IRequestProcessor<GetJobByIdRequest, JobDetailsContract>>().To<GetJobByIdRequestProcessor>();
 
             Bind<IWriteRequestProcessor<UpdateJobRequest>>()
-                .To<UpdateJobRequestProcessor>();
+                .To<UpdateJobProcessor>();
 
         }
     }

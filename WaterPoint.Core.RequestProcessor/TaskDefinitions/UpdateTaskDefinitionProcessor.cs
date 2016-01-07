@@ -11,59 +11,26 @@ using WaterPoint.Data.Entity.DataEntities;
 namespace WaterPoint.Core.RequestProcessor.TaskDefinitions
 {
     public class UpdateTaskDefinitionProcessor :
-        BaseDapperUowRequestProcess,
-        IWriteRequestProcessor<UpdateTaskDefinitionRequest>
+        BaseUpdateProcessor<UpdateTaskDefinitionRequest, WriteTaskDefinitionPayload, UpdateTaskDefinition, GetTaskDefinition, TaskDefinition>
     {
-        private readonly IPatchEntityAdapter _patchEntityAdapter;
-        private readonly IQuery<GetTaskDefinition> _getTaskDefinitionByIdQuery;
-        private readonly IQueryRunner<GetTaskDefinition, TaskDefinition> _getTaskDefinitionByIdQueryRunner;
-        private readonly ICommand<UpdateTaskDefinition> _updateCommand;
-        private readonly ICommandExecutor<UpdateTaskDefinition> _updateCommandExecutor;
-
         public UpdateTaskDefinitionProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
-            IPatchEntityAdapter patchEntityAdapter,
-            IQuery<GetTaskDefinition> getTaskDefinitionByIdQuery,
-            IQueryRunner<GetTaskDefinition, TaskDefinition> getTaskDefinitionByIdQueryRunner,
+            IPatchEntityAdapter adapter,
+            IQuery<GetTaskDefinition> getQuery,
+            IQueryRunner<GetTaskDefinition, TaskDefinition> getRunner,
             ICommand<UpdateTaskDefinition> updateCommand,
-            ICommandExecutor<UpdateTaskDefinition> updateCommandExecutor)
-            : base(dapperUnitOfWork)
+            ICommandExecutor<UpdateTaskDefinition> updateExecutor)
+            : base(dapperUnitOfWork, adapter, getQuery, getRunner, updateCommand, updateExecutor)
         {
-            _patchEntityAdapter = patchEntityAdapter;
-            _getTaskDefinitionByIdQuery = getTaskDefinitionByIdQuery;
-            _getTaskDefinitionByIdQueryRunner = getTaskDefinitionByIdQueryRunner;
-            _updateCommand = updateCommand;
-            _updateCommandExecutor = updateCommandExecutor;
         }
 
-        public CommandResult Process(UpdateTaskDefinitionRequest input)
+        public override GetTaskDefinition BuildGetParameter(UpdateTaskDefinitionRequest input)
         {
-            var result = UowProcess(ProcessDeFacto, input);
-
-            return new CommandResult(result, result > 0);
-        }
-
-        private int ProcessDeFacto(UpdateTaskDefinitionRequest input)
-        {
-            _getTaskDefinitionByIdQuery.BuildQuery(new GetTaskDefinition
+            return new GetTaskDefinition
             {
                 OrganizationId = input.OrganizationId,
                 TaskDefinitionId = input.Id
-            });
-
-            var existingTaskDefinition = _getTaskDefinitionByIdQueryRunner.Run(_getTaskDefinitionByIdQuery);
-
-            var updatedTaskDefinition = _patchEntityAdapter
-                .PatchEnitity<WriteTaskDefinitionPayload, TaskDefinition, UpdateTaskDefinition>(existingTaskDefinition,
-                input.Payload.Patch);
-
-            //then build the query to update the object.
-            _updateCommand.BuildQuery(updatedTaskDefinition);
-
-            return _updateCommandExecutor.Execute(_updateCommand);
+            };
         }
     }
-
-
-
 }
