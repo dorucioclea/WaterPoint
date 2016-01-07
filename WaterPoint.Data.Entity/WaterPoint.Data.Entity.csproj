@@ -64,6 +64,8 @@
     <Compile Include="Attributes\TableAttribute.cs" />
     <Compile Include="DataEntities\Address.cs" />
     <Compile Include="DataEntities\Invoice.cs" />
+    <Compile Include="DataEntities\InvoiceJobTask.cs" />
+    <Compile Include="DataEntities\InvoiceJobCostItem.cs" />
     <Compile Include="DataEntities\QuoteCostItem.cs" />
     <Compile Include="DataEntities\QuoteTask.cs" />
     <Compile Include="DataEntities\Quote.cs" />
@@ -93,7 +95,9 @@
     <Compile Include="Pocos\JobTimesheet\JobTimesheetPoco.cs" />
     <Compile Include="Pocos\PagedPoco.cs" />
     <Compile Include="Pocos\Priviledges\OrganizationUserPrivilegePoco.cs" />
+    <Compile Include="Pocos\InvoiceJobCostItems\InvoiceJobCostItemBasicPoco.cs" />
     <Compile Include="Pocos\QuoteCostItems\QuoteCostItemBasicPoco.cs" />
+    <Compile Include="Pocos\InvoiceJobTasks\InvoiceJobTaskBasicPoco.cs" />
     <Compile Include="Pocos\QuoteTasks\QuoteTaskBasicPoco.cs" />
     <Compile Include="Pocos\Views\ValidCredential.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
