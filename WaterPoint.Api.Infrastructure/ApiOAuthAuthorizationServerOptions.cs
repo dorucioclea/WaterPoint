@@ -4,9 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Owin;
+using Microsoft.Owin.Security.DataHandler;
+using Microsoft.Owin.Security.DataProtection;
 using Microsoft.Owin.Security.Infrastructure;
 using Microsoft.Owin.Security.OAuth;
 using Ninject;
+using Owin;
 
 namespace WaterPoint.Api.Infrastructure
 {
@@ -29,22 +32,35 @@ namespace WaterPoint.Api.Infrastructure
             _interalOAuthAuthorizationServerProvider = interalOAuthAuthorizationServerProvider;
         }
 
-        public OAuthAuthorizationServerOptions GetOptions()
+        public OAuthAuthorizationServerOptions GetOptions(IAppBuilder app)
         {
-
             var internalApplicationOAuthOptions = new OAuthAuthorizationServerOptions
             {
-                //AccessTokenProvider = _accessTokenProvider,
+                AccessTokenProvider = _accessTokenProvider,
                 //RefreshTokenProvider = _refreshTokenProvider,
                 TokenEndpointPath = new PathString("/token"),
                 Provider = _interalOAuthAuthorizationServerProvider,
                 AuthorizeEndpointPath = new PathString("/authorize"),
                 AccessTokenExpireTimeSpan = TimeSpan.FromDays(30),
+                //TODO: abstract this out to a common place.
+                AccessTokenFormat = new TicketDataFormat(app.CreateDataProtector(typeof(OAuthAuthorizationServerMiddleware).Namespace, "access_token", "v1")),
                 // In production mode set AllowInsecureHttp = false
                 AllowInsecureHttp = true
             };
 
             return internalApplicationOAuthOptions;
         }
+
+        //public OAuthBearerAuthenticationOptions GetBearerOptions()
+        //{
+        //    var options = new OAuthBearerAuthenticationOptions
+        //    {
+        //        AccessTokenProvider = _accessTokenProvider,
+        //        AccessTokenFormat = 
+        //    }
+            
+        //}
+
+
     }
 }

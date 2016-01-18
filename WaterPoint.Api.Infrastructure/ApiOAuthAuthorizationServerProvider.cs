@@ -76,12 +76,12 @@ namespace WaterPoint.Api.Infrastructure
                 new Claim(ClaimTypes.PrimaryGroupSid, JsonConvert.SerializeObject(credentials))
             }, OAuthDefaults.AuthenticationType);
 
-            var cookiesIdentity = new ClaimsIdentity(new[]
-            {
-                new Claim(ClaimTypes.Email, context.UserName),
-                new Claim(ClaimTypes.Sid, JsonConvert.SerializeObject(userPrivileges)),
-                new Claim(ClaimTypes.PrimaryGroupSid, JsonConvert.SerializeObject(credentials)),
-            }, CookieAuthenticationDefaults.AuthenticationType);
+            //var cookiesIdentity = new ClaimsIdentity(new[]
+            //{
+            //    new Claim(ClaimTypes.Email, context.UserName),
+            //    new Claim(ClaimTypes.Sid, JsonConvert.SerializeObject(userPrivileges)),
+            //    new Claim(ClaimTypes.PrimaryGroupSid, JsonConvert.SerializeObject(credentials)),
+            //}, CookieAuthenticationDefaults.AuthenticationType);
 
             var properties = CreateProperties(context.UserName);
 
@@ -89,7 +89,7 @@ namespace WaterPoint.Api.Infrastructure
 
             context.Validated(ticket);
 
-            context.Request.Context.Authentication.SignIn(cookiesIdentity);
+            //context.Request.Context.Authentication.SignIn(cookiesIdentity);
         }
 
         public override Task TokenEndpoint(OAuthTokenEndpointContext context)

@@ -4,6 +4,8 @@ using System.Linq;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
+using Microsoft.Owin.Security.DataHandler;
+using Microsoft.Owin.Security.DataProtection;
 using Microsoft.Owin.Security.Google;
 using Microsoft.Owin.Security.Infrastructure;
 using Microsoft.Owin.Security.OAuth;
@@ -29,14 +31,16 @@ namespace WaterPoint.Api.Authorization
 
             // Enable the application to use a cookie to store information for the signed in user
             // and to use a cookie to temporarily store information about a user logging in with a third party login provider
-            app.UseCookieAuthentication(new CookieAuthenticationOptions());
+            //app.UseCookieAuthentication(new CookieAuthenticationOptions());
 
-            app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
+            //app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
 
 
-            var internalApplicationOAuthOptions = kernel.Get<ApiOAuthAuthorizationServerOptions>().GetOptions();
-
+            var internalApplicationOAuthOptions = kernel.Get<ApiOAuthAuthorizationServerOptions>().GetOptions(app);
+            
             app.UseOAuthAuthorizationServer(internalApplicationOAuthOptions);
+
+            base.ConfigureAuth(app, kernel);
 
             // Enable the application to use bearer tokens to authenticate users
             app.UseOAuthBearerTokens(internalApplicationOAuthOptions);
