@@ -1,4 +1,6 @@
 ﻿using System.Web.Http;
+using Microsoft.Owin.Security.DataHandler;
+using Microsoft.Owin.Security.DataProtection;
 using Microsoft.Owin.Security.OAuth;
 using Ninject;
 using Ninject.Web.Common.OwinHost;
@@ -33,7 +35,15 @@ namespace WaterPoint.Api.Common
 
         public virtual void ConfigureAuth(IAppBuilder app, IKernel kernel)
         {
-            app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
+            //TODO: abstract this out to a common place
+            var oauthbeareroptions = new OAuthBearerAuthenticationOptions
+            {
+                AccessTokenFormat =
+                    new TicketDataFormat(app.CreateDataProtector(typeof(OAuthAuthorizationServerMiddleware).Namespace,
+                        "access_token", "v1"))
+            };
+
+            app.UseOAuthBearerAuthentication(oauthbeareroptions);
         }
 
         public virtual HttpConfiguration ConfigureWebApi()

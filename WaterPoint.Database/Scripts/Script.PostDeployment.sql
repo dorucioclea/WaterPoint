@@ -30,7 +30,7 @@ Post-Deployment Script Template
 
 :r ".\PostDeployment\DemoCredential.sql"
 
-:r ".\PostDeployment\DemoOrganizationUser.sql"
+:r ".\PostDeployment\DemoOrganizationUserAndStaff.sql"
 
 :r ".\PostDeployment\InvoiceTypes.sql"
 

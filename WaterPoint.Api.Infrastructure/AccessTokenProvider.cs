@@ -7,7 +7,7 @@ namespace WaterPoint.Api.Infrastructure
     {
         public override void Create(AuthenticationTokenCreateContext context)
         {
-            context.Ticket.Properties.ExpiresUtc = new DateTimeOffset(DateTime.UtcNow.AddMinutes(60));
+            context.Ticket.Properties.ExpiresUtc = new DateTimeOffset(DateTime.UtcNow.AddDays(30));
 
             context.SetToken(context.SerializeTicket());
         }
