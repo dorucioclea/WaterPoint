@@ -3,6 +3,7 @@
     [Id],
 	[OrganizationUserId],
     [OrganizationId],
+	[IsSignedIn],
     [OrganizationUserTypeId],
     [Email],
     [Password],
@@ -18,7 +19,8 @@ AS
 	SELECT
 		c.[Id],
 		ou.Id AS OrganizationUserId,
-		ou.[OrganizationId],
+		ou.[OrganizationId],		
+		ou.IsSignedIn,
 		ou.[OrganizationUserTypeId],
 		c.[Email],
 		c.[Password],
@@ -44,7 +46,8 @@ AS
     SELECT
 		c.[Id],
 		ou.Id AS OrganizationUserId,
-		ou.[OrganizationId],
+		ou.[OrganizationId],		
+		ou.IsSignedIn,
 		ou.[OrganizationUserTypeId],
 		c.[Email],
 		c.[Password],

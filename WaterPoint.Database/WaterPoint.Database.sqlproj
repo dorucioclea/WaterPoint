@@ -123,6 +123,7 @@
     <Build Include="dbo\Tables\QuoteStatus.sql" />
     <Build Include="dbo\Tables\InvoiceStatus.sql" />
     <None Include="Scripts\PostDeployment\InvoiceStatuses.sql" />
+    <Build Include="dbo\StoredProcedures\Update_OrganizationUser_IsSignedIn.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="WaterPoint.Database.publish.xml" />

@@ -1,4 +1,5 @@
-﻿using WaterPoint.Core.Domain.Db;
+﻿using System.Linq;
+using WaterPoint.Core.Domain.Db;
 using WaterPoint.Data.DbContext.Dapper;
 
 namespace WaterPoint.Core.Bll.Executors
@@ -15,7 +16,9 @@ namespace WaterPoint.Core.Bll.Executors
 
         public int Execute(ICommand<T> query)
         {
-            var result = _dapperDbContext.NonQuery(query.Query, query.Parameters);
+            var result = (query.IsStoredProcedure)
+                ? _dapperDbContext.ExecuteStoredProcedure<int>(query.Query, query.Parameters).Single()
+                : _dapperDbContext.NonQuery(query.Query, query.Parameters);
 
             return result;
         }

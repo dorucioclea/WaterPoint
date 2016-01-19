@@ -73,14 +73,14 @@ namespace WaterPoint.Api.Infrastructure
             {
                 new Claim(ClaimTypes.Email, context.UserName),
                 new Claim(ClaimTypes.Sid, JsonConvert.SerializeObject(userPrivileges)),
-                new Claim(ClaimTypes.PrimaryGroupSid, JsonConvert.SerializeObject(credentials))
+                new Claim(ClaimTypes.GroupSid, JsonConvert.SerializeObject(credentials))
             }, OAuthDefaults.AuthenticationType);
 
             //var cookiesIdentity = new ClaimsIdentity(new[]
             //{
             //    new Claim(ClaimTypes.Email, context.UserName),
             //    new Claim(ClaimTypes.Sid, JsonConvert.SerializeObject(userPrivileges)),
-            //    new Claim(ClaimTypes.PrimaryGroupSid, JsonConvert.SerializeObject(credentials)),
+            //    new Claim(ClaimTypes.GroupSid, JsonConvert.SerializeObject(credentials)),
             //}, CookieAuthenticationDefaults.AuthenticationType);
 
             var properties = CreateProperties(context.UserName);

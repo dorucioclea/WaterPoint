@@ -9,6 +9,8 @@ namespace WaterPoint.Core.Domain.Contracts.Credentials
 
         public int OrganizationId { get; set; }
 
+        public bool IsSignedIn { get; set; }
+
         public int OrganizationUserId { get; set; }
 
         public int OrganizationUserTypeId { get; set; }

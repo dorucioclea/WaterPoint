@@ -4,8 +4,8 @@ namespace WaterPoint.Core.Domain.Contracts.Privileges
 {
     public class UserPrivilegeContract : IContract
     {
-        public int U { get; set; }
-        public IEnumerable<PrivilegeContract> Ps { get; set; }
+        public int OrgUserId { get; set; }
+        public IEnumerable<PrivilegeContract> Privileges { get; set; }
     }
 
     public class PrivilegeContract
