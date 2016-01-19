@@ -14,7 +14,7 @@ namespace WaterPoint.Api.Common.BaseControllers
 {
     public class BaseOrgnizationContextController : ApiController
     {
-        public OrganizationUserContext OrganizationUser
+        public CredentialContext Credential
         {
             get
             {
@@ -29,7 +29,7 @@ namespace WaterPoint.Api.Common.BaseControllers
             }
         }
 
-        private OrganizationUserContext GetCurrentOrganizationUser(int organizationId)
+        private CredentialContext GetCurrentOrganizationUser(int organizationId)
         {
             var context = Request.GetOwinContext();
 
@@ -39,7 +39,7 @@ namespace WaterPoint.Api.Common.BaseControllers
 
             var privilegeData = user.Claims.First(i => i.Type == ClaimTypes.Sid).Value;
 
-            var users = JsonConvert.DeserializeObject<IEnumerable<OrganizationUserContext>>(userContextData);
+            var users = JsonConvert.DeserializeObject<IEnumerable<CredentialContext>>(userContextData);
 
             var privileges = JsonConvert.DeserializeObject<IEnumerable<UserPrivilegeContract>>(privilegeData);
 

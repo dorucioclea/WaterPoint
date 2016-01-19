@@ -4,7 +4,7 @@ using WaterPoint.Core.Domain.Contracts.Privileges;
 
 namespace WaterPoint.Api.Common
 {
-    public class OrganizationUserContext
+    public class CredentialContext
     {
         public int Id { get; set; }
 

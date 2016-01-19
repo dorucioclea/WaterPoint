@@ -53,7 +53,7 @@ namespace WaterPoint.Api.CostItem.Controllers
             [FromBody]WriteCostItemPayload payload)
         {
             request.Payload = payload;
-            request.OrganizationUserId = OrganizationUser.Id;
+            request.OrganizationUserId = Credential.Id;
 
             var result = _createRequestProcessor.Process(request);
 
@@ -71,7 +71,7 @@ namespace WaterPoint.Api.CostItem.Controllers
             }
 
             request.Payload = payload;
-            request.OrganizationUserId = OrganizationUser.Id;
+            request.OrganizationUserId = Credential.Id;
 
             var result = _updateRequestProcessor.Process(request);
 
