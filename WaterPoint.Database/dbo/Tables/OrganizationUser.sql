@@ -6,6 +6,7 @@
 	[OrganizationUserTypeId] INT NOT NULL,
     [IsDeleted] BIT NOT NULL DEFAULT(0),
     [IsActive] BIT NOT NULL DEFAULT(1),
+	[IsSignedIn] BIT NOT NULL DEFAULT(0),
     [Note] NVARCHAR(500) NULL,
     [Version] ROWVERSION NOT NULL,
 	[UtcCreated] DATETIME2(3) NOT NULL DEFAULT(SYSUTCDATETIME()),

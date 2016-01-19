@@ -101,6 +101,7 @@
     <Compile Include="Mappers\EntitiesToContracts\QuoteMapper.cs" />
     <Compile Include="Mappers\EntitiesToContracts\QuoteTaskMapper.cs" />
     <Compile Include="Mappers\EntitiesToContracts\StaffMapper.cs" />
+    <Compile Include="OrganizationUsers\SignInManagementProcessor.cs" />
     <Compile Include="Privileges\ListUserPrivilegesProcessor.cs" />
     <Compile Include="InvoiceJobCostItems\CreateInvoiceJobCostItemProcessor.cs" />
     <Compile Include="InvoiceJobCostItems\GetInvoiceJobCostItemProcessor.cs" />

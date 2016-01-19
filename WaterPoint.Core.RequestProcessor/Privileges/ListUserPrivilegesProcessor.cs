@@ -34,8 +34,8 @@ namespace WaterPoint.Core.RequestProcessor.Privileges
             var userPrivilegeContracts = result.GroupBy(i => i.OrganizationUserId)
                 .Select(i => new UserPrivilegeContract
                 {
-                    U = i.Key,
-                    Ps = i.Select(p => new PrivilegeContract { Id = p.PrivilegeId, F = Convert.ToByte(p.IsFull) })
+                    OrgUserId = i.Key,
+                    Privileges = i.Select(p => new PrivilegeContract { Id = p.PrivilegeId, F = Convert.ToByte(p.IsFull) })
                 });
 
             return userPrivilegeContracts;

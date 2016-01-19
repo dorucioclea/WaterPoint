@@ -39,8 +39,7 @@ namespace WaterPoint.Api.Common
             var oauthbeareroptions = new OAuthBearerAuthenticationOptions
             {
                 AccessTokenFormat =
-                    new TicketDataFormat(app.CreateDataProtector(typeof(OAuthAuthorizationServerMiddleware).Namespace,
-                        "access_token", "v1"))
+                    new TicketDataFormat(app.CreateDataProtector(typeof(OAuthAuthorizationServerMiddleware).Namespace, "access_token", "v1"))
             };
 
             app.UseOAuthBearerAuthentication(oauthbeareroptions);

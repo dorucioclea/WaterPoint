@@ -5,6 +5,7 @@
         void BuildQuery(T input);
         string Query { get; }
         object Parameters { get; }
+        bool IsStoredProcedure { get; }
     }
 
     public interface ICommandExecutor<T> where T : IQueryParameter

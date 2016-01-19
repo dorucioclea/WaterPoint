@@ -35,7 +35,7 @@ namespace WaterPoint.Api.Common.BaseControllers
 
             var user = context.Authentication.User;
 
-            var userContextData = user.Claims.First(i => i.Type == ClaimTypes.PrimaryGroupSid).Value;
+            var userContextData = user.Claims.First(i => i.Type == ClaimTypes.GroupSid).Value;
 
             var privilegeData = user.Claims.First(i => i.Type == ClaimTypes.Sid).Value;
 
@@ -48,7 +48,7 @@ namespace WaterPoint.Api.Common.BaseControllers
             if (orgUser == null)
                 throw new InvalidOrganizationContextException();
 
-            orgUser.Privileges = privileges.First(i => i.U == orgUser.OrganizationUserId).Ps;
+            orgUser.Privileges = privileges.First(i => i.OrgUserId == orgUser.OrganizationUserId).Privileges;
 
             return orgUser;
         }

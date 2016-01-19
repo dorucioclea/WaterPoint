@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WaterPoint.Core.Domain.Db;
+﻿using WaterPoint.Core.Domain.Db;
 using WaterPoint.Core.Domain.QueryParameters.JobTimesheet;
 
 namespace WaterPoint.Core.Bll.Commands.JobTimesheet
 {
-    public class UpdateJobTimesheetCommand: ICommand<UpdateJobTimesheet>
+    public class UpdateJobTimesheetCommand : ICommand<UpdateJobTimesheet>
     {
         private readonly ISqlBuilderFactory _sqlBuilderFactory;
 
@@ -36,5 +31,6 @@ namespace WaterPoint.Core.Bll.Commands.JobTimesheet
 
         public string Query { get; private set; }
         public object Parameters { get; private set; }
+        public bool IsStoredProcedure => false;
     }
 }

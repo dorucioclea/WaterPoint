@@ -18,7 +18,7 @@ namespace WaterPoint.Api.Job.Controllers
 
             var user = context.Authentication.User;
 
-            var userContextData = user.Claims.First(i => i.Type == ClaimTypes.PrimaryGroupSid).Value;
+            var userContextData = user.Claims.First(i => i.Type == ClaimTypes.GroupSid).Value;
 
             var priv = user.Claims.First(i => i.Type == ClaimTypes.Sid).Value;
 

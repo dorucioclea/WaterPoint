@@ -3,6 +3,8 @@ using Microsoft.Owin.Security.Infrastructure;
 using Microsoft.Owin.Security.OAuth;
 using Ninject.Modules;
 using WaterPoint.Api.Infrastructure;
+using WaterPoint.Core.Bll.Commands.OrganizationUsers;
+using WaterPoint.Core.Bll.Executors;
 using WaterPoint.Core.Bll.Queries.Credentials;
 using WaterPoint.Core.Bll.Queries.OAuthClients;
 using WaterPoint.Core.Bll.Queries.Privileges;
@@ -13,12 +15,15 @@ using WaterPoint.Core.Domain.Contracts.Credentials;
 using WaterPoint.Core.Domain.Contracts.OAuthClients;
 using WaterPoint.Core.Domain.Contracts.Privileges;
 using WaterPoint.Core.Domain.Db;
+using WaterPoint.Core.Domain.QueryParameters.OrganizationUsers;
 using WaterPoint.Core.Domain.QueryParameters.Priviledges;
 using WaterPoint.Core.Domain.Requests.Credentials;
 using WaterPoint.Core.Domain.Requests.OAuthClients;
+using WaterPoint.Core.Domain.Requests.OrganizationUsers;
 using WaterPoint.Core.Domain.Requests.Priviledges;
 using WaterPoint.Core.RequestProcessor.Credentials;
 using WaterPoint.Core.RequestProcessor.OAuthClients;
+using WaterPoint.Core.RequestProcessor.OrganizationUsers;
 using WaterPoint.Core.RequestProcessor.Privileges;
 using WaterPoint.Data.Entity.DataEntities;
 using WaterPoint.Data.Entity.Pocos.Priviledges;
@@ -34,8 +39,8 @@ namespace WaterPoint.Api.DependencyInjection
             BindQueries();
             BindQueryRunners();
             BindProviders();
-            //BindCommands();
-            //BindCommandExecutors();
+            BindCommands();
+            BindCommandExecutors();
         }
 
         private void BindQueries()
@@ -58,6 +63,17 @@ namespace WaterPoint.Api.DependencyInjection
             Bind<IQueryListRunner<ListUserPrivileges, OrganizationUserPrivilegePoco>>()
                 .To<QueryListRunner<ListUserPrivileges, OrganizationUserPrivilegePoco>>();
         }
+
+        public void BindCommands()
+        {
+            Bind<ICommand<SignInManagement>>().To<SignInManagementCommand>();
+        }
+
+        public void BindCommandExecutors()
+        {
+            Bind<ICommandExecutor<SignInManagement>>().To<UpdateCommandExecutor<SignInManagement>>();
+        }
+
         private void BindRequestProcessors()
         {
             Bind<IRequestProcessor<GetOAuthClientRequest, OAuthClientContract>>()
@@ -68,6 +84,9 @@ namespace WaterPoint.Api.DependencyInjection
 
             Bind<IListProcessor<ListUserPrivilegesRequest, UserPrivilegeContract>>()
                 .To<ListUserPrivilegesProcessor>();
+
+            Bind<IWriteRequestProcessor<SignInManagementRequest>>()
+                .To<SignInManagementProcessor>();
         }
 
         public void BindProviders()
