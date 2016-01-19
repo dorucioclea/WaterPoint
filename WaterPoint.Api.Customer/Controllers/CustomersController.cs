@@ -62,7 +62,7 @@ namespace WaterPoint.Api.Customer.Controllers
             }
 
             request.Payload = payload;
-            request.OrganizationUserId = OrganizationUser.Id;
+            request.OrganizationUserId = Credential.Id;
 
             var result = _createCustomerRequest.Process(request);
 
@@ -79,7 +79,7 @@ namespace WaterPoint.Api.Customer.Controllers
             //input.Patch(updatecustomerrequest) to get the patched value
             //pass patched value to processor
             request.Payload = input;
-            request.OrganizationUserId = OrganizationUser.Id;
+            request.OrganizationUserId = Credential.Id;
 
             var customer = _updateRequestProcessor.Process(request);
 

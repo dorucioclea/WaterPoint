@@ -68,7 +68,7 @@ namespace WaterPoint.Api.TaskDefinition.Controllers
             }
 
             request.Payload = taskDefinitionPayload;
-            request.OrganizationUserId = OrganizationUser.Id;
+            request.OrganizationUserId = Credential.Id;
 
             var result = _createTaskDefinitionRequest.Process(request);
 
@@ -81,7 +81,7 @@ namespace WaterPoint.Api.TaskDefinition.Controllers
             [FromBody]Delta<WriteTaskDefinitionPayload> input)
         {
             request.Payload = input;
-            request.OrganizationUserId = OrganizationUser.Id;
+            request.OrganizationUserId = Credential.Id;
 
             var taskDefinition = _updateRequestProcessor.Process(request);
 
