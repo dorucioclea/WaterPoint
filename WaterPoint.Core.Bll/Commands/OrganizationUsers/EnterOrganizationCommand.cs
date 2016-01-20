@@ -3,9 +3,9 @@ using WaterPoint.Core.Domain.QueryParameters.OrganizationUsers;
 
 namespace WaterPoint.Core.Bll.Commands.OrganizationUsers
 {
-    public class SignInManagementCommand : ICommand<SignInManagement>
+    public class EnterOrganizationCommand : ICommand<EnterOrganization>
     {
-        public void BuildQuery(SignInManagement parameter)
+        public void BuildQuery(EnterOrganization parameter)
         {
             Query = "[dbo].[Update_OrganizationUser_IsSignedIn]";
 
@@ -13,7 +13,6 @@ namespace WaterPoint.Core.Bll.Commands.OrganizationUsers
             {
                 organizationid = parameter.OrganizationId,
                 organizationuserid = parameter.OrganizationUserId,
-                credentialid = parameter.CredentialId,
                 issignedin = parameter.IsSignedIn
             };
         }

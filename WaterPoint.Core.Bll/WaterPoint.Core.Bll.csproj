@@ -96,7 +96,7 @@
     <Compile Include="Commands\JobTimesheet\UpdateJobTimesheetCommand.cs" />
     <Compile Include="Commands\JobTimesheet\CreateJobTimesheetCommand.cs" />
     <Compile Include="Commands\InvoiceJobCostItems\CreateQuoteCostItemCommand.cs" />
-    <Compile Include="Commands\OrganizationUsers\SignInManagementCommand.cs" />
+    <Compile Include="Commands\OrganizationUsers\EnterOrganizationCommand.cs" />
     <Compile Include="Commands\QuoteCostItems\UpdateQuoteCostItemCommand.cs" />
     <Compile Include="Commands\Quotes\CreateQuoteCommand.cs" />
     <Compile Include="Commands\QuoteCostItems\CreateQuoteCostItemCommand.cs" />

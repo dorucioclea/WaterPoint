@@ -137,7 +137,7 @@
     <Compile Include="QueryParameters\JobTimesheet\ListJobTimesheet.cs" />
     <Compile Include="QueryParameters\JobTimesheet\CreateJobTimesheet.cs" />
     <Compile Include="QueryParameters\JobTimesheet\UpdateJobTimesheet.cs" />
-    <Compile Include="QueryParameters\OrganizationUsers\SignInManagement.cs" />
+    <Compile Include="QueryParameters\OrganizationUsers\EnterOrganization.cs" />
     <Compile Include="QueryParameters\Priviledges\ListUserPrivileges.cs" />
     <Compile Include="QueryParameters\InvoiceJobCostItems\CreateInvoiceJobCostItem.cs" />
     <Compile Include="QueryParameters\InvoiceJobCostItems\GetInvoiceJobCostItem.cs" />
@@ -203,7 +203,7 @@
     <Compile Include="Requests\JobTimesheet\ListJobTimesheetRequest.cs" />
     <Compile Include="Requests\JobTimesheet\CreateJobTimesheetRequest.cs" />
     <Compile Include="Requests\OAuthClients\GetOAuthClientRequest.cs" />
-    <Compile Include="Requests\OrganizationUsers\SignInManagementRequest.cs" />
+    <Compile Include="Requests\OrganizationUsers\EnterOrganizationRequest.cs" />
     <Compile Include="Requests\Priviledges\ListUserPrivilegesRequest.cs" />
     <Compile Include="Requests\InvoiceJobCostItems\CreateInvoiceJobCostItemRequest.cs" />
     <Compile Include="Requests\InvoiceJobCostItems\GetInvoiceJobCostItemRequest.cs" />
