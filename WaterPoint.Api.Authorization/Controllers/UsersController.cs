@@ -10,26 +10,40 @@ namespace WaterPoint.Api.Authorization.Controllers
     [RoutePrefix("organizations/{organizationId:int}/users")]
     public class UsersController : BaseOrgnizationContextController
     {
-        private readonly IWriteRequestProcessor<SignInManagementRequest> _signinRequestProcessor;
+        private readonly IWriteRequestProcessor<EnterOrganizationRequest> _signinRequestProcessor;
 
         public UsersController(
-            IWriteRequestProcessor<SignInManagementRequest> signinRequestProcessor)
+            IWriteRequestProcessor<EnterOrganizationRequest> signinRequestProcessor)
         {
             _signinRequestProcessor = signinRequestProcessor;
         }
 
-        [Route("{id:int}/signin")]
+        [Route("{id:int}/entrance")]
         [HttpPost]
-        public IHttpActionResult SignIn(
-            [FromUri]SignInManagementRequest request,
-            [FromBody]SignInManagementPayload payload)
+        public IHttpActionResult SelectOrganization([FromUri]EnterOrganizationRequest request)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequestWithErrors(ModelState);
             }
 
-            request.Payload = payload;
+            request.Payload = new SignInManagementPayload { ToSignIn = true };
+
+            var result = _signinRequestProcessor.Process(request);
+
+            return Ok(result);
+        }
+
+        [Route("{id:int}/entrance")]
+        [HttpDelete]
+        public IHttpActionResult UnselectOrganization([FromUri]EnterOrganizationRequest request)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequestWithErrors(ModelState);
+            }
+
+            request.Payload = new SignInManagementPayload { ToSignIn = false };
 
             var result = _signinRequestProcessor.Process(request);
 

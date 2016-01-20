@@ -8,38 +8,37 @@ using WaterPoint.Data.DbContext.Dapper;
 
 namespace WaterPoint.Core.RequestProcessor.OrganizationUsers
 {
-    public class SignInManagementProcessor :
+    public class EnterOrganizationProcessor :
         BaseDapperUowRequestProcess,
-        IWriteRequestProcessor<SignInManagementRequest>
+        IWriteRequestProcessor<EnterOrganizationRequest>
     {
-        private readonly ICommand<SignInManagement> _command;
-        private readonly ICommandExecutor<SignInManagement> _executor;
+        private readonly ICommand<EnterOrganization> _command;
+        private readonly ICommandExecutor<EnterOrganization> _executor;
 
-        public SignInManagementProcessor(
+        public EnterOrganizationProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
-            ICommand<SignInManagement> command,
-            ICommandExecutor<SignInManagement> executor)
+            ICommand<EnterOrganization> command,
+            ICommandExecutor<EnterOrganization> executor)
             : base(dapperUnitOfWork)
         {
             _command = command;
             _executor = executor;
         }
 
-        public CommandResult Process(SignInManagementRequest input)
+        public CommandResult Process(EnterOrganizationRequest input)
         {
             var result = UowProcess(ProcessDeFacto, input);
 
             return new CommandResult(result, result > 0);
         }
 
-        private int ProcessDeFacto(SignInManagementRequest input)
+        private int ProcessDeFacto(EnterOrganizationRequest input)
         {
-            var parameter = new SignInManagement
+            var parameter = new EnterOrganization
             {
                 OrganizationId = input.OrganizationId,
                 OrganizationUserId = input.Id,
-                IsSignedIn = input.Payload.IsSignedIn,
-                CredentialId = input.Payload.CredentialId
+                IsSignedIn = input.Payload.ToSignIn
             };
 
             _command.BuildQuery(parameter);

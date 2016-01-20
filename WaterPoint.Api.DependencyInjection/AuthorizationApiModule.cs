@@ -66,12 +66,12 @@ namespace WaterPoint.Api.DependencyInjection
 
         public void BindCommands()
         {
-            Bind<ICommand<SignInManagement>>().To<SignInManagementCommand>();
+            Bind<ICommand<EnterOrganization>>().To<EnterOrganizationCommand>();
         }
 
         public void BindCommandExecutors()
         {
-            Bind<ICommandExecutor<SignInManagement>>().To<UpdateCommandExecutor<SignInManagement>>();
+            Bind<ICommandExecutor<EnterOrganization>>().To<UpdateCommandExecutor<EnterOrganization>>();
         }
 
         private void BindRequestProcessors()
@@ -85,8 +85,8 @@ namespace WaterPoint.Api.DependencyInjection
             Bind<IListProcessor<ListUserPrivilegesRequest, UserPrivilegeContract>>()
                 .To<ListUserPrivilegesProcessor>();
 
-            Bind<IWriteRequestProcessor<SignInManagementRequest>>()
-                .To<SignInManagementProcessor>();
+            Bind<IWriteRequestProcessor<EnterOrganizationRequest>>()
+                .To<EnterOrganizationProcessor>();
         }
 
         public void BindProviders()

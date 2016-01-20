@@ -2,7 +2,7 @@
 
 namespace WaterPoint.Core.Domain.Requests.OrganizationUsers
 {
-    public class SignInManagementRequest : IRequest
+    public class EnterOrganizationRequest : IRequest
     {
         public int OrganizationId { get; set; }
         public int Id { get; set; }
