@@ -187,9 +187,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Properties\PublishProfiles\Ec2-Auth.pubxml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
