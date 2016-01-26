@@ -14,6 +14,7 @@ using WaterPoint.Core.Domain.Requests.TaskDefinitions;
 using WaterPoint.Core.RequestProcessor;
 using WaterPoint.Core.RequestProcessor.TaskDefinitions;
 using WaterPoint.Data.Entity.DataEntities;
+using WaterPoint.Data.Entity.Pocos.TaskDefinitions;
 
 namespace WaterPoint.Api.DependencyInjection
 {
@@ -40,8 +41,8 @@ namespace WaterPoint.Api.DependencyInjection
             Bind<IQueryRunner<GetTaskDefinition, TaskDefinition>>()
                 .To<QueryRunner<GetTaskDefinition, TaskDefinition>>();
 
-            Bind<IPagedQueryRunner<PagedOrgId, TaskDefinition>>()
-                .To<PagedQueryRunner<PagedOrgId, TaskDefinition>>();
+            Bind<IPagedQueryRunner<PagedOrgId, TaskDefinitionBasicPoco>>()
+                .To<PagedQueryRunner<PagedOrgId, TaskDefinitionBasicPoco>>();
         }
 
         public void BindCommands()
@@ -64,7 +65,7 @@ namespace WaterPoint.Api.DependencyInjection
             Bind<IRequestProcessor<GetTaskDefinitionByIdRequest, TaskDefinitionContract>>()
                 .To<GetTaskDefinitionByIdRequestProcessor>();
 
-            Bind<IPagedProcessor<ListWithOrgIdRequest, TaskDefinitionContract>>()
+            Bind<IPagedProcessor<ListWithOrgIdRequest, TaskDefinitionBasicContract>>()
                 .To<ListTaskDefinitionsProcessor>();
 
             Bind<IWriteRequestProcessor<UpdateTaskDefinitionRequest>>()
