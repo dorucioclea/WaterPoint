@@ -41,17 +41,13 @@ namespace WaterPoint.Core.Bll.Queries.Suppliers
 
             builder.AddColumns<Supplier>();
 
-            if (parameter.IsActive.HasValue)
-                builder.AddConditions<Supplier>(
-                    i => i.OrganizationId == parameter.OrganizationId
-                         && i.IsDeleted == false
-                         && i.IsActive == parameter.IsActive);
-            else
-                builder.AddConditions<Supplier>(
-                    i => i.OrganizationId == parameter.OrganizationId
+            parameter.IsActive = parameter.IsActive ?? true;
+            
+            builder.AddConditions<Supplier>(
+                i => i.OrganizationId == parameter.OrganizationId
                         && i.IsDeleted == false
-                        && i.IsActive);
-
+                        && i.IsActive == parameter.IsActive);
+            
             builder.AddOrderBy<Supplier>(parameter.Sort, parameter.IsDesc);
 
             builder.AddContains<Supplier>(parameter.SearchTerm);
@@ -65,7 +61,8 @@ namespace WaterPoint.Core.Bll.Queries.Suppliers
                 organizationId = parameter.OrganizationId,
                 offset = parameter.Offset,
                 pageSize = parameter.PageSize,
-                searchTerm = parameter.SearchTerm
+                searchTerm = parameter.SearchTerm,
+                isactive = parameter.IsActive.Value
             };
         }
 
