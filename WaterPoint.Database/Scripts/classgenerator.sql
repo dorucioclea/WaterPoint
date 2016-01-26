@@ -36,7 +36,7 @@ from
             when 'smallmoney' then 'decimal'
             when 'text' then 'string'
             when 'time' then 'TimeSpan'
-            when 'timestamp' then 'DateTime'
+            when 'timestamp' then 'byte[]'
             when 'tinyint' then 'byte'
             when 'uniqueidentifier' then 'Guid'
             when 'varbinary' then 'byte[]'

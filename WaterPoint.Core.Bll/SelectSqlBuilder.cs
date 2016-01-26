@@ -61,6 +61,9 @@ namespace WaterPoint.Core.Bll
             var index = typeof(T).GetProperties().ToList().FindIndex(i =>
                 string.Equals(i.Name, orderBy, StringComparison.CurrentCultureIgnoreCase)) + 1;
 
+            if (index == 0)
+                index = 1;
+
             _orderBy = $"{index} {(desc ? "DESC" : string.Empty)} ";
         }
 
@@ -125,9 +128,9 @@ namespace WaterPoint.Core.Bll
                 return searchColumns.Length == 0
                     ? string.Empty
                     : $"CONTAINS(({string.Join(",", searchColumns)}), @searchterm)";
-            }).Where(i=>!string.IsNullOrWhiteSpace(i)).ToArray();
+            }).Where(i => !string.IsNullOrWhiteSpace(i)).ToArray();
 
-            if(containClauses.Length==0)
+            if (containClauses.Length == 0)
                 return;
 
             var contains = string.Join(" OR ", containClauses);
@@ -185,7 +188,7 @@ namespace WaterPoint.Core.Bll
 
             //JOIN [dbo].[Customer] c ON j.CustomerId = c.Id
             var tables = oneToOneAttributes
-                .GroupBy(i => new {i.JoinType, i.Schema, i.Alias, i.Table})
+                .GroupBy(i => new { i.JoinType, i.Schema, i.Alias, i.Table })
                 .Select(foreignTable =>
                     $"{foreignTable.Key.JoinType.ToUpper()} JOIN [{foreignTable.Key.Schema}].[{foreignTable.Key.Table}] {foreignTable.Key.Alias} " +
                     $"ON {parentTable.Alias}.[{foreignTable.Key.Table}Id] = {foreignTable.Key.Alias}.[Id]");

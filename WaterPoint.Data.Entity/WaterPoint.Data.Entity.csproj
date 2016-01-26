@@ -63,6 +63,7 @@
     <Compile Include="Attributes\StringValueAttribute.cs" />
     <Compile Include="Attributes\TableAttribute.cs" />
     <Compile Include="DataEntities\Address.cs" />
+    <Compile Include="DataEntities\Supplier.cs" />
     <Compile Include="DataEntities\Invoice.cs" />
     <Compile Include="DataEntities\InvoiceJobTask.cs" />
     <Compile Include="DataEntities\InvoiceJobCostItem.cs" />
@@ -100,6 +101,7 @@
     <Compile Include="Pocos\InvoiceJobTasks\InvoiceJobTaskBasicPoco.cs" />
     <Compile Include="Pocos\Quotes\QuoteBasicPoco.cs" />
     <Compile Include="Pocos\QuoteTasks\QuoteTaskBasicPoco.cs" />
+    <Compile Include="Pocos\TaskDefinitions\TaskDefinitionBasicPoco.cs" />
     <Compile Include="Pocos\Views\ValidCredential.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

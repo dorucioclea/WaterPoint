@@ -91,6 +91,8 @@
     <Compile Include="Contracts\Privileges\UserPrivilegeContract.cs" />
     <Compile Include="Contracts\ResultContract.cs" />
     <Compile Include="Contracts\Staff\StaffContract.cs" />
+    <Compile Include="Contracts\Suppliers\SupplierContract.cs" />
+    <Compile Include="Contracts\TaskDefinitions\TaskDefinitionBasicContract.cs" />
     <Compile Include="Contracts\TaskDefinitions\TaskDefinitionContract.cs" />
     <Compile Include="Db\ISqlBuilder.cs" />
     <Compile Include="Db\ISqlBuilderFactory.cs" />
@@ -110,6 +112,7 @@
     <Compile Include="Payloads\QuoteTasks\UpdateQuoteTaskPayload.cs" />
     <Compile Include="Payloads\QuoteTasks\CreateQuoteTaskPayload.cs" />
     <Compile Include="Payloads\Quotes\CreateQuotePayload.cs" />
+    <Compile Include="Payloads\Suppliers\CreateSupplierPayload.cs" />
     <Compile Include="QueryParameters\CostItems\CreateCostItem.cs" />
     <Compile Include="QueryParameters\CostItems\GetCostItem.cs" />
     <Compile Include="QueryParameters\CostItems\PagedCostItems.cs" />
@@ -161,6 +164,8 @@
     <Compile Include="QueryParameters\QuoteTasks\ListQuoteTasks.cs" />
     <Compile Include="QueryParameters\Shared\PagedOrgId.cs" />
     <Compile Include="QueryParameters\Staff\GetStaff.cs" />
+    <Compile Include="QueryParameters\Suppliers\CreateSupplier.cs" />
+    <Compile Include="QueryParameters\Suppliers\ListSuppliers.cs" />
     <Compile Include="QueryParameters\TaskDefinitions\CreateTaskDefinition.cs" />
     <Compile Include="QueryParameters\TaskDefinitions\GetTaskDefinition.cs" />
     <Compile Include="QueryParameters\TaskDefinitions\UpdateTaskDefinition.cs" />
@@ -176,6 +181,8 @@
     <Compile Include="Requests\CostItems\ListCostItemsRequest.cs" />
     <Compile Include="Requests\CostItems\UpdateCostItemRequest.cs" />
     <Compile Include="Requests\Credentials\ListValidateCredentialsRequest.cs" />
+    <Compile Include="Requests\Suppliers\CreateSupplierRequest.cs" />
+    <Compile Include="Requests\Suppliers\ListSuppliersRequest.cs" />
     <Compile Include="Requests\Customers\ListCustomersRequest.cs" />
     <Compile Include="Requests\Customers\ListCustomerJobsRequest.cs" />
     <Compile Include="Requests\Customers\UpdateCustomerRequest.cs" />

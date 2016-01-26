@@ -101,6 +101,7 @@
     <Compile Include="Mappers\EntitiesToContracts\QuoteMapper.cs" />
     <Compile Include="Mappers\EntitiesToContracts\QuoteTaskMapper.cs" />
     <Compile Include="Mappers\EntitiesToContracts\StaffMapper.cs" />
+    <Compile Include="Mappers\EntitiesToContracts\SupplierMapper.cs" />
     <Compile Include="OrganizationUsers\EnterOrganizationProcessor.cs" />
     <Compile Include="Privileges\ListUserPrivilegesProcessor.cs" />
     <Compile Include="InvoiceJobCostItems\CreateInvoiceJobCostItemProcessor.cs" />
@@ -125,6 +126,8 @@
     <Compile Include="SimplePagedProcessor.cs" />
     <Compile Include="PagedProcessor.cs" />
     <Compile Include="Staff\GetStaffProcessor.cs" />
+    <Compile Include="Suppliers\CreateSupplierProcessor.cs" />
+    <Compile Include="Suppliers\ListSuppliersProcessor.cs" />
     <Compile Include="Timesheet\UpdateJobTimesheetProcessor.cs" />
     <Compile Include="Timesheet\GetJobTimesheetProcessor.cs" />
     <Compile Include="Timesheet\ListJobTimesheetProcessor.cs" />
