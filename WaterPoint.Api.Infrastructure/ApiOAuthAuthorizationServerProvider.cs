@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts.Credentials;
 using WaterPoint.Core.Domain.Contracts.OAuthClients;
-using WaterPoint.Core.Domain.Contracts.Privileges;
+using WaterPoint.Core.Domain.Contracts.UserPrivileges;
 using WaterPoint.Core.Domain.Requests.Credentials;
 using WaterPoint.Core.Domain.Requests.OAuthClients;
 using WaterPoint.Core.Domain.Requests.UserPrivileges;

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using WaterPoint.Core.Domain.Contracts.Privileges;
+using WaterPoint.Core.Domain.Contracts.UserPrivileges;
 
 namespace WaterPoint.Api.Common
 {

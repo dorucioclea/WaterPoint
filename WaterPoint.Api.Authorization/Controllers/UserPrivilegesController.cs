@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web.Http;
 using WaterPoint.Api.Common.BaseControllers;
 using WaterPoint.Core.Domain;
-using WaterPoint.Core.Domain.Contracts.Privileges;
+using WaterPoint.Core.Domain.Contracts.UserPrivileges;
 using WaterPoint.Core.Domain.Payloads.UserPrivileges;
 using WaterPoint.Core.Domain.Requests.UserPrivileges;
 
@@ -14,11 +14,11 @@ namespace WaterPoint.Api.Authorization.Controllers
     [RoutePrefix("organizations/{organizationId:int}/users/{userId:int}/privileges")]
     public class UserPrivilegesController : BaseOrgnizationContextController
     {
-        private readonly IPagedProcessor<ListUserPrivilegesRequest, UserPrivilegeContract> _listUserPrivilegeRequestProcessor;
+        private readonly IListProcessor<ListUserPrivilegesRequest, UserPrivilegeContract> _listUserPrivilegeRequestProcessor;
         private readonly IWriteRequestProcessor<AdjustUserPrivilegeRequest> _adjustUserPrivilegeRequest;
 
         public UserPrivilegesController(
-            IPagedProcessor<ListUserPrivilegesRequest, UserPrivilegeContract> listUserPrivilegeRequestProcessor,
+            IListProcessor<ListUserPrivilegesRequest, UserPrivilegeContract> listUserPrivilegeRequestProcessor,
             IWriteRequestProcessor<AdjustUserPrivilegeRequest> adjustUserPrivilegeRequest)
         {
             _listUserPrivilegeRequestProcessor = listUserPrivilegeRequestProcessor;
@@ -26,8 +26,13 @@ namespace WaterPoint.Api.Authorization.Controllers
         }
 
         [Route("")]
-        public IHttpActionResult Get([FromUri]ListUserPrivilegesRequest request)
+        public IHttpActionResult Get([FromUri]int userId)
         {
+            var request = new ListUserPrivilegesRequest
+            {
+                OrganizationUserIds = userId.ToString()
+            };
+
             var result = _listUserPrivilegeRequestProcessor.Process(request);
 
             return Ok(result);

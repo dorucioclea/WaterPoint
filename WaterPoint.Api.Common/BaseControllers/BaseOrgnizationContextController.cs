@@ -7,7 +7,7 @@ using System.Web.Http;
 using System.Web.Http.ModelBinding;
 using Newtonsoft.Json;
 using WaterPoint.Api.Common.HttpActionResults;
-using WaterPoint.Core.Domain.Contracts.Privileges;
+using WaterPoint.Core.Domain.Contracts.UserPrivileges;
 using WaterPoint.Core.Domain.Exceptions;
 
 namespace WaterPoint.Api.Common.BaseControllers

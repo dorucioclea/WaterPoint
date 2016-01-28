@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using WaterPoint.Core.Domain;
-using WaterPoint.Core.Domain.Contracts.Privileges;
+using WaterPoint.Core.Domain.Contracts.UserPrivileges;
 using WaterPoint.Core.Domain.Db;
 using WaterPoint.Core.Domain.QueryParameters.UserPrivileges;
 using WaterPoint.Core.Domain.Requests.UserPrivileges;
