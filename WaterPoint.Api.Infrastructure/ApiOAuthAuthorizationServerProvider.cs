@@ -11,10 +11,9 @@ using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts.Credentials;
 using WaterPoint.Core.Domain.Contracts.OAuthClients;
 using WaterPoint.Core.Domain.Contracts.Privileges;
-using WaterPoint.Core.Domain.QueryParameters.Priviledges;
 using WaterPoint.Core.Domain.Requests.Credentials;
 using WaterPoint.Core.Domain.Requests.OAuthClients;
-using WaterPoint.Core.Domain.Requests.Priviledges;
+using WaterPoint.Core.Domain.Requests.UserPrivileges;
 using WaterPoint.Data.Entity.Pocos.Views;
 
 namespace WaterPoint.Api.Infrastructure

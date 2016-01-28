@@ -1,4 +1,4 @@
-﻿namespace WaterPoint.Core.Domain.Requests.Priviledges
+﻿namespace WaterPoint.Core.Domain.Requests.UserPrivileges
 {
     public class ListUserPrivilegesRequest : IRequest
     {

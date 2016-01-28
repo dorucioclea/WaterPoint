@@ -108,6 +108,7 @@
     <Compile Include="Commands\Suppliers\CreateCustomerCommand.cs" />
     <Compile Include="Commands\TaskDefinitions\CreateTaskDefinitionCommand.cs" />
     <Compile Include="Commands\TaskDefinitions\UpdateTaskDefinitionCommand.cs" />
+    <Compile Include="Commands\UserPrivileges\CreateCustomerCommand.cs" />
     <Compile Include="Queries\CostItems\ListCostItemQuery.cs" />
     <Compile Include="Queries\CostItems\GetCostItemQuery.cs" />
     <Compile Include="Queries\Credentials\ListValidateCredentialsQuery.cs" />
@@ -121,7 +122,7 @@
     <Compile Include="Queries\JobTimesheet\GetJobTimesheetQuery.cs" />
     <Compile Include="Queries\JobTimesheet\ListJobTimesheetQuery.cs" />
     <Compile Include="Queries\OAuthClients\GetOAuthClientQuery.cs" />
-    <Compile Include="Queries\Privileges\ListUserPrivilegesQuery.cs" />
+    <Compile Include="Queries\UserPrivileges\ListUserPrivilegesQuery.cs" />
     <Compile Include="Queries\InvoiceJobCostItems\GetInvoiceJobCostItemQuery.cs" />
     <Compile Include="Queries\InvoiceJobCostItems\ListInvoiceJobCostItemsQuery.cs" />
     <Compile Include="Queries\QuoteCostItems\GetQuoteCostItemQuery.cs" />

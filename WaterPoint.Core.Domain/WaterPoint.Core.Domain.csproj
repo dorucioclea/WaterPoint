@@ -88,7 +88,7 @@
     <Compile Include="Contracts\JobTimesheet\JobTimesheetContract.cs" />
     <Compile Include="Contracts\LinkItemContract.cs" />
     <Compile Include="Contracts\OAuthClients\OAuthClientContract.cs" />
-    <Compile Include="Contracts\Privileges\UserPrivilegeContract.cs" />
+    <Compile Include="Contracts\UserPrivileges\UserPrivilegeContract.cs" />
     <Compile Include="Contracts\ResultContract.cs" />
     <Compile Include="Contracts\Staff\StaffContract.cs" />
     <Compile Include="Contracts\Suppliers\SupplierContract.cs" />
@@ -113,6 +113,7 @@
     <Compile Include="Payloads\QuoteTasks\CreateQuoteTaskPayload.cs" />
     <Compile Include="Payloads\Quotes\CreateQuotePayload.cs" />
     <Compile Include="Payloads\Suppliers\CreateSupplierPayload.cs" />
+    <Compile Include="Payloads\UserPrivileges\AdjustUserPrivilegePayload.cs" />
     <Compile Include="QueryParameters\CostItems\CreateCostItem.cs" />
     <Compile Include="QueryParameters\CostItems\GetCostItem.cs" />
     <Compile Include="QueryParameters\CostItems\PagedCostItems.cs" />
@@ -141,7 +142,7 @@
     <Compile Include="QueryParameters\JobTimesheet\CreateJobTimesheet.cs" />
     <Compile Include="QueryParameters\JobTimesheet\UpdateJobTimesheet.cs" />
     <Compile Include="QueryParameters\OrganizationUsers\EnterOrganization.cs" />
-    <Compile Include="QueryParameters\Priviledges\ListUserPrivileges.cs" />
+    <Compile Include="QueryParameters\UserPrivileges\ListUserPrivileges.cs" />
     <Compile Include="QueryParameters\InvoiceJobCostItems\CreateInvoiceJobCostItem.cs" />
     <Compile Include="QueryParameters\InvoiceJobCostItems\GetInvoiceJobCostItem.cs" />
     <Compile Include="QueryParameters\InvoiceJobCostItems\ListInvoiceJobCostItems.cs" />
@@ -170,6 +171,7 @@
     <Compile Include="QueryParameters\TaskDefinitions\GetTaskDefinition.cs" />
     <Compile Include="QueryParameters\TaskDefinitions\UpdateTaskDefinition.cs" />
     <Compile Include="QueryParameters\JobCostItems\GetJobCostItem.cs" />
+    <Compile Include="QueryParameters\UserPrivileges\AdjustUserPrivilegePayload.cs" />
     <Compile Include="RequestParameters\IOrgEntity.cs" />
     <Compile Include="RequestParameters\IPagination.cs" />
     <Compile Include="Payloads\CostItems\WriteCostItemPayload.cs" />
@@ -211,7 +213,7 @@
     <Compile Include="Requests\JobTimesheet\CreateJobTimesheetRequest.cs" />
     <Compile Include="Requests\OAuthClients\GetOAuthClientRequest.cs" />
     <Compile Include="Requests\OrganizationUsers\EnterOrganizationRequest.cs" />
-    <Compile Include="Requests\Priviledges\ListUserPrivilegesRequest.cs" />
+    <Compile Include="Requests\UserPrivileges\ListUserPrivilegesRequest.cs" />
     <Compile Include="Requests\InvoiceJobCostItems\CreateInvoiceJobCostItemRequest.cs" />
     <Compile Include="Requests\InvoiceJobCostItems\GetInvoiceJobCostItemRequest.cs" />
     <Compile Include="Requests\InvoiceJobCostItems\ListInvoiceJobCostItemsRequest.cs" />
@@ -251,6 +253,8 @@
     <Compile Include="IRequestProcessor.cs" />
     <Compile Include="Requests\Shared\ListWithOrgIdRequest.cs" />
     <Compile Include="Payloads\Customers\WriteCustomerPayload.cs" />
+    <Compile Include="Requests\UserPrivileges\AdjustUserPrivilegeRequest.cs" />
+    <Compile Include="Requests\UserPrivileges\DeleteUserPrivilegeRequest.cs" />
     <Compile Include="SimplePagedResult.cs" />
   </ItemGroup>
   <ItemGroup>

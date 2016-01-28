@@ -124,6 +124,7 @@
     <Build Include="dbo\Tables\InvoiceStatus.sql" />
     <None Include="Scripts\PostDeployment\InvoiceStatuses.sql" />
     <Build Include="dbo\StoredProcedures\Update_OrganizationUser_IsSignedIn.sql" />
+    <Build Include="dbo\StoredProcedures\Add_OrganizationUser_Privileges.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="WaterPoint.Database.publish.xml" />
@@ -138,7 +139,6 @@
     <None Include="Scripts\PostDeployment\DemoJobCategories.sql" />
     <None Include="Scripts\PostDeployment\DemoCredential.sql" />
     <None Include="Scripts\PostDeployment\DemoJobs.sql" />
-    <None Include="Scripts\PostDeployment\DemoOrganizationUser.sql" />
     <None Include="WaterPoint.Azure.Database.publish.xml" />
     <None Include="apiv1\Scripts\Script.PostDeployment.ApiV1.sql" />
     <None Include="Scripts\PostDeployment\PriorityTypes.sql" />

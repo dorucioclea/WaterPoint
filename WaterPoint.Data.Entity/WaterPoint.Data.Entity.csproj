@@ -95,7 +95,7 @@
     <Compile Include="Pocos\JobTasks\JobTaskBasicPoco.cs" />
     <Compile Include="Pocos\JobTimesheet\JobTimesheetPoco.cs" />
     <Compile Include="Pocos\PagedPoco.cs" />
-    <Compile Include="Pocos\Priviledges\OrganizationUserPrivilegePoco.cs" />
+    <Compile Include="Pocos\Privileges\OrganizationUserPrivilegePoco.cs" />
     <Compile Include="Pocos\InvoiceJobCostItems\InvoiceJobCostItemBasicPoco.cs" />
     <Compile Include="Pocos\QuoteCostItems\QuoteCostItemBasicPoco.cs" />
     <Compile Include="Pocos\InvoiceJobTasks\InvoiceJobTaskBasicPoco.cs" />

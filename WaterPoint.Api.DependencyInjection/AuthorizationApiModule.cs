@@ -4,6 +4,7 @@ using Microsoft.Owin.Security.OAuth;
 using Ninject.Modules;
 using WaterPoint.Api.Infrastructure;
 using WaterPoint.Core.Bll.Commands.OrganizationUsers;
+using WaterPoint.Core.Bll.Commands.UserPrivileges;
 using WaterPoint.Core.Bll.Executors;
 using WaterPoint.Core.Bll.Queries.Credentials;
 using WaterPoint.Core.Bll.Queries.OAuthClients;
@@ -16,17 +17,17 @@ using WaterPoint.Core.Domain.Contracts.OAuthClients;
 using WaterPoint.Core.Domain.Contracts.Privileges;
 using WaterPoint.Core.Domain.Db;
 using WaterPoint.Core.Domain.QueryParameters.OrganizationUsers;
-using WaterPoint.Core.Domain.QueryParameters.Priviledges;
+using WaterPoint.Core.Domain.QueryParameters.UserPrivileges;
 using WaterPoint.Core.Domain.Requests.Credentials;
 using WaterPoint.Core.Domain.Requests.OAuthClients;
 using WaterPoint.Core.Domain.Requests.OrganizationUsers;
-using WaterPoint.Core.Domain.Requests.Priviledges;
+using WaterPoint.Core.Domain.Requests.UserPrivileges;
 using WaterPoint.Core.RequestProcessor.Credentials;
 using WaterPoint.Core.RequestProcessor.OAuthClients;
 using WaterPoint.Core.RequestProcessor.OrganizationUsers;
-using WaterPoint.Core.RequestProcessor.Privileges;
+using WaterPoint.Core.RequestProcessor.UserPrivileges;
 using WaterPoint.Data.Entity.DataEntities;
-using WaterPoint.Data.Entity.Pocos.Priviledges;
+using WaterPoint.Data.Entity.Pocos.Privileges;
 using WaterPoint.Data.Entity.Pocos.Views;
 
 namespace WaterPoint.Api.DependencyInjection
@@ -67,11 +68,13 @@ namespace WaterPoint.Api.DependencyInjection
         public void BindCommands()
         {
             Bind<ICommand<EnterOrganization>>().To<EnterOrganizationCommand>();
+            Bind<ICommand<AdjustUserPrivilege>>().To<AdjustUserPrivilegeCommand>();
         }
 
         public void BindCommandExecutors()
         {
             Bind<ICommandExecutor<EnterOrganization>>().To<UpdateCommandExecutor<EnterOrganization>>();
+            Bind<ICommandExecutor<AdjustUserPrivilege>>().To<UpdateCommandExecutor<AdjustUserPrivilege>>();
         }
 
         private void BindRequestProcessors()

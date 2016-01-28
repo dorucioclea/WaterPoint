@@ -6,8 +6,7 @@ BEGIN
 
     SELECT
         oup.OrganizationUserId,
-        oup.PrivilegeId,
-        oup.IsFull
+        oup.PrivilegeId
     FROM
         dbo.OrganizationUserPrivilege oup
         JOIN Privilege p ON oup.PrivilegeId = p.Id AND p.IsDeleted = 0
