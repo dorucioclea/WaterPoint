@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace WaterPoint.Core.Domain.Contracts.Privileges
+namespace WaterPoint.Core.Domain.Contracts.UserPrivileges
 {
     public class UserPrivilegeContract : IContract
     {
@@ -11,6 +11,5 @@ namespace WaterPoint.Core.Domain.Contracts.Privileges
     public class PrivilegeContract
     {
         public int Id { get; set; }
-        public byte F { get; set; }
     }
 }

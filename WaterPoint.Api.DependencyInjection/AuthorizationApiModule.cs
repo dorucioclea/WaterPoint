@@ -14,7 +14,7 @@ using WaterPoint.Core.Domain.QueryParameters.Credentials;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts.Credentials;
 using WaterPoint.Core.Domain.Contracts.OAuthClients;
-using WaterPoint.Core.Domain.Contracts.Privileges;
+using WaterPoint.Core.Domain.Contracts.UserPrivileges;
 using WaterPoint.Core.Domain.Db;
 using WaterPoint.Core.Domain.QueryParameters.OrganizationUsers;
 using WaterPoint.Core.Domain.QueryParameters.UserPrivileges;
@@ -90,6 +90,9 @@ namespace WaterPoint.Api.DependencyInjection
 
             Bind<IWriteRequestProcessor<EnterOrganizationRequest>>()
                 .To<EnterOrganizationProcessor>();
+
+            Bind<IWriteRequestProcessor<AdjustUserPrivilegeRequest>>()
+                .To<AdjustUserPrivilegeProcessor>();
         }
 
         public void BindProviders()
