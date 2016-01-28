@@ -11,6 +11,7 @@ using WaterPoint.Core.Domain.Requests.CostItems;
 
 namespace WaterPoint.Api.CostItem.Controllers
 {
+    [Authorize]
     [RoutePrefix(RouteDefinitions.CostItems.Prefix)]
     public class CostItemsController : BaseOrgnizationContextController
     {
