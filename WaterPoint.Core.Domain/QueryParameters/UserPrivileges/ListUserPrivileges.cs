@@ -1,6 +1,6 @@
 ﻿using WaterPoint.Core.Domain.Db;
 
-namespace WaterPoint.Core.Domain.QueryParameters.Priviledges
+namespace WaterPoint.Core.Domain.QueryParameters.UserPrivileges
 {
     public class ListUserPrivileges : IQueryParameter
     {

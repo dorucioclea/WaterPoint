@@ -59,7 +59,7 @@ namespace WaterPoint.Api.Job.Controllers
             }
 
             request.Payload = jobTaskPayload;
-            request.OrganizationUserId = Credential.Id;
+            request.OrganizationUserId = Credential.OrganizationUserId;
 
             var result = _createJobTaskRequest.Process(request);
 
@@ -72,7 +72,7 @@ namespace WaterPoint.Api.Job.Controllers
             [FromBody]Delta<UpdateJobTaskPayload> input)
         {
             request.Payload = input;
-            request.OrganizationUserId = Credential.Id;
+            request.OrganizationUserId = Credential.OrganizationUserId;
 
             var jobTask = _updateRequestProcessor.Process(request);
 

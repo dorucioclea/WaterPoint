@@ -1,16 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts.Privileges;
 using WaterPoint.Core.Domain.Db;
-using WaterPoint.Core.Domain.QueryParameters.Priviledges;
-using WaterPoint.Core.Domain.Requests.Priviledges;
-using WaterPoint.Data.Entity.Pocos.Priviledges;
+using WaterPoint.Core.Domain.QueryParameters.UserPrivileges;
+using WaterPoint.Core.Domain.Requests.UserPrivileges;
+using WaterPoint.Data.Entity.Pocos.Privileges;
 
-namespace WaterPoint.Core.RequestProcessor.Privileges
+namespace WaterPoint.Core.RequestProcessor.UserPrivileges
 {
     public class ListUserPrivilegesProcessor : IListProcessor<ListUserPrivilegesRequest, UserPrivilegeContract>
     {
@@ -35,7 +33,7 @@ namespace WaterPoint.Core.RequestProcessor.Privileges
                 .Select(i => new UserPrivilegeContract
                 {
                     OrgUserId = i.Key,
-                    Privileges = i.Select(p => new PrivilegeContract { Id = p.PrivilegeId, F = Convert.ToByte(p.IsFull) })
+                    Privileges = i.Select(p => new PrivilegeContract { Id = p.PrivilegeId })
                 });
 
             return userPrivilegeContracts;

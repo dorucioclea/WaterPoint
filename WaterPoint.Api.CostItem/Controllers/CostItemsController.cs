@@ -11,6 +11,7 @@ using WaterPoint.Core.Domain.Requests.CostItems;
 
 namespace WaterPoint.Api.CostItem.Controllers
 {
+    [Authorize]
     [RoutePrefix(RouteDefinitions.CostItems.Prefix)]
     public class CostItemsController : BaseOrgnizationContextController
     {
@@ -53,7 +54,7 @@ namespace WaterPoint.Api.CostItem.Controllers
             [FromBody]WriteCostItemPayload payload)
         {
             request.Payload = payload;
-            request.OrganizationUserId = Credential.Id;
+            request.OrganizationUserId = Credential.OrganizationUserId;
 
             var result = _createRequestProcessor.Process(request);
 
@@ -71,7 +72,7 @@ namespace WaterPoint.Api.CostItem.Controllers
             }
 
             request.Payload = payload;
-            request.OrganizationUserId = Credential.Id;
+            request.OrganizationUserId = Credential.OrganizationUserId;
 
             var result = _updateRequestProcessor.Process(request);
 

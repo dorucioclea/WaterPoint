@@ -57,7 +57,7 @@ namespace WaterPoint.Api.Supplier.Controllers
             }
 
             request.Payload = supplierPayload;
-            request.OrganizationUserId = Credential.Id;
+            request.OrganizationUserId = Credential.OrganizationUserId;
 
             var result = _createSupplierRequestProcessor.Process(request);
 
@@ -69,7 +69,7 @@ namespace WaterPoint.Api.Supplier.Controllers
         //    [FromUri]UpdateSupplierRequest request,
         //    [FromBody]Delta<WriteSupplierPayload> input)
         //{
-        //    request.OrganizationUserId = Credential.Id;
+        //    request.OrganizationUserId = Credential.OrganizationUserId;
         //    request.Payload = input;
 
         //    var supplier = _updateSupplierRequestProcessor.Process(request);

@@ -1,5 +1,5 @@
 ﻿using WaterPoint.Core.Domain.Db;
-using WaterPoint.Core.Domain.QueryParameters.Priviledges;
+using WaterPoint.Core.Domain.QueryParameters.UserPrivileges;
 
 namespace WaterPoint.Core.Bll.Queries.Privileges
 {

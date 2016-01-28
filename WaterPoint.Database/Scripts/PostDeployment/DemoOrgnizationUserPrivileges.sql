@@ -8,7 +8,7 @@
                 WHERE c.Email='hmiaosys@gmail.com')
 
     INSERT INTO dbo.OrganizationUserPrivilege
-        (OrganizationUserId, PrivilegeId, IsFull)
-    SELECT @ouid, id, 1 from privilege
+        (OrganizationUserId, PrivilegeId)
+    SELECT @ouid, id FROM privilege
 END
 GO

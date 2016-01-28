@@ -1,18 +1,16 @@
-﻿using System.Collections.Generic;
-using System.Web.Http;
+﻿using System.Web.Http;
 using System.Web.Http.OData;
 using WaterPoint.Api.Common;
 using WaterPoint.Api.Common.BaseControllers;
 using WaterPoint.Core.Domain;
-using WaterPoint.Core.Domain.Contracts;
 using WaterPoint.Core.Domain.Contracts.Customers;
 
 using WaterPoint.Core.Domain.Payloads.Customers;
-using WaterPoint.Core.Domain.RequestParameters;
 using WaterPoint.Core.Domain.Requests.Customers;
 
 namespace WaterPoint.Api.Customer.Controllers
 {
+    [Authorize]
     [RoutePrefix(RouteDefinitions.Customers.Prefix)]
     public class CustomersController : BaseOrgnizationContextController
     {
@@ -51,7 +49,6 @@ namespace WaterPoint.Api.Customer.Controllers
         }
 
         [Route("")]
-        [Authorize]//add to class level
         public IHttpActionResult Post(
             [FromUri]CreateCustomerRequest request,
             [FromBody]WriteCustomerPayload payload)
@@ -62,7 +59,7 @@ namespace WaterPoint.Api.Customer.Controllers
             }
 
             request.Payload = payload;
-            request.OrganizationUserId = Credential.Id;
+            request.OrganizationUserId = Credential.OrganizationUserId;
 
             var result = _createCustomerRequest.Process(request);
 
@@ -70,7 +67,6 @@ namespace WaterPoint.Api.Customer.Controllers
         }
 
         [Route("{id:int}")]
-        [Authorize]
         public IHttpActionResult Put(
             [FromUri]UpdateCustomerRequest request,
             [FromBody]Delta<WriteCustomerPayload> input)
@@ -79,7 +75,7 @@ namespace WaterPoint.Api.Customer.Controllers
             //input.Patch(updatecustomerrequest) to get the patched value
             //pass patched value to processor
             request.Payload = input;
-            request.OrganizationUserId = Credential.Id;
+            request.OrganizationUserId = Credential.OrganizationUserId;
 
             var customer = _updateRequestProcessor.Process(request);
 

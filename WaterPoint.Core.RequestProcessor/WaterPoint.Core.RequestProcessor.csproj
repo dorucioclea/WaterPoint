@@ -103,7 +103,8 @@
     <Compile Include="Mappers\EntitiesToContracts\StaffMapper.cs" />
     <Compile Include="Mappers\EntitiesToContracts\SupplierMapper.cs" />
     <Compile Include="OrganizationUsers\EnterOrganizationProcessor.cs" />
-    <Compile Include="Privileges\ListUserPrivilegesProcessor.cs" />
+    <Compile Include="UserPrivileges\AdjustUserPrivilegeProcessor.cs" />
+    <Compile Include="UserPrivileges\ListUserPrivilegesProcessor.cs" />
     <Compile Include="InvoiceJobCostItems\CreateInvoiceJobCostItemProcessor.cs" />
     <Compile Include="InvoiceJobCostItems\GetInvoiceJobCostItemProcessor.cs" />
     <Compile Include="InvoiceJobCostItems\ListInvoiceJobCostItemsProcessor.cs" />
