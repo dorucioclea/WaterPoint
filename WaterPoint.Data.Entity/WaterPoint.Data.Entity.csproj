@@ -101,6 +101,7 @@
     <Compile Include="Pocos\InvoiceJobTasks\InvoiceJobTaskBasicPoco.cs" />
     <Compile Include="Pocos\Quotes\QuoteBasicPoco.cs" />
     <Compile Include="Pocos\QuoteTasks\QuoteTaskBasicPoco.cs" />
+    <Compile Include="Pocos\Staff\BasicStaffPoco.cs" />
     <Compile Include="Pocos\TaskDefinitions\TaskDefinitionBasicPoco.cs" />
     <Compile Include="Pocos\Views\ValidCredential.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
