@@ -9,25 +9,31 @@ using WaterPoint.Core.Bll.Executors;
 using WaterPoint.Core.Bll.Queries.Credentials;
 using WaterPoint.Core.Bll.Queries.OAuthClients;
 using WaterPoint.Core.Bll.Queries.Privileges;
+using WaterPoint.Core.Bll.Queries.Staff;
 using WaterPoint.Core.Bll.QueryRunners;
 using WaterPoint.Core.Domain.QueryParameters.Credentials;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts.Credentials;
 using WaterPoint.Core.Domain.Contracts.OAuthClients;
+using WaterPoint.Core.Domain.Contracts.Staff;
 using WaterPoint.Core.Domain.Contracts.UserPrivileges;
 using WaterPoint.Core.Domain.Db;
 using WaterPoint.Core.Domain.QueryParameters.OrganizationUsers;
+using WaterPoint.Core.Domain.QueryParameters.Staff;
 using WaterPoint.Core.Domain.QueryParameters.UserPrivileges;
 using WaterPoint.Core.Domain.Requests.Credentials;
 using WaterPoint.Core.Domain.Requests.OAuthClients;
 using WaterPoint.Core.Domain.Requests.OrganizationUsers;
+using WaterPoint.Core.Domain.Requests.Staff;
 using WaterPoint.Core.Domain.Requests.UserPrivileges;
 using WaterPoint.Core.RequestProcessor.Credentials;
 using WaterPoint.Core.RequestProcessor.OAuthClients;
 using WaterPoint.Core.RequestProcessor.OrganizationUsers;
+using WaterPoint.Core.RequestProcessor.Staff;
 using WaterPoint.Core.RequestProcessor.UserPrivileges;
 using WaterPoint.Data.Entity.DataEntities;
 using WaterPoint.Data.Entity.Pocos.Privileges;
+using WaterPoint.Data.Entity.Pocos.Staff;
 using WaterPoint.Data.Entity.Pocos.Views;
 
 namespace WaterPoint.Api.DependencyInjection
@@ -51,6 +57,8 @@ namespace WaterPoint.Api.DependencyInjection
             Bind<IQuery<GetAuthClient>>().To<GetOAuthClientQuery>();
 
             Bind<IQuery<ListUserPrivileges>>().To<ListUserPrivilegesQuery>();
+
+            Bind<IQuery<ListStaff>>().To<ListStaffQuery>();
         }
 
         public void BindQueryRunners()
@@ -63,6 +71,9 @@ namespace WaterPoint.Api.DependencyInjection
 
             Bind<IQueryListRunner<ListUserPrivileges, OrganizationUserPrivilegePoco>>()
                 .To<QueryListRunner<ListUserPrivileges, OrganizationUserPrivilegePoco>>();
+
+            Bind<IQueryListRunner<ListStaff, BasicStaffPoco>>()
+                .To<QueryListRunner<ListStaff, BasicStaffPoco>>();
         }
 
         public void BindCommands()
@@ -93,6 +104,9 @@ namespace WaterPoint.Api.DependencyInjection
 
             Bind<IWriteRequestProcessor<AdjustUserPrivilegeRequest>>()
                 .To<AdjustUserPrivilegeProcessor>();
+
+            Bind<IListProcessor<ListStaffRequest, BasicStaffContract>>()
+               .To<ListStaffProcessor>();
         }
 
         public void BindProviders()

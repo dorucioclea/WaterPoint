@@ -173,6 +173,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\StaffController.cs" />
     <Compile Include="Controllers\UserPrivilegesController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

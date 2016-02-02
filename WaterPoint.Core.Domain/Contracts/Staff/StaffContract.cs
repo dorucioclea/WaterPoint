@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WaterPoint.Core.Domain.Contracts.Staff
 {
-    public class StaffContract : IContract
+    public class StaffContract : IBasicStaffContract
     {
         public int Id { get; set; }
         public int OrganizationId { get; set; }

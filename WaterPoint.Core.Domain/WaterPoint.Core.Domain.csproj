@@ -88,6 +88,8 @@
     <Compile Include="Contracts\JobTimesheet\JobTimesheetContract.cs" />
     <Compile Include="Contracts\LinkItemContract.cs" />
     <Compile Include="Contracts\OAuthClients\OAuthClientContract.cs" />
+    <Compile Include="Contracts\Staff\IBasicStaffContract.cs" />
+    <Compile Include="Contracts\Staff\BasicStaffContract.cs" />
     <Compile Include="Contracts\UserPrivileges\UserPrivilegeContract.cs" />
     <Compile Include="Contracts\ResultContract.cs" />
     <Compile Include="Contracts\Staff\StaffContract.cs" />
@@ -142,6 +144,7 @@
     <Compile Include="QueryParameters\JobTimesheet\CreateJobTimesheet.cs" />
     <Compile Include="QueryParameters\JobTimesheet\UpdateJobTimesheet.cs" />
     <Compile Include="QueryParameters\OrganizationUsers\EnterOrganization.cs" />
+    <Compile Include="QueryParameters\Staff\ListStaff.cs" />
     <Compile Include="QueryParameters\UserPrivileges\ListUserPrivileges.cs" />
     <Compile Include="QueryParameters\InvoiceJobCostItems\CreateInvoiceJobCostItem.cs" />
     <Compile Include="QueryParameters\InvoiceJobCostItems\GetInvoiceJobCostItem.cs" />
@@ -183,6 +186,7 @@
     <Compile Include="Requests\CostItems\ListCostItemsRequest.cs" />
     <Compile Include="Requests\CostItems\UpdateCostItemRequest.cs" />
     <Compile Include="Requests\Credentials\ListValidateCredentialsRequest.cs" />
+    <Compile Include="Requests\Staff\ListStaffRequest.cs" />
     <Compile Include="Requests\Suppliers\CreateSupplierRequest.cs" />
     <Compile Include="Requests\Suppliers\ListSuppliersRequest.cs" />
     <Compile Include="Requests\Customers\ListCustomersRequest.cs" />
