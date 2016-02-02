@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using WaterPoint.Core.Domain.Contracts.UserPrivileges;
 
 namespace WaterPoint.Core.Domain.Contracts.Staff
 {
@@ -18,5 +20,10 @@ namespace WaterPoint.Core.Domain.Contracts.Staff
         public DateTime UtcCreated { get; set; }
         public DateTime UtcUpdated { get; set; }
         public string Uid { get; set; }
+    }
+
+    public class StaffDetailsContract : StaffContract
+    {
+        public IEnumerable<PrivilegeContract> Privileges { get; set; }
     }
 }

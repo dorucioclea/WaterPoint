@@ -15,21 +15,28 @@ namespace WaterPoint.Api.Authorization.Controllers
     public class StaffController : BaseOrgnizationContextController
     {
         private readonly IListProcessor<ListStaffRequest, StaffContract> _listStaffRequestProcessor;
-        //private readonly IWriteRequestProcessor<AdjustStaffRequest> _adjustStaffRequest;
+        private readonly IRequestProcessor<GetStaffRequest, StaffDetailsContract> _getStaffProcessor;
 
         public StaffController(
-            IListProcessor<ListStaffRequest, StaffContract> listStaffRequestProcessor
-            //,IWriteRequestProcessor<AdjustStaffRequest> adjustStaffRequest
-            )
+            IListProcessor<ListStaffRequest, StaffContract> listStaffRequestProcessor,
+            IRequestProcessor<GetStaffRequest, StaffDetailsContract> getStaffProcessor)
         {
             _listStaffRequestProcessor = listStaffRequestProcessor;
-            //_adjustStaffRequest = adjustStaffRequest;
+            _getStaffProcessor = getStaffProcessor;
         }
 
         [Route("")]
         public IHttpActionResult Get([FromUri]ListStaffRequest request)
         {
             var result = _listStaffRequestProcessor.Process(request);
+
+            return Ok(result);
+        }
+
+        [Route("{id:int}")]
+        public IHttpActionResult Get([FromUri]GetStaffRequest request)
+        {
+            var result = _getStaffProcessor.Process(request);
 
             return Ok(result);
         }
