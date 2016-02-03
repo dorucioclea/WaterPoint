@@ -16,8 +16,8 @@ namespace WaterPoint.Core.RequestProcessor.QuoteTasks
     {
         public ListQuoteTasksProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
-            IQuery<ListQuoteTasks> listQuery,
-            IPagedQueryRunner<ListQuoteTasks, QuoteTaskBasicPoco> listRunner)
+            IQuery<ListQuoteTasks, QuoteTaskBasicPoco> listQuery,
+            IPagedQueryRunner listRunner)
             : base(dapperUnitOfWork, listQuery, listRunner)
         {
         }

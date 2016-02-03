@@ -22,6 +22,7 @@ using WaterPoint.Core.RequestProcessor.Quotes;
 using WaterPoint.Core.RequestProcessor.QuoteTasks;
 using WaterPoint.Data.Entity.DataEntities;
 using WaterPoint.Data.Entity.Pocos.QuoteCostItems;
+using WaterPoint.Data.Entity.Pocos.Quotes;
 using WaterPoint.Data.Entity.Pocos.QuoteTasks;
 
 
@@ -33,36 +34,19 @@ namespace WaterPoint.Api.DependencyInjection
         {
             BindRequestProcessors();
             BindQueries();
-            BindQueryRunners();
             BindCommands();
-            BindCommandExecutors();
         }
 
         private void BindQueries()
         {
-            Bind<IQuery<ListQuotes>>().To<ListQuotesQuery>();
-            Bind<IQuery<GetQuote>>().To<GetQuoteQuery>();
+            Bind<IQuery<ListQuotes, QuoteBasicPoco>>().To<ListQuotesQuery>();
+            Bind<IQuery<GetQuote, Quote>>().To<GetQuoteQuery>();
 
 
-            Bind<IQuery<ListQuoteCostItems>>().To<ListQuoteCostItemsQuery>();
-            Bind<IQuery<ListQuoteTasks>>().To<ListQuoteTasksQuery>();
-            Bind<IQuery<GetQuoteTask>>().To<GetQuoteTaskQuery>();
-            Bind<IQuery<GetQuoteCostItem>>().To<GetQuoteCostItemQuery>();
-        }
-
-        public void BindQueryRunners()
-        {
-            Bind<IPagedQueryRunner<ListQuoteCostItems, QuoteCostItemBasicPoco>>()
-                .To<PagedQueryRunner<ListQuoteCostItems, QuoteCostItemBasicPoco>>();
-
-            Bind<IPagedQueryRunner<ListQuoteTasks, QuoteTaskBasicPoco>>()
-                .To<PagedQueryRunner<ListQuoteTasks, QuoteTaskBasicPoco>>();
-
-            Bind<IQueryRunner<GetQuoteTask, QuoteTask>>()
-                .To<QueryRunner<GetQuoteTask, QuoteTask>>();
-
-            Bind<IQueryRunner<GetQuoteCostItem, QuoteCostItem>>()
-                .To<QueryRunner<GetQuoteCostItem, QuoteCostItem>>();
+            Bind<IQuery<ListQuoteCostItems, QuoteCostItemBasicPoco>>().To<ListQuoteCostItemsQuery>();
+            Bind<IQuery<ListQuoteTasks, QuoteTaskBasicPoco>>().To<ListQuoteTasksQuery>();
+            Bind<IQuery<GetQuoteTask, QuoteTask>>().To<GetQuoteTaskQuery>();
+            Bind<IQuery<GetQuoteCostItem, QuoteCostItem>>().To<GetQuoteCostItemQuery>();
         }
 
         public void BindCommands()
@@ -75,18 +59,6 @@ namespace WaterPoint.Api.DependencyInjection
 
             Bind<ICommand<CreateQuoteCostItem>>().To<CreateQuoteCostItemCommand>();
             Bind<ICommand<UpdateQuoteCostItem>>().To<UpdateQuoteCostItemCommand>();
-        }
-
-        public void BindCommandExecutors()
-        {
-            Bind<ICommandExecutor<CreateQuote>>().To<CreateCommandExecutor<CreateQuote>>();
-            Bind<ICommandExecutor<UpdateQuote>>().To<UpdateCommandExecutor<UpdateQuote>>();
-
-            Bind<ICommandExecutor<CreateQuoteTask>>().To<CreateCommandExecutor<CreateQuoteTask>>();
-            Bind<ICommandExecutor<UpdateQuoteTask>>().To<UpdateCommandExecutor<UpdateQuoteTask>>();
-
-            Bind<ICommandExecutor<CreateQuoteCostItem>>().To<CreateCommandExecutor<CreateQuoteCostItem>>();
-            Bind<ICommandExecutor<UpdateQuoteCostItem>>().To<UpdateCommandExecutor<UpdateQuoteCostItem>>();
         }
 
         private void BindRequestProcessors()

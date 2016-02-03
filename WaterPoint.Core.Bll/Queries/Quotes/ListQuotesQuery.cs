@@ -4,7 +4,7 @@ using WaterPoint.Data.Entity.Pocos.Quotes;
 
 namespace WaterPoint.Core.Bll.Queries.Quotes
 {
-    public class ListQuotesQuery : IQuery<ListQuotes>
+    public class ListQuotesQuery : IQuery<ListQuotes, QuoteBasicPoco>
     {
         private readonly ISqlBuilderFactory _sqlBuilderFactory;
 

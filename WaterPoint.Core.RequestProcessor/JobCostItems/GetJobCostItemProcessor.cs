@@ -20,13 +20,13 @@ namespace WaterPoint.Core.RequestProcessor.JobCostItems
         BaseDapperUowRequestProcess,
         IRequestProcessor<GetJobCostItemRequest, JobCostItemContract>
     {
-        private readonly IQuery<GetJobCostItem> _query;
-        private readonly IQueryRunner<GetJobCostItem, JobCostItem> _runner;
+        private readonly IQuery<GetJobCostItem, JobCostItem> _query;
+        private readonly IQueryRunner _runner;
 
         public GetJobCostItemProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
-            IQuery<GetJobCostItem> query,
-            IQueryRunner<GetJobCostItem, JobCostItem> runner)
+            IQuery<GetJobCostItem, JobCostItem> query,
+            IQueryRunner runner)
             : base(dapperUnitOfWork)
         {
             _query = query;

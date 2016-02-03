@@ -22,47 +22,24 @@ namespace WaterPoint.Api.DependencyInjection
         {
             BindRequestProcessors();
             BindQueries();
-            BindQueryRunners();
             BindCommands();
-            BindCommandExecutors();
         }
 
         private void BindQueries()
         {
-            Bind<IQuery<ListCustomers>>()
+            Bind<IQuery<ListCustomers, Customer>>()
                 .To<ListCustomersQuery>()
                 .WhenInjectedExactlyInto<ListCustomersProcessor>();
 
-            Bind<IQuery<GetCustomer>>().To<GetCustomerQuery>();
+            Bind<IQuery<GetCustomer, Customer>>().To<GetCustomerQuery>();
 
-            Bind<IQuery<ListCustomerJobs>>().To<ListCustomerJobsQuery>();
-        }
-
-        public void BindQueryRunners()
-        {
-            Bind<IPagedQueryRunner<ListCustomers, Customer>>()
-                .To<PagedQueryRunner<ListCustomers, Customer>>();
-
-            Bind<IQueryRunner<GetCustomer, Customer>>()
-                .To<QueryRunner<GetCustomer, Customer>>();
-
-            Bind<IPagedQueryRunner<ListCustomerJobs, JobWithStatusPoco>>()
-                .To<PagedQueryRunner<ListCustomerJobs, JobWithStatusPoco>>();
+            Bind<IQuery<ListCustomerJobs, JobWithStatusPoco>>().To<ListCustomerJobsQuery>();
         }
 
         public void BindCommands()
         {
             Bind<ICommand<CreateCustomer>>().To<CreateCustomerCommand>();
             Bind<ICommand<UpdateCustomer>>().To<UpdateCustomerCommand>();
-        }
-
-        public void BindCommandExecutors()
-        {
-            Bind<ICommandExecutor<CreateCustomer>>()
-                .To<CreateCommandExecutor<CreateCustomer>>();
-
-            Bind<ICommandExecutor<UpdateCustomer>>()
-                .To<UpdateCommandExecutor<UpdateCustomer>>();
         }
 
         private void BindRequestProcessors()

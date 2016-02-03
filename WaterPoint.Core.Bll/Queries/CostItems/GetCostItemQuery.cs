@@ -4,7 +4,7 @@ using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Core.Bll.Queries.CostItems
 {
-    public class GetCostItemQuery : IQuery<GetCostItem>
+    public class GetCostItemQuery : IQuery<GetCostItem, CostItem>
     {
         private readonly ISqlBuilderFactory _sqlBuilderFactory;
 

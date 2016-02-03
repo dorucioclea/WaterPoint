@@ -14,22 +14,29 @@ namespace WaterPoint.Api.Authorization.Controllers
     [RoutePrefix("organizations/{organizationId:int}/staff")]
     public class StaffController : BaseOrgnizationContextController
     {
-        private readonly IListProcessor<ListStaffRequest, StaffContract> _listStaffRequestProcessor;
-        //private readonly IWriteRequestProcessor<AdjustStaffRequest> _adjustStaffRequest;
+        private readonly ISimplePagedProcessor<ListStaffRequest, BasicStaffContract> _listStaffRequestProcessor;
+        private readonly IRequestProcessor<GetStaffRequest, StaffContract> _getStaffProcessor;
 
         public StaffController(
-            IListProcessor<ListStaffRequest, StaffContract> listStaffRequestProcessor
-            //,IWriteRequestProcessor<AdjustStaffRequest> adjustStaffRequest
-            )
+            ISimplePagedProcessor<ListStaffRequest, BasicStaffContract> listStaffRequestProcessor,
+            IRequestProcessor<GetStaffRequest, StaffContract> getStaffProcessor)
         {
             _listStaffRequestProcessor = listStaffRequestProcessor;
-            //_adjustStaffRequest = adjustStaffRequest;
+            _getStaffProcessor = getStaffProcessor;
         }
 
         [Route("")]
         public IHttpActionResult Get([FromUri]ListStaffRequest request)
         {
             var result = _listStaffRequestProcessor.Process(request);
+
+            return Ok(result);
+        }
+
+        [Route("{id:int}")]
+        public IHttpActionResult Get([FromUri]GetStaffRequest request)
+        {
+            var result = _getStaffProcessor.Process(request);
 
             return Ok(result);
         }

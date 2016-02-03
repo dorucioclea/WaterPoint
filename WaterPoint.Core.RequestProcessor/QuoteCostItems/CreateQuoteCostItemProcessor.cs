@@ -11,7 +11,7 @@ namespace WaterPoint.Core.RequestProcessor.QuoteCostItems
         public CreateQuoteCostItemProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
             ICommand<CreateQuoteCostItem> command,
-            ICommandExecutor<CreateQuoteCostItem> executor)
+            ICommandExecutor executor)
             : base(dapperUnitOfWork, command, executor)
         {
         }

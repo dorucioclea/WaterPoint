@@ -16,7 +16,7 @@ namespace WaterPoint.Core.RequestProcessor.Suppliers
         public CreateSupplierProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
             ICommand<CreateSupplier> command,
-            ICommandExecutor<CreateSupplier> executor)
+            ICommandExecutor executor)
             : base(dapperUnitOfWork, command, executor)
         {
         }

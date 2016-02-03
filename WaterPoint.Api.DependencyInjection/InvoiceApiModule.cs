@@ -28,32 +28,15 @@ namespace WaterPoint.Api.DependencyInjection
         {
             BindRequestProcessors();
             BindQueries();
-            BindQueryRunners();
             BindCommands();
-            BindCommandExecutors();
         }
 
         private void BindQueries()
         {
-            Bind<IQuery<ListInvoiceJobCostItems>>().To<ListInvoiceJobCostItemsQuery>();
-            Bind<IQuery<ListInvoiceJobTasks>>().To<ListInvoiceJobTasksQuery>();
-            Bind<IQuery<GetInvoiceJobTask>>().To<GetInvoiceJobTaskQuery>();
-            Bind<IQuery<GetInvoiceJobCostItem>>().To<GetInvoiceJobCostItemQuery>();
-        }
-
-        public void BindQueryRunners()
-        {
-            Bind<IPagedQueryRunner<ListInvoiceJobCostItems, InvoiceJobCostItemBasicPoco>>()
-                .To<PagedQueryRunner<ListInvoiceJobCostItems, InvoiceJobCostItemBasicPoco>>();
-
-            Bind<IPagedQueryRunner<ListInvoiceJobTasks, InvoiceJobTaskBasicPoco>>()
-                .To<PagedQueryRunner<ListInvoiceJobTasks, InvoiceJobTaskBasicPoco>>();
-
-            Bind<IQueryRunner<GetInvoiceJobTask, InvoiceJobTask>>()
-                .To<QueryRunner<GetInvoiceJobTask, InvoiceJobTask>>();
-
-            Bind<IQueryRunner<GetInvoiceJobCostItem, InvoiceJobCostItem>>()
-                .To<QueryRunner<GetInvoiceJobCostItem, InvoiceJobCostItem>>();
+            Bind<IQuery<ListInvoiceJobCostItems, InvoiceJobCostItemBasicPoco>>().To<ListInvoiceJobCostItemsQuery>();
+            Bind<IQuery<ListInvoiceJobTasks, InvoiceJobTaskBasicPoco>>().To<ListInvoiceJobTasksQuery>();
+            Bind<IQuery<GetInvoiceJobTask, InvoiceJobTask>>().To<GetInvoiceJobTaskQuery>();
+            Bind<IQuery<GetInvoiceJobCostItem, InvoiceJobCostItem>>().To<GetInvoiceJobCostItemQuery>();
         }
 
         public void BindCommands()
@@ -61,13 +44,6 @@ namespace WaterPoint.Api.DependencyInjection
             Bind<ICommand<CreateInvoice>>().To<CreateInvoiceCommand>();
             Bind<ICommand<CreateInvoiceJobTask>>().To<CreateInvoiceJobTaskCommand>();
             Bind<ICommand<UpdateInvoiceJobTask>>().To<UpdateInvoiceJobTaskCommand>();
-        }
-
-        public void BindCommandExecutors()
-        {
-            Bind<ICommandExecutor<CreateInvoice>>().To<CreateCommandExecutor<CreateInvoice>>();
-            Bind<ICommandExecutor<CreateInvoiceJobTask>>().To<CreateCommandExecutor<CreateInvoiceJobTask>>();
-            Bind<ICommandExecutor<UpdateInvoiceJobTask>>().To<UpdateCommandExecutor<UpdateInvoiceJobTask>>();
         }
 
         private void BindRequestProcessors()

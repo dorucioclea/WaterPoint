@@ -4,7 +4,7 @@ using WaterPoint.Data.Entity.Pocos.Jobs;
 
 namespace WaterPoint.Core.Bll.Queries.Jobs
 {
-    public class ListJobsQuery : IQuery<PagedJobs>
+    public class ListJobsQuery : IQuery<PagedJobs, JobWithCustomerAndStatusPoco>
     {
         private readonly ISqlBuilderFactory _sqlBuilderFactory;
 

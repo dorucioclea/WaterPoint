@@ -12,12 +12,12 @@ namespace WaterPoint.Core.RequestProcessor
         where TParameter : IQueryParameter
     {
         private readonly ICommand<TParameter> _command;
-        private readonly ICommandExecutor<TParameter> _executor;
+        private readonly ICommandExecutor _executor;
 
         protected BaseCreateProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
             ICommand<TParameter> command,
-            ICommandExecutor<TParameter> executor)
+            ICommandExecutor executor)
             : base(dapperUnitOfWork)
         {
             _command = command;

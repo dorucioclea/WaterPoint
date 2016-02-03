@@ -24,37 +24,20 @@ namespace WaterPoint.Api.DependencyInjection
         {
             BindRequestProcessors();
             BindQueries();
-            BindQueryRunners();
             BindCommands();
-            BindCommandExecutors();
         }
 
         private void BindQueries()
         {
-            Bind<IQuery<GetTaskDefinition>>().To<GetTaskDefinitionQuery>();
+            Bind<IQuery<GetTaskDefinition, TaskDefinition>>().To<GetTaskDefinitionQuery>();
 
-            Bind<IQuery<PagedOrgId>>().To<ListTaskDefinitionsQuery>();
-        }
-
-        public void BindQueryRunners()
-        {
-            Bind<IQueryRunner<GetTaskDefinition, TaskDefinition>>()
-                .To<QueryRunner<GetTaskDefinition, TaskDefinition>>();
-
-            Bind<IPagedQueryRunner<PagedOrgId, TaskDefinitionBasicPoco>>()
-                .To<PagedQueryRunner<PagedOrgId, TaskDefinitionBasicPoco>>();
+            Bind<IQuery<PagedOrgId, TaskDefinitionBasicPoco>>().To<ListTaskDefinitionsQuery>();
         }
 
         public void BindCommands()
         {
             Bind<ICommand<CreateTaskDefinition>>().To<CreateTaskDefinitionCommand>();
             Bind<ICommand<UpdateTaskDefinition>>().To<UpdateTaskDefinitionCommand>();
-        }
-
-        public void BindCommandExecutors()
-        {
-            Bind<ICommandExecutor<CreateTaskDefinition>>().To<CreateCommandExecutor<CreateTaskDefinition>>();
-            Bind<ICommandExecutor<UpdateTaskDefinition>>().To<UpdateCommandExecutor<UpdateTaskDefinition>>();
         }
 
         private void BindRequestProcessors()

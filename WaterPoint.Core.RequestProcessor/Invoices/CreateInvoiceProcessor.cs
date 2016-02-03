@@ -17,7 +17,7 @@ namespace WaterPoint.Core.RequestProcessor.Invoices
         public CreateInvoiceProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
             ICommand<CreateInvoice> command,
-            ICommandExecutor<CreateInvoice> executor)
+            ICommandExecutor executor)
             : base(dapperUnitOfWork, command, executor)
         {
         }

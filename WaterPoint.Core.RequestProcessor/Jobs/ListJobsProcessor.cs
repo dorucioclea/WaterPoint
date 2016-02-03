@@ -19,8 +19,8 @@ namespace WaterPoint.Core.RequestProcessor.Jobs
     {
         public ListJobsProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
-            IQuery<PagedJobs> query,
-            IPagedQueryRunner<PagedJobs, JobWithCustomerAndStatusPoco> runner)
+            IQuery<PagedJobs, JobWithCustomerAndStatusPoco> query,
+            IPagedQueryRunner runner)
             : base(dapperUnitOfWork, query, runner)
         {
         }

@@ -16,10 +16,10 @@ namespace WaterPoint.Core.RequestProcessor.Jobs
         public UpdateJobProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
             IPatchEntityAdapter adapter,
-            IQuery<GetJob> getQuery,
-            IQueryRunner<GetJob, JobWithDetailsPoco> getRunner,
+            IQuery<GetJob, JobWithDetailsPoco> getQuery,
+            IQueryRunner getRunner,
             ICommand<UpdateJob> updateQuery,
-            ICommandExecutor<UpdateJob> updateExecutor)
+            ICommandExecutor updateExecutor)
             : base(dapperUnitOfWork, adapter, getQuery, getRunner, updateQuery, updateExecutor)
         {
         }

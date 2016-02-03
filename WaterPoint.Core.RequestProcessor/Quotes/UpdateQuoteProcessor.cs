@@ -14,10 +14,10 @@ namespace WaterPoint.Core.RequestProcessor.Quotes
         public UpdateQuoteProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
             IPatchEntityAdapter adapter,
-            IQuery<GetQuote> getQuery,
-            IQueryRunner<GetQuote, Quote> getRunner,
+            IQuery<GetQuote, Quote> getQuery,
+            IQueryRunner getRunner,
             ICommand<UpdateQuote> updateCommand,
-            ICommandExecutor<UpdateQuote> updateExecutor)
+            ICommandExecutor updateExecutor)
             : base(dapperUnitOfWork, adapter, getQuery, getRunner, updateCommand, updateExecutor)
         {
         }

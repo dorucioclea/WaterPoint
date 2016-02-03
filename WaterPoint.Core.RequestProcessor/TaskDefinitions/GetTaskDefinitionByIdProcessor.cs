@@ -12,13 +12,13 @@ namespace WaterPoint.Core.RequestProcessor.TaskDefinitions
     public class GetTaskDefinitionByIdRequestProcessor : BaseDapperUowRequestProcess,
         IRequestProcessor<GetTaskDefinitionByIdRequest, TaskDefinitionContract>
     {
-        private readonly IQuery<GetTaskDefinition> _query;
-        private readonly IQueryRunner<GetTaskDefinition, TaskDefinition> _runner;
+        private readonly IQuery<GetTaskDefinition, TaskDefinition> _query;
+        private readonly IQueryRunner _runner;
 
         public GetTaskDefinitionByIdRequestProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
-            IQuery<GetTaskDefinition> query,
-            IQueryRunner<GetTaskDefinition, TaskDefinition> runner)
+            IQuery<GetTaskDefinition, TaskDefinition> query,
+            IQueryRunner runner)
             : base(dapperUnitOfWork)
         {
             _query = query;

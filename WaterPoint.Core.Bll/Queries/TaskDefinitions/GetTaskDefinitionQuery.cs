@@ -5,7 +5,7 @@ using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Core.Bll.Queries.TaskDefinitions
 {
-    public class GetTaskDefinitionQuery : IQuery<GetTaskDefinition>
+    public class GetTaskDefinitionQuery : IQuery<GetTaskDefinition, TaskDefinition>
     {
         private readonly ISqlBuilderFactory _sqlBuilderFactory;
 

@@ -8,8 +8,9 @@
         bool IsStoredProcedure { get; }
     }
 
-    public interface ICommandExecutor<T> where T : IQueryParameter
+    public interface ICommandExecutor
     {
-        int Execute(ICommand<T> query);
+        int Execute<T>(ICommand<T> query) where T : IQueryParameter;
+        int NoneQuery<T>(ICommand<T> query) where T : IQueryParameter;
     }
 }

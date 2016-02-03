@@ -17,13 +17,13 @@ namespace WaterPoint.Core.RequestProcessor
         where TDataEntity : IDataEntity, new()
     {
         private readonly IDapperUnitOfWork _dapperUnitOfWork;
-        private readonly IQuery<TParameter> _listQuery;
-        private readonly IPagedQueryRunner<TParameter, TDataEntity> _listQueryRunner;
+        private readonly IQuery<TParameter, TDataEntity> _listQuery;
+        private readonly IPagedQueryRunner _listQueryRunner;
 
         protected PagedProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
-            IQuery<TParameter> listQuery,
-            IPagedQueryRunner<TParameter, TDataEntity> listQueryRunner)
+            IQuery<TParameter, TDataEntity> listQuery,
+            IPagedQueryRunner listQueryRunner)
         {
             _dapperUnitOfWork = dapperUnitOfWork;
             _listQuery = listQuery;

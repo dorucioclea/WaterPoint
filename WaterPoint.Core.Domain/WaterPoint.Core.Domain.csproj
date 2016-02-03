@@ -96,6 +96,9 @@
     <Compile Include="Contracts\Suppliers\SupplierContract.cs" />
     <Compile Include="Contracts\TaskDefinitions\TaskDefinitionBasicContract.cs" />
     <Compile Include="Contracts\TaskDefinitions\TaskDefinitionContract.cs" />
+    <Compile Include="Db\IPagedQueryParameter.cs" />
+    <Compile Include="Db\IQueryParameter.cs" />
+    <Compile Include="Db\ISimplePagedQueryParameter.cs" />
     <Compile Include="Db\ISqlBuilder.cs" />
     <Compile Include="Db\ISqlBuilderFactory.cs" />
     <Compile Include="Contracts\IContract.cs" />

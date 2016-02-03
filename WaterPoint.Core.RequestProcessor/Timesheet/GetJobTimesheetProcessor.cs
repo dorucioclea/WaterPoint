@@ -24,13 +24,13 @@ namespace WaterPoint.Core.RequestProcessor.Timesheet
         BaseDapperUowRequestProcess,
         IRequestProcessor<GetJobTimesheetRequest, JobTimesheetContract>
     {
-        private readonly IQuery<GetJobTimesheet> _query;
-        private readonly IQueryRunner<GetJobTimesheet, JobTimesheet> _runner;
+        private readonly IQuery<GetJobTimesheet, JobTimesheet> _query;
+        private readonly IQueryRunner _runner;
 
         public GetJobTimesheetProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
-            IQuery<GetJobTimesheet> query,
-            IQueryRunner<GetJobTimesheet, JobTimesheet> runner)
+            IQuery<GetJobTimesheet, JobTimesheet> query,
+            IQueryRunner runner)
             : base(dapperUnitOfWork)
         {
             _query = query;

@@ -15,9 +15,9 @@ namespace WaterPoint.Core.RequestProcessor.InvoiceJobCostItems
             IDapperUnitOfWork dapperUnitOfWork,
             IPatchEntityAdapter patchEntityAdapter,
             ICommand<UpdateInvoiceJobCostItem> command,
-            ICommandExecutor<UpdateInvoiceJobCostItem> executor,
-            IQuery<GetInvoiceJobCostItem> query,
-            IQueryRunner<GetInvoiceJobCostItem, InvoiceJobCostItem> runner)
+            ICommandExecutor executor,
+            IQuery<GetInvoiceJobCostItem, InvoiceJobCostItem> query,
+            IQueryRunner runner)
             : base(dapperUnitOfWork, patchEntityAdapter, query, runner, command, executor)
         {
         }

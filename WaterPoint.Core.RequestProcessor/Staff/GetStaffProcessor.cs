@@ -14,13 +14,13 @@ namespace WaterPoint.Core.RequestProcessor.Staff
         BaseDapperUowRequestProcess,
         IRequestProcessor<GetStaffRequest, StaffContract>
     {
-        private readonly IQuery<GetStaff> _query;
-        private readonly IQueryRunner<GetStaff, OrgStaff> _runner;
+        private readonly IQuery<GetStaff, OrgStaff> _query;
+        private readonly IQueryRunner _runner;
 
         public GetStaffProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
-            IQuery<GetStaff> query,
-            IQueryRunner<GetStaff, OrgStaff> runner)
+            IQuery<GetStaff, OrgStaff> query,
+            IQueryRunner runner)
             : base(dapperUnitOfWork)
         {
             _query = query;
@@ -32,7 +32,7 @@ namespace WaterPoint.Core.RequestProcessor.Staff
             var parameter = new GetStaff
             {
                 OrganizationId = input.OrganizationId,
-                OrganizationUserId = input.OrganizationUserId
+                Id = input.Id
             };
 
             _query.BuildQuery(parameter);

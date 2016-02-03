@@ -13,13 +13,13 @@ namespace WaterPoint.Core.RequestProcessor.QuoteCostItems
         BaseDapperUowRequestProcess,
         IRequestProcessor<GetQuoteCostItemRequest, QuoteCostItemContract>
     {
-        private readonly IQuery<GetQuoteCostItem> _query;
-        private readonly IQueryRunner<GetQuoteCostItem, QuoteCostItem> _runner;
+        private readonly IQuery<GetQuoteCostItem, QuoteCostItem> _query;
+        private readonly IQueryRunner _runner;
 
         public GetQuoteCostItemProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
-            IQuery<GetQuoteCostItem> query,
-            IQueryRunner<GetQuoteCostItem, QuoteCostItem> runner)
+            IQuery<GetQuoteCostItem, QuoteCostItem> query,
+            IQueryRunner runner)
             : base(dapperUnitOfWork)
         {
             _query = query;

@@ -15,8 +15,8 @@ namespace WaterPoint.Core.RequestProcessor.TaskDefinitions
     {
         public ListTaskDefinitionsProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
-            IQuery<PagedOrgId> query,
-            IPagedQueryRunner<PagedOrgId, TaskDefinitionBasicPoco> runner)
+            IQuery<PagedOrgId, TaskDefinitionBasicPoco> query,
+            IPagedQueryRunner runner)
             : base(dapperUnitOfWork, query, runner)
         {
         }

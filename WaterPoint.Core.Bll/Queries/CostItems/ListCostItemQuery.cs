@@ -9,7 +9,7 @@ using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Core.Bll.Queries.CostItems
 {
-    public class ListCostItemsQuery : IQuery<PagedOrgId>
+    public class ListCostItemsQuery : IQuery<PagedOrgId, CostItem>
     {
         private readonly ISqlBuilderFactory _sqlBuilderFactory;
 

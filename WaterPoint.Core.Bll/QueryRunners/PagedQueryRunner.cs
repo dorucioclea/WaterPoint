@@ -10,9 +10,7 @@ using WaterPoint.Data.Entity.Pocos;
 
 namespace WaterPoint.Core.Bll.QueryRunners
 {
-    public class PagedQueryRunner<T, TOut> : IPagedQueryRunner<T, TOut>
-        where T : IQueryParameter
-        where TOut : IDataEntity, new()
+    public class PagedQueryRunner : IPagedQueryRunner
     {
         private readonly IDapperDbContext _dapperDbContext;
 
@@ -21,7 +19,9 @@ namespace WaterPoint.Core.Bll.QueryRunners
             _dapperDbContext = dapperDbContext;
         }
 
-        public PagedPoco<IEnumerable<TOut>> Run(IQuery<T> query)
+        public PagedPoco<IEnumerable<TOut>> Run<T, TOut>(IQuery<T, TOut> query)
+            where T : IQueryParameter
+            where TOut : IDataEntity
         {
             var rawResults = query.IsStoredProcedure
                     ? _dapperDbContext.ExecuteStoredProcedure<TOut, PagedPoco>(

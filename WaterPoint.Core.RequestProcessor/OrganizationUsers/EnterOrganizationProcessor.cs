@@ -13,12 +13,12 @@ namespace WaterPoint.Core.RequestProcessor.OrganizationUsers
         IWriteRequestProcessor<EnterOrganizationRequest>
     {
         private readonly ICommand<EnterOrganization> _command;
-        private readonly ICommandExecutor<EnterOrganization> _executor;
+        private readonly ICommandExecutor _executor;
 
         public EnterOrganizationProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
             ICommand<EnterOrganization> command,
-            ICommandExecutor<EnterOrganization> executor)
+            ICommandExecutor executor)
             : base(dapperUnitOfWork)
         {
             _command = command;

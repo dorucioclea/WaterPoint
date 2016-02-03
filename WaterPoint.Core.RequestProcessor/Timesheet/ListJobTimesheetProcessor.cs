@@ -16,8 +16,8 @@ namespace WaterPoint.Core.RequestProcessor.Timesheet
     {
         public ListJobTimesheetProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
-            IQuery<ListJobTimesheet> listQuery,
-            IPagedQueryRunner<ListJobTimesheet, JobTimesheetPoco> listQueryRunner)
+            IQuery<ListJobTimesheet, JobTimesheetPoco> listQuery,
+            IPagedQueryRunner listQueryRunner)
             : base(dapperUnitOfWork, listQuery, listQueryRunner)
         {
         }

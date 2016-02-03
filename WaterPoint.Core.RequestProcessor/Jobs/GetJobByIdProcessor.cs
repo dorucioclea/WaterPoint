@@ -12,13 +12,13 @@ namespace WaterPoint.Core.RequestProcessor.Jobs
     public class GetJobByIdRequestProcessor : BaseDapperUowRequestProcess,
         IRequestProcessor<GetJobByIdRequest, JobDetailsContract>
     {
-        private readonly IQuery<GetJob> _query;
-        private readonly IQueryRunner<GetJob, JobWithDetailsPoco> _runner;
+        private readonly IQuery<GetJob, JobWithDetailsPoco> _query;
+        private readonly IQueryRunner _runner;
 
         public GetJobByIdRequestProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
-            IQuery<GetJob> query,
-            IQueryRunner<GetJob, JobWithDetailsPoco> runner)
+            IQuery<GetJob, JobWithDetailsPoco> query,
+            IQueryRunner runner)
             : base(dapperUnitOfWork)
         {
             _query = query;

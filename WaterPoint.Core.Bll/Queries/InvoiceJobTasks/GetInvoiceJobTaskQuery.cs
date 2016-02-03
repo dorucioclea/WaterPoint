@@ -4,7 +4,7 @@ using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Core.Bll.Queries.InvoiceJobTasks
 {
-    public class GetInvoiceJobTaskQuery : IQuery<GetInvoiceJobTask>
+    public class GetInvoiceJobTaskQuery : IQuery<GetInvoiceJobTask, InvoiceJobTask>
     {
         private readonly ISqlBuilderFactory _sqlBuilderFactory;
 

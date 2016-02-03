@@ -7,9 +7,7 @@ using WaterPoint.Data.Entity.Pocos.Views;
 
 namespace WaterPoint.Core.Bll.QueryRunners
 {
-    public class QueryListRunner<T, TOut> : IQueryListRunner<T, TOut>
-        where T : IQueryParameter
-        where TOut : IDataEntity
+    public class QueryListRunner : IQueryListRunner
     {
         private readonly IDapperDbContext _dapperDbContext;
 
@@ -17,8 +15,9 @@ namespace WaterPoint.Core.Bll.QueryRunners
         {
             _dapperDbContext = dapperDbContext;
         }
-
-        public IEnumerable<TOut> Run(IQuery<T> query)
+        public IEnumerable<TOut> Run<T, TOut>(IQuery<T, TOut> query)
+            where T : IQueryParameter
+            where TOut : IDataEntity
         {
             return query.IsStoredProcedure
                 ? _dapperDbContext.ExecuteStoredProcedure<TOut>(query.Query, query.Parameters)

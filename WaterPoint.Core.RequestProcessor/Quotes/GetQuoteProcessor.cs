@@ -12,13 +12,13 @@ namespace WaterPoint.Core.RequestProcessor.Quotes
     public class GetQuoteProcessor : BaseDapperUowRequestProcess,
         IRequestProcessor<GetQuoteRequest, QuoteContract>
     {
-        private readonly IQuery<GetQuote> _query;
-        private readonly IQueryRunner<GetQuote, Quote> _runner;
+        private readonly IQuery<GetQuote, Quote> _query;
+        private readonly IQueryRunner _runner;
 
         public GetQuoteProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
-            IQuery<GetQuote> query,
-            IQueryRunner<GetQuote, Quote> runner)
+            IQuery<GetQuote, Quote> query,
+            IQueryRunner runner)
             : base(dapperUnitOfWork)
         {
             _query = query;

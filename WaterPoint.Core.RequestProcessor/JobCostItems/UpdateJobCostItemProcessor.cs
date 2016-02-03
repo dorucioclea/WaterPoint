@@ -14,10 +14,10 @@ namespace WaterPoint.Core.RequestProcessor.JobCostItems
         public UpdateJobCostItemProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
             IPatchEntityAdapter adapter,
-            IQuery<GetJobCostItem> getQuery,
-            IQueryRunner<GetJobCostItem, JobCostItem> getRunner,
+            IQuery<GetJobCostItem, JobCostItem> getQuery,
+            IQueryRunner getRunner,
             ICommand<UpdateJobCostItem> updateQuery,
-            ICommandExecutor<UpdateJobCostItem> updateExecutor)
+            ICommandExecutor updateExecutor)
             : base(dapperUnitOfWork, adapter, getQuery, getRunner, updateQuery, updateExecutor)
         {
         }

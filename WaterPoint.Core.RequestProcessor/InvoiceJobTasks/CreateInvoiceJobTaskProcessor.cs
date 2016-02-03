@@ -12,7 +12,7 @@ namespace WaterPoint.Core.RequestProcessor.InvoiceJobTasks
         public CreateInvoiceJobTaskProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
             ICommand<CreateInvoiceJobTask> command,
-            ICommandExecutor<CreateInvoiceJobTask> executor)
+            ICommandExecutor executor)
             : base(dapperUnitOfWork, command, executor)
         {
         }

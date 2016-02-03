@@ -5,7 +5,7 @@ using WaterPoint.Data.Entity.Pocos.Jobs;
 
 namespace WaterPoint.Core.Bll.Queries.Jobs
 {
-    public class GetJobDetailsQuery : IQuery<GetJob>
+    public class GetJobDetailsQuery : IQuery<GetJob, JobWithDetailsPoco>
     {
         private readonly ISqlBuilderFactory _sqlBuilderFactory;
 

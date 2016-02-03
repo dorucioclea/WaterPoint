@@ -10,7 +10,7 @@ namespace WaterPoint.Core.RequestProcessor.Jobs
         public CreateJobProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
             ICommand<CreateJob> command,
-            ICommandExecutor<CreateJob> executor)
+            ICommandExecutor executor)
             : base(dapperUnitOfWork, command, executor)
         {
         }
