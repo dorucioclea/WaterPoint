@@ -17,10 +17,19 @@ namespace WaterPoint.Core.Bll.Queries.Staff
         private readonly string _sqlTemplate = $@"
                 SELECT
                     {SqlPatterns.Columns}
+                    ,[TotalCount]
                 FROM
                     {SqlPatterns.FromTable}
+                    CROSS APPLY(
+                        SELECT COUNT(*) TotalCount
+                        FROM
+                            {SqlPatterns.FromTable}
+                        WHERE
+                            {SqlPatterns.Where}
+                    )[Count]
                 WHERE
-                   {SqlPatterns.Where}";
+                   {SqlPatterns.Where}
+                ORDER BY 1 DESC";
 
         public ListStaffQuery(ISqlBuilderFactory sqlBuilderFactory)
         {
@@ -31,10 +40,14 @@ namespace WaterPoint.Core.Bll.Queries.Staff
         {
             var builder = _sqlBuilderFactory.Create<SelectSqlBuilder>();
 
+            var isWorking = parameter.IsWorking ?? true;
+
             builder.AddTemplate(_sqlTemplate);
             builder.AddColumns<BasicStaffPoco>();
             builder.AddConditions<BasicStaffPoco>(
-                i => i.OrganizationId == parameter.OrganizationId);
+                i => i.OrganizationId == parameter.OrganizationId
+                && i.IsWorking == isWorking
+                && i.IsDeleted == false);
 
             var sql = builder.GetSql();
 
@@ -42,7 +55,11 @@ namespace WaterPoint.Core.Bll.Queries.Staff
 
             Parameters = new
             {
-                organizationId = parameter.OrganizationId
+                organizationId = parameter.OrganizationId,
+                offset = parameter.Offset,
+                pageSize = parameter.PageSize,
+                isworking = isWorking,
+                isdeleted = parameter.IsDeleted
             };
         }
 

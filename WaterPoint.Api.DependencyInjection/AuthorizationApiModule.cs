@@ -84,7 +84,7 @@ namespace WaterPoint.Api.DependencyInjection
             Bind<IWriteRequestProcessor<AdjustUserPrivilegeRequest>>()
                 .To<AdjustUserPrivilegeProcessor>();
 
-            Bind<IListProcessor<ListStaffRequest, BasicStaffContract>>()
+            Bind<ISimplePagedProcessor<ListStaffRequest, BasicStaffContract>>()
                .To<ListStaffProcessor>();
 
             Bind<IRequestProcessor<GetStaffRequest, StaffContract>>()
