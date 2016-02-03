@@ -14,12 +14,12 @@ namespace WaterPoint.Core.RequestProcessor.CostItems
         IRequestProcessor<GetCostItemRequest, CostItemContract>
     {
         private readonly IQuery<GetCostItem> _query;
-        private readonly IQueryRunner<GetCostItem, CostItem> _runner;
+        private readonly IQueryRunner _runner;
 
         public GetCostItemProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
             IQuery<GetCostItem> query,
-            IQueryRunner<GetCostItem, CostItem> runner)
+            IQueryRunner runner)
             : base(dapperUnitOfWork)
         {
             _query = query;
@@ -38,7 +38,7 @@ namespace WaterPoint.Core.RequestProcessor.CostItems
 
             using (DapperUnitOfWork.Begin())
             {
-                var costItem = _runner.Run(_query);
+                var costItem = _runner.Run<GetCostItem, CostItem>(_query);
 
                 var result = CostItemMapper.Map(costItem);
 

@@ -6,7 +6,7 @@ using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Core.Bll.QueryRunners
 {
-    public class QueryRunner<T, TOut> : IQueryRunner<T, TOut> where TOut : IDataEntity where T : IQueryParameter
+    public class QueryRunner: IQueryRunner
     {
         private readonly IDapperDbContext _dapperDbContext;
 
@@ -15,7 +15,7 @@ namespace WaterPoint.Core.Bll.QueryRunners
             _dapperDbContext = dapperDbContext;
         }
 
-        public TOut Run(IQuery<T> query)
+        public TOut Run<T, TOut>(IQuery<T> query) where TOut : IDataEntity where T : IQueryParameter
         {
             var result = query.IsStoredProcedure
                 ? _dapperDbContext.ExecuteStoredProcedure<TOut>(query.Query, query.Parameters).SingleOrDefault()

@@ -19,7 +19,7 @@ namespace WaterPoint.Core.RequestProcessor.CostItems
         public ListCostItemsProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
             IQuery<PagedOrgId> query,
-            IPagedQueryRunner<PagedOrgId, CostItem> runner)
+            IPagedQueryRunner runner)
             : base(dapperUnitOfWork, query, runner)
         {
         }

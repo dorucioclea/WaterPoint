@@ -4,7 +4,9 @@ using WaterPoint.Data.Entity;
 
 namespace WaterPoint.Core.Domain.Db
 {
-    public interface IQuery<in T> where T : IQueryParameter
+    public interface IQuery<in T, out TOut>
+        where T : IQueryParameter
+        where TOut : IDataEntity
     {
         void BuildQuery(T parameter);
         string Query { get; }
@@ -12,35 +14,15 @@ namespace WaterPoint.Core.Domain.Db
         bool IsStoredProcedure { get; }
     }
 
-    public interface IQueryParameter
+    public interface IQueryRunner
     {
+        TOut Run<T, TOut>(IQuery<T> query) where TOut : IDataEntity where T : IQueryParameter;
     }
 
-    public interface IPagedQueryParameter : ISimplePagedQueryParameter
+    public interface IQueryListRunner
     {
-        string Sort { get; set; }
-        bool IsDesc { get; set; }
-        string SearchTerm { get; set; }
-    }
-
-    public interface ISimplePagedQueryParameter : IQueryParameter
-    {
-        int Offset { get; set; }
-        int PageSize { get; set; }
-        int PageNumber { get; set; }
-    }
-
-    public interface IQueryRunner<T, out TOut>
-        where T : IQueryParameter
-        where TOut : IDataEntity
-    {
-        TOut Run(IQuery<T> query);
-    }
-
-    public interface IQueryListRunner<T, out TOut>
-        where T : IQueryParameter
-        where TOut : IDataEntity
-    {
-        IEnumerable<TOut> Run(IQuery<T> query);
+        IEnumerable<TOut> Run<T, TOut>(IQuery<T> query)
+            where T : IQueryParameter
+            where TOut : IDataEntity;
     }
 }
