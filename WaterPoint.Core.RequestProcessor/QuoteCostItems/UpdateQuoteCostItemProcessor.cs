@@ -17,9 +17,9 @@ namespace WaterPoint.Core.RequestProcessor.QuoteCostItems
             IDapperUnitOfWork dapperUnitOfWork,
             IPatchEntityAdapter patchEntityAdapter,
             ICommand<UpdateQuoteCostItem> command,
-            ICommandExecutor<UpdateQuoteCostItem> executor,
-            IQuery<GetQuoteCostItem> query,
-            IQueryRunner<GetQuoteCostItem, QuoteCostItem> runner)
+            ICommandExecutor executor,
+            IQuery<GetQuoteCostItem, QuoteCostItem> query,
+            IQueryRunner runner)
             : base(dapperUnitOfWork, patchEntityAdapter, query, runner, command, executor)
         {
         }

@@ -17,13 +17,13 @@ namespace WaterPoint.Core.RequestProcessor.Staff
         BaseDapperUowRequestProcess,
         IListProcessor<ListStaffRequest, BasicStaffContract>
     {
-        private readonly IQuery<ListStaff> _query;
-        private readonly IQueryListRunner<ListStaff, BasicStaffPoco> _runner;
+        private readonly IQuery<ListStaff, BasicStaffPoco> _query;
+        private readonly IQueryListRunner _runner;
 
         public ListStaffProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
-            IQuery<ListStaff> query,
-            IQueryListRunner<ListStaff, BasicStaffPoco> runner)
+            IQuery<ListStaff, BasicStaffPoco> query,
+            IQueryListRunner runner)
             : base(dapperUnitOfWork)
         {
             _query = query;

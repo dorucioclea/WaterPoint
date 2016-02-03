@@ -14,8 +14,8 @@ namespace WaterPoint.Core.RequestProcessor.InvoiceJobCostItems
     {
         public ListInvoiceJobCostItemsProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
-            IQuery<ListInvoiceJobCostItems> listQuery,
-            IPagedQueryRunner<ListInvoiceJobCostItems, InvoiceJobCostItemBasicPoco> listQueryRunner)
+            IQuery<ListInvoiceJobCostItems, InvoiceJobCostItemBasicPoco> listQuery,
+            IPagedQueryRunner listQueryRunner)
             : base(dapperUnitOfWork, listQuery, listQueryRunner)
         {
         }

@@ -14,10 +14,10 @@ namespace WaterPoint.Core.RequestProcessor.Timesheet
         public UpdateJobTimesheetProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
             IPatchEntityAdapter adapter,
-            IQuery<GetJobTimesheet> query,
-            IQueryRunner<GetJobTimesheet, JobTimesheet> runner,
+            IQuery<GetJobTimesheet, JobTimesheet> query,
+            IQueryRunner runner,
             ICommand<UpdateJobTimesheet> command,
-            ICommandExecutor<UpdateJobTimesheet> executor)
+            ICommandExecutor executor)
             : base(dapperUnitOfWork, adapter, query, runner, command, executor)
         {
         }

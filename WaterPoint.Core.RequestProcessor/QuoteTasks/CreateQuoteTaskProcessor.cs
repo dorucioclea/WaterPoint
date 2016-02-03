@@ -11,7 +11,7 @@ namespace WaterPoint.Core.RequestProcessor.QuoteTasks
         public CreateQuoteTaskProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
             ICommand<CreateQuoteTask> command,
-            ICommandExecutor<CreateQuoteTask> executor)
+            ICommandExecutor executor)
             : base(dapperUnitOfWork, command, executor)
         {
         }

@@ -16,12 +16,12 @@ namespace WaterPoint.Core.Domain.Db
 
     public interface IQueryRunner
     {
-        TOut Run<T, TOut>(IQuery<T> query) where TOut : IDataEntity where T : IQueryParameter;
+        TOut Run<T, TOut>(IQuery<T, TOut> query) where TOut : IDataEntity where T : IQueryParameter;
     }
 
     public interface IQueryListRunner
     {
-        IEnumerable<TOut> Run<T, TOut>(IQuery<T> query)
+        IEnumerable<TOut> Run<T, TOut>(IQuery<T, TOut> query)
             where T : IQueryParameter
             where TOut : IDataEntity;
     }

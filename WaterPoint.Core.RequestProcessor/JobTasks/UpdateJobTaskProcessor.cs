@@ -15,9 +15,9 @@ namespace WaterPoint.Core.RequestProcessor.JobTasks
             IDapperUnitOfWork dapperUnitOfWork,
             IPatchEntityAdapter patchEntityAdapter,
             ICommand<UpdateJobTask> command,
-            ICommandExecutor<UpdateJobTask> executor,
-            IQuery<GetJobTask> query,
-            IQueryRunner<GetJobTask, JobTask> runner)
+            ICommandExecutor executor,
+            IQuery<GetJobTask, JobTask> query,
+            IQueryRunner runner)
             : base(dapperUnitOfWork, patchEntityAdapter, query, runner, command, executor)
         {
         }

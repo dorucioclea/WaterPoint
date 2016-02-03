@@ -15,7 +15,7 @@ namespace WaterPoint.Core.Bll.QueryRunners
         {
             _dapperDbContext = dapperDbContext;
         }
-        public IEnumerable<TOut> Run<T, TOut>(IQuery<T> query)
+        public IEnumerable<TOut> Run<T, TOut>(IQuery<T, TOut> query)
             where T : IQueryParameter
             where TOut : IDataEntity
         {

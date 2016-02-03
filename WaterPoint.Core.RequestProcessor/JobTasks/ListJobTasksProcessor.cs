@@ -16,8 +16,8 @@ namespace WaterPoint.Core.RequestProcessor.JobTasks
     {
         public ListJobTasksProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
-            IQuery<ListJobTasks> listQuery,
-            IPagedQueryRunner<ListJobTasks, JobTaskBasicPoco> listQueryRunner)
+            IQuery<ListJobTasks, JobTaskBasicPoco> listQuery,
+            IPagedQueryRunner listQueryRunner)
             : base(dapperUnitOfWork, listQuery, listQueryRunner)
         {
         }

@@ -8,7 +8,7 @@ using WaterPoint.Core.Domain.QueryParameters.JobTimesheet;
 
 namespace WaterPoint.Core.Bll.Queries.JobTimesheet
 {
-    public class GetJobTimesheetQuery : IQuery<GetJobTimesheet>
+    public class GetJobTimesheetQuery : IQuery<GetJobTimesheet, Data.Entity.DataEntities.JobTimesheet>
     {
         private const string SqlTemplate = "[dbo].[Get_JobTimesheet_By_Id]";
 

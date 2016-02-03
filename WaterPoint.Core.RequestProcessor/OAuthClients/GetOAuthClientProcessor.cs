@@ -13,13 +13,13 @@ namespace WaterPoint.Core.RequestProcessor.OAuthClients
         BaseDapperUowRequestProcess,
         IRequestProcessor<GetOAuthClientRequest, OAuthClientContract>
     {
-        private readonly IQuery<GetAuthClient> _query;
-        private readonly IQueryRunner<GetAuthClient, OAuthClient> _runner;
+        private readonly IQuery<GetAuthClient, OAuthClient> _query;
+        private readonly IQueryRunner _runner;
 
         public GetOAuthClientProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
-            IQuery<GetAuthClient> query,
-            IQueryRunner<GetAuthClient, OAuthClient> runner)
+            IQuery<GetAuthClient, OAuthClient> query,
+            IQueryRunner runner)
             : base(dapperUnitOfWork)
         {
             _query = query;

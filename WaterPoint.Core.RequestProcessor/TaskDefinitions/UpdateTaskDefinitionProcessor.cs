@@ -16,10 +16,10 @@ namespace WaterPoint.Core.RequestProcessor.TaskDefinitions
         public UpdateTaskDefinitionProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
             IPatchEntityAdapter adapter,
-            IQuery<GetTaskDefinition> getQuery,
-            IQueryRunner<GetTaskDefinition, TaskDefinition> getRunner,
+            IQuery<GetTaskDefinition, TaskDefinition> getQuery,
+            IQueryRunner getRunner,
             ICommand<UpdateTaskDefinition> updateCommand,
-            ICommandExecutor<UpdateTaskDefinition> updateExecutor)
+            ICommandExecutor updateExecutor)
             : base(dapperUnitOfWork, adapter, getQuery, getRunner, updateCommand, updateExecutor)
         {
         }

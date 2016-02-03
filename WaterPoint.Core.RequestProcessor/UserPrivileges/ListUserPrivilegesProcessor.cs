@@ -12,12 +12,12 @@ namespace WaterPoint.Core.RequestProcessor.UserPrivileges
 {
     public class ListUserPrivilegesProcessor : IListProcessor<ListUserPrivilegesRequest, UserPrivilegeContract>
     {
-        private readonly IQuery<ListUserPrivileges> _query;
-        private readonly IQueryListRunner<ListUserPrivileges, OrganizationUserPrivilegePoco> _runner;
+        private readonly IQuery<ListUserPrivileges, OrganizationUserPrivilegePoco> _query;
+        private readonly IQueryListRunner _runner;
 
         public ListUserPrivilegesProcessor(
-            IQuery<ListUserPrivileges> query,
-            IQueryListRunner<ListUserPrivileges, OrganizationUserPrivilegePoco> runner)
+            IQuery<ListUserPrivileges, OrganizationUserPrivilegePoco> query,
+            IQueryListRunner runner)
         {
             _query = query;
             _runner = runner;

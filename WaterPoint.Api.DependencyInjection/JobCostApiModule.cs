@@ -27,23 +27,13 @@ namespace WaterPoint.Api.DependencyInjection
         {
             BindRequestProcessors();
             BindQueries();
-            BindQueryRunners();
             BindCommands();
-            BindCommandExecutors();
-
         }
 
         private void BindQueries()
         {
-            Bind<IQuery<ListJobCostItems>>().To<ListJobCostItemsQuery>();
-            Bind<IQuery<GetJobCostItem>>().To<GetJobCostItemQuery>();
-        }
-
-        public void BindQueryRunners()
-        {
-            Bind<IPagedQueryRunner<ListJobCostItems, JobCostItemListPoco>>()
-                .To<PagedQueryRunner<ListJobCostItems, JobCostItemListPoco>>();
-            Bind<IQueryRunner<GetJobCostItem, JobCostItem>>().To<QueryRunner<GetJobCostItem, JobCostItem>>();
+            Bind<IQuery<ListJobCostItems, JobCostItemListPoco>>().To<ListJobCostItemsQuery>();
+            Bind<IQuery<GetJobCostItem, JobCostItem>>().To<GetJobCostItemQuery>();
         }
 
         public void BindCommands()
@@ -51,13 +41,6 @@ namespace WaterPoint.Api.DependencyInjection
             Bind<ICommand<CreateJobCostItem>>().To<CreateJobCostItemCommand>();
 
             Bind<ICommand<UpdateJobCostItem>>().To<UpdateJobCostItemCommand>();
-        }
-
-        public void BindCommandExecutors()
-        {
-            Bind<ICommandExecutor<CreateJobCostItem>>().To<CreateCommandExecutor<CreateJobCostItem>>();
-
-            Bind<ICommandExecutor<UpdateJobCostItem>>().To<UpdateCommandExecutor<UpdateJobCostItem>>();
         }
 
         private void BindRequestProcessors()

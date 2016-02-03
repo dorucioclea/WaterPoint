@@ -4,7 +4,7 @@ using WaterPoint.Data.Entity.Pocos.InvoiceJobTasks;
 
 namespace WaterPoint.Core.Bll.Queries.InvoiceJobTasks
 {
-    public class ListInvoiceJobTasksQuery : IQuery<ListInvoiceJobTasks>
+    public class ListInvoiceJobTasksQuery : IQuery<ListInvoiceJobTasks, InvoiceJobTaskBasicPoco>
     {
         private readonly ISqlBuilderFactory _sqlBuilderFactory;
 

@@ -17,12 +17,12 @@ namespace WaterPoint.Core.RequestProcessor
         where TDataEntity : IDataEntity, new()
     {
         private readonly IDapperUnitOfWork _dapperUnitOfWork;
-        private readonly IQuery<TParameter> _listQuery;
+        private readonly IQuery<TParameter, TDataEntity> _listQuery;
         private readonly IPagedQueryRunner _listQueryRunner;
 
         protected PagedProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
-            IQuery<TParameter> listQuery,
+            IQuery<TParameter, TDataEntity> listQuery,
             IPagedQueryRunner listQueryRunner)
         {
             _dapperUnitOfWork = dapperUnitOfWork;
@@ -45,7 +45,7 @@ namespace WaterPoint.Core.RequestProcessor
 
             using (_dapperUnitOfWork.Begin())
             {
-                var result = _listQueryRunner.Run<TParameter, TDataEntity>(_listQuery);
+                var result = _listQueryRunner.Run(_listQuery);
 
                 return new PagedResult<TContract>
                 {

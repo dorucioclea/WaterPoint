@@ -15,7 +15,7 @@ namespace WaterPoint.Core.Bll.QueryRunners
             _dapperDbContext = dapperDbContext;
         }
 
-        public TOut Run<T, TOut>(IQuery<T> query) where TOut : IDataEntity where T : IQueryParameter
+        public TOut Run<T, TOut>(IQuery<T, TOut> query) where TOut : IDataEntity where T : IQueryParameter
         {
             var result = query.IsStoredProcedure
                 ? _dapperDbContext.ExecuteStoredProcedure<TOut>(query.Query, query.Parameters).SingleOrDefault()

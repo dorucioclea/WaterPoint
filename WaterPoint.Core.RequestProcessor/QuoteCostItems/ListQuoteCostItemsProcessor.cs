@@ -22,8 +22,8 @@ namespace WaterPoint.Core.RequestProcessor.QuoteCostItems
     {
         public ListQuoteCostItemsProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
-            IQuery<ListQuoteCostItems> listQuery,
-            IPagedQueryRunner<ListQuoteCostItems, QuoteCostItemBasicPoco> listQueryRunner)
+            IQuery<ListQuoteCostItems, QuoteCostItemBasicPoco> listQuery,
+            IPagedQueryRunner listQueryRunner)
             : base(dapperUnitOfWork, listQuery, listQueryRunner)
         {
         }

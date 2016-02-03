@@ -6,7 +6,7 @@ using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Core.Bll.Queries.Customers
 {
-    public class ListCustomersQuery : IQuery<ListCustomers>
+    public class ListCustomersQuery : IQuery<ListCustomers, Customer>
     {
         private readonly ISqlBuilderFactory _sqlBuilderFactory;
 

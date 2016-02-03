@@ -5,10 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using WaterPoint.Core.Domain.Db;
 using WaterPoint.Core.Domain.QueryParameters.JobTimesheet;
+using WaterPoint.Data.Entity.Pocos.JobTimesheet;
 
 namespace WaterPoint.Core.Bll.Queries.JobTimesheet
 {
-    public class ListJobTimesheetQuery : IQuery<ListJobTimesheet>
+    public class ListJobTimesheetQuery : IQuery<ListJobTimesheet, JobTimesheetPoco>
     {
         private const string SqlTemplate = "[dbo].[List_JobTimesheet_By_JobId]";
 

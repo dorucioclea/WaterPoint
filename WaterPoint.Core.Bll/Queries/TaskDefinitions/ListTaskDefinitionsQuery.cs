@@ -4,7 +4,7 @@ using WaterPoint.Data.Entity.Pocos.TaskDefinitions;
 
 namespace WaterPoint.Core.Bll.Queries.TaskDefinitions
 {
-    public class ListTaskDefinitionsQuery : IQuery<PagedOrgId>
+    public class ListTaskDefinitionsQuery : IQuery<PagedOrgId, TaskDefinitionBasicPoco>
     {
         private readonly ISqlBuilderFactory _sqlBuilderFactory;
 

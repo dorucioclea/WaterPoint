@@ -4,7 +4,7 @@ using WaterPoint.Data.Entity.Pocos.Views;
 
 namespace WaterPoint.Core.Bll.Queries.Credentials
 {
-    public class ListValidateCredentialsQuery : IQuery<ListCredentials>
+    public class ListValidateCredentialsQuery : IQuery<ListCredentials, ValidCredential>
     {
         private readonly ISqlBuilderFactory _sqlBuilderFactory;
 
@@ -41,7 +41,7 @@ namespace WaterPoint.Core.Bll.Queries.Credentials
             };
         }
 
-        public bool IsStoredProcedure { get { return false; } }
+        public bool IsStoredProcedure => false;
         public string Query { get; private set; }
         public object Parameters { get; private set; }
     }

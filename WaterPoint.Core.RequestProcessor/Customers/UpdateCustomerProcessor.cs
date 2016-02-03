@@ -14,10 +14,10 @@ namespace WaterPoint.Core.RequestProcessor.Customers
         public UpdateCustomerProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
             IPatchEntityAdapter patchAdapter,
-            IQuery<GetCustomer> getQuery,
-            IQueryRunner<GetCustomer, Customer> getRunner,
+            IQuery<GetCustomer, Customer> getQuery,
+            IQueryRunner getRunner,
             ICommand<UpdateCustomer> updateQuery,
-            ICommandExecutor<UpdateCustomer> updateExecutor)
+            ICommandExecutor updateExecutor)
             : base(dapperUnitOfWork, patchAdapter, getQuery, getRunner, updateQuery, updateExecutor)
         {
         }

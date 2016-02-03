@@ -14,8 +14,8 @@ namespace WaterPoint.Core.RequestProcessor.Suppliers
     {
         public ListSuppliersProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
-            IQuery<ListSuppliers> listQuery,
-            IPagedQueryRunner<ListSuppliers, Supplier> listQueryRunner)
+            IQuery<ListSuppliers, Supplier> listQuery,
+            IPagedQueryRunner listQueryRunner)
             : base(dapperUnitOfWork, listQuery, listQueryRunner)
         {
         }

@@ -3,6 +3,8 @@ using Ninject.Extensions.Factory;
 using Ninject.Modules;
 using Ninject.Web.Common;
 using WaterPoint.Core.Bll;
+using WaterPoint.Core.Bll.Executors;
+using WaterPoint.Core.Bll.QueryRunners;
 using WaterPoint.Core.Domain.Db;
 using WaterPoint.Data.DbContext.Dapper;
 
@@ -20,6 +22,14 @@ namespace WaterPoint.Core.DependencyInjection
             Bind<ISqlBuilderFactory>().ToFactory(() => new SqlBuilderProvider());
 
             Bind<IDapperUnitOfWork>().To<DapperUnitOfWork>();
+
+            Bind<IQueryListRunner>().To<QueryListRunner>();
+
+            Bind<IPagedQueryRunner>().To<PagedQueryRunner>();
+
+            Bind<IQueryRunner>().To<QueryRunner>();
+
+            Bind<ICommandExecutor>().To<CommandExecutor>();
         }
     }
 }

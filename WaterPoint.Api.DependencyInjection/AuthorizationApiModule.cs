@@ -8,8 +8,8 @@ using WaterPoint.Core.Bll.Commands.UserPrivileges;
 using WaterPoint.Core.Bll.Executors;
 using WaterPoint.Core.Bll.Queries.Credentials;
 using WaterPoint.Core.Bll.Queries.OAuthClients;
-using WaterPoint.Core.Bll.Queries.Privileges;
 using WaterPoint.Core.Bll.Queries.Staff;
+using WaterPoint.Core.Bll.Queries.UserPrivileges;
 using WaterPoint.Core.Bll.QueryRunners;
 using WaterPoint.Core.Domain.QueryParameters.Credentials;
 using WaterPoint.Core.Domain;
@@ -44,53 +44,27 @@ namespace WaterPoint.Api.DependencyInjection
         {
             BindRequestProcessors();
             BindQueries();
-            BindQueryRunners();
             BindProviders();
             BindCommands();
-            BindCommandExecutors();
         }
 
         private void BindQueries()
         {
-            Bind<IQuery<ListCredentials>>().To<ListValidateCredentialsQuery>();
+            Bind<IQuery<ListCredentials, ValidCredential>>().To<ListValidateCredentialsQuery>();
 
-            Bind<IQuery<GetAuthClient>>().To<GetOAuthClientQuery>();
+            Bind<IQuery<GetAuthClient, OAuthClient>>().To<GetOAuthClientQuery>();
 
-            Bind<IQuery<ListUserPrivileges>>().To<ListUserPrivilegesQuery>();
+            Bind<IQuery<ListUserPrivileges, OrganizationUserPrivilegePoco>>().To<ListUserPrivilegesQuery>();
 
-            Bind<IQuery<ListStaff>>().To<ListStaffQuery>();
+            Bind<IQuery<ListStaff, BasicStaffPoco>>().To<ListStaffQuery>();
 
-            Bind<IQuery<GetStaff>>().To<GetStaffQuery>();
-        }
-
-        public void BindQueryRunners()
-        {
-            Bind<IQueryListRunner<ListCredentials, ValidCredential>>()
-                .To<QueryListRunner<ListCredentials, ValidCredential>>();
-
-            Bind<IQueryRunner<GetAuthClient, OAuthClient>>()
-                .To<QueryRunner<GetAuthClient, OAuthClient>>();
-
-            Bind<IQueryListRunner<ListUserPrivileges, OrganizationUserPrivilegePoco>>()
-                .To<QueryListRunner<ListUserPrivileges, OrganizationUserPrivilegePoco>>();
-
-            Bind<IQueryListRunner<ListStaff, BasicStaffPoco>>()
-                .To<QueryListRunner<ListStaff, BasicStaffPoco>>();
-
-            Bind<IQueryRunner<GetStaff, Staff>>()
-                .To<QueryRunner<GetStaff, Staff>>();
+            Bind<IQuery<GetStaff, Data.Entity.DataEntities.Staff>>().To<GetStaffQuery>();
         }
 
         public void BindCommands()
         {
             Bind<ICommand<EnterOrganization>>().To<EnterOrganizationCommand>();
             Bind<ICommand<AdjustUserPrivilege>>().To<AdjustUserPrivilegeCommand>();
-        }
-
-        public void BindCommandExecutors()
-        {
-            Bind<ICommandExecutor<EnterOrganization>>().To<UpdateCommandExecutor<EnterOrganization>>();
-            Bind<ICommandExecutor<AdjustUserPrivilege>>().To<UpdateCommandExecutor<AdjustUserPrivilege>>();
         }
 
         private void BindRequestProcessors()

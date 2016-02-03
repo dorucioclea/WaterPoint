@@ -3,7 +3,7 @@ using WaterPoint.Core.Domain.QueryParameters.Staff;
 
 namespace WaterPoint.Core.Bll.Queries.Staff
 {
-    public class GetStaffQuery : IQuery<GetStaff>
+    public class GetStaffQuery : IQuery<GetStaff, Data.Entity.DataEntities.Staff>
     {
         public void BuildQuery(GetStaff parameter)
         {

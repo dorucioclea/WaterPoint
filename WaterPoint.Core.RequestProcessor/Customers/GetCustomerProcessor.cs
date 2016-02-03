@@ -16,13 +16,13 @@ namespace WaterPoint.Core.RequestProcessor.Customers
         BaseDapperUowRequestProcess,
         IRequestProcessor<GetCustomerRequest, CustomerContract>
     {
-        private readonly IQuery<GetCustomer> _query;
-        private readonly IQueryRunner<GetCustomer, Customer> _runner;
+        private readonly IQuery<GetCustomer, Customer> _query;
+        private readonly IQueryRunner _runner;
 
         public GetCustomerProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
-            IQuery<GetCustomer> query,
-            IQueryRunner<GetCustomer, Customer> runner)
+            IQuery<GetCustomer, Customer> query,
+            IQueryRunner runner)
             : base(dapperUnitOfWork)
         {
             _query = query;

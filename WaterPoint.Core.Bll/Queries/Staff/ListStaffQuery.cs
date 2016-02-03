@@ -10,7 +10,7 @@ using WaterPoint.Data.Entity.Pocos.Staff;
 
 namespace WaterPoint.Core.Bll.Queries.Staff
 {
-    public class ListStaffQuery : IQuery<ListStaff>
+    public class ListStaffQuery : IQuery<ListStaff, BasicStaffPoco>
     {
         private readonly ISqlBuilderFactory _sqlBuilderFactory;
 

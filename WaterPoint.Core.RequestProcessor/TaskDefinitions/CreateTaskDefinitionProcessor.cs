@@ -12,7 +12,7 @@ namespace WaterPoint.Core.RequestProcessor.TaskDefinitions
         public CreateTaskDefinitionProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
             ICommand<CreateTaskDefinition> command,
-            ICommandExecutor<CreateTaskDefinition> executor)
+            ICommandExecutor executor)
             : base(dapperUnitOfWork, command, executor)
         {
         }

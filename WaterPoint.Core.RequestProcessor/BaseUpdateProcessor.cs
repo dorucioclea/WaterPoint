@@ -18,18 +18,18 @@ namespace WaterPoint.Core.RequestProcessor
         where TUpdateParameter : class, IQueryParameter, new()
     {
         private readonly IPatchEntityAdapter _patchEntityAdapter;
-        private readonly IQuery<TGetParameter> _getQuery;
-        private readonly IQueryRunner<TGetParameter, TGetEntity> _getQueryRunner;
+        private readonly IQuery<TGetParameter, TGetEntity> _getQuery;
+        private readonly IQueryRunner _getQueryRunner;
         private readonly ICommand<TUpdateParameter> _updateQuery;
-        private readonly ICommandExecutor<TUpdateParameter> _updateCommandExecutor;
+        private readonly ICommandExecutor _updateCommandExecutor;
 
         protected BaseUpdateProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
             IPatchEntityAdapter patchEntityAdapter,
-            IQuery<TGetParameter> getQuery,
-            IQueryRunner<TGetParameter, TGetEntity> getQueryRunner,
+            IQuery<TGetParameter, TGetEntity> getQuery,
+            IQueryRunner getQueryRunner,
             ICommand<TUpdateParameter> updateQuery,
-            ICommandExecutor<TUpdateParameter> updateCommandExecutor)
+            ICommandExecutor updateCommandExecutor)
             : base(dapperUnitOfWork)
         {
             _patchEntityAdapter = patchEntityAdapter;
@@ -66,7 +66,7 @@ namespace WaterPoint.Core.RequestProcessor
             //then build the query to update the object.
             _updateQuery.BuildQuery(updated);
 
-            return _updateCommandExecutor.Execute(_updateQuery);
+            return _updateCommandExecutor.NoneQuery(_updateQuery);
         }
     }
 }

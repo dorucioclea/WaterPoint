@@ -16,8 +16,8 @@ namespace WaterPoint.Core.RequestProcessor.Customers
     {
         public ListCustomersProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
-            IQuery<ListCustomers> listQuery,
-            IPagedQueryRunner<ListCustomers, Customer> listQueryRunner)
+            IQuery<ListCustomers, Customer> listQuery,
+            IPagedQueryRunner listQueryRunner)
             : base(dapperUnitOfWork, listQuery, listQueryRunner)
         {
         }

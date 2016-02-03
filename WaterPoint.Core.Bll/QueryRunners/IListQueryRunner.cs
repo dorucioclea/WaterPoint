@@ -7,7 +7,7 @@ namespace WaterPoint.Core.Bll.QueryRunners
 {
     public interface IPagedQueryRunner
     {
-        PagedPoco<IEnumerable<TOut>> Run<T, TOut>(IQuery<T> query)
+        PagedPoco<IEnumerable<TOut>> Run<T, TOut>(IQuery<T, TOut> query)
             where T : IQueryParameter
             where TOut : IDataEntity;
     }

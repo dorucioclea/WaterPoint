@@ -10,7 +10,7 @@ namespace WaterPoint.Core.RequestProcessor.UserPrivileges
         public AdjustUserPrivilegeProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
             ICommand<AdjustUserPrivilege> command,
-            ICommandExecutor<AdjustUserPrivilege> executor)
+            ICommandExecutor executor)
             : base(dapperUnitOfWork, command, executor)
         {
         }

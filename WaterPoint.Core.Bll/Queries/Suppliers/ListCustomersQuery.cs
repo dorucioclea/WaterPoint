@@ -6,7 +6,7 @@ using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Core.Bll.Queries.Suppliers
 {
-    public class ListSuppliersQuery : IQuery<ListSuppliers>
+    public class ListSuppliersQuery : IQuery<ListSuppliers, Supplier>
     {
         private readonly ISqlBuilderFactory _sqlBuilderFactory;
 
@@ -42,12 +42,12 @@ namespace WaterPoint.Core.Bll.Queries.Suppliers
             builder.AddColumns<Supplier>();
 
             parameter.IsActive = parameter.IsActive ?? true;
-            
+
             builder.AddConditions<Supplier>(
                 i => i.OrganizationId == parameter.OrganizationId
                         && i.IsDeleted == false
                         && i.IsActive == parameter.IsActive);
-            
+
             builder.AddOrderBy<Supplier>(parameter.Sort, parameter.IsDesc);
 
             builder.AddContains<Supplier>(parameter.SearchTerm);

@@ -21,34 +21,19 @@ namespace WaterPoint.Api.DependencyInjection
         {
             BindRequestProcessors();
             BindQueries();
-            BindQueryRunners();
             BindCommands();
-            BindCommandExecutors();
-
         }
 
         private void BindQueries()
         {
-            Bind<IQuery<GetJobTask>>().To<GetJobTaskQuery>();
-            Bind<IQuery<ListJobTasks>>().To<ListJobTasksQuery>();
-        }
-
-        public void BindQueryRunners()
-        {
-            Bind<IQueryRunner<GetJobTask, JobTask>>().To<QueryRunner<GetJobTask, JobTask>>();
-            Bind<IPagedQueryRunner<ListJobTasks, JobTaskBasicPoco>>().To<PagedQueryRunner<ListJobTasks, JobTaskBasicPoco>>();
+            Bind<IQuery<GetJobTask, JobTask>>().To<GetJobTaskQuery>();
+            Bind<IQuery<ListJobTasks, JobTaskBasicPoco>>().To<ListJobTasksQuery>();
         }
 
         public void BindCommands()
         {
             Bind<ICommand<CreateJobTask>>().To<CreateJobTaskCommand>();
             Bind<ICommand<UpdateJobTask>>().To<UpdateJobTaskCommand>();
-        }
-
-        public void BindCommandExecutors()
-        {
-            Bind<ICommandExecutor<CreateJobTask>>().To<CreateCommandExecutor<CreateJobTask>>();
-            Bind<ICommandExecutor<UpdateJobTask>>().To<UpdateCommandExecutor<UpdateJobTask>>();
         }
 
         private void BindRequestProcessors()

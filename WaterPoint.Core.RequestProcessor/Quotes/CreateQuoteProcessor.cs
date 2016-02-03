@@ -19,7 +19,7 @@ namespace WaterPoint.Core.RequestProcessor.Quotes
         public CreateQuoteProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
             ICommand<CreateQuote> command,
-            ICommandExecutor<CreateQuote> executor)
+            ICommandExecutor executor)
             : base(dapperUnitOfWork, command, executor)
         {
         }

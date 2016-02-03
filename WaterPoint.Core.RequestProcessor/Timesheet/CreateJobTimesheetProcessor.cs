@@ -19,7 +19,7 @@ namespace WaterPoint.Core.RequestProcessor.Timesheet
         public CreateJobTimesheetProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
             ICommand<CreateJobTimesheet> command,
-            ICommandExecutor<CreateJobTimesheet> executor)
+            ICommandExecutor executor)
             : base(dapperUnitOfWork, command, executor)
         {
         }

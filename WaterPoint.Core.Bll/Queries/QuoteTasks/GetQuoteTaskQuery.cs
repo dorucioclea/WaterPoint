@@ -4,7 +4,7 @@ using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Core.Bll.Queries.QuoteTasks
 {
-    public class GetQuoteTaskQuery : IQuery<GetQuoteTask>
+    public class GetQuoteTaskQuery : IQuery<GetQuoteTask, QuoteTask>
     {
         private readonly ISqlBuilderFactory _sqlBuilderFactory;
 

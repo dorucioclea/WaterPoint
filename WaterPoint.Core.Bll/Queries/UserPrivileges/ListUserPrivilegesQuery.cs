@@ -1,9 +1,10 @@
 ﻿using WaterPoint.Core.Domain.Db;
 using WaterPoint.Core.Domain.QueryParameters.UserPrivileges;
+using WaterPoint.Data.Entity.Pocos.Privileges;
 
-namespace WaterPoint.Core.Bll.Queries.Privileges
+namespace WaterPoint.Core.Bll.Queries.UserPrivileges
 {
-    public class ListUserPrivilegesQuery : IQuery<ListUserPrivileges>
+    public class ListUserPrivilegesQuery : IQuery<ListUserPrivileges, OrganizationUserPrivilegePoco>
     {
         public void BuildQuery(ListUserPrivileges parameter)
         {

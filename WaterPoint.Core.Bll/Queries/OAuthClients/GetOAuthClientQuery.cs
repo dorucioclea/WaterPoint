@@ -5,7 +5,7 @@ using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Core.Bll.Queries.OAuthClients
 {
-    public class GetOAuthClientQuery : IQuery<GetAuthClient>
+    public class GetOAuthClientQuery : IQuery<GetAuthClient, OAuthClient>
     {
         private readonly ISqlBuilderFactory _sqlBuilderFactory;
 
