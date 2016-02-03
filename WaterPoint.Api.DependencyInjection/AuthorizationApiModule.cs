@@ -59,6 +59,8 @@ namespace WaterPoint.Api.DependencyInjection
             Bind<IQuery<ListUserPrivileges>>().To<ListUserPrivilegesQuery>();
 
             Bind<IQuery<ListStaff>>().To<ListStaffQuery>();
+
+            Bind<IQuery<GetStaff>>().To<GetStaffQuery>();
         }
 
         public void BindQueryRunners()
@@ -74,6 +76,9 @@ namespace WaterPoint.Api.DependencyInjection
 
             Bind<IQueryListRunner<ListStaff, BasicStaffPoco>>()
                 .To<QueryListRunner<ListStaff, BasicStaffPoco>>();
+
+            Bind<IQueryRunner<GetStaff, Staff>>()
+                .To<QueryRunner<GetStaff, Staff>>();
         }
 
         public void BindCommands()
@@ -107,6 +112,9 @@ namespace WaterPoint.Api.DependencyInjection
 
             Bind<IListProcessor<ListStaffRequest, BasicStaffContract>>()
                .To<ListStaffProcessor>();
+
+            Bind<IRequestProcessor<GetStaffRequest, StaffContract>>()
+                .To<GetStaffProcessor>();
         }
 
         public void BindProviders()

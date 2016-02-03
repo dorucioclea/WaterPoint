@@ -15,11 +15,11 @@ namespace WaterPoint.Api.Authorization.Controllers
     public class StaffController : BaseOrgnizationContextController
     {
         private readonly IListProcessor<ListStaffRequest, StaffContract> _listStaffRequestProcessor;
-        private readonly IRequestProcessor<GetStaffRequest, StaffDetailsContract> _getStaffProcessor;
+        private readonly IRequestProcessor<GetStaffRequest, StaffContract> _getStaffProcessor;
 
         public StaffController(
             IListProcessor<ListStaffRequest, StaffContract> listStaffRequestProcessor,
-            IRequestProcessor<GetStaffRequest, StaffDetailsContract> getStaffProcessor)
+            IRequestProcessor<GetStaffRequest, StaffContract> getStaffProcessor)
         {
             _listStaffRequestProcessor = listStaffRequestProcessor;
             _getStaffProcessor = getStaffProcessor;

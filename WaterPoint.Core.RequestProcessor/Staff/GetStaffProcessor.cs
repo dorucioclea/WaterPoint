@@ -32,7 +32,7 @@ namespace WaterPoint.Core.RequestProcessor.Staff
             var parameter = new GetStaff
             {
                 OrganizationId = input.OrganizationId,
-                OrganizationUserId = input.OrganizationUserId
+                Id = input.Id
             };
 
             _query.BuildQuery(parameter);
