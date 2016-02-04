@@ -13,14 +13,14 @@ namespace WaterPoint.Core.Bll.Executors
             _dapperDbContext = dapperDbContext;
         }
 
-        public int Execute<T>(ICommand<T> query) where T : IQueryParameter
+        public int ExecuteInsert<T>(ICommand<T> query) where T : IQueryParameter
         {
             var result = _dapperDbContext.List<int>(query.Query, query.Parameters).Single();
 
             return result;
         }
 
-        public int NoneQuery<T>(ICommand<T> query) where T : IQueryParameter
+        public int Update<T>(ICommand<T> query) where T : IQueryParameter
         {
             var result = (query.IsStoredProcedure)
                 ? _dapperDbContext.ExecuteStoredProcedure<int>(query.Query, query.Parameters).Single()

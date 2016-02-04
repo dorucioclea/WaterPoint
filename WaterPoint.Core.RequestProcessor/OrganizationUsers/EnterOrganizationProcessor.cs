@@ -43,7 +43,7 @@ namespace WaterPoint.Core.RequestProcessor.OrganizationUsers
 
             _command.BuildQuery(parameter);
 
-            return _executor.Execute(_command);
+            return _executor.ExecuteInsert(_command);
         }
     }
 }

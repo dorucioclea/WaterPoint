@@ -4,7 +4,7 @@ using WaterPoint.Data.Entity.Attributes;
 namespace WaterPoint.Data.Entity.DataEntities
 {
     [Table("dbo", "Credential", "c")]
-    public class Credential
+    public class Credential : IDataEntity, ITrackUpdateTime
     {
         [Primary]
         public int Id { get; set; }

@@ -10,7 +10,7 @@
 
     public interface ICommandExecutor
     {
-        int Execute<T>(ICommand<T> query) where T : IQueryParameter;
-        int NoneQuery<T>(ICommand<T> query) where T : IQueryParameter;
+        int ExecuteInsert<T>(ICommand<T> query) where T : IQueryParameter;
+        int ExecuteUpdate<T>(ICommand<T> query) where T : IQueryParameter;
     }
 }
