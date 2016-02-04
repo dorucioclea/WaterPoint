@@ -20,7 +20,7 @@ namespace WaterPoint.Core.Bll.Executors
             return result;
         }
 
-        public int Update<T>(ICommand<T> query) where T : IQueryParameter
+        public int ExecuteUpdate<T>(ICommand<T> query) where T : IQueryParameter
         {
             var result = (query.IsStoredProcedure)
                 ? _dapperDbContext.ExecuteStoredProcedure<int>(query.Query, query.Parameters).Single()

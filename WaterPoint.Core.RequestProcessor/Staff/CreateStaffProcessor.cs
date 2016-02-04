@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WaterPoint.Core.Bll.Executors;
-using WaterPoint.Core.Bll.Queries.Credentials;
-using WaterPoint.Core.Domain;
+﻿using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts;
 using WaterPoint.Core.Domain.Db;
 using WaterPoint.Core.Domain.QueryParameters.Credentials;
@@ -13,7 +6,7 @@ using WaterPoint.Core.Domain.QueryParameters.OrganizationUsers;
 using WaterPoint.Core.Domain.QueryParameters.Staff;
 using WaterPoint.Core.Domain.Requests.Staff;
 using WaterPoint.Data.DbContext.Dapper;
-using WaterPoint.Data.Entity.DataEntities;
+using WaterPoint.Data.Entity.Enums;
 using OrgStaff = WaterPoint.Data.Entity.DataEntities.Staff;
 
 namespace WaterPoint.Core.RequestProcessor.Staff
@@ -23,26 +16,29 @@ namespace WaterPoint.Core.RequestProcessor.Staff
         IWriteRequestProcessor<CreateStaffRequest>
     {
         private readonly IQuery<GetStaffByLoginEmail, OrgStaff> _getStaffByLogin;
-        private readonly IQuery<GetCredential, Credential> _getCredential;
+        private readonly ICommand<UndeleteStaffByLoginEmail> _undeleteStaffCommand;
         private readonly ICommand<CreateCredential> _createCredential;
         private readonly ICommand<CreateOrganizationUser> _createOrganizationUser;
+        private readonly ICommand<CreateStaff> _createStaffCommand;
         private readonly ICommandExecutor _executor;
         private readonly IQueryRunner _queryRunner;
 
         public CreateStaffProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
             IQuery<GetStaffByLoginEmail, OrgStaff> getStaffByLogin,
-            IQuery<GetCredential, Credential> getCredential,
+            ICommand<UndeleteStaffByLoginEmail> undeleteStaffCommand,
             ICommand<CreateCredential> createCredential,
             ICommand<CreateOrganizationUser> createOrganizationUser,
+            ICommand<CreateStaff> createStaffCommand,
             ICommandExecutor executor,
             IQueryRunner queryRunner)
             : base(dapperUnitOfWork)
         {
             _getStaffByLogin = getStaffByLogin;
-            _getCredential = getCredential;
+            _undeleteStaffCommand = undeleteStaffCommand;
             _createCredential = createCredential;
             _createOrganizationUser = createOrganizationUser;
+            _createStaffCommand = createStaffCommand;
             _executor = executor;
             _queryRunner = queryRunner;
         }
@@ -57,34 +53,73 @@ namespace WaterPoint.Core.RequestProcessor.Staff
         private int ProcessDeFacto(CreateStaffRequest input)
         {
             //check staff with the same login exists or not
+            _getStaffByLogin.BuildQuery(new GetStaffByLoginEmail
+            {
+                Email = input.Payload.Email,
+                OrganizationId = input.OrganizationId
+            });
+
             var alreadyCreatedStaff = _queryRunner.Run(_getStaffByLogin);
 
             if (alreadyCreatedStaff.IsDeleted)
             {
                 //undelete
-                return alreadyCreatedStaff.Id;
+                _undeleteStaffCommand.BuildQuery(new UndeleteStaffByLoginEmail
+                {
+                    OrganizationId = input.OrganizationId,
+                    LoginEmail = input.Payload.Email
+                });
+                var undeleted = _executor.ExecuteUpdate(_undeleteStaffCommand);
+
+                if (undeleted > 0)
+                    return alreadyCreatedStaff.Id;
             }
 
-            //check credential exists
+            //TODO: password provider
+            //if not exists, will create one, otherwise use the existing one
+            _createCredential.BuildQuery(new CreateCredential
+            {
+                Email = input.Payload.Email,
+                Password = "password"
+            });
 
-            //if yes isDeleted? yes undelete, no use it
-
-            //if not create credential
             var credentialId = _executor.ExecuteInsert(_createCredential);
 
-            //check organization user with the credentialid orgid + credentialid combination should be unique
+            _createOrganizationUser.BuildQuery(new CreateOrganizationUser
+            {
+                OrganizationId = input.OrganizationId,
+                CredentialId = credentialId,
+                OrganizationUserTypeId = input.Payload.IsAdmin
+                    ? (int)OrganizationUserTypes.Admin
+                    : (int)OrganizationUserTypes.Staff
+            });
 
-            //if yes, is deleted ?
+            var orgUserId = _executor.ExecuteInsert(_createOrganizationUser);
 
-            //if no create
+            _createStaffCommand.BuildQuery(new CreateStaff
+            {
+                OrganizationId = input.OrganizationId,
+            });
 
-            //create staff
+            _createStaffCommand.BuildQuery(new CreateStaff
+            {
+                OrganizationId = input.OrganizationId,
+                Code = input.Payload.Code,
+                BaseRate = input.Payload.BaseRate,
+                BillableRate = input.Payload.BillableRate,
+                ContactEmail = input.Payload.ContactEmail,
+                Dob = input.Payload.Dob,
+                FirstName = input.Payload.FirstName,
+                Gender = input.Payload.Gender,
+                LastName = input.Payload.LastName,
+                MobilePhone = input.Payload.MobilePhone,
+                OrganizationUserId = orgUserId,
+                OtherName = input.Payload.OtherName
+            });
 
+            var staffId = _executor.ExecuteInsert(_createStaffCommand);
 
-            //_command.BuildQuery(BuildParameter(input));
-
-            //return _executor.Execute(_command);
-            throw new NotImplementedException();
+            return staffId;
         }
     }
 }

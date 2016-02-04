@@ -3,7 +3,9 @@ using Microsoft.Owin.Security.Infrastructure;
 using Microsoft.Owin.Security.OAuth;
 using Ninject.Modules;
 using WaterPoint.Api.Infrastructure;
+using WaterPoint.Core.Bll.Commands.Credentials;
 using WaterPoint.Core.Bll.Commands.OrganizationUsers;
+using WaterPoint.Core.Bll.Commands.Staff;
 using WaterPoint.Core.Bll.Commands.UserPrivileges;
 using WaterPoint.Core.Bll.Executors;
 using WaterPoint.Core.Bll.Queries.Credentials;
@@ -59,12 +61,17 @@ namespace WaterPoint.Api.DependencyInjection
             Bind<IQuery<ListStaff, BasicStaffPoco>>().To<ListStaffQuery>();
 
             Bind<IQuery<GetStaff, Data.Entity.DataEntities.Staff>>().To<GetStaffQuery>();
+            Bind<IQuery<GetStaffByLoginEmail, Staff>>().To<GetStaffByLoginEmailQuery>();
         }
 
         public void BindCommands()
         {
             Bind<ICommand<EnterOrganization>>().To<EnterOrganizationCommand>();
             Bind<ICommand<AdjustUserPrivilege>>().To<AdjustUserPrivilegeCommand>();
+            Bind<ICommand<CreateStaff>>().To<CreateStaffCommand>();
+            Bind<ICommand<UndeleteStaffByLoginEmail>>().To<UndeleteStaffQueryByLoginEmailCommand>();
+            Bind<ICommand<CreateCredential>>().To<CreateCredentialCommand>();
+            Bind<ICommand<CreateOrganizationUser>>().To<CreateOrganizationUserCommand>();
         }
 
         private void BindRequestProcessors()
@@ -89,6 +96,8 @@ namespace WaterPoint.Api.DependencyInjection
 
             Bind<IRequestProcessor<GetStaffRequest, StaffContract>>()
                 .To<GetStaffProcessor>();
+
+            Bind<IWriteRequestProcessor<CreateStaffRequest>>().To<CreateStaffProcessor>();
         }
 
         public void BindProviders()

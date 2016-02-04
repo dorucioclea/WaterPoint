@@ -97,7 +97,7 @@
     <Compile Include="Commands\JobTimesheet\UpdateJobTimesheetCommand.cs" />
     <Compile Include="Commands\JobTimesheet\CreateJobTimesheetCommand.cs" />
     <Compile Include="Commands\InvoiceJobCostItems\CreateQuoteCostItemCommand.cs" />
-    <Compile Include="Commands\OrganizationUsers\Class1.cs" />
+    <Compile Include="Commands\OrganizationUsers\CreateOrganizationUserCommand.cs" />
     <Compile Include="Commands\OrganizationUsers\EnterOrganizationCommand.cs" />
     <Compile Include="Commands\QuoteCostItems\UpdateQuoteCostItemCommand.cs" />
     <Compile Include="Commands\Quotes\CreateQuoteCommand.cs" />
@@ -107,6 +107,7 @@
     <Compile Include="Commands\Quotes\UpdateQuoteCommand.cs" />
     <Compile Include="Commands\QuoteTasks\UpdateQuoteTaskCommand.cs" />
     <Compile Include="Commands\QuoteTasks\CreateQuoteTaskCommand.cs" />
+    <Compile Include="Commands\Staff\CreateStaffCommand.cs" />
     <Compile Include="Commands\Suppliers\CreateCustomerCommand.cs" />
     <Compile Include="Commands\TaskDefinitions\CreateTaskDefinitionCommand.cs" />
     <Compile Include="Commands\TaskDefinitions\UpdateTaskDefinitionCommand.cs" />
@@ -125,6 +126,7 @@
     <Compile Include="Queries\JobTimesheet\GetJobTimesheetQuery.cs" />
     <Compile Include="Queries\JobTimesheet\ListJobTimesheetQuery.cs" />
     <Compile Include="Queries\OAuthClients\GetOAuthClientQuery.cs" />
+    <Compile Include="Commands\Staff\UndeleteStaffQueryByLoginEmailCommand.cs" />
     <Compile Include="Queries\Staff\GetStaffByLoginEmailQuery.cs" />
     <Compile Include="Queries\Staff\ListStaffQuery.cs" />
     <Compile Include="Queries\UserPrivileges\ListUserPrivilegesQuery.cs" />
@@ -185,7 +187,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Commands\StaffCommands\" />
     <Folder Include="Enum\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

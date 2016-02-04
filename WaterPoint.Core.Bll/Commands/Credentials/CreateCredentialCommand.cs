@@ -11,28 +11,19 @@ namespace WaterPoint.Core.Bll.Commands.Credentials
 {
     public class CreateCredentialCommand : ICommand<CreateCredential>
     {
-        private readonly ISqlBuilderFactory _sqlBuilderFactory;
-
-        public CreateCredentialCommand(ISqlBuilderFactory sqlBuilderFactory)
-        {
-            _sqlBuilderFactory = sqlBuilderFactory;
-        }
-
         public void BuildQuery(CreateCredential input)
         {
-            var builder = _sqlBuilderFactory.Create<CreateSqlBuilder<Credential>>();
+            Query = "[dbo].[Add_Credential]";
 
-            builder.Analyze<CreateCredential>();
-            builder.AddValueParameters(input);
-
-            var sql = builder.GetSql();
-
-            Query = sql;
-            Parameters = builder.Parameters;
+            Parameters = new
+            {
+                email = input.Email,
+                password = input.Password
+            };
         }
 
         public string Query { get; private set; }
         public object Parameters { get; private set; }
-        public bool IsStoredProcedure => false;
+        public bool IsStoredProcedure => true;
     }
 }
