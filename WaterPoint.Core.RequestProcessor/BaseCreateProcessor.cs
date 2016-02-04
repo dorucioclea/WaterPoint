@@ -37,7 +37,7 @@ namespace WaterPoint.Core.RequestProcessor
         {
             _command.BuildQuery(BuildParameter(input));
 
-            return _executor.Execute(_command);
+            return _executor.ExecuteInsert(_command);
         }
     }
 }

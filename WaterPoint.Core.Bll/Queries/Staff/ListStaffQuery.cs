@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WaterPoint.Core.Domain.Db;
+﻿using WaterPoint.Core.Domain.Db;
 using WaterPoint.Core.Domain.QueryParameters.Staff;
-using WaterPoint.Data.Entity.DataEntities;
 using WaterPoint.Data.Entity.Pocos.Staff;
 
 namespace WaterPoint.Core.Bll.Queries.Staff

@@ -86,6 +86,7 @@
   <ItemGroup>
     <Compile Include="Commands\CostItems\UpdateCostItemCommand.cs" />
     <Compile Include="Commands\CostItems\CreateCostItemCommand.cs" />
+    <Compile Include="Commands\Credentials\CreateCredentialCommand.cs" />
     <Compile Include="Commands\Invoices\CreateInvoiceCommand.cs" />
     <Compile Include="Commands\JobCostItems\UpdateJobCostItemCommand.cs" />
     <Compile Include="Commands\Jobs\CreateJobCommand.cs" />
@@ -96,6 +97,7 @@
     <Compile Include="Commands\JobTimesheet\UpdateJobTimesheetCommand.cs" />
     <Compile Include="Commands\JobTimesheet\CreateJobTimesheetCommand.cs" />
     <Compile Include="Commands\InvoiceJobCostItems\CreateQuoteCostItemCommand.cs" />
+    <Compile Include="Commands\OrganizationUsers\Class1.cs" />
     <Compile Include="Commands\OrganizationUsers\EnterOrganizationCommand.cs" />
     <Compile Include="Commands\QuoteCostItems\UpdateQuoteCostItemCommand.cs" />
     <Compile Include="Commands\Quotes\CreateQuoteCommand.cs" />
@@ -111,6 +113,7 @@
     <Compile Include="Commands\UserPrivileges\CreateCustomerCommand.cs" />
     <Compile Include="Queries\CostItems\ListCostItemQuery.cs" />
     <Compile Include="Queries\CostItems\GetCostItemQuery.cs" />
+    <Compile Include="Queries\Credentials\GetCredentialQuery.cs" />
     <Compile Include="Queries\Credentials\ListValidateCredentialsQuery.cs" />
     <Compile Include="Queries\Customers\ListCustomerJobsQuery.cs" />
     <Compile Include="Queries\JobCostItems\GetJobCostItemQuery.cs" />
@@ -122,6 +125,7 @@
     <Compile Include="Queries\JobTimesheet\GetJobTimesheetQuery.cs" />
     <Compile Include="Queries\JobTimesheet\ListJobTimesheetQuery.cs" />
     <Compile Include="Queries\OAuthClients\GetOAuthClientQuery.cs" />
+    <Compile Include="Queries\Staff\GetStaffByLoginEmailQuery.cs" />
     <Compile Include="Queries\Staff\ListStaffQuery.cs" />
     <Compile Include="Queries\UserPrivileges\ListUserPrivilegesQuery.cs" />
     <Compile Include="Queries\InvoiceJobCostItems\GetInvoiceJobCostItemQuery.cs" />
@@ -181,6 +185,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Commands\StaffCommands\" />
     <Folder Include="Enum\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

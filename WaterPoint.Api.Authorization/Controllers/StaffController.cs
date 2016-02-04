@@ -16,13 +16,16 @@ namespace WaterPoint.Api.Authorization.Controllers
     {
         private readonly ISimplePagedProcessor<ListStaffRequest, BasicStaffContract> _listStaffRequestProcessor;
         private readonly IRequestProcessor<GetStaffRequest, StaffContract> _getStaffProcessor;
+        private readonly IWriteRequestProcessor<CreateStaffRequest> _createStaffProcessor;
 
         public StaffController(
             ISimplePagedProcessor<ListStaffRequest, BasicStaffContract> listStaffRequestProcessor,
-            IRequestProcessor<GetStaffRequest, StaffContract> getStaffProcessor)
+            IRequestProcessor<GetStaffRequest, StaffContract> getStaffProcessor,
+            IWriteRequestProcessor<CreateStaffRequest> createStaffProcessor)
         {
             _listStaffRequestProcessor = listStaffRequestProcessor;
             _getStaffProcessor = getStaffProcessor;
+            _createStaffProcessor = createStaffProcessor;
         }
 
         [Route("")]
@@ -41,22 +44,21 @@ namespace WaterPoint.Api.Authorization.Controllers
             return Ok(result);
         }
 
-        //[Route("")]
-        //public IHttpActionResult Post(
-        //    [FromUri]AdjustStaffRequest request,
-        //    [FromBody]AdjustStaffPayload payload)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequestWithErrors(ModelState);
-        //    }
+        [Route("")]
+        public IHttpActionResult Post(
+           [FromUri]CreateStaffRequest request,
+           [FromBody]CreateStaffPayload payload)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequestWithErrors(ModelState);
+            }
 
-        //    request.Payload = payload;
-        //    request.OrganizationUserId = Credential.OrganizationUserId;
+            request.Payload = payload;
 
-        //    var result = _adjustStaffRequest.Process(request);
+            var result = _createStaffRequest.Process(request);
 
-        //    return Ok(result);
-        //}
+            return Ok(result);
+        }
     }
 }
