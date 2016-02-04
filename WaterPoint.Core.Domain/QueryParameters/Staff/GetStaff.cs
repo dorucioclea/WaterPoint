@@ -8,7 +8,7 @@ namespace WaterPoint.Core.Domain.QueryParameters.Staff
         public int Id { get; set; }
     }
 
-    public class GetStaffByLogin : IQueryParameter
+    public class GetStaffByLoginEmail : IQueryParameter
     {
         public int OrganizationId { get; set; }
         public string Email { get; set; }

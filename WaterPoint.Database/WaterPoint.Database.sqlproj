@@ -126,6 +126,7 @@
     <Build Include="dbo\StoredProcedures\Update_OrganizationUser_IsSignedIn.sql" />
     <Build Include="dbo\StoredProcedures\Add_OrganizationUser_Privileges.sql" />
     <Build Include="dbo\StoredProcedures\Get_Staff_By_Id.sql" />
+    <Build Include="dbo\StoredProcedures\Get_Staff_By_LoginEmail.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="WaterPoint.Database.publish.xml" />

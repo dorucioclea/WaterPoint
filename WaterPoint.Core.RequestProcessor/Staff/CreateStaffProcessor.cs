@@ -14,7 +14,7 @@ using WaterPoint.Core.Domain.QueryParameters.Staff;
 using WaterPoint.Core.Domain.Requests.Staff;
 using WaterPoint.Data.DbContext.Dapper;
 using WaterPoint.Data.Entity.DataEntities;
-using WaterPoint.Data.Entity.Pocos.Views;
+using OrgStaff = WaterPoint.Data.Entity.DataEntities.Staff;
 
 namespace WaterPoint.Core.RequestProcessor.Staff
 {
@@ -22,22 +22,29 @@ namespace WaterPoint.Core.RequestProcessor.Staff
         BaseDapperUowRequestProcess,
         IWriteRequestProcessor<CreateStaffRequest>
     {
+        private readonly IQuery<GetStaffByLoginEmail, OrgStaff> _getStaffByLogin;
+        private readonly IQuery<GetCredential, Credential> _getCredential;
         private readonly ICommand<CreateCredential> _createCredential;
         private readonly ICommand<CreateOrganizationUser> _createOrganizationUser;
         private readonly ICommandExecutor _executor;
+        private readonly IQueryRunner _queryRunner;
 
         public CreateStaffProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
+            IQuery<GetStaffByLoginEmail, OrgStaff> getStaffByLogin,
             IQuery<GetCredential, Credential> getCredential,
-            IQuery<GetStaffByLogin, Data.Entity.DataEntities.Staff> getStaffByLogin,
             ICommand<CreateCredential> createCredential,
             ICommand<CreateOrganizationUser> createOrganizationUser,
-            ICommandExecutor executor)
+            ICommandExecutor executor,
+            IQueryRunner queryRunner)
             : base(dapperUnitOfWork)
         {
+            _getStaffByLogin = getStaffByLogin;
+            _getCredential = getCredential;
             _createCredential = createCredential;
             _createOrganizationUser = createOrganizationUser;
             _executor = executor;
+            _queryRunner = queryRunner;
         }
 
         public virtual CommandResult Process(CreateStaffRequest input)
@@ -50,8 +57,13 @@ namespace WaterPoint.Core.RequestProcessor.Staff
         private int ProcessDeFacto(CreateStaffRequest input)
         {
             //check staff with the same login exists or not
-            //if yes no process
-            //if no continue
+            var alreadyCreatedStaff = _queryRunner.Run(_getStaffByLogin);
+
+            if (alreadyCreatedStaff.IsDeleted)
+            {
+                //undelete
+                return alreadyCreatedStaff.Id;
+            }
 
             //check credential exists
 

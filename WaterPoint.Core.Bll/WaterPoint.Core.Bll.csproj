@@ -125,6 +125,7 @@
     <Compile Include="Queries\JobTimesheet\GetJobTimesheetQuery.cs" />
     <Compile Include="Queries\JobTimesheet\ListJobTimesheetQuery.cs" />
     <Compile Include="Queries\OAuthClients\GetOAuthClientQuery.cs" />
+    <Compile Include="Queries\Staff\GetStaffByLoginEmailQuery.cs" />
     <Compile Include="Queries\Staff\ListStaffQuery.cs" />
     <Compile Include="Queries\UserPrivileges\ListUserPrivilegesQuery.cs" />
     <Compile Include="Queries\InvoiceJobCostItems\GetInvoiceJobCostItemQuery.cs" />
