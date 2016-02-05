@@ -8,6 +8,8 @@ namespace WaterPoint.Core.Domain.Payloads.StaffPayloads
         [RegularExpression("^[mfMF]$", ErrorMessage = "value can only be m, f, M, F, or null")]
         public string Gender { get; set; }
 
+        public bool IsAdmin { get; set; }
+
         public string Code { get; set; }
 
         [Required]

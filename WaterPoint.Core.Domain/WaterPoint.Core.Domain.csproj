@@ -124,6 +124,7 @@
     <Compile Include="QueryParameters\CostItems\GetCostItem.cs" />
     <Compile Include="QueryParameters\CostItems\PagedCostItems.cs" />
     <Compile Include="QueryParameters\CostItems\UpdateCostItem.cs" />
+    <Compile Include="QueryParameters\Credentials\UndeleteStaffByLoginEmail.cs" />
     <Compile Include="QueryParameters\Credentials\CreateCredential.cs" />
     <Compile Include="QueryParameters\Credentials\GetAuthClient.cs" />
     <Compile Include="QueryParameters\Credentials\GetCredential.cs" />

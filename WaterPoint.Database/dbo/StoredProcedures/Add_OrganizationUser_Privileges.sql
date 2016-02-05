@@ -24,7 +24,7 @@ BEGIN
 		INSERT (OrganizationUserId, PrivilegeId)
 		VALUES (S.OrganizationUserId, S.PrivilegeId)
 
-	WHEN NOT MATCHED BY SOURCE THEN
+	WHEN NOT MATCHED BY SOURCE AND T.OrganizationUserId = @organizationuserid THEN
 		DELETE;
 
 	SELECT @@ROWCOUNT

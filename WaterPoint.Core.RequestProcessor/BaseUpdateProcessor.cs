@@ -66,7 +66,7 @@ namespace WaterPoint.Core.RequestProcessor
             //then build the query to update the object.
             _updateQuery.BuildQuery(updated);
 
-            return _updateCommandExecutor.Update(_updateQuery);
+            return _updateCommandExecutor.ExecuteUpdate(_updateQuery);
         }
     }
 }

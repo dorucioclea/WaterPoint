@@ -28,9 +28,5 @@ namespace WaterPoint.Core.Domain.QueryParameters.Staff
         public string MobilePhone { get; set; }
 
         public DateTime? Dob { get; set; }
-
-        public bool IsWorking { get; set; }
-
-        public bool IsDeleted { get; set; }
     }
 }

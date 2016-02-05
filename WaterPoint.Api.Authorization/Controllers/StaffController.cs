@@ -5,6 +5,7 @@ using System.Web.Http;
 using WaterPoint.Api.Common.BaseControllers;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts.Staff;
+using WaterPoint.Core.Domain.Payloads.StaffPayloads;
 //using WaterPoint.Core.Domain.Payloads.Staff;
 using WaterPoint.Core.Domain.Requests.Staff;
 
@@ -56,7 +57,7 @@ namespace WaterPoint.Api.Authorization.Controllers
 
             request.Payload = payload;
 
-            var result = _createStaffRequest.Process(request);
+            var result = _createStaffProcessor.Process(request);
 
             return Ok(result);
         }

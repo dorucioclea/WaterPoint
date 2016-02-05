@@ -1,6 +1,6 @@
 ﻿CREATE PROCEDURE [dbo].[Get_Staff_By_LoginEmail]
     @organizationId INT,
-    @loginemail INT
+    @loginemail VARCHAR(200)
 AS
 SET NOCOUNT ON;
 BEGIN
@@ -25,7 +25,7 @@ BEGIN
 		JOIN [dbo].[Credential] c ON ou.CredentialId = c.Id
     WHERE
         s.OrganizationId = @organizationId
-        AND c.Email = @loginemail 
+        AND c.Email = @loginemail
         AND ou.OrganizationUserTypeId IN (1, 2)
 END
 GO
