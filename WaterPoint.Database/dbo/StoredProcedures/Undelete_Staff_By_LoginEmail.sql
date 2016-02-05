@@ -1,6 +1,6 @@
 ﻿CREATE PROCEDURE [dbo].[Undelete_Staff_By_LoginEmail]
 	@organizationid INT,
-    @loginemail INT
+    @loginemail VARCHAR(200)
 AS
 SET NOCOUNT ON;
 BEGIN

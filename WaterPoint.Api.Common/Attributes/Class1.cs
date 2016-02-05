@@ -56,13 +56,42 @@ namespace WaterPoint.Api.Common.Attributes
             Privileges.EditJobTime,
             Privileges.ViewJobTime
         };
-    }
 
-    public class RequirePrivilege : ActionFilterAttribute
-    {
-        public RequirePrivilege()
+        public static Privileges[] Staff =
         {
+            Privileges.ViewCus,
+            Privileges.AddJob,
+            Privileges.EditJob,
+            Privileges.ViewJob,
+            Privileges.AddCost,
+            Privileges.DelCost,
+            Privileges.EditCost,
+            Privileges.ViewCost,
+            Privileges.AddTask,
+            Privileges.DelTask,
+            Privileges.EditTask,
+            Privileges.ViewTask,
+            Privileges.AddJobTime,
+            Privileges.DelJobTime,
+            Privileges.EditJobTime,
+            Privileges.ViewJobTime
+        };
 
-        }
+        public static Privileges[] Customer =
+        {
+            Privileges.ViewJob,
+            Privileges.AddCost,
+            Privileges.DelCost,
+            Privileges.EditCost,
+            Privileges.ViewCost,
+            Privileges.AddTask,
+            Privileges.DelTask,
+            Privileges.EditTask,
+            Privileges.ViewTask,
+            Privileges.AddJobTime,
+            Privileges.DelJobTime,
+            Privileges.EditJobTime,
+            Privileges.ViewJobTime
+        };
     }
 }

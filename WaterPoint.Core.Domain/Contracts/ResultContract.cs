@@ -6,6 +6,8 @@ namespace WaterPoint.Core.Domain.Contracts
     {
         private const string Success = "success";
         private const string Failed = "failed";
+        private const string DefaultFailed = "operation is finished but there is no result returned";
+        private const string DefaultSuccess = "operation is finished with no errors.";
 
         public object Data { get; set; }
         public string Status { get; set; }
@@ -15,9 +17,7 @@ namespace WaterPoint.Core.Domain.Contracts
         {
             Data = data;
             Status = (success ? Success : Failed);
-            Message = !success
-                ? "operation is finished but there is no result returned"
-                : "operation is finished with no errors.";
+            Message = !success ? DefaultFailed : DefaultSuccess;
         }
     }
 }

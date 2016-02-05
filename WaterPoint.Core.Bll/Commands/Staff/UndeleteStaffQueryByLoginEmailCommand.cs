@@ -7,7 +7,7 @@ namespace WaterPoint.Core.Bll.Commands.Staff
     {
         public void BuildQuery(UndeleteStaffByLoginEmail input)
         {
-            Query = "[dbo].[Undelete_Staff]";
+            Query = "[dbo].[Undelete_Staff_By_LoginEmail]";
 
             Parameters = new
             {

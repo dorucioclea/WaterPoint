@@ -9,7 +9,7 @@ using WaterPoint.Core.Domain.QueryParameters.Staff;
 
 namespace WaterPoint.Core.Bll.Commands.Staff
 {
-    public class CreateStaffCommand: ICommand<CreateStaff>
+    public class CreateStaffCommand : ICommand<CreateStaff>
     {
         private readonly ISqlBuilderFactory _sqlBuilderFactory;
 
