@@ -1,9 +1,12 @@
-﻿using WaterPoint.Core.Domain;
+﻿using System.Linq;
+using WaterPoint.Api.Common.Attributes;
+using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts;
 using WaterPoint.Core.Domain.Db;
 using WaterPoint.Core.Domain.QueryParameters.Credentials;
 using WaterPoint.Core.Domain.QueryParameters.OrganizationUsers;
 using WaterPoint.Core.Domain.QueryParameters.Staff;
+using WaterPoint.Core.Domain.QueryParameters.UserPrivileges;
 using WaterPoint.Core.Domain.Requests.Staff;
 using WaterPoint.Data.DbContext.Dapper;
 using WaterPoint.Data.Entity.Enums;
@@ -20,6 +23,7 @@ namespace WaterPoint.Core.RequestProcessor.Staff
         private readonly ICommand<CreateCredential> _createCredential;
         private readonly ICommand<CreateOrganizationUser> _createOrganizationUser;
         private readonly ICommand<CreateStaff> _createStaffCommand;
+        private readonly ICommand<AdjustUserPrivilege> _adjustUserPrivileges;
         private readonly ICommandExecutor _executor;
         private readonly IQueryRunner _queryRunner;
 
@@ -30,6 +34,7 @@ namespace WaterPoint.Core.RequestProcessor.Staff
             ICommand<CreateCredential> createCredential,
             ICommand<CreateOrganizationUser> createOrganizationUser,
             ICommand<CreateStaff> createStaffCommand,
+            ICommand<AdjustUserPrivilege> adjustUserPrivileges,
             ICommandExecutor executor,
             IQueryRunner queryRunner)
             : base(dapperUnitOfWork)
@@ -39,6 +44,7 @@ namespace WaterPoint.Core.RequestProcessor.Staff
             _createCredential = createCredential;
             _createOrganizationUser = createOrganizationUser;
             _createStaffCommand = createStaffCommand;
+            _adjustUserPrivileges = adjustUserPrivileges;
             _executor = executor;
             _queryRunner = queryRunner;
         }
@@ -61,7 +67,7 @@ namespace WaterPoint.Core.RequestProcessor.Staff
 
             var alreadyCreatedStaff = _queryRunner.Run(_getStaffByLogin);
 
-            if (alreadyCreatedStaff.IsDeleted)
+            if (alreadyCreatedStaff != null && alreadyCreatedStaff.IsDeleted)
             {
                 //undelete
                 _undeleteStaffCommand.BuildQuery(new UndeleteStaffByLoginEmail
@@ -118,6 +124,17 @@ namespace WaterPoint.Core.RequestProcessor.Staff
             });
 
             var staffId = _executor.ExecuteInsert(_createStaffCommand);
+
+            var privileges = string.Join(",", DefaultUserPrivileges.Admin.Select(i => ((int)i).ToString()));
+
+            _adjustUserPrivileges.BuildQuery(new AdjustUserPrivilege
+            {
+                OrganizationId = input.OrganizationId,
+                OrganizationUserId = orgUserId,
+                PrivilegeIds = privileges
+            });
+
+            _executor.ExecuteInsert(_adjustUserPrivileges);
 
             return staffId;
         }

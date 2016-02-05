@@ -15,7 +15,9 @@ namespace WaterPoint.Core.Bll.Executors
 
         public int ExecuteInsert<T>(ICommand<T> query) where T : IQueryParameter
         {
-            var result = _dapperDbContext.List<int>(query.Query, query.Parameters).Single();
+            var result = query.IsStoredProcedure
+                ? _dapperDbContext.ExecuteStoredProcedure<int>(query.Query, query.Parameters).Single()
+                : _dapperDbContext.List<int>(query.Query, query.Parameters).Single();
 
             return result;
         }

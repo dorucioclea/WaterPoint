@@ -31,6 +31,33 @@ namespace WaterPoint.Api.Common.Attributes
         ViewJobTime = 20
     }
 
+    public class DefaultUserPrivileges
+    {
+        public static Privileges[] Admin =
+        {
+            Privileges.AddCus,
+            Privileges.DelCus,
+            Privileges.EditCus,
+            Privileges.ViewCus,
+            Privileges.AddJob,
+            Privileges.DelJob,
+            Privileges.EditJob,
+            Privileges.ViewJob,
+            Privileges.AddCost,
+            Privileges.DelCost,
+            Privileges.EditCost,
+            Privileges.ViewCost,
+            Privileges.AddTask,
+            Privileges.DelTask,
+            Privileges.EditTask,
+            Privileges.ViewTask,
+            Privileges.AddJobTime,
+            Privileges.DelJobTime,
+            Privileges.EditJobTime,
+            Privileges.ViewJobTime
+        };
+    }
+
     public class RequirePrivilege : ActionFilterAttribute
     {
         public RequirePrivilege()

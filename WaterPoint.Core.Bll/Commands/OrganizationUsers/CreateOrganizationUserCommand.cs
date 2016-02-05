@@ -15,7 +15,12 @@ namespace WaterPoint.Core.Bll.Commands.OrganizationUsers
         public void BuildQuery(CreateOrganizationUser input)
         {
             Query = "[dbo].[Add_OrganizationUser]";
-            Parameters = null;
+            Parameters = new
+            {
+                organizationid = input.OrganizationId,
+                credentialid = input.CredentialId,
+                organizationusertypeid = input.OrganizationUserTypeId
+            };
         }
 
         public string Query { get; private set; }
