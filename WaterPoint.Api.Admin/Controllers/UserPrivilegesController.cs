@@ -8,7 +8,7 @@ using WaterPoint.Core.Domain.Contracts.UserPrivileges;
 using WaterPoint.Core.Domain.Payloads.UserPrivileges;
 using WaterPoint.Core.Domain.Requests.UserPrivileges;
 
-namespace WaterPoint.Api.Authorization.Controllers
+namespace WaterPoint.Api.Admin.Controllers
 {
     [Authorize]
     [RoutePrefix("organizations/{organizationId:int}/users/{userId:int}/privileges")]

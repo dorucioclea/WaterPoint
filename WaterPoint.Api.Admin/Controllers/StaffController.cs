@@ -9,7 +9,7 @@ using WaterPoint.Core.Domain.Payloads.StaffPayloads;
 //using WaterPoint.Core.Domain.Payloads.Staff;
 using WaterPoint.Core.Domain.Requests.Staff;
 
-namespace WaterPoint.Api.Authorization.Controllers
+namespace WaterPoint.Api.Admin.Controllers
 {
     [Authorize]
     [RoutePrefix("organizations/{organizationId:int}/staff")]

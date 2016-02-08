@@ -61,6 +61,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaterPoint.Api.Invoice", "W
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaterPoint.Api.Supplier", "WaterPoint.Api.Supplier\WaterPoint.Api.Supplier.csproj", "{54C264D3-DCDD-4BD6-8B11-1D2E95A25147}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaterPoint.Api.Admin", "WaterPoint.Api.Admin\WaterPoint.Api.Admin.csproj", "{7147959F-C6E3-4F42-B152-ADF4DAB9F589}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -153,6 +155,10 @@ Global
 		{54C264D3-DCDD-4BD6-8B11-1D2E95A25147}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{54C264D3-DCDD-4BD6-8B11-1D2E95A25147}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{54C264D3-DCDD-4BD6-8B11-1D2E95A25147}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7147959F-C6E3-4F42-B152-ADF4DAB9F589}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7147959F-C6E3-4F42-B152-ADF4DAB9F589}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7147959F-C6E3-4F42-B152-ADF4DAB9F589}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7147959F-C6E3-4F42-B152-ADF4DAB9F589}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -181,5 +187,6 @@ Global
 		{416784D3-ABE0-45CB-8180-7E173F90844C} = {C3D13AD0-E96B-4ADB-9301-B2D0D68DBD80}
 		{CE1DC0A6-91FD-47FB-8EBB-FFB7613CCA58} = {C3D13AD0-E96B-4ADB-9301-B2D0D68DBD80}
 		{54C264D3-DCDD-4BD6-8B11-1D2E95A25147} = {C3D13AD0-E96B-4ADB-9301-B2D0D68DBD80}
+		{7147959F-C6E3-4F42-B152-ADF4DAB9F589} = {C3D13AD0-E96B-4ADB-9301-B2D0D68DBD80}
 	EndGlobalSection
 EndGlobal
