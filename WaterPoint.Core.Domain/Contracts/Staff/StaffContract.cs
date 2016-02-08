@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using WaterPoint.Core.Domain.Contracts.UserPrivileges;
 
 namespace WaterPoint.Core.Domain.Contracts.Staff
 {
