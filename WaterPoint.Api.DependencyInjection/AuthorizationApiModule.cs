@@ -44,6 +44,8 @@ namespace WaterPoint.Api.DependencyInjection
             Bind<IQuery<ListCredentials, ValidCredential>>().To<ListValidateCredentialsQuery>();
 
             Bind<IQuery<GetAuthClient, OAuthClient>>().To<GetOAuthClientQuery>();
+
+            Bind<IQuery<ListUserPrivileges, OrganizationUserPrivilegePoco>>().To<ListUserPrivilegesQuery>();
         }
 
         public void BindCommands()
@@ -61,6 +63,9 @@ namespace WaterPoint.Api.DependencyInjection
 
             Bind<IWriteRequestProcessor<EnterOrganizationRequest>>()
                 .To<EnterOrganizationProcessor>();
+
+            Bind<IListProcessor<ListUserPrivilegesRequest, UserPrivilegeContract>>()
+                .To<ListUserPrivilegesProcessor>();
         }
 
         public void BindProviders()
