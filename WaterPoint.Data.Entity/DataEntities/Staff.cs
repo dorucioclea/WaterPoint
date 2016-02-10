@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WaterPoint.Data.Entity.Attributes;
 
 namespace WaterPoint.Data.Entity.DataEntities
@@ -17,6 +13,12 @@ namespace WaterPoint.Data.Entity.DataEntities
 
         public int OrganizationUserId { get; set; }
 
+        public string Gender { get; set; }
+
+        public string Code { get; set; }
+
+        public string ContactEmail { get; set; }
+
         public decimal BaseRate { get; set; }
 
         public decimal BillableRate { get; set; }
@@ -28,6 +30,8 @@ namespace WaterPoint.Data.Entity.DataEntities
         public string OtherName { get; set; }
 
         public string MobilePhone { get; set; }
+
+        public string Phone { get; set; }
 
         public DateTime? Dob { get; set; }
 

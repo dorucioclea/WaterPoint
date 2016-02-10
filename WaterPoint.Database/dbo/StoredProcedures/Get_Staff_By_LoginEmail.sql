@@ -13,6 +13,7 @@ BEGIN
         ,s.[FirstName]
         ,s.[LastName]
         ,s.[OtherName]
+		,s.[Phone]
         ,s.[MobilePhone]
         ,s.[Dob]
         ,s.[IsDeleted]

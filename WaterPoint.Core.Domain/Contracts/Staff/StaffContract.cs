@@ -12,6 +12,7 @@ namespace WaterPoint.Core.Domain.Contracts.Staff
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string OtherName { get; set; }
+        public string Phone { get; set; }
         public string MobilePhone { get; set; }
         public DateTime? Dob { get; set; }
         public string Version { get; set; }
