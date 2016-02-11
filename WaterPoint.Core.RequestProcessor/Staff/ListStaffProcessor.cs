@@ -16,7 +16,7 @@ using WaterPoint.Core.Bll.QueryRunners;
 namespace WaterPoint.Core.RequestProcessor.Staff
 {
     public class ListStaffProcessor :
-        SimplePagedProcessor<ListStaffRequest, ListStaff, BasicStaffPoco, BasicStaffContract>
+        PagedProcessor<ListStaffRequest, ListStaff, BasicStaffPoco, BasicStaffContract>
     {
         public ListStaffProcessor(
             IDapperUnitOfWork dapperUnitOfWork,

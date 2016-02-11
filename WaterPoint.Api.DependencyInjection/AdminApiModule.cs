@@ -52,7 +52,7 @@ namespace WaterPoint.Api.DependencyInjection
 
         private void BindRequestProcessors()
         {
-            Bind<ISimplePagedProcessor<ListStaffRequest, BasicStaffContract>>()
+            Bind<IPagedProcessor<ListStaffRequest, BasicStaffContract>>()
                .To<ListStaffProcessor>();
 
             Bind<IRequestProcessor<GetStaffRequest, StaffContract>>()
