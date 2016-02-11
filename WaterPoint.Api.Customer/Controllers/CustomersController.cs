@@ -14,6 +14,7 @@ namespace WaterPoint.Api.Customer.Controllers
     [RoutePrefix(RouteDefinitions.Customers.Prefix)]
     public class CustomersController : BaseOrgnizationContextController
     {
+        private readonly IListProcessor<SearchTop10CustomerRequest, CustomerContract> _searchTop10Processor;
         private readonly IPagedProcessor<ListCustomersRequest, CustomerContract> _listCustomerRequestProcessor;
         private readonly IWriteRequestProcessor<CreateCustomerRequest> _createCustomerRequest;
         private readonly IWriteRequestProcessor<UpdateCustomerRequest> _updateRequestProcessor;
@@ -21,15 +22,25 @@ namespace WaterPoint.Api.Customer.Controllers
 
 
         public CustomersController(
+            IListProcessor<SearchTop10CustomerRequest, CustomerContract> searchTop10Processor,
             IPagedProcessor<ListCustomersRequest, CustomerContract> listCustomerRequestProcessor,
             IWriteRequestProcessor<CreateCustomerRequest> createCustomerRequest,
             IWriteRequestProcessor<UpdateCustomerRequest> updateRequestProcessor,
             IRequestProcessor<GetCustomerRequest, CustomerContract> getCustomerByIdProcessor)
         {
+            _searchTop10Processor = searchTop10Processor;
             _listCustomerRequestProcessor = listCustomerRequestProcessor;
             _createCustomerRequest = createCustomerRequest;
             _updateRequestProcessor = updateRequestProcessor;
             _getCustomerByIdProcessor = getCustomerByIdProcessor;
+        }
+
+        [Route("top10")]
+        public IHttpActionResult Get([FromUri]SearchTop10CustomerRequest request)
+        {
+            var result = _searchTop10Processor.Process(request);
+
+            return Ok(result);
         }
 
         [Route("")]

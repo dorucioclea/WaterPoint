@@ -132,6 +132,7 @@
     <Compile Include="QueryParameters\Customers\CreateCustomer.cs" />
     <Compile Include="QueryParameters\Customers\GetCustomer.cs" />
     <Compile Include="QueryParameters\Customers\ListCustomerJobs.cs" />
+    <Compile Include="QueryParameters\Customers\SearchTop10Customers.cs" />
     <Compile Include="QueryParameters\Customers\ListCustomers.cs" />
     <Compile Include="QueryParameters\Customers\UpdateCustomer.cs" />
     <Compile Include="QueryParameters\Invoices\CreateInvoice.cs" />
@@ -195,6 +196,7 @@
     <Compile Include="Requests\CostItems\ListCostItemsRequest.cs" />
     <Compile Include="Requests\CostItems\UpdateCostItemRequest.cs" />
     <Compile Include="Requests\Credentials\ListValidateCredentialsRequest.cs" />
+    <Compile Include="Requests\Customers\SearchTop10CustomerRequest.cs" />
     <Compile Include="Requests\Staff\CreateStaffRequest.cs" />
     <Compile Include="Requests\Staff\ListStaffRequest.cs" />
     <Compile Include="Requests\Suppliers\CreateSupplierRequest.cs" />

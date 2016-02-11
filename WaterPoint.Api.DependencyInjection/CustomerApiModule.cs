@@ -34,6 +34,8 @@ namespace WaterPoint.Api.DependencyInjection
             Bind<IQuery<GetCustomer, Customer>>().To<GetCustomerQuery>();
 
             Bind<IQuery<ListCustomerJobs, JobWithStatusPoco>>().To<ListCustomerJobsQuery>();
+
+            Bind<IQuery<SearchTop10Customers, Customer>>().To<SearchTop10CustomersQuery>();
         }
 
         public void BindCommands()
@@ -58,6 +60,9 @@ namespace WaterPoint.Api.DependencyInjection
 
             Bind<ISimplePagedProcessor<ListCustomerJobsRequest, JobWithStatusContract>>()
                 .To<ListCustomerJobsProcessor>();
+
+            Bind<IListProcessor<SearchTop10CustomerRequest, CustomerContract>>()
+                .To<SearchTop10Processor>();
 
         }
     }

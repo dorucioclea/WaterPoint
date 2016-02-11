@@ -82,6 +82,7 @@
     <Compile Include="CostItems\UpdateCostItemProcessor.cs" />
     <Compile Include="Credentials\ListValidateCredentialProcessor.cs" />
     <Compile Include="Customers\ListCustomerJobsProcessor.cs" />
+    <Compile Include="Customers\SearchTop10Processor.cs" />
     <Compile Include="Invoices\CreateInvoiceProcessor.cs" />
     <Compile Include="JobCostItems\UpdateJobCostItemProcessor.cs" />
     <Compile Include="JobCostItems\GetJobCostItemProcessor.cs" />
