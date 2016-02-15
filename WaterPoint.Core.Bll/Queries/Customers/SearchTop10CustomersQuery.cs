@@ -39,6 +39,9 @@ namespace WaterPoint.Core.Bll.Queries.Customers
 
             builder.AddContains<Customer>(parameter.SearchTerm);
 
+            builder.AddConditions<Customer>(i =>
+                i.OrganizationId == parameter.OrganizationId && i.IsDeleted == false && i.IsProspect == false);
+
             var sql = builder.GetSql();
 
             Query = sql;

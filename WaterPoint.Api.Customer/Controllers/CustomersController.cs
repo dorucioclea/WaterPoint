@@ -1,4 +1,5 @@
-﻿using System.Web.Http;
+﻿using System;
+using System.Web.Http;
 using System.Web.Http.OData;
 using WaterPoint.Api.Common;
 using WaterPoint.Api.Common.BaseControllers;
@@ -38,6 +39,13 @@ namespace WaterPoint.Api.Customer.Controllers
         [Route("top10")]
         public IHttpActionResult Get([FromUri]SearchTop10CustomerRequest request)
         {
+            var searchTerm = SearchTermHelper.ConvertToSearchTerm(request.SearchTerm);
+
+            if (string.IsNullOrWhiteSpace(searchTerm))
+                throw new InvalidOperationException("invalid search term");
+
+            request.SearchTerm = searchTerm;
+
             var result = _searchTop10Processor.Process(request);
 
             return Ok(result);

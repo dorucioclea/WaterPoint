@@ -36,12 +36,23 @@ namespace WaterPoint.Core.RequestProcessor.Customers
             return CustomerMapper.Map(source);
         }
 
+        private SearchTop10Customers GetParameter(SearchTop10CustomerRequest input)
+        {
+            return new SearchTop10Customers
+            {
+                OrganizationId = input.OrganizationId,
+                SearchTerm = input.SearchTerm
+            };
+        }
+
         public IEnumerable<CustomerContract> Process(SearchTop10CustomerRequest input)
         {
             using (_dapperUnitOfWork.Begin())
             {
                 try
                 {
+                    _listQuery.BuildQuery(GetParameter(input));
+
                     var result = _runner.Run(_listQuery);
 
                     _dapperUnitOfWork.Commit();

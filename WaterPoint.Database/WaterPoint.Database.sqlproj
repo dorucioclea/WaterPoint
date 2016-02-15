@@ -71,6 +71,11 @@
     <Folder Include="apiv1\Scripts\PostDeployment" />
     <Folder Include="dbo\Views" />
     <Folder Include="dbo\Functions" />
+    <Folder Include="search" />
+    <Folder Include="search\Tables" />
+    <Folder Include="search\Views" />
+    <Folder Include="search\Scripts" />
+    <Folder Include="search\StoredProcedures" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Address.sql" />
@@ -129,6 +134,8 @@
     <Build Include="dbo\StoredProcedures\Undelete_Staff_By_LoginEmail.sql" />
     <Build Include="dbo\StoredProcedures\Add_Credential.sql" />
     <Build Include="dbo\StoredProcedures\Add_OrganizationUser.sql" />
+    <Build Include="search\Search.sql" />
+    <Build Include="search\StoredProcedures\List_Customers_By_Batch.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="WaterPoint.Database.publish.xml" />
