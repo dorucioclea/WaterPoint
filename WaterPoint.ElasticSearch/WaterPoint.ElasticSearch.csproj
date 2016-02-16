@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Docs\Class1.cs" />
     <Compile Include="Docs\Customer.cs" />
     <Compile Include="ElasticsearchConnectionHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

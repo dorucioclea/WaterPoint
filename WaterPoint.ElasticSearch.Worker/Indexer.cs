@@ -1,59 +1,58 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Nest;
+using WaterPoint.ElasticSearch.Docs;
 
 namespace WaterPoint.ElasticSearch.Worker
 {
-    class Indexer
+    class IndexingHelper<TDoc> where TDoc: EsDoc
     {
         private readonly ElasticClient _client;
 
-        public Indexer(ElasticClient client)
+        public IndexingHelper(ElasticClient client)
         {
             _client = client;
         }
 
-        public void Run()
+        public void Run(IEnumerable<DocChange<TDoc>> changes)
         {
-            //var descriptor = new BulkDescriptor();
+            var descriptor = new BulkDescriptor();
 
-            //var request = new BulkRequest("index name", "type name");
+            var indexName = "WaterPointElasticSearch";
 
-            //foreach (var c in changes)
-            //{
-            //    var change = c;
-            //    switch (change.ChangeType)
-            //    {
-            //        case ChangeType.Upsert:
-            //            descriptor.Index<TDocument>(doc => doc
-            //                .Document(change.Document)
-            //                .Index(indexName)
-            //                .Routing(change.Document.AccountId.ToString(CultureInfo.InvariantCulture)));
-            //            break;
-            //        case ChangeType.Delete:
-            //            descriptor.Delete<TDocument>(doc => doc
-            //                .Document(change.Document)
-            //                .Index(indexName));
-            //            break;
-            //    }
-            //}
+            foreach (var c in changes)
+            {
+                switch (c.Type)
+                {
+                    case DocChangeTypes.EditOrCreate:
+                        descriptor.Index<TDoc>(doc => doc
+                            .Document(c.Doc)
+                            .Index(indexName)
+                            .Routing(c.Doc.OrganizationId.ToString(CultureInfo.InvariantCulture)));
+                        break;
 
-            //var response = await _client.Bulk(des)
+                    case DocChangeTypes.Remove:
+                        descriptor.Delete<TDoc>(doc => doc
+                            .Document(c.Doc)
+                            .Index(indexName));
+                        break;
+                }
+            }
 
-            //if (response.Errors)
-            //{
-            //    var errors = response.ItemsWithErrors
-            //        .Select(e => new Exception(e.Error))
-            //        .ToList();
-            //    throw new AggregateException(
-            //        string.Format(
-            //            "Error writing changes to Elasticsearch index: {0} - {1} items with errors out of {2} in bulk call.",
-            //            indexName, errors.Count, response.Items.Count()),
-            //        errors);
-            //}
+            var response = _client.Bulk(descriptor);
+
+            if (!response.Errors)
+                return;
+
+            var errors = response.ItemsWithErrors
+                .Select(e => new Exception(e.Error.Reason))
+                .ToList();
+
+            throw new AggregateException(errors);
         }
     }
 }

@@ -3,15 +3,8 @@
 namespace WaterPoint.ElasticSearch.Docs
 {
     [ElasticsearchType(Name = "customer")]
-    public class Customer
+    public class Customer : EsDoc
     {
-        [Number(NumberType.Integer, Coerce = true, DocValues = true, Index = NonStringIndexOption.No)]
-        public int Id { get; set; }
-
-        [Number(NumberType.Integer, Coerce = true, DocValues = true, Index = NonStringIndexOption.No)]
-        //[ElasticProperty(Index = FieldIndexOption.NotAnalyzed)]
-        public int OrganizationId { get; set; }
-
         [Boolean]
         public bool IsProspect { get; set; }
 
@@ -29,5 +22,15 @@ namespace WaterPoint.ElasticSearch.Docs
 
         [String]
         public string Email { get; set; }
+    }
+
+    public class EsDoc
+    {
+        [Number(NumberType.Integer, Coerce = true, DocValues = true, Index = NonStringIndexOption.No)]
+        public int Id { get; set; }
+
+        [Number(NumberType.Integer, Coerce = true, DocValues = true, Index = NonStringIndexOption.No)]
+        //[ElasticProperty(Index = FieldIndexOption.NotAnalyzed)]
+        public int OrganizationId { get; set; }
     }
 }
