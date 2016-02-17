@@ -82,7 +82,10 @@ namespace WaterPoint.Api.Customer.Controllers
 
             var result = _createCustomerRequest.Process(request);
 
-            return Ok(result);
+            if (result.IsSuccess)
+                return Ok(result);
+
+            return BadRequest();
         }
 
         [Route("{id:int}")]
