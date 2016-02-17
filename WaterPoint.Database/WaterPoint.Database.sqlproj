@@ -136,6 +136,7 @@
     <Build Include="dbo\StoredProcedures\Add_OrganizationUser.sql" />
     <Build Include="search\Search.sql" />
     <Build Include="search\StoredProcedures\List_Customers_By_Batch.sql" />
+    <Build Include="dbo\Tables\CustomerContact.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="WaterPoint.Database.publish.xml" />

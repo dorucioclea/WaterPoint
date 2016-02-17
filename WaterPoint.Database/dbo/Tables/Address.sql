@@ -5,6 +5,7 @@
     [StreetExtraLine] NVARCHAR(150) NULL,
     [Suburb] NVARCHAR(50) NOT NULL,
     [City] NVARCHAR(50) NOT NULL,
+    [Province] NVARCHAR(50) NOT NULL,
     [PostCode] VARCHAR(20) NULL,
     [CountryId] INT NOT NULL,
     [Version] ROWVERSION NOT NULL,
