@@ -112,6 +112,7 @@
     <Compile Include="Commands\TaskDefinitions\CreateTaskDefinitionCommand.cs" />
     <Compile Include="Commands\TaskDefinitions\UpdateTaskDefinitionCommand.cs" />
     <Compile Include="Commands\UserPrivileges\CreateCustomerCommand.cs" />
+    <Compile Include="Queries\Contacts\ListContactsForCustomerQuery.cs" />
     <Compile Include="Queries\CostItems\ListCostItemQuery.cs" />
     <Compile Include="Queries\CostItems\GetCostItemQuery.cs" />
     <Compile Include="Queries\Credentials\GetCredentialQuery.cs" />
