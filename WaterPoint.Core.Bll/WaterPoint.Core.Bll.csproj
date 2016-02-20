@@ -84,6 +84,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\Contacts\CreateContactContactCommand.cs" />
+    <Compile Include="Commands\Contacts\CreateCustomerContactCommand.cs" />
     <Compile Include="Commands\CostItems\UpdateCostItemCommand.cs" />
     <Compile Include="Commands\CostItems\CreateCostItemCommand.cs" />
     <Compile Include="Commands\Credentials\CreateCredentialCommand.cs" />
@@ -112,10 +114,12 @@
     <Compile Include="Commands\TaskDefinitions\CreateTaskDefinitionCommand.cs" />
     <Compile Include="Commands\TaskDefinitions\UpdateTaskDefinitionCommand.cs" />
     <Compile Include="Commands\UserPrivileges\CreateCustomerCommand.cs" />
+    <Compile Include="Queries\Contacts\ListContactsForCustomerQuery.cs" />
     <Compile Include="Queries\CostItems\ListCostItemQuery.cs" />
     <Compile Include="Queries\CostItems\GetCostItemQuery.cs" />
     <Compile Include="Queries\Credentials\GetCredentialQuery.cs" />
     <Compile Include="Queries\Credentials\ListValidateCredentialsQuery.cs" />
+    <Compile Include="Queries\Customers\SearchTop10CustomersQuery.cs" />
     <Compile Include="Queries\Customers\ListCustomerJobsQuery.cs" />
     <Compile Include="Queries\JobCostItems\GetJobCostItemQuery.cs" />
     <Compile Include="Queries\Jobs\GetJobDetailsQuery.cs" />

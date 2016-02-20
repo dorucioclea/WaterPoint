@@ -1,4 +1,5 @@
-﻿using System.Web.Http;
+﻿using System;
+using System.Web.Http;
 using System.Web.Http.OData;
 using WaterPoint.Api.Common;
 using WaterPoint.Api.Common.BaseControllers;
@@ -14,6 +15,7 @@ namespace WaterPoint.Api.Customer.Controllers
     [RoutePrefix(RouteDefinitions.Customers.Prefix)]
     public class CustomersController : BaseOrgnizationContextController
     {
+        private readonly IListProcessor<SearchTop10CustomerRequest, CustomerContract> _searchTop10Processor;
         private readonly IPagedProcessor<ListCustomersRequest, CustomerContract> _listCustomerRequestProcessor;
         private readonly IWriteRequestProcessor<CreateCustomerRequest> _createCustomerRequest;
         private readonly IWriteRequestProcessor<UpdateCustomerRequest> _updateRequestProcessor;
@@ -21,15 +23,32 @@ namespace WaterPoint.Api.Customer.Controllers
 
 
         public CustomersController(
+            IListProcessor<SearchTop10CustomerRequest, CustomerContract> searchTop10Processor,
             IPagedProcessor<ListCustomersRequest, CustomerContract> listCustomerRequestProcessor,
             IWriteRequestProcessor<CreateCustomerRequest> createCustomerRequest,
             IWriteRequestProcessor<UpdateCustomerRequest> updateRequestProcessor,
             IRequestProcessor<GetCustomerRequest, CustomerContract> getCustomerByIdProcessor)
         {
+            _searchTop10Processor = searchTop10Processor;
             _listCustomerRequestProcessor = listCustomerRequestProcessor;
             _createCustomerRequest = createCustomerRequest;
             _updateRequestProcessor = updateRequestProcessor;
             _getCustomerByIdProcessor = getCustomerByIdProcessor;
+        }
+
+        [Route("top10")]
+        public IHttpActionResult Get([FromUri]SearchTop10CustomerRequest request)
+        {
+            var searchTerm = SearchTermHelper.ConvertToSearchTerm(request.SearchTerm);
+
+            if (string.IsNullOrWhiteSpace(searchTerm))
+                throw new InvalidOperationException("invalid search term");
+
+            request.SearchTerm = searchTerm;
+
+            var result = _searchTop10Processor.Process(request);
+
+            return Ok(result);
         }
 
         [Route("")]
@@ -63,7 +82,10 @@ namespace WaterPoint.Api.Customer.Controllers
 
             var result = _createCustomerRequest.Process(request);
 
-            return Ok(result);
+            if (result.IsSuccess)
+                return Ok(result);
+
+            return BadRequest();
         }
 
         [Route("{id:int}")]

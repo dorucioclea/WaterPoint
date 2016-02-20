@@ -57,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\Contacts\ContactContract.cs" />
     <Compile Include="Contracts\InvoiceJobTasks\InvoiceJobTaskBasicContract.cs" />
     <Compile Include="Contracts\InvoiceJobTasks\InvoiceJobTaskContract.cs" />
     <Compile Include="Contracts\InvoiceJobCostItems\InvoiceJobCostItemBasicContract.cs" />
@@ -102,6 +103,7 @@
     <Compile Include="Db\ISqlBuilder.cs" />
     <Compile Include="Db\ISqlBuilderFactory.cs" />
     <Compile Include="Contracts\IContract.cs" />
+    <Compile Include="Payloads\Contacts\WriteCostItemPayload.cs" />
     <Compile Include="Payloads\Invoices\CreateInvoicePayload.cs" />
     <Compile Include="Payloads\InvoiceJobTasks\CreateJobInvoiceTaskPayload.cs" />
     <Compile Include="Payloads\InvoiceJobTasks\UpdateJobInvoiceTaskPayload.cs" />
@@ -120,6 +122,9 @@
     <Compile Include="Payloads\StaffPayloads\CreateStaffPayload.cs" />
     <Compile Include="Payloads\Suppliers\CreateSupplierPayload.cs" />
     <Compile Include="Payloads\UserPrivileges\AdjustUserPrivilegePayload.cs" />
+    <Compile Include="QueryParameters\Contacts\CreateContact.cs" />
+    <Compile Include="QueryParameters\Contacts\CreateCustomerContact.cs" />
+    <Compile Include="QueryParameters\Contacts\ListContactsForCustomer.cs" />
     <Compile Include="QueryParameters\CostItems\CreateCostItem.cs" />
     <Compile Include="QueryParameters\CostItems\GetCostItem.cs" />
     <Compile Include="QueryParameters\CostItems\PagedCostItems.cs" />
@@ -132,6 +137,7 @@
     <Compile Include="QueryParameters\Customers\CreateCustomer.cs" />
     <Compile Include="QueryParameters\Customers\GetCustomer.cs" />
     <Compile Include="QueryParameters\Customers\ListCustomerJobs.cs" />
+    <Compile Include="QueryParameters\Customers\SearchTop10Customers.cs" />
     <Compile Include="QueryParameters\Customers\ListCustomers.cs" />
     <Compile Include="QueryParameters\Customers\UpdateCustomer.cs" />
     <Compile Include="QueryParameters\Invoices\CreateInvoice.cs" />
@@ -190,11 +196,14 @@
     <Compile Include="Payloads\Jobs\WriteJobPayload.cs" />
     <Compile Include="Payloads\JobTasks\CreateJobTaskPayload.cs" />
     <Compile Include="Payloads\TaskDefinitions\WriteTaskDefinitionPayload.cs" />
+    <Compile Include="Requests\Contacts\CreateContactForCustomerRequest.cs" />
+    <Compile Include="Requests\Contacts\ListContactsForCustomerRequest.cs" />
     <Compile Include="Requests\CostItems\CreateCostItemRequest.cs" />
     <Compile Include="Requests\CostItems\GetCostItemRequest.cs" />
     <Compile Include="Requests\CostItems\ListCostItemsRequest.cs" />
     <Compile Include="Requests\CostItems\UpdateCostItemRequest.cs" />
     <Compile Include="Requests\Credentials\ListValidateCredentialsRequest.cs" />
+    <Compile Include="Requests\Customers\SearchTop10CustomerRequest.cs" />
     <Compile Include="Requests\Staff\CreateStaffRequest.cs" />
     <Compile Include="Requests\Staff\ListStaffRequest.cs" />
     <Compile Include="Requests\Suppliers\CreateSupplierRequest.cs" />
@@ -205,7 +214,7 @@
     <Compile Include="Requests\Customers\GetCustomerRequest.cs" />
     <Compile Include="Requests\Customers\CreateCustomerRequest.cs" />
     <Compile Include="Requests\Invoices\CreateInvoiceRequest.cs" />
-    <Compile Include="Requests\InvoiceJobTasks\Class1.cs" />
+    <Compile Include="Requests\InvoiceJobTasks\CreateInvoiceJobTaskRequest.cs" />
     <Compile Include="Requests\InvoiceJobTasks\GetInvoiceJobTaskRequest.cs" />
     <Compile Include="Requests\InvoiceJobTasks\ListInvoiceJobTasksRequest.cs" />
     <Compile Include="Requests\InvoiceJobTasks\UpdateInvoiceJobTaskRequest.cs" />

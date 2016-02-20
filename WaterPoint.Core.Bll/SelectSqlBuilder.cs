@@ -22,6 +22,7 @@ namespace WaterPoint.Core.Bll
         private string _fromTable;
         private string _fromAlias;
         private string _totalCount = string.Empty;
+        private IList<string> _andWhere = new List<string>();
         private string _where = string.Empty;
         private string _orderBy = string.Empty;
         private string _fetch = string.Empty;
@@ -86,6 +87,8 @@ namespace WaterPoint.Core.Bll
 
         public string GetSql()
         {
+            _where = string.Join("AND", _andWhere);
+
             return _template
                 .Replace(SqlPatterns.TotalCount, _totalCount)
                 .Replace(SqlPatterns.FromTable, $"[{_fromSchema}].[{_fromTable}] {_fromAlias}")
@@ -102,7 +105,7 @@ namespace WaterPoint.Core.Bll
 
             var expressionConverter = new PredicateExpressionConverter();
 
-            _where = expressionConverter.Convert(_fromAlias, whereClause);
+            _andWhere.Add(expressionConverter.Convert(_fromAlias, whereClause));
         }
 
         public void AddContains<T>(string searchTerm)
@@ -135,7 +138,8 @@ namespace WaterPoint.Core.Bll
 
             var contains = string.Join(" OR ", containClauses);
 
-            _where += $"\n{(!string.IsNullOrWhiteSpace(_where) ? "AND" : string.Empty)} ({contains}) ";
+            _andWhere.Add($"({contains})");
+            //_where += $"\n{(!string.IsNullOrWhiteSpace(_where) ? "AND" : string.Empty)} ";
         }
 
         public void AddManyToManyJoin<T>(JoinTypes jointype, string viaSchema, string viaTable, string viaAlias, string myColumn, string parentColumn)

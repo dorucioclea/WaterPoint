@@ -31,6 +31,8 @@ namespace WaterPoint.Core.Domain.Payloads.StaffPayloads
 
         public string OtherName { get; set; }
 
+        public string Phone { get; set; }
+
         public string MobilePhone { get; set; }
 
         public DateTime? Dob { get; set; }

@@ -28,7 +28,7 @@ namespace WaterPoint.Core.RequestProcessor
         {
             var result = UowProcess(ProcessDeFacto, input);
 
-            return new CommandResult(result, result > 0);
+            return new CreateCommandResult(result, result > 0);
         }
 
         public abstract TParameter BuildParameter(TRequest input);

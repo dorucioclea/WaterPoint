@@ -76,12 +76,15 @@
   <ItemGroup>
     <Compile Include="BaseDapperUowRequestProcess.cs" />
     <Compile Include="BaseCreateProcessor.cs" />
+    <Compile Include="Contacts\CreateContactForCustomerProcessor.cs" />
+    <Compile Include="Contacts\ListContactsForCustomerProcessor.cs" />
     <Compile Include="CostItems\ListCostItemsProcessor.cs" />
     <Compile Include="CostItems\CreateCostItemProcessor.cs" />
     <Compile Include="CostItems\GetCostItemProcessor.cs" />
     <Compile Include="CostItems\UpdateCostItemProcessor.cs" />
     <Compile Include="Credentials\ListValidateCredentialProcessor.cs" />
     <Compile Include="Customers\ListCustomerJobsProcessor.cs" />
+    <Compile Include="Customers\SearchTop10Processor.cs" />
     <Compile Include="Invoices\CreateInvoiceProcessor.cs" />
     <Compile Include="JobCostItems\UpdateJobCostItemProcessor.cs" />
     <Compile Include="JobCostItems\GetJobCostItemProcessor.cs" />
@@ -95,6 +98,7 @@
     <Compile Include="Customers\ListCustomersProcessor.cs" />
     <Compile Include="Customers\UpdateCustomerProcessor.cs" />
     <Compile Include="Jobs\UpdateJobProcessor.cs" />
+    <Compile Include="Mappers\EntitiesToContracts\ContactMapper.cs" />
     <Compile Include="Mappers\EntitiesToContracts\InvoiceJobCostItemMapper.cs" />
     <Compile Include="Mappers\EntitiesToContracts\QuoteCostItemMapper.cs" />
     <Compile Include="Mappers\EntitiesToContracts\InvoiceJobTaskMapper.cs" />
