@@ -126,6 +126,7 @@
     <Compile Include="QueryParameters\Contacts\CreateContact.cs" />
     <Compile Include="QueryParameters\Contacts\CreateCustomerContact.cs" />
     <Compile Include="QueryParameters\Contacts\ListContactsForCustomer.cs" />
+    <Compile Include="QueryParameters\Contacts\UpdateContact.cs" />
     <Compile Include="QueryParameters\CostItems\CreateCostItem.cs" />
     <Compile Include="QueryParameters\CostItems\GetCostItem.cs" />
     <Compile Include="QueryParameters\CostItems\PagedCostItems.cs" />
@@ -200,6 +201,7 @@
     <Compile Include="Requests\Contacts\CreateContactForCustomerRequest.cs" />
     <Compile Include="Requests\Contacts\GetContactRequest.cs" />
     <Compile Include="Requests\Contacts\ListContactsForCustomerRequest.cs" />
+    <Compile Include="Requests\Contacts\UpdateContactRequest.cs" />
     <Compile Include="Requests\CostItems\CreateCostItemRequest.cs" />
     <Compile Include="Requests\CostItems\GetCostItemRequest.cs" />
     <Compile Include="Requests\CostItems\ListCostItemsRequest.cs" />

@@ -84,6 +84,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\Contacts\UpdateContactCommand.cs" />
     <Compile Include="Commands\Contacts\CreateContactContactCommand.cs" />
     <Compile Include="Commands\Contacts\CreateCustomerContactCommand.cs" />
     <Compile Include="Commands\CostItems\UpdateCostItemCommand.cs" />

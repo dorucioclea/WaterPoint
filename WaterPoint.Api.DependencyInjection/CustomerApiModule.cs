@@ -51,6 +51,7 @@ namespace WaterPoint.Api.DependencyInjection
             Bind<ICommand<UpdateCustomer>>().To<UpdateCustomerCommand>();
             Bind<ICommand<CreateContact>>().To<CreateContactContactCommand>();
             Bind<ICommand<CreateCustomerContact>>().To<CreateCustomerContactCommand>();
+            Bind<ICommand<UpdateContact>>().To<UpdateContactCommand>();
         }
 
         private void BindRequestProcessors()
@@ -82,6 +83,9 @@ namespace WaterPoint.Api.DependencyInjection
 
             Bind<IRequestProcessor<GetContactRequest, ContactContract>>()
                 .To<GetContactProcessor>();
+
+            Bind<IWriteRequestProcessor<UpdateContactRequest>>()
+                .To<UpdateContactProcessor>();
 
         }
     }
