@@ -76,6 +76,7 @@
   <ItemGroup>
     <Compile Include="BaseDapperUowRequestProcess.cs" />
     <Compile Include="BaseCreateProcessor.cs" />
+    <Compile Include="Contacts\GetContactProcessor.cs" />
     <Compile Include="Contacts\CreateContactForCustomerProcessor.cs" />
     <Compile Include="Contacts\ListContactsForCustomerProcessor.cs" />
     <Compile Include="CostItems\ListCostItemsProcessor.cs" />
