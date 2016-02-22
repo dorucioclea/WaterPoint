@@ -3,7 +3,7 @@
 	[Id] INT NOT NULL IDENTITY,
     [OrganizationId] INT NOT NULL,
     [OrganizationUserId] INT NULL,
-    [CustomerTypeId] INT NULL,
+    [CustomerTypeId] INT NOT NULL,
 	[IsProspect] BIT NOT NULL DEFAULT(0),
 	[Gender] CHAR(1) NULL,
     [Code] VARCHAR(50) NULL,
@@ -22,7 +22,7 @@
 	[Uid] UNIQUEIDENTIFIER NOT NULL DEFAULT(NEWID()),
 	[SearchName] AS (LastName + ' ' + FirstName + CASE WHEN OtherName IS NULL THEN '' ELSE ' ' + OtherName END),
 	CONSTRAINT [PK_dbo_Customer_Id] PRIMARY KEY CLUSTERED ([Id] ASC), -- WITH (DATA_COMPRESSION = PAGE),
-    CONSTRAINT [FK_dbo_Customer_CustomerType] FOREIGN KEY ([CustomerTypeId]) REFERENCES [dbo].[CustomerType]([Id]) ON DELETE SET NULL,
+    CONSTRAINT [FK_dbo_Customer_CustomerType] FOREIGN KEY ([CustomerTypeId]) REFERENCES [dbo].[CustomerType]([Id]),-- ON DELETE SET NULL,
     CONSTRAINT [FK_dbo_Customer_Organization] FOREIGN KEY ([OrganizationId]) REFERENCES [dbo].[Organization]([Id]),
     CONSTRAINT [FK_dbo_Customer_dbo_OrganizationUser] FOREIGN KEY ([OrganizationUserId]) REFERENCES [dbo].[OrganizationUser]([Id]),
 	CONSTRAINT [UQ_dbo_Customer_Uid] UNIQUE NONCLUSTERED ([Uid] ASC), -- WITH (DATA_COMPRESSION = PAGE)
