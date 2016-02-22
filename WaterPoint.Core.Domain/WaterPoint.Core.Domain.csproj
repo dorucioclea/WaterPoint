@@ -122,9 +122,11 @@
     <Compile Include="Payloads\StaffPayloads\CreateStaffPayload.cs" />
     <Compile Include="Payloads\Suppliers\CreateSupplierPayload.cs" />
     <Compile Include="Payloads\UserPrivileges\AdjustUserPrivilegePayload.cs" />
+    <Compile Include="QueryParameters\Contacts\GetContact.cs" />
     <Compile Include="QueryParameters\Contacts\CreateContact.cs" />
     <Compile Include="QueryParameters\Contacts\CreateCustomerContact.cs" />
     <Compile Include="QueryParameters\Contacts\ListContactsForCustomer.cs" />
+    <Compile Include="QueryParameters\Contacts\UpdateContact.cs" />
     <Compile Include="QueryParameters\CostItems\CreateCostItem.cs" />
     <Compile Include="QueryParameters\CostItems\GetCostItem.cs" />
     <Compile Include="QueryParameters\CostItems\PagedCostItems.cs" />
@@ -197,7 +199,9 @@
     <Compile Include="Payloads\JobTasks\CreateJobTaskPayload.cs" />
     <Compile Include="Payloads\TaskDefinitions\WriteTaskDefinitionPayload.cs" />
     <Compile Include="Requests\Contacts\CreateContactForCustomerRequest.cs" />
+    <Compile Include="Requests\Contacts\GetContactRequest.cs" />
     <Compile Include="Requests\Contacts\ListContactsForCustomerRequest.cs" />
+    <Compile Include="Requests\Contacts\UpdateContactRequest.cs" />
     <Compile Include="Requests\CostItems\CreateCostItemRequest.cs" />
     <Compile Include="Requests\CostItems\GetCostItemRequest.cs" />
     <Compile Include="Requests\CostItems\ListCostItemsRequest.cs" />

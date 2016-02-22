@@ -19,8 +19,6 @@ namespace WaterPoint.Core.RequestProcessor.Mappers.EntitiesToContracts
         {
             Mapper.CreateMap<Contact, ContactContract>()
                 .ForMember(o => o.Version, i => i.MapFrom(d => d.Version.ToSha1(d.Id.ToString())));
-
-            Mapper.CreateMap<BasicCustomerPoco, CustomerIdNameContract>();
         }
 
         public static ContactContract Map(Contact source)

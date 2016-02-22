@@ -1,13 +1,10 @@
 ﻿using Ninject.Modules;
 using WaterPoint.Core.Bll.Commands.Contacts;
 using WaterPoint.Core.Bll.Commands.Customers;
-using WaterPoint.Core.Bll.Executors;
 using WaterPoint.Core.Bll.Queries.Contacts;
 using WaterPoint.Core.Bll.Queries.Customers;
 using WaterPoint.Core.Domain.QueryParameters.Customers;
-using WaterPoint.Core.Bll.QueryRunners;
 using WaterPoint.Core.Domain;
-using WaterPoint.Core.Domain.Contracts;
 using WaterPoint.Core.Domain.Contracts.Contacts;
 using WaterPoint.Core.RequestProcessor.Customers;
 using WaterPoint.Core.Domain.Contracts.Customers;
@@ -44,6 +41,8 @@ namespace WaterPoint.Api.DependencyInjection
             Bind<IQuery<SearchTop10Customers, Customer>>().To<SearchTop10CustomersQuery>();
 
             Bind<IQuery<ListContactsForCustomer, Contact>>().To<ListContactsForCustomerQuery>();
+
+            Bind<IQuery<GetContact, Contact>>().To<GetContactQuery>();
         }
 
         public void BindCommands()
@@ -52,6 +51,7 @@ namespace WaterPoint.Api.DependencyInjection
             Bind<ICommand<UpdateCustomer>>().To<UpdateCustomerCommand>();
             Bind<ICommand<CreateContact>>().To<CreateContactContactCommand>();
             Bind<ICommand<CreateCustomerContact>>().To<CreateCustomerContactCommand>();
+            Bind<ICommand<UpdateContact>>().To<UpdateContactCommand>();
         }
 
         private void BindRequestProcessors()
@@ -80,6 +80,12 @@ namespace WaterPoint.Api.DependencyInjection
 
             Bind<IWriteRequestProcessor<CreateContactForCustomerRequest>>()
                 .To<CreateContactForCustomerProcessor>();
+
+            Bind<IRequestProcessor<GetContactRequest, ContactContract>>()
+                .To<GetContactProcessor>();
+
+            Bind<IWriteRequestProcessor<UpdateContactRequest>>()
+                .To<UpdateContactProcessor>();
 
         }
     }

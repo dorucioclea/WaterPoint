@@ -1,13 +1,18 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using WaterPoint.Core.Domain.Db;
+using WaterPoint.Data.Entity.Attributes;
 
-namespace WaterPoint.Core.Domain.Payloads.Contacts
+namespace WaterPoint.Core.Domain.QueryParameters.Contacts
 {
-    public class WriteContactPayload : IPayload
+    public class UpdateContact : IQueryParameter
     {
-        [Required]
+        [IgnoreWhenUpdate]
+        public int Id { get; set; }
+
+        [IgnoreWhenUpdate]
+        public int OrganizationId { get; set; }
+
         public string FirstName { get; set; }
 
-        [Required]
         public string LastName { get; set; }
 
         public string OtherName { get; set; }
@@ -19,7 +24,5 @@ namespace WaterPoint.Core.Domain.Payloads.Contacts
         public string Email { get; set; }
 
         public bool IsDeleted { get; set; }
-
-        public bool IsPrimary { get; set; }
     }
 }

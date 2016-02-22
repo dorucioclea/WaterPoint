@@ -84,6 +84,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\Contacts\UpdateContactCommand.cs" />
     <Compile Include="Commands\Contacts\CreateContactContactCommand.cs" />
     <Compile Include="Commands\Contacts\CreateCustomerContactCommand.cs" />
     <Compile Include="Commands\CostItems\UpdateCostItemCommand.cs" />
@@ -114,6 +115,7 @@
     <Compile Include="Commands\TaskDefinitions\CreateTaskDefinitionCommand.cs" />
     <Compile Include="Commands\TaskDefinitions\UpdateTaskDefinitionCommand.cs" />
     <Compile Include="Commands\UserPrivileges\CreateCustomerCommand.cs" />
+    <Compile Include="Queries\Contacts\GetContactQuery.cs" />
     <Compile Include="Queries\Contacts\ListContactsForCustomerQuery.cs" />
     <Compile Include="Queries\CostItems\ListCostItemQuery.cs" />
     <Compile Include="Queries\CostItems\GetCostItemQuery.cs" />
