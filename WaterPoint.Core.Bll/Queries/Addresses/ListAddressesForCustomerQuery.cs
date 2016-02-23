@@ -1,15 +1,14 @@
-﻿using System;
-using WaterPoint.Core.Domain.Db;
-using WaterPoint.Core.Domain.QueryParameters.Contacts;
+﻿using WaterPoint.Core.Domain.Db;
+using WaterPoint.Core.Domain.QueryParameters.Addresses;
 using WaterPoint.Data.Entity.DataEntities;
 
-namespace WaterPoint.Core.Bll.Queries.Contacts
+namespace WaterPoint.Core.Bll.Queries.Addresses
 {
-    public class ListContactsForCustomerQuery : IQuery<ListContactsForCustomer, Contact>
+    public class ListAddressesForCustomerQuery : IQuery<ListAddressesForCustomer, Address>
     {
-        public void BuildQuery(ListContactsForCustomer parameter)
+        public void BuildQuery(ListAddressesForCustomer parameter)
         {
-            Query = "[dbo].[List_CustomerContacts_By_CustomerId]";
+            Query = "[dbo].[List_CustomerAddesses_By_CustomerId]";
 
             Parameters = new
             {

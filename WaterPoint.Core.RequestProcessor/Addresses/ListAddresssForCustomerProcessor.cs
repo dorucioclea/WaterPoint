@@ -1,26 +1,26 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using WaterPoint.Core.Domain;
-using WaterPoint.Core.Domain.Contracts.Contacts;
+using WaterPoint.Core.Domain.Contracts.Addresses;
 using WaterPoint.Core.Domain.Db;
-using WaterPoint.Core.Domain.QueryParameters.Contacts;
-using WaterPoint.Core.Domain.Requests.Contacts;
+using WaterPoint.Core.Domain.QueryParameters.Addresses;
+using WaterPoint.Core.Domain.Requests.Addresses;
 using WaterPoint.Core.RequestProcessor.Mappers.EntitiesToContracts;
 using WaterPoint.Data.DbContext.Dapper;
 using WaterPoint.Data.Entity.DataEntities;
 
-namespace WaterPoint.Core.RequestProcessor.Contacts
+namespace WaterPoint.Core.RequestProcessor.Addresses
 {
-    public class ListContactsForCustomerProcessor :
+    public class ListAddressesForCustomerProcessor :
         BaseDapperUowRequestProcess,
-        IListProcessor<ListContactsForCustomerRequest, ContactContract>
+        IListProcessor<ListAddressesForCustomerRequest, AddressContract>
     {
-        private readonly IQuery<ListContactsForCustomer, Contact> _query;
+        private readonly IQuery<ListAddressesForCustomer, Address> _query;
         private readonly IQueryListRunner _runner;
 
-        public ListContactsForCustomerProcessor(
+        public ListAddressesForCustomerProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
-            IQuery<ListContactsForCustomer, Contact> query,
+            IQuery<ListAddressesForCustomer, Address> query,
             IQueryListRunner runner)
             : base(dapperUnitOfWork)
         {
@@ -28,9 +28,9 @@ namespace WaterPoint.Core.RequestProcessor.Contacts
             _runner = runner;
         }
 
-        public IEnumerable<ContactContract> Process(ListContactsForCustomerRequest input)
+        public IEnumerable<AddressContract> Process(ListAddressesForCustomerRequest input)
         {
-            _query.BuildQuery(new ListContactsForCustomer
+            _query.BuildQuery(new ListAddressesForCustomer
             {
                 OrganizationId = input.OrganizationId,
                 CustomerId = input.CustomerId,
@@ -39,7 +39,7 @@ namespace WaterPoint.Core.RequestProcessor.Contacts
 
             var result = _runner.Run(_query);
 
-            return result.Select(ContactMapper.Map);
+            return result.Select(AddressMapper.Map);
         }
     }
 }

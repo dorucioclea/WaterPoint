@@ -23,11 +23,11 @@ namespace WaterPoint.Data.Entity.Pocos
         //[Foreign]
         public int AddressId { get; set; }
         //[Foreign]
-        public string AddressStreet { get; set; }
+        public string Addressestreet { get; set; }
         //[Foreign]
-        public string AddressStreetExtraLine { get; set; }
+        public string AddressestreetExtraLine { get; set; }
         //[Foreign]
-        public string AddressSuburb { get; set; }
+        public string Addressesuburb { get; set; }
         //[Foreign]
         public string AddressCity { get; set; }
         //[Foreign]

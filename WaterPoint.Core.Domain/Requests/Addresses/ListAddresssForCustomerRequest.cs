@@ -1,6 +1,6 @@
-﻿namespace WaterPoint.Core.Domain.Requests.Contacts
+﻿namespace WaterPoint.Core.Domain.Requests.Addresses
 {
-    public class ListContactsForCustomerRequest : IRequest
+    public class ListAddressesForCustomerRequest : IRequest
     {
         public int OrganizationId { get; set; }
         public int CustomerId { get; set; }

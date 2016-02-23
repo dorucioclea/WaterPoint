@@ -1,8 +1,8 @@
 ﻿using WaterPoint.Core.Domain.Db;
 
-namespace WaterPoint.Core.Domain.QueryParameters.Contacts
+namespace WaterPoint.Core.Domain.QueryParameters.Addresses
 {
-    public class ListContactsForCustomer : IQueryParameter
+    public class ListAddressesForCustomer : IQueryParameter
     {
         public int OrganizationId { get; set; }
         public int CustomerId { get; set; }

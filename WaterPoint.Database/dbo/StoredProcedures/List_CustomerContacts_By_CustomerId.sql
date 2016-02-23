@@ -1,6 +1,7 @@
 ﻿CREATE PROCEDURE [dbo].[List_CustomerContacts_By_CustomerId]
     @organizationid INT,
-    @customerid INT
+    @customerid INT,
+    @isdeleted BIT
 AS
 SET NOCOUNT ON;
 BEGIN
@@ -23,6 +24,6 @@ BEGIN
         JOIN [dbo].[CustomerContact] cc ON con.Id = cc.ContactId AND cc.CustomerId = @customerid
     WHERE
         con.[OrganizationId] = @organizationId
-        AND con.IsDeleted = 0
+        AND con.IsDeleted = @isdeleted
 END
 GO
