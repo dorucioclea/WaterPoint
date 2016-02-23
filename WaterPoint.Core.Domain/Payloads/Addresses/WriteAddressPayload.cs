@@ -2,9 +2,9 @@
 {
     public class WriteAddressPayload : IPayload
     {
-        public bool IsPrimary { get; set; }
+        public bool? IsPrimary { get; set; }
 
-        public bool IsPostAddress { get; set; }
+        public bool? IsPostAddress { get; set; }
 
         public string Street { get; set; }
 

@@ -14,7 +14,8 @@ namespace WaterPoint.Core.RequestProcessor.Addresses
     public class UpdateAddressForCustomerProcessor :
         BaseUpdateProcessor<UpdateAddressForCustomerRequest, WriteAddressPayload, UpdateAddress, GetAddress, Address>
     {
-        private readonly ICommand<UpdateCustomerAddress> _updateCustomerAddress;
+        private readonly ICommand<UpdateCustomerAddressIsPostAddress> _updateCustomerAddressPost;
+        private readonly ICommand<UpdateCustomerAddressIsPrimary> _updateCustomerAddressPrimary;
 
         public UpdateAddressForCustomerProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
@@ -22,11 +23,13 @@ namespace WaterPoint.Core.RequestProcessor.Addresses
             IQuery<GetAddress, Address> getQuery,
             IQueryRunner getQueryRunner,
             ICommand<UpdateAddress> updateQuery,
-            ICommand<UpdateCustomerAddress> updateCustomerAddress,
+            ICommand<UpdateCustomerAddressIsPostAddress> updateCustomerAddressPost,
+            ICommand<UpdateCustomerAddressIsPrimary> updateCustomerAddressPrimary,
             ICommandExecutor updateCommandExecutor)
             : base(dapperUnitOfWork, patchEntityAdapter, getQuery, getQueryRunner, updateQuery, updateCommandExecutor)
         {
-            _updateCustomerAddress = updateCustomerAddress;
+            _updateCustomerAddressPost = updateCustomerAddressPost;
+            _updateCustomerAddressPrimary = updateCustomerAddressPrimary;
         }
 
         public override GetAddress BuildGetParameter(UpdateAddressForCustomerRequest input)
@@ -55,16 +58,33 @@ namespace WaterPoint.Core.RequestProcessor.Addresses
 
             var entity = input.Payload.GetEntity();
 
-            _updateCustomerAddress.BuildQuery(new UpdateCustomerAddress
+            if (entity.IsPrimary.HasValue)
             {
-                CustomerId = input.CustomerId,
-                OrganizationId = input.OrganizationId,
-                IsPrimary = entity.IsPrimary,
-                AddressId = input.Id,
-                IsPostAddress = entity.IsPostAddress
-            });
+                _updateCustomerAddressPrimary.BuildQuery(new UpdateCustomerAddressIsPrimary
+                {
+                    CustomerId = input.CustomerId,
+                    OrganizationId = input.OrganizationId,
+                    IsPrimary = entity.IsPrimary.Value,
+                    AddressId = input.Id
+                });
 
-            return CommandExecutor.ExecuteUpdate(_updateCustomerAddress);
+                CommandExecutor.ExecuteUpdate(_updateCustomerAddressPrimary);
+            }
+
+            if (entity.IsPostAddress.HasValue)
+            {
+                _updateCustomerAddressPost.BuildQuery(new UpdateCustomerAddressIsPostAddress
+                {
+                    CustomerId = input.CustomerId,
+                    OrganizationId = input.OrganizationId,
+                    AddressId = input.Id,
+                    IsPostAddress = entity.IsPostAddress.Value
+                });
+
+                CommandExecutor.ExecuteUpdate(_updateCustomerAddressPost);
+            }
+
+            return value;
         }
     }
 }

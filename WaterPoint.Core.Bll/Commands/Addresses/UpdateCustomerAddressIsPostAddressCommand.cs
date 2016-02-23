@@ -1,21 +1,20 @@
-﻿using WaterPoint.Core.Domain.Db;
+using WaterPoint.Core.Domain.Db;
 using WaterPoint.Core.Domain.QueryParameters.Addresses;
-using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Core.Bll.Commands.Addresses
 {
-    public class UpdateCustomerAddressIsPrimaryCommand : ICommand<UpdateCustomerAddressIsPrimary>
+    public class UpdateCustomerAddressIsPostAddressCommand : ICommand<UpdateCustomerAddressIsPostAddress>
     {
-        public void BuildQuery(UpdateCustomerAddressIsPrimary parameter)
+        public void BuildQuery(UpdateCustomerAddressIsPostAddress parameter)
         {
-            Query = "[dbo].[Update_CustomerAddress_IsPrimary]";
+            Query = "[dbo].[Update_CustomerAddress_IsPostAddress]";
 
             Parameters = new
             {
                 addressid = parameter.AddressId,
                 organizationid = parameter.OrganizationId,
                 customerid = parameter.CustomerId,
-                isprimary = parameter.IsPrimary
+                ispostaddress = parameter.IsPostAddress
             };
         }
 

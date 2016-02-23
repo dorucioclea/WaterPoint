@@ -3,7 +3,7 @@ using WaterPoint.Data.Entity.Attributes;
 
 namespace WaterPoint.Core.Domain.QueryParameters.Addresses
 {
-    public class UpdateCustomerAddressIsPrimary : IQueryParameter
+    public class UpdateCustomerAddressIsPostAddress : IQueryParameter
     {
         [IgnoreWhenUpdate]
         public int AddressId { get; set; }
@@ -14,6 +14,6 @@ namespace WaterPoint.Core.Domain.QueryParameters.Addresses
         [IgnoreWhenUpdate]
         public int OrganizationId { get; set; }
 
-        public bool IsPrimary { get; set; }
+        public bool IsPostAddress { get; set; }
     }
 }

@@ -68,7 +68,8 @@ namespace WaterPoint.Api.DependencyInjection
             Bind<ICommand<CreateAddress>>().To<CreateAddressCommand>();
             Bind<ICommand<CreateCustomerAddress>>().To<CreateCustomerAddressCommand>();
             Bind<ICommand<UpdateAddress>>().To<UpdateAddressCommand>();
-            Bind<ICommand<UpdateCustomerAddress>>().To<UpdateCustomerAddressCommand>();
+            Bind<ICommand<UpdateCustomerAddressIsPrimary>>().To<UpdateCustomerAddressIsPrimaryCommand>();
+            Bind<ICommand<UpdateCustomerAddressIsPostAddress>>().To<UpdateCustomerAddressIsPostAddressCommand>();
         }
 
         private void BindRequestProcessors()

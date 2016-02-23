@@ -62,7 +62,7 @@ namespace WaterPoint.Core.RequestProcessor.Addresses
             _createCustomerAddressCommand.BuildQuery(new CreateCustomerAddress
             {
                 CustomerId = input.CustomerId,
-                IsPrimary = input.Payload.IsPrimary,
+                IsPrimary = input.Payload.IsPrimary ?? false,
                 AddressId = addressId
             });
 

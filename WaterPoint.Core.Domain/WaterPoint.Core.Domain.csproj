@@ -132,6 +132,7 @@
     <Compile Include="QueryParameters\Addresses\ListAddressesForCustomer.cs" />
     <Compile Include="QueryParameters\Addresses\UpdateAddress.cs" />
     <Compile Include="QueryParameters\Addresses\UpdateCustomerAddress.cs" />
+    <Compile Include="QueryParameters\Addresses\UpdateCustomerAddressIsPostAddress.cs" />
     <Compile Include="QueryParameters\Contacts\GetContact.cs" />
     <Compile Include="QueryParameters\Contacts\CreateContact.cs" />
     <Compile Include="QueryParameters\Contacts\CreateCustomerContact.cs" />
