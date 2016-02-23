@@ -119,6 +119,7 @@
     <Compile Include="Commands\TaskDefinitions\CreateTaskDefinitionCommand.cs" />
     <Compile Include="Commands\TaskDefinitions\UpdateTaskDefinitionCommand.cs" />
     <Compile Include="Commands\UserPrivileges\CreateCustomerCommand.cs" />
+    <Compile Include="Queries\Addresses\GetAddressQuery.cs" />
     <Compile Include="Queries\Addresses\GetAddressForCustomerQuery.cs" />
     <Compile Include="Queries\Addresses\ListAddressesForCustomerQuery.cs" />
     <Compile Include="Queries\Contacts\GetContactQuery.cs" />

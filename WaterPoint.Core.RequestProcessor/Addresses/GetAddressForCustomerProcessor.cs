@@ -6,19 +6,20 @@ using WaterPoint.Core.Domain.Requests.Addresses;
 using WaterPoint.Core.RequestProcessor.Mappers.EntitiesToContracts;
 using WaterPoint.Data.DbContext.Dapper;
 using WaterPoint.Data.Entity.DataEntities;
+using WaterPoint.Data.Entity.Pocos.Addresses;
 
 namespace WaterPoint.Core.RequestProcessor.Addresses
 {
     public class GetAddressForCustomerProcessor :
         BaseDapperUowRequestProcess,
-        IRequestProcessor<GetAddressForCustomerRequest, AddressContract>
+        IRequestProcessor<GetAddressForCustomerRequest, CustomerAddressContract>
     {
-        private readonly IQuery<GetAddressForCustomer, Address> _query;
+        private readonly IQuery<GetAddressForCustomer, CustomerAddressPoco> _query;
         private readonly IQueryRunner _runner;
 
         public GetAddressForCustomerProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
-            IQuery<GetAddressForCustomer, Address> query,
+            IQuery<GetAddressForCustomer, CustomerAddressPoco> query,
             IQueryRunner runner)
             : base(dapperUnitOfWork)
         {
@@ -26,12 +27,13 @@ namespace WaterPoint.Core.RequestProcessor.Addresses
             _runner = runner;
         }
 
-        public AddressContract Process(GetAddressForCustomerRequest input)
+        public CustomerAddressContract Process(GetAddressForCustomerRequest input)
         {
             var parameter = new GetAddressForCustomer
             {
                 OrganizationId = input.OrganizationId,
                 CustomerId = input.CustomerId,
+                IsDeleted = input.IsDeleted ?? false,
                 Id = input.Id
             };
 

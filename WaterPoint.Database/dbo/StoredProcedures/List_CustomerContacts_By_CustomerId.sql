@@ -23,7 +23,7 @@ BEGIN
         [dbo].[Contact] con
         JOIN [dbo].[CustomerContact] cc ON con.Id = cc.ContactId AND cc.CustomerId = @customerid
     WHERE
-        con.[OrganizationId] = @organizationId
+        con.[OrganizationId] = @organizationid
         AND con.IsDeleted = @isdeleted
 END
 GO

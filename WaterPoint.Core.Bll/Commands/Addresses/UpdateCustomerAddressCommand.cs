@@ -8,7 +8,7 @@ namespace WaterPoint.Core.Bll.Commands.Addresses
     {
         public void BuildQuery(UpdateCustomerAddress parameter)
         {
-            Query = "[dbo.[Update_CustomerAddress]";
+            Query = "[dbo].[Update_CustomerAddress]";
 
             Parameters = new
             {

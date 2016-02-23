@@ -18,17 +18,16 @@ namespace WaterPoint.Api.Customer.Controllers
     [RoutePrefix("organizations/{organizationId:int}")]
     public class AddressesController : BaseOrgnizationContextController
     {
-        private readonly IListProcessor<ListAddressesForCustomerRequest, AddressContract> _listProcessor;
+        private readonly IListProcessor<ListAddressesForCustomerRequest, CustomerAddressContract> _listProcessor;
         private readonly IWriteRequestProcessor<CreateAddressForCustomerRequest> _createProcessor;
-        private readonly IRequestProcessor<GetAddressForCustomerRequest, AddressContract> _getAddressProcessor;
-        private readonly IWriteRequestProcessor<UpdateAddressRequest> _updateAddressProcessor;
+        private readonly IRequestProcessor<GetAddressForCustomerRequest, CustomerAddressContract> _getAddressProcessor;
+        private readonly IWriteRequestProcessor<UpdateAddressForCustomerRequest> _updateAddressProcessor;
 
         public AddressesController(
-            IListProcessor<ListAddressesForCustomerRequest, AddressContract> listProcessor,
+            IListProcessor<ListAddressesForCustomerRequest, CustomerAddressContract> listProcessor,
             IWriteRequestProcessor<CreateAddressForCustomerRequest> createProcessor,
-            IRequestProcessor<GetAddressForCustomerRequest, AddressContract> getAddressProcessor,
-            IWriteRequestProcessor<UpdateAddressRequest> updateAddressProcessor
-            )
+            IRequestProcessor<GetAddressForCustomerRequest, CustomerAddressContract> getAddressProcessor,
+            IWriteRequestProcessor<UpdateAddressForCustomerRequest> updateAddressProcessor)
         {
             _listProcessor = listProcessor;
             _createProcessor = createProcessor;
@@ -73,7 +72,7 @@ namespace WaterPoint.Api.Customer.Controllers
 
         [Route("customers/{customerId:int}/addresses/{id:int}")]
         public IHttpActionResult Put(
-            [FromUri]UpdateAddressRequest request,
+            [FromUri]UpdateAddressForCustomerRequest request,
             [FromBody]Delta<WriteAddressPayload> payload)
         {
             request.Payload = payload;

@@ -21,6 +21,7 @@ using WaterPoint.Core.Domain.Requests.Customers;
 using WaterPoint.Core.RequestProcessor.Addresses;
 using WaterPoint.Core.RequestProcessor.Contacts;
 using WaterPoint.Data.Entity.DataEntities;
+using WaterPoint.Data.Entity.Pocos.Addresses;
 using WaterPoint.Data.Entity.Pocos.Jobs;
 
 namespace WaterPoint.Api.DependencyInjection
@@ -50,9 +51,11 @@ namespace WaterPoint.Api.DependencyInjection
 
             Bind<IQuery<GetContact, Contact>>().To<GetContactQuery>();
 
-            Bind<IQuery<ListAddressesForCustomer, Address>>().To<ListAddressesForCustomerQuery>();
+            Bind<IQuery<ListAddressesForCustomer, CustomerAddressPoco>>().To<ListAddressesForCustomerQuery>();
 
-            Bind<IQuery<GetAddressForCustomer, Address>>().To<GetAddressForCustomerQuery>();
+            Bind<IQuery<GetAddressForCustomer, CustomerAddressPoco>>().To<GetAddressForCustomerQuery>();
+
+            Bind<IQuery<GetAddress, Address>>().To<GetAddressQuery>();
         }
 
         public void BindCommands()
@@ -65,6 +68,7 @@ namespace WaterPoint.Api.DependencyInjection
             Bind<ICommand<CreateAddress>>().To<CreateAddressCommand>();
             Bind<ICommand<CreateCustomerAddress>>().To<CreateCustomerAddressCommand>();
             Bind<ICommand<UpdateAddress>>().To<UpdateAddressCommand>();
+            Bind<ICommand<UpdateCustomerAddress>>().To<UpdateCustomerAddressCommand>();
         }
 
         private void BindRequestProcessors()
@@ -103,14 +107,14 @@ namespace WaterPoint.Api.DependencyInjection
             Bind<IWriteRequestProcessor<CreateAddressForCustomerRequest>>()
                 .To<CreateAddressForCustomerProcessor>();
 
-            Bind<IListProcessor<ListAddressesForCustomerRequest, AddressContract>>()
+            Bind<IListProcessor<ListAddressesForCustomerRequest, CustomerAddressContract>>()
                 .To<ListAddressesForCustomerProcessor>();
 
-            Bind<IRequestProcessor<GetAddressForCustomerRequest, AddressContract>>()
+            Bind<IRequestProcessor<GetAddressForCustomerRequest, CustomerAddressContract>>()
                 .To<GetAddressForCustomerProcessor>();
 
-            Bind<IWriteRequestProcessor<UpdateAddressRequest>>()
-                .To<UpdateAddressProcessor>();
+            Bind<IWriteRequestProcessor<UpdateAddressForCustomerRequest>>()
+                .To<UpdateAddressForCustomerProcessor>();
 
         }
     }

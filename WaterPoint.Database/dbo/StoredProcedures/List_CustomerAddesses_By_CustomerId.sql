@@ -17,11 +17,13 @@ BEGIN
       ,a.[CountryId]
       ,a.[IsDeleted]
       ,a.[Version]
+	  ,ca.IsPostAddress
+	  ,ca.IsPrimary
     FROM
         [dbo].[Address] a
-        JOIN [dbo].[CustomerContact] cc ON a.Id = cc.ContactId AND cc.CustomerId = @customerid
+        JOIN [dbo].[CustomerAddress] ca ON a.Id = ca.AddressId AND ca.CustomerId = @customerid
     WHERE
-        a.[OrganizationId] = @organizationId
+        a.[OrganizationId] = @organizationid
         AND a.IsDeleted = @isdeleted
 END
 GO

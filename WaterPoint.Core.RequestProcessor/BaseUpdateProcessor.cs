@@ -3,9 +3,9 @@ using WaterPoint.Api.Common;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts;
 using WaterPoint.Core.Domain.Db;
+using WaterPoint.Core.Domain.Exceptions;
 using WaterPoint.Data.DbContext.Dapper;
 using WaterPoint.Data.Entity;
-using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Core.RequestProcessor
 {
@@ -58,7 +58,7 @@ namespace WaterPoint.Core.RequestProcessor
             var existing = _getQueryRunner.Run(_getQuery);
 
             if (existing == null)
-                throw new InvalidOperationException();
+                throw new NotFoundException();
 
             var updated =
                 _patchEntityAdapter.PatchEnitity<TPayload, TGetEntity, TUpdateParameter>

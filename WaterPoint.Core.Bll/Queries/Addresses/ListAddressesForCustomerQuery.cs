@@ -1,10 +1,11 @@
 ﻿using WaterPoint.Core.Domain.Db;
 using WaterPoint.Core.Domain.QueryParameters.Addresses;
 using WaterPoint.Data.Entity.DataEntities;
+using WaterPoint.Data.Entity.Pocos.Addresses;
 
 namespace WaterPoint.Core.Bll.Queries.Addresses
 {
-    public class ListAddressesForCustomerQuery : IQuery<ListAddressesForCustomer, Address>
+    public class ListAddressesForCustomerQuery : IQuery<ListAddressesForCustomer, CustomerAddressPoco>
     {
         public void BuildQuery(ListAddressesForCustomer parameter)
         {

@@ -2,7 +2,7 @@
 
 namespace WaterPoint.Data.Entity.DataEntities
 {
-    [Table("dbo", "Address", "add")]
+    [Table("dbo", "Address", "ad")]
     public class Address : IDataEntity
     {
         [Primary]

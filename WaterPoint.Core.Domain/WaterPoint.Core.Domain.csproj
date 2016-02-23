@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contracts\Addresses\AddressContract.cs" />
+    <Compile Include="Contracts\Addresses\CustomerAddressContract.cs" />
     <Compile Include="Contracts\Contacts\ContactContract.cs" />
     <Compile Include="Contracts\InvoiceJobTasks\InvoiceJobTaskBasicContract.cs" />
     <Compile Include="Contracts\InvoiceJobTasks\InvoiceJobTaskContract.cs" />
@@ -124,6 +125,7 @@
     <Compile Include="Payloads\StaffPayloads\CreateStaffPayload.cs" />
     <Compile Include="Payloads\Suppliers\CreateSupplierPayload.cs" />
     <Compile Include="Payloads\UserPrivileges\AdjustUserPrivilegePayload.cs" />
+    <Compile Include="QueryParameters\Addresses\GetAddress.cs" />
     <Compile Include="QueryParameters\Addresses\GetAddressForCustomer.cs" />
     <Compile Include="QueryParameters\Addresses\CreateAddress.cs" />
     <Compile Include="QueryParameters\Addresses\CreateCustomerAddress.cs" />
