@@ -95,6 +95,7 @@
     <Compile Include="Commands\CostItems\UpdateCostItemCommand.cs" />
     <Compile Include="Commands\CostItems\CreateCostItemCommand.cs" />
     <Compile Include="Commands\Credentials\CreateCredentialCommand.cs" />
+    <Compile Include="Commands\Customers\Class1.cs" />
     <Compile Include="Commands\Invoices\CreateInvoiceCommand.cs" />
     <Compile Include="Commands\JobCostItems\UpdateJobCostItemCommand.cs" />
     <Compile Include="Commands\Jobs\CreateJobCommand.cs" />
