@@ -1,23 +1,23 @@
 ﻿using WaterPoint.Core.Domain.Db;
-using WaterPoint.Core.Domain.QueryParameters.Contacts;
+using WaterPoint.Core.Domain.QueryParameters.Addresses;
 using WaterPoint.Data.Entity.DataEntities;
 
-namespace WaterPoint.Core.Bll.Commands.Contacts
+namespace WaterPoint.Core.Bll.Commands.Addresses
 {
-    public class CreateContactContactCommand : ICommand<CreateContact>
+    public class CreateAddressCommand : ICommand<CreateAddress>
     {
         private readonly ISqlBuilderFactory _sqlBuilderFactory;
 
-        public CreateContactContactCommand(ISqlBuilderFactory sqlBuilderFactory)
+        public CreateAddressCommand(ISqlBuilderFactory sqlBuilderFactory)
         {
             _sqlBuilderFactory = sqlBuilderFactory;
         }
 
-        public void BuildQuery(CreateContact input)
+        public void BuildQuery(CreateAddress input)
         {
-            var builder = _sqlBuilderFactory.Create<CreateSqlBuilder<Contact>>();
+            var builder = _sqlBuilderFactory.Create<CreateSqlBuilder<Address>>();
 
-            builder.Analyze<CreateContact>();
+            builder.Analyze<CreateAddress>();
             builder.AddValueParameters(input);
 
             var sql = builder.GetSql();

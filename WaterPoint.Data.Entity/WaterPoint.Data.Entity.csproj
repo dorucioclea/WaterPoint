@@ -63,6 +63,7 @@
     <Compile Include="Attributes\StringValueAttribute.cs" />
     <Compile Include="Attributes\TableAttribute.cs" />
     <Compile Include="DataEntities\Address.cs" />
+    <Compile Include="DataEntities\JobCategory.cs" />
     <Compile Include="DataEntities\Contact.cs" />
     <Compile Include="DataEntities\OrganizationUser.cs" />
     <Compile Include="DataEntities\Supplier.cs" />
@@ -88,6 +89,7 @@
     <Compile Include="Enums\OrganizationUserTypes.cs" />
     <Compile Include="Enums\JobTimesheetTypes.cs" />
     <Compile Include="IDataEntity.cs" />
+    <Compile Include="Pocos\Addresses\Class1.cs" />
     <Compile Include="Pocos\Customers\BasicCustomerWithAddressPoco.cs" />
     <Compile Include="Pocos\Customers\CustomerPoco.cs" />
     <Compile Include="Pocos\JobCostItems\JobCostItemListPoco.cs" />

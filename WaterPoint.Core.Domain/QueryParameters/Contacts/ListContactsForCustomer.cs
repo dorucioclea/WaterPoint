@@ -6,5 +6,6 @@ namespace WaterPoint.Core.Domain.QueryParameters.Contacts
     {
         public int OrganizationId { get; set; }
         public int CustomerId { get; set; }
+        public bool IsDeleted { get; set; }
     }
 }

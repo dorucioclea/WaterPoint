@@ -5,7 +5,8 @@ namespace WaterPoint.Core.Domain.Payloads.Customers
 {
     public class WriteCustomerPayload : IPayload
     {
-        public int? CustomerTypeId { get; set; }
+        [Required]
+        public int CustomerTypeId { get; set; }
 
         public bool IsProspect { get; set; }
 

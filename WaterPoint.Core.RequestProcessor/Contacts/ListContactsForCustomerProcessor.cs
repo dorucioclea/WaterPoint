@@ -33,7 +33,8 @@ namespace WaterPoint.Core.RequestProcessor.Contacts
             _query.BuildQuery(new ListContactsForCustomer
             {
                 OrganizationId = input.OrganizationId,
-                CustomerId = input.CustomerId
+                CustomerId = input.CustomerId,
+                IsDeleted = input.IsDeleted ?? false
             });
 
             var result = _runner.Run(_query);

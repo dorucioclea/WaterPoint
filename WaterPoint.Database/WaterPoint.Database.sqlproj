@@ -139,6 +139,11 @@
     <Build Include="dbo\Tables\CustomerContact.sql" />
     <Build Include="dbo\StoredProcedures\List_CustomerContacts_By_CustomerId.sql" />
     <Build Include="dbo\StoredProcedures\Add_CustomerContact.sql" />
+    <Build Include="dbo\StoredProcedures\Add_CustomerAddress.sql" />
+    <Build Include="dbo\StoredProcedures\List_CustomerAddesses_By_CustomerId.sql" />
+    <Build Include="dbo\StoredProcedures\Get_CustomerAddress_By_CustomerId.sql" />
+    <Build Include="dbo\StoredProcedures\Update_CustomerAddress_IsPrimary.sql" />
+    <Build Include="dbo\StoredProcedures\Update_CustomerAddress_IsPostAddress.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="WaterPoint.Database.publish.xml" />

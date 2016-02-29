@@ -14,7 +14,8 @@ namespace WaterPoint.Core.Bll.Queries.Contacts
             Parameters = new
             {
                 organizationid = parameter.OrganizationId,
-                customerid = parameter.CustomerId
+                customerid = parameter.CustomerId,
+                isdeleted = parameter.IsDeleted
             };
         }
 

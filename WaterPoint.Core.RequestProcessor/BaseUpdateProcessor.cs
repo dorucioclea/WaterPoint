@@ -1,10 +1,11 @@
-﻿using WaterPoint.Api.Common;
+﻿using System;
+using WaterPoint.Api.Common;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts;
 using WaterPoint.Core.Domain.Db;
+using WaterPoint.Core.Domain.Exceptions;
 using WaterPoint.Data.DbContext.Dapper;
 using WaterPoint.Data.Entity;
-using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Core.RequestProcessor
 {
@@ -21,7 +22,7 @@ namespace WaterPoint.Core.RequestProcessor
         private readonly IQuery<TGetParameter, TGetEntity> _getQuery;
         private readonly IQueryRunner _getQueryRunner;
         private readonly ICommand<TUpdateParameter> _updateQuery;
-        private readonly ICommandExecutor _updateCommandExecutor;
+        protected ICommandExecutor CommandExecutor { get; private set; }
 
         protected BaseUpdateProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
@@ -36,25 +37,28 @@ namespace WaterPoint.Core.RequestProcessor
             _getQuery = getQuery;
             _getQueryRunner = getQueryRunner;
             _updateQuery = updateQuery;
-            _updateCommandExecutor = updateCommandExecutor;
+            CommandExecutor = updateCommandExecutor;
         }
 
         public virtual CommandResult Process(TUpdateRequest input)
         {
-            var result = UowProcess(ProcessDeFacto, input);
+            var result = UowProcess(PatchExecution, input);
 
             return new CommandResult(result, result > 0);
         }
 
         public abstract TGetParameter BuildGetParameter(TUpdateRequest input);
 
-        private int ProcessDeFacto(TUpdateRequest input)
+        public int PatchExecution(TUpdateRequest input)
         {
             var getParam = BuildGetParameter(input);
 
             _getQuery.BuildQuery(getParam);
 
             var existing = _getQueryRunner.Run(_getQuery);
+
+            if (existing == null)
+                throw new NotFoundException();
 
             var updated =
                 _patchEntityAdapter.PatchEnitity<TPayload, TGetEntity, TUpdateParameter>
@@ -66,7 +70,7 @@ namespace WaterPoint.Core.RequestProcessor
             //then build the query to update the object.
             _updateQuery.BuildQuery(updated);
 
-            return _updateCommandExecutor.ExecuteUpdate(_updateQuery);
+            return CommandExecutor.ExecuteUpdate(_updateQuery);
         }
     }
 }
