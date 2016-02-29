@@ -144,6 +144,7 @@
     <Build Include="dbo\StoredProcedures\Get_CustomerAddress_By_CustomerId.sql" />
     <Build Include="dbo\StoredProcedures\Update_CustomerAddress_IsPrimary.sql" />
     <Build Include="dbo\StoredProcedures\Update_CustomerAddress_IsPostAddress.sql" />
+    <Build Include="dbo\StoredProcedures\Procedure1.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="WaterPoint.Database.publish.xml" />

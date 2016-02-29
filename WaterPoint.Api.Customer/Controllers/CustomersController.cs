@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Web.Http;
 using System.Web.Http.OData;
 using WaterPoint.Api.Common;
@@ -12,7 +13,7 @@ using WaterPoint.Core.Domain.Requests.Customers;
 namespace WaterPoint.Api.Customer.Controllers
 {
     [Authorize]
-    [RoutePrefix(RouteDefinitions.Customers.Prefix)]
+    [RoutePrefix("organizations/{organizationId:int}/customers")]
     public class CustomersController : BaseOrgnizationContextController
     {
         private readonly IListProcessor<SearchTop10CustomerRequest, CustomerContract> _searchTop10Processor;
@@ -20,6 +21,7 @@ namespace WaterPoint.Api.Customer.Controllers
         private readonly IWriteRequestProcessor<CreateCustomerRequest> _createCustomerRequest;
         private readonly IWriteRequestProcessor<UpdateCustomerRequest> _updateRequestProcessor;
         private readonly IRequestProcessor<GetCustomerRequest, CustomerContract> _getCustomerByIdProcessor;
+        private readonly IWriteRequestProcessor<DeleteCustomersRequest> _deleteRequestProcessor;
 
 
         public CustomersController(
@@ -27,13 +29,16 @@ namespace WaterPoint.Api.Customer.Controllers
             IPagedProcessor<ListCustomersRequest, CustomerContract> listCustomerRequestProcessor,
             IWriteRequestProcessor<CreateCustomerRequest> createCustomerRequest,
             IWriteRequestProcessor<UpdateCustomerRequest> updateRequestProcessor,
-            IRequestProcessor<GetCustomerRequest, CustomerContract> getCustomerByIdProcessor)
+            IRequestProcessor<GetCustomerRequest, CustomerContract> getCustomerByIdProcessor,
+            IWriteRequestProcessor<DeleteCustomersRequest> deleteRequestProcessor
+            )
         {
             _searchTop10Processor = searchTop10Processor;
             _listCustomerRequestProcessor = listCustomerRequestProcessor;
             _createCustomerRequest = createCustomerRequest;
             _updateRequestProcessor = updateRequestProcessor;
             _getCustomerByIdProcessor = getCustomerByIdProcessor;
+            _deleteRequestProcessor = deleteRequestProcessor;
         }
 
         [Route("top10")]
@@ -102,6 +107,17 @@ namespace WaterPoint.Api.Customer.Controllers
             var customer = _updateRequestProcessor.Process(request);
 
             return Ok(customer);
+        }
+
+        [Route("")]
+        public IHttpActionResult Delete([FromUri]DeleteCustomersRequest request)
+        {
+            var result = _deleteRequestProcessor.Process(request);
+
+            if (result.IsSuccess)
+                return Ok(result);
+
+            return BadRequest();
         }
     }
 }
