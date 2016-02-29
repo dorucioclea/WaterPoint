@@ -7,6 +7,6 @@ namespace WaterPoint.Core.Domain.QueryParameters.Customers
     {
         public int OrganizationId { get; set; }
 
-        public IEnumerable<int> Customer { get; set; }
+        public string Customers { get; set; }
     }
 }

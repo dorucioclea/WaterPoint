@@ -112,6 +112,9 @@ namespace WaterPoint.Api.Customer.Controllers
         [Route("")]
         public IHttpActionResult Delete([FromUri]DeleteCustomersRequest request)
         {
+            if (!ModelState.IsValid)
+                return BadRequestWithErrors(ModelState);
+
             var result = _deleteRequestProcessor.Process(request);
 
             if (result.IsSuccess)

@@ -107,7 +107,7 @@
     <Compile Include="Customers\UpdateCustomerProcessor.cs" />
     <Compile Include="Jobs\UpdateJobProcessor.cs" />
     <Compile Include="Mappers\EntitiesToContracts\AddressMapper.cs" />
-    <Compile Include="Mappers\EntitiesToContracts\Class1.cs" />
+    <Compile Include="Mappers\EntitiesToContracts\JobCategoriesMapper.cs" />
     <Compile Include="Mappers\EntitiesToContracts\ContactMapper.cs" />
     <Compile Include="Mappers\EntitiesToContracts\InvoiceJobCostItemMapper.cs" />
     <Compile Include="Mappers\EntitiesToContracts\QuoteCostItemMapper.cs" />

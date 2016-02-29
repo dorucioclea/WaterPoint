@@ -1,4 +1,6 @@
-﻿using WaterPoint.Api.Common;
+﻿using System;
+using System.Linq;
+using WaterPoint.Api.Common;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts;
 using WaterPoint.Core.Domain.QueryParameters.Customers;
@@ -21,7 +23,7 @@ namespace WaterPoint.Core.RequestProcessor.Customers
             IDapperUnitOfWork dapperUnitOfWork,
             ICommand<DeleteCustomer> deleteCommand,
             ICommandExecutor deleteExecutor)
-            :base(dapperUnitOfWork)
+            : base(dapperUnitOfWork)
         {
             _deleteCommand = deleteCommand;
             _deleteExecutor = deleteExecutor;
@@ -38,7 +40,7 @@ namespace WaterPoint.Core.RequestProcessor.Customers
         {
             var param = new DeleteCustomer
             {
-                Customer = input.Customer,
+                Customers = input.Customers,
                 OrganizationId = input.OrganizationId
             };
 

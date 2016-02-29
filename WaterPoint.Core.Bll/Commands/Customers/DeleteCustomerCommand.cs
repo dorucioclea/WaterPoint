@@ -1,6 +1,5 @@
 ﻿using WaterPoint.Core.Domain.QueryParameters.Customers;
 using WaterPoint.Core.Domain.Db;
-using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Core.Bll.Commands.Customers
 {
@@ -13,7 +12,7 @@ namespace WaterPoint.Core.Bll.Commands.Customers
             Parameters = new
             {
                 organizationid = parameter.OrganizationId,
-                customerIds = string.Join(",", parameter.Customer)
+                customerIds = parameter.Customers
             };
         }
 
