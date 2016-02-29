@@ -63,6 +63,7 @@
     <Compile Include="Attributes\StringValueAttribute.cs" />
     <Compile Include="Attributes\TableAttribute.cs" />
     <Compile Include="DataEntities\Address.cs" />
+    <Compile Include="DataEntities\JobCategory.cs" />
     <Compile Include="DataEntities\Contact.cs" />
     <Compile Include="DataEntities\OrganizationUser.cs" />
     <Compile Include="DataEntities\Supplier.cs" />
