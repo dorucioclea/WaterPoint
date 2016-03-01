@@ -19,9 +19,9 @@ namespace WaterPoint.Core.Domain.Contracts
         }
     }
 
-    public class CreateCommandResult : CommandResult
+    public class IdCommandResult : CommandResult
     {
-        public CreateCommandResult(int id, bool success)
+        public IdCommandResult(int id, bool success)
             : base(id, success)
         {
             if (success)
@@ -29,9 +29,9 @@ namespace WaterPoint.Core.Domain.Contracts
         }
     }
 
-    public class UpdateCommandResult : CommandResult
+    public class ObjectsCountCommandResult : CommandResult
     {
-        public UpdateCommandResult(int rowsAffected, bool success)
+        public ObjectsCountCommandResult(int rowsAffected, bool success)
             : base(rowsAffected, success)
         {
             Data = new { objectsUpdated = rowsAffected };

@@ -19,6 +19,7 @@ BEGIN
       ,con.[UtcCreated]
       ,con.[UtcUpdated]
       ,con.[Uid]
+      ,cc.[IsPrimary]
     FROM
         [dbo].[Contact] con
         JOIN [dbo].[CustomerContact] cc ON con.Id = cc.ContactId AND cc.CustomerId = @customerid

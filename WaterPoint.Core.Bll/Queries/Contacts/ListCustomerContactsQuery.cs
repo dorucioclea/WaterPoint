@@ -2,12 +2,13 @@
 using WaterPoint.Core.Domain.Db;
 using WaterPoint.Core.Domain.QueryParameters.Contacts;
 using WaterPoint.Data.Entity.DataEntities;
+using WaterPoint.Data.Entity.Pocos.Contacts;
 
 namespace WaterPoint.Core.Bll.Queries.Contacts
 {
-    public class ListContactsForCustomerQuery : IQuery<ListContactsForCustomer, Contact>
+    public class ListCustomerContactsQuery : IQuery<ListCustomerContacts, CustomerContactPoco>
     {
-        public void BuildQuery(ListContactsForCustomer parameter)
+        public void BuildQuery(ListCustomerContacts parameter)
         {
             Query = "[dbo].[List_CustomerContacts_By_CustomerId]";
 

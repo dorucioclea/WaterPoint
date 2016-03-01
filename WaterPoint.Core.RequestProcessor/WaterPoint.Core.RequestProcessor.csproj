@@ -80,10 +80,12 @@
     <Compile Include="Addresses\UpdateAddressForCustomerProcessor.cs" />
     <Compile Include="BaseDapperUowRequestProcess.cs" />
     <Compile Include="BaseCreateProcessor.cs" />
+    <Compile Include="Contacts\CreateContactProcessor.cs" />
+    <Compile Include="Contacts\ListContactsProcessor.cs" />
     <Compile Include="Contacts\UpdateContactProcessor.cs" />
     <Compile Include="Contacts\GetContactProcessor.cs" />
-    <Compile Include="Contacts\CreateContactForCustomerProcessor.cs" />
-    <Compile Include="Contacts\ListContactsForCustomerProcessor.cs" />
+    <Compile Include="Contacts\CreateCustomerContactProcessor.cs" />
+    <Compile Include="Contacts\ListCustomerContactProcessor.cs" />
     <Compile Include="CostItems\ListCostItemsProcessor.cs" />
     <Compile Include="CostItems\CreateCostItemProcessor.cs" />
     <Compile Include="CostItems\GetCostItemProcessor.cs" />

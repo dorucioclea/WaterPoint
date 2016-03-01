@@ -124,7 +124,8 @@
     <Compile Include="Queries\Addresses\GetAddressForCustomerQuery.cs" />
     <Compile Include="Queries\Addresses\ListAddressesForCustomerQuery.cs" />
     <Compile Include="Queries\Contacts\GetContactQuery.cs" />
-    <Compile Include="Queries\Contacts\ListContactsForCustomerQuery.cs" />
+    <Compile Include="Queries\Contacts\ListContactsQuery.cs" />
+    <Compile Include="Queries\Contacts\ListCustomerContactsQuery.cs" />
     <Compile Include="Queries\CostItems\ListCostItemQuery.cs" />
     <Compile Include="Queries\CostItems\GetCostItemQuery.cs" />
     <Compile Include="Queries\Credentials\GetCredentialQuery.cs" />

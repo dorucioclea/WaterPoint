@@ -12,11 +12,18 @@ BEGIN
 			WHERE CustomerId = @customerid
 		END
 
-	INSERT [dbo].[CustomerContact]
-	(ContactId, CustomerId, IsPrimary)
-	VALUES
-	(@contactid, @customerid, @isprimary)
+    IF NOT EXISTS(SELECT * FROM [dbo].[CustomerContact] WHERE ContactId = @contactid AND CustomerId = @customerid)
+        BEGIN
+            INSERT [dbo].[CustomerContact]
+	        (ContactId, CustomerId, IsPrimary)
+	        VALUES
+	        (@contactid, @customerid, @isprimary)
 
-	SELECT @@ROWCOUNT
+            SELECT 1;
+        END
+    ELSE
+        BEGIN
+            SELECT 0
+        END
 END
 GO

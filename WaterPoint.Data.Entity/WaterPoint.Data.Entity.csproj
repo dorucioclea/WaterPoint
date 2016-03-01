@@ -89,6 +89,7 @@
     <Compile Include="Enums\JobTimesheetTypes.cs" />
     <Compile Include="IDataEntity.cs" />
     <Compile Include="Pocos\Addresses\Class1.cs" />
+    <Compile Include="Pocos\Contacts\Class1.cs" />
     <Compile Include="Pocos\Customers\BasicCustomerWithAddressPoco.cs" />
     <Compile Include="Pocos\Customers\CustomerPoco.cs" />
     <Compile Include="Pocos\JobCostItems\JobCostItemListPoco.cs" />

@@ -47,7 +47,7 @@ namespace WaterPoint.Core.RequestProcessor.Addresses
         {
             var result = UowProcess(ProcessDeFacto, input);
 
-            return new CreateCommandResult(result, result > 0);
+            return new IdCommandResult(result, result > 0);
         }
 
         private int ProcessDeFacto(CreateAddressForCustomerRequest input)

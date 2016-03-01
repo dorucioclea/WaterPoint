@@ -8,19 +8,20 @@ using WaterPoint.Core.Domain.Requests.Contacts;
 using WaterPoint.Core.RequestProcessor.Mappers.EntitiesToContracts;
 using WaterPoint.Data.DbContext.Dapper;
 using WaterPoint.Data.Entity.DataEntities;
+using WaterPoint.Data.Entity.Pocos.Contacts;
 
 namespace WaterPoint.Core.RequestProcessor.Contacts
 {
-    public class ListContactsForCustomerProcessor :
+    public class ListCustomerContactProcessor :
         BaseDapperUowRequestProcess,
-        IListProcessor<ListContactsForCustomerRequest, ContactContract>
+        IListProcessor<ListCustomerContactsRequest, CustomerContactContract>
     {
-        private readonly IQuery<ListContactsForCustomer, Contact> _query;
+        private readonly IQuery<ListCustomerContacts, CustomerContactPoco> _query;
         private readonly IQueryListRunner _runner;
 
-        public ListContactsForCustomerProcessor(
+        public ListCustomerContactProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
-            IQuery<ListContactsForCustomer, Contact> query,
+            IQuery<ListCustomerContacts, CustomerContactPoco> query,
             IQueryListRunner runner)
             : base(dapperUnitOfWork)
         {
@@ -28,9 +29,9 @@ namespace WaterPoint.Core.RequestProcessor.Contacts
             _runner = runner;
         }
 
-        public IEnumerable<ContactContract> Process(ListContactsForCustomerRequest input)
+        public IEnumerable<CustomerContactContract> Process(ListCustomerContactsRequest input)
         {
-            _query.BuildQuery(new ListContactsForCustomer
+            _query.BuildQuery(new ListCustomerContacts
             {
                 OrganizationId = input.OrganizationId,
                 CustomerId = input.CustomerId,

@@ -2,6 +2,11 @@
 
 namespace WaterPoint.Core.Domain.Contracts.Contacts
 {
+    public class CustomerContactContract : ContactContract
+    {
+        public bool IsPrimary { get; set; }
+    }
+
     public class ContactContract : IContract
     {
         public int Id { get; set; }

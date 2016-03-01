@@ -26,14 +26,14 @@ namespace WaterPoint.Core.RequestProcessor
 
         public virtual CommandResult Process(TRequest input)
         {
-            var result = UowProcess(ProcessDeFacto, input);
+            var result = UowProcess(Execute, input);
 
-            return new CreateCommandResult(result, result > 0);
+            return new IdCommandResult(result, result > 0);
         }
 
         public abstract TParameter BuildParameter(TRequest input);
 
-        private int ProcessDeFacto(TRequest input)
+        public virtual int Execute(TRequest input)
         {
             _command.BuildQuery(BuildParameter(input));
 

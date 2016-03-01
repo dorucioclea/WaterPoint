@@ -106,7 +106,8 @@
     <Compile Include="Db\ISqlBuilderFactory.cs" />
     <Compile Include="Contracts\IContract.cs" />
     <Compile Include="Payloads\Addresses\WriteAddressPayload.cs" />
-    <Compile Include="Payloads\Contacts\WriteCostItemPayload.cs" />
+    <Compile Include="Payloads\Contacts\CreateCustomerContactPayload.cs" />
+    <Compile Include="Payloads\Contacts\WriteContactPayload.cs" />
     <Compile Include="Payloads\Invoices\CreateInvoicePayload.cs" />
     <Compile Include="Payloads\InvoiceJobTasks\CreateJobInvoiceTaskPayload.cs" />
     <Compile Include="Payloads\InvoiceJobTasks\UpdateJobInvoiceTaskPayload.cs" />
@@ -136,7 +137,8 @@
     <Compile Include="QueryParameters\Contacts\GetContact.cs" />
     <Compile Include="QueryParameters\Contacts\CreateContact.cs" />
     <Compile Include="QueryParameters\Contacts\CreateCustomerContact.cs" />
-    <Compile Include="QueryParameters\Contacts\ListContactsForCustomer.cs" />
+    <Compile Include="QueryParameters\Contacts\ListContact.cs" />
+    <Compile Include="QueryParameters\Contacts\ListCustomerContacts.cs" />
     <Compile Include="QueryParameters\Contacts\UpdateContact.cs" />
     <Compile Include="QueryParameters\CostItems\CreateCostItem.cs" />
     <Compile Include="QueryParameters\CostItems\GetCostItem.cs" />
@@ -213,9 +215,11 @@
     <Compile Include="Requests\Addresses\GetAddressForCustomerRequest.cs" />
     <Compile Include="Requests\Addresses\ListAddresssForCustomerRequest.cs" />
     <Compile Include="Requests\Addresses\UpdateAddressForCustomerRequest.cs" />
-    <Compile Include="Requests\Contacts\CreateContactForCustomerRequest.cs" />
+    <Compile Include="Requests\Contacts\CreateCustomerContactRequest.cs" />
+    <Compile Include="Requests\Contacts\CreateContactRequest.cs" />
     <Compile Include="Requests\Contacts\GetContactRequest.cs" />
-    <Compile Include="Requests\Contacts\ListContactsForCustomerRequest.cs" />
+    <Compile Include="Requests\Contacts\ListCustomerContactsRequest.cs" />
+    <Compile Include="Requests\Contacts\ListContactsRequest.cs" />
     <Compile Include="Requests\Contacts\UpdateContactRequest.cs" />
     <Compile Include="Requests\CostItems\CreateCostItemRequest.cs" />
     <Compile Include="Requests\CostItems\GetCostItemRequest.cs" />

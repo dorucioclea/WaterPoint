@@ -22,6 +22,7 @@ using WaterPoint.Core.RequestProcessor.Addresses;
 using WaterPoint.Core.RequestProcessor.Contacts;
 using WaterPoint.Data.Entity.DataEntities;
 using WaterPoint.Data.Entity.Pocos.Addresses;
+using WaterPoint.Data.Entity.Pocos.Contacts;
 using WaterPoint.Data.Entity.Pocos.Jobs;
 
 namespace WaterPoint.Api.DependencyInjection
@@ -47,9 +48,7 @@ namespace WaterPoint.Api.DependencyInjection
 
             Bind<IQuery<SearchTop10Customers, Customer>>().To<SearchTop10CustomersQuery>();
 
-            Bind<IQuery<ListContactsForCustomer, Contact>>().To<ListContactsForCustomerQuery>();
-
-            Bind<IQuery<GetContact, Contact>>().To<GetContactQuery>();
+            Bind<IQuery<ListCustomerContacts, CustomerContactPoco>>().To<ListCustomerContactsQuery>();
 
             Bind<IQuery<ListAddressesForCustomer, CustomerAddressPoco>>().To<ListAddressesForCustomerQuery>();
 
@@ -64,7 +63,6 @@ namespace WaterPoint.Api.DependencyInjection
             Bind<ICommand<UpdateCustomer>>().To<UpdateCustomerCommand>();
             Bind<ICommand<CreateContact>>().To<CreateContactCommand>();
             Bind<ICommand<CreateCustomerContact>>().To<CreateCustomerContactCommand>();
-            Bind<ICommand<UpdateContact>>().To<UpdateContactCommand>();
             Bind<ICommand<CreateAddress>>().To<CreateAddressCommand>();
             Bind<ICommand<CreateCustomerAddress>>().To<CreateCustomerAddressCommand>();
             Bind<ICommand<UpdateAddress>>().To<UpdateAddressCommand>();
@@ -92,18 +90,11 @@ namespace WaterPoint.Api.DependencyInjection
             Bind<IListProcessor<SearchTop10CustomerRequest, CustomerContract>>()
                 .To<SearchTop10Processor>();
 
+            Bind<IListProcessor<ListCustomerContactsRequest, CustomerContactContract>>()
+                .To<ListCustomerContactProcessor>();
 
-            Bind<IListProcessor<ListContactsForCustomerRequest, ContactContract>>()
-                .To<ListContactsForCustomerProcessor>();
-
-            Bind<IWriteRequestProcessor<CreateContactForCustomerRequest>>()
-                .To<CreateContactForCustomerProcessor>();
-
-            Bind<IRequestProcessor<GetContactRequest, ContactContract>>()
-                .To<GetContactProcessor>();
-
-            Bind<IWriteRequestProcessor<UpdateContactRequest>>()
-                .To<UpdateContactProcessor>();
+            Bind<IWriteRequestProcessor<CreateCustomerContactRequest>>()
+                .To<CreateCustomerContactProcessor>();
 
             Bind<IWriteRequestProcessor<CreateAddressForCustomerRequest>>()
                 .To<CreateAddressForCustomerProcessor>();
