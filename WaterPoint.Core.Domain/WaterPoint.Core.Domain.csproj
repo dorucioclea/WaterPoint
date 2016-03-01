@@ -73,7 +73,7 @@
     <Compile Include="Contracts\CostItems\CostItemContract.cs" />
     <Compile Include="Contracts\Credentials\ValidCredentialContract.cs" />
     <Compile Include="Contracts\Customers\CustomerIdNameContract.cs" />
-    <Compile Include="Contracts\JobCategories\JobCategoryIdDescContract.cs" />
+    <Compile Include="Contracts\JobCategories\JobCategoryContract.cs" />
     <Compile Include="Contracts\JobCostItems\IJobCostItemBasicContract.cs" />
     <Compile Include="Contracts\JobCostItems\JobCostItemBasicContract.cs" />
     <Compile Include="Contracts\JobStatuses\JobStatusIdNameContract.cs" />
@@ -149,6 +149,7 @@
     <Compile Include="QueryParameters\Credentials\GetAuthClient.cs" />
     <Compile Include="QueryParameters\Credentials\GetCredential.cs" />
     <Compile Include="QueryParameters\Credentials\ListCredentials.cs" />
+    <Compile Include="QueryParameters\Customers\DeleteCustomer.cs" />
     <Compile Include="QueryParameters\Customers\CreateCustomer.cs" />
     <Compile Include="QueryParameters\Customers\GetCustomer.cs" />
     <Compile Include="QueryParameters\Customers\ListCustomerJobs.cs" />
@@ -156,6 +157,7 @@
     <Compile Include="QueryParameters\Customers\ListCustomers.cs" />
     <Compile Include="QueryParameters\Customers\UpdateCustomer.cs" />
     <Compile Include="QueryParameters\Invoices\CreateInvoice.cs" />
+    <Compile Include="QueryParameters\JobCategories\ListJobCategories.cs" />
     <Compile Include="QueryParameters\JobCostItems\CreateJobCostItem.cs" />
     <Compile Include="QueryParameters\JobCostItems\UpdateJobCostItem.cs" />
     <Compile Include="QueryParameters\Jobs\CreateJob.cs" />
@@ -226,7 +228,9 @@
     <Compile Include="Requests\CostItems\ListCostItemsRequest.cs" />
     <Compile Include="Requests\CostItems\UpdateCostItemRequest.cs" />
     <Compile Include="Requests\Credentials\ListValidateCredentialsRequest.cs" />
+    <Compile Include="Requests\Customers\DeleteCustomersRequest.cs" />
     <Compile Include="Requests\Customers\SearchTop10CustomerRequest.cs" />
+    <Compile Include="Requests\JobCategories\ListJobCategoriesRequest.cs" />
     <Compile Include="Requests\Staff\CreateStaffRequest.cs" />
     <Compile Include="Requests\Staff\ListStaffRequest.cs" />
     <Compile Include="Requests\Suppliers\CreateSupplierRequest.cs" />

@@ -93,7 +93,9 @@
     <Compile Include="Credentials\ListValidateCredentialProcessor.cs" />
     <Compile Include="Customers\ListCustomerJobsProcessor.cs" />
     <Compile Include="Customers\SearchTop10Processor.cs" />
+    <Compile Include="Customers\DeleteCustomerProcessor.cs" />
     <Compile Include="Invoices\CreateInvoiceProcessor.cs" />
+    <Compile Include="JobCategories\ListJobCategoriesProcessor.cs" />
     <Compile Include="JobCostItems\UpdateJobCostItemProcessor.cs" />
     <Compile Include="JobCostItems\GetJobCostItemProcessor.cs" />
     <Compile Include="JobCostItems\CreateJobCostItemProcessor.cs" />
@@ -107,6 +109,7 @@
     <Compile Include="Customers\UpdateCustomerProcessor.cs" />
     <Compile Include="Jobs\UpdateJobProcessor.cs" />
     <Compile Include="Mappers\EntitiesToContracts\AddressMapper.cs" />
+    <Compile Include="Mappers\EntitiesToContracts\JobCategoriesMapper.cs" />
     <Compile Include="Mappers\EntitiesToContracts\ContactMapper.cs" />
     <Compile Include="Mappers\EntitiesToContracts\InvoiceJobCostItemMapper.cs" />
     <Compile Include="Mappers\EntitiesToContracts\QuoteCostItemMapper.cs" />

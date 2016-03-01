@@ -37,4 +37,13 @@ namespace WaterPoint.Core.Domain.Contracts
             Data = new { objectsUpdated = rowsAffected };
         }
     }
+
+    public class DeleteCommandResult : UpdateCommandResult
+    {
+        public DeleteCommandResult(int rowsAffected, bool success)
+            : base(rowsAffected, success)
+        {
+            Data = new { objectsDeleted = rowsAffected };
+        }
+    }
 }

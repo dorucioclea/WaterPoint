@@ -66,7 +66,7 @@ namespace WaterPoint.Core.RequestProcessor.Mappers.EntitiesToContracts
             result.Version = source.Version.ToSha1(source.Id.ToString());
 
             if (source.JobCategoryId.HasValue)
-                result.Category = new JobCategoryIdDescContract
+                result.Category = new JobCategoryContract
                 {
                     Id = source.JobCategoryId.Value,
                     Description = source.JobCategoryDescription

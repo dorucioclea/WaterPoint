@@ -22,7 +22,7 @@ namespace WaterPoint.Core.Domain.Contracts.Jobs
         public DateTime UtcCreated { get; set; }
         public DateTime UtcUpdated { get; set; }
         public string Uid { get; set; }
-        public JobCategoryIdDescContract Category { get; set; }
+        public JobCategoryContract Category { get; set; }
         public CustomerIdNameContract Customer { get; set; }
         public JobStatusIdNameContract JobStatus { get; set; }
     }
