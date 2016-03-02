@@ -50,9 +50,9 @@ namespace WaterPoint.Api.DependencyInjection
 
             Bind<IQuery<ListCustomerContacts, CustomerContactPoco>>().To<ListCustomerContactsQuery>();
 
-            Bind<IQuery<ListAddressesForCustomer, CustomerAddressPoco>>().To<ListAddressesForCustomerQuery>();
+            Bind<IQuery<ListCustomerAddresses, CustomerAddressPoco>>().To<ListCustomerAddressesQuery>();
 
-            Bind<IQuery<GetAddressForCustomer, CustomerAddressPoco>>().To<GetAddressForCustomerQuery>();
+            Bind<IQuery<GetCustomerAddress, CustomerAddressPoco>>().To<GetCustomerAddressQuery>();
 
             Bind<IQuery<GetAddress, Address>>().To<GetAddressQuery>();
         }
@@ -61,11 +61,8 @@ namespace WaterPoint.Api.DependencyInjection
         {
             Bind<ICommand<CreateCustomer>>().To<CreateCustomerCommand>();
             Bind<ICommand<UpdateCustomer>>().To<UpdateCustomerCommand>();
-            Bind<ICommand<CreateContact>>().To<CreateContactCommand>();
             Bind<ICommand<CreateCustomerContact>>().To<CreateCustomerContactCommand>();
-            Bind<ICommand<CreateAddress>>().To<CreateAddressCommand>();
             Bind<ICommand<CreateCustomerAddress>>().To<CreateCustomerAddressCommand>();
-            Bind<ICommand<UpdateAddress>>().To<UpdateAddressCommand>();
             Bind<ICommand<UpdateCustomerAddressIsPrimary>>().To<UpdateCustomerAddressIsPrimaryCommand>();
             Bind<ICommand<UpdateCustomerAddressIsPostAddress>>().To<UpdateCustomerAddressIsPostAddressCommand>();
             Bind<ICommand<DeleteCustomer>>().To<DeleteCustomerCommand>();
@@ -97,17 +94,17 @@ namespace WaterPoint.Api.DependencyInjection
             Bind<IWriteRequestProcessor<CreateCustomerContactRequest>>()
                 .To<CreateCustomerContactProcessor>();
 
-            Bind<IWriteRequestProcessor<CreateAddressForCustomerRequest>>()
-                .To<CreateAddressForCustomerProcessor>();
+            Bind<IWriteRequestProcessor<CreateCustomerAddressRequest>>()
+                .To<CreateCustomerAddressProcessor>();
 
-            Bind<IListProcessor<ListAddressesForCustomerRequest, CustomerAddressContract>>()
-                .To<ListAddressesForCustomerProcessor>();
+            Bind<IListProcessor<ListCustomerAddressesRequest, CustomerAddressContract>>()
+                .To<ListCustomerAddressesProcessor>();
 
-            Bind<IRequestProcessor<GetAddressForCustomerRequest, CustomerAddressContract>>()
-                .To<GetAddressForCustomerProcessor>();
+            Bind<IRequestProcessor<GetCustomerAddressRequest, CustomerAddressContract>>()
+                .To<GetCustomerAddressProcessor>();
 
-            Bind<IWriteRequestProcessor<UpdateAddressForCustomerRequest>>()
-                .To<UpdateAddressForCustomerProcessor>();
+            Bind<IWriteRequestProcessor<UpdateCustomerAddressRequest>>()
+                .To<UpdateCustomerAddressProcessor>();
 
             Bind<IWriteRequestProcessor<DeleteCustomersRequest>>()
                 .To<DeleteCustomerProcessor>();

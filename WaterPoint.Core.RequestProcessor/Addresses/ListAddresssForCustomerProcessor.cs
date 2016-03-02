@@ -11,16 +11,16 @@ using WaterPoint.Data.Entity.Pocos.Addresses;
 
 namespace WaterPoint.Core.RequestProcessor.Addresses
 {
-    public class ListAddressesForCustomerProcessor :
+    public class ListCustomerAddressesProcessor :
         BaseDapperUowRequestProcess,
-        IListProcessor<ListAddressesForCustomerRequest, CustomerAddressContract>
+        IListProcessor<ListCustomerAddressesRequest, CustomerAddressContract>
     {
-        private readonly IQuery<ListAddressesForCustomer, CustomerAddressPoco> _query;
+        private readonly IQuery<ListCustomerAddresses, CustomerAddressPoco> _query;
         private readonly IQueryListRunner _runner;
 
-        public ListAddressesForCustomerProcessor(
+        public ListCustomerAddressesProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
-            IQuery<ListAddressesForCustomer, CustomerAddressPoco> query,
+            IQuery<ListCustomerAddresses, CustomerAddressPoco> query,
             IQueryListRunner runner)
             : base(dapperUnitOfWork)
         {
@@ -28,9 +28,9 @@ namespace WaterPoint.Core.RequestProcessor.Addresses
             _runner = runner;
         }
 
-        public IEnumerable<CustomerAddressContract> Process(ListAddressesForCustomerRequest input)
+        public IEnumerable<CustomerAddressContract> Process(ListCustomerAddressesRequest input)
         {
-            _query.BuildQuery(new ListAddressesForCustomer
+            _query.BuildQuery(new ListCustomerAddresses
             {
                 OrganizationId = input.OrganizationId,
                 CustomerId = input.CustomerId,

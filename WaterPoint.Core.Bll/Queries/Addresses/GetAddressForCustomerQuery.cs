@@ -4,9 +4,9 @@ using WaterPoint.Data.Entity.Pocos.Addresses;
 
 namespace WaterPoint.Core.Bll.Queries.Addresses
 {
-    public class GetAddressForCustomerQuery : IQuery<GetAddressForCustomer, CustomerAddressPoco>
+    public class GetCustomerAddressQuery : IQuery<GetCustomerAddress, CustomerAddressPoco>
     {
-        public void BuildQuery(GetAddressForCustomer parameter)
+        public void BuildQuery(GetCustomerAddress parameter)
         {
             Query = "[dbo].[Get_CustomerAddress_By_CustomerId]";
 

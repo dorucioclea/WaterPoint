@@ -38,7 +38,7 @@ namespace WaterPoint.Core.Domain.Contracts
         }
     }
 
-    public class DeleteCommandResult : UpdateCommandResult
+    public class DeleteCommandResult : ObjectsCountCommandResult
     {
         public DeleteCommandResult(int rowsAffected, bool success)
             : base(rowsAffected, success)

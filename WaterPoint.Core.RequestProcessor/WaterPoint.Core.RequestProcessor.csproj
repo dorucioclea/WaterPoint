@@ -74,10 +74,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Addresses\CreateAddressProcessor.cs" />
     <Compile Include="Addresses\CreateAddressForCustomerProcessor.cs" />
     <Compile Include="Addresses\GetAddressForCustomerProcessor.cs" />
     <Compile Include="Addresses\ListAddresssForCustomerProcessor.cs" />
     <Compile Include="Addresses\UpdateAddressForCustomerProcessor.cs" />
+    <Compile Include="Addresses\UpdateAddressProcessor.cs" />
     <Compile Include="BaseDapperUowRequestProcess.cs" />
     <Compile Include="BaseCreateProcessor.cs" />
     <Compile Include="Contacts\CreateContactProcessor.cs" />

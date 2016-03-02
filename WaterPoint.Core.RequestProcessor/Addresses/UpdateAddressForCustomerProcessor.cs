@@ -1,4 +1,5 @@
 ﻿using WaterPoint.Api.Common;
+using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts;
 using WaterPoint.Core.Domain.Db;
 using WaterPoint.Core.Domain.Exceptions;
@@ -6,57 +7,42 @@ using WaterPoint.Core.Domain.Payloads.Addresses;
 using WaterPoint.Core.Domain.QueryParameters.Addresses;
 using WaterPoint.Core.Domain.Requests.Addresses;
 using WaterPoint.Data.DbContext.Dapper;
-using WaterPoint.Data.Entity.DataEntities;
-using WaterPoint.Data.Entity.Pocos.Addresses;
 
 namespace WaterPoint.Core.RequestProcessor.Addresses
 {
-    public class UpdateAddressForCustomerProcessor :
-        BaseUpdateProcessor<UpdateAddressForCustomerRequest, WriteAddressPayload, UpdateAddress, GetAddress, Address>
+    public class UpdateCustomerAddressProcessor :
+        BaseDapperUowRequestProcess,
+        IWriteRequestProcessor<UpdateCustomerAddressRequest>
     {
         private readonly ICommand<UpdateCustomerAddressIsPostAddress> _updateCustomerAddressPost;
         private readonly ICommand<UpdateCustomerAddressIsPrimary> _updateCustomerAddressPrimary;
+        private readonly ICommandExecutor _commandExecutor;
 
-        public UpdateAddressForCustomerProcessor(
+        public UpdateCustomerAddressProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
-            IPatchEntityAdapter patchEntityAdapter,
-            IQuery<GetAddress, Address> getQuery,
-            IQueryRunner getQueryRunner,
-            ICommand<UpdateAddress> updateQuery,
             ICommand<UpdateCustomerAddressIsPostAddress> updateCustomerAddressPost,
             ICommand<UpdateCustomerAddressIsPrimary> updateCustomerAddressPrimary,
             ICommandExecutor updateCommandExecutor)
-            : base(dapperUnitOfWork, patchEntityAdapter, getQuery, getQueryRunner, updateQuery, updateCommandExecutor)
+            :base(dapperUnitOfWork)
         {
             _updateCustomerAddressPost = updateCustomerAddressPost;
             _updateCustomerAddressPrimary = updateCustomerAddressPrimary;
+            _commandExecutor = updateCommandExecutor;
         }
 
-        public override GetAddress BuildGetParameter(UpdateAddressForCustomerRequest input)
-        {
-            return new GetAddress
-            {
-                Id = input.Id,
-                OrganizationId = input.OrganizationId
-            };
-        }
 
-        public override CommandResult Process(UpdateAddressForCustomerRequest input)
+        public CommandResult Process(UpdateCustomerAddressRequest input)
         {
-
             var result = UowProcess(Execution, input);
 
-            return new CommandResult(result, result > 0);
+            return new ObjectsCountCommandResult(result, result > 0);
         }
 
-        public int Execution(UpdateAddressForCustomerRequest input)
+        public int Execution(UpdateCustomerAddressRequest input)
         {
-            var value = PatchExecution(input);
-
-            if (!(value > 0))
-                throw new NotFoundException();
-
             var entity = input.Payload.GetEntity();
+
+            bool primaryUpdated = false, postaddressUpdated = false;
 
             if (entity.IsPrimary.HasValue)
             {
@@ -68,7 +54,7 @@ namespace WaterPoint.Core.RequestProcessor.Addresses
                     AddressId = input.Id
                 });
 
-                CommandExecutor.ExecuteUpdate(_updateCustomerAddressPrimary);
+                postaddressUpdated = _commandExecutor.ExecuteUpdate(_updateCustomerAddressPrimary) > 0;
             }
 
             if (entity.IsPostAddress.HasValue)
@@ -81,10 +67,10 @@ namespace WaterPoint.Core.RequestProcessor.Addresses
                     IsPostAddress = entity.IsPostAddress.Value
                 });
 
-                CommandExecutor.ExecuteUpdate(_updateCustomerAddressPost);
+                primaryUpdated = _commandExecutor.ExecuteUpdate(_updateCustomerAddressPost) > 0;
             }
 
-            return value;
+            return (primaryUpdated || postaddressUpdated) ? 1 : 0;
         }
     }
 }

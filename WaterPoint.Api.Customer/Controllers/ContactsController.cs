@@ -33,7 +33,7 @@ namespace WaterPoint.Api.Customer.Controllers
         [Route("customers/{customerId:int}/contacts")]
         public IHttpActionResult Post(
             [FromUri]CreateCustomerContactRequest request,
-            [FromBody]CreateCustomerContactPayload payload)
+            [FromBody]WriteCustomerContactPayload payload)
         {
             if (!ModelState.IsValid)
                 return BadRequestWithErrors(ModelState);

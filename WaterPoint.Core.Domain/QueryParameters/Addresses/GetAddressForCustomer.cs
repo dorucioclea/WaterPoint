@@ -2,7 +2,7 @@
 
 namespace WaterPoint.Core.Domain.QueryParameters.Addresses
 {
-    public class GetAddressForCustomer : IQueryParameter
+    public class GetCustomerAddress : IQueryParameter
     {
         public int OrganizationId { get; set; }
         public int CustomerId { get; set; }

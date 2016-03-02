@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace WaterPoint.Core.Domain.Payloads.Contacts
 {
-    public class CreateCustomerContactPayload : IPayload
+    public class WriteCustomerContactPayload : IPayload
     {
         [Required]
         public int ContactId { get; set; }

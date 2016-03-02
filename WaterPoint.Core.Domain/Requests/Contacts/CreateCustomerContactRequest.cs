@@ -2,10 +2,10 @@
 
 namespace WaterPoint.Core.Domain.Requests.Contacts
 {
-    public class CreateCustomerContactRequest : ICreateRequest<CreateCustomerContactPayload>
+    public class CreateCustomerContactRequest : ICreateRequest<WriteCustomerContactPayload>
     {
         public int OrganizationId { get; set; }
         public int CustomerId { get; set; }
-        public CreateCustomerContactPayload Payload { get; set; }
+        public WriteCustomerContactPayload Payload { get; set; }
     }
 }
