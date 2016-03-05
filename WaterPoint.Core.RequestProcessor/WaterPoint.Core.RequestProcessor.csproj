@@ -102,6 +102,8 @@
     <Compile Include="JobCostItems\GetJobCostItemProcessor.cs" />
     <Compile Include="JobCostItems\CreateJobCostItemProcessor.cs" />
     <Compile Include="JobCostItems\ListJobCostItemsProcessor.cs" />
+    <Compile Include="JobStatuses\ListJobStatusesProcessor.cs" />
+    <Compile Include="Jobs\Class1.cs" />
     <Compile Include="Jobs\CreateJobProcessor.cs" />
     <Compile Include="Jobs\GetJobByIdProcessor.cs" />
     <Compile Include="Jobs\ListJobsProcessor.cs" />
@@ -111,9 +113,11 @@
     <Compile Include="Customers\UpdateCustomerProcessor.cs" />
     <Compile Include="Jobs\UpdateJobProcessor.cs" />
     <Compile Include="Mappers\EntitiesToContracts\AddressMapper.cs" />
+    <Compile Include="Mappers\EntitiesToContracts\PriorityTypeMapper.cs" />
     <Compile Include="Mappers\EntitiesToContracts\JobCategoriesMapper.cs" />
     <Compile Include="Mappers\EntitiesToContracts\ContactMapper.cs" />
     <Compile Include="Mappers\EntitiesToContracts\InvoiceJobCostItemMapper.cs" />
+    <Compile Include="Mappers\EntitiesToContracts\JobStatusesMapper.cs" />
     <Compile Include="Mappers\EntitiesToContracts\QuoteCostItemMapper.cs" />
     <Compile Include="Mappers\EntitiesToContracts\InvoiceJobTaskMapper.cs" />
     <Compile Include="Mappers\EntitiesToContracts\QuoteMapper.cs" />

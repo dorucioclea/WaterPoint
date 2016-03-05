@@ -205,6 +205,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\PriorityTypesController.cs" />
+    <Compile Include="Controllers\JobStatusesController.cs" />
     <Compile Include="Controllers\AddressesController.cs" />
     <Compile Include="Controllers\ContactsController.cs" />
     <Compile Include="Controllers\StaffController.cs" />
