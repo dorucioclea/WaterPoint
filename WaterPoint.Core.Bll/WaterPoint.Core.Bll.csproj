@@ -98,6 +98,8 @@
     <Compile Include="Commands\Customers\DeleteCustomerCommand.cs" />
     <Compile Include="Commands\Invoices\CreateInvoiceCommand.cs" />
     <Compile Include="Commands\JobCostItems\UpdateJobCostItemCommand.cs" />
+    <Compile Include="Commands\Jobs\Class1.cs" />
+    <Compile Include="Commands\Jobs\CreateJobStaffCommand.cs" />
     <Compile Include="Commands\Jobs\CreateJobCommand.cs" />
     <Compile Include="Commands\Jobs\CreateJobCostItemCommand.cs" />
     <Compile Include="Commands\Jobs\UpdateJobCommand.cs" />

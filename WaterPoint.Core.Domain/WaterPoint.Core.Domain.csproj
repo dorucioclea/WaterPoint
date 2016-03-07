@@ -113,7 +113,7 @@
     <Compile Include="Payloads\Invoices\CreateInvoicePayload.cs" />
     <Compile Include="Payloads\InvoiceJobTasks\CreateJobInvoiceTaskPayload.cs" />
     <Compile Include="Payloads\InvoiceJobTasks\UpdateJobInvoiceTaskPayload.cs" />
-    <Compile Include="Payloads\Jobs\Class1.cs" />
+    <Compile Include="Payloads\Jobs\CreateJobStaffPayload.cs" />
     <Compile Include="Payloads\JobTasks\UpdateJobTaskPayload.cs" />
     <Compile Include="Payloads\JobTimesheet\WriteJobTimesheetPayload.cs" />
     <Compile Include="Payloads\JobCostItems\WriteJobCostItemPayload.cs" />
@@ -137,6 +137,8 @@
     <Compile Include="QueryParameters\Addresses\UpdateAddress.cs" />
     <Compile Include="QueryParameters\Addresses\UpdateCustomerAddress.cs" />
     <Compile Include="QueryParameters\Addresses\UpdateCustomerAddressIsPostAddress.cs" />
+    <Compile Include="QueryParameters\Jobs\DeleteJobStaff.cs" />
+    <Compile Include="QueryParameters\Jobs\CreateJobStaff.cs" />
     <Compile Include="QueryParameters\ListOrgEntities.cs" />
     <Compile Include="QueryParameters\Contacts\GetContact.cs" />
     <Compile Include="QueryParameters\Contacts\CreateContact.cs" />
@@ -222,6 +224,7 @@
     <Compile Include="Requests\Addresses\GetAddressForCustomerRequest.cs" />
     <Compile Include="Requests\Addresses\ListAddresssForCustomerRequest.cs" />
     <Compile Include="Requests\Addresses\UpdateAddressForCustomerRequest.cs" />
+    <Compile Include="Requests\Jobs\DeleteJobStaffRequest.cs" />
     <Compile Include="Requests\Jobs\CreateJobStaffRequest.cs" />
     <Compile Include="Requests\ListOrgEntitiesRequest.cs" />
     <Compile Include="Requests\Contacts\CreateCustomerContactRequest.cs" />

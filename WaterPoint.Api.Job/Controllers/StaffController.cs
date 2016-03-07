@@ -1,12 +1,8 @@
 ﻿using System.Web.Http;
-using System.Web.Http.OData;
-using WaterPoint.Api.Common;
 using WaterPoint.Api.Common.BaseControllers;
 using WaterPoint.Core.Domain;
-using WaterPoint.Core.Domain.Contracts;
-using WaterPoint.Core.Domain.Contracts.JobCostItems;
-using WaterPoint.Core.Domain.Payloads.JobCostItems;
 using WaterPoint.Core.Domain.Payloads.Jobs;
+using WaterPoint.Core.Domain.QueryParameters.Jobs;
 using WaterPoint.Core.Domain.Requests.Jobs;
 
 namespace WaterPoint.Api.Job.Controllers
@@ -16,11 +12,14 @@ namespace WaterPoint.Api.Job.Controllers
     public class StaffController : BaseOrgnizationContextController
     {
         private readonly IWriteRequestProcessor<CreateJobStaffRequest> _createJobStaffProcessor;
+        private readonly IWriteRequestProcessor<DeleteJobStaffRequest> _deleteRequestProcessor;
 
         public StaffController(
-            IWriteRequestProcessor<CreateJobStaffRequest> createJobStaffProcessor)
+            IWriteRequestProcessor<CreateJobStaffRequest> createJobStaffProcessor,
+            IWriteRequestProcessor<DeleteJobStaffRequest> deleteRequestProcessor)
         {
             _createJobStaffProcessor = createJobStaffProcessor;
+            _deleteRequestProcessor = deleteRequestProcessor;
         }
 
         [Route("")]
@@ -36,6 +35,14 @@ namespace WaterPoint.Api.Job.Controllers
             request.Payload = payload;
 
             var result = _createJobStaffProcessor.Process(request);
+
+            return Ok(result);
+        }
+
+        [Route("{staffId:int}")]
+        public IHttpActionResult Delete([FromUri]DeleteJobStaffRequest request)
+        {
+            var result = _deleteRequestProcessor.Process(request);
 
             return Ok(result);
         }

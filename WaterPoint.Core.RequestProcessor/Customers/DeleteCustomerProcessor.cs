@@ -46,7 +46,7 @@ namespace WaterPoint.Core.RequestProcessor.Customers
 
             _deleteCommand.BuildQuery(param);
 
-            return _deleteExecutor.ExecuteInsert(_deleteCommand);
+            return _deleteExecutor.ExecuteNonQuery(_deleteCommand);
         }
     }
 }
