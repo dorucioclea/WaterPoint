@@ -103,7 +103,7 @@
     <Compile Include="JobCostItems\CreateJobCostItemProcessor.cs" />
     <Compile Include="JobCostItems\ListJobCostItemsProcessor.cs" />
     <Compile Include="JobStatuses\ListJobStatusesProcessor.cs" />
-    <Compile Include="Jobs\Class1.cs" />
+    <Compile Include="Jobs\ListPriorityTypesProcessor.cs" />
     <Compile Include="Jobs\CreateJobProcessor.cs" />
     <Compile Include="Jobs\GetJobByIdProcessor.cs" />
     <Compile Include="Jobs\ListJobsProcessor.cs" />
