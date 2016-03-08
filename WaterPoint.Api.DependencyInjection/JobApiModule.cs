@@ -11,6 +11,7 @@ using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts;
 using WaterPoint.Core.Domain.Contracts.JobCategories;
 using WaterPoint.Core.Domain.Contracts.Jobs;
+using WaterPoint.Core.Domain.Contracts.Staff;
 using WaterPoint.Core.Domain.Db;
 using WaterPoint.Core.Domain.QueryParameters.JobCategories;
 using WaterPoint.Core.Domain.Requests.JobCategories;
@@ -37,6 +38,7 @@ namespace WaterPoint.Api.DependencyInjection
             Bind<IQuery<PagedJobs, JobWithCustomerAndStatusPoco>>().To<ListJobsQuery>();
             Bind<IQuery<GetJob, JobWithDetailsPoco>>().To<GetJobDetailsQuery>();
             Bind<IQuery<ListJobCategories, JobCategory>>().To<ListJobCategoriesQuery>();
+            Bind<IQuery<ListJobStaff, Staff>>().To<ListJobStaffQuery>();
         }
 
         public void BindCommands()
@@ -71,6 +73,8 @@ namespace WaterPoint.Api.DependencyInjection
 
             Bind<IWriteRequestProcessor<DeleteJobStaffRequest>>()
                 .To<DeleteJobStaffProcessor>();
+
+            Bind<IListProcessor<ListJobStaffRequest, StaffContract>>().To<ListJobStaffProcessor>();
         }
     }
 }

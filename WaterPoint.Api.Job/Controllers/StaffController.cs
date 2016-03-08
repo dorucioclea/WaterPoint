@@ -18,7 +18,7 @@ namespace WaterPoint.Api.Job.Controllers
 
         public StaffController(
             IWriteRequestProcessor<CreateJobStaffRequest> createJobStaffProcessor,
-            IWriteRequestProcessor<DeleteJobStaffRequest> deleteRequestProcessor)
+            IWriteRequestProcessor<DeleteJobStaffRequest> deleteRequestProcessor,
             IListProcessor<ListJobStaffRequest, StaffContract> listJobStaffPoProcessor)
         {
             _createJobStaffProcessor = createJobStaffProcessor;
