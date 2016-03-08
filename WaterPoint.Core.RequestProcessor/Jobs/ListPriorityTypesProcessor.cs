@@ -14,8 +14,7 @@ using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Core.RequestProcessor.Jobs
 {
-    public class ListPriorityTypesProcessor
-           : BaseDapperUowRequestProcess,
+    public class ListPriorityTypesProcessor : BaseDapperUowRequestProcess,
         IListProcessor<ListOrgEntitiesRequest, PriorityTypeContract>
     {
         private readonly IQuery<ListOrgEntities, PriorityType> _query;

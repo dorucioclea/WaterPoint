@@ -137,6 +137,7 @@
     <Compile Include="QueryParameters\Addresses\UpdateAddress.cs" />
     <Compile Include="QueryParameters\Addresses\UpdateCustomerAddress.cs" />
     <Compile Include="QueryParameters\Addresses\UpdateCustomerAddressIsPostAddress.cs" />
+    <Compile Include="QueryParameters\Jobs\Class1.cs" />
     <Compile Include="QueryParameters\ListOrgEntities.cs" />
     <Compile Include="QueryParameters\Contacts\GetContact.cs" />
     <Compile Include="QueryParameters\Contacts\CreateContact.cs" />
@@ -222,6 +223,7 @@
     <Compile Include="Requests\Addresses\GetAddressForCustomerRequest.cs" />
     <Compile Include="Requests\Addresses\ListAddresssForCustomerRequest.cs" />
     <Compile Include="Requests\Addresses\UpdateAddressForCustomerRequest.cs" />
+    <Compile Include="Requests\Jobs\Class1.cs" />
     <Compile Include="Requests\Jobs\CreateJobStaffRequest.cs" />
     <Compile Include="Requests\ListOrgEntitiesRequest.cs" />
     <Compile Include="Requests\Contacts\CreateCustomerContactRequest.cs" />
