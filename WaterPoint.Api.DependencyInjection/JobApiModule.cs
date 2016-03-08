@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using Ninject.Modules;
 using WaterPoint.Core.Bll.Commands.Jobs;
 using WaterPoint.Core.Bll.Executors;
@@ -43,6 +44,10 @@ namespace WaterPoint.Api.DependencyInjection
             Bind<ICommand<CreateJob>>().To<CreateJobCommand>();
 
             Bind<ICommand<UpdateJob>>().To<UpdateJobCommand>();
+
+            Bind<ICommand<CreateJobStaff>>().To<CreateJobStaffCommand>();
+
+            Bind<ICommand<DeleteJobStaff>>().To<DeleteJobStaffCommand>();
         }
 
         private void BindRequestProcessors()
@@ -61,6 +66,11 @@ namespace WaterPoint.Api.DependencyInjection
             Bind<IListProcessor<ListJobCategoriesRequest, JobCategoryContract>>()
                 .To<ListJobCategoriesProcessor>();
 
+            Bind<IWriteRequestProcessor<CreateJobStaffRequest>>()
+                .To<CreateJobStaffProcessor>();
+
+            Bind<IWriteRequestProcessor<DeleteJobStaffRequest>>()
+                .To<DeleteJobStaffProcessor>();
         }
     }
 }

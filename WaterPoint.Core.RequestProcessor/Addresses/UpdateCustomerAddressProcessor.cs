@@ -1,9 +1,6 @@
-﻿using WaterPoint.Api.Common;
-using WaterPoint.Core.Domain;
+﻿using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts;
 using WaterPoint.Core.Domain.Db;
-using WaterPoint.Core.Domain.Exceptions;
-using WaterPoint.Core.Domain.Payloads.Addresses;
 using WaterPoint.Core.Domain.QueryParameters.Addresses;
 using WaterPoint.Core.Domain.Requests.Addresses;
 using WaterPoint.Data.DbContext.Dapper;
@@ -54,7 +51,7 @@ namespace WaterPoint.Core.RequestProcessor.Addresses
                     AddressId = input.Id
                 });
 
-                postaddressUpdated = _commandExecutor.ExecuteUpdate(_updateCustomerAddressPrimary) > 0;
+                postaddressUpdated = _commandExecutor.ExecuteNonQuery(_updateCustomerAddressPrimary) > 0;
             }
 
             if (entity.IsPostAddress.HasValue)
@@ -67,7 +64,7 @@ namespace WaterPoint.Core.RequestProcessor.Addresses
                     IsPostAddress = entity.IsPostAddress.Value
                 });
 
-                primaryUpdated = _commandExecutor.ExecuteUpdate(_updateCustomerAddressPost) > 0;
+                primaryUpdated = _commandExecutor.ExecuteNonQuery(_updateCustomerAddressPost) > 0;
             }
 
             return (primaryUpdated || postaddressUpdated) ? 1 : 0;

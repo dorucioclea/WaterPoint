@@ -75,10 +75,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Addresses\CreateAddressProcessor.cs" />
-    <Compile Include="Addresses\CreateAddressForCustomerProcessor.cs" />
-    <Compile Include="Addresses\GetAddressForCustomerProcessor.cs" />
-    <Compile Include="Addresses\ListAddresssForCustomerProcessor.cs" />
-    <Compile Include="Addresses\UpdateAddressForCustomerProcessor.cs" />
+    <Compile Include="Addresses\CreateCustomerAddressProcessor.cs" />
+    <Compile Include="Addresses\GetCustomerAddressProcessor.cs" />
+    <Compile Include="Addresses\ListCustomerAddressesProcessor.cs" />
+    <Compile Include="Addresses\UpdateCustomerAddressProcessor.cs" />
     <Compile Include="Addresses\UpdateAddressProcessor.cs" />
     <Compile Include="BaseDapperUowRequestProcess.cs" />
     <Compile Include="BaseCreateProcessor.cs" />
@@ -104,6 +104,8 @@
     <Compile Include="JobCostItems\ListJobCostItemsProcessor.cs" />
     <Compile Include="JobStatuses\ListJobStatusesProcessor.cs" />
     <Compile Include="Jobs\ListJobStaffProcessor.cs" />
+    <Compile Include="Jobs\Class1.cs" />
+    <Compile Include="Jobs\CreateJobStaffProcessor.cs" />
     <Compile Include="Jobs\ListPriorityTypesProcessor.cs" />
     <Compile Include="Jobs\CreateJobProcessor.cs" />
     <Compile Include="Jobs\GetJobByIdProcessor.cs" />
