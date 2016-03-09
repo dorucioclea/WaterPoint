@@ -39,6 +39,9 @@ namespace WaterPoint.Api.Job.Controllers
         {
             var result = _listJobCostItemequestProcessor.Process(request);
 
+            if (result == null)
+                return NotFound();
+
             return Ok(result);
         }
 
