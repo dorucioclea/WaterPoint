@@ -173,6 +173,7 @@
     <None Include="Scripts\classgenerator.sql" />
     <None Include="Scripts\PostDeployment\QuoteStatuses.sql" />
     <None Include="Scripts\PostDeployment\CostItemTypes.sql" />
+    <None Include="Scripts\PostDeployment\UnitOfMeasurements.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="WaterPoint.Database.refactorlog" />
