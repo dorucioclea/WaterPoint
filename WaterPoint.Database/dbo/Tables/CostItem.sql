@@ -3,6 +3,7 @@
     [Id] INT NOT NULL IDENTITY,
     [OrganizationId] INT NOT NULL,
     [CostItemTypeId] INT NOT NULL,
+	[UnitOfMeasurementId] INT NOT NULL DEFAULT(1),
     [SupplierId] INT NULL,
     [ShortDescription] NVARCHAR(200) NOT NULL,
     [LongDescription] NVARCHAR(MAX) NULL,

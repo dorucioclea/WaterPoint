@@ -149,6 +149,7 @@
     <Build Include="dbo\StoredProcedures\List_JobStaff.sql" />
     <Build Include="dbo\StoredProcedures\Add_JobStaff.sql" />
     <Build Include="dbo\Tables\CostItemType.sql" />
+    <Build Include="dbo\Tables\UnitOfMeasurement.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="WaterPoint.Database.publish.xml" />

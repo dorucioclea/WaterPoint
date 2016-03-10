@@ -1,11 +1,11 @@
-﻿MERGE INTO dbo.CostItemType AS i
+﻿MERGE INTO dbo.UnitOfMeasurement AS i
 USING
 (
-	SELECT 1 AS Id, N'普通商品' AS [Description]
+	SELECT 1 AS Id, N'个件' AS [Description]
     UNION ALL
-    SELECT 2 AS Id, N'服务' AS [Description]
+    SELECT 2 AS Id, N'天' AS [Description]
     UNION ALL
-    SELECT 3 AS Id, N'出租商品' AS [Description]
+    SELECT 3 AS Id, N'小时' AS [Description]
 ) AS s
 ON 	i.Id = s.Id
 
