@@ -146,7 +146,7 @@
     <Build Include="dbo\StoredProcedures\Update_CustomerAddress_IsPostAddress.sql" />
     <Build Include="dbo\StoredProcedures\SoftDelete_Customers.sql" />
     <Build Include="dbo\Tables\JobStaff.sql" />
-    <Build Include="dbo\StoredProcedures\Procedure1_1.sql" />
+    <Build Include="dbo\StoredProcedures\List_JobStaff.sql" />
     <Build Include="dbo\StoredProcedures\Add_JobStaff.sql" />
     <Build Include="dbo\Tables\CostItemType.sql" />
   </ItemGroup>
