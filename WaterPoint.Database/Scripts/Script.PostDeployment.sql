@@ -48,3 +48,4 @@ Post-Deployment Script Template
 
 :r ".\PostDeployment\QuoteStatuses.sql"
 
+:r ".\PostDeployment\CostItemTypes.sql"
