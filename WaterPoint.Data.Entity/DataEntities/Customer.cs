@@ -16,7 +16,7 @@ namespace WaterPoint.Data.Entity.DataEntities
         [IgnoreWhenUpdate]
         public int OrganizationId { get; set; }
 
-        public int? CustomerTypeId { get; set; }
+        public int CustomerTypeId { get; set; }
 
         public bool IsProspect { get; set; }
 

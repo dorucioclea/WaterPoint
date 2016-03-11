@@ -13,6 +13,12 @@ namespace WaterPoint.Core.Domain.Payloads.CostItems
         public string Code { get; set; }
 
         [Required]
+        public int CostItemTypeId { get; set; }
+
+        [Required]
+        public int UnitOfMeasurementId { get; set; }
+
+        [Required]
         public decimal? UnitCost { get; set; }
 
         [Required]

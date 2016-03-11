@@ -11,6 +11,10 @@ namespace WaterPoint.Data.Entity.DataEntities
 
         public int OrganizationId { get; set; }
 
+        public int CostItemTypeId { get; set; }
+
+        public int UnitOfMeasurementId { get; set; }
+
         public int? SupplierId { get; set; }
 
         public string ShortDescription { get; set; }

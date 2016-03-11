@@ -18,6 +18,10 @@ namespace WaterPoint.Core.Domain.QueryParameters.CostItems
 
         public int? SupplierId { get; set; }
 
+        public int CostItemTypeId { get; set; }
+
+        public int UnitOfMeasurementId { get; set; }
+
         public string ShortDescription { get; set; }
 
         public string LongDescription { get; set; }
