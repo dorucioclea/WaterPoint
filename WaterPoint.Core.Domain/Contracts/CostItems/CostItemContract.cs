@@ -1,11 +1,12 @@
 ﻿using System;
-using WaterPoint.Core.Domain.Contracts;
 
 namespace WaterPoint.Core.Domain.Contracts.CostItems
 {
     public class CostItemContract : IContract
     {
         public int Id { get; set; }
+        public int CostItemTypeId { get; set; }
+        public int UnitOfMeasurementId { get; set; }
         public int OrganizationId { get; set; }
         public int? SupplierId { get; set; }
         public string ShortDescription { get; set; }
