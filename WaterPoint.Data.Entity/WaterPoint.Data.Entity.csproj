@@ -86,6 +86,8 @@
     <Compile Include="DataEntities\Job.cs" />
     <Compile Include="DataEntities\JobTask.cs" />
     <Compile Include="DataEntities\TaskDefinition.cs" />
+    <Compile Include="Enums\UnitOfMeasurements.cs" />
+    <Compile Include="Enums\CostItemTypes.cs" />
     <Compile Include="Enums\QuoteStatuses.cs" />
     <Compile Include="Enums\OrganizationUserTypes.cs" />
     <Compile Include="Enums\JobTimesheetTypes.cs" />

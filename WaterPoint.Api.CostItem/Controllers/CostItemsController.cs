@@ -60,6 +60,8 @@ namespace WaterPoint.Api.CostItem.Controllers
             request.Payload = payload;
             request.OrganizationUserId = Credential.OrganizationUserId;
 
+            //TODO: unitofmeasurementid validation against costitemtype
+
             var result = _createRequestProcessor.Process(request);
 
             return Ok(result);
