@@ -8,6 +8,7 @@ using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts.Customers;
 
 using WaterPoint.Core.Domain.Payloads.Customers;
+using WaterPoint.Core.Domain.Requests;
 using WaterPoint.Core.Domain.Requests.Customers;
 
 namespace WaterPoint.Api.Customer.Controllers
@@ -21,7 +22,7 @@ namespace WaterPoint.Api.Customer.Controllers
         private readonly IWriteRequestProcessor<CreateCustomerRequest> _createCustomerRequest;
         private readonly IWriteRequestProcessor<UpdateCustomerRequest> _updateRequestProcessor;
         private readonly IRequestProcessor<GetCustomerRequest, CustomerContract> _getCustomerByIdProcessor;
-        private readonly IWriteRequestProcessor<DeleteCustomersRequest> _deleteRequestProcessor;
+        private readonly IDeleteRequestProcessor<OrganizationEntityRequest> _deleteRequestProcessor;
 
 
         public CustomersController(
@@ -30,7 +31,7 @@ namespace WaterPoint.Api.Customer.Controllers
             IWriteRequestProcessor<CreateCustomerRequest> createCustomerRequest,
             IWriteRequestProcessor<UpdateCustomerRequest> updateRequestProcessor,
             IRequestProcessor<GetCustomerRequest, CustomerContract> getCustomerByIdProcessor,
-            IWriteRequestProcessor<DeleteCustomersRequest> deleteRequestProcessor
+            IDeleteRequestProcessor<OrganizationEntityRequest> deleteRequestProcessor
             )
         {
             _searchTop10Processor = searchTop10Processor;
@@ -109,12 +110,9 @@ namespace WaterPoint.Api.Customer.Controllers
             return Ok(customer);
         }
 
-        [Route("")]
-        public IHttpActionResult Delete([FromUri]DeleteCustomersRequest request)
+        [Route("{id:int}")]
+        public IHttpActionResult Delete([FromUri]OrganizationEntityRequest request)
         {
-            if (!ModelState.IsValid)
-                return BadRequestWithErrors(ModelState);
-
             var result = _deleteRequestProcessor.Process(request);
 
             if (result.IsSuccess)

@@ -13,8 +13,10 @@ using WaterPoint.Core.RequestProcessor.Customers;
 using WaterPoint.Core.Domain.Contracts.Customers;
 using WaterPoint.Core.Domain.Contracts.Jobs;
 using WaterPoint.Core.Domain.Db;
+using WaterPoint.Core.Domain.QueryParameters;
 using WaterPoint.Core.Domain.QueryParameters.Addresses;
 using WaterPoint.Core.Domain.QueryParameters.Contacts;
+using WaterPoint.Core.Domain.Requests;
 using WaterPoint.Core.Domain.Requests.Addresses;
 using WaterPoint.Core.Domain.Requests.Contacts;
 using WaterPoint.Core.Domain.Requests.Customers;
@@ -65,7 +67,7 @@ namespace WaterPoint.Api.DependencyInjection
             Bind<ICommand<CreateCustomerAddress>>().To<CreateCustomerAddressCommand>();
             Bind<ICommand<UpdateCustomerAddressIsPrimary>>().To<UpdateCustomerAddressIsPrimaryCommand>();
             Bind<ICommand<UpdateCustomerAddressIsPostAddress>>().To<UpdateCustomerAddressIsPostAddressCommand>();
-            Bind<ICommand<DeleteCustomer>>().To<DeleteCustomerCommand>();
+            Bind<ICommand<ToggleIsDelete>>().To<ToggleIsDeleteCustomerCommand>();
         }
 
         private void BindRequestProcessors()
@@ -106,7 +108,7 @@ namespace WaterPoint.Api.DependencyInjection
             Bind<IWriteRequestProcessor<UpdateCustomerAddressRequest>>()
                 .To<UpdateCustomerAddressProcessor>();
 
-            Bind<IWriteRequestProcessor<DeleteCustomersRequest>>()
+            Bind<IDeleteRequestProcessor<OrganizationEntityRequest>>()
                 .To<DeleteCustomerProcessor>();
 
         }

@@ -1,27 +1,27 @@
 ﻿using WaterPoint.Core.Domain.Db;
 using WaterPoint.Core.Domain.QueryParameters;
 
-namespace WaterPoint.Core.Bll.Commands.CostItems
+namespace WaterPoint.Core.Bll.Commands.Customers
 {
-    public class DeleteCostItemCommand : ICommand<ToggleIsDelete>
+    public class ToggleIsDeleteCustomerCommand : ICommand<ToggleIsDelete>
     {
         private readonly string _sql = $@"
             UPDATE
-                [dbo].[CostItem]
+                [dbo].[Customer]
             SET
                 [IsDeleted] = @isdeleted
             WHERE
                 OrganizationId = @organizationid AND Id = @id";
 
-        public void BuildQuery(ToggleIsDelete input)
+        public void BuildQuery(ToggleIsDelete parameter)
         {
             Query = _sql;
 
             Parameters = new
             {
-                organizationid = input.OrganizationId,
-                id = input.Id,
-                isdeleted = input.IsDelete
+                organizationid = parameter.OrganizationId,
+                id = parameter.Id,
+                isdeleted = parameter.IsDelete
             };
         }
 

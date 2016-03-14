@@ -39,7 +39,7 @@ namespace WaterPoint.Api.DependencyInjection
         {
             Bind<ICommand<CreateCostItem>>().To<CreateCostItemCommand>();
             Bind<ICommand<UpdateCostItem>>().To<UpdateCostItemCommand>();
-            Bind<ICommand<ToggleIsDelete>>().To<DeleteCostItemCommand>()
+            Bind<ICommand<ToggleIsDelete>>().To<ToggleIsDeleteCostItemCommand>()
                 .WhenInjectedExactlyInto<DeleteCostItemProcessor>();
         }
 
