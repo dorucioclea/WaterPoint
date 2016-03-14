@@ -88,12 +88,14 @@
     <Compile Include="Contacts\GetContactProcessor.cs" />
     <Compile Include="Contacts\CreateCustomerContactProcessor.cs" />
     <Compile Include="Contacts\ListCustomerContactProcessor.cs" />
+    <Compile Include="CostItems\BulkDeleteCostItemsRequestProcessor.cs" />
     <Compile Include="CostItems\DeleteCostItemProcessor.cs" />
     <Compile Include="CostItems\ListCostItemsProcessor.cs" />
     <Compile Include="CostItems\CreateCostItemProcessor.cs" />
     <Compile Include="CostItems\GetCostItemProcessor.cs" />
     <Compile Include="CostItems\UpdateCostItemProcessor.cs" />
     <Compile Include="Credentials\ListValidateCredentialProcessor.cs" />
+    <Compile Include="Customers\BulkDeleteCustomersRequestProcessor.cs" />
     <Compile Include="Customers\ListCustomerJobsProcessor.cs" />
     <Compile Include="Customers\SearchTop10Processor.cs" />
     <Compile Include="Customers\DeleteCustomerProcessor.cs" />

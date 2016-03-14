@@ -23,7 +23,7 @@ namespace WaterPoint.Api.Customer.Controllers
         private readonly IWriteRequestProcessor<UpdateCustomerRequest> _updateRequestProcessor;
         private readonly IRequestProcessor<GetCustomerRequest, CustomerContract> _getCustomerByIdProcessor;
         private readonly IDeleteRequestProcessor<OrganizationEntityRequest> _deleteRequestProcessor;
-
+        private readonly IDeleteRequestProcessor<BulkDeleteCustomersRequest> _bulkDeleteRequestProcessor;
 
         public CustomersController(
             IListProcessor<SearchTop10CustomerRequest, CustomerContract> searchTop10Processor,
@@ -31,7 +31,8 @@ namespace WaterPoint.Api.Customer.Controllers
             IWriteRequestProcessor<CreateCustomerRequest> createCustomerRequest,
             IWriteRequestProcessor<UpdateCustomerRequest> updateRequestProcessor,
             IRequestProcessor<GetCustomerRequest, CustomerContract> getCustomerByIdProcessor,
-            IDeleteRequestProcessor<OrganizationEntityRequest> deleteRequestProcessor
+            IDeleteRequestProcessor<OrganizationEntityRequest> deleteRequestProcessor,
+            IDeleteRequestProcessor<BulkDeleteCustomersRequest> bulkDeleteRequestProcessor
             )
         {
             _searchTop10Processor = searchTop10Processor;
@@ -40,6 +41,7 @@ namespace WaterPoint.Api.Customer.Controllers
             _updateRequestProcessor = updateRequestProcessor;
             _getCustomerByIdProcessor = getCustomerByIdProcessor;
             _deleteRequestProcessor = deleteRequestProcessor;
+            _bulkDeleteRequestProcessor = bulkDeleteRequestProcessor;
         }
 
         [Route("top10")]
@@ -114,6 +116,17 @@ namespace WaterPoint.Api.Customer.Controllers
         public IHttpActionResult Delete([FromUri]OrganizationEntityRequest request)
         {
             var result = _deleteRequestProcessor.Process(request);
+
+            if (result.IsSuccess)
+                return Ok(result);
+
+            return BadRequest();
+        }
+
+        [Route("")]
+        public IHttpActionResult Delete([FromUri]BulkDeleteCustomersRequest request)
+        {
+            var result = _bulkDeleteRequestProcessor.Process(request);
 
             if (result.IsSuccess)
                 return Ok(result);

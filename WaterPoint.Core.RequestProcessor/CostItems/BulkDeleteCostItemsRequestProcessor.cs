@@ -1,22 +1,22 @@
 ﻿using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts;
 using WaterPoint.Core.Domain.Db;
-using WaterPoint.Core.Domain.QueryParameters;
-using WaterPoint.Core.Domain.Requests;
+using WaterPoint.Core.Domain.QueryParameters.CostItems;
+using WaterPoint.Core.Domain.Requests.CostItems;
 using WaterPoint.Data.DbContext.Dapper;
 
-namespace WaterPoint.Core.RequestProcessor.Customers
+namespace WaterPoint.Core.RequestProcessor.CostItems
 {
-    public class DeleteCustomerProcessor :
+    public class BulkDeleteCostItemsRequestProcessor :
         BaseDapperUowRequestProcess,
-        IDeleteRequestProcessor<OrganizationEntityRequest>
+        IDeleteRequestProcessor<BulkDeleteCostItemsRequest>
     {
-        private readonly ICommand<ToggleIsDelete> _deleteCommand;
+        private readonly ICommand<BulkDeleteCostItems> _deleteCommand;
         private readonly ICommandExecutor _deleteExecutor;
 
-        public DeleteCustomerProcessor(
+        public BulkDeleteCostItemsRequestProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
-            ICommand<ToggleIsDelete> deleteCommand,
+            ICommand<BulkDeleteCostItems> deleteCommand,
             ICommandExecutor deleteExecutor)
             : base(dapperUnitOfWork)
         {
@@ -24,20 +24,19 @@ namespace WaterPoint.Core.RequestProcessor.Customers
             _deleteExecutor = deleteExecutor;
         }
 
-        public CommandResult Process(OrganizationEntityRequest input)
+        public CommandResult Process(BulkDeleteCostItemsRequest input)
         {
             var result = UowProcess(Delete, input);
 
             return new DeleteCommandResult(result, result > 0);
         }
 
-        private int Delete(OrganizationEntityRequest input)
+        private int Delete(BulkDeleteCostItemsRequest input)
         {
-            var param = new ToggleIsDelete
+            var param = new BulkDeleteCostItems
             {
-                Id = input.Id,
-                IsDelete = true,
-                OrganizationId = input.OrganizationId
+                OrganizationId = input.OrganizationId,
+                CostItems = input.CostItems
             };
 
             _deleteCommand.BuildQuery(param);

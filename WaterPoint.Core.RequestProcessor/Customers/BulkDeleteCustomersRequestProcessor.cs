@@ -1,22 +1,22 @@
 ﻿using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts;
 using WaterPoint.Core.Domain.Db;
-using WaterPoint.Core.Domain.QueryParameters;
-using WaterPoint.Core.Domain.Requests;
+using WaterPoint.Core.Domain.QueryParameters.Customers;
+using WaterPoint.Core.Domain.Requests.Customers;
 using WaterPoint.Data.DbContext.Dapper;
 
 namespace WaterPoint.Core.RequestProcessor.Customers
 {
-    public class DeleteCustomerProcessor :
+    public class BulkDeleteCustomersRequestProcessor :
         BaseDapperUowRequestProcess,
-        IDeleteRequestProcessor<OrganizationEntityRequest>
+        IDeleteRequestProcessor<BulkDeleteCustomersRequest>
     {
-        private readonly ICommand<ToggleIsDelete> _deleteCommand;
+        private readonly ICommand<BulkDeleteCustomer> _deleteCommand;
         private readonly ICommandExecutor _deleteExecutor;
 
-        public DeleteCustomerProcessor(
+        public BulkDeleteCustomersRequestProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
-            ICommand<ToggleIsDelete> deleteCommand,
+            ICommand<BulkDeleteCustomer> deleteCommand,
             ICommandExecutor deleteExecutor)
             : base(dapperUnitOfWork)
         {
@@ -24,20 +24,19 @@ namespace WaterPoint.Core.RequestProcessor.Customers
             _deleteExecutor = deleteExecutor;
         }
 
-        public CommandResult Process(OrganizationEntityRequest input)
+        public CommandResult Process(BulkDeleteCustomersRequest input)
         {
             var result = UowProcess(Delete, input);
 
             return new DeleteCommandResult(result, result > 0);
         }
 
-        private int Delete(OrganizationEntityRequest input)
+        private int Delete(BulkDeleteCustomersRequest input)
         {
-            var param = new ToggleIsDelete
+            var param = new BulkDeleteCustomer
             {
-                Id = input.Id,
-                IsDelete = true,
-                OrganizationId = input.OrganizationId
+                OrganizationId = input.OrganizationId,
+                Customers = input.Customers
             };
 
             _deleteCommand.BuildQuery(param);

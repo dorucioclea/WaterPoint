@@ -96,6 +96,7 @@
     <Compile Include="Commands\CostItems\UpdateCostItemCommand.cs" />
     <Compile Include="Commands\CostItems\CreateCostItemCommand.cs" />
     <Compile Include="Commands\Credentials\CreateCredentialCommand.cs" />
+    <Compile Include="Commands\Customers\BulkDeleteCustomerCommand.cs" />
     <Compile Include="Commands\Customers\ToggleIsDeleteCustomerCommand.cs" />
     <Compile Include="Commands\Invoices\CreateInvoiceCommand.cs" />
     <Compile Include="Commands\JobCostItems\UpdateJobCostItemCommand.cs" />
@@ -171,8 +172,7 @@
     <Compile Include="QueryRunners\QueryListRunner.cs" />
     <Compile Include="QueryRunners\QueryRunner.cs" />
     <Compile Include="QueryRunners\PagedQueryRunner.cs" />
-    <Compile Include="Executors\UpdateCommandExecutor.cs" />
-    <Compile Include="Executors\CreateCommandExecutor.cs" />
+    <Compile Include="Executors\CommandExecutor.cs" />
     <Compile Include="QueryRunners\IListQueryRunner.cs" />
     <Compile Include="UpdateSqlBuilder.cs" />
     <Compile Include="Commands\Customers\UpdateCustomerCommand.cs" />

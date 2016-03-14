@@ -2,6 +2,7 @@
 using WaterPoint.Core.Bll.Commands.Addresses;
 using WaterPoint.Core.Bll.Commands.Contacts;
 using WaterPoint.Core.Bll.Commands.Customers;
+using WaterPoint.Core.Bll.Commands.Customers.WaterPoint.Core.Bll.Commands.Customers;
 using WaterPoint.Core.Bll.Queries.Addresses;
 using WaterPoint.Core.Bll.Queries.Contacts;
 using WaterPoint.Core.Bll.Queries.Customers;
@@ -22,6 +23,7 @@ using WaterPoint.Core.Domain.Requests.Contacts;
 using WaterPoint.Core.Domain.Requests.Customers;
 using WaterPoint.Core.RequestProcessor.Addresses;
 using WaterPoint.Core.RequestProcessor.Contacts;
+using WaterPoint.Core.RequestProcessor.CostItems;
 using WaterPoint.Data.Entity.DataEntities;
 using WaterPoint.Data.Entity.Pocos.Addresses;
 using WaterPoint.Data.Entity.Pocos.Contacts;
@@ -68,6 +70,7 @@ namespace WaterPoint.Api.DependencyInjection
             Bind<ICommand<UpdateCustomerAddressIsPrimary>>().To<UpdateCustomerAddressIsPrimaryCommand>();
             Bind<ICommand<UpdateCustomerAddressIsPostAddress>>().To<UpdateCustomerAddressIsPostAddressCommand>();
             Bind<ICommand<ToggleIsDelete>>().To<ToggleIsDeleteCustomerCommand>();
+            Bind<ICommand<BulkDeleteCustomer>>().To<BulkDeleteCustomerCommand>();
         }
 
         private void BindRequestProcessors()
@@ -111,6 +114,8 @@ namespace WaterPoint.Api.DependencyInjection
             Bind<IDeleteRequestProcessor<OrganizationEntityRequest>>()
                 .To<DeleteCustomerProcessor>();
 
+            Bind<IDeleteRequestProcessor<BulkDeleteCustomersRequest>>()
+                .To<BulkDeleteCustomersRequestProcessor>();
         }
     }
 }
