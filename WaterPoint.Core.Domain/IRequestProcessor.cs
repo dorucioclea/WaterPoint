@@ -59,4 +59,9 @@ namespace WaterPoint.Core.Domain
     {
         CommandResult Process(TInput input);
     }
+
+    public interface IDeleteRequestProcessor<in TInput> : IWriteRequestProcessor<TInput> where TInput : IRequest
+    {
+
+    }
 }

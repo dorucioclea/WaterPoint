@@ -92,6 +92,7 @@
     <Compile Include="Commands\Contacts\UpdateContactCommand.cs" />
     <Compile Include="Commands\Contacts\CreateContactCommand.cs" />
     <Compile Include="Commands\Contacts\CreateCustomerContactCommand.cs" />
+    <Compile Include="Commands\CostItems\DeleteCostItemCommand.cs" />
     <Compile Include="Commands\CostItems\UpdateCostItemCommand.cs" />
     <Compile Include="Commands\CostItems\CreateCostItemCommand.cs" />
     <Compile Include="Commands\Credentials\CreateCredentialCommand.cs" />

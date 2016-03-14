@@ -88,6 +88,7 @@
     <Compile Include="Contacts\GetContactProcessor.cs" />
     <Compile Include="Contacts\CreateCustomerContactProcessor.cs" />
     <Compile Include="Contacts\ListCustomerContactProcessor.cs" />
+    <Compile Include="CostItems\DeleteCostItemProcessor.cs" />
     <Compile Include="CostItems\ListCostItemsProcessor.cs" />
     <Compile Include="CostItems\CreateCostItemProcessor.cs" />
     <Compile Include="CostItems\GetCostItemProcessor.cs" />

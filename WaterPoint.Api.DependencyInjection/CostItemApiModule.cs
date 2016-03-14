@@ -10,6 +10,8 @@ using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts;
 using WaterPoint.Core.Domain.Contracts.CostItems;
 using WaterPoint.Core.Domain.Db;
+using WaterPoint.Core.Domain.QueryParameters;
+using WaterPoint.Core.Domain.Requests;
 using WaterPoint.Core.Domain.Requests.CostItems;
 using WaterPoint.Core.RequestProcessor;
 using WaterPoint.Core.RequestProcessor.CostItems;
@@ -37,6 +39,8 @@ namespace WaterPoint.Api.DependencyInjection
         {
             Bind<ICommand<CreateCostItem>>().To<CreateCostItemCommand>();
             Bind<ICommand<UpdateCostItem>>().To<UpdateCostItemCommand>();
+            Bind<ICommand<ToggleIsDelete>>().To<DeleteCostItemCommand>()
+                .WhenInjectedExactlyInto<DeleteCostItemProcessor>();
         }
 
         private void BindRequestProcessors()
@@ -52,6 +56,9 @@ namespace WaterPoint.Api.DependencyInjection
 
             Bind<IWriteRequestProcessor<UpdateCostItemRequest>>()
                 .To<UpdateCostItemProcessor>();
+
+            Bind<IDeleteRequestProcessor<OrganizationEntityRequest>>()
+                .To<DeleteCostItemProcessor>();
         }
     }
 }

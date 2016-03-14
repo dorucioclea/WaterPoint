@@ -7,29 +7,33 @@ using WaterPoint.Core.Domain.Contracts;
 using WaterPoint.Core.Domain.Contracts.CostItems;
 using WaterPoint.Core.Domain.Payloads.CostItems;
 using WaterPoint.Core.Domain.RequestParameters;
+using WaterPoint.Core.Domain.Requests;
 using WaterPoint.Core.Domain.Requests.CostItems;
 
 namespace WaterPoint.Api.CostItem.Controllers
 {
     [Authorize]
-    [RoutePrefix(RouteDefinitions.CostItems.Prefix)]
+    [RoutePrefix("organizations/{organizationId:int}/costitems")]
     public class CostItemsController : BaseOrgnizationContextController
     {
         private readonly IWriteRequestProcessor<CreateCostItemRequest> _createRequestProcessor;
         private readonly IRequestProcessor<GetCostItemRequest, CostItemContract> _getRequestProcessor;
         private readonly IPagedProcessor<ListCostItemsRequest, CostItemContract> _listRequestProcessor;
         private readonly IWriteRequestProcessor<UpdateCostItemRequest> _updateRequestProcessor;
+        private readonly IDeleteRequestProcessor<OrganizationEntityRequest> _deleteRequestProcessor;
 
         public CostItemsController(
             IWriteRequestProcessor<CreateCostItemRequest> createRequestProcessor,
             IRequestProcessor<GetCostItemRequest, CostItemContract> getRequestProcessor,
             IPagedProcessor<ListCostItemsRequest, CostItemContract> listRequestProcessor,
-            IWriteRequestProcessor<UpdateCostItemRequest> updateRequestProcessor)
+            IWriteRequestProcessor<UpdateCostItemRequest> updateRequestProcessor,
+            IDeleteRequestProcessor<OrganizationEntityRequest> deleteRequestProcessor)
         {
             _createRequestProcessor = createRequestProcessor;
             _getRequestProcessor = getRequestProcessor;
             _listRequestProcessor = listRequestProcessor;
             _updateRequestProcessor = updateRequestProcessor;
+            _deleteRequestProcessor = deleteRequestProcessor;
         }
 
         [Route("")]
@@ -61,7 +65,7 @@ namespace WaterPoint.Api.CostItem.Controllers
             return Ok(result);
         }
 
-        [Route("")]
+        [Route("{id:int}")]
         public IHttpActionResult Put(
             [FromUri]UpdateCostItemRequest request,
             [FromBody]Delta<WriteCostItemPayload> payload)
@@ -77,6 +81,17 @@ namespace WaterPoint.Api.CostItem.Controllers
             var result = _updateRequestProcessor.Process(request);
 
             return Ok(result);
+        }
+
+        [Route("{id:int}")]
+        public IHttpActionResult Delete([FromUri]OrganizationEntityRequest request)
+        {
+            var result = _deleteRequestProcessor.Process(request);
+
+            if (result.IsSuccess)
+                return Ok(result);
+
+            return BadRequest();
         }
     }
 }
