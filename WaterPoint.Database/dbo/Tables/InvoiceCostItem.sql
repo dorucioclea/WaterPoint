@@ -1,0 +1,19 @@
+﻿CREATE TABLE [dbo].[InvoiceCostItem]
+(
+    [Id] INT NOT NULL IDENTITY,
+    [InvoiceId] INT NOT NULL,
+    [CostItemId] INT NULL,
+    [ShortDescription] NVARCHAR(200) NOT NULL,
+    [LongDescription] NVARCHAR(MAX) NULL,
+    [UnitCost] DECIMAL(10,3) NOT NULL DEFAULT(0),
+    [UnitPrice] DECIMAL(10,3) NOT NULL DEFAULT(0),
+    [TotalPrice] DECIMAL(10,3) NOT NULL DEFAULT(0),
+    [Quantity] DECIMAL(8,2) NOT NULL DEFAULT(0),
+    [IsBillable] BIT NOT NULL DEFAULT(1),
+    [Version] ROWVERSION NOT NULL,
+	[UtcCreated] DATETIME2(3) NOT NULL DEFAULT(SYSUTCDATETIME()),
+	[UtcUpdated] DATETIME2(3) NOT NULL DEFAULT(SYSUTCDATETIME()),
+    [Uid] UNIQUEIDENTIFIER NOT NULL DEFAULT(NEWID()),
+    CONSTRAINT [PK_dbo_InvoiceCostItem] PRIMARY KEY CLUSTERED (Id ASC),
+    CONSTRAINT [FK_InvoiceCostItem_Invoice] FOREIGN KEY ([InvoiceId]) REFERENCES [dbo].[Invoice]([Id])
+)

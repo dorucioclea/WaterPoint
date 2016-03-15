@@ -5,9 +5,9 @@ using WaterPoint.Data.Entity.Pocos.Addresses;
 
 namespace WaterPoint.Core.Bll.Queries.Addresses
 {
-    public class ListAddressesForCustomerQuery : IQuery<ListAddressesForCustomer, CustomerAddressPoco>
+    public class ListCustomerAddressesQuery : IQuery<ListCustomerAddresses, CustomerAddressPoco>
     {
-        public void BuildQuery(ListAddressesForCustomer parameter)
+        public void BuildQuery(ListCustomerAddresses parameter)
         {
             Query = "[dbo].[List_CustomerAddesses_By_CustomerId]";
 

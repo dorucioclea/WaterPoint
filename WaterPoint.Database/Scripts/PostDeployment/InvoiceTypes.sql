@@ -3,7 +3,7 @@ USING
 (
 	SELECT 1 AS Id, N'工作账单' AS [Description]
     UNION ALL
-    SELECT 2 AS Id, N'杂务账单' AS [Description]
+    SELECT 2 AS Id, N'普通账单' AS [Description]
 ) AS s
 ON 	i.Id = s.Id
 

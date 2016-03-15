@@ -2,17 +2,10 @@
 {
     public enum QuoteStatuses
     {
-        Draft = 1,
-        Issued = 2,
-        Cancelled = 3,
-        Approved = 4
-    }
-
-    public enum InvoiceStatuses
-    {
-        Draft = 1,
-        Issued = 2,
-        Cancelled = 3,
-        Approved = 4
+        PreDraft = 1,
+        Draft = 2,
+        Issued = 3,
+        Cancelled = 4,
+        Approved = 5
     }
 }

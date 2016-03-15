@@ -67,7 +67,7 @@ namespace WaterPoint.Api.Quote.Controllers
             [FromBody]Delta<UpdateQuoteCostItemPayload> payload)
         {
             if (!ModelState.IsValid)
-                return BadRequestWithErrors(ModelState);
+                return BadRequestWithErrors();
 
             request.Payload = payload;
 

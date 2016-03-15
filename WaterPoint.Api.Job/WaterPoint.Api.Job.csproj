@@ -206,6 +206,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\CategoriesController.cs" />
+    <Compile Include="Controllers\StaffController.cs" />
     <Compile Include="Controllers\CostItemsController.cs" />
     <Compile Include="Controllers\JobsController.cs" />
     <Compile Include="Controllers\JobTimesheetController.cs" />

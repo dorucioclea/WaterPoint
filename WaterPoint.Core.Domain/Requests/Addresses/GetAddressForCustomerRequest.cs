@@ -1,6 +1,6 @@
 ﻿namespace WaterPoint.Core.Domain.Requests.Addresses
 {
-    public class GetAddressForCustomerRequest : IRequest
+    public class GetCustomerAddressRequest : IRequest
     {
         public int OrganizationId { get; set; }
         public int CustomerId { get; set; }

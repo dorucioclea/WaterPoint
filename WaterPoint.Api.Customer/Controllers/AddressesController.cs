@@ -18,16 +18,16 @@ namespace WaterPoint.Api.Customer.Controllers
     [RoutePrefix("organizations/{organizationId:int}")]
     public class AddressesController : BaseOrgnizationContextController
     {
-        private readonly IListProcessor<ListAddressesForCustomerRequest, CustomerAddressContract> _listProcessor;
-        private readonly IWriteRequestProcessor<CreateAddressForCustomerRequest> _createProcessor;
-        private readonly IRequestProcessor<GetAddressForCustomerRequest, CustomerAddressContract> _getAddressProcessor;
-        private readonly IWriteRequestProcessor<UpdateAddressForCustomerRequest> _updateAddressProcessor;
+        private readonly IListProcessor<ListCustomerAddressesRequest, CustomerAddressContract> _listProcessor;
+        private readonly IWriteRequestProcessor<CreateCustomerAddressRequest> _createProcessor;
+        private readonly IRequestProcessor<GetCustomerAddressRequest, CustomerAddressContract> _getAddressProcessor;
+        private readonly IWriteRequestProcessor<UpdateCustomerAddressRequest> _updateAddressProcessor;
 
         public AddressesController(
-            IListProcessor<ListAddressesForCustomerRequest, CustomerAddressContract> listProcessor,
-            IWriteRequestProcessor<CreateAddressForCustomerRequest> createProcessor,
-            IRequestProcessor<GetAddressForCustomerRequest, CustomerAddressContract> getAddressProcessor,
-            IWriteRequestProcessor<UpdateAddressForCustomerRequest> updateAddressProcessor)
+            IListProcessor<ListCustomerAddressesRequest, CustomerAddressContract> listProcessor,
+            IWriteRequestProcessor<CreateCustomerAddressRequest> createProcessor,
+            IRequestProcessor<GetCustomerAddressRequest, CustomerAddressContract> getAddressProcessor,
+            IWriteRequestProcessor<UpdateCustomerAddressRequest> updateAddressProcessor)
         {
             _listProcessor = listProcessor;
             _createProcessor = createProcessor;
@@ -36,7 +36,7 @@ namespace WaterPoint.Api.Customer.Controllers
         }
 
         [Route("customers/{customerId:int}/addresses")]
-        public IHttpActionResult Get([FromUri]ListAddressesForCustomerRequest request)
+        public IHttpActionResult Get([FromUri]ListCustomerAddressesRequest request)
         {
             var result = _listProcessor.Process(request);
 
@@ -45,11 +45,11 @@ namespace WaterPoint.Api.Customer.Controllers
 
         [Route("customers/{customerId:int}/addresses")]
         public IHttpActionResult Post(
-            [FromUri]CreateAddressForCustomerRequest request,
-            [FromBody]WriteAddressPayload payload)
+            [FromUri]CreateCustomerAddressRequest request,
+            [FromBody]WriteCustomerAddressPayload payload)
         {
             if (!ModelState.IsValid)
-                return BadRequestWithErrors(ModelState);
+                return BadRequestWithErrors();
 
             request.Payload = payload;
 
@@ -63,7 +63,7 @@ namespace WaterPoint.Api.Customer.Controllers
 
         [Route("customers/{customerId:int}/addresses/{id:int}")]
         public IHttpActionResult Get(
-            [FromUri]GetAddressForCustomerRequest request)
+            [FromUri]GetCustomerAddressRequest request)
         {
             var result = _getAddressProcessor.Process(request);
 
@@ -72,7 +72,7 @@ namespace WaterPoint.Api.Customer.Controllers
 
         [Route("customers/{customerId:int}/addresses/{id:int}")]
         public IHttpActionResult Put(
-            [FromUri]UpdateAddressForCustomerRequest request,
+            [FromUri]UpdateCustomerAddressRequest request,
             [FromBody]Delta<WriteAddressPayload> payload)
         {
             request.Payload = payload;

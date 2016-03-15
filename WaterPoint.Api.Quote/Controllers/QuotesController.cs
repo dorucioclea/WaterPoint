@@ -35,7 +35,7 @@ namespace WaterPoint.Api.Quote.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequestWithErrors(ModelState);
+                return BadRequestWithErrors();
             }
 
             request.Payload = payload;

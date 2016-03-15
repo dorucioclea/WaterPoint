@@ -34,7 +34,7 @@ namespace WaterPoint.Api.Quote.Controllers
             [FromBody]CreateQuoteTaskPayload payload)
         {
             if (!ModelState.IsValid)
-                return BadRequestWithErrors(ModelState);
+                return BadRequestWithErrors();
 
             request.Payload = payload;
 
@@ -66,7 +66,7 @@ namespace WaterPoint.Api.Quote.Controllers
             [FromBody]Delta<UpdateQuoteTaskPayload> payload)
         {
             if (!ModelState.IsValid)
-                return BadRequestWithErrors(ModelState);
+                return BadRequestWithErrors();
 
             request.Payload = payload;
 

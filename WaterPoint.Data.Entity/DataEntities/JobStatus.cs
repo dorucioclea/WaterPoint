@@ -4,7 +4,7 @@ using WaterPoint.Data.Entity.Attributes;
 namespace WaterPoint.Data.Entity.DataEntities
 {
     [Table("dbo", "JobStatus", "jstus")]
-    public class JobStatus
+    public class JobStatus : IDataEntity
     {
         [Primary]
         public int Id { get; set; }

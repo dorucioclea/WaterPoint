@@ -55,9 +55,12 @@ namespace WaterPoint.Api.Common.BaseControllers
 
         #region Response results
 
-        protected virtual BadRequestWithErrorsResult BadRequestWithErrors(ModelStateDictionary modelState)
+        protected virtual BadRequestWithErrorsResult BadRequestWithErrors()
         {
-            return new BadRequestWithErrorsResult(modelState, this);
+            if (ModelState.IsValid)
+                return null;
+
+            return new BadRequestWithErrorsResult(ModelState, this);
         }
 
         #endregion

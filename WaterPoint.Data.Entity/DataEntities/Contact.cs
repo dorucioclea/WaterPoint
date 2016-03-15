@@ -3,7 +3,7 @@ using WaterPoint.Data.Entity.Attributes;
 
 namespace WaterPoint.Data.Entity.DataEntities
 {
-    [Table("dbo", "Contact", "con")]
+    [Table("dbo", "Contact", "cnt")]
     public class Contact : IDataEntity
     {
         [Primary]

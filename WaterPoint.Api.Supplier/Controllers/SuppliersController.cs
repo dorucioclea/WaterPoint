@@ -53,7 +53,7 @@ namespace WaterPoint.Api.Supplier.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequestWithErrors(ModelState);
+                return BadRequestWithErrors();
             }
 
             request.Payload = supplierPayload;

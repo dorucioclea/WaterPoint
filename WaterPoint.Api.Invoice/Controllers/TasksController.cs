@@ -34,7 +34,7 @@ namespace WaterPoint.Api.Invoice.Controllers
             [FromBody]CreateInvoiceJobTaskPayload payload)
         {
             if (!ModelState.IsValid)
-                return BadRequestWithErrors(ModelState);
+                return BadRequestWithErrors();
 
             request.Payload = payload;
 
@@ -66,7 +66,7 @@ namespace WaterPoint.Api.Invoice.Controllers
             [FromBody]Delta<UpdateInvoiceJobTaskPayload> payload)
         {
             if (!ModelState.IsValid)
-                return BadRequestWithErrors(ModelState);
+                return BadRequestWithErrors();
 
             request.Payload = payload;
 

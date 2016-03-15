@@ -2,10 +2,10 @@
 
 namespace WaterPoint.Core.Domain.Requests.Addresses
 {
-    public class CreateAddressForCustomerRequest : ICreateRequest<WriteAddressPayload>
+    public class CreateCustomerAddressRequest : ICreateRequest<WriteCustomerAddressPayload>
     {
         public int OrganizationId { get; set; }
         public int CustomerId { get; set; }
-        public WriteAddressPayload Payload { get; set; }
+        public WriteCustomerAddressPayload Payload { get; set; }
     }
 }

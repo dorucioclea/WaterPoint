@@ -9,6 +9,7 @@ using WaterPoint.Core.Domain.Contracts;
 using WaterPoint.Core.Domain.Contracts.JobTimesheet;
 using WaterPoint.Core.Domain.Db;
 using WaterPoint.Core.Domain.QueryParameters.JobTimesheet;
+using WaterPoint.Core.Domain.Requests.JobCostItems;
 using WaterPoint.Core.Domain.Requests.JobTimesheet;
 using WaterPoint.Core.RequestProcessor.Timesheet;
 using WaterPoint.Data.Entity.DataEntities;
@@ -35,6 +36,7 @@ namespace WaterPoint.Api.DependencyInjection
         public void BindCommands()
         {
             Bind<ICommand<CreateJobTimesheet>>().To<CreateJobTimesheetCommand>();
+            Bind<ICommand<UpdateJobTimesheet>>().To<UpdateJobTimesheetCommand>();
         }
 
         private void BindRequestProcessors()
@@ -47,6 +49,9 @@ namespace WaterPoint.Api.DependencyInjection
 
             Bind<IRequestProcessor<GetJobTimesheetRequest, JobTimesheetContract>>()
                 .To<GetJobTimesheetProcessor>();
+
+            Bind<IWriteRequestProcessor<UpdateJobTimesheetRequest>>()
+                .To<UpdateJobTimesheetProcessor>();
         }
     }
 }

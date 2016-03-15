@@ -48,3 +48,8 @@ Post-Deployment Script Template
 
 :r ".\PostDeployment\QuoteStatuses.sql"
 
+:r ".\PostDeployment\UnitOfMeasurements.sql"
+
+:r ".\PostDeployment\CostItemTypes.sql"
+
+

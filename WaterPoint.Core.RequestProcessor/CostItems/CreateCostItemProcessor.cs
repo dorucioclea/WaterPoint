@@ -26,7 +26,9 @@ namespace WaterPoint.Core.RequestProcessor.CostItems
                 ShortDescription = input.Payload.ShortDescription,
                 SupplierId = input.Payload.SupplierId,
                 UnitCost = input.Payload.UnitCost,
-                UnitPrice = input.Payload.UnitPrice
+                UnitPrice = input.Payload.UnitPrice,
+                UnitOfMeasurementId = input.Payload.UnitOfMeasurementId,
+                CostItemTypeId = input.Payload.CostItemTypeId
             };
         }
     }

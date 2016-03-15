@@ -1,50 +1,48 @@
-﻿using WaterPoint.Api.Common;
-using WaterPoint.Core.Domain;
+﻿using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts;
-using WaterPoint.Core.Domain.QueryParameters.Customers;
 using WaterPoint.Core.Domain.Db;
-using WaterPoint.Core.Domain.Payloads.Customers;
-using WaterPoint.Core.Domain.Requests.Customers;
+using WaterPoint.Core.Domain.QueryParameters;
+using WaterPoint.Core.Domain.Requests;
 using WaterPoint.Data.DbContext.Dapper;
-using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Core.RequestProcessor.Customers
 {
     public class DeleteCustomerProcessor :
         BaseDapperUowRequestProcess,
-        IWriteRequestProcessor<DeleteCustomersRequest>
+        IDeleteRequestProcessor<OrganizationEntityRequest>
     {
-        private readonly ICommand<DeleteCustomer> _deleteCommand;
+        private readonly ICommand<ToggleIsDelete> _deleteCommand;
         private readonly ICommandExecutor _deleteExecutor;
 
         public DeleteCustomerProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
-            ICommand<DeleteCustomer> deleteCommand,
+            ICommand<ToggleIsDelete> deleteCommand,
             ICommandExecutor deleteExecutor)
-            :base(dapperUnitOfWork)
+            : base(dapperUnitOfWork)
         {
             _deleteCommand = deleteCommand;
             _deleteExecutor = deleteExecutor;
         }
 
-        public CommandResult Process(DeleteCustomersRequest input)
+        public CommandResult Process(OrganizationEntityRequest input)
         {
             var result = UowProcess(Delete, input);
 
             return new DeleteCommandResult(result, result > 0);
         }
 
-        private int Delete(DeleteCustomersRequest input)
+        private int Delete(OrganizationEntityRequest input)
         {
-            var param = new DeleteCustomer
+            var param = new ToggleIsDelete
             {
-                Customer = input.Customer,
+                Id = input.Id,
+                IsDelete = true,
                 OrganizationId = input.OrganizationId
             };
 
             _deleteCommand.BuildQuery(param);
 
-            return _deleteExecutor.ExecuteInsert(_deleteCommand);
+            return _deleteExecutor.ExecuteNonQuery(_deleteCommand);
         }
     }
 }

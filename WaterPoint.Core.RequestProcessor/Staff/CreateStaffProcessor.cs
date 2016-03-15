@@ -82,7 +82,7 @@ namespace WaterPoint.Core.RequestProcessor.Staff
                     LoginEmail = input.Payload.Email
                 });
 
-                var resultCount = _executor.ExecuteUpdate(_undeleteStaffCommand);
+                var resultCount = _executor.ExecuteNonQuery(_undeleteStaffCommand);
 
                 _getStaffQuery.BuildQuery(new GetStaff
                 {
@@ -106,7 +106,7 @@ namespace WaterPoint.Core.RequestProcessor.Staff
                 Password = "password"
             });
 
-            var credentialId = _executor.ExecuteInsert(_createCredential);
+            var credentialId = _executor.Execute(_createCredential);
 
             _createOrganizationUser.BuildQuery(new CreateOrganizationUser
             {
@@ -117,7 +117,7 @@ namespace WaterPoint.Core.RequestProcessor.Staff
                     : (int)OrganizationUserTypes.Staff
             });
 
-            var orgUserId = _executor.ExecuteInsert(_createOrganizationUser);
+            var orgUserId = _executor.Execute(_createOrganizationUser);
 
             _createStaffCommand.BuildQuery(new CreateStaff
             {
@@ -140,7 +140,7 @@ namespace WaterPoint.Core.RequestProcessor.Staff
                 OtherName = input.Payload.OtherName
             });
 
-            var staffId = _executor.ExecuteInsert(_createStaffCommand);
+            var staffId = _executor.Execute(_createStaffCommand);
 
             AdjustPrivileges(input.OrganizationId, orgUserId);
 
@@ -158,7 +158,7 @@ namespace WaterPoint.Core.RequestProcessor.Staff
                 PrivilegeIds = privileges
             });
 
-            _executor.ExecuteInsert(_adjustUserPrivileges);
+            _executor.Execute(_adjustUserPrivileges);
         }
     }
 }
