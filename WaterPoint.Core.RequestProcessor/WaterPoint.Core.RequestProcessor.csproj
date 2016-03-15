@@ -99,6 +99,7 @@
     <Compile Include="Customers\ListCustomerJobsProcessor.cs" />
     <Compile Include="Customers\SearchTop10Processor.cs" />
     <Compile Include="Customers\DeleteCustomerProcessor.cs" />
+    <Compile Include="Invoices\GetInvoiceProcessor.cs" />
     <Compile Include="Invoices\CreateInvoiceProcessor.cs" />
     <Compile Include="JobCategories\ListJobCategoriesProcessor.cs" />
     <Compile Include="JobCostItems\UpdateJobCostItemProcessor.cs" />
@@ -119,10 +120,11 @@
     <Compile Include="Customers\UpdateCustomerProcessor.cs" />
     <Compile Include="Jobs\UpdateJobProcessor.cs" />
     <Compile Include="Mappers\EntitiesToContracts\AddressMapper.cs" />
+    <Compile Include="Mappers\EntitiesToContracts\InvoiceMapper.cs" />
     <Compile Include="Mappers\EntitiesToContracts\PriorityTypeMapper.cs" />
     <Compile Include="Mappers\EntitiesToContracts\JobCategoriesMapper.cs" />
     <Compile Include="Mappers\EntitiesToContracts\ContactMapper.cs" />
-    <Compile Include="Mappers\EntitiesToContracts\InvoiceJobCostItemMapper.cs" />
+    <Compile Include="Mappers\EntitiesToContracts\InvoiceCostItemMapper.cs" />
     <Compile Include="Mappers\EntitiesToContracts\JobStatusesMapper.cs" />
     <Compile Include="Mappers\EntitiesToContracts\QuoteCostItemMapper.cs" />
     <Compile Include="Mappers\EntitiesToContracts\InvoiceJobTaskMapper.cs" />
@@ -135,10 +137,10 @@
     <Compile Include="Staff\ListStaffProcessor.cs" />
     <Compile Include="UserPrivileges\AdjustUserPrivilegeProcessor.cs" />
     <Compile Include="UserPrivileges\ListUserPrivilegesProcessor.cs" />
-    <Compile Include="InvoiceJobCostItems\CreateInvoiceJobCostItemProcessor.cs" />
-    <Compile Include="InvoiceJobCostItems\GetInvoiceJobCostItemProcessor.cs" />
-    <Compile Include="InvoiceJobCostItems\ListInvoiceJobCostItemsProcessor.cs" />
-    <Compile Include="InvoiceJobCostItems\UpdateInvoiceJobCostItemProcessor.cs" />
+    <Compile Include="InvoiceCostItems\CreateInvoiceCostItemProcessor.cs" />
+    <Compile Include="InvoiceCostItems\GetInvoiceCostItemProcessor.cs" />
+    <Compile Include="InvoiceCostItems\ListInvoiceCostItemsProcessor.cs" />
+    <Compile Include="InvoiceCostItems\UpdateInvoiceCostItemProcessor.cs" />
     <Compile Include="QuoteCostItems\UpdateQuoteCostItemProcessor.cs" />
     <Compile Include="QuoteCostItems\GetQuoteCostItemProcessor.cs" />
     <Compile Include="QuoteCostItems\ListQuoteCostItemsProcessor.cs" />

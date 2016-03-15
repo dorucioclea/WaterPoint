@@ -82,7 +82,7 @@ namespace WaterPoint.Api.Customer.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequestWithErrors(ModelState);
+                return BadRequestWithErrors();
             }
 
             request.Payload = payload;

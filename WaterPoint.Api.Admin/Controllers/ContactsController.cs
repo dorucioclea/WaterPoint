@@ -43,7 +43,7 @@ namespace WaterPoint.Api.Admin.Controllers
             [FromBody]WriteContactPayload payload)
         {
             if (!ModelState.IsValid)
-                return BadRequestWithErrors(ModelState);
+                return BadRequestWithErrors();
 
             request.Payload = payload;
 

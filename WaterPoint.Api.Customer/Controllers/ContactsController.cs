@@ -36,7 +36,7 @@ namespace WaterPoint.Api.Customer.Controllers
             [FromBody]WriteCustomerContactPayload payload)
         {
             if (!ModelState.IsValid)
-                return BadRequestWithErrors(ModelState);
+                return BadRequestWithErrors();
 
             request.Payload = payload;
 

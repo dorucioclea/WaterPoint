@@ -1,13 +1,15 @@
 ﻿MERGE INTO dbo.InvoiceStatus AS i
 USING
 (
-	SELECT 1 AS Id, N'草稿' AS [Description]
+    SELECT 1 AS Id, N'未处理草案' AS [Description]
     UNION ALL
-    SELECT 2 AS Id, N'已发送' AS [Description]
+	SELECT 2 AS Id, N'草案' AS [Description]
     UNION ALL
-    SELECT 3 AS Id, N'已取消' AS [Description]
+    SELECT 3 AS Id, N'已发送' AS [Description]
     UNION ALL
-    SELECT 4 AS Id, N'已认可' AS [Description]
+    SELECT 4 AS Id, N'已取消' AS [Description]
+    UNION ALL
+    SELECT 5 AS Id, N'已认可' AS [Description]
 ) AS s
 ON 	i.Id = s.Id
 

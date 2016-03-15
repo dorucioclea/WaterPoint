@@ -6,6 +6,9 @@ namespace WaterPoint.Core.Domain.Payloads.Invoices
     public class CreateInvoicePayload : IPayload
     {
         [Required]
+        public int CustomerId { get; set; }
+
+        [Required]
         public int InvoiceTypeId { get; set; }
 
         [Required]

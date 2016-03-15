@@ -49,7 +49,7 @@ namespace WaterPoint.Api.Customer.Controllers
             [FromBody]WriteCustomerAddressPayload payload)
         {
             if (!ModelState.IsValid)
-                return BadRequestWithErrors(ModelState);
+                return BadRequestWithErrors();
 
             request.Payload = payload;
 

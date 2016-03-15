@@ -27,7 +27,7 @@ namespace WaterPoint.Core.RequestProcessor.Invoices
             return new CreateInvoice
             {
                 OrganizationId = input.OrganizationId,
-                CustomerId = input.CustomerId,
+                CustomerId = input.Payload.CustomerId,
                 DueDate = input.Payload.DueDate,
                 InvoiceStatusId = input.Payload.InvoiceStatusId,
                 Code = input.Payload.Code,

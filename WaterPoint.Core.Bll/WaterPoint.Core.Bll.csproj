@@ -98,6 +98,7 @@
     <Compile Include="Commands\Credentials\CreateCredentialCommand.cs" />
     <Compile Include="Commands\Customers\BulkDeleteCustomerCommand.cs" />
     <Compile Include="Commands\Customers\ToggleIsDeleteCustomerCommand.cs" />
+    <Compile Include="Commands\InvoiceCostItems\UpdateInvoiceCostItemCommand.cs" />
     <Compile Include="Commands\Invoices\CreateInvoiceCommand.cs" />
     <Compile Include="Commands\JobCostItems\UpdateJobCostItemCommand.cs" />
     <Compile Include="Commands\Jobs\Class1.cs" />
@@ -109,7 +110,7 @@
     <Compile Include="Commands\JobTasks\UpdateJobTaskCommand.cs" />
     <Compile Include="Commands\JobTimesheet\UpdateJobTimesheetCommand.cs" />
     <Compile Include="Commands\JobTimesheet\CreateJobTimesheetCommand.cs" />
-    <Compile Include="Commands\InvoiceJobCostItems\CreateQuoteCostItemCommand.cs" />
+    <Compile Include="Commands\InvoiceCostItems\CreateQuoteCostItemCommand.cs" />
     <Compile Include="Commands\OrganizationUsers\CreateOrganizationUserCommand.cs" />
     <Compile Include="Commands\OrganizationUsers\EnterOrganizationCommand.cs" />
     <Compile Include="Commands\QuoteCostItems\UpdateQuoteCostItemCommand.cs" />
@@ -128,6 +129,7 @@
     <Compile Include="Queries\Addresses\GetAddressQuery.cs" />
     <Compile Include="Queries\Addresses\GetAddressForCustomerQuery.cs" />
     <Compile Include="Queries\Addresses\ListAddressesForCustomerQuery.cs" />
+    <Compile Include="Queries\Invoices\GetInvoiceQuery.cs" />
     <Compile Include="Queries\Jobs\ListJobStaffQuery.cs" />
     <Compile Include="Queries\Jobs\ListPriorityTypesQuery.cs" />
     <Compile Include="Queries\JobStatuses\ListJobStatusesQuery.cs" />
@@ -155,8 +157,8 @@
     <Compile Include="Queries\Staff\GetStaffByLoginEmailQuery.cs" />
     <Compile Include="Queries\Staff\ListStaffQuery.cs" />
     <Compile Include="Queries\UserPrivileges\ListUserPrivilegesQuery.cs" />
-    <Compile Include="Queries\InvoiceJobCostItems\GetInvoiceJobCostItemQuery.cs" />
-    <Compile Include="Queries\InvoiceJobCostItems\ListInvoiceJobCostItemsQuery.cs" />
+    <Compile Include="Queries\InvoiceCostItems\GetInvoiceCostItemQuery.cs" />
+    <Compile Include="Queries\InvoiceCostItems\ListInvoiceCostItemsQuery.cs" />
     <Compile Include="Queries\QuoteCostItems\GetQuoteCostItemQuery.cs" />
     <Compile Include="Queries\QuoteCostItems\ListQuoteCostItemsQuery.cs" />
     <Compile Include="Queries\InvoiceJobTasks\GetInvoiceJobTaskQuery.cs" />

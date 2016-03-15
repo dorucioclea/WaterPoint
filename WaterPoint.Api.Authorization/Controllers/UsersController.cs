@@ -24,7 +24,7 @@ namespace WaterPoint.Api.Authorization.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequestWithErrors(ModelState);
+                return BadRequestWithErrors();
             }
 
             request.Payload = new SignInManagementPayload { ToSignIn = true };
@@ -40,7 +40,7 @@ namespace WaterPoint.Api.Authorization.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequestWithErrors(ModelState);
+                return BadRequestWithErrors();
             }
 
             request.Payload = new SignInManagementPayload { ToSignIn = false };
