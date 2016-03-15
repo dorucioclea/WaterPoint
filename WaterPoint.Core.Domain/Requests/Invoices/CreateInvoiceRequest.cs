@@ -2,9 +2,9 @@
 
 namespace WaterPoint.Core.Domain.Requests.Invoices
 {
-    public class CreateInvoiceRequest : ICreateRequest<CreateInvoicePayload>
+    public class CreateInvoiceRequest : ICreateRequest<WriteInvoicePayload>
     {
         public int OrganizationId { get; set; }
-        public CreateInvoicePayload Payload { get; set; }
+        public WriteInvoicePayload Payload { get; set; }
     }
 }

@@ -99,6 +99,7 @@
     <Compile Include="Commands\Customers\BulkDeleteCustomerCommand.cs" />
     <Compile Include="Commands\Customers\ToggleIsDeleteCustomerCommand.cs" />
     <Compile Include="Commands\InvoiceCostItems\UpdateInvoiceCostItemCommand.cs" />
+    <Compile Include="Commands\Invoices\UpdateInvoiceCommand.cs" />
     <Compile Include="Commands\Invoices\CreateInvoiceCommand.cs" />
     <Compile Include="Commands\JobCostItems\UpdateJobCostItemCommand.cs" />
     <Compile Include="Commands\Jobs\Class1.cs" />

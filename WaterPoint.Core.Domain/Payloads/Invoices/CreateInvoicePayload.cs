@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace WaterPoint.Core.Domain.Payloads.Invoices
 {
-    public class CreateInvoicePayload : IPayload
+    public class WriteInvoicePayload : IPayload
     {
         [Required]
         public int CustomerId { get; set; }
@@ -21,6 +21,8 @@ namespace WaterPoint.Core.Domain.Payloads.Invoices
 
         public DateTime? DueDate { get; set; }
 
+        public DateTime? PaidDate { get; set; }
+
         [Required]
         public bool IsFixedPrice { get; set; }
 
@@ -29,5 +31,11 @@ namespace WaterPoint.Core.Domain.Payloads.Invoices
 
         [Required]
         public string ShortDescription { get; set; }
+
+        public string LongDescription { get; set; }
+
+        public decimal TotalPriceWithTax { get; set; }
+
+        public decimal TotalPrice { get; set; }
     }
 }

@@ -1,10 +1,14 @@
 ﻿using System;
 using WaterPoint.Core.Domain.Db;
+using WaterPoint.Data.Entity.Attributes;
 
 namespace WaterPoint.Core.Domain.QueryParameters.Invoices
 {
-    public class CreateInvoice : IQueryParameter
+    public class UpdateInvoice: IQueryParameter
     {
+        [IgnoreWhenUpdate]
+        public int Id { get; set; }
+        [IgnoreWhenUpdate]
         public int OrganizationId { get; set; }
         public int CustomerId { get; set; }
         public int InvoiceTypeId { get; set; }
