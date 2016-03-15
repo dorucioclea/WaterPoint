@@ -55,6 +55,7 @@ namespace WaterPoint.Api.DependencyInjection
             Bind<ICommand<UpdateInvoiceJobTask>>().To<UpdateInvoiceJobTaskCommand>();
             Bind<ICommand<CreateInvoiceCostItem>>().To<CreateInvoiceCostItemCommand>();
             Bind<ICommand<UpdateInvoiceCostItem>>().To<UpdateInvoiceCostItemCommand>();
+            Bind<ICommand<UpdateInvoice>>().To<UpdateInvoiceCommand>();
         }
 
         private void BindRequestProcessors()
@@ -82,6 +83,9 @@ namespace WaterPoint.Api.DependencyInjection
 
             Bind<IRequestProcessor<OrganizationEntityRequest, InvoiceContract>>()
                 .To<GetInvoiceProcessor>();
+
+            Bind<IWriteRequestProcessor<UpdateInvoiceRequest>>()
+                .To<UpdateInvoiceProcessor>();
         }
     }
 }

@@ -140,6 +140,7 @@
     <Compile Include="QueryParameters\Addresses\UpdateCustomerAddressIsPostAddress.cs" />
     <Compile Include="QueryParameters\GetOrganizationEntity.cs" />
     <Compile Include="QueryParameters\CostItems\BulkDeleteCostItems.cs" />
+    <Compile Include="QueryParameters\Invoices\UpdateInvoice.cs" />
     <Compile Include="QueryParameters\SoftDeleteEntity.cs" />
     <Compile Include="QueryParameters\Jobs\Class1.cs" />
     <Compile Include="QueryParameters\Jobs\DeleteJobStaff.cs" />
@@ -230,6 +231,7 @@
     <Compile Include="Requests\Addresses\ListAddresssForCustomerRequest.cs" />
     <Compile Include="Requests\Addresses\UpdateAddressForCustomerRequest.cs" />
     <Compile Include="Requests\CostItems\BulkDeleteCostItemsRequest.cs" />
+    <Compile Include="Requests\Invoices\UpdateInvoiceRequest.cs" />
     <Compile Include="Requests\Jobs\DeleteJobStaffRequest.cs" />
     <Compile Include="Requests\Jobs\Class1.cs" />
     <Compile Include="Requests\Jobs\CreateJobStaffRequest.cs" />
