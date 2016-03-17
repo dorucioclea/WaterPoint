@@ -2,6 +2,7 @@
 (
     [Id] INT NOT NULL IDENTITY,
     [QuoteTaskId] INT NOT NULL,
+    [LastChangeOrganizationUserId] INT NULL,
     [IsWriteOff] BIT NOT NULL DEFAULT(0),
     [StaffId] INT NOT NULL,
     [StartDateTime] DATETIME2(0) NULL,
@@ -20,6 +21,7 @@
 	[UtcUpdated] DATETIME2(3) NOT NULL DEFAULT(SYSUTCDATETIME()),
 	[Uid] UNIQUEIDENTIFIER NOT NULL DEFAULT(NEWID()),
     CONSTRAINT [PK_dbo_QuoteTimesheet_Id] PRIMARY KEY CLUSTERED (Id ASC),
-    CONSTRAINT [FK_dbo_QuoteTimesheet_QuoteTask] FOREIGN KEY ([QuoteTaskId]) REFERENCES [dbo].[QuoteTask]([Id]),
-    CONSTRAINT [FK_QuoteTimesheet_dbo_Staff] FOREIGN KEY ([StaffId]) REFERENCES [dbo].[Staff]([Id]),
+    CONSTRAINT [FK_dbo_QuoteTimesheet_dbo_QuoteTask] FOREIGN KEY ([QuoteTaskId]) REFERENCES [dbo].[QuoteTask]([Id]),
+    CONSTRAINT [FK_dbo_QuoteTimesheet_dbo_Staff] FOREIGN KEY ([StaffId]) REFERENCES [dbo].[Staff]([Id]),
+    CONSTRAINT [FK_dbo_QuoteTimesheet_dbo_OrganizationUser] FOREIGN KEY ([LastChangeOrganizationUserId]) REFERENCES [dbo].[OrganizationUser]([Id])
 )
