@@ -2,9 +2,11 @@
 (
     [Id] INT NOT NULL IDENTITY,
     [OrganizationId] INT NOT NULL,
+    [LastChangeOrganizationUserId] INT NULL,
     [QuoteStatusId] INT NOT NULL,
     [Name] NVARCHAR(200) NOT NULL,
     [JobId] INT NULL,
+    [InvoiceId] INT NULL,
     [CustomerId] INT NOT NULL,
     [ContactId] INT NULL,
     [Code] VARCHAR(50) NOT NULL,
@@ -22,5 +24,6 @@
     CONSTRAINT [FK_Quote_Organization] FOREIGN KEY ([OrganizationId]) REFERENCES [dbo].[Organization]([Id]),
     CONSTRAINT [FK_Quote_Customer] FOREIGN KEY ([CustomerId]) REFERENCES [dbo].[Customer]([Id]),
     CONSTRAINT [FK_Quote_Contact] FOREIGN KEY ([ContactId]) REFERENCES [dbo].[Contact]([Id]),
-    CONSTRAINT [FK_dbo_Quote_dbo_QuoteStatus] FOREIGN KEY ([QuoteStatusId]) REFERENCES [dbo].[QuoteStatus]([Id])
+    CONSTRAINT [FK_dbo_Quote_dbo_QuoteStatus] FOREIGN KEY ([QuoteStatusId]) REFERENCES [dbo].[QuoteStatus]([Id]),
+    CONSTRAINT [FK_dbo_Quote_dbo_OrganizationUser] FOREIGN KEY ([LastChangeOrganizationUserId]) REFERENCES [dbo].[OrganizationUser]([Id])
 )

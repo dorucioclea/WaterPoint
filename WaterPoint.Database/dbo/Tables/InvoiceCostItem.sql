@@ -2,6 +2,7 @@
 (
     [Id] INT NOT NULL IDENTITY,
     [InvoiceId] INT NOT NULL,
+    [OrganizationId] INT NOT NULL,
     [CostItemId] INT NULL,
     [ShortDescription] NVARCHAR(200) NOT NULL,
     [LongDescription] NVARCHAR(MAX) NULL,

@@ -8,7 +8,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
     <ProjectGuid>{af770b37-7f34-4bb4-bed7-1a4a84db3965}</ProjectGuid>
-    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql110DatabaseSchemaProvider</DSP>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.SqlAzureV12DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>
     </RootPath>
@@ -99,7 +99,6 @@
     <Build Include="dbo\Tables\InvoiceType.sql" />
     <Build Include="dbo\Tables\InvoiceJob.sql" />
     <Build Include="dbo\Tables\InvoiceCostItem.sql" />
-    <Build Include="dbo\Tables\InvoiceAddtionalCostItem.sql" />
     <Build Include="dbo\Tables\InvoiceJobTask.sql" />
     <Build Include="dbo\Tables\JobTimesheet.sql" />
     <Build Include="dbo\Tables\JobTimesheetType.sql" />
@@ -151,6 +150,7 @@
     <Build Include="dbo\Tables\UnitOfMeasurement.sql" />
     <Build Include="dbo\StoredProcedures\BulkDelete_Customers.sql" />
     <Build Include="dbo\StoredProcedures\BulkDelete_CostItems.sql" />
+    <Build Include="dbo\Tables\QuoteTimeSheet.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="WaterPoint.Database.publish.xml" />

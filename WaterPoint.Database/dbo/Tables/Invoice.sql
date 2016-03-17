@@ -2,6 +2,7 @@
 (
     [Id] INT NOT NULL IDENTITY,
     [OrganizationId] INT NOT NULL,
+    [LastChangeOrganizationUserId] INT NULL,
     [InvoiceTypeId] INT NOT NULL,
     [InvoiceStatusId] INT NOT NULL,
     [CustomerId] INT NOT NULL,
@@ -24,5 +25,6 @@
     CONSTRAINT [FK_dbo_Invoice_dbo_InvoiceType] FOREIGN KEY ([InvoiceTypeId]) REFERENCES [dbo].[InvoiceType]([Id]),
     CONSTRAINT [FK_dbo_Invoice_dbo_Customer] FOREIGN KEY ([CustomerId]) REFERENCES [dbo].[Customer]([Id]),
     CONSTRAINT [FK_dbo_Invoice_dbo_Contact] FOREIGN KEY ([ContactId]) REFERENCES [dbo].[Contact]([Id]),
-    CONSTRAINT [FK_dbo_Invoice_dbo_InvoiceStatus] FOREIGN KEY ([InvoiceStatusId]) REFERENCES [dbo].[InvoiceStatus]([Id])
+    CONSTRAINT [FK_dbo_Invoice_dbo_InvoiceStatus] FOREIGN KEY ([InvoiceStatusId]) REFERENCES [dbo].[InvoiceStatus]([Id]),
+    CONSTRAINT [FK_dbo_Invoice_dbo_OrganizationUser] FOREIGN KEY ([LastChangeOrganizationUserId]) REFERENCES [dbo].[OrganizationUser]([Id])
 )
