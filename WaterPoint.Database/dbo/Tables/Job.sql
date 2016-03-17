@@ -2,6 +2,7 @@
 (
 	[Id] INT NOT NULL IDENTITY,
     [OrganizationId] INT NOT NULL,
+    [LastChangeOrganizationUserId] INT NULL,
     [JobStatusId] INT NOT NULL,
     [PriorityTypeId] INT NULL,
     [JobCategoryId] INT NULL,
@@ -23,7 +24,8 @@
     CONSTRAINT [FK_dbo_Job_dbo_Organization] FOREIGN KEY ([OrganizationId]) REFERENCES [dbo].[Organization]([Id]),
     CONSTRAINT [FK_dbo_Job_dbo_JobStatus] FOREIGN KEY ([JobStatusId]) REFERENCES [dbo].[JobStatus] ([Id]),
     CONSTRAINT [FK_dbo_Job_dbo_Category] FOREIGN KEY ([JobCategoryId]) REFERENCES [dbo].[JobCategory]([Id]),
-    CONSTRAINT [FK_dbo_Job_dbo_PriorityType] FOREIGN KEY ([PriorityTypeId]) REFERENCES [dbo].[PriorityType]([Id])
+    CONSTRAINT [FK_dbo_Job_dbo_PriorityType] FOREIGN KEY ([PriorityTypeId]) REFERENCES [dbo].[PriorityType]([Id]),
+    CONSTRAINT [FK_dbo_Job_dbo_OrganizationUser] FOREIGN KEY ([LastChangeOrganizationUserId]) REFERENCES [dbo].[OrganizationUser]([Id])
 );
 GO
 

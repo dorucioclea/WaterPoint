@@ -10,6 +10,8 @@ namespace WaterPoint.Data.Entity.DataEntities
 
         public int OrganizationId { get; set; }
 
+        public int? LastChangeOrganizationUserId { get; set; }
+
         public string Street { get; set; }
 
         public string StreetExtraLine { get; set; }

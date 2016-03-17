@@ -99,7 +99,6 @@
     <Build Include="dbo\Tables\InvoiceType.sql" />
     <Build Include="dbo\Tables\InvoiceJob.sql" />
     <Build Include="dbo\Tables\InvoiceCostItem.sql" />
-    <Build Include="dbo\Tables\InvoiceAddtionalCostItem.sql" />
     <Build Include="dbo\Tables\InvoiceJobTask.sql" />
     <Build Include="dbo\Tables\JobTimesheet.sql" />
     <Build Include="dbo\Tables\JobTimesheetType.sql" />
@@ -151,6 +150,7 @@
     <Build Include="dbo\Tables\UnitOfMeasurement.sql" />
     <Build Include="dbo\StoredProcedures\BulkDelete_Customers.sql" />
     <Build Include="dbo\StoredProcedures\BulkDelete_CostItems.sql" />
+    <Build Include="dbo\Tables\QuoteTimeSheet.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="WaterPoint.Database.publish.xml" />

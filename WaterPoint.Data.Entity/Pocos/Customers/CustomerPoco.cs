@@ -15,7 +15,7 @@ namespace WaterPoint.Data.Entity.Pocos.Customers
 
         public int OrganizationId { get; set; }
 
-        public int? OrganizationUserId { get; set; }
+        public int? LastChangeOrganizationUserId { get; set; }
 
         public int? CustomerTypeId { get; set; }
 
