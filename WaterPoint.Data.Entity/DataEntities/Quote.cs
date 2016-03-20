@@ -13,6 +13,7 @@ namespace WaterPoint.Data.Entity.DataEntities
         [Primary]
         public int Id { get; set; }
         public int OrganizationId { get; set; }
+        public int? LastChangeOrganizationUserId { get; set; }
         public int QuoteStatusId { get; set; }
         public string Name { get; set; }
         public int? JobId { get; set; }

@@ -2,6 +2,8 @@
 (
     [Id] INT NOT NULL IDENTITY,
     [InvoiceId] INT NOT NULL,
+    [OrganizationId] INT NOT NULL,
+    [LastChangeOrganizationUserId] INT NULL,
     [CostItemId] INT NULL,
     [ShortDescription] NVARCHAR(200) NOT NULL,
     [LongDescription] NVARCHAR(MAX) NULL,
@@ -15,5 +17,6 @@
 	[UtcUpdated] DATETIME2(3) NOT NULL DEFAULT(SYSUTCDATETIME()),
     [Uid] UNIQUEIDENTIFIER NOT NULL DEFAULT(NEWID()),
     CONSTRAINT [PK_dbo_InvoiceCostItem] PRIMARY KEY CLUSTERED (Id ASC),
-    CONSTRAINT [FK_InvoiceCostItem_Invoice] FOREIGN KEY ([InvoiceId]) REFERENCES [dbo].[Invoice]([Id])
+    CONSTRAINT [FK_dbo_InvoiceCostItem_dbo_Invoice] FOREIGN KEY ([InvoiceId]) REFERENCES [dbo].[Invoice]([Id]),
+    CONSTRAINT [FK_dbo_InvoiceCostItem_dbo_OrganizationUser] FOREIGN KEY ([LastChangeOrganizationUserId]) REFERENCES [dbo].[OrganizationUser]([Id])
 )

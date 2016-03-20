@@ -1,6 +1,7 @@
 ﻿CREATE TABLE [dbo].[InvoiceJobTask]
 (
     [Id] INT NOT NULL IDENTITY,
+    [LastChangeOrganizationUserId] INT NULL,
     [InvoiceId] INT NOT NULL,
     [JobTaskId] INT NOT NULL,
     [DisplayOrder] INT NULL,
@@ -19,6 +20,7 @@
 	[UtcUpdated] DATETIME2(3) NOT NULL DEFAULT(SYSUTCDATETIME()),
     [Uid] UNIQUEIDENTIFIER NOT NULL DEFAULT(NEWID()),
     CONSTRAINT [PK_dbo_InvoiceJobTask_Id] PRIMARY KEY CLUSTERED (Id ASC),
-    CONSTRAINT [FK_InvoiceJobTask_Invoice] FOREIGN KEY ([InvoiceId]) REFERENCES [dbo].[Invoice]([Id]),
-    CONSTRAINT [FK_InvoiceJobTask_JobTask] FOREIGN KEY ([JobTaskId]) REFERENCES [dbo].[JobTask]([Id])
+    CONSTRAINT [FK_dbo_InvoiceJobTask_dbo_Invoice] FOREIGN KEY ([InvoiceId]) REFERENCES [dbo].[Invoice]([Id]),
+    CONSTRAINT [FK_dbo_InvoiceJobTask_dbo_JobTask] FOREIGN KEY ([JobTaskId]) REFERENCES [dbo].[JobTask]([Id]),
+    CONSTRAINT [FK_dbo_InvoiceJobTask_dbo_OrganizationUser] FOREIGN KEY ([LastChangeOrganizationUserId]) REFERENCES [dbo].[OrganizationUser]([Id])
 )

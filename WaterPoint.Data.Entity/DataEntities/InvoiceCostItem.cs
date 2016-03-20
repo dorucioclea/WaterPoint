@@ -9,6 +9,8 @@ namespace WaterPoint.Data.Entity.DataEntities
         [Primary]
         public int Id { get; set; }
 
+        public int OrganizationId { get; set; }
+
         public int InvoiceId { get; set; }
 
         public int? CostItemId { get; set; }

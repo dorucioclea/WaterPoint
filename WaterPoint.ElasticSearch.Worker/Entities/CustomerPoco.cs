@@ -4,6 +4,8 @@
     {
         public int Id { get; set; }
 
+        public int? LastChangeOrganizationUserId { get; set; }
+
         public int OrganizationId { get; set; }
 
         public bool IsProspect { get; set; }

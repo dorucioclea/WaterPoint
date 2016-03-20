@@ -2,6 +2,7 @@
 (
     [Id] INT NOT NULL IDENTITY,
     [JobId] INT NOT NULL,
+    [LastChangeOrganizationUserId] INT NULL,
     [TaskDefinitionId] INT NOT NULL,
     [DisplayOrder] INT NOT NULL DEFAULT(9999),
     [EstimatedTimeInMinutes] INT NULL,
@@ -20,6 +21,7 @@
 	[UtcUpdated] DATETIME2(3) NOT NULL DEFAULT(SYSUTCDATETIME()),
     [Uid] UNIQUEIDENTIFIER NOT NULL DEFAULT(NEWID()),
     CONSTRAINT [PK_dbo_JobTask_Id] PRIMARY KEY CLUSTERED (Id ASC),
-    CONSTRAINT [FK_JobTask_Job] FOREIGN KEY ([JobId]) REFERENCES [dbo].[Job]([Id]),
-    CONSTRAINT [FK_JobTask_Task] FOREIGN KEY ([TaskDefinitionId]) REFERENCES [dbo].[TaskDefinition]([Id])
+    CONSTRAINT [FK_dbo_JobTask_dbo_Job] FOREIGN KEY ([JobId]) REFERENCES [dbo].[Job]([Id]),
+    CONSTRAINT [FK_dbo_JobTask_dbo_Task] FOREIGN KEY ([TaskDefinitionId]) REFERENCES [dbo].[TaskDefinition]([Id]),
+    CONSTRAINT [FK_dbo_JobTask_dbo_OrganizationUser] FOREIGN KEY ([LastChangeOrganizationUserId]) REFERENCES [dbo].[OrganizationUser]([Id])
 )

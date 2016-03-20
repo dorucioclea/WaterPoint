@@ -31,6 +31,8 @@ namespace WaterPoint.Data.Entity.DataEntities
 
         public bool IsDuration { get; set; }
 
+        public bool IsWriteOff { get; set; }
+
         public decimal BaseRate { get; set; }
 
         public decimal BillableRate { get; set; }

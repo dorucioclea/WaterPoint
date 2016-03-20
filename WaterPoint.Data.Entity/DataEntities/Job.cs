@@ -11,6 +11,8 @@ namespace WaterPoint.Data.Entity.DataEntities
 
         public int OrganizationId { get; set; }
 
+        public int? LastChangeOrganizationUserId { get; set; }
+
         public int JobStatusId { get; set; }
 
         public int? JobCategoryId { get; set; }

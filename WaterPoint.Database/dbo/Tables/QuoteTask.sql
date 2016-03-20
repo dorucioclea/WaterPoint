@@ -2,6 +2,7 @@
 (
     [Id] INT NOT NULL IDENTITY,
     [QuoteId] INT NOT NULL,
+    [LastChangeOrganizationUserId] INT NULL,
     [TaskDefinitionId] INT NOT NULL,
     [DisplayOrder] INT NULL,
     [EstimatedTimeInMinutes] INT NOT NULL,
@@ -20,5 +21,6 @@
     [Uid] UNIQUEIDENTIFIER NOT NULL DEFAULT(NEWID()),
     CONSTRAINT [PK_dbo_QuoteTask_Id] PRIMARY KEY CLUSTERED (Id ASC),
     CONSTRAINT [FK_dbo_QuoteTask_dbo_Quote] FOREIGN KEY ([QuoteId]) REFERENCES [dbo].[Quote]([Id]),
-    CONSTRAINT [FK_dbo_QuoteTask_dbo_TaskDefinition] FOREIGN KEY ([TaskDefinitionId]) REFERENCES [dbo].[TaskDefinition]([Id])
+    CONSTRAINT [FK_dbo_QuoteTask_dbo_TaskDefinition] FOREIGN KEY ([TaskDefinitionId]) REFERENCES [dbo].[TaskDefinition]([Id]),
+    CONSTRAINT [FK_dbo_QuoteTask_dbo_OrganizationUser] FOREIGN KEY ([LastChangeOrganizationUserId]) REFERENCES [dbo].[OrganizationUser]([Id])
 )
