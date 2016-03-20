@@ -9,6 +9,8 @@ namespace WaterPoint.Data.Entity.Pocos.Contacts
         [Primary]
         public int Id { get; set; }
 
+        public int CustomerId { get; set; }
+
         public int OrganizationId { get; set; }
 
         public string FirstName { get; set; }

@@ -2,6 +2,7 @@
 (
 	[Id] INT NOT NULL IDENTITY,
     [OrganizationId] INT NOT NULL,
+	[OrganizationUserId] INT NULL,
     [LastChangeOrganizationUserId] INT NULL,
     [CustomerTypeId] INT NOT NULL,
 	[IsProspect] BIT NOT NULL DEFAULT(0),
