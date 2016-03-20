@@ -2,6 +2,7 @@
 (
     [Id] INT NOT NULL IDENTITY,
     [InvoiceId] INT NOT NULL,
+    [LastChangeOrganizationUserId] INT NULL,
     [JobTimesheetId] INT NOT NULL,
     [InvoiceJobTaskId] INT NULL,
     [StartDateTime] DATETIME2(0) NULL,
@@ -17,6 +18,7 @@
 	[UtcUpdated] DATETIME2(3) NOT NULL DEFAULT(SYSUTCDATETIME()),
 	[Uid] UNIQUEIDENTIFIER NOT NULL DEFAULT(NEWID()),
     CONSTRAINT [PK_dbo_InvoiceJobTimesheet_Id] PRIMARY KEY CLUSTERED (Id ASC),
-    CONSTRAINT [FK_InvoiceJobTimesheet_Invoice] FOREIGN KEY ([InvoiceId]) REFERENCES [dbo].[Invoice]([Id]),
-    CONSTRAINT [FK_InvoiceJobTimesheet_JobTimesheet] FOREIGN KEY ([JobTimesheetId]) REFERENCES [dbo].[JobTimesheet]([Id]),
+    CONSTRAINT [FK_dbo_InvoiceJobTimesheet_dbo_Invoice] FOREIGN KEY ([InvoiceId]) REFERENCES [dbo].[Invoice]([Id]),
+    CONSTRAINT [FK_dbo_InvoiceJobTimesheet_dbo_JobTimesheet] FOREIGN KEY ([JobTimesheetId]) REFERENCES [dbo].[JobTimesheet]([Id]),
+    CONSTRAINT [FK_dbo_InvoiceJobTimesheet_dbo_OrganizationUser] FOREIGN KEY ([LastChangeOrganizationUserId]) REFERENCES [dbo].[OrganizationUser]([Id])
 )

@@ -17,6 +17,7 @@ BEGIN
       ,a.[CountryId]
       ,a.[IsDeleted]
       ,a.[Version]
+	  ,ca.CustomerId
 	  ,ca.IsPostAddress
 	  ,ca.IsPrimary
     FROM

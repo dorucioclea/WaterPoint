@@ -1,6 +1,5 @@
 ﻿using WaterPoint.Core.Domain.Db;
 using WaterPoint.Core.Domain.QueryParameters.Addresses;
-using WaterPoint.Data.Entity.DataEntities;
 using WaterPoint.Data.Entity.Pocos.Addresses;
 
 namespace WaterPoint.Core.Bll.Queries.Addresses

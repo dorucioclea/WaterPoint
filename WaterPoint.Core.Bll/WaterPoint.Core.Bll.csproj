@@ -89,6 +89,7 @@
     <Compile Include="Commands\Addresses\CreateAddressCommand.cs" />
     <Compile Include="Commands\Addresses\CreateCustomerAddressCommand.cs" />
     <Compile Include="Commands\Addresses\UpdateCustomerAddressIsPostAddressCommand.cs" />
+    <Compile Include="Commands\Contacts\UpdateCustomerContactIsPrimary.cs" />
     <Compile Include="Commands\Contacts\UpdateContactCommand.cs" />
     <Compile Include="Commands\Contacts\CreateContactCommand.cs" />
     <Compile Include="Commands\Contacts\CreateCustomerContactCommand.cs" />
