@@ -71,6 +71,7 @@ namespace WaterPoint.Api.DependencyInjection
             Bind<ICommand<UpdateCustomerAddressIsPostAddress>>().To<UpdateCustomerAddressIsPostAddressCommand>();
             Bind<ICommand<ToggleIsDelete>>().To<ToggleIsDeleteCustomerCommand>();
             Bind<ICommand<BulkDeleteCustomer>>().To<BulkDeleteCustomerCommand>();
+            Bind<ICommand<UpdateCustomerContactIsPrimary>>().To<UpdateCustomerContactIsPrimaryCommand>();
         }
 
         private void BindRequestProcessors()
@@ -98,6 +99,9 @@ namespace WaterPoint.Api.DependencyInjection
 
             Bind<IWriteRequestProcessor<CreateCustomerContactRequest>>()
                 .To<CreateCustomerContactProcessor>();
+
+            Bind<IWriteRequestProcessor<UpdateCustomerContactRequest>>()
+                .To<UpdateCustomerContactProcessor>();
 
             Bind<IWriteRequestProcessor<CreateCustomerAddressRequest>>()
                 .To<CreateCustomerAddressProcessor>();

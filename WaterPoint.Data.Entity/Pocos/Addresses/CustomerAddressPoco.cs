@@ -27,6 +27,9 @@ namespace WaterPoint.Data.Entity.Pocos.Addresses
         public bool IsDeleted { get; set; }
 
         [OneToMany("dbo.CustomerAddress")]
+        public int CustomerId { get; set; }
+
+        [OneToMany("dbo.CustomerAddress")]
         public bool IsPrimary { get; set; }
 
         [OneToMany("dbo.CustomerAddress")]

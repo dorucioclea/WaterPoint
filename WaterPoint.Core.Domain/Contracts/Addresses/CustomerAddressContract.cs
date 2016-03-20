@@ -4,6 +4,8 @@
     {
         public int Id { get; set; }
 
+        public int CustomerId { get; set; }
+
         public int OrganizationId { get; set; }
 
         public string Street { get; set; }

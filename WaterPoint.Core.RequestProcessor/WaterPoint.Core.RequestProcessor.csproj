@@ -82,6 +82,7 @@
     <Compile Include="Addresses\UpdateAddressProcessor.cs" />
     <Compile Include="BaseDapperUowRequestProcess.cs" />
     <Compile Include="BaseCreateProcessor.cs" />
+    <Compile Include="Contacts\UpdateCustomerContactProcessor.cs" />
     <Compile Include="Contacts\CreateContactProcessor.cs" />
     <Compile Include="Contacts\ListContactsProcessor.cs" />
     <Compile Include="Contacts\UpdateContactProcessor.cs" />

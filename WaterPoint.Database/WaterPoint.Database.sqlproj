@@ -151,6 +151,7 @@
     <Build Include="dbo\Tables\UnitOfMeasurement.sql" />
     <Build Include="dbo\StoredProcedures\BulkDelete_Customers.sql" />
     <Build Include="dbo\StoredProcedures\BulkDelete_CostItems.sql" />
+    <Build Include="dbo\StoredProcedures\Procedure1.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="WaterPoint.Database.publish.xml" />
