@@ -21,6 +21,7 @@ using WaterPoint.Core.RequestProcessor.JobCategories;
 using WaterPoint.Core.RequestProcessor.Jobs;
 using WaterPoint.Data.Entity.DataEntities;
 using WaterPoint.Data.Entity.Pocos.Jobs;
+using WaterPoint.Data.Entity.Pocos.Staff;
 
 namespace WaterPoint.Api.DependencyInjection
 {
@@ -38,7 +39,7 @@ namespace WaterPoint.Api.DependencyInjection
             Bind<IQuery<PagedJobs, JobWithCustomerAndStatusPoco>>().To<ListJobsQuery>();
             Bind<IQuery<GetJob, JobWithDetailsPoco>>().To<GetJobDetailsQuery>();
             Bind<IQuery<ListJobCategories, JobCategory>>().To<ListJobCategoriesQuery>();
-            Bind<IQuery<ListJobStaff, Staff>>().To<ListJobStaffQuery>();
+            Bind<IQuery<ListJobStaff, JobStaffPoco>>().To<ListJobStaffQuery>();
         }
 
         public void BindCommands()
@@ -74,7 +75,7 @@ namespace WaterPoint.Api.DependencyInjection
             Bind<IWriteRequestProcessor<DeleteJobStaffRequest>>()
                 .To<DeleteJobStaffProcessor>();
 
-            Bind<IListProcessor<ListJobStaffRequest, StaffContract>>().To<ListJobStaffProcessor>();
+            Bind<IListProcessor<ListJobStaffRequest, JobStaffContract>>().To<ListJobStaffProcessor>();
         }
     }
 }

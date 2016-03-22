@@ -20,4 +20,9 @@ namespace WaterPoint.Core.Domain.Contracts.Staff
         public DateTime UtcUpdated { get; set; }
         public string Uid { get; set; }
     }
+
+    public class JobStaffContract : StaffContract
+    {
+        public int JobId { get; set; }
+    }
 }

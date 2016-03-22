@@ -1,9 +1,10 @@
 ﻿using WaterPoint.Core.Domain.Db;
 using WaterPoint.Core.Domain.QueryParameters.Jobs;
+using WaterPoint.Data.Entity.Pocos.Staff;
 
 namespace WaterPoint.Core.Bll.Queries.Jobs
 {
-    public class ListJobStaffQuery : IQuery<ListJobStaff, Data.Entity.DataEntities.Staff>
+    public class ListJobStaffQuery : IQuery<ListJobStaff, JobStaffPoco>
     {
         public void BuildQuery(ListJobStaff parameter)
         {

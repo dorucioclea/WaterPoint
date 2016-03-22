@@ -14,12 +14,12 @@ namespace WaterPoint.Api.Job.Controllers
     {
         private readonly IWriteRequestProcessor<CreateJobStaffRequest> _createJobStaffProcessor;
         private readonly IWriteRequestProcessor<DeleteJobStaffRequest> _deleteRequestProcessor;
-        private readonly IListProcessor<ListJobStaffRequest, StaffContract> _listJobStaffPoProcessor;
+        private readonly IListProcessor<ListJobStaffRequest, JobStaffContract> _listJobStaffPoProcessor;
 
         public StaffController(
             IWriteRequestProcessor<CreateJobStaffRequest> createJobStaffProcessor,
             IWriteRequestProcessor<DeleteJobStaffRequest> deleteRequestProcessor,
-            IListProcessor<ListJobStaffRequest, StaffContract> listJobStaffPoProcessor)
+            IListProcessor<ListJobStaffRequest, JobStaffContract> listJobStaffPoProcessor)
         {
             _createJobStaffProcessor = createJobStaffProcessor;
             _deleteRequestProcessor = deleteRequestProcessor;
