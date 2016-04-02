@@ -29,6 +29,6 @@ namespace WaterPoint.Core.Domain.QueryParameters.Jobs
 
         public decimal? Budget { get; set; }
 
-        public decimal ExcludeFromWip { get; set; }
+        public bool ExcludeFromWip { get; set; }
     }
 }
