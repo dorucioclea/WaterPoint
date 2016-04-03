@@ -15,7 +15,7 @@ namespace WaterPoint.Api.Common.HttpActionResults
 
             foreach (var modelError in errors)
             {
-                AddError(modelError.ErrorMessage, null);
+                AddError(modelError.ErrorMessage, modelError.Exception.ToString());
             }
         }
     }

@@ -25,7 +25,13 @@ namespace WaterPoint.Core.RequestProcessor.Jobs
                 ShortDescription = input.Payload.ShortDescription,
                 CustomerId = input.Payload.CustomerId.Value,
                 StartDate = input.Payload.StartDate.Value,
-                EndDate = input.Payload.EndDate.Value
+                EndDate = input.Payload.EndDate.Value,
+                PriorityTypeId = input.Payload.PriorityTypeId,
+                JobCategoryId = input.Payload.JobCategoryId,
+                LongDescription = input.Payload.LongDescription,
+                DueDate = input.Payload.DueDate,
+                Budget = input.Payload.Budget,
+                ExcludeFromWip = input.Payload.ExcludeFromWip ?? false
             };
         }
     }

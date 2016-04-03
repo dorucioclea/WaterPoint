@@ -41,5 +41,7 @@ namespace WaterPoint.Data.Entity.Pocos.Jobs
 
         [OneToOne("inner", "dbo", "JobStatus", "Name", "js")]
         public string JobStatusName { get; set; }
+
+        public bool ExcludeFromWip { get; set; }
     }
 }

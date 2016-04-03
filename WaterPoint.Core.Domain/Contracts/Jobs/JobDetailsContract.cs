@@ -14,6 +14,7 @@ namespace WaterPoint.Core.Domain.Contracts.Jobs
         public string Code { get; set; }
         public string ShortDescription { get; set; }
         public string LongDescription { get; set; }
+        public bool ExcludeFromWip { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public DateTime? DueDate { get; set; }

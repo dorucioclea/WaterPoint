@@ -10,6 +10,7 @@ namespace WaterPoint.Data.Entity.Pocos.Jobs
         public int Id { get; set; }
         public int OrganizationId { get; set; }
         public int JobStatusId { get; set; }
+        public int? PriorityTypeId { get; set; }
         public int? JobCategoryId { get; set; }
         public string Code { get; set; }
         public string ShortDescription { get; set; }

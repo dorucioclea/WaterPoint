@@ -94,7 +94,7 @@
     <Compile Include="Enums\JobTimesheetTypes.cs" />
     <Compile Include="IDataEntity.cs" />
     <Compile Include="Pocos\Addresses\CustomerAddressPoco.cs" />
-    <Compile Include="Pocos\Contacts\Class1.cs" />
+    <Compile Include="Pocos\Contacts\CustomerContactPoco.cs" />
     <Compile Include="Pocos\Customers\BasicCustomerWithAddressPoco.cs" />
     <Compile Include="Pocos\Customers\CustomerPoco.cs" />
     <Compile Include="Pocos\JobCostItems\JobCostItemListPoco.cs" />
@@ -111,6 +111,7 @@
     <Compile Include="Pocos\Quotes\QuoteBasicPoco.cs" />
     <Compile Include="Pocos\QuoteTasks\QuoteTaskBasicPoco.cs" />
     <Compile Include="Pocos\Staff\BasicStaffPoco.cs" />
+    <Compile Include="Pocos\Staff\JobStaffPoco.cs" />
     <Compile Include="Pocos\TaskDefinitions\TaskDefinitionBasicPoco.cs" />
     <Compile Include="Pocos\Views\ValidCredential.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

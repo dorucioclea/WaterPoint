@@ -14,6 +14,9 @@ namespace WaterPoint.Core.RequestProcessor.Mappers.EntitiesToContracts
 
             Mapper.CreateMap<BasicStaffPoco, BasicStaffContract>()
                 .ForMember(o => o.Version, i => i.MapFrom(d => d.Version.ToSha1(d.Id.ToString())));
+
+            Mapper.CreateMap<JobStaffPoco, JobStaffContract>()
+                .ForMember(o => o.Version, i => i.MapFrom(d => d.Version.ToSha1(d.Id.ToString())));
         }
 
         public static StaffContract Map(Data.Entity.DataEntities.Staff source)
@@ -24,6 +27,11 @@ namespace WaterPoint.Core.RequestProcessor.Mappers.EntitiesToContracts
         public static BasicStaffContract Map(BasicStaffPoco source)
         {
             return Mapper.Map<BasicStaffContract>(source);
+        }
+
+        public static JobStaffContract Map(JobStaffPoco source)
+        {
+            return Mapper.Map<JobStaffContract>(source);
         }
     }
 }

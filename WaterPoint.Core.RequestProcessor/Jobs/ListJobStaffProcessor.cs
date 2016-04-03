@@ -7,19 +7,20 @@ using WaterPoint.Core.Domain.QueryParameters.Jobs;
 using WaterPoint.Core.Domain.Requests.Jobs;
 using WaterPoint.Core.RequestProcessor.Mappers.EntitiesToContracts;
 using WaterPoint.Data.DbContext.Dapper;
+using WaterPoint.Data.Entity.Pocos.Staff;
 
 namespace WaterPoint.Core.RequestProcessor.Jobs
 {
     public class ListJobStaffProcessor
-     : BaseDapperUowRequestProcess, IListProcessor<ListJobStaffRequest, StaffContract>
+     : BaseDapperUowRequestProcess, IListProcessor<ListJobStaffRequest, JobStaffContract>
 
     {
-        private readonly IQuery<ListJobStaff, Data.Entity.DataEntities.Staff> _query;
+        private readonly IQuery<ListJobStaff, JobStaffPoco> _query;
         private readonly IQueryListRunner _runner;
 
         public ListJobStaffProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
-            IQuery<ListJobStaff, Data.Entity.DataEntities.Staff> query,
+            IQuery<ListJobStaff, JobStaffPoco> query,
             IQueryListRunner runner)
             : base(dapperUnitOfWork)
         {
@@ -27,7 +28,7 @@ namespace WaterPoint.Core.RequestProcessor.Jobs
             _runner = runner;
         }
 
-        public IEnumerable<StaffContract> Process(ListJobStaffRequest input)
+        public IEnumerable<JobStaffContract> Process(ListJobStaffRequest input)
         {
             _query.BuildQuery(new ListJobStaff
             {
