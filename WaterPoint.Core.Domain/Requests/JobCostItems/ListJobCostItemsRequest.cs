@@ -2,14 +2,9 @@
 
 namespace WaterPoint.Core.Domain.Requests.JobCostItems
 {
-    public class ListJobCostItemsRequest : IPaginationRequest
+    public class ListJobCostItemsRequest : IRequest, IOrgId
     {
         public int OrganizationId { get; set; }
         public int JobId { get; set; }
-        public int? PageSize { get; set; }
-        public int? PageNumber { get; set; }
-        public string Sort { get; set; }
-        public bool? IsDesc { get; set; }
-        public string SearchTerm { get; set; }
     }
 }
