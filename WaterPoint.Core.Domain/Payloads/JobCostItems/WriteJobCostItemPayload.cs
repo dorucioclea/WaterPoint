@@ -21,9 +21,14 @@ namespace WaterPoint.Core.Domain.Payloads.JobCostItems
         [Required]
         public decimal? UnitPrice { get; set; }
 
-        public int Quantity { get; set; }
+        public bool? IsWriteOff { get; set; }
 
-        [Required]
+        public decimal Quantity { get; set; }
+
         public bool? IsBillable { get; set; }
+
+        public bool? IsActual { get; set; }
+
+        public bool? IsDeleted { get; set; }
     }
 }

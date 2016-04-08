@@ -18,8 +18,14 @@ namespace WaterPoint.Core.Domain.QueryParameters.JobCostItems
 
         public decimal UnitPrice { get; set; }
 
-        public int Quantity { get; set; }
+        public decimal Quantity { get; set; }
+
+        public bool IsWriteOff { get; set; }
 
         public bool IsBillable { get; set; }
+
+        public bool IsActual { get; set; }
+
+        public bool IsDeleted { get; set; }
     }
 }
