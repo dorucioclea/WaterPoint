@@ -3,7 +3,7 @@
     [Id] INT NOT NULL IDENTITY,
     [JobId] INT NOT NULL,
     [LastChangeOrganizationUserId] INT NULL,
-    [CostItemId] INT NOT NULL,
+    [CostItemId] INT NULL,
     [IsWriteOff] BIT NOT NULL DEFAULT(0),
     [ShortDescription] NVARCHAR(200) NOT NULL,
     [LongDescription] NVARCHAR(MAX) NULL,

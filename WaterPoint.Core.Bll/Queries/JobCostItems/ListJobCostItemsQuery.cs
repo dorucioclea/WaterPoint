@@ -15,7 +15,6 @@ namespace WaterPoint.Core.Bll.Queries.JobCostItems
                 ,jci.[CostItemId]
                 ,jci.[IsWriteOff]
                 ,jci.[ShortDescription]
-                ,jci.[LongDescription]
                 ,jci.[Code]
                 ,jci.[UnitCost]
                 ,jci.[UnitPrice]
@@ -29,7 +28,7 @@ namespace WaterPoint.Core.Bll.Queries.JobCostItems
                 ,jci.[Uid]
             FROM
                 [dbo].[JobCostItem] jci
-                JOIN [dbo].[Job] J ON jci.[JobId] = j.[JobId]
+                JOIN [dbo].[Job] J ON jci.[JobId] = j.[Id]
             WHERE
                 jci.[JobId] = @jobid
                 AND j.[OrganizationId] = @organizationid ";

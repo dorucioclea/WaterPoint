@@ -13,7 +13,7 @@ using WaterPoint.Core.Domain.Requests.JobCostItems;
 namespace WaterPoint.Api.Job.Controllers
 {
     [Authorize]
-    [RoutePrefix(RouteDefinitions.Jobs.CostItemsPrefix)]
+    [RoutePrefix("organizations/{organizationId}/jobs/{jobId:int}/costitems")]
     public class CostItemsController : BaseOrgnizationContextController
     {
         private readonly IWriteRequestProcessor<CreateJobCostItemRequest> _createJobCostItemRequest;
