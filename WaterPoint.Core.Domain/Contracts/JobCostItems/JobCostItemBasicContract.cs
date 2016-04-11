@@ -7,6 +7,7 @@ namespace WaterPoint.Core.Domain.Contracts.JobCostItems
         public int Id { get; set; }
         public int JobId { get; set; }
         public int? CostItemId { get; set; }
+        public string ShortDescription { get; set; }
         public string Code { get; set; }
         public decimal UnitCost { get; set; }
         public decimal UnitPrice { get; set; }

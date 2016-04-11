@@ -7,49 +7,39 @@ namespace WaterPoint.Core.Bll.Queries.JobCostItems
 {
     public class ListJobCostItemsQuery : IQuery<ListJobCostItems, JobCostItemListPoco>
     {
-        private readonly ISqlBuilderFactory _sqlBuilderFactory;
-
-        private readonly string _sqlTemplate = $@"
-                SELECT
-                    {SqlPatterns.Columns}
-                    ,[TotalCount]
-                FROM
-                    {SqlPatterns.FromTable}
-                    CROSS APPLY(
-                        SELECT COUNT(*) TotalCount
-                        FROM
-                            {SqlPatterns.FromTable}
-                        WHERE
-                            {SqlPatterns.Where}
-                    )[Count]
-                WHERE
-                   {SqlPatterns.Where}
-                ORDER BY 1 DESC
-                OFFSET @offset ROWS FETCH NEXT @pageSize ROWS ONLY  ";
-
-        public ListJobCostItemsQuery(ISqlBuilderFactory sqlBuilderFactory)
-        {
-            _sqlBuilderFactory = sqlBuilderFactory;
-        }
+        private readonly string _sqlTemplate = @"
+            SELECT
+                jci.[Id]
+                ,jci.[JobId]
+                ,jci.[LastChangeOrganizationUserId]
+                ,jci.[CostItemId]
+                ,jci.[IsWriteOff]
+                ,jci.[ShortDescription]
+                ,jci.[Code]
+                ,jci.[UnitCost]
+                ,jci.[UnitPrice]
+                ,jci.[Quantity]
+                ,jci.[IsBillable]
+                ,jci.[IsActual]
+                ,jci.[IsDeleted]
+                ,jci.[Version]
+                ,jci.[UtcCreated]
+                ,jci.[UtcUpdated]
+                ,jci.[Uid]
+            FROM
+                [dbo].[JobCostItem] jci
+                JOIN [dbo].[Job] J ON jci.[JobId] = j.[Id]
+            WHERE
+                jci.[JobId] = @jobid
+                AND j.[OrganizationId] = @organizationid ";
 
         public void BuildQuery(ListJobCostItems parameter)
         {
-            var builder = _sqlBuilderFactory.Create<SelectSqlBuilder>();
-
-            builder.AddTemplate(_sqlTemplate);
-            builder.AddColumns<JobCostItemListPoco>();
-            builder.AddConditions<JobCostItemListPoco>(i => i.JobId == parameter.JobId);
-
-            var sql = builder.GetSql();
-
-            Query = sql;
+            Query = _sqlTemplate;
 
             Parameters = new
             {
                 organizationId = parameter.OrganizationId,
-                offset = parameter.Offset,
-                pageSize = parameter.PageSize,
-                searchTerm = parameter.SearchTerm,
                 jobId = parameter.JobId
             };
         }

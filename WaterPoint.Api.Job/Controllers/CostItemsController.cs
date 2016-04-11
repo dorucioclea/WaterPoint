@@ -13,17 +13,17 @@ using WaterPoint.Core.Domain.Requests.JobCostItems;
 namespace WaterPoint.Api.Job.Controllers
 {
     [Authorize]
-    [RoutePrefix(RouteDefinitions.Jobs.CostItemsPrefix)]
+    [RoutePrefix("organizations/{organizationId}/jobs/{jobId:int}/costitems")]
     public class CostItemsController : BaseOrgnizationContextController
     {
         private readonly IWriteRequestProcessor<CreateJobCostItemRequest> _createJobCostItemRequest;
-        private readonly ISimplePagedProcessor<ListJobCostItemsRequest, JobCostItemBasicContract> _listJobCostItemequestProcessor;
+        private readonly IListProcessor<ListJobCostItemsRequest, JobCostItemBasicContract> _listJobCostItemequestProcessor;
         private readonly IWriteRequestProcessor<UpdateJobCostItemRequest> _updateRequestProcessor;
         private readonly IRequestProcessor<GetJobCostItemRequest, JobCostItemContract> _getJobCostItemProcessor;
 
         public CostItemsController(
             IWriteRequestProcessor<CreateJobCostItemRequest> createJobCostItemRequest,
-            ISimplePagedProcessor<ListJobCostItemsRequest, JobCostItemBasicContract> listJobCostItemequestProcessor,
+            IListProcessor<ListJobCostItemsRequest, JobCostItemBasicContract> listJobCostItemequestProcessor,
             IWriteRequestProcessor<UpdateJobCostItemRequest> updateRequestProcessor,
             IRequestProcessor<GetJobCostItemRequest, JobCostItemContract> getJobCostItemProcessor
             )
