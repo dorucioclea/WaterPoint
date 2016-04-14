@@ -8,6 +8,7 @@ using WaterPoint.Core.Domain.Contracts.JobCostItems;
 using WaterPoint.Core.Domain.Payloads.JobCostItems;
 using WaterPoint.Core.Domain.Payloads.Jobs;
 using WaterPoint.Core.Domain.RequestParameters;
+using WaterPoint.Core.Domain.Requests;
 using WaterPoint.Core.Domain.Requests.JobCostItems;
 
 namespace WaterPoint.Api.Job.Controllers
@@ -20,18 +21,21 @@ namespace WaterPoint.Api.Job.Controllers
         private readonly IListProcessor<ListJobCostItemsRequest, JobCostItemBasicContract> _listJobCostItemequestProcessor;
         private readonly IWriteRequestProcessor<UpdateJobCostItemRequest> _updateRequestProcessor;
         private readonly IRequestProcessor<GetJobCostItemRequest, JobCostItemContract> _getJobCostItemProcessor;
+        private readonly IDeleteRequestProcessor<OrganizationEntityRequest> _deleteProcessor;
 
         public CostItemsController(
             IWriteRequestProcessor<CreateJobCostItemRequest> createJobCostItemRequest,
             IListProcessor<ListJobCostItemsRequest, JobCostItemBasicContract> listJobCostItemequestProcessor,
             IWriteRequestProcessor<UpdateJobCostItemRequest> updateRequestProcessor,
-            IRequestProcessor<GetJobCostItemRequest, JobCostItemContract> getJobCostItemProcessor
+            IRequestProcessor<GetJobCostItemRequest, JobCostItemContract> getJobCostItemProcessor,
+            IDeleteRequestProcessor<OrganizationEntityRequest> deleteProcessor
             )
         {
             _listJobCostItemequestProcessor = listJobCostItemequestProcessor;
             _createJobCostItemRequest = createJobCostItemRequest;
             _updateRequestProcessor = updateRequestProcessor;
             _getJobCostItemProcessor = getJobCostItemProcessor;
+            _deleteProcessor = deleteProcessor;
         }
 
         [Route("")]
@@ -82,6 +86,17 @@ namespace WaterPoint.Api.Job.Controllers
             var jobCostItem = _updateRequestProcessor.Process(request);
 
             return Ok(jobCostItem);
+        }
+
+        [Route("{id:int}")]
+        public IHttpActionResult Delete([FromUri]OrganizationEntityRequest request)
+        {
+            var result = _deleteProcessor.Process(request);
+
+            if (result.IsSuccess)
+                return Ok(result);
+
+            return BadRequest();
         }
     }
 }
