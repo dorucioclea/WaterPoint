@@ -20,9 +20,7 @@ namespace WaterPoint.Core.Bll.Queries.JobTimesheet
             Parameters = new
             {
                 jobId = parameter.JobId,
-                organizationId = parameter.OrganizationId,
-                offset = parameter.Offset,
-                pageSize = parameter.PageSize
+                organizationId = parameter.OrganizationId
             };
         }
 

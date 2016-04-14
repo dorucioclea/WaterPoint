@@ -19,6 +19,8 @@ namespace WaterPoint.Data.Entity.Pocos.JobTimesheet
 
         public DateTime? EndDateTime { get; set; }
 
+        public string ShortDescription { get; set; }
+
         public int OriginalMinutes { get; set; }
 
         public int RoundedMinutes { get; set; }
@@ -26,6 +28,8 @@ namespace WaterPoint.Data.Entity.Pocos.JobTimesheet
         public bool IsBillable { get; set; }
 
         public bool IsDuration { get; set; }
+
+        public bool IsWriteOff { get; set; }
 
         public decimal BaseRate { get; set; }
 
