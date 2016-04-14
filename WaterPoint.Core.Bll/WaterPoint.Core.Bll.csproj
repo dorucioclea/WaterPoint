@@ -102,11 +102,12 @@
     <Compile Include="Commands\InvoiceCostItems\UpdateInvoiceCostItemCommand.cs" />
     <Compile Include="Commands\Invoices\UpdateInvoiceCommand.cs" />
     <Compile Include="Commands\Invoices\CreateInvoiceCommand.cs" />
+    <Compile Include="Commands\JobCostItems\ToggleIsDeleteJobCostItemCommand.cs" />
     <Compile Include="Commands\JobCostItems\UpdateJobCostItemCommand.cs" />
-    <Compile Include="Commands\Jobs\Class1.cs" />
+    <Compile Include="Commands\Jobs\DeleteJobStaffCommand.cs" />
     <Compile Include="Commands\Jobs\CreateJobStaffCommand.cs" />
     <Compile Include="Commands\Jobs\CreateJobCommand.cs" />
-    <Compile Include="Commands\Jobs\CreateJobCostItemCommand.cs" />
+    <Compile Include="Commands\JobCostItems\CreateJobCostItemCommand.cs" />
     <Compile Include="Commands\Jobs\UpdateJobCommand.cs" />
     <Compile Include="Commands\JobTasks\CreateJobTaskCommand.cs" />
     <Compile Include="Commands\JobTasks\UpdateJobTaskCommand.cs" />

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WaterPoint.Core.Domain.Contracts.JobTimesheet
 {
@@ -20,6 +16,12 @@ namespace WaterPoint.Core.Domain.Contracts.JobTimesheet
 
         public DateTime? EndDateTime { get; set; }
 
+        public string ShortDescription { get; set; }
+
+        public int OriginalMinutes { get; set; }
+
+        public bool IsWriteOff { get; set; }
+
         public int RoundedMinutes { get; set; }
 
         public bool IsBillable { get; set; }
@@ -33,5 +35,6 @@ namespace WaterPoint.Core.Domain.Contracts.JobTimesheet
         public string Version { get; set; }
 
         public Guid Uid { get; set; }
+
     }
 }

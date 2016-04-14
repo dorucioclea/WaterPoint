@@ -2,7 +2,7 @@
 using WaterPoint.Core.Domain.QueryParameters.JobCostItems;
 using WaterPoint.Data.Entity.DataEntities;
 
-namespace WaterPoint.Core.Bll.Commands.Jobs
+namespace WaterPoint.Core.Bll.Commands.JobCostItems
 {
     public class CreateJobCostItemCommand: ICommand<CreateJobCostItem>
     {

@@ -104,6 +104,7 @@
     <Compile Include="Invoices\CreateInvoiceProcessor.cs" />
     <Compile Include="Invoices\UpdateInvoiceProcessor.cs" />
     <Compile Include="JobCategories\ListJobCategoriesProcessor.cs" />
+    <Compile Include="JobCostItems\DeleteJobCostItemProcessor.cs" />
     <Compile Include="JobCostItems\UpdateJobCostItemProcessor.cs" />
     <Compile Include="JobCostItems\GetJobCostItemProcessor.cs" />
     <Compile Include="JobCostItems\CreateJobCostItemProcessor.cs" />
