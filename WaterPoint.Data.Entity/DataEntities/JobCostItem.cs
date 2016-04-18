@@ -27,7 +27,7 @@ namespace WaterPoint.Data.Entity.DataEntities
 
         public decimal UnitPrice { get; set; }
 
-        public int Quantity { get; set; }
+        public decimal Quantity { get; set; }
 
         public bool IsBillable { get; set; }
 
