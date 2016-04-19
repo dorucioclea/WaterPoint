@@ -16,7 +16,7 @@ namespace WaterPoint.Core.Bll.Commands.JobCostItems
             SET
                 jc.[IsDeleted] = @isdeleted
             FROM
-                [dbo].[JobCostItem] jc JOIN [dbo].[Job] j ON jc.JobId = j.JobId
+                [dbo].[JobCostItem] jc JOIN [dbo].[Job] j ON jc.JobId = j.Id
             WHERE
                 j.OrganizationId = @organizationid AND jc.Id = @id
 
