@@ -27,7 +27,8 @@ namespace WaterPoint.Core.Bll.Queries.JobCostItems
 
             builder.AddTemplate(_sqlTemplate);
             builder.AddColumns<JobCostItem>();
-            builder.AddConditions<JobCostItem>(i => i.JobId == parameter.JobId && i.Id == parameter.Id);
+            builder.AddConditions<JobCostItem>(
+                i => i.JobId == parameter.JobId && i.Id == parameter.Id && i.IsDeleted == false);
 
             var sql = builder.GetSql();
 

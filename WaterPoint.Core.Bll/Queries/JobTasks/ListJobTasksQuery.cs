@@ -11,20 +11,12 @@ namespace WaterPoint.Core.Bll.Queries.JobTasks
         private readonly string _sqlTemplate = $@"
                 SELECT
                     {SqlPatterns.Columns}
-                    ,[TotalCount]
                 FROM
                     {SqlPatterns.FromTable}
-                    CROSS APPLY(
-                        SELECT COUNT(*) TotalCount
-                        FROM
-                            {SqlPatterns.FromTable}
-                        WHERE
-                            {SqlPatterns.Where}
-                    )[Count]
+                    JOIN [dbo].[Job] J ON jt.JobId = j.Id
                 WHERE
-                   {SqlPatterns.Where}
-                ORDER BY 1 DESC
-                OFFSET @offset ROWS FETCH NEXT @pageSize ROWS ONLY  ";
+                    {SqlPatterns.Where}
+                    AND j.OrganizationId = @organizationid ";
 
         public ListJobTasksQuery(ISqlBuilderFactory sqlBuilderFactory)
         {
@@ -37,7 +29,7 @@ namespace WaterPoint.Core.Bll.Queries.JobTasks
 
             builder.AddTemplate(_sqlTemplate);
             builder.AddColumns<JobTaskBasicPoco>();
-            builder.AddConditions<JobTaskBasicPoco>(i => i.JobId == parameter.JobId);
+            builder.AddConditions<JobTaskBasicPoco>(i => i.JobId == parameter.JobId && i.IsDeleted == false);
 
             var sql = builder.GetSql();
 
@@ -46,8 +38,6 @@ namespace WaterPoint.Core.Bll.Queries.JobTasks
             Parameters = new
             {
                 organizationId = parameter.OrganizationId,
-                offset = parameter.Offset,
-                pageSize = parameter.PageSize,
                 jobId = parameter.JobId
             };
         }

@@ -31,7 +31,8 @@ namespace WaterPoint.Core.Bll.Queries.JobCostItems
                 JOIN [dbo].[Job] J ON jci.[JobId] = j.[Id]
             WHERE
                 jci.[JobId] = @jobid
-                AND j.[OrganizationId] = @organizationid ";
+                AND j.[OrganizationId] = @organizationid
+                AND jci.IsDeleted = 0";
 
         public void BuildQuery(ListJobCostItems parameter)
         {

@@ -2,10 +2,8 @@
 using System.Web.Http.OData;
 using WaterPoint.Api.Common.BaseControllers;
 using WaterPoint.Core.Domain;
-using WaterPoint.Core.Domain.Contracts;
 using WaterPoint.Core.Domain.Contracts.JobTasks;
 using WaterPoint.Core.Domain.Payloads.JobTasks;
-using WaterPoint.Core.Domain.RequestParameters;
 using WaterPoint.Core.Domain.Requests.JobTasks;
 
 namespace WaterPoint.Api.Job.Controllers
@@ -15,13 +13,13 @@ namespace WaterPoint.Api.Job.Controllers
     public class TasksController : BaseOrgnizationContextController
     {
         private readonly IWriteRequestProcessor<CreateJobTaskRequest> _createJobTaskRequest;
-        private readonly ISimplePagedProcessor<ListJobTasksRequest, JobTaskBasicContract> _listJobTaskequestProcessor;
+        private readonly IListProcessor<ListJobTasksRequest, JobTaskBasicContract> _listJobTaskequestProcessor;
         private readonly IWriteRequestProcessor<UpdateJobTaskRequest> _updateRequestProcessor;
         private readonly IRequestProcessor<GetJobTaskByIdRequest, JobTaskContract> _getJobTaskByIdProcessor;
 
         public TasksController(
             IWriteRequestProcessor<CreateJobTaskRequest> createJobTaskRequest,
-            ISimplePagedProcessor<ListJobTasksRequest, JobTaskBasicContract> listJobTaskequestProcessor,
+            IListProcessor<ListJobTasksRequest, JobTaskBasicContract> listJobTaskequestProcessor,
             IWriteRequestProcessor<UpdateJobTaskRequest> updateRequestProcessor,
             IRequestProcessor<GetJobTaskByIdRequest, JobTaskContract> getJobTaskByIdProcessor)
         {
@@ -36,6 +34,9 @@ namespace WaterPoint.Api.Job.Controllers
             [FromUri]ListJobTasksRequest request)
         {
             var result = _listJobTaskequestProcessor.Process(request);
+
+            if (result == null)
+                return NotFound();
 
             return Ok(result);
         }
