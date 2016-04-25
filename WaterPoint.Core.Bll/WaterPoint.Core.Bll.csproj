@@ -110,6 +110,7 @@
     <Compile Include="Commands\JobCostItems\CreateJobCostItemCommand.cs" />
     <Compile Include="Commands\Jobs\UpdateJobCommand.cs" />
     <Compile Include="Commands\JobTasks\CreateJobTaskCommand.cs" />
+    <Compile Include="Commands\JobTasks\ToggleIsDeleteJobTaskCommand.cs" />
     <Compile Include="Commands\JobTasks\UpdateJobTaskCommand.cs" />
     <Compile Include="Commands\JobTimesheet\UpdateJobTimesheetCommand.cs" />
     <Compile Include="Commands\JobTimesheet\CreateJobTimesheetCommand.cs" />
