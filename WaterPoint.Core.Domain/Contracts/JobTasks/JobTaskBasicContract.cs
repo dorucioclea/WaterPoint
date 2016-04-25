@@ -1,6 +1,5 @@
 ﻿using System;
 
-
 namespace WaterPoint.Core.Domain.Contracts.JobTasks
 {
     public class JobTaskBasicContract : IJobTaskBasicContract
@@ -30,5 +29,13 @@ namespace WaterPoint.Core.Domain.Contracts.JobTasks
         public string Version { get; set; }
 
         public string Uid { get; set; }
+        
+        public int DisplayOrder { get; set; }
+
+        public decimal BaseRate { get; set; }
+
+        public decimal BillableRate { get; set; }
+
+        public bool IsDeleted { get; set; }
     }
 }
