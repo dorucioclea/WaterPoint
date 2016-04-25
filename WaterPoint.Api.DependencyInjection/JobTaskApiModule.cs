@@ -8,6 +8,8 @@ using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts;
 using WaterPoint.Core.Domain.Contracts.JobTasks;
 using WaterPoint.Core.Domain.Db;
+using WaterPoint.Core.Domain.QueryParameters;
+using WaterPoint.Core.Domain.Requests;
 using WaterPoint.Core.Domain.Requests.JobTasks;
 using WaterPoint.Core.RequestProcessor.JobTasks;
 using WaterPoint.Data.Entity.DataEntities;
@@ -34,6 +36,8 @@ namespace WaterPoint.Api.DependencyInjection
         {
             Bind<ICommand<CreateJobTask>>().To<CreateJobTaskCommand>();
             Bind<ICommand<UpdateJobTask>>().To<UpdateJobTaskCommand>();
+            Bind<ICommand<ToggleIsDelete>>().To<ToggleIsDeleteJobTaskCommand>()
+                .WhenInjectedExactlyInto<DeleteJobTaskProcessor>();
         }
 
         private void BindRequestProcessors()
@@ -49,6 +53,9 @@ namespace WaterPoint.Api.DependencyInjection
 
             Bind<IListProcessor<ListJobTasksRequest, JobTaskBasicContract>>()
                 .To<ListJobTasksProcessor>();
+
+            Bind<IDeleteRequestProcessor<OrganizationEntityRequest>>()
+                .To<DeleteJobTaskProcessor>().WhenParentNamed("TasksController");
         }
     }
 }

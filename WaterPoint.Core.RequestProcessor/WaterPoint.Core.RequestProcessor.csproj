@@ -122,6 +122,7 @@
     <Compile Include="Customers\ListCustomersProcessor.cs" />
     <Compile Include="Customers\UpdateCustomerProcessor.cs" />
     <Compile Include="Jobs\UpdateJobProcessor.cs" />
+    <Compile Include="JobTasks\DeleteJobTaskProcessor.cs" />
     <Compile Include="Mappers\EntitiesToContracts\AddressMapper.cs" />
     <Compile Include="Mappers\EntitiesToContracts\InvoiceMapper.cs" />
     <Compile Include="Mappers\EntitiesToContracts\PriorityTypeMapper.cs" />

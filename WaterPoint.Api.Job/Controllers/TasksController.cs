@@ -4,6 +4,7 @@ using WaterPoint.Api.Common.BaseControllers;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts.JobTasks;
 using WaterPoint.Core.Domain.Payloads.JobTasks;
+using WaterPoint.Core.Domain.Requests;
 using WaterPoint.Core.Domain.Requests.JobTasks;
 
 namespace WaterPoint.Api.Job.Controllers
@@ -16,17 +17,20 @@ namespace WaterPoint.Api.Job.Controllers
         private readonly IListProcessor<ListJobTasksRequest, JobTaskBasicContract> _listJobTaskequestProcessor;
         private readonly IWriteRequestProcessor<UpdateJobTaskRequest> _updateRequestProcessor;
         private readonly IRequestProcessor<GetJobTaskByIdRequest, JobTaskContract> _getJobTaskByIdProcessor;
+        private readonly IDeleteRequestProcessor<OrganizationEntityRequest> _deleteProcessor;
 
         public TasksController(
             IWriteRequestProcessor<CreateJobTaskRequest> createJobTaskRequest,
             IListProcessor<ListJobTasksRequest, JobTaskBasicContract> listJobTaskequestProcessor,
             IWriteRequestProcessor<UpdateJobTaskRequest> updateRequestProcessor,
-            IRequestProcessor<GetJobTaskByIdRequest, JobTaskContract> getJobTaskByIdProcessor)
+            IRequestProcessor<GetJobTaskByIdRequest, JobTaskContract> getJobTaskByIdProcessor,
+            IDeleteRequestProcessor<OrganizationEntityRequest> deleteProcessor)
         {
             _listJobTaskequestProcessor = listJobTaskequestProcessor;
             _createJobTaskRequest = createJobTaskRequest;
             _updateRequestProcessor = updateRequestProcessor;
             _getJobTaskByIdProcessor = getJobTaskByIdProcessor;
+            _deleteProcessor = deleteProcessor;
         }
 
         [Route("")]
@@ -78,6 +82,17 @@ namespace WaterPoint.Api.Job.Controllers
             var jobTask = _updateRequestProcessor.Process(request);
 
             return Ok(jobTask);
+        }
+
+        [Route("{id:int}")]
+        public IHttpActionResult Delete([FromUri]OrganizationEntityRequest request)
+        {
+            var result = _deleteProcessor.Process(request);
+
+            if (result.IsSuccess)
+                return Ok(result);
+
+            return BadRequest();
         }
     }
 }
