@@ -1,20 +1,20 @@
 ﻿using WaterPoint.Core.Domain.Db;
-using WaterPoint.Core.Domain.QueryParameters.Customers;
+using WaterPoint.Core.Domain.QueryParameters.CostItems;
 
-namespace WaterPoint.Core.Bll.Commands.Customers
+namespace WaterPoint.Core.Bll.Commands.CostItems
 {
     namespace WaterPoint.Core.Bll.Commands.Customers
     {
-        public class BulkDeleteCustomerCommand : ICommand<BulkDeleteCustomer>
+        public class BulkDeleteCostItemsCommand : ICommand<BulkDeleteCostItems>
         {
-            public void BuildQuery(BulkDeleteCustomer parameter)
+            public void BuildQuery(BulkDeleteCostItems parameter)
             {
-                Query = "[dbo].[BulkDelete_Customers]";
+                Query = "[dbo].[BulkDelete_CostItems]";
 
                 Parameters = new
                 {
                     organizationid = parameter.OrganizationId,
-                    customerIds = parameter.Customers
+                    customerIds = parameter.CostItems
                 };
             }
 

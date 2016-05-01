@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Ninject.Modules;
 using WaterPoint.Core.Bll.Commands.CostItems;
+using WaterPoint.Core.Bll.Commands.CostItems.WaterPoint.Core.Bll.Commands.Customers;
 using WaterPoint.Core.Bll.Executors;
 using WaterPoint.Core.Bll.Queries.CostItems;
 using WaterPoint.Core.Domain.QueryParameters.CostItems;
@@ -41,6 +42,7 @@ namespace WaterPoint.Api.DependencyInjection
             Bind<ICommand<UpdateCostItem>>().To<UpdateCostItemCommand>();
             Bind<ICommand<ToggleIsDelete>>().To<ToggleIsDeleteCostItemCommand>()
                 .WhenInjectedExactlyInto<DeleteCostItemProcessor>();
+            Bind<ICommand<BulkDeleteCostItems>>().To<BulkDeleteCostItemsCommand>();
         }
 
         private void BindRequestProcessors()
@@ -59,6 +61,9 @@ namespace WaterPoint.Api.DependencyInjection
 
             Bind<IDeleteRequestProcessor<OrganizationEntityRequest>>()
                 .To<DeleteCostItemProcessor>();
+
+            Bind<IDeleteRequestProcessor<BulkDeleteCostItemsRequest>>()
+                .To<BulkDeleteCostItemsRequestProcessor>();
         }
     }
 }

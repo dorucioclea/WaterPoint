@@ -93,6 +93,7 @@
     <Compile Include="Commands\Contacts\UpdateContactCommand.cs" />
     <Compile Include="Commands\Contacts\CreateContactCommand.cs" />
     <Compile Include="Commands\Contacts\CreateCustomerContactCommand.cs" />
+    <Compile Include="Commands\CostItems\BulkDeleteCostItemsCommand.cs" />
     <Compile Include="Commands\CostItems\ToggleIsDeleteCostItemCommand.cs" />
     <Compile Include="Commands\CostItems\UpdateCostItemCommand.cs" />
     <Compile Include="Commands\CostItems\CreateCostItemCommand.cs" />
