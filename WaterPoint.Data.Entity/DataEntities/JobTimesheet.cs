@@ -9,7 +9,15 @@ namespace WaterPoint.Data.Entity.DataEntities
         [Primary]
         public int Id { get; set; }
 
+        public int OrganizationId { get; set; }
+
         public int JobTimesheetTypeId { get; set; }
+
+        public int? LastChangeOrganizationUserId { get; set; }
+
+        public bool IsDeleted { get; set; }
+
+        public int JobId { get; set; }
 
         public int? JobTaskId { get; set; }
 
