@@ -1,14 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WaterPoint.Core.Domain.Db;
 
 namespace WaterPoint.Core.Domain.QueryParameters.JobTimesheet
 {
     public class CreateJobTimesheet : IQueryParameter
     {
+        public int OrganizationId { get; set; }
+
         public int JobId { get; set; }
 
         public int JobTimesheetTypeId { get; set; }

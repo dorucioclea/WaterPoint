@@ -6,6 +6,8 @@ namespace WaterPoint.Core.Domain.Contracts.JobTimesheet
     {
         public int Id { get; set; }
 
+        public int OrganizationId { get; set; }
+
         public int JobTimesheetTypeId { get; set; }
 
         public int? JobTaskId { get; set; }

@@ -30,5 +30,14 @@ namespace WaterPoint.Core.Domain.Payloads.JobTimesheet
         public decimal BaseRate { get; set; }
 
         public decimal BillableRate { get; set; }
+
+        [Required]
+        public int JobTimesheetTypeId { get; set; }
+
+        public int OriginalMinutes { get; set; }
+
+        public int RoundedMinutes { get; set; }
+
+        public bool IsWriteOff { get; set; }
     }
 }
