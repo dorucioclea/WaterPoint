@@ -41,7 +41,8 @@ namespace WaterPoint.Core.RequestProcessor.Timesheet
                 OriginalMinutes = JobTimesheetAnalyzer.AnalyzeOriginalMinute(input.Payload),
                 RoundedMinutes = JobTimesheetAnalyzer.AnalyzeRoundedMinute(input.Payload),
                 StaffId = input.Payload.StaffId.Value,
-                StartDateTime = input.Payload.StartDateTime
+                StartDateTime = input.Payload.StartDateTime,
+                OrganizationId = input.OrganizationId
             };
 
             return parameter;
