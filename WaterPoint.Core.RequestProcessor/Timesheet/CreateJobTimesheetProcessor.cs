@@ -29,7 +29,6 @@ namespace WaterPoint.Core.RequestProcessor.Timesheet
             var parameter = new CreateJobTimesheet
             {
                 JobTimesheetTypeId = (int)JobTimesheetAnalyzer.AnalyzeType(input.Payload),
-                OrganizationId = input.OrganizationId,
                 JobId = input.JobId,
                 JobTaskId = input.Payload.JobTaskId.Value,
                 BillableRate = input.Payload.BillableRate,
