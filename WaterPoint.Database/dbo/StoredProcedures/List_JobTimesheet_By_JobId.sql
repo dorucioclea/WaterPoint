@@ -31,7 +31,7 @@ BEGIN
         [dbo].[JobTimesheet] jt
     WHERE
         jt.[OrganizationId] = @organizationId
-        AND jt.Id = @jobId
+        AND jt.JobId = @jobId
         AND jt.IsDeleted = 0
 END
 GO
