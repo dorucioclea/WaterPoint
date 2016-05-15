@@ -11,6 +11,8 @@ namespace WaterPoint.Core.Domain.QueryParameters.JobTimesheet
     {
         public int JobId { get; set; }
 
+        public int OrganizationId { get; set; }
+
         public int JobTimesheetTypeId { get; set; }
 
         public int JobTaskId { get; set; }
