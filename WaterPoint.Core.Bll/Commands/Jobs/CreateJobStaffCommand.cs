@@ -13,7 +13,7 @@ namespace WaterPoint.Core.Bll.Commands.Jobs
             {
                 organizationid = input.OrganizationId,
                 jobid = input.JobId,
-                staffids = string.Join(",", input.StaffIds)
+                staffid = input.StaffId
             };
         }
 
