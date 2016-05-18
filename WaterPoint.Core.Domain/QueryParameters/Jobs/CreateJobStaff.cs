@@ -7,6 +7,6 @@ namespace WaterPoint.Core.Domain.QueryParameters.Jobs
     {
         public int OrganizationId { get; set; }
         public int JobId { get; set; }
-        public IEnumerable<int> StaffIds { get; set; }
+        public int StaffId { get; set; }
     }
 }

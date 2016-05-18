@@ -29,7 +29,7 @@ namespace WaterPoint.Core.RequestProcessor.Jobs
             {
                 OrganizationId = input.OrganizationId,
                 JobId = input.JobId,
-                StaffIds = input.Payload.StaffIds
+                StaffId = input.Payload.StaffId
             };
         }
     }
