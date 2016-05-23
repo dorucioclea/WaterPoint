@@ -1,18 +1,14 @@
 ﻿using Ninject.Modules;
-using WaterPoint.Api.Common;
 using WaterPoint.Core.Bll.Commands.JobTimesheet;
-using WaterPoint.Core.Bll.Executors;
 using WaterPoint.Core.Bll.Queries.JobTimesheet;
-using WaterPoint.Core.Bll.QueryRunners;
 using WaterPoint.Core.Domain;
-using WaterPoint.Core.Domain.Contracts;
 using WaterPoint.Core.Domain.Contracts.JobTimesheet;
 using WaterPoint.Core.Domain.Db;
+using WaterPoint.Core.Domain.QueryParameters;
 using WaterPoint.Core.Domain.QueryParameters.JobTimesheet;
-using WaterPoint.Core.Domain.Requests.JobCostItems;
+using WaterPoint.Core.Domain.Requests;
 using WaterPoint.Core.Domain.Requests.JobTimesheet;
 using WaterPoint.Core.RequestProcessor.Timesheet;
-using WaterPoint.Data.Entity.DataEntities;
 using WaterPoint.Data.Entity.Pocos.JobTimesheet;
 
 
@@ -37,6 +33,8 @@ namespace WaterPoint.Api.DependencyInjection
         {
             Bind<ICommand<CreateJobTimesheet>>().To<CreateJobTimesheetCommand>();
             Bind<ICommand<UpdateJobTimesheet>>().To<UpdateJobTimesheetCommand>();
+            Bind<ICommand<ToggleIsDelete>>().To<ToggleIsDeleteJobTimesheetCommand>()
+                .WhenInjectedExactlyInto<DeleteJobTimesheetProcessor>();
         }
 
         private void BindRequestProcessors()
@@ -52,6 +50,9 @@ namespace WaterPoint.Api.DependencyInjection
 
             Bind<IWriteRequestProcessor<UpdateJobTimesheetRequest>>()
                 .To<UpdateJobTimesheetProcessor>();
+
+            Bind<IDeleteRequestProcessor<OrganizationEntityRequest>>()
+                .To<DeleteJobTimesheetProcessor>().WhenParentNamed("JobTimesheetController");
         }
     }
 }
