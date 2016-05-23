@@ -27,7 +27,8 @@ namespace WaterPoint.Core.Bll.Queries.JobTasks
 
             builder.AddTemplate(_sqlTemplate);
             builder.AddColumns<JobTask>();
-            builder.AddConditions<JobTask>(i => i.Id == parameter.JobTaskId && i.JobId == parameter.JobId);
+            builder.AddConditions<JobTask>(
+                i => i.Id == parameter.JobTaskId && i.JobId == parameter.JobId && i.IsDeleted == false);
 
             var sql = builder.GetSql();
 

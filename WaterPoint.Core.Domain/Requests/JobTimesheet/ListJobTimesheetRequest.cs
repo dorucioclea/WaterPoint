@@ -2,17 +2,10 @@
 
 namespace WaterPoint.Core.Domain.Requests.JobTimesheet
 {
-    public class ListJobTimesheetRequest : IPaginationRequest
+    public class ListJobTimesheetRequest : IRequest
     {
         public int OrganizationId { get; set; }
 
         public int JobId { get; set; }
-
-        public int Id { get; set; }
-        public int? PageSize { get; set; }
-        public int? PageNumber { get; set; }
-        public string Sort { get; set; }
-        public bool? IsDesc { get; set; }
-        public string SearchTerm { get; set; }
     }
 }
