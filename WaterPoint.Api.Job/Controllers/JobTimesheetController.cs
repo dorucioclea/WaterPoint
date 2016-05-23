@@ -7,6 +7,7 @@ using WaterPoint.Core.Domain.Contracts;
 using WaterPoint.Core.Domain.Contracts.JobTimesheet;
 using WaterPoint.Core.Domain.Payloads.JobTimesheet;
 using WaterPoint.Core.Domain.RequestParameters;
+using WaterPoint.Core.Domain.Requests;
 using WaterPoint.Core.Domain.Requests.JobTimesheet;
 
 namespace WaterPoint.Api.Job.Controllers
@@ -19,17 +20,20 @@ namespace WaterPoint.Api.Job.Controllers
         private readonly IListProcessor<ListJobTimesheetRequest, JobTimesheetBasicContract> _listoRequestProcessor;
         private readonly IRequestProcessor<GetJobTimesheetRequest, JobTimesheetContract> _getRequestProcessor;
         private readonly IWriteRequestProcessor<UpdateJobTimesheetRequest> _updateRequestProcessor;
+        private readonly IDeleteRequestProcessor<OrganizationEntityRequest> _deleteProcessor;
 
         public JobTimesheetController(
             IWriteRequestProcessor<CreateJobTimesheetRequest> createRequestProcessor,
             IListProcessor<ListJobTimesheetRequest, JobTimesheetBasicContract> listoRequestProcessor,
             IRequestProcessor<GetJobTimesheetRequest, JobTimesheetContract> getRequestProcessor,
-            IWriteRequestProcessor<UpdateJobTimesheetRequest> updateRequestProcessor)
+            IWriteRequestProcessor<UpdateJobTimesheetRequest> updateRequestProcessor,
+            IDeleteRequestProcessor<OrganizationEntityRequest> deleteProcessor)
         {
             _createRequestProcessor = createRequestProcessor;
             _listoRequestProcessor = listoRequestProcessor;
             _getRequestProcessor = getRequestProcessor;
             _updateRequestProcessor = updateRequestProcessor;
+            _deleteProcessor = deleteProcessor;
         }
 
         [Route("")]
@@ -68,6 +72,7 @@ namespace WaterPoint.Api.Job.Controllers
             return Ok(result);
         }
 
+        [Route("{id:int}")]
         public IHttpActionResult Put(
             [FromUri]UpdateJobTimesheetRequest request,
             [FromUri]Delta<WriteJobTimesheetPayload> payload)
@@ -77,6 +82,17 @@ namespace WaterPoint.Api.Job.Controllers
             var result = _updateRequestProcessor.Process(request);
 
             return Ok(result);
+        }
+
+        [Route("{id:int}")]
+        public IHttpActionResult Delete([FromUri]OrganizationEntityRequest request)
+        {
+            var result = _deleteProcessor.Process(request);
+
+            if (result.IsSuccess)
+                return Ok(result);
+
+            return BadRequest();
         }
     }
 }
