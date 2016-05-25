@@ -55,7 +55,7 @@ namespace WaterPoint.Api.DependencyInjection
                 .To<ListJobTasksProcessor>();
 
             Bind<IDeleteRequestProcessor<OrganizationEntityRequest>>()
-                .To<DeleteJobTaskProcessor>().WhenParentNamed("TasksController");
+                .To<DeleteJobTaskProcessor>().Named("DeleteJobTask");
         }
     }
 }

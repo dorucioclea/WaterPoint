@@ -10,7 +10,38 @@ namespace WaterPoint.Core.Bll.Queries.JobTimesheet
 {
     public class GetJobTimesheetQuery : IQuery<GetJobTimesheet, Data.Entity.DataEntities.JobTimesheet>
     {
-        private const string SqlTemplate = "[dbo].[Get_JobTimesheet_By_Id]";
+        private const string SqlTemplate = @"
+            SELECT
+		        jt.[Id],
+		        jt.[OrganizationId],
+		        jt.[JobId],
+		        jt.[JobTimesheetTypeId],
+		        jt.[LastChangeOrganizationUserId],
+		        jt.[JobTaskId],
+		        jt.[IsWriteOff],
+		        jt.[StaffId],
+		        jt.[StartDateTime],
+		        jt.[EndDateTime],
+		        jt.[OriginalMinutes],
+		        jt.[RoundedMinutes],
+		        jt.[ShortDescription],
+		        jt.[LongDescription],
+		        jt.[IsBillable],
+		        jt.[BaseRate],
+		        jt.[BillableRate],
+		        jt.[IsDuration],
+		        jt.[IsDeleted],
+		        jt.[Version],
+		        jt.[UtcCreated],
+		        jt.[UtcUpdated],
+		        jt.[Uid]
+            FROM
+                [dbo].[JobTimesheet] jt
+            WHERE
+                jt.[OrganizationId] = @organizationId
+                AND jt.JobId = @jobId
+                AND jt.Id = @id
+                AND jt.IsDeleted = 0";
 
         public void BuildQuery(GetJobTimesheet parameter)
         {
@@ -24,7 +55,7 @@ namespace WaterPoint.Core.Bll.Queries.JobTimesheet
             };
         }
 
-        public bool IsStoredProcedure => true;
+        public bool IsStoredProcedure => false;
         public string Query { get; private set; }
         public object Parameters { get; private set; }
     }
