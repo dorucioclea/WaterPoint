@@ -1,5 +1,6 @@
 ﻿using System.Web.Http;
 using System.Web.Http.OData;
+using Ninject;
 using WaterPoint.Api.Common;
 using WaterPoint.Api.Common.BaseControllers;
 using WaterPoint.Core.Domain;
@@ -27,6 +28,7 @@ namespace WaterPoint.Api.Job.Controllers
             IListProcessor<ListJobTimesheetRequest, JobTimesheetBasicContract> listoRequestProcessor,
             IRequestProcessor<GetJobTimesheetRequest, JobTimesheetContract> getRequestProcessor,
             IWriteRequestProcessor<UpdateJobTimesheetRequest> updateRequestProcessor,
+            [Named("DeleteJobTimesheet")]
             IDeleteRequestProcessor<OrganizationEntityRequest> deleteProcessor)
         {
             _createRequestProcessor = createRequestProcessor;
