@@ -52,7 +52,7 @@ namespace WaterPoint.Api.DependencyInjection
                 .To<UpdateJobTimesheetProcessor>();
 
             Bind<IDeleteRequestProcessor<OrganizationEntityRequest>>()
-                .To<DeleteJobTimesheetProcessor>().WhenParentNamed("JobTimesheetController");
+                .To<DeleteJobTimesheetProcessor>().Named("DeleteJobTimesheet");
         }
     }
 }
