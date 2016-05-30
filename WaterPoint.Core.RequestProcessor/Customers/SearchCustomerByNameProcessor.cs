@@ -1,9 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Utility;
-using WaterPoint.Api.Common;
 using WaterPoint.Core.Domain.QueryParameters.Customers;
-using WaterPoint.Core.Bll.QueryRunners;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.RequestProcessor.Mappers.EntitiesToContracts;
 using WaterPoint.Core.Domain.Contracts.Customers;
@@ -11,19 +8,18 @@ using WaterPoint.Core.Domain.Db;
 using WaterPoint.Core.Domain.Requests.Customers;
 using WaterPoint.Data.DbContext.Dapper;
 using WaterPoint.Data.Entity.DataEntities;
-using WaterPoint.Data.Entity.Pocos.Customers;
 
 namespace WaterPoint.Core.RequestProcessor.Customers
 {
-    public class SearchTop10Processor : IListProcessor<SearchTop10CustomerRequest, CustomerContract>
+    public class SearchCustomerByNameProcessor : IListProcessor<SearchCustomerByNameRequest, CustomerContract>
     {
         private readonly IDapperUnitOfWork _dapperUnitOfWork;
-        private readonly IQuery<SearchTop10Customers, Customer> _listQuery;
+        private readonly IQuery<SearchCustomerByName, Customer> _listQuery;
         private readonly IQueryListRunner _runner;
 
-        public SearchTop10Processor(
+        public SearchCustomerByNameProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
-            IQuery<SearchTop10Customers, Customer> listQuery,
+            IQuery<SearchCustomerByName, Customer> listQuery,
             IQueryListRunner runner)
         {
             _dapperUnitOfWork = dapperUnitOfWork;
@@ -36,16 +32,16 @@ namespace WaterPoint.Core.RequestProcessor.Customers
             return CustomerMapper.Map(source);
         }
 
-        private SearchTop10Customers GetParameter(SearchTop10CustomerRequest input)
+        private SearchCustomerByName GetParameter(SearchCustomerByNameRequest input)
         {
-            return new SearchTop10Customers
+            return new SearchCustomerByName
             {
                 OrganizationId = input.OrganizationId,
                 SearchTerm = input.SearchTerm
             };
         }
 
-        public IEnumerable<CustomerContract> Process(SearchTop10CustomerRequest input)
+        public IEnumerable<CustomerContract> Process(SearchCustomerByNameRequest input)
         {
             using (_dapperUnitOfWork.Begin())
             {

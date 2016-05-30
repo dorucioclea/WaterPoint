@@ -98,7 +98,7 @@
     <Compile Include="Credentials\ListValidateCredentialProcessor.cs" />
     <Compile Include="Customers\BulkDeleteCustomersRequestProcessor.cs" />
     <Compile Include="Customers\ListCustomerJobsProcessor.cs" />
-    <Compile Include="Customers\SearchTop10Processor.cs" />
+    <Compile Include="Customers\SearchCustomerByNameProcessor.cs" />
     <Compile Include="Customers\DeleteCustomerProcessor.cs" />
     <Compile Include="Invoices\GetInvoiceProcessor.cs" />
     <Compile Include="Invoices\CreateInvoiceProcessor.cs" />
