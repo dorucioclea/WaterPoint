@@ -77,7 +77,7 @@ namespace WaterPoint.Api.Job.Controllers
         [Route("{id:int}")]
         public IHttpActionResult Put(
             [FromUri]UpdateJobTimesheetRequest request,
-            [FromUri]Delta<WriteJobTimesheetPayload> payload)
+            [FromBody]Delta<WriteJobTimesheetPayload> payload)
         {
             request.Payload = payload;
 
