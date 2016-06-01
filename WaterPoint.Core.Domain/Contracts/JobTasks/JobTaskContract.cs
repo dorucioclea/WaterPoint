@@ -17,6 +17,7 @@ namespace WaterPoint.Core.Domain.Contracts.JobTasks
 
         public DateTime? EndDate { get; set; }
 
+        public int OrganizationId { get; set; }
         public DateTime? CompletedDate { get; set; }
 
         public bool IsBillable { get; set; }

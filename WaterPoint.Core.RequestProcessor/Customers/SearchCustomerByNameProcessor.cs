@@ -1,25 +1,25 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using WaterPoint.Core.Domain.QueryParameters.Customers;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.RequestProcessor.Mappers.EntitiesToContracts;
 using WaterPoint.Core.Domain.Contracts.Customers;
 using WaterPoint.Core.Domain.Db;
-using WaterPoint.Core.Domain.Requests.Customers;
+using WaterPoint.Core.Domain.QueryParameters;
+using WaterPoint.Core.Domain.Requests;
 using WaterPoint.Data.DbContext.Dapper;
 using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Core.RequestProcessor.Customers
 {
-    public class SearchCustomerByNameProcessor : IListProcessor<SearchCustomerByNameRequest, CustomerContract>
+    public class SearchCustomerByNameProcessor : IListProcessor<SearchTermRequest, CustomerContract>
     {
         private readonly IDapperUnitOfWork _dapperUnitOfWork;
-        private readonly IQuery<SearchCustomerByName, Customer> _listQuery;
+        private readonly IQuery<SearchByName, Customer> _listQuery;
         private readonly IQueryListRunner _runner;
 
         public SearchCustomerByNameProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
-            IQuery<SearchCustomerByName, Customer> listQuery,
+            IQuery<SearchByName, Customer> listQuery,
             IQueryListRunner runner)
         {
             _dapperUnitOfWork = dapperUnitOfWork;
@@ -32,16 +32,16 @@ namespace WaterPoint.Core.RequestProcessor.Customers
             return CustomerMapper.Map(source);
         }
 
-        private SearchCustomerByName GetParameter(SearchCustomerByNameRequest input)
+        private SearchByName GetParameter(SearchTermRequest input)
         {
-            return new SearchCustomerByName
+            return new SearchByName
             {
                 OrganizationId = input.OrganizationId,
                 SearchTerm = input.SearchTerm
             };
         }
 
-        public IEnumerable<CustomerContract> Process(SearchCustomerByNameRequest input)
+        public IEnumerable<CustomerContract> Process(SearchTermRequest input)
         {
             using (_dapperUnitOfWork.Begin())
             {

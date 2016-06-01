@@ -17,6 +17,9 @@ namespace WaterPoint.Core.Domain.QueryParameters.JobTasks
         public int JobId { get; set; }
 
         [IgnoreWhenUpdate]
+        public int OrganizationId { get; set; }
+
+        [IgnoreWhenUpdate]
         public int TaskDefinitionId { get; set; }
 
         public int DisplayOrder { get; set; }

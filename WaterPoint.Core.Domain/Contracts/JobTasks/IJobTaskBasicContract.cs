@@ -4,6 +4,7 @@ namespace WaterPoint.Core.Domain.Contracts.JobTasks
 {
     public interface IJobTaskBasicContract : IContract
     {
+        int OrganizationId { get; set; }
         DateTime? CompletedDate { get; set; }
         DateTime? EndDate { get; set; }
         int? EstimatedTimeInMinutes { get; set; }

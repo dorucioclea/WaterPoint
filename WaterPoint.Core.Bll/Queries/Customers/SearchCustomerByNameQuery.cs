@@ -1,10 +1,10 @@
 ﻿using WaterPoint.Core.Domain.Db;
-using WaterPoint.Core.Domain.QueryParameters.Customers;
+using WaterPoint.Core.Domain.QueryParameters;
 using WaterPoint.Data.Entity.DataEntities;
 
 namespace WaterPoint.Core.Bll.Queries.Customers
 {
-    public class SearchCustomerByNameQuery : IQuery<SearchCustomerByName, Customer>
+    public class SearchCustomerByNameQuery : IQuery<SearchByName, Customer>
     {
         private const string Sql = @"
             SELECT TOP 20
@@ -35,7 +35,7 @@ namespace WaterPoint.Core.Bll.Queries.Customers
                 CONTAINS(c.[SearchName], @searchterm)
                 AND c.OrganizationId = @organizationid";
 
-        public void BuildQuery(SearchCustomerByName parameter)
+        public void BuildQuery(SearchByName parameter)
         {
             Query = Sql;
 

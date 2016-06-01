@@ -1,11 +1,14 @@
-﻿using System.Web.Http;
+﻿using System;
+using System.Web.Http;
 using System.Web.Http.OData;
 using Ninject;
+using WaterPoint.Api.Common;
 using WaterPoint.Api.Common.BaseControllers;
 using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts.JobTasks;
 using WaterPoint.Core.Domain.Payloads.JobTasks;
 using WaterPoint.Core.Domain.Requests;
+using WaterPoint.Core.Domain.Requests.Customers;
 using WaterPoint.Core.Domain.Requests.JobTasks;
 
 namespace WaterPoint.Api.Job.Controllers
