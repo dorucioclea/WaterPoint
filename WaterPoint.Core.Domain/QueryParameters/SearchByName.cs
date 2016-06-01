@@ -1,8 +1,8 @@
 ﻿using WaterPoint.Core.Domain.Db;
 
-namespace WaterPoint.Core.Domain.QueryParameters.Customers
+namespace WaterPoint.Core.Domain.QueryParameters
 {
-    public class SearchCustomerByName : IQueryParameter
+    public class SearchByName : IQueryParameter
     {
         public int OrganizationId { get; set; }
         public string SearchTerm { get; set; }

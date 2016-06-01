@@ -1,6 +1,7 @@
 ﻿CREATE TABLE [dbo].[JobTask]
 (
     [Id] INT NOT NULL IDENTITY,
+    [OrganizationId] INT NOT NULL,
     [JobId] INT NOT NULL,
     [LastChangeOrganizationUserId] INT NULL,
     [TaskDefinitionId] INT NOT NULL,

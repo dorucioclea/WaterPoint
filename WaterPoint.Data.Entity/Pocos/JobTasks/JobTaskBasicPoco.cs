@@ -9,6 +9,8 @@ namespace WaterPoint.Data.Entity.Pocos.JobTasks
         [Primary]
         public int Id { get; set; }
 
+        public int OrganizationId { get; set; }
+
         public int JobId { get; set; }
 
         public int TaskDefinitionId { get; set; }

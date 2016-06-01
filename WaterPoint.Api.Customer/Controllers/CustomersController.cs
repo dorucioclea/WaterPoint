@@ -17,7 +17,7 @@ namespace WaterPoint.Api.Customer.Controllers
     [RoutePrefix("organizations/{organizationId:int}/customers")]
     public class CustomersController : BaseOrgnizationContextController
     {
-        private readonly IListProcessor<SearchCustomerByNameRequest, CustomerContract> _searchTop10Processor;
+        private readonly IListProcessor<SearchTermRequest, CustomerContract> _searchTop10Processor;
         private readonly IPagedProcessor<ListCustomersRequest, CustomerContract> _listCustomerRequestProcessor;
         private readonly IWriteRequestProcessor<CreateCustomerRequest> _createCustomerRequest;
         private readonly IWriteRequestProcessor<UpdateCustomerRequest> _updateRequestProcessor;
@@ -26,7 +26,7 @@ namespace WaterPoint.Api.Customer.Controllers
         private readonly IDeleteRequestProcessor<BulkDeleteCustomersRequest> _bulkDeleteRequestProcessor;
 
         public CustomersController(
-            IListProcessor<SearchCustomerByNameRequest, CustomerContract> searchTop10Processor,
+            IListProcessor<SearchTermRequest, CustomerContract> searchTop10Processor,
             IPagedProcessor<ListCustomersRequest, CustomerContract> listCustomerRequestProcessor,
             IWriteRequestProcessor<CreateCustomerRequest> createCustomerRequest,
             IWriteRequestProcessor<UpdateCustomerRequest> updateRequestProcessor,
@@ -45,7 +45,7 @@ namespace WaterPoint.Api.Customer.Controllers
         }
 
         [Route("names")]
-        public IHttpActionResult Get([FromUri]SearchCustomerByNameRequest request)
+        public IHttpActionResult Get([FromUri]SearchTermRequest request)
         {
             var searchTerm = SearchTermHelper.ConvertToSearchTerm(request.SearchTerm);
 

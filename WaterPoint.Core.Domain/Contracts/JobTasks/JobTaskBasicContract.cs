@@ -16,6 +16,8 @@ namespace WaterPoint.Core.Domain.Contracts.JobTasks
 
         public DateTime? EndDate { get; set; }
 
+        public int OrganizationId { get; set; }
+
         public DateTime? CompletedDate { get; set; }
 
         public bool IsBillable { get; set; }
@@ -29,7 +31,7 @@ namespace WaterPoint.Core.Domain.Contracts.JobTasks
         public string Version { get; set; }
 
         public string Uid { get; set; }
-        
+
         public int DisplayOrder { get; set; }
 
         public decimal BaseRate { get; set; }
