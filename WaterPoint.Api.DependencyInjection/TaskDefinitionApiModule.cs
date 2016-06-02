@@ -9,6 +9,8 @@ using WaterPoint.Core.Domain;
 using WaterPoint.Core.Domain.Contracts;
 using WaterPoint.Core.Domain.Contracts.TaskDefinitions;
 using WaterPoint.Core.Domain.Db;
+using WaterPoint.Core.Domain.QueryParameters;
+using WaterPoint.Core.Domain.Requests;
 using WaterPoint.Core.Domain.Requests.Shared;
 using WaterPoint.Core.Domain.Requests.TaskDefinitions;
 using WaterPoint.Core.RequestProcessor;
@@ -32,6 +34,8 @@ namespace WaterPoint.Api.DependencyInjection
             Bind<IQuery<GetTaskDefinition, TaskDefinition>>().To<GetTaskDefinitionQuery>();
 
             Bind<IQuery<PagedOrgId, TaskDefinitionBasicPoco>>().To<ListTaskDefinitionsQuery>();
+
+            Bind<IQuery<SearchByName, TaskDefinitionBasicPoco>>().To<SearchTaskDefByNameQuery>();
         }
 
         public void BindCommands()
@@ -53,6 +57,9 @@ namespace WaterPoint.Api.DependencyInjection
 
             Bind<IWriteRequestProcessor<UpdateTaskDefinitionRequest>>()
                 .To<UpdateTaskDefinitionProcessor>();
+
+            Bind<IListProcessor<SearchTermRequest, TaskDefinitionBasicContract>>()
+                .To<SearchTaskDefByNameProcessor>();
         }
     }
 }
