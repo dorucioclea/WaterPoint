@@ -1,6 +1,7 @@
 ﻿CREATE TABLE [dbo].[QuoteCostItem]
 (
     [Id] INT NOT NULL IDENTITY,
+    [OrganizationId] INT NOT NULL,
     [QuoteId] INT NOT NULL,
     [LastChangeOrganizationUserId] INT NULL,
     [CostItemId] INT NOT NULL,
