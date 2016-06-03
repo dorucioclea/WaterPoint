@@ -1,24 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WaterPoint.Core.Domain.Db;
+﻿using WaterPoint.Core.Domain.Db;
 using WaterPoint.Core.Domain.QueryParameters;
 
 namespace WaterPoint.Core.Bll.Commands.JobCostItems
 {
-
     public class ToggleIsDeleteJobCostItemCommand : ICommand<ToggleIsDelete>
     {
         private readonly string _sql = $@"
-            UPDATE jc                
+            UPDATE [dbo].[JobCostItem]
             SET
-                jc.[IsDeleted] = @isdeleted
-            FROM
-                [dbo].[JobCostItem] jc JOIN [dbo].[Job] j ON jc.JobId = j.Id
+                [IsDeleted] = @isdeleted
             WHERE
-                j.OrganizationId = @organizationid AND jc.Id = @id
+                OrganizationId = @organizationid AND Id = @id
 
             SELECT @@ROWCOUNT";
 

@@ -10,6 +10,7 @@ namespace WaterPoint.Core.Bll.Queries.JobCostItems
         private readonly string _sqlTemplate = @"
             SELECT
                 jci.[Id]
+                ,jci.[OrganizationId]
                 ,jci.[JobId]
                 ,jci.[LastChangeOrganizationUserId]
                 ,jci.[CostItemId]
@@ -28,11 +29,9 @@ namespace WaterPoint.Core.Bll.Queries.JobCostItems
                 ,jci.[Uid]
             FROM
                 [dbo].[JobCostItem] jci
-                JOIN [dbo].[Job] J ON jci.[JobId] = j.[Id]
             WHERE
                 jci.[JobId] = @jobid
-                AND j.[OrganizationId] = @organizationid
-                AND jci.IsDeleted = 0";
+                AND jci.[OrganizationId] = @organizationid";
 
         public void BuildQuery(ListJobCostItems parameter)
         {

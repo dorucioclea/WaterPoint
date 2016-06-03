@@ -12,6 +12,9 @@ namespace WaterPoint.Core.Domain.QueryParameters.JobCostItems
         [IgnoreWhenUpdate]
         public int JobId { get; set; }
 
+        [IgnoreWhenUpdate]
+        public int OrganizationId { get; set; }
+
         public int? CostItemId { get; set; }
 
         public string ShortDescription { get; set; }
@@ -29,7 +32,7 @@ namespace WaterPoint.Core.Domain.QueryParameters.JobCostItems
         public bool IsBillable { get; set; }
 
         public bool? IsWriteOff { get; set; }
-        
+
         public bool? IsActual { get; set; }
 
         public bool? IsDeleted { get; set; }

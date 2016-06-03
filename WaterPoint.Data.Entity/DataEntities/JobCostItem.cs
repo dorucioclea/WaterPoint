@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WaterPoint.Data.Entity.Attributes;
 
 namespace WaterPoint.Data.Entity.DataEntities
@@ -12,6 +8,8 @@ namespace WaterPoint.Data.Entity.DataEntities
     {
         [Primary]
         public int Id { get; set; }
+
+        public int OrganizationId { get; set; }
 
         public int JobId { get; set; }
 
