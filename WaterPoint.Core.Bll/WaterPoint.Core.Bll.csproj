@@ -162,6 +162,7 @@
     <Compile Include="Commands\Staff\UndeleteStaffQueryByLoginEmailCommand.cs" />
     <Compile Include="Queries\Staff\GetStaffByLoginEmailQuery.cs" />
     <Compile Include="Queries\Staff\ListStaffQuery.cs" />
+    <Compile Include="Queries\TaskDefinitions\SearchTaskDefByNameQuery.cs" />
     <Compile Include="Queries\UserPrivileges\ListUserPrivilegesQuery.cs" />
     <Compile Include="Queries\InvoiceCostItems\GetInvoiceCostItemQuery.cs" />
     <Compile Include="Queries\InvoiceCostItems\ListInvoiceCostItemsQuery.cs" />

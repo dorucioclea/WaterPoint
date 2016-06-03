@@ -2,6 +2,7 @@
 (
     [Id] INT NOT NULL IDENTITY,
     [QuoteTaskId] INT NOT NULL,
+    [OrganizationId] INT NOT NULL,
     [LastChangeOrganizationUserId] INT NULL,
     [IsWriteOff] BIT NOT NULL DEFAULT(0),
     [StaffId] INT NOT NULL,

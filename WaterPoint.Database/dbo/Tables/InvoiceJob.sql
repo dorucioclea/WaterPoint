@@ -1,6 +1,7 @@
 ﻿CREATE TABLE [dbo].[InvoiceJob]
 (
     [Id] INT NOT NULL IDENTITY,
+    [OrganizationId] INT NOT NULL,
     [InvoiceId] INT NOT NULL,
     [JobId] INT NOT NULL,
     [LastChangeOrganizationUserId] INT NULL,

@@ -20,7 +20,7 @@ namespace WaterPoint.Core.Bll.Commands.JobCostItems
             builder.Analyze(parameter);
             builder.AddValueParameters(parameter);
 
-            builder.AddConditions<JobCostItem>(i => i.JobId == parameter.JobId && i.Id == parameter.Id);
+            builder.AddConditions<JobCostItem>(i => i.JobId == parameter.JobId && i.Id == parameter.Id && i.OrganizationId == parameter.OrganizationId);
 
             var sql = builder.GetSql();
 

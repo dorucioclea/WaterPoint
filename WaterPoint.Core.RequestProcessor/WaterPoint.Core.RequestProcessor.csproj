@@ -139,6 +139,7 @@
     <Compile Include="OrganizationUsers\EnterOrganizationProcessor.cs" />
     <Compile Include="Staff\CreateStaffProcessor.cs" />
     <Compile Include="Staff\ListStaffProcessor.cs" />
+    <Compile Include="TaskDefinitions\SearchTaskDefByNameProcessor.cs" />
     <Compile Include="Timesheet\DeleteJobTimesheetProcessor.cs" />
     <Compile Include="UserPrivileges\AdjustUserPrivilegeProcessor.cs" />
     <Compile Include="UserPrivileges\ListUserPrivilegesProcessor.cs" />

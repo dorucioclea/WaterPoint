@@ -28,7 +28,7 @@ namespace WaterPoint.Core.Bll.Queries.JobCostItems
             builder.AddTemplate(_sqlTemplate);
             builder.AddColumns<JobCostItem>();
             builder.AddConditions<JobCostItem>(
-                i => i.JobId == parameter.JobId && i.Id == parameter.Id && i.IsDeleted == false);
+                i => i.JobId == parameter.JobId && i.Id == parameter.Id && i.IsDeleted == false && i.OrganizationId == parameter.OrganizationId);
 
             var sql = builder.GetSql();
 
@@ -37,7 +37,8 @@ namespace WaterPoint.Core.Bll.Queries.JobCostItems
             Parameters = new
             {
                 jobId = parameter.JobId,
-                id = parameter.Id
+                id = parameter.Id,
+                organizationid = parameter.OrganizationId
             };
         }
 
