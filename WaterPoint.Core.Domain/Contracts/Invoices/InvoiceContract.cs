@@ -22,10 +22,6 @@ namespace WaterPoint.Core.Domain.Contracts.Invoices
 
         public DateTime? DueDate { get; set; }
 
-        public bool IsFixedPrice { get; set; }
-
-        public bool IsProgressive { get; set; }
-
         public decimal? TotalPrice { get; set; }
 
         public decimal? TotalPriceWithTax { get; set; }
