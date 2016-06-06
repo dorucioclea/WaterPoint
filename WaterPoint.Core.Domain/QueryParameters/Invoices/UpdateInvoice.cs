@@ -16,8 +16,6 @@ namespace WaterPoint.Core.Domain.QueryParameters.Invoices
         public int? ContactId { get; set; }
         public string Code { get; set; }
         public DateTime? DueDate { get; set; }
-        public bool IsFixedPrice { get; set; }
-        public bool IsProgressive { get; set; }
         public string ShortDescription { get; set; }
         public string LongDescription { get; set; }
         public decimal TotalPriceWithTax { get; set; }

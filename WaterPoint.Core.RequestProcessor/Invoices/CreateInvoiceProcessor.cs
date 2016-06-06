@@ -33,8 +33,6 @@ namespace WaterPoint.Core.RequestProcessor.Invoices
                 Code = input.Payload.Code,
                 ContactId = input.Payload.ContactId,
                 InvoiceTypeId = input.Payload.InvoiceTypeId,
-                IsFixedPrice = input.Payload.IsFixedPrice,
-                IsProgressive = input.Payload.IsProgressive,
                 ShortDescription = input.Payload.ShortDescription
             };
         }

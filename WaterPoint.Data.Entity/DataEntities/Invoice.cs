@@ -27,10 +27,6 @@ namespace WaterPoint.Data.Entity.DataEntities
 
         public DateTime? DueDate { get; set; }
 
-        public bool IsFixedPrice { get; set; }
-
-        public bool IsProgressive { get; set; }
-
         public decimal? TotalPrice { get; set; }
 
         public decimal? TotalPriceWithTax { get; set; }

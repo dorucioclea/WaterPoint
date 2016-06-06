@@ -24,12 +24,6 @@ namespace WaterPoint.Core.Domain.Payloads.Invoices
         public DateTime? PaidDate { get; set; }
 
         [Required]
-        public bool IsFixedPrice { get; set; }
-
-        [Required]
-        public bool IsProgressive { get; set; }
-
-        [Required]
         public string ShortDescription { get; set; }
 
         public string LongDescription { get; set; }

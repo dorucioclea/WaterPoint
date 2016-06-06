@@ -10,8 +10,6 @@
     [Code] VARCHAR(50) NOT NULL,
     [PaidDate] DATETIME2(0) NULL,
     [DueDate] DATETIME2(0) NULL,
-    [IsFixedPrice] BIT NOT NULL DEFAULT(0),
-    [IsProgressive] BIT NOT NULL DEFAULT(0),
     [TotalPrice] DECIMAL(10,3) DEFAULT(0),
     [TotalPriceWithTax] DECIMAL(10,3) DEFAULT(0),
     [ShortDescription] NVARCHAR(200) NOT NULL,
