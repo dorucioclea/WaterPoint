@@ -184,6 +184,7 @@
     <Compile Include="AppStart\RouteConfig.cs" />
     <Compile Include="AppStart\WebApiConfig.cs" />
     <Compile Include="Attributes\Class1.cs" />
+    <Compile Include="Attributes\RequirePrivilegesAttribute.cs" />
     <Compile Include="BaseControllers\BaseOrgnizationContextController.cs" />
     <Compile Include="HttpActionResults\BadRequestWithErrorsResult.cs" />
     <Compile Include="JobTimesheetTypeAnalyzer.cs" />

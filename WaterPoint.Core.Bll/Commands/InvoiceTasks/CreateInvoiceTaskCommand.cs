@@ -1,23 +1,23 @@
 ﻿using WaterPoint.Core.Domain.Db;
-using WaterPoint.Core.Domain.QueryParameters.InvoiceJobTasks;
+using WaterPoint.Core.Domain.QueryParameters.InvoiceTasks;
 using WaterPoint.Data.Entity.DataEntities;
 
-namespace WaterPoint.Core.Bll.Commands.InvoiceJobTasks
+namespace WaterPoint.Core.Bll.Commands.InvoiceTasks
 {
-    public class CreateInvoiceJobTaskCommand : ICommand<CreateInvoiceJobTask>
+    public class CreateInvoiceTaskCommand : ICommand<CreateInvoiceTask>
     {
         private readonly ISqlBuilderFactory _sqlBuilderFactory;
 
-        public CreateInvoiceJobTaskCommand(ISqlBuilderFactory sqlBuilderFactory)
+        public CreateInvoiceTaskCommand(ISqlBuilderFactory sqlBuilderFactory)
         {
             _sqlBuilderFactory = sqlBuilderFactory;
         }
 
-        public void BuildQuery(CreateInvoiceJobTask input)
+        public void BuildQuery(CreateInvoiceTask input)
         {
-            var builder = _sqlBuilderFactory.Create<CreateSqlBuilder<InvoiceJobTask>>();
+            var builder = _sqlBuilderFactory.Create<CreateSqlBuilder<InvoiceTask>>();
 
-            builder.Analyze<CreateInvoiceJobTask>();
+            builder.Analyze<CreateInvoiceTask>();
             builder.AddValueParameters(input);
 
             var sql = builder.GetSql();

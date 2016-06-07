@@ -7,6 +7,8 @@ namespace WaterPoint.Core.Domain.Payloads.InvoiceCostItems
         [Required]
         public string ShortDescription { get; set; }
 
+        public int? CostItemId { get; set; }
+
         public decimal UnitCost { get; set; }
 
         public decimal UnitPrice { get; set; }

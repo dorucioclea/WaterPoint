@@ -1,8 +1,8 @@
 ﻿using WaterPoint.Core.Domain.Db;
 
-namespace WaterPoint.Core.Domain.QueryParameters.InvoiceJobTasks
+namespace WaterPoint.Core.Domain.QueryParameters.InvoiceTasks
 {
-    public class ListInvoiceJobTasks : ISimplePagedQueryParameter
+    public class ListInvoiceTasks : ISimplePagedQueryParameter
     {
         public int OrganizationId { get; set; }
         public int InvoiceId { get; set; }

@@ -5,6 +5,7 @@
     [OrganizationId] INT NOT NULL,
     [LastChangeOrganizationUserId] INT NULL,
     [CostItemId] INT NULL,
+    [JobCostItemId] INT NULL,
     [ShortDescription] NVARCHAR(200) NOT NULL,
     [LongDescription] NVARCHAR(MAX) NULL,
     [UnitCost] DECIMAL(10,3) NOT NULL DEFAULT(0),

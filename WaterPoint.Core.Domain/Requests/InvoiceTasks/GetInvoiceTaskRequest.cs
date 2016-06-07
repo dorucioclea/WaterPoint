@@ -1,6 +1,6 @@
-﻿namespace WaterPoint.Core.Domain.Requests.InvoiceJobTasks
+﻿namespace WaterPoint.Core.Domain.Requests.InvoiceTasks
 {
-    public class GetInvoiceJobTaskRequest : IRequest
+    public class GetInvoiceTaskRequest : IRequest
     {
         public int Id { get; set; }
         public int OrganizationId { get; set; }

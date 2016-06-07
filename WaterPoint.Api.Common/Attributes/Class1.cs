@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.Http.Filters;
-
-namespace WaterPoint.Api.Common.Attributes
+﻿namespace WaterPoint.Api.Common.Attributes
 {
     public enum Privileges
     {

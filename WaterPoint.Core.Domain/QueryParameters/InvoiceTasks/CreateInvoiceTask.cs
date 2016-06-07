@@ -1,9 +1,9 @@
 ﻿using System;
 using WaterPoint.Core.Domain.Db;
 
-namespace WaterPoint.Core.Domain.QueryParameters.InvoiceJobTasks
+namespace WaterPoint.Core.Domain.QueryParameters.InvoiceTasks
 {
-    public class CreateInvoiceJobTask : IQueryParameter
+    public class CreateInvoiceTask : IQueryParameter
     {
         public int OrganizationId { get; set; }
 

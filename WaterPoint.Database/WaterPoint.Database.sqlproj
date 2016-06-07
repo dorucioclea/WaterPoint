@@ -99,7 +99,7 @@
     <Build Include="dbo\Tables\InvoiceType.sql" />
     <Build Include="dbo\Tables\InvoiceJob.sql" />
     <Build Include="dbo\Tables\InvoiceCostItem.sql" />
-    <Build Include="dbo\Tables\InvoiceJobTask.sql" />
+    <Build Include="dbo\Tables\InvoiceTasks.sql" />
     <Build Include="dbo\Tables\JobTimesheet.sql" />
     <Build Include="dbo\Tables\JobTimesheetType.sql" />
     <Build Include="dbo\Tables\InvoiceJobTimesheet.sql" />

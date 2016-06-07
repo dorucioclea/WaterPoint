@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace WaterPoint.Core.Domain.Contracts.InvoiceJobTasks
+namespace WaterPoint.Core.Domain.Contracts.InvoiceTasks
 {
-    public class InvoiceJobTaskContract : IContract
+    public class InvoiceTaskBasicContract : IContract
     {
         public int Id { get; set; }
 
@@ -30,15 +30,6 @@ namespace WaterPoint.Core.Domain.Contracts.InvoiceJobTasks
 
         public string ShortDescription { get; set; }
 
-        public string LongDescription { get; set; }
-
         public string Version { get; set; }
-
-        public DateTime UtcCreated { get; set; }
-
-        public DateTime UtcUpdated { get; set; }
-
-        public string Uid { get; set; }
-
     }
 }
