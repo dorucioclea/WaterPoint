@@ -1,10 +1,11 @@
-﻿CREATE TABLE [dbo].[InvoiceJobTask]
+﻿CREATE TABLE [dbo].[InvoiceTask]
 (
     [Id] INT NOT NULL IDENTITY,
     [OrganizationId] INT NOT NULL,
     [LastChangeOrganizationUserId] INT NULL,
     [InvoiceId] INT NOT NULL,
-    [JobTaskId] INT NOT NULL,
+    [TaskId] INT NULL,
+    [JobTaskId] INT NULL,
     [DisplayOrder] INT NULL,
     [EstimatedTimeInMinutes] INT NOT NULL,
     [StartDate] DATETIME2(0) NULL,
@@ -20,8 +21,8 @@
 	[UtcCreated] DATETIME2(3) NOT NULL DEFAULT(SYSUTCDATETIME()),
 	[UtcUpdated] DATETIME2(3) NOT NULL DEFAULT(SYSUTCDATETIME()),
     [Uid] UNIQUEIDENTIFIER NOT NULL DEFAULT(NEWID()),
-    CONSTRAINT [PK_dbo_InvoiceJobTask_Id] PRIMARY KEY CLUSTERED (Id ASC),
-    CONSTRAINT [FK_dbo_InvoiceJobTask_dbo_Invoice] FOREIGN KEY ([InvoiceId]) REFERENCES [dbo].[Invoice]([Id]),
-    CONSTRAINT [FK_dbo_InvoiceJobTask_dbo_JobTask] FOREIGN KEY ([JobTaskId]) REFERENCES [dbo].[JobTask]([Id]),
-    CONSTRAINT [FK_dbo_InvoiceJobTask_dbo_OrganizationUser] FOREIGN KEY ([LastChangeOrganizationUserId]) REFERENCES [dbo].[OrganizationUser]([Id])
+    CONSTRAINT [PK_dbo_InvoiceTask_Id] PRIMARY KEY CLUSTERED (Id ASC),
+    CONSTRAINT [FK_dbo_InvoiceTask_dbo_Invoice] FOREIGN KEY ([InvoiceId]) REFERENCES [dbo].[Invoice]([Id]),
+    CONSTRAINT [FK_dbo_InvoiceTask_dbo_JobTask] FOREIGN KEY ([JobTaskId]) REFERENCES [dbo].[JobTask]([Id]),
+    CONSTRAINT [FK_dbo_InvoiceTask_dbo_OrganizationUser] FOREIGN KEY ([LastChangeOrganizationUserId]) REFERENCES [dbo].[OrganizationUser]([Id])
 )

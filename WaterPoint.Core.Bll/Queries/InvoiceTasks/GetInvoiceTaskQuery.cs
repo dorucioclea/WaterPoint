@@ -1,10 +1,10 @@
-﻿using WaterPoint.Core.Domain.QueryParameters.InvoiceJobTasks;
+﻿using WaterPoint.Core.Domain.QueryParameters.InvoiceTasks;
 using WaterPoint.Core.Domain.Db;
 using WaterPoint.Data.Entity.DataEntities;
 
-namespace WaterPoint.Core.Bll.Queries.InvoiceJobTasks
+namespace WaterPoint.Core.Bll.Queries.InvoiceTasks
 {
-    public class GetInvoiceJobTaskQuery : IQuery<GetInvoiceJobTask, InvoiceJobTask>
+    public class GetInvoiceTaskQuery : IQuery<GetInvoiceTask, InvoiceTask>
     {
         private readonly ISqlBuilderFactory _sqlBuilderFactory;
 
@@ -18,18 +18,18 @@ namespace WaterPoint.Core.Bll.Queries.InvoiceJobTasks
                    {SqlPatterns.Where}
                     AND (q.OrganizationId = @organizationid) ";
 
-        public GetInvoiceJobTaskQuery(ISqlBuilderFactory sqlBuilderFactory)
+        public GetInvoiceTaskQuery(ISqlBuilderFactory sqlBuilderFactory)
         {
             _sqlBuilderFactory = sqlBuilderFactory;
         }
 
-        public void BuildQuery(GetInvoiceJobTask parameter)
+        public void BuildQuery(GetInvoiceTask parameter)
         {
             var builder = _sqlBuilderFactory.Create<SelectSqlBuilder>();
 
             builder.AddTemplate(_sqlTemplate);
-            builder.AddColumns<InvoiceJobTask>();
-            builder.AddConditions<InvoiceJobTask>(i => i.Id == parameter.Id && i.InvoiceId == parameter.InvoiceId);
+            builder.AddColumns<InvoiceTask>();
+            builder.AddConditions<InvoiceTask>(i => i.Id == parameter.Id && i.InvoiceId == parameter.InvoiceId);
 
             var sql = builder.GetSql();
 

@@ -2,25 +2,25 @@
 using System.Web.Http.OData;
 using WaterPoint.Api.Common.BaseControllers;
 using WaterPoint.Core.Domain;
-using WaterPoint.Core.Domain.Contracts.InvoiceJobTasks;
-using WaterPoint.Core.Domain.Payloads.InvoiceJobTasks;
-using WaterPoint.Core.Domain.Requests.InvoiceJobTasks;
+using WaterPoint.Core.Domain.Contracts.InvoiceTasks;
+using WaterPoint.Core.Domain.Payloads.InvoiceTasks;
+using WaterPoint.Core.Domain.Requests.InvoiceTasks;
 
 namespace WaterPoint.Api.Invoice.Controllers
 {
     [RoutePrefix("organizations/{organizationId:int}")]
     public class TasksController : BaseOrgnizationContextController
     {
-        private readonly IWriteRequestProcessor<CreateInvoiceJobTaskRequest> _createProcessor;
-        private readonly ISimplePagedProcessor<ListInvoiceJobTasksRequest, InvoiceJobTaskBasicContract> _listProcessor;
-        private readonly IRequestProcessor<GetInvoiceJobTaskRequest, InvoiceJobTaskContract> _getProcessor;
-        private readonly IWriteRequestProcessor<UpdateInvoiceJobTaskRequest> _updateProcessor;
+        private readonly IWriteRequestProcessor<CreateInvoiceTaskRequest> _createProcessor;
+        private readonly ISimplePagedProcessor<ListInvoiceTasksRequest, InvoiceTaskBasicContract> _listProcessor;
+        private readonly IRequestProcessor<GetInvoiceTaskRequest, InvoiceTaskContract> _getProcessor;
+        private readonly IWriteRequestProcessor<UpdateInvoiceTaskRequest> _updateProcessor;
 
         public TasksController(
-            IWriteRequestProcessor<CreateInvoiceJobTaskRequest> createProcessor,
-            ISimplePagedProcessor<ListInvoiceJobTasksRequest, InvoiceJobTaskBasicContract> listProcessor,
-            IRequestProcessor<GetInvoiceJobTaskRequest, InvoiceJobTaskContract> getProcessor,
-            IWriteRequestProcessor<UpdateInvoiceJobTaskRequest> updateProcessor)
+            IWriteRequestProcessor<CreateInvoiceTaskRequest> createProcessor,
+            ISimplePagedProcessor<ListInvoiceTasksRequest, InvoiceTaskBasicContract> listProcessor,
+            IRequestProcessor<GetInvoiceTaskRequest, InvoiceTaskContract> getProcessor,
+            IWriteRequestProcessor<UpdateInvoiceTaskRequest> updateProcessor)
         {
             _createProcessor = createProcessor;
             _listProcessor = listProcessor;
@@ -30,8 +30,8 @@ namespace WaterPoint.Api.Invoice.Controllers
 
         [Route("quotes/{quoteId:int}/tasks")]
         public IHttpActionResult Post(
-            [FromUri]CreateInvoiceJobTaskRequest request,
-            [FromBody]CreateInvoiceJobTaskPayload payload)
+            [FromUri]CreateInvoiceTaskRequest request,
+            [FromBody]CreateInvoiceTaskPayload payload)
         {
             if (!ModelState.IsValid)
                 return BadRequestWithErrors();
@@ -44,7 +44,7 @@ namespace WaterPoint.Api.Invoice.Controllers
         }
 
         [Route("quotes/{quoteId:int}/tasks")]
-        public IHttpActionResult Get([FromUri]ListInvoiceJobTasksRequest request)
+        public IHttpActionResult Get([FromUri]ListInvoiceTasksRequest request)
         {
             var result = _listProcessor.Process(request);
 
@@ -52,7 +52,7 @@ namespace WaterPoint.Api.Invoice.Controllers
         }
 
         [Route("quotes/{quoteId:int}/tasks/{id:int}")]
-        public IHttpActionResult Get([FromUri]GetInvoiceJobTaskRequest request)
+        public IHttpActionResult Get([FromUri]GetInvoiceTaskRequest request)
         {
             var result = _getProcessor.Process(request);
 
@@ -62,8 +62,8 @@ namespace WaterPoint.Api.Invoice.Controllers
 
         [Route("quotes/{quoteId:int}/tasks/{id:int}")]
         public IHttpActionResult Put(
-            [FromUri]UpdateInvoiceJobTaskRequest request,
-            [FromBody]Delta<UpdateInvoiceJobTaskPayload> payload)
+            [FromUri]UpdateInvoiceTaskRequest request,
+            [FromBody]Delta<UpdateInvoiceTaskPayload> payload)
         {
             if (!ModelState.IsValid)
                 return BadRequestWithErrors();

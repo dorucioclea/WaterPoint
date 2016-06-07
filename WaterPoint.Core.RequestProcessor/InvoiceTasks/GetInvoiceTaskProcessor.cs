@@ -1,23 +1,23 @@
 ﻿using WaterPoint.Core.Domain;
-using WaterPoint.Core.Domain.Contracts.InvoiceJobTasks;
+using WaterPoint.Core.Domain.Contracts.InvoiceTasks;
 using WaterPoint.Core.Domain.Db;
-using WaterPoint.Core.Domain.QueryParameters.InvoiceJobTasks;
-using WaterPoint.Core.Domain.Requests.InvoiceJobTasks;
+using WaterPoint.Core.Domain.QueryParameters.InvoiceTasks;
+using WaterPoint.Core.Domain.Requests.InvoiceTasks;
 using WaterPoint.Core.RequestProcessor.Mappers.EntitiesToContracts;
 using WaterPoint.Data.DbContext.Dapper;
 using WaterPoint.Data.Entity.DataEntities;
 
-namespace WaterPoint.Core.RequestProcessor.InvoiceJobTasks
+namespace WaterPoint.Core.RequestProcessor.InvoiceTasks
 {
-    public class GetInvoiceJobTaskProcessor : BaseDapperUowRequestProcess,
-        IRequestProcessor<GetInvoiceJobTaskRequest, InvoiceJobTaskContract>
+    public class GetInvoiceTaskProcessor : BaseDapperUowRequestProcess,
+        IRequestProcessor<GetInvoiceTaskRequest, InvoiceTaskContract>
     {
-        private readonly IQuery<GetInvoiceJobTask, InvoiceJobTask> _query;
+        private readonly IQuery<GetInvoiceTask, InvoiceTask> _query;
         private readonly IQueryRunner _runner;
 
-        public GetInvoiceJobTaskProcessor(
+        public GetInvoiceTaskProcessor(
             IDapperUnitOfWork dapperUnitOfWork,
-            IQuery<GetInvoiceJobTask, InvoiceJobTask> query,
+            IQuery<GetInvoiceTask, InvoiceTask> query,
             IQueryRunner runner)
             : base(dapperUnitOfWork)
         {
@@ -25,9 +25,9 @@ namespace WaterPoint.Core.RequestProcessor.InvoiceJobTasks
             _runner = runner;
         }
 
-        public InvoiceJobTaskContract Process(GetInvoiceJobTaskRequest input)
+        public InvoiceTaskContract Process(GetInvoiceTaskRequest input)
         {
-            _query.BuildQuery(new GetInvoiceJobTask
+            _query.BuildQuery(new GetInvoiceTask
             {
                 Id = input.Id,
                 OrganizationId = input.OrganizationId,
@@ -38,7 +38,7 @@ namespace WaterPoint.Core.RequestProcessor.InvoiceJobTasks
             {
                 var quotetask = _runner.Run(_query);
 
-                var result = InvoiceJobTaskMapper.Map(quotetask);
+                var result = InvoiceTaskMapper.Map(quotetask);
 
                 return result;
             }

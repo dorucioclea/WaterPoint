@@ -5,7 +5,7 @@
     [InvoiceId] INT NOT NULL,
     [LastChangeOrganizationUserId] INT NULL,
     [JobTimesheetId] INT NOT NULL,
-    [InvoiceJobTaskId] INT NULL,
+    [InvoiceTaskId] INT NULL,
     [StartDateTime] DATETIME2(0) NULL,
     [EndDateTime] DATETIME2(0) NULL,
     [RoundedMinutes] INT NOT NULL DEFAULT(0),

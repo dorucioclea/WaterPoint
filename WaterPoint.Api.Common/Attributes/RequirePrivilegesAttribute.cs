@@ -3,7 +3,6 @@ using System.Linq;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
 using WaterPoint.Api.Common.BaseControllers;
-using WaterPoint.Core.Domain.Exceptions;
 
 namespace WaterPoint.Api.Common.Attributes
 {
@@ -21,7 +20,7 @@ namespace WaterPoint.Api.Common.Attributes
             var controller = actionContext.ControllerContext.Controller as BaseOrgnizationContextController;
 
             if (controller == null)
-                throw new InvalidCastException("RequirePrivilegesAttribute must be used for BaseOrgnizationContextController");
+                throw new InvalidCastException("RequirePrivilegesAttribute can only be used for BaseOrgnizationContextController");
 
             var userPrivileges = controller.Credential.Privileges.Select(i => i.Id);
 

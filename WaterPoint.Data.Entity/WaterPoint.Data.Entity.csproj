@@ -69,7 +69,7 @@
     <Compile Include="DataEntities\OrganizationUser.cs" />
     <Compile Include="DataEntities\Supplier.cs" />
     <Compile Include="DataEntities\Invoice.cs" />
-    <Compile Include="DataEntities\InvoiceJobTask.cs" />
+    <Compile Include="DataEntities\InvoiceTasks.cs" />
     <Compile Include="DataEntities\InvoiceCostItem.cs" />
     <Compile Include="DataEntities\QuoteCostItem.cs" />
     <Compile Include="DataEntities\QuoteTask.cs" />
@@ -107,7 +107,7 @@
     <Compile Include="Pocos\Privileges\OrganizationUserPrivilegePoco.cs" />
     <Compile Include="Pocos\InvoiceCostItems\InvoiceCostItemBasicPoco.cs" />
     <Compile Include="Pocos\QuoteCostItems\QuoteCostItemBasicPoco.cs" />
-    <Compile Include="Pocos\InvoiceJobTasks\InvoiceJobTaskBasicPoco.cs" />
+    <Compile Include="Pocos\InvoiceTasks\InvoiceTaskBasicPoco.cs" />
     <Compile Include="Pocos\Quotes\QuoteBasicPoco.cs" />
     <Compile Include="Pocos\QuoteTasks\QuoteTaskBasicPoco.cs" />
     <Compile Include="Pocos\Staff\BasicStaffPoco.cs" />

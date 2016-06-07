@@ -1,10 +1,10 @@
-﻿using WaterPoint.Core.Domain.QueryParameters.InvoiceJobTasks;
+﻿using WaterPoint.Core.Domain.QueryParameters.InvoiceTasks;
 using WaterPoint.Core.Domain.Db;
-using WaterPoint.Data.Entity.Pocos.InvoiceJobTasks;
+using WaterPoint.Data.Entity.Pocos.InvoiceTasks;
 
-namespace WaterPoint.Core.Bll.Queries.InvoiceJobTasks
+namespace WaterPoint.Core.Bll.Queries.InvoiceTasks
 {
-    public class ListInvoiceJobTasksQuery : IQuery<ListInvoiceJobTasks, InvoiceJobTaskBasicPoco>
+    public class ListInvoiceTasksQuery : IQuery<ListInvoiceTasks, InvoiceTaskBasicPoco>
     {
         private readonly ISqlBuilderFactory _sqlBuilderFactory;
 
@@ -29,18 +29,18 @@ namespace WaterPoint.Core.Bll.Queries.InvoiceJobTasks
                 ORDER BY 1 DESC
                 OFFSET @offset ROWS FETCH NEXT @pageSize ROWS ONLY  ";
 
-        public ListInvoiceJobTasksQuery(ISqlBuilderFactory sqlBuilderFactory)
+        public ListInvoiceTasksQuery(ISqlBuilderFactory sqlBuilderFactory)
         {
             _sqlBuilderFactory = sqlBuilderFactory;
         }
 
-        public void BuildQuery(ListInvoiceJobTasks parameter)
+        public void BuildQuery(ListInvoiceTasks parameter)
         {
             var builder = _sqlBuilderFactory.Create<SelectSqlBuilder>();
 
             builder.AddTemplate(_sqlTemplate);
-            builder.AddColumns<InvoiceJobTaskBasicPoco>();
-            builder.AddConditions<InvoiceJobTaskBasicPoco>(i => i.InvoiceId == parameter.InvoiceId);
+            builder.AddColumns<InvoiceTaskBasicPoco>();
+            builder.AddConditions<InvoiceTaskBasicPoco>(i => i.InvoiceId == parameter.InvoiceId);
 
             var sql = builder.GetSql();
 
