@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[List_Customers_By_Batch]
+﻿CREATE PROCEDURE [dbo].[List_CustomerDocs_By_Batch]
     @lastId INT = NULL,
     @batch INT = 1000
 AS

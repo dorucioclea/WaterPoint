@@ -133,7 +133,7 @@
     <Build Include="dbo\StoredProcedures\Add_Credential.sql" />
     <Build Include="dbo\StoredProcedures\Add_OrganizationUser.sql" />
     <Build Include="search\Search.sql" />
-    <Build Include="search\StoredProcedures\List_Customers_By_Batch.sql" />
+    <Build Include="search\StoredProcedures\List_CustomerDocs_By_Batch.sql" />
     <Build Include="dbo\Tables\CustomerContact.sql" />
     <Build Include="dbo\StoredProcedures\List_CustomerContacts_By_CustomerId.sql" />
     <Build Include="dbo\StoredProcedures\Add_CustomerContact.sql" />
@@ -151,6 +151,8 @@
     <Build Include="dbo\StoredProcedures\BulkDelete_CostItems.sql" />
     <Build Include="dbo\Tables\QuoteTimeSheet.sql" />
     <Build Include="dbo\StoredProcedures\Procedure1.sql" />
+    <Build Include="search\Tables\CustomerChange.sql" />
+    <Build Include="search\Tables\ChangeIndicator.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="WaterPoint.Database.publish.xml" />

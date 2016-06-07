@@ -45,7 +45,7 @@ namespace WaterPoint.ElasticSearch.Worker
 
             var response = _client.Bulk(descriptor);
 
-            if (!response.Errors)
+            if (!response.Errors && response.IsValid)
                 return;
 
             var errors = response.ItemsWithErrors
